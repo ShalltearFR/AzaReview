@@ -1,5 +1,4 @@
 "use client";
-import "dotenv/config";
 import { useState, useEffect } from "react";
 
 async function Getdata(uid: number) {
