@@ -1,4 +1,3 @@
-"use client";
 import cdn from "@/utils/cdn";
 import type { jsonUID } from "@/utils/jsonUid";
 

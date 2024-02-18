@@ -143,6 +143,21 @@ interface Element {
   icon: string;
 }
 
+interface Skill {
+  id: string;
+  name: string;
+  level: number;
+  max_level: number;
+  element: Element;
+  type: string;
+  type_text: string;
+  effect: string;
+  effect_text: string;
+  simple_desc: string;
+  desc: string;
+  icon: string;
+}
+
 interface Character {
   id: string;
   name: string;
@@ -156,6 +171,8 @@ interface Character {
   rank_icons: string[];
   path: Path;
   element: Element;
+  skills: Skill[];
+  light_cone: LightCone;
 }
 
 interface Avatar {
@@ -190,10 +207,50 @@ interface Player {
   space_info: SpaceInfo;
 }
 
+interface LightConeAttribute {
+  field: string;
+  name: string;
+  icon: string;
+  value: number;
+  display: string;
+  percent: boolean;
+}
+
+interface LightConeProperty {
+  type: string;
+  field: string;
+  name: string;
+  icon: string;
+  value: number;
+  display: string;
+  percent: boolean;
+}
+
+interface LightConePath {
+  id: string;
+  name: string;
+  icon: string;
+}
+
+interface LightCone {
+  id: string;
+  name: string;
+  rarity: number;
+  rank: number;
+  level: number;
+  promotion: number;
+  icon: string;
+  preview: string;
+  portrait: string;
+  path: LightConePath;
+  attributes: LightConeAttribute[];
+  properties: LightConeProperty[];
+}
+
 interface jsonUID {
   status: number;
   player: Player;
   characters: Character[];
 }
 
-export type { jsonUID };
+export type { jsonUID, Player, Character, LightCone };

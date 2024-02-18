@@ -1,38 +1,25 @@
-"use client";
 import CDN from "@/utils/cdn";
-import { jsonUID } from "@/utils/jsonUid";
+import { Character } from "@/utils/jsonUid";
 import CharacterEidolon from "./CharacterEidolon";
 
 interface CharacterSplashProps {
-  uidData: jsonUID;
-  index: number;
+  character: Character;
 }
 
-const CharacterSplash: React.FC<CharacterSplashProps> = ({
-  uidData,
-  index,
-}) => {
-  const character = uidData.characters[index];
+const CharacterSplash: React.FC<CharacterSplashProps> = ({ character }) => {
   return (
-    <div
-      className="flex flex-col w-full h-[480px] border relative"
-      // style={{
-      //   backgroundImage: `url('${CDN}/${character.portrait}')`,
-      //   backgroundRepeat: "no-repeat",
-      //   backgroundPosition: "center center",
-      //   backgroundSize: "contain",
-      // }}
-    >
+    <div className="flex flex-col w-full h-[480px] relative overflow-hidden">
       <img
         src={`${CDN}/${character.portrait}`}
         alt=""
-        className="absolute top-10"
+        className="absolute top-10 w-[520px]"
+        style={{ maskImage: "url(/img/characterMask.png)" }}
       />
       <div className="ml-5">
         <div className="grid grid-cols-[1fr_120px] items-center">
           <span className="text-white text-4xl z-10">{character.name}</span>
           <span className="text-orange text-right text-3xl pr-5 z-10">
-            Niv.{character.level}
+            Niv. {character.level}
           </span>
         </div>
         <div className="flex gap-1 mt-2">
@@ -48,7 +35,7 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
           />
         </div>
       </div>
-      <div className="flex mt-auto w-full h-16 items-center justify-center border gap-2 z-10">
+      <div className="flex mt-auto w-full h-16 items-center justify-center gap-2 z-10">
         {character.rank_icons.map((eidolon, i) => {
           return (
             <CharacterEidolon

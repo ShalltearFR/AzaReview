@@ -1,4 +1,3 @@
-"use client";
 import CDN from "@/utils/cdn";
 
 interface CharacterEidolonProps {
@@ -11,7 +10,7 @@ const CharacterEidolon: React.FC<CharacterEidolonProps> = ({
   img,
 }) => {
   return (
-    <div className="w-12 rounded-full bg-black border border-background">
+    <div className="w-12 rounded-full bg-black border border-gray">
       <img
         src={`${CDN}/${img}`}
         className={`${isActive ? "" : "opacity-25"}`}
