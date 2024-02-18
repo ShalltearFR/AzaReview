@@ -9,7 +9,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body>
+      <body className="bg-background">
         {children}
         <Analytics />
         <SpeedInsights />
