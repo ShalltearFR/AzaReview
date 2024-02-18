@@ -55,6 +55,8 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
   type,
   key,
 }) => {
+  const numberFormat = new Intl.NumberFormat("fr-FR");
+
   const attributeIndex = attributes.findIndex(
     (attribute) => attribute.field === type
   );
@@ -98,7 +100,9 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
     <div key={key} className="flex text-white items-center text-xl">
       <img src={`${CDN}/${img}`} className="w-8" alt={name} />
       <span className="ml-1">{name}</span>
-      <span className="ml-auto ">{`${value}${isPercent ? " %" : ""}`}</span>
+      <span className="ml-auto ">{`${value.toLocaleString("fr")}${
+        isPercent ? " %" : ""
+      }`}</span>
     </div>
   );
 };
