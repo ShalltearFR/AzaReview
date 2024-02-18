@@ -35,7 +35,7 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({ character }) => {
           />
         </div>
       </div>
-      <div className="flex mt-auto w-full h-16 items-center justify-center gap-2 z-10">
+      <div className="flex mt-auto w-full h-20 items-center justify-center gap-2 z-10">
         {character.rank_icons.map((eidolon, i) => {
           return (
             <CharacterEidolon

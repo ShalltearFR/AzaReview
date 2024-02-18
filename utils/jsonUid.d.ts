@@ -173,6 +173,9 @@ interface Character {
   element: Element;
   skills: Skill[];
   light_cone: LightCone;
+  attributes: Attribute[];
+  additions: Addition[];
+  relic_sets: RelicSet[];
 }
 
 interface Avatar {
@@ -247,10 +250,45 @@ interface LightCone {
   properties: LightConeProperty[];
 }
 
+interface Attribute {
+  field: string;
+  name: string;
+  icon: string;
+  value: number;
+  display: string;
+  percent: boolean;
+}
+
+interface Addition {
+  field: string;
+  name: string;
+  icon: string;
+  value: number;
+  display: string;
+  percent: boolean;
+}
+
+interface RelicSet {
+  id: string;
+  name: string;
+  icon: string;
+  num: number;
+  desc: string;
+  properties: Property[];
+}
+
 interface jsonUID {
   status: number;
   player: Player;
   characters: Character[];
 }
 
-export type { jsonUID, Player, Character, LightCone };
+export type {
+  jsonUID,
+  Player,
+  Character,
+  LightCone,
+  Attribute,
+  Addition,
+  RelicSet,
+};

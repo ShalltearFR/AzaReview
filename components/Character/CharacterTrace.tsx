@@ -16,14 +16,14 @@ const CharacterTrace: React.FC<CharacterTraceProps> = ({
   name,
 }) => {
   return (
-    <div key={key} className="flex flex-col w-24 h-24 relative" title={name}>
-      <div className="absolute w-[85px] h-[85px] top-1 left-1 rounded-full bg-black border border-gray">
+    <div key={key} className="flex flex-col w-20 h-20 relative" title={name}>
+      <div className="absolute w-16 h-16 top-1 left-1 rounded-full bg-black border border-gray">
         <img src={`${CDN}/${img}`} />
       </div>
-      <span className="z-10 bg-light-gray rounded-full text-center text-sm font-bold">
+      <span className="z-10 h-5 flex justify-center items-center bg-light-gray rounded-full text-xs font-bold">
         {type}
       </span>
-      <span className="flex mt-auto z-10 bg-light-gray w-9 h-9 justify-center items-center rounded-full text-lg font-bold">
+      <span className="flex mt-auto z-10 bg-light-gray w-7 h-7 justify-center items-center rounded-full font-bold">
         {level}
       </span>
     </div>
