@@ -176,6 +176,7 @@ interface Character {
   attributes: Attribute[];
   additions: Addition[];
   relic_sets: RelicSet[];
+  relics: Relic[];
 }
 
 interface Avatar {
@@ -277,6 +278,40 @@ interface RelicSet {
   properties: Property[];
 }
 
+interface SubAffix {
+  type: string;
+  field: string;
+  name: string;
+  icon: string;
+  value: number;
+  display: string;
+  percent: boolean;
+  count: number;
+  step: number;
+}
+
+interface MainAffix {
+  type: string;
+  field: string;
+  name: string;
+  icon: string;
+  value: number;
+  display: string;
+  percent: boolean;
+}
+
+interface Relic {
+  id: string;
+  name: string;
+  set_id: string;
+  set_name: string;
+  rarity: number;
+  level: number;
+  icon: string;
+  main_affix: MainAffix;
+  sub_affix: SubAffix[];
+}
+
 interface jsonUID {
   status: number;
   player: Player;
@@ -291,4 +326,5 @@ export type {
   Attribute,
   Addition,
   RelicSet,
+  Relic,
 };

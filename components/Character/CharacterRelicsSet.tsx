@@ -1,13 +1,11 @@
 import CDN from "@/utils/cdn";
 import { RelicSet } from "@/utils/jsonUid";
 
-interface CharacterEquipedRelicsProps {
+interface CharacterRelicsSetProps {
   relics: RelicSet[];
 }
 
-const CharacterEquipedRelics: React.FC<CharacterEquipedRelicsProps> = ({
-  relics,
-}) => {
+const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({ relics }) => {
   // Utilisez une assertion ('as') pour indiquer à TypeScript que l'accumulateur aura la clé spécifiée
   const processedRelicSets = relics.reduce((accumulator, relicSet) => {
     accumulator[relicSet.id] = relicSet;
@@ -34,4 +32,4 @@ const CharacterEquipedRelics: React.FC<CharacterEquipedRelicsProps> = ({
   );
 };
 
-export default CharacterEquipedRelics;
+export default CharacterRelicsSet;

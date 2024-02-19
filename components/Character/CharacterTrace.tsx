@@ -4,7 +4,6 @@ interface CharacterTraceProps {
   type: string;
   level: number;
   img: string;
-  key: string;
   name: string;
 }
 
@@ -12,11 +11,14 @@ const CharacterTrace: React.FC<CharacterTraceProps> = ({
   level,
   img,
   type,
-  key,
   name,
 }) => {
   return (
-    <div key={key} className="flex flex-col w-20 h-20 relative" title={name}>
+    <div
+      key={crypto.randomUUID()}
+      className="flex flex-col w-20 h-20 relative"
+      title={name}
+    >
       <div className="absolute w-16 h-16 top-1 left-1 rounded-full bg-black border border-gray">
         <img src={`${CDN}/${img}`} />
       </div>

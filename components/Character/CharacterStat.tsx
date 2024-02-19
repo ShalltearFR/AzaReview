@@ -6,7 +6,6 @@ interface CharacterStatProps {
   attributes: Attribute[];
   additions: Addition[];
   type: string;
-  key: string;
 }
 
 const getDefaultValue = (type: string) => {
@@ -53,7 +52,6 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
   attributes,
   additions,
   type,
-  key,
 }) => {
   const numberFormat = new Intl.NumberFormat("fr-FR");
 
@@ -97,7 +95,10 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
   }
 
   return (
-    <div key={key} className="flex text-white items-center text-xl">
+    <div
+      key={crypto.randomUUID()}
+      className="flex text-white items-center text-xl"
+    >
       <img src={`${CDN}/${img}`} className="w-8" alt={name} />
       <span className="ml-1">{name}</span>
       <span className="ml-auto ">{`${value.toLocaleString("fr")}${
