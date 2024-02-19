@@ -27,7 +27,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({ relics }) => {
               <span className="absolute top-0 left-0 p-1 bg-gray rounded-full">
                 {relic.num}P
               </span>
-              <span className="absolute bottom-0 left-0 p-1 w-[135px] bg-gray/75 rounded-full text-xs">
+              <span className="absolute bottom-0 left-0 p-1 w-full bg-gray/75 rounded-full text-xs">
                 {relic.name}
               </span>
               {/* {relic.num}P. - {relic.name} */}
