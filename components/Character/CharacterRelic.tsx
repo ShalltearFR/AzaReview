@@ -53,7 +53,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats }) => {
         <p className="absolute top-0 right-5 py-1 px-2 bg-gray rounded-full text-xs">{`+${level}`}</p>
       </div>
       <div className="flex flex-col justify-center text-white !leading-0">
-        {sub_affix.map((affix) => {
+        {sub_affix.map((affix, i) => {
           const subDisplayValue =
             typeValueMap[affix.type as keyof typeof typeValueMap] || affix.name;
 
@@ -66,7 +66,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats }) => {
               <span>{subDisplayValue}</span>
               <span className="text-right mr-2">{affix.display}</span>
               <span className="bg-green rounded-full text-center text-black">
-                {affix.count > 1 && affix.count}
+                {affix.count - 1 > 0 && affix.count - 1}
               </span>
             </div>
           );
