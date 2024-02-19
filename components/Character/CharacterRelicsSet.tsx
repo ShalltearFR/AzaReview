@@ -16,13 +16,22 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({ relics }) => {
   console.log(finalProcessedRelicSets.length);
 
   return (
-    <div className="text-white text-sm font-bold text-center mt-2">
+    <div
+      className={`flex text-white text-sm font-bold text-center justify-center mt-2 gap-[15px]`}
+    >
       {finalProcessedRelicSets.length !== 0 ? (
         finalProcessedRelicSets.map((relic) => {
           return (
-            <p key={crypto.randomUUID()}>
-              {relic.num}P. - {relic.name}
-            </p>
+            <div className="relative w-[135px]" key={crypto.randomUUID()}>
+              <img src={`${CDN}/${relic.icon}`} />
+              <span className="absolute top-0 left-0 p-1 bg-gray rounded-full">
+                {relic.num}P
+              </span>
+              <span className="absolute bottom-0 left-0 p-1 w-[135px] bg-gray/75 rounded-full text-xs">
+                {relic.name}
+              </span>
+              {/* {relic.num}P. - {relic.name} */}
+            </div>
           );
         })
       ) : (
