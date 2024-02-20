@@ -1,4 +1,4 @@
-import UidPage from "@/components/Character/UidPage";
+import UidPage from "@/components/UidPage";
 import { CDN } from "@/utils/cdn";
 import type { Metadata, ResolvingMetadata } from "next";
 
@@ -17,12 +17,23 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const res = await getData(params.slug);
 
+  if (res.player) {
+    return {
+      metadataBase: new URL(CDN),
+      title: `Review HSR de ${res.player.nickname}`,
+      description: `Review Honkai : Star Rail sur le compte de ${res.player.nickname} - Pionnier ${res.player.level} - UID : ${res.player.uid}`,
+      openGraph: {
+        images: [`/${res.player.avatar.icon}`],
+      },
+    };
+  }
+
   return {
     metadataBase: new URL(CDN),
-    title: `Review HSR de ${res.player.nickname}`,
-    description: `Review Honkai : Star Rail sur le compte de ${res.player.nickname} - Pionnier ${res.player.level} - UID : ${res.player.uid}`,
+    title: `Review HSR`,
+    description: `Review Honkai : Star Rail - UID non existant`,
     openGraph: {
-      images: [`/${res.player.avatar.icon}`],
+      images: [`/icon/avatar/8004.png`],
     },
   };
 }
