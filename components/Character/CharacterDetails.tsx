@@ -19,7 +19,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   const character = uidData.characters[index];
   return (
     <article
-      className="grid xl:grid-cols-3  xl:h-[870px] mx-auto mt-[66px] xl:gap-x-5"
+      className="grid xl:grid-cols-3 xl:h-[870px] mx-auto mt-[66px] xl:gap-x-5 py-5"
       style={{ backgroundImage: "url('/img/character_bg.avif')" }}
     >
       <div className="flex flex-col my-auto xl:ml-5 mb-5 xl:mb-0">

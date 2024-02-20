@@ -18,14 +18,16 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({ character }) => {
           maskSize: "100% 480px",
         }}
       />
-      <div className="xl:ml-5">
+      <div className="xl:ml-5 w-full self-start">
         <div className="grid grid-cols-[1fr_120px] items-end">
-          <span className="text-white text-4xl z-10">{character.name}</span>
+          <span className="text-white text-4xl z-10 ml-5 xl:ml-0">
+            {character.name}
+          </span>
           <span className="text-orange text-right text-3xl pr-5 z-10">
             Niv. {character.level}
           </span>
         </div>
-        <div className="flex gap-1 mt-2">
+        <div className="flex gap-1 mt-2 ml-5 xl:ml-0">
           <img
             src={`${CDN}/${character.element.icon}`}
             className="w-6 z-10"
