@@ -31,7 +31,7 @@ export default function Page({ params }: { params: { slug: number } }) {
   }, [params]);
 
   return (
-    <div className="overflow-hidden">
+    <div>
       <NavBar setData={setUidData} />
       {uidData.status === 200 && (
         <section>
