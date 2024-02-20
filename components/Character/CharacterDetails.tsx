@@ -6,6 +6,7 @@ import CharacterStat from "./CharacterStat";
 import RecommandedStat from "../RecommandedStat";
 import CharacterRelicsSet from "./CharacterRelicsSet";
 import CharacterRelic from "./CharacterRelic";
+import { CDN2 } from "@/utils/cdn";
 
 interface CharacterDetailsProps {
   uidData: jsonUID;
@@ -21,7 +22,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
     <article
       className="grid xl:grid-cols-3 w-full max-w-[1450px] xl:h-[870px] mx-auto mt-[66px] xl:gap-x-5 py-5"
       style={{
-        backgroundImage: "url('/img/character_bg.avif')",
+        backgroundImage: `url('${CDN2}/img/character_bg.avif')`,
         backgroundRepeat: "repeat-y",
       }}
     >
