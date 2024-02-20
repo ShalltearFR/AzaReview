@@ -49,16 +49,15 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats }) => {
           ? { maskImage: "url(/img/relicMask.png)", maskSize: "100% 100%" }
           : {}
       }
-      // style={{ maskImage: "url(/img/relicMask.png)" }}
     >
-      <div className="text-sm text-center relative">
+      <div className="text-sm text-center relative items-center justify-center">
         <img src={`${CDN}/${icon}`} className="w-20 mx-auto" />
         <p>{displayValue}</p>
         <p>{main_affix.display}</p>
         <p className="absolute top-0 right-5 py-1 px-2 bg-gray rounded-full text-xs">{`+${level}`}</p>
       </div>
       <div className="flex flex-col justify-center text-white !leading-0">
-        {sub_affix.map((affix, i) => {
+        {sub_affix.map((affix) => {
           const subDisplayValue =
             typeValueMap[affix.type as keyof typeof typeValueMap] || affix.name;
 
