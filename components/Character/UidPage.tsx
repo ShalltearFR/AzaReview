@@ -6,29 +6,18 @@ import type { jsonUID } from "@/utils/jsonUid";
 import { useState, useEffect } from "react";
 
 interface UidPageProps {
-  uid: number;
+  json: jsonUID;
 }
 
-async function Getdata(uid: number) {
-  const res = await fetch(`/api/uid/${uid}`);
-  return res.json();
-}
-
-const UidPage: React.FC<UidPageProps> = ({ uid }) => {
+const UidPage: React.FC<UidPageProps> = ({ json }) => {
   const [uidData, setUidData] = useState<{ status: number } | jsonUID>({
     status: 206,
   });
   const [characterIndex, setCharacterIndex] = useState<number>(0);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await Getdata(uid);
-      console.log(data);
-      setUidData(data);
-    };
-
-    fetchData();
-  }, [uid]);
+    setUidData(json);
+  }, [json]);
 
   return (
     <div className="overflow-hidden min-h-[calc(100vh-178px)]">

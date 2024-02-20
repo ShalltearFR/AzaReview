@@ -2,33 +2,34 @@ import UidPage from "@/components/Character/UidPage";
 import type { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: { slug: number };
 };
 
+async function getData(uid: number) {
+  const res = await fetch(`https://review-hsr.vercel.app/api/uid/${uid}`);
+  return res.json();
+}
+
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const uid = params.slug;
-
-  const product = await fetch(
-    `https://review-hsr.vercel.app/api/uid/${uid}`
-  ).then((res) => res.json());
+  const res = await getData(params.slug);
 
   return {
-    title: `Review HSR de ${product.player.nickname}`,
-    description: `Review Honkai : Star Rail sur le compte de ${product.player.nickname}`,
+    title: `Review HSR de ${res.player.nickname}`,
+    description: `Review Honkai : Star Rail sur le compte de ${res.player.nickname}`,
     // openGraph: {
     //   images: ['/some-specific-page-image.jpg', ...previousImages],
     // },
   };
 }
 
-export default function Page({ params }: { params: { slug: number } }) {
+export default async function Page({ params }: { params: { slug: number } }) {
+  const data = await getData(params.slug);
   return (
     <>
-      <UidPage uid={params.slug} />
+      <UidPage json={data} />
     </>
   );
 }
