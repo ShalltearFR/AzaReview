@@ -24,7 +24,6 @@ export default function Page({ params }: { params: { slug: number } }) {
     const fetchData = async () => {
       const data = await Getdata(params.slug);
       setUidData(data);
-      console.log(data);
     };
 
     fetchData();

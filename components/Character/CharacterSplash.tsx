@@ -8,7 +8,7 @@ interface CharacterSplashProps {
 
 const CharacterSplash: React.FC<CharacterSplashProps> = ({ character }) => {
   return (
-    <div className="flex flex-col h-[480px] relative overflow-hidden items-center">
+    <div className="flex flex-col h-[480px] relative items-center">
       <img
         src={`${CDN}/${character.portrait}`}
         alt=""

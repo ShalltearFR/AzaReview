@@ -101,7 +101,7 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
     >
       <img src={`${CDN}/${img}`} className="w-8" alt={name} />
       <span className="ml-1">{name}</span>
-      <span className="ml-auto ">{`${value.toLocaleString("fr")}${
+      <span className="ml-auto text-right">{`${value.toLocaleString("fr")}${
         isPercent ? " %" : ""
       }`}</span>
     </div>

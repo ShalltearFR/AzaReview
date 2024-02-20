@@ -6,14 +6,12 @@ interface CharacterRelicsSetProps {
 }
 
 const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({ relics }) => {
-  // Utilisez une assertion ('as') pour indiquer à TypeScript que l'accumulateur aura la clé spécifiée
   const processedRelicSets = relics.reduce((accumulator, relicSet) => {
     accumulator[relicSet.id] = relicSet;
     return accumulator;
   }, {} as Record<string, RelicSet>);
 
   const finalProcessedRelicSets = Object.values(processedRelicSets);
-  console.log(finalProcessedRelicSets.length);
 
   return (
     <div
