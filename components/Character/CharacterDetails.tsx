@@ -22,7 +22,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
       className="grid xl:grid-cols-3  xl:h-[870px] mx-auto mt-[66px] xl:gap-x-5"
       style={{ backgroundImage: "url('/img/character_bg.avif')" }}
     >
-      <div className="flex flex-col my-auto ml-5 mb-5 xl:mb-0">
+      <div className="flex flex-col my-auto xl:ml-5 mb-5 xl:mb-0">
         <CharacterSplash character={character} />
         <div className="flex gap-x-3 justify-center">
           {["Attaque", "Compétence", "Ultime", "Talent"].map((type, i) => {

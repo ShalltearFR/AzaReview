@@ -13,7 +13,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
   index,
 }) => {
   return (
-    <article className="flex flex-col xl:flex-row xl:h-36 w-11/12 xl:w-[1350px] py-5 xl:py-0 bg-[#4E4A82] rounded-3xl md:rounded-full items-center mx-auto shadow-2xl">
+    <article className="flex flex-col xl:flex-row xl:h-36 w-11/12 xl:w-[1350px] py-5 xl:py-0 bg-[#4E4A82] rounded-3xl lg:rounded-full items-center mx-auto shadow-2xl">
       <img
         className="w-24 h-24 xl:ml-8"
         alt="UID logo"
@@ -34,7 +34,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
               onClick={() => setIndex(i)}
               key={crypto.randomUUID()}
             >
-              <img alt="" src={`${cdn}/${character.icon}`} />
+              <img src={`${cdn}/${character.icon}`} />
             </div>
           );
         })}
