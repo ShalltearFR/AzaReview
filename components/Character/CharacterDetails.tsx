@@ -19,10 +19,10 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   const character = uidData.characters[index];
   return (
     <article
-      className="grid xl:grid-cols-3 xl:h-[870px] mx-auto mt-[66px] xl:gap-x-5 py-5"
+      className="grid xl:grid-cols-3 w-full xl:h-[870px] mx-auto mt-[66px] xl:gap-x-5 py-5"
       style={{ backgroundImage: "url('/img/character_bg.avif')" }}
     >
-      <div className="flex flex-col my-auto xl:ml-5 mb-5 xl:mb-0">
+      <div className="flex flex-col my-auto xl:ml-5 mb-5 xl:mb-0 w-screen xl:w-full">
         <CharacterSplash character={character} />
         <div className="flex gap-x-3 justify-center">
           {["Attaque", "Compétence", "Ultime", "Talent"].map((type, i) => {
@@ -41,7 +41,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
         <CharacterLightCone lightCone={character.light_cone} />
       </div>
 
-      <div className="flex flex-col justify-evenly gap-y-5 xl:gap-y-0">
+      <div className="flex flex-col justify-evenly gap-y-5 xl:gap-y-0 w-screen xl:w-full">
         <div className="bg-black/75 w-full rounded-3xl p-5 ">
           {[
             "hp",
@@ -81,7 +81,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           <CharacterRelicsSet relics={character.relic_sets || "none"} />
         </div>
       </div>
-      <div className="flex flex-col gap-3 my-auto mt-5 xl:mt-0">
+      <div className="flex flex-col gap-3 my-auto mt-5 xl:mt-0 w-screen xl:w-full">
         {character.relics.map((relic) => {
           return (
             <span key={crypto.randomUUID()} className="flex">
