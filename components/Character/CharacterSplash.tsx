@@ -8,14 +8,17 @@ interface CharacterSplashProps {
 
 const CharacterSplash: React.FC<CharacterSplashProps> = ({ character }) => {
   return (
-    <div className="flex flex-col w-full h-[480px] relative overflow-hidden">
+    <div className="flex flex-col h-[480px] relative overflow-hidden">
       <img
         src={`${CDN}/${character.portrait}`}
         alt=""
-        className="absolute top-10 w-[520px]"
-        style={{ maskImage: "url(/img/characterMask.png)" }}
+        className="absolute xl:top-10 xl:w-[520px] object-cover"
+        style={{
+          maskImage: "url(/img/characterMask.png)",
+          maskSize: "100% 480px",
+        }}
       />
-      <div className="ml-5">
+      <div className="xl:ml-5">
         <div className="grid grid-cols-[1fr_120px] items-center">
           <span className="text-white text-4xl z-10">{character.name}</span>
           <span className="text-orange text-right text-3xl pr-5 z-10">

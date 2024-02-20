@@ -44,7 +44,12 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats }) => {
   return (
     <div
       className="grid grid-cols-[125px_1fr] w-full bg-black/50 text-white font-bold px-5 py-1"
-      style={{ maskImage: "url(/img/relicMask.png)" }}
+      style={
+        window.innerWidth >= 1350
+          ? { maskImage: "url(/img/relicMask.png)", maskSize: "100% 100%" }
+          : {}
+      }
+      // style={{ maskImage: "url(/img/relicMask.png)" }}
     >
       <div className="text-sm text-center relative">
         <img src={`${CDN}/${icon}`} className="w-20 mx-auto" />

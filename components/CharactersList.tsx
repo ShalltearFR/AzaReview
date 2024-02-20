@@ -13,9 +13,9 @@ const CharacterList: React.FC<CharacterListProps> = ({
   index,
 }) => {
   return (
-    <article className="flex h-36 w-[1350px] bg-[#4E4A82] rounded-full items-center mx-auto shadow-xl">
+    <article className="flex flex-col xl:flex-row xl:h-36 w-11/12 xl:w-[1350px] py-5 xl:py-0 bg-[#4E4A82] rounded-3xl md:rounded-full items-center mx-auto shadow-2xl">
       <img
-        className="w-24 h-24 ml-8"
+        className="w-24 h-24 xl:ml-8"
         alt="UID logo"
         src={`${cdn}/${uidData.player.avatar.icon}`}
       />
@@ -24,7 +24,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
         <p className="text-sm">Pionnier {uidData.player.level}</p>
         <p className="text-sm italic">UID : {uidData.player.uid}</p>
       </div>
-      <div className="flex ml-20 gap-5 w-full mr-16 justify-center">
+      <div className="flex flex-wrap ml-20 gap-5 w-full mr-16 mt-5 justify-center px-5">
         {uidData.characters.map((character, i) => {
           return (
             <div

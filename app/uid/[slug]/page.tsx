@@ -1,6 +1,6 @@
 "use client";
 import CharacterDetails from "@/components/Character/CharacterDetails";
-import CharacterList from "@/components/Character/CharactersList";
+import CharacterList from "@/components/CharactersList";
 import NavBar from "@/components/NavBar";
 import type { jsonUID } from "@/utils/jsonUid";
 import { useState, useEffect } from "react";
@@ -31,7 +31,7 @@ export default function Page({ params }: { params: { slug: number } }) {
   }, [params]);
 
   return (
-    <div>
+    <div className="overflow-hidden">
       <NavBar setData={setUidData} />
       {uidData.status === 200 && (
         <section>
