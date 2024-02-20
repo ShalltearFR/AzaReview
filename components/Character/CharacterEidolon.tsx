@@ -1,4 +1,4 @@
-import CDN from "@/utils/cdn";
+import { CDN } from "@/utils/cdn";
 
 interface CharacterEidolonProps {
   isActive: boolean;

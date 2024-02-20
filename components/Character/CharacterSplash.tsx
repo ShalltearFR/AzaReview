@@ -1,4 +1,4 @@
-import CDN from "@/utils/cdn";
+import { CDN, CDN2 } from "@/utils/cdn";
 import { Character } from "@/utils/jsonUid";
 import CharacterEidolon from "./CharacterEidolon";
 
@@ -12,15 +12,18 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({ character }) => {
       <img
         src={`${CDN}/${character.portrait}`}
         alt=""
-        className="absolute xl:top-10 xl:w-[520px] object-cover h-[480px] mx-auto"
+        className="absolute xl:top-10 xl:w-[520px] object-contain h-[480px] mx-auto"
         style={{
-          maskImage: "url(/img/characterMask.png)",
+          maskImage: `url(${CDN2}/img/characterMask.png)`,
           maskSize: "100% 480px",
         }}
       />
-      <div className="xl:ml-5 w-full self-start">
+      <div
+        className="xl:ml-5 w-full self-start font-bold "
+        style={{ WebkitTextStroke: "1px black" }}
+      >
         <div className="grid grid-cols-[1fr_120px] items-end">
-          <span className="text-white text-4xl z-10 ml-5 xl:ml-0">
+          <span className="text-white text-5xl z-10 ml-5 xl:ml-0">
             {character.name}
           </span>
           <span className="text-orange text-right text-3xl pr-5 z-10">
@@ -30,12 +33,12 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({ character }) => {
         <div className="flex gap-1 mt-2 ml-5 xl:ml-0">
           <img
             src={`${CDN}/${character.element.icon}`}
-            className="w-6 z-10"
+            className="w-8 z-10"
             alt="element"
           />
           <img
             src={`${CDN}/${character.path.icon}`}
-            className="w-6 z-10"
+            className="w-8 z-10"
             alt="path"
           />
         </div>

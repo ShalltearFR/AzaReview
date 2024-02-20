@@ -1,4 +1,4 @@
-import cdn from "@/utils/cdn";
+import { CDN } from "@/utils/cdn";
 import type { jsonUID } from "@/utils/jsonUid";
 
 interface CharacterListProps {
@@ -17,7 +17,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
       <img
         className="w-24 h-24 xl:ml-8"
         alt="UID logo"
-        src={`${cdn}/${uidData.player.avatar.icon}`}
+        src={`${CDN}/${uidData.player.avatar.icon}`}
       />
       <div className="text-center w-48 text-white">
         <p className="text-lg font-medium">{uidData.player.nickname}</p>
@@ -34,7 +34,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
               onClick={() => setIndex(i)}
               key={crypto.randomUUID()}
             >
-              <img src={`${cdn}/${character.icon}`} />
+              <img src={`${CDN}/${character.icon}`} />
             </div>
           );
         })}

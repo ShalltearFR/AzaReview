@@ -1,4 +1,4 @@
-import CDN from "@/utils/cdn";
+import { CDN } from "@/utils/cdn";
 
 interface CharacterTraceProps {
   type: string;
@@ -16,7 +16,7 @@ const CharacterTrace: React.FC<CharacterTraceProps> = ({
   return (
     <div
       key={crypto.randomUUID()}
-      className="flex flex-col w-20 h-20 relative"
+      className="flex flex-col w-20 h-20 relative font-Agbalumo"
       title={name}
     >
       <div className="absolute w-16 h-16 top-1 left-1 rounded-full bg-black border border-gray">

@@ -44,7 +44,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
         <CharacterLightCone lightCone={character.light_cone} />
       </div>
 
-      <div className="flex flex-col justify-evenly gap-y-5 xl:gap-y-0 w-screen xl:w-full">
+      <div className="flex flex-col justify-evenly gap-y-5 xl:gap-y-0 w-screen xl:w-full mt-5 xl:mt-0">
         <div className="bg-black/75 w-full rounded-3xl p-5 ">
           {[
             "hp",

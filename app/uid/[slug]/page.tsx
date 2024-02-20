@@ -1,50 +1,34 @@
-"use client";
-import CharacterDetails from "@/components/Character/CharacterDetails";
-import CharacterList from "@/components/CharactersList";
-import NavBar from "@/components/NavBar";
-import type { jsonUID } from "@/utils/jsonUid";
-import { useState, useEffect } from "react";
+import UidPage from "@/components/Character/UidPage";
+import type { Metadata, ResolvingMetadata } from "next";
 
-interface statusProps {
-  status: number;
-}
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
-async function Getdata(uid: number) {
-  const res = await fetch(`/api/uid/${uid}`);
-  return res.json();
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const uid = params.slug;
+
+  const product = await fetch(
+    `https://review-hsr.vercel.app/api/uid/${uid}`
+  ).then((res) => res.json());
+
+  return {
+    title: `Review HSR de ${product.player.nickname}`,
+    description: `Review Honkai : Star Rail sur le compte de ${product.player.nickname}`,
+    // openGraph: {
+    //   images: ['/some-specific-page-image.jpg', ...previousImages],
+    // },
+  };
 }
 
 export default function Page({ params }: { params: { slug: number } }) {
-  const [uidData, setUidData] = useState<statusProps | jsonUID>({
-    status: 206,
-  });
-  const [characterIndex, setCharacterIndex] = useState<number>(0);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await Getdata(params.slug);
-      setUidData(data);
-    };
-
-    fetchData();
-  }, [params]);
-
   return (
-    <div className="overflow-hidden">
-      <NavBar setData={setUidData} />
-      {uidData.status === 200 && (
-        <section>
-          <CharacterList
-            uidData={uidData as jsonUID}
-            setIndex={setCharacterIndex}
-            index={characterIndex}
-          />
-          <CharacterDetails
-            uidData={uidData as jsonUID}
-            index={characterIndex}
-          />
-        </section>
-      )}
-    </div>
+    <>
+      <UidPage uid={params.slug} />
+    </>
   );
 }

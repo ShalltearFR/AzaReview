@@ -1,4 +1,4 @@
-import CDN from "@/utils/cdn";
+import { CDN, CDN2 } from "@/utils/cdn";
 import { Relic } from "@/utils/jsonUid";
 
 interface CharacterRelicProps {
@@ -46,7 +46,10 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats }) => {
       className="grid grid-cols-[125px_1fr] w-full bg-black/50 text-white font-bold px-5 py-1"
       style={
         window.innerWidth >= 1350
-          ? { maskImage: "url(/img/relicMask.png)", maskSize: "100% 100%" }
+          ? {
+              maskImage: `url(${CDN2}/img/relicMask.png)`,
+              maskSize: "100% 100%",
+            }
           : {}
       }
     >

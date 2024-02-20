@@ -1,7 +1,7 @@
 import { jsonUID } from "@/utils/jsonUid";
 import CharacterSplash from "./CharacterSplash";
 import CharacterTrace from "./CharacterTrace";
-import CDN from "@/utils/cdn";
+import { CDN } from "@/utils/cdn";
 
 interface lightCone {
   name: string;

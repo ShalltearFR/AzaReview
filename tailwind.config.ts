@@ -13,6 +13,7 @@ const config: Config = {
       lg: "990px",
       xl: "1350px",
     },
+    fontFamily: {},
     colors: {
       background: "#1F2937", //Bleu foncé
       "light-blue": "#4E4A82",

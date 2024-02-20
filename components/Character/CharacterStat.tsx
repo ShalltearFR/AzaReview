@@ -1,5 +1,5 @@
 import React from "react";
-import CDN from "@/utils/cdn";
+import { CDN } from "@/utils/cdn";
 import { Addition, Attribute } from "@/utils/jsonUid";
 
 interface CharacterStatProps {
