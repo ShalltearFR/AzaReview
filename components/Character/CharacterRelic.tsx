@@ -50,7 +50,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats }) => {
           : {}
       }
     >
-      <div className="text-sm text-center relative items-center justify-center">
+      <div className="text-sm text-center relative items-center justify-center my-auto">
         <img src={`${CDN}/${icon}`} className="w-20 mx-auto" />
         <p>{displayValue}</p>
         <p>{main_affix.display}</p>
