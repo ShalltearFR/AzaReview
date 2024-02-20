@@ -1,4 +1,5 @@
 import UidPage from "@/components/Character/UidPage";
+import { CDN } from "@/utils/cdn";
 import type { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
@@ -17,11 +18,12 @@ export async function generateMetadata(
   const res = await getData(params.slug);
 
   return {
+    metadataBase: new URL(CDN),
     title: `Review HSR de ${res.player.nickname}`,
-    description: `Review Honkai : Star Rail sur le compte de ${res.player.nickname}`,
-    // openGraph: {
-    //   images: ['/some-specific-page-image.jpg', ...previousImages],
-    // },
+    description: `Review Honkai : Star Rail sur le compte de ${res.player.nickname} - Pionnier ${res.player.level} - UID : ${res.player.uid}`,
+    openGraph: {
+      images: [`/${res.player.avatar.icon}`],
+    },
   };
 }
 
