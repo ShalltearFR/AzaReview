@@ -78,8 +78,8 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           <RecommandedStat />
         </div>
 
-        <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-3">
-          <p className="text-yellow text-lg font-bold text-center">
+        <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-4">
+          <p className="text-yellow text-lg font-bold text-center leading-4 mb-5">
             Sets equipés
           </p>
           <CharacterRelicsSet relics={character.relic_sets || "none"} />

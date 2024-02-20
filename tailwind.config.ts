@@ -20,7 +20,7 @@ const config: Config = {
       white: "#FFFFFF",
       black: "#000000",
       orange: "#F0A83B",
-      orange2: "#FFA800",
+      orange2: "#cf8800",
       yellow: "#FFCD6C",
       brown: "#8C5C00",
       gray: "#828282",

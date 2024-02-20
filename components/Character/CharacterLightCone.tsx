@@ -18,7 +18,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
   lightCone,
 }) => {
   return (
-    <div className="w-52 rounded-t-3xl bg-light-blue/75 mx-auto p-3 mt-5">
+    <div className=" w-full xl:w-auto rounded-t-3xl bg-light-blue/75 mx-auto p-3 mt-5">
       <p className="text-yellow text-lg font-bold text-center">
         Cône de lumière
       </p>
@@ -31,10 +31,10 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
               backgroundSize: "contain",
             }}
           >
-            <p className="flex justify-center items-center w-12 h-6 rounded-full bg-orange2 text-white text-xs font-bold ml-auto mt-3">
+            <p className="flex justify-center items-center p-1 rounded-full bg-orange2 text-white text-sm font-bold ml-auto mt-3">
               Niv. {lightCone.level}
             </p>
-            <p className="flex justify-center items-center mt-auto mb-8 ml-2 w-6 h-6 rounded-full bg-brown text-white text-xs font-bold">
+            <p className="flex justify-center items-center w-6 p-1 rounded-full bg-brown text-white text-sm font-bold mt-auto mb-8 ml-2">
               S{lightCone.rank}
             </p>
           </div>

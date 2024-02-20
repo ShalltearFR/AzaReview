@@ -35,6 +35,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats }) => {
     StatusProbabilityBase: "App. des effets",
     CriticalChanceBase: "Chances Crit.",
     CriticalDamageBase: "DGT Crit.",
+    HealRatioBase: "Augm. des soins",
   };
 
   const displayValue =

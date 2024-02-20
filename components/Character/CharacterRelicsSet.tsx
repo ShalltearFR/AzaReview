@@ -15,7 +15,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({ relics }) => {
 
   return (
     <div
-      className={`flex text-white text-sm font-bold text-center justify-center mt-2 gap-[15px]`}
+      className={`flex w-full text-white text-sm font-bold text-center justify-center gap-[15px]`}
     >
       {finalProcessedRelicSets.length !== 0 ? (
         finalProcessedRelicSets.map((relic) => {

@@ -19,11 +19,11 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({ character }) => {
         }}
       />
       <div
-        className="xl:ml-5 w-full self-start font-bold "
-        style={{ WebkitTextStroke: "1px black" }}
+        className="w-full self-start font-semibold "
+        // style={{ WebkitTextStroke: "1px black" }}
       >
-        <div className="grid grid-cols-[1fr_120px] items-end">
-          <span className="text-white text-5xl z-10 ml-5 xl:ml-0">
+        <div className="grid grid-cols-[1fr_120px] items-center align-top">
+          <span className="text-white text-4xl z-10 ml-5 xl:ml-0">
             {character.name}
           </span>
           <span className="text-orange text-right text-3xl pr-5 z-10">
