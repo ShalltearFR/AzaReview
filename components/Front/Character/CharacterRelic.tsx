@@ -17,14 +17,15 @@ interface MainAffix {
     | "SPRatioBase"
     | "StatusProbabilityBase"
     | "CriticalChanceBase"
-    | "CriticalDamageBase";
+    | "CriticalDamageBase"
+    | "HealRatioBase";
 }
 
 const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats }) => {
   const { rarity, level, icon, main_affix, sub_affix } = stats;
 
   const typeValueMap = {
-    PhysicalAddedRatio: "DGT Foudre",
+    PhysicalAddedRatio: "DGT Physique",
     QuantumAddedRatio: "DGT Quantique",
     ImaginaryAddedRatio: "DGT Imaginaire",
     WindAddedRatio: "DGT Vent",

@@ -1,4 +1,4 @@
-import UidPage from "@/components/UidPage";
+import UidPage from "@/components/Front/UidPage";
 import { CDN } from "@/utils/cdn";
 import type { Metadata, ResolvingMetadata } from "next";
 

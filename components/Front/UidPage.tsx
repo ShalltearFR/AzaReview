@@ -1,7 +1,7 @@
 "use client";
-import CharacterDetails from "@/components/Character/CharacterDetails";
-import CharacterList from "@/components/CharactersList";
-import NavBar from "@/components/NavBar";
+import CharacterDetails from "@/components/Front/Character/CharacterDetails";
+import CharacterList from "@/components/Front/CharactersList";
+import NavBar from "@/components/Front/NavBar";
 import type { jsonUID } from "@/utils/jsonUid";
 import { useState, useEffect } from "react";
 
