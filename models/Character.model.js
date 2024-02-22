@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 const userSchema = new Schema(
   {
@@ -83,6 +83,6 @@ const userSchema = new Schema(
   }
 );
 
-const Character = model("Character", userSchema);
+const Character = models.User || model("Character", userSchema);
 
 export default Character;
