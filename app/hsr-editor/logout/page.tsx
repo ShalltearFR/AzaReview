@@ -1,4 +1,5 @@
 "use client";
+import NavBarEditor from "@/components/Editor/NavBarEditor";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -13,7 +14,7 @@ function Page() {
       });
   }, [router]);
 
-  return null;
+  return <NavBarEditor />;
 }
 
 export default Page;

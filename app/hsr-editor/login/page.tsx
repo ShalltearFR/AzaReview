@@ -1,6 +1,7 @@
 "use client";
 import { MouseEventHandler, useState } from "react";
 import { useRouter } from "next/navigation";
+import type { Metadata } from "next";
 
 export default function Page() {
   const [username, setUsername] = useState<string>("");
@@ -12,7 +13,6 @@ export default function Page() {
   const toLogin: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     setIsdisabled(true);
-    console.log(username, password);
 
     fetch("/api/login", {
       method: "POST",
@@ -26,7 +26,6 @@ export default function Page() {
           setErrorMessage("Mauvais identifiant");
           return null;
         }
-
         router.push("/hsr-editor");
       });
   };
