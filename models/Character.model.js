@@ -102,7 +102,7 @@ const recommandedStatsSchema = new Schema({
 });
 
 const characterSchema = new Schema({
-  name: String,
+  build: String,
   lightCone: [lightConeSchema],
   relics_set: [relicsSetSchema],
   main_stats: [mainStatsSchema],
@@ -114,10 +114,10 @@ const dataSchema = new Schema({
     type: String,
     require: true,
   },
-  preview: {
-    type: String,
-    require: true,
-  },
+  name: String,
+  preview: String,
+  portrait: String,
+  path: String,
   data: [characterSchema],
 });
 
