@@ -8,7 +8,6 @@ export async function GET(request: NextRequest) {
     await dbConnect();
     // Extract user ID from the authentication token
     const decodedToken = await getDataFromToken(request);
-    //console.log(decodedToken);
 
     // Find the user in the database based on the user ID
     const user = await User.findOne({ username: decodedToken.username }).select(
