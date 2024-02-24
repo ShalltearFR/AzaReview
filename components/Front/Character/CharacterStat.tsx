@@ -1,6 +1,6 @@
 import React from "react";
 import { CDN } from "@/utils/cdn";
-import { Addition, Attribute } from "@/utils/jsonUid";
+import { Addition, Attribute } from "@/types/jsonUid";
 
 interface CharacterStatProps {
   attributes: Attribute[];

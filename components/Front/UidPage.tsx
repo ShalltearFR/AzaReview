@@ -2,7 +2,7 @@
 import CharacterDetails from "@/components/Front/Character/CharacterDetails";
 import CharacterList from "@/components/Front/CharactersList";
 import NavBar from "@/components/Front/NavBar";
-import type { jsonUID } from "@/utils/jsonUid";
+import type { jsonUID } from "@/types/jsonUid";
 import { useState, useEffect } from "react";
 
 interface UidPageProps {

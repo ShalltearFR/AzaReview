@@ -1,5 +1,5 @@
 import { CDN, CDN2 } from "@/utils/cdn";
-import { Character } from "@/utils/jsonUid";
+import { Character } from "@/types/jsonUid";
 import CharacterEidolon from "./CharacterEidolon";
 
 interface CharacterSplashProps {

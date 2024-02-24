@@ -1,5 +1,5 @@
 import { CDN, CDN2 } from "@/utils/cdn";
-import { Relic } from "@/utils/jsonUid";
+import { Relic } from "@/types/jsonUid";
 
 interface CharacterRelicProps {
   stats: Relic;

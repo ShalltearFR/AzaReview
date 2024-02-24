@@ -1,4 +1,4 @@
-import { jsonUID } from "@/utils/jsonUid";
+import { jsonUID } from "@/types/jsonUid";
 import CharacterSplash from "./CharacterSplash";
 import CharacterTrace from "./CharacterTrace";
 import { CDN } from "@/utils/cdn";

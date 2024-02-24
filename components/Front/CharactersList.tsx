@@ -1,5 +1,5 @@
 import { CDN } from "@/utils/cdn";
-import type { jsonUID } from "@/utils/jsonUid";
+import type { jsonUID } from "@/types/jsonUid";
 
 interface CharacterListProps {
   uidData: jsonUID;

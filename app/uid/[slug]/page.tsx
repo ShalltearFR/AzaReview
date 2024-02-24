@@ -1,3 +1,4 @@
+import Footer from "@/components/Front/Footer";
 import UidPage from "@/components/Front/UidPage";
 import { CDN } from "@/utils/cdn";
 import type { Metadata, ResolvingMetadata } from "next";
@@ -43,6 +44,7 @@ export default async function Page({ params }: { params: { slug: number } }) {
   return (
     <>
       <UidPage json={data} />
+      <Footer />
     </>
   );
 }

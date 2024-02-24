@@ -1,5 +1,5 @@
 import { CDN } from "@/utils/cdn";
-import { RelicSet } from "@/utils/jsonUid";
+import { RelicSet } from "@/types/jsonUid";
 
 interface CharacterRelicsSetProps {
   relics: RelicSet[];

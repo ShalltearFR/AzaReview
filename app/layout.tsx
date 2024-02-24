@@ -12,7 +12,6 @@ export default function RootLayout({
     <html lang="fr">
       <body className="bg-background">
         {children}
-        <Footer />
         <Analytics />
         <SpeedInsights />
       </body>

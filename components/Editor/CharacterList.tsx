@@ -10,12 +10,18 @@ import { CDN } from "@/utils/cdn";
 type Character = {
   id: string;
   preview: string;
+  name: string;
+  portrait: string;
+  path: string;
 };
 
 interface Option {
   value: string;
   label: string;
   preview: string;
+  name: string;
+  portrait: string;
+  path: string;
 }
 
 const CharacterList: React.FC = () => {
@@ -54,6 +60,9 @@ const CharacterList: React.FC = () => {
           value: el.id,
           label: el.id,
           preview: el.preview,
+          portrait: el.portrait,
+          name: el.name,
+          path: el.path,
         }));
 
         selectOptionsRef.current = options;
@@ -91,6 +100,9 @@ const CharacterList: React.FC = () => {
       data: {
         id: character.value,
         preview: character.preview,
+        portrait: character.portrait,
+        name: character.name,
+        path: character.path,
       },
     };
 
@@ -156,7 +168,7 @@ const CharacterList: React.FC = () => {
             </button>
           </div>
         </Modal>
-        <section className="grid grid-cols-[1fr_320px] justify-center min-h-[calc(100vh-260px)] ">
+        <section className="grid grid-cols-[1fr_320px] justify-center min-h-[calc(100vh-260px)]">
           <div>
             <div className="text-center font-bold text-white mx-auto w-96 p-2 rounded-full bg-black mb-5">
               Personnages dans la base de donnée

@@ -1,7 +1,19 @@
 import { Metadata } from "next";
-import Page from "./page";
+import NavBarEditor from "@/components/Editor/NavBarEditor";
 
 export const metadata: Metadata = {
   title: "Edition personnage",
 };
-export default Page;
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <div className="min-h-[calc(100vh-180px)]">
+      <NavBarEditor />
+      {children}
+    </div>
+  );
+}
