@@ -1,10 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import User from "@/models/User.model";
 import jwt from "jsonwebtoken";
-const bcrypt = require("bcrypt");
+import bcrypt from "bcrypt";
 
 export async function POST(request: Request) {
+  //console.log(request.headers.get("cookie"));
   const WrongInformations = () => {
     return NextResponse.json({ status: 203 });
   };
@@ -12,6 +13,12 @@ export async function POST(request: Request) {
   try {
     const { username, password } = await request.json();
     //console.log(username, password);
+    // const origin = request.headers.get("origin");
+    // console.log(
+    //   "originPOST:",
+    //   request.headers.get("Access-Control-Allow-Origin")
+    // );
+    // console.log("originPOST2:", request.headers.get("origin"));
     await dbConnect();
 
     return User.findOne({ username }).then((user) => {
@@ -37,7 +44,13 @@ export async function POST(request: Request) {
 
           const response = NextResponse.json(
             { message: "ok" },
-            { status: 202 }
+            {
+              status: 202,
+              headers: {
+                //"Access-Control-Allow-Origin": origin || "*",
+                "Content-Type": "application/json",
+              },
+            }
           );
 
           // Set the token as an HTTP-only cookie

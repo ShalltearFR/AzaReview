@@ -1,12 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { jwtVerify, JWTPayload } from "jose";
-
-async function getTokenInfo(request: NextRequest) {
-  const req = await fetch(`${process.env.WWW}/api/me`);
-  const res = await req.json();
-  return res;
-}
+import { jwtVerify } from "jose";
 
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
