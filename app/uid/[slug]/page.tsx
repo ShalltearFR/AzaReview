@@ -8,23 +8,40 @@ type Props = {
 };
 
 async function getData(uid: number) {
-  const res = await fetch(`https://review-hsr.vercel.app/api/uid/${uid}`);
-  return res.json();
+  const data = await fetch(
+    `https://api.mihomo.me/sr_info_parsed/${uid}?lang=fr&is_force_update=true`,
+    {
+      next: { revalidate: 300 },
+    }
+  );
+
+  const jsonData = await data.json();
+  if (!data.ok) {
+    if (jsonData.detail === "User not found") {
+      return Response.json({ status: 404 });
+    }
+
+    if (jsonData.detail === "Invalid uid") {
+      return Response.json({ status: 400 });
+    }
+
+    return Response.json({ status: 503 });
+  }
+
+  return Response.json({ status: 200, ...jsonData });
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const res = await getData(params.slug);
+  const json = await res.json();
 
-  if (res.player) {
+  if (json.player) {
     return {
       metadataBase: new URL(CDN),
-      title: `Review HSR de ${res.player.nickname}`,
-      description: `Review Honkai : Star Rail sur le compte de ${res.player.nickname} - Pionnier ${res.player.level} - UID : ${res.player.uid}`,
+      title: `Review HSR de ${json.player.nickname}`,
+      description: `Review Honkai : Star Rail sur le compte de ${json.player.nickname} - Pionnier ${json.player.level} - UID : ${json.player.uid}`,
       openGraph: {
-        images: [`/${res.player.avatar.icon}`],
+        images: [`/${json.player.avatar.icon}`],
       },
     };
   }
@@ -40,10 +57,11 @@ export async function generateMetadata(
 }
 
 export default async function Page({ params }: { params: { slug: number } }) {
-  const data = await getData(params.slug);
+  const res = await getData(params.slug);
+  const json = await res.json();
   return (
     <>
-      <UidPage json={data} />
+      <UidPage json={json} />
       <Footer />
     </>
   );
