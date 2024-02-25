@@ -7,26 +7,26 @@ interface Option {
   label: string;
 }
 
-interface AddLightConeSelectProps {
+interface AddSelectProps {
   value: any;
   index: number;
   recommanded?: boolean;
   options: Option[];
+  className?: string;
   onChange: (
     option: SingleValue<Option>,
     index: number,
     isRecommanded: boolean
   ) => void;
-  onDelete: (index: number) => void;
 }
 
-const AddLightConeSelect: React.FC<AddLightConeSelectProps> = ({
+const AddSelect: React.FC<AddSelectProps> = ({
   value,
   index,
   recommanded = false,
   options,
+  className,
   onChange,
-  onDelete,
 }) => {
   const handleSelectChange = (option: SingleValue<Option>) => {
     onChange(option, index, recommanded);
@@ -53,14 +53,11 @@ const AddLightConeSelect: React.FC<AddLightConeSelectProps> = ({
             color: "black",
           }),
         }}
-        className="w-64"
+        className={className}
         onChange={handleSelectChange}
       />
-      <button onClick={() => onDelete(index)}>
-        <TrashIcon className="h-8 w-8 p-2 rounded-full bg-red" />
-      </button>
     </div>
   );
 };
 
-export default AddLightConeSelect;
+export default AddSelect;

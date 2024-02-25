@@ -1,7 +1,7 @@
 import React from "react";
 import Select, { SingleValue } from "react-select";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
-import AddLightConeInput from "../Add/AddLightConeInput";
+import AddSelect from "../Add/AddSelect";
 
 interface Option {
   value: string;
@@ -37,26 +37,29 @@ const GlobalLightCone: React.FC<GlobalLightConeProps> = ({
   return (
     <div className="flex flex-col">
       <button
-        className="flex items-center ml-auto r-5 h-8 p-4 bg-green rounded-full text-black font-bold"
+        className="flex items-center ml-auto mr-5 r-5 h-8 p-4 bg-green rounded-full text-black font-bold"
         onClick={() => addLightCone(isRecommanded)}
       >
         <span>{addButtonText}</span>
         <PlusIcon className="h-6 mt-1" />
       </button>
-      <div className="flex flex-wrap justify-center gap-y-5 gap-x-16 border-r mt-5">
+      <div className="flex flex-wrap justify-center gap-y-5 gap-x-16 mt-5">
         {lightConesSetup.map((cone: LightConeOption, index: number) => {
           return (
             cone.recommanded === isRecommanded && (
-              <div key={crypto.randomUUID()}>
-                <AddLightConeInput
+              <div key={crypto.randomUUID()} className="flex gap-3">
+                <AddSelect
                   options={lightConeOptions}
                   value={lightConesSetup[index]}
                   onChange={(option) =>
                     handleChange(option, index, isRecommanded)
                   }
-                  onDelete={() => deleteLightCone(index)}
                   index={index}
+                  className="w-64"
                 />
+                <button onClick={() => deleteLightCone(index)}>
+                  <TrashIcon className="h-8 w-8 p-2 rounded-full bg-red" />
+                </button>
               </div>
             )
           );
