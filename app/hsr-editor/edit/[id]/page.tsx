@@ -2,9 +2,7 @@
 import { CharacterType } from "@/types/CharacterModel";
 import { CDN } from "@/utils/cdn";
 import { useEffect, useState } from "react";
-import { PlusIcon } from "@heroicons/react/24/outline";
 import { LightCone as LightConeType } from "@/types/LightCone";
-import AddLightConeInput from "@/components/Editor/Add/AddLightConeInput";
 import { SingleValue } from "react-select";
 import GlobalLightCone from "@/components/Editor/Global/GlobalLightCone";
 
@@ -24,16 +22,22 @@ function Page({ params }: { params: { id: number } }) {
   const [characterData, setCharacterData] = useState<
     CharacterType | "Loading" | { error: true }
   >("Loading");
-  const [lightConeOptions, setLightConeOptions] = useState<any>();
+  const [lightConeOptions, setLightConeOptions] = useState<Option[]>([]);
   const [lightConesSetup, setLightConesSetup] = useState<LightConeOption[]>([]);
 
   useEffect(() => {
-    fetch(`/api/character/${params.id}`)
-      .then((res) => res.json())
-      .then((data: CharacterType) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`/api/character/${params.id}`);
+        const data: CharacterType = await response.json();
         setCharacterData(data);
         console.log("characterData", data);
-      });
+      } catch (error) {
+        setCharacterData({ error: true });
+      }
+    };
+
+    fetchData();
   }, [params.id]);
 
   useEffect(() => {
@@ -42,11 +46,12 @@ function Page({ params }: { params: { id: number } }) {
       typeof characterData === "object" &&
       (!("error" in characterData) || characterData.error !== true)
     ) {
-      fetch(
-        "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/index_min/fr/light_cones.json"
-      )
-        .then((res) => res.json())
-        .then((data: any) => {
+      const fetchLightCones = async () => {
+        try {
+          const response = await fetch(
+            "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/index_min/fr/light_cones.json"
+          );
+          const data: any = await response.json();
           const toArray = Object.values(data).map((item) => item);
           const character = characterData as unknown as CharacterType;
 
@@ -61,15 +66,18 @@ function Page({ params }: { params: { id: number } }) {
             }
           );
 
-          const options = filtered.map((el) => {
-            return {
-              value: el.id,
-              label: el.name,
-            };
-          });
+          const options = filtered.map((el) => ({
+            value: el.id,
+            label: el.name,
+          }));
           console.log(options);
           setLightConeOptions(options);
-        });
+        } catch (error) {
+          console.error("Error fetching light cones", error);
+        }
+      };
+
+      fetchLightCones();
     }
   }, [characterData]);
 
@@ -107,11 +115,14 @@ function Page({ params }: { params: { id: number } }) {
     ]);
   };
 
-  if (characterData === "Loading") {
+  const isLoading = characterData === "Loading";
+  const isError = typeof characterData === "object" && "error" in characterData;
+
+  if (isLoading) {
     return <div className="text-white">Page chargement</div>;
   }
 
-  if (typeof characterData === "object" && "error" in characterData) {
+  if (isError) {
     return <div className="text-white">Personnage non existant</div>;
   }
 
@@ -132,7 +143,6 @@ function Page({ params }: { params: { id: number } }) {
             <span className="text-2xl">Nom du build : </span>
             <input />
           </label>
-
           {/* CONES DE LUMIERE */}
           <div className="border border-white p-5 mx-5 mt-5">
             <div className="flex">
@@ -166,7 +176,6 @@ function Page({ params }: { params: { id: number } }) {
         </div>
       </div>
     </div>
-    // </div>
   );
 }
 
