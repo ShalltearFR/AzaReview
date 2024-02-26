@@ -26,3 +26,24 @@ export async function DELETE(req: Request) {
     return NextResponse.json({ error: true }, { status: 204 });
   }
 }
+
+export async function PUT(req: Request) {
+  try {
+    const json = await req.json();
+    await dbConnect();
+    console.log("json", json);
+
+    return Character.findOneAndUpdate(
+      { id: json.characterId },
+      { data: json.data }
+    ).then((data: any) => {
+      console.log("mis a jour", data);
+      return NextResponse.json({ message: "ok" }, { status: 200 });
+    });
+
+    //Character.create({ ...data });
+  } catch (error) {
+    console.error("Error:", error);
+    return NextResponse.json({ error: true }, { status: 204 });
+  }
+}

@@ -34,9 +34,7 @@ const CharacterList: React.FC = () => {
   const [cardCharacterID, setCardCharacterID] = useState<string>("");
 
   const getAllCharacters = async () => {
-    const res = await fetch(
-      "https://raw.githubusercontent.com/Mar-7th/StarRailRes/master/index_min/fr/characters.json"
-    );
+    const res = await fetch(`${CDN}/index_min/fr/characters.json`);
     const data = await res.json();
     return Object.values(data).map((item) => item) as Character[];
   };

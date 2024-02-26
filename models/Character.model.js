@@ -102,24 +102,27 @@ const recommandedStatsSchema = new Schema({
 });
 
 const characterSchema = new Schema({
-  build: String,
-  lightCone: [lightConeSchema],
+  buildName: String,
+  lightCones: [lightConeSchema],
   relics_set: [relicsSetSchema],
   main_stats: [mainStatsSchema],
   recommanded_stats: [recommandedStatsSchema],
 });
 
-const dataSchema = new Schema({
-  id: {
-    type: String,
-    require: true,
+const dataSchema = new Schema(
+  {
+    id: {
+      type: String,
+      require: true,
+    },
+    name: String,
+    preview: String,
+    portrait: String,
+    path: String,
+    data: [characterSchema],
   },
-  name: String,
-  preview: String,
-  portrait: String,
-  path: String,
-  data: [characterSchema],
-});
+  { timestamps: true }
+);
 
 const Character = models.Character || model("Character", dataSchema);
 

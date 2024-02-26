@@ -1,11 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import AddSelect from "../Add/AddSelect";
-
-interface Option {
-  value: string;
-  label: string;
-}
 
 interface RelicsSetOption {
   value: any;
@@ -66,8 +61,6 @@ const GlobalRelicsSet: React.FC<GlobalRelicsSetProps> = ({
                   onChange={(option) =>
                     handleRelicsSetChange(option, index, isRecommanded)
                   }
-                  //sendChange(index);
-
                   index={index}
                   className="w-64"
                 />
