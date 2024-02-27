@@ -115,7 +115,7 @@ const CharacterList: React.FC = () => {
       cache: "no-cache",
       next: { revalidate: 0 },
       body: JSON.stringify(data),
-    }).then(init);
+    }).then(() => init());
   };
 
   const deleteCharacterFromDB = (

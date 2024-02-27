@@ -2,6 +2,8 @@ import dbConnect from "@/lib/dbConnect";
 import Character from "@/models/Character.model";
 import { NextResponse } from "next/server";
 
+export const fetchCache = "force-no-store";
+
 export async function GET() {
   try {
     await dbConnect();
