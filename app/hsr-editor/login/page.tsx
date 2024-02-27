@@ -54,7 +54,7 @@ export default function Page() {
             className="bg-green p-2 rounded-xl border mt-5 flex justify-center gap-3 disabled:bg-gray"
             onClick={toLogin}
           >
-            Se connecter
+            {isDisabled ? "Connexion en cours..." : "Se connecter"}
             {isDisabled && (
               <div role="status">
                 <svg
