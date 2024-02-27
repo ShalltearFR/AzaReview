@@ -2,7 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import Character from "@/models/Character.model";
 import { NextResponse } from "next/server";
 
-export const fetchCache = "force-no-store";
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
