@@ -35,7 +35,7 @@ const CharacterList: React.FC = () => {
 
   const getAllCharacters = async () => {
     const res = await fetch(`${CDN}/index_min/fr/characters.json`, {
-      cache: "no-store",
+      cache: "no-cache",
     });
     const data = await res.json();
     return Object.values(data).map((item) => item) as Character[];
@@ -43,7 +43,7 @@ const CharacterList: React.FC = () => {
 
   const getDataBaseCharacters = async () => {
     const res = await fetch("/api/characters", {
-      cache: "no-store",
+      cache: "no-cache",
     });
     return res.json();
   };
@@ -110,6 +110,7 @@ const CharacterList: React.FC = () => {
 
     fetch("/api/character", {
       method: "POST",
+      cache: "no-cache",
       body: JSON.stringify(data),
     }).then(init);
   };
@@ -126,6 +127,7 @@ const CharacterList: React.FC = () => {
   const deleteConfirmCharacterFromDB = () => {
     fetch("/api/character", {
       method: "DELETE",
+      cache: "no-cache",
       body: JSON.stringify({ id: cardCharacterID }),
     }).then(() => {
       init();

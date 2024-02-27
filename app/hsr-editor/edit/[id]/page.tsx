@@ -36,7 +36,9 @@ function Page({ params }: { params: { id: number } }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/character/${params.id}`);
+        const response = await fetch(`/api/character/${params.id}`, {
+          cache: "no-cache",
+        });
         const data: CharacterType = await response.json();
         setCharacterData(data);
       } catch (error) {
@@ -56,7 +58,9 @@ function Page({ params }: { params: { id: number } }) {
       // FETCH CONES DE LUMIERES
       const fetchLightCones = async () => {
         try {
-          const response = await fetch(`${CDN}/index_min/fr/light_cones.json`);
+          const response = await fetch(`${CDN}/index_min/fr/light_cones.json`, {
+            cache: "no-cache",
+          });
           const data: any = await response.json();
           const toArray = Object.values(data).map((item) => item);
           const character = characterData as unknown as CharacterType;
@@ -86,7 +90,9 @@ function Page({ params }: { params: { id: number } }) {
       // FETCH SETS DE RELIQUES
       const fetchRelicsSet = async () => {
         try {
-          const response = await fetch(`${CDN}/index_min/fr/relic_sets.json`);
+          const response = await fetch(`${CDN}/index_min/fr/relic_sets.json`, {
+            cache: "no-cache",
+          });
           const data: any = await response.json();
           const toArray: any = Object.values(data).map((item) => item);
 
@@ -118,7 +124,9 @@ function Page({ params }: { params: { id: number } }) {
       const fetchDataFromDB = async () => {
         try {
           const character = characterData as CharacterType;
-          const response = await fetch(`/api/character/${character.id}`);
+          const response = await fetch(`/api/character/${character.id}`, {
+            cache: "no-cache",
+          });
           const json: CharacterType = await response.json();
           console.log("json", json);
 
