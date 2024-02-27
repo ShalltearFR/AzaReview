@@ -54,7 +54,7 @@ const GlobalRelicsSet: React.FC<GlobalRelicsSetProps> = ({
         {relicsSetSetup.map((relic: RelicsSetOption, index: number) => {
           return (
             relic.recommended === isrecommended && (
-              <div key={crypto.randomUUID()} className="flex gap-3">
+              <div key={`relicsSetSetup${index}`} className="flex gap-3">
                 <AddSelect
                   options={relicsSetOptions}
                   value={relicsSetSetup[index]}

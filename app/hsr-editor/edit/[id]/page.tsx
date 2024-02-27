@@ -31,7 +31,7 @@ function Page({ params }: { params: { id: number } }) {
       recommended_stats: [],
     },
   ]);
-  const globalDataRef = useRef<Data[] | []>([]);
+  const memorizedData = useRef<Data[] | []>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -206,7 +206,7 @@ function Page({ params }: { params: { id: number } }) {
           if (dataArray.length === 0) {
             return null;
           }
-          globalDataRef.current = dataArray;
+          memorizedData.current = dataArray;
           setGlobalData(dataArray);
         } catch (error) {
           console.error("Erreur de recuperation sur la base de donnée", error);
@@ -218,14 +218,14 @@ function Page({ params }: { params: { id: number } }) {
   }, [lightConeOptions, relicsSetOptions]);
 
   const updateAllData = (data: any, index: number) => {
-    if (!globalDataRef.current) {
-      return globalDataRef.current;
+    if (!memorizedData.current) {
+      return memorizedData.current;
     }
-    const prevData = [...globalDataRef.current];
+    const prevData = [...memorizedData.current];
     prevData[index] = data;
 
-    globalDataRef.current = prevData;
-    console.log("globalDataRef", globalDataRef);
+    memorizedData.current = prevData;
+    console.log("globalDataRef", memorizedData);
   };
 
   const addBuild = () => {
@@ -246,7 +246,63 @@ function Page({ params }: { params: { id: number } }) {
     setGlobalData((prevData) => {
       const data = [...prevData];
       data.splice(index, 1);
+      memorizedData.current = data;
       return data;
+    });
+  };
+
+  const handleGoToDB = () => {
+    const dataArraySaved = memorizedData.current.map((data: Data) => {
+      const lightConesArray = data.lightCones.map((lightcone) => ({
+        id: lightcone.id,
+        recommended: lightcone.recommended,
+      }));
+
+      const relicsSetArray = data.relics_set.map((relic) => ({
+        id: relic.id,
+        num: relic.num,
+        recommended: relic.recommended,
+      }));
+
+      const mainStatsSetupArray = data.main_stats.map((mainStat: any) => ({
+        piece: mainStat.equipment.value,
+        type: mainStat.typeStat.value,
+      }));
+
+      const recommendedStatsSetupArray = data.recommended_stats.map(
+        (recommendedStat: any) => ({
+          type: recommendedStat.type.value,
+          value: recommendedStat.value,
+          importance: recommendedStat.importance,
+        })
+      );
+
+      const dataSaved: Data = {
+        buildName: data.buildName,
+        lightCones: lightConesArray,
+        relics_set: relicsSetArray,
+        main_stats: mainStatsSetupArray,
+        recommended_stats: recommendedStatsSetupArray,
+      };
+
+      return dataSaved;
+    });
+
+    console.log("dataArraySaved", dataArraySaved);
+
+    const characterDataMemo = characterData as CharacterType;
+    const dataToDB = {
+      characterId: characterDataMemo.id,
+      data: dataArraySaved,
+    };
+
+    fetch("/api/character", {
+      method: "PUT",
+      cache: "no-cache",
+      next: { revalidate: 0 },
+      body: JSON.stringify(dataToDB),
+    }).then((data: any) => {
+      console.log("data envoyé", data);
     });
   };
 
@@ -285,7 +341,7 @@ function Page({ params }: { params: { id: number } }) {
       <div className="flex flex-col gap-y-28">
         {globalData &&
           globalData.map((singleData: Data, index: number) => (
-            <div key={crypto.randomUUID()}>
+            <div key={`globalBuild${index}`}>
               <GlobalBuild
                 key={index}
                 data={singleData}
@@ -300,61 +356,7 @@ function Page({ params }: { params: { id: number } }) {
       </div>
       <button
         className="flex w-3/4 bg-green p-2 rounded-full mx-auto justify-center mt-20 text-xl font-bold border"
-        onClick={() => {
-          const dataArraySaved = globalDataRef.current.map((data: Data) => {
-            const lightConesArray = data.lightCones.map((lightcone) => ({
-              id: lightcone.id,
-              recommended: lightcone.recommended,
-            }));
-
-            const relicsSetArray = data.relics_set.map((relic) => ({
-              id: relic.id,
-              num: relic.num,
-              recommended: relic.recommended,
-            }));
-
-            const mainStatsSetupArray = data.main_stats.map(
-              (mainStat: any) => ({
-                piece: mainStat.equipment.value,
-                type: mainStat.typeStat.value,
-              })
-            );
-
-            const recommendedStatsSetupArray = data.recommended_stats.map(
-              (recommendedStat: any) => ({
-                type: recommendedStat.type.value,
-                value: recommendedStat.value,
-                importance: recommendedStat.importance,
-              })
-            );
-
-            const dataSaved: Data = {
-              buildName: data.buildName,
-              lightCones: lightConesArray,
-              relics_set: relicsSetArray,
-              main_stats: mainStatsSetupArray,
-              recommended_stats: recommendedStatsSetupArray,
-            };
-
-            return dataSaved;
-          });
-
-          console.log("dataArraySaved", dataArraySaved);
-
-          const dataToDB = {
-            characterId: characterData.id,
-            data: dataArraySaved,
-          };
-
-          fetch("/api/character", {
-            method: "PUT",
-            cache: "no-cache",
-            next: { revalidate: 0 },
-            body: JSON.stringify(dataToDB),
-          }).then((data: any) => {
-            console.log("data envoyé", data);
-          });
-        }}
+        onClick={handleGoToDB}
       >
         Sauvegarder
       </button>

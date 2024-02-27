@@ -48,7 +48,7 @@ const GlobalLightCone: React.FC<GlobalLightConeProps> = ({
         {lightConesSetup.map((cone: LightConeOption, index: number) => {
           return (
             cone.recommended === isRecommended && (
-              <div key={crypto.randomUUID()} className="flex gap-3">
+              <div key={`lightConesSetup${index}`} className="flex gap-3">
                 <AddSelect
                   options={lightConeOptions}
                   value={lightConesSetup[index]}

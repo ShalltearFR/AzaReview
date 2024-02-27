@@ -45,7 +45,7 @@ const GlobalrecommendedStats: React.FC<GlobalrecommendedStatsProps> = ({
         {recommendedStatsSetup.map(
           (mainStat: recommendedStatsOption, index: number) => {
             return (
-              <div key={crypto.randomUUID()} className="flex gap-3">
+              <div key={`recommendedStatsSetup${index}`} className="flex gap-3">
                 <AddSelect
                   options={typesStat}
                   value={mainStat.type}

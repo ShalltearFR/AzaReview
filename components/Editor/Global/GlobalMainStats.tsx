@@ -41,7 +41,7 @@ const GlobalMainStats: React.FC<GlobalMainStatsProps> = ({
       <div className="flex flex-wrap justify-center gap-y-5 gap-x-16 mt-5">
         {mainStatsSetup.map((mainStat: MainStatsOption, index: number) => {
           return (
-            <div key={crypto.randomUUID()} className="flex gap-3">
+            <div key={`mainStatsSetup${index}`} className="flex gap-3">
               <AddSelect
                 options={equipments}
                 value={mainStat.equipment}
