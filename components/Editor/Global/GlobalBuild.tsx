@@ -254,8 +254,8 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
   }, 250);
 
   return (
-    <div className="mx-5 p-5 text-white border border-white overflow-hidden">
-      <div className="bg-black/50 cursor-pointer h-10 rounded-xl">
+    <div className="mx-5 p-5 text-white border border-white">
+      <div className="h-10">
         <div className="flex items-center">
           <label className="flex items-center">
             <span className="text-2xl ml-5 h-9 mr-2">Nom du build : </span>
@@ -269,7 +269,7 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
             />
           </label>
           <button
-            className="flex gap-2 ml-5 font-bold p-2 rounded-xl bg-red"
+            className="flex gap-2 ml-5 font-bold p-2 rounded-xl bg-red select-none"
             onClick={(e) => {
               deleteBuild();
             }}
@@ -278,7 +278,7 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
             <TrashIcon className="h-6 " />
           </button>
           <button
-            className=" flex gap-2 ml-auto font-bold bg-gray p-2 rounded-xl"
+            className=" flex gap-2 ml-auto font-bold bg-gray p-2 rounded-xl select-none"
             onClick={() => setShowBuild(!showBuild)}
           >
             {showBuild ? "Masquer le build" : "Afficher le build"}
@@ -290,7 +290,6 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
       <animated.div
         style={{
           transform,
-          overflowY: "hidden",
           height: showBuild ? "auto" : "0",
         }}
       >
