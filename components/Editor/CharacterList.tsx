@@ -34,13 +34,17 @@ const CharacterList: React.FC = () => {
   const [cardCharacterID, setCardCharacterID] = useState<string>("");
 
   const getAllCharacters = async () => {
-    const res = await fetch(`${CDN}/index_min/fr/characters.json`);
+    const res = await fetch(`${CDN}/index_min/fr/characters.json`, {
+      cache: "no-store",
+    });
     const data = await res.json();
     return Object.values(data).map((item) => item) as Character[];
   };
 
   const getDataBaseCharacters = async () => {
-    const res = await fetch("/api/characters");
+    const res = await fetch("/api/characters", {
+      cache: "no-store",
+    });
     return res.json();
   };
 
