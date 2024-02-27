@@ -3,7 +3,7 @@ import CharacterSplash from "./CharacterSplash";
 import CharacterTrace from "./CharacterTrace";
 import CharacterLightCone from "./CharacterLightCone";
 import CharacterStat from "./CharacterStat";
-import RecommandedStat from "../RecommandedStat";
+import recommendedStat from "../recommendedStat";
 import CharacterRelicsSet from "./CharacterRelicsSet";
 import CharacterRelic from "./CharacterRelic";
 import { CDN2 } from "@/utils/cdn";
@@ -75,7 +75,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           <p className="text-yellow text-lg font-bold text-center">
             Statistiques recommandées
           </p>
-          <RecommandedStat />
+          <recommendedStat />
         </div>
 
         <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-4">

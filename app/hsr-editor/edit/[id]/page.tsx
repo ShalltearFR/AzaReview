@@ -1,64 +1,37 @@
 "use client";
-import { CharacterType } from "@/types/CharacterModel";
+import { CharacterType, Data } from "@/types/CharacterModel";
 import { CDN } from "@/utils/cdn";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LightCone as LightConeType } from "@/types/LightCone";
-import { SingleValue } from "react-select";
-import GlobalLightCone from "@/components/Editor/Global/GlobalLightCone";
-import GlobalRelicsSet from "@/components/Editor/Global/GlobalRelicsSet";
-import GlobalMainStats from "@/components/Editor/Global/GlobalMainStats";
-import GlobalRecommandedStats from "@/components/Editor/Global/GlobalRecommandedStats";
-
-interface Option {
-  value: string;
-  label: string;
-  num?: number;
-}
-
-interface LightConeOption {
-  value: any;
-  recommanded: boolean;
-  label: string;
-  id: string;
-}
-
-interface RelicSetOption {
-  value: any;
-  recommanded: boolean;
-  label: string;
-  num: number;
-  id: string;
-}
-
-interface MainStatsOption {
-  equipment: Option;
-  typeStat: Option;
-}
-
-interface RecommandedStatsOption {
-  type: Option;
-  value: string;
-  importance: string;
-}
+import { equipments, allTypesStat } from "@/utils/statsOption";
+import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
+import type {
+  Option,
+  LightConeOption,
+  RelicSetOption,
+  MainStatsOption,
+  recommendedStatsOption,
+} from "@/types/EditorPage";
+import GlobalBuild from "@/components/Editor/Global/GlobalBuild";
 
 function Page({ params }: { params: { id: number } }) {
   const [characterData, setCharacterData] = useState<
     CharacterType | "Loading" | { error: true }
   >("Loading");
 
-  const [buildNameInput, setBuildNameInput] = useState<string>("");
-
   const [lightConeOptions, setLightConeOptions] = useState<Option[]>([]);
-  const [lightConesSetup, setLightConesSetup] = useState<LightConeOption[]>([]);
-
   const [relicsSetOptions, setRelicsSetOptions] = useState<Option[]>([]);
-  const [relicsSetSetup, setRelicsSetSetup] = useState<RelicSetOption[]>([]);
 
-  const [mainStatsSetup, setMainStatsSetup] = useState<MainStatsOption[]>([]);
-
-  const [recommandedStatsSetup, setRecommandedStatsSetup] = useState<
-    RecommandedStatsOption[]
-  >([]);
+  const [globalData, setGlobalData] = useState<Data[]>([
+    {
+      buildName: "",
+      lightCones: [],
+      relics_set: [],
+      main_stats: [],
+      recommended_stats: [],
+    },
+  ]);
+  const globalDataRef = useRef<Data[] | []>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -127,170 +100,142 @@ function Page({ params }: { params: { id: number } }) {
           console.error("Erreur de recuperation des reliques", error);
         }
       };
-
       fetchRelicsSet();
     }
   }, [characterData]);
 
-  // FONCTIONS LIGHTCONES
-  const handleLightConeChange = (
-    option: SingleValue<Option>,
-    index: number,
-    isRecommanded: boolean
-  ) => {
-    setLightConesSetup((prevLightConesSetup) => {
-      const newSetup = [...prevLightConesSetup];
-      newSetup[index] = {
-        recommanded: isRecommanded,
-        value: option?.label || "",
-        label: option?.label || "",
-        id: option?.value || "",
+  useEffect(() => {
+    if (lightConeOptions.length > 0 && relicsSetOptions.length > 0) {
+      // RECUPERE L'ID DE L'ELEMENT ET RETOURNE SON NOM
+      const findLabel = (id: string, array: Array<any>, type?: string) => {
+        let foundElement;
+        foundElement = array.find((el) => el.value === id);
+        if (foundElement) return foundElement.label;
+        return "";
       };
-      return newSetup;
+
+      //FETCH DONNEES STOCKEES DANS LA DB
+      const fetchDataFromDB = async () => {
+        try {
+          const character = characterData as CharacterType;
+          const response = await fetch(`/api/character/${character.id}`);
+          const json: CharacterType = await response.json();
+          console.log("json", json);
+
+          const dataArray: any = json.data.map((singleData) => {
+            // TRANSMETS DONNEES DES CONES
+            const lightcones: LightConeOption[] = singleData.lightCones.map(
+              (lightcone) => {
+                const label: string = findLabel(lightcone.id, lightConeOptions);
+                return {
+                  id: lightcone.id,
+                  value: lightcone.id,
+                  recommended: lightcone.recommended,
+                  label: label,
+                };
+              }
+            );
+
+            // TRANSMETS DONNEES DES SETS DE RELIQUES
+            const relics: RelicSetOption[] = singleData.relics_set.map(
+              (relic) => {
+                const label = findLabel(relic.id, relicsSetOptions);
+                return {
+                  id: relic.id,
+                  value: relic.id,
+                  num: relic.num,
+                  recommended: relic.recommended,
+                  label: label,
+                };
+              }
+            );
+
+            // TRANSMETS DONNEES DES MAINS STATS
+            const mainStats: MainStatsOption[] = singleData.main_stats.map(
+              (mainStat) => {
+                const labelType = findLabel(mainStat.type, allTypesStat);
+                const labelPiece = findLabel(mainStat.piece, equipments);
+                return {
+                  typeStat: {
+                    label: labelType,
+                    value: mainStat.type,
+                  },
+                  equipment: {
+                    label: labelPiece,
+                    value: mainStat.piece,
+                  },
+                };
+              }
+            );
+
+            // TRANSMETS DONNEES DES STATS RECOMMANDES
+            const recommendedStats: recommendedStatsOption[] =
+              singleData.recommended_stats.map((recommendedStat: any) => {
+                const labelType = findLabel(recommendedStat.type, allTypesStat);
+                return {
+                  type: {
+                    label: labelType,
+                    value: recommendedStat.type,
+                  },
+                  value: recommendedStat.value,
+                  importance: recommendedStat.importance,
+                };
+              });
+
+            return {
+              buildName: singleData.buildName || "",
+              lightCones: lightcones || [],
+              relics_set: relics || [],
+              main_stats: mainStats || [],
+              recommended_stats: recommendedStats || [],
+            };
+          });
+
+          if (dataArray.length === 0) {
+            return null;
+          }
+          globalDataRef.current = dataArray;
+          setGlobalData(dataArray);
+        } catch (error) {
+          console.error("Erreur de recuperation sur la base de donnée", error);
+        }
+      };
+      fetchDataFromDB();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lightConeOptions, relicsSetOptions]);
+
+  const updateAllData = (data: any, index: number) => {
+    if (!globalDataRef.current) {
+      return globalDataRef.current;
+    }
+    const prevData = [...globalDataRef.current];
+    prevData[index] = data;
+
+    globalDataRef.current = prevData;
+    console.log("globalDataRef", globalDataRef);
+  };
+
+  const addBuild = () => {
+    setGlobalData((prevData) => {
+      const data = [...prevData];
+      data.push({
+        buildName: "",
+        lightCones: [],
+        relics_set: [],
+        main_stats: [],
+        recommended_stats: [],
+      });
+      return data;
     });
   };
 
-  const deleteLightCone = (index: number) => {
-    setLightConesSetup((prevLightConesSetup) => {
-      const newSetup = [...prevLightConesSetup];
-      newSetup.splice(index, 1);
-      return newSetup;
+  const deleteBuild = (index: number) => {
+    setGlobalData((prevData) => {
+      const data = [...prevData];
+      data.splice(index, 1);
+      return data;
     });
-  };
-
-  const addLightCone = (isRecommanded: boolean) => {
-    setLightConesSetup((prevLightConesSetup) => [
-      ...prevLightConesSetup,
-      { id: "", recommanded: isRecommanded, value: "", label: "" },
-    ]);
-  };
-
-  // FONCTIONS SETS DE RELIQUES
-  const handleRelicsSetChange = (
-    option: SingleValue<Option>,
-    index: number,
-    isRecommanded: boolean
-  ) => {
-    setRelicsSetSetup((prevLightConesSetup) => {
-      const newSetup = [...prevLightConesSetup];
-      newSetup[index].recommanded = isRecommanded;
-      newSetup[index].id = option?.value || "";
-      newSetup[index].value = option?.value || "";
-      newSetup[index].label = option?.label || "";
-      return newSetup;
-    });
-  };
-
-  const handleRelicsNumChange = (value: number, index: number) => {
-    setRelicsSetSetup((prevRelicsSetSetup) => {
-      const newSetup = [...prevRelicsSetSetup];
-      newSetup[index].num = value;
-      return newSetup;
-    });
-  };
-
-  const deleteRelicsSet = (index: number) => {
-    setRelicsSetSetup((prevRelicsSetSetup) => {
-      const newSetup = [...prevRelicsSetSetup];
-      newSetup.splice(index, 1);
-      return newSetup;
-    });
-  };
-
-  const addRelicsSet = (isRecommanded: boolean) => {
-    setRelicsSetSetup((prevRelicsSetSetup) => [
-      ...prevRelicsSetSetup,
-      { id: "", recommanded: isRecommanded, value: "", label: "", num: 2 },
-    ]);
-  };
-
-  // FONCTIONS MAINS STATS
-  const handleEquipmentChange = (
-    option: SingleValue<Option>,
-    index: number
-  ) => {
-    setMainStatsSetup((prevLightConesSetup) => {
-      const newSetup = [...prevLightConesSetup];
-      newSetup[index].equipment.value = option?.value || "";
-      newSetup[index].equipment.label = option?.label || "";
-      return newSetup;
-    });
-  };
-
-  const handleTypeStatChange = (option: SingleValue<Option>, index: number) => {
-    setMainStatsSetup((prevRelicsSetSetup) => {
-      const newSetup = [...prevRelicsSetSetup];
-      newSetup[index].typeStat.value = option?.value || "";
-      newSetup[index].typeStat.label = option?.label || "";
-      return newSetup;
-    });
-  };
-
-  const deleteMainStats = (index: number) => {
-    setMainStatsSetup((prevRelicsSetSetup) => {
-      const newSetup = [...prevRelicsSetSetup];
-      newSetup.splice(index, 1);
-      return newSetup;
-    });
-  };
-
-  const addMainStats = () => {
-    const object: MainStatsOption = {
-      equipment: { value: "", label: "" },
-      typeStat: { value: "", label: "" },
-    };
-
-    setMainStatsSetup((prevRelicsSetSetup) => [...prevRelicsSetSetup, object]);
-  };
-
-  // FONCTIONS STATS RECOMMANDÉES
-  const handleRecommandedTypeStatChange = (
-    option: SingleValue<Option>,
-    index: number
-  ) => {
-    setRecommandedStatsSetup((prevLightConesSetup) => {
-      const newSetup = [...prevLightConesSetup];
-      newSetup[index].type.value = option?.value || "";
-      newSetup[index].type.label = option?.label || "";
-      return newSetup;
-    });
-  };
-
-  const handleRecommandedValueChange = (value: string, index: number) => {
-    setRecommandedStatsSetup((prevRelicsSetSetup) => {
-      const newSetup = [...prevRelicsSetSetup];
-      newSetup[index].value = value || "";
-      return newSetup;
-    });
-  };
-
-  const handleRecommandedImportanceChange = (value: string, index: number) => {
-    setRecommandedStatsSetup((prevRelicsSetSetup) => {
-      const newSetup = [...prevRelicsSetSetup];
-      newSetup[index].importance = value || "";
-      return newSetup;
-    });
-  };
-
-  const deleteRecommandedStat = (index: number) => {
-    setRecommandedStatsSetup((prevRelicsSetSetup) => {
-      const newSetup = [...prevRelicsSetSetup];
-      newSetup.splice(index, 1);
-      return newSetup;
-    });
-  };
-
-  const addRecommandedStat = () => {
-    const object: RecommandedStatsOption = {
-      type: { value: "", label: "" },
-      importance: "",
-      value: "",
-    };
-
-    setRecommandedStatsSetup((prevRelicsSetSetup) => [
-      ...prevRelicsSetSetup,
-      object,
-    ]);
   };
 
   const isLoading = characterData === "Loading";
@@ -305,188 +250,102 @@ function Page({ params }: { params: { id: number } }) {
   }
 
   return (
-    <div>
-      <div className="relative">
+    <>
+      <div className="fixed flex -z-10 justify-center w-screen">
         <img
           src={`${CDN}/${characterData.portrait}`}
-          className="grayscale opacity-50 absolute -z-10"
+          className="grayscale opacity-50 object-contain h-[calc(100vh+150px)] -translate-y-16"
         />
-        <p className="text-white text-center text-4xl my-5">
-          {characterData.name}
-        </p>
-        {/* BUILD */}
-        <div className="mx-5 p-5 text-white border border-white">
-          <label>
-            <span className="text-2xl">Nom du build : </span>
-            <input
-              className="px-2 text-black"
-              value={buildNameInput}
-              onChange={(e) => setBuildNameInput(e.target.value)}
-            />
-          </label>
-
-          {/* CONES DE LUMIERE */}
-          <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
-            <div className="flex">
-              <span className="text-2xl mx-auto font-bold mb-5">
-                Cones de lumière
-              </span>
-            </div>
-
-            {/* SEPARATION CONE ET RECOMMANDÉ */}
-            <div className="grid grid-cols-[1fr_1fr]">
-              <GlobalLightCone
-                lightConeOptions={lightConeOptions}
-                lightConesSetup={lightConesSetup}
-                handleChange={handleLightConeChange}
-                addLightCone={addLightCone}
-                deleteLightCone={deleteLightCone}
-                addButtonText={"Ajouter un cone"}
-                isRecommanded={false}
-              />
-
-              <div className="col-span-1 border-l">
-                <GlobalLightCone
-                  lightConeOptions={lightConeOptions}
-                  lightConesSetup={lightConesSetup}
-                  handleChange={handleLightConeChange}
-                  addLightCone={addLightCone}
-                  deleteLightCone={deleteLightCone}
-                  addButtonText={"Ajouter un cone recommandé"}
-                  isRecommanded={true}
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* SET DE RELIQUES ET ORNEMENTS */}
-          <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
-            <div className="flex">
-              <span className="text-2xl mx-auto font-bold mb-5">
-                Sets de reliques/Ornements
-              </span>
-            </div>
-            {/* SEPARATION RELIQUES/ORNEMENTS RECOMMANDÉ */}
-            <div className="grid grid-cols-2">
-              <GlobalRelicsSet
-                relicsSetOptions={relicsSetOptions}
-                relicsSetSetup={relicsSetSetup}
-                handleRelicsSetChange={handleRelicsSetChange}
-                handleRelicsNumChange={handleRelicsNumChange}
-                addRelicSet={addRelicsSet}
-                deleteRelicsSet={deleteRelicsSet}
-                addButtonText={"Ajouter un set"}
-                isRecommanded={false}
-              />
-
-              <div className="border-l">
-                <GlobalRelicsSet
-                  relicsSetOptions={relicsSetOptions}
-                  relicsSetSetup={relicsSetSetup}
-                  handleRelicsSetChange={handleRelicsSetChange}
-                  handleRelicsNumChange={handleRelicsNumChange}
-                  addRelicSet={addRelicsSet}
-                  deleteRelicsSet={deleteRelicsSet}
-                  addButtonText={"Ajouter un set recommandé"}
-                  isRecommanded={true}
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* MAIN STATS */}
-          <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
-            <div className="flex">
-              <span className="text-2xl mx-auto font-bold mb-5">
-                Main Stats
-              </span>
-            </div>
-            <GlobalMainStats
-              mainStatsSetup={mainStatsSetup}
-              handleEquipmentChange={handleEquipmentChange}
-              handleTypeStatChange={handleTypeStatChange}
-              deleteMainStats={deleteMainStats}
-              addMainStats={addMainStats}
-            />
-          </div>
-
-          {/* STATS RECOMMANDÉS */}
-          <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
-            <div className="flex">
-              <span className="text-2xl mx-auto font-bold mb-5">
-                Statistiques recommandés
-              </span>
-            </div>
-            <GlobalRecommandedStats
-              recommandedStatsSetup={recommandedStatsSetup}
-              handleImportanceChange={handleRecommandedImportanceChange}
-              handleTypeStatChange={handleRecommandedTypeStatChange}
-              handleValueChange={handleRecommandedValueChange}
-              addRecommandedStats={addRecommandedStat}
-              deleteRecommandedStat={deleteRecommandedStat}
-            />
-          </div>
-        </div>
+      </div>
+      <div className="relative">
         <button
-          className="flex w-3/4 bg-green p-2 rounded-full mx-auto justify-center mt-20 text-xl font-bold border"
-          onClick={() => {
-            console.log("lightConesSetup", lightConesSetup);
-            console.log("relicsSetSetup", relicsSetSetup);
-            console.log("mainStatsSetup", mainStatsSetup);
-            console.log("recommandedStatsSetup", recommandedStatsSetup);
+          className="flex gap-2 font-bold absolute p-2 rounded-full right-5 bg-green"
+          onClick={addBuild}
+        >
+          Ajouter un build
+          <PlusIcon className="h-6" />
+        </button>
+        <div className="text-white text-center text-5xl font-bold my-5">
+          {characterData.name}
+        </div>
+      </div>
 
-            const lightConesArray = lightConesSetup.map((lightcone) => ({
+      <div className="flex flex-col gap-y-28">
+        {globalData &&
+          globalData.map((singleData: Data, index: number) => (
+            <div key={crypto.randomUUID()}>
+              <GlobalBuild
+                key={index}
+                data={singleData}
+                index={index}
+                lightConeOptions={lightConeOptions as any}
+                relicsSetOptions={relicsSetOptions as any}
+                onChange={updateAllData}
+                onDelete={deleteBuild}
+              />
+            </div>
+          ))}
+      </div>
+      <button
+        className="flex w-3/4 bg-green p-2 rounded-full mx-auto justify-center mt-20 text-xl font-bold border"
+        onClick={() => {
+          const dataArraySaved = globalDataRef.current.map((data: Data) => {
+            const lightConesArray = data.lightCones.map((lightcone) => ({
               id: lightcone.id,
-              recommanded: lightcone.recommanded,
+              recommended: lightcone.recommended,
             }));
 
-            const relicsSetArray = relicsSetSetup.map((relic) => ({
+            const relicsSetArray = data.relics_set.map((relic) => ({
               id: relic.id,
               num: relic.num,
-              recommanded: relic.recommanded,
+              recommended: relic.recommended,
             }));
 
-            const mainStatsSetupArray = mainStatsSetup.map((mainStat) => ({
-              piece: mainStat.equipment.value,
-              type: mainStat.typeStat.value,
-            }));
-
-            const recommandedStatsSetupArray = recommandedStatsSetup.map(
-              (recommandedStat) => ({
-                type: recommandedStat.type.value,
-                value: recommandedStat.value,
-                importance: recommandedStat.importance,
+            const mainStatsSetupArray = data.main_stats.map(
+              (mainStat: any) => ({
+                piece: mainStat.equipment.value,
+                type: mainStat.typeStat.value,
               })
             );
 
-            const dataToDB = {
-              characterId: characterData.id,
-              data: [
-                {
-                  buildName: buildNameInput,
-                  lightCones: lightConesArray,
-                  relics_set: relicsSetArray,
-                  main_stats: mainStatsSetupArray,
-                  recommanded_stats: recommandedStatsSetupArray,
-                },
-              ],
+            const recommendedStatsSetupArray = data.recommended_stats.map(
+              (recommendedStat: any) => ({
+                type: recommendedStat.type.value,
+                value: recommendedStat.value,
+                importance: recommendedStat.importance,
+              })
+            );
+
+            const dataSaved: Data = {
+              buildName: data.buildName,
+              lightCones: lightConesArray,
+              relics_set: relicsSetArray,
+              main_stats: mainStatsSetupArray,
+              recommended_stats: recommendedStatsSetupArray,
             };
 
-            console.log("dataToDB", dataToDB);
+            return dataSaved;
+          });
 
-            fetch("/api/character", {
-              method: "PUT",
-              cache: "no-cache",
-              body: JSON.stringify(dataToDB),
-            }).then((data: any) => {
-              console.log("data envoyé", data);
-            });
-          }}
-        >
-          Sauvegarder
-        </button>
-      </div>
-    </div>
+          console.log("dataArraySaved", dataArraySaved);
+
+          const dataToDB = {
+            characterId: characterData.id,
+            data: dataArraySaved,
+          };
+
+          fetch("/api/character", {
+            method: "PUT",
+            cache: "no-cache",
+            body: JSON.stringify(dataToDB),
+          }).then((data: any) => {
+            console.log("data envoyé", data);
+          });
+        }}
+      >
+        Sauvegarder
+      </button>
+    </>
   );
 }
 

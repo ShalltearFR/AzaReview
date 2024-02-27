@@ -1,6 +1,6 @@
-interface RecommandedStatProps {}
+interface recommendedStatProps {}
 
-const RecommandedStat: React.FC<RecommandedStatProps> = ({}) => {
+const recommendedStat: React.FC<recommendedStatProps> = ({}) => {
   return (
     <div className="w-1/2 mx-auto text-white text-sm font-bold">
       <div className="mt-2 text-center">
@@ -11,4 +11,4 @@ const RecommandedStat: React.FC<RecommandedStatProps> = ({}) => {
   );
 };
 
-export default RecommandedStat;
+export default recommendedStat;

@@ -10,26 +10,26 @@ interface Option {
 interface AddSelectProps {
   value: any;
   index: number;
-  recommanded?: boolean;
+  recommended?: boolean;
   options: Option[];
   className?: string;
   onChange: (
     option: SingleValue<Option>,
     index: number,
-    isRecommanded: boolean
+    isrecommended: boolean
   ) => void;
 }
 
 const AddSelect: React.FC<AddSelectProps> = ({
   value,
   index,
-  recommanded = false,
+  recommended = false,
   options,
   className,
   onChange,
 }) => {
   const handleSelectChange = (option: SingleValue<Option>) => {
-    onChange(option, index, recommanded);
+    onChange(option, index, recommended);
   };
   return (
     <div className="flex items-center gap-3">

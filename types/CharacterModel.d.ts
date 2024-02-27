@@ -60,8 +60,8 @@ type RecommendedStats = {
 };
 
 type Data = {
-  name: string;
-  lightCone: LightCone[];
+  buildName: string;
+  lightCones: LightCone[];
   relics_set: RelicsSet[];
   main_stats: MainStats[];
   recommended_stats: RecommendedStats[];
@@ -76,4 +76,4 @@ type CharacterType = {
   data: Data[];
 };
 
-export type { CharacterType };
+export type { CharacterType, Data };

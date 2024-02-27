@@ -32,13 +32,13 @@ const { Schema, models, model } = mongoose;
 
 const lightConeSchema = new Schema({
   id: String,
-  recommanded: Boolean,
+  recommended: Boolean,
 });
 
 const relicsSetSchema = new Schema({
   id: String,
   num: { type: Number, enum: [2, 4] },
-  recommanded: Boolean,
+  recommended: Boolean,
 });
 
 const mainStatsSchema = new Schema({
@@ -72,7 +72,7 @@ const mainStatsSchema = new Schema({
   },
 });
 
-const recommandedStatsSchema = new Schema({
+const recommendedStatsSchema = new Schema({
   type: {
     type: String,
     enum: [
@@ -106,7 +106,7 @@ const characterSchema = new Schema({
   lightCones: [lightConeSchema],
   relics_set: [relicsSetSchema],
   main_stats: [mainStatsSchema],
-  recommanded_stats: [recommandedStatsSchema],
+  recommended_stats: [recommendedStatsSchema],
 });
 
 const dataSchema = new Schema(

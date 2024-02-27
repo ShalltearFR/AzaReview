@@ -5,7 +5,7 @@ import AddSelect from "../Add/AddSelect";
 interface RelicsSetOption {
   value: any;
   id: string;
-  recommanded: boolean;
+  recommended: boolean;
   label: string;
 }
 
@@ -16,7 +16,7 @@ interface GlobalRelicsSetProps {
   handleRelicsSetChange: any;
   handleRelicsNumChange: any;
   deleteRelicsSet: any;
-  isRecommanded: boolean;
+  isrecommended: boolean;
   addButtonText: string;
 }
 
@@ -27,7 +27,7 @@ const GlobalRelicsSet: React.FC<GlobalRelicsSetProps> = ({
   handleRelicsSetChange,
   handleRelicsNumChange,
   deleteRelicsSet,
-  isRecommanded,
+  isrecommended,
   addButtonText,
 }) => {
   const numOptions = [
@@ -45,7 +45,7 @@ const GlobalRelicsSet: React.FC<GlobalRelicsSetProps> = ({
     <div className="flex flex-col">
       <button
         className="flex items-center ml-auto mr-5 r-5 h-8 p-4 bg-green rounded-full text-black font-bold"
-        onClick={() => addRelicSet(isRecommanded)}
+        onClick={() => addRelicSet(isrecommended)}
       >
         <span>{addButtonText}</span>
         <PlusIcon className="h-6 mt-1" />
@@ -53,13 +53,13 @@ const GlobalRelicsSet: React.FC<GlobalRelicsSetProps> = ({
       <div className="flex flex-wrap justify-center gap-y-5 gap-x-16 mt-5">
         {relicsSetSetup.map((relic: RelicsSetOption, index: number) => {
           return (
-            relic.recommanded === isRecommanded && (
+            relic.recommended === isrecommended && (
               <div key={crypto.randomUUID()} className="flex gap-3">
                 <AddSelect
                   options={relicsSetOptions}
                   value={relicsSetSetup[index]}
                   onChange={(option) =>
-                    handleRelicsSetChange(option, index, isRecommanded)
+                    handleRelicsSetChange(option, index, isrecommended)
                   }
                   index={index}
                   className="w-64"

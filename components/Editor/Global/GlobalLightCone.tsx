@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Select, { SingleValue } from "react-select";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
@@ -11,7 +12,7 @@ interface Option {
 interface LightConeOption {
   value: any;
   id: string;
-  recommanded: boolean;
+  recommended: boolean;
   label: string;
 }
 
@@ -21,7 +22,7 @@ interface GlobalLightConeProps {
   lightConeOptions: any;
   handleChange: any;
   deleteLightCone: any;
-  isRecommanded: boolean;
+  isRecommended: boolean;
   addButtonText: string;
 }
 
@@ -31,14 +32,14 @@ const GlobalLightCone: React.FC<GlobalLightConeProps> = ({
   lightConeOptions,
   handleChange,
   deleteLightCone,
-  isRecommanded,
+  isRecommended,
   addButtonText,
 }) => {
   return (
     <div className="flex flex-col">
       <button
         className="flex items-center ml-auto mr-5 r-5 h-8 p-4 bg-green rounded-full text-black font-bold"
-        onClick={() => addLightCone(isRecommanded)}
+        onClick={() => addLightCone(isRecommended)}
       >
         <span>{addButtonText}</span>
         <PlusIcon className="h-6 mt-1" />
@@ -46,13 +47,13 @@ const GlobalLightCone: React.FC<GlobalLightConeProps> = ({
       <div className="flex flex-wrap justify-center gap-y-5 gap-x-16 mt-5">
         {lightConesSetup.map((cone: LightConeOption, index: number) => {
           return (
-            cone.recommanded === isRecommanded && (
+            cone.recommended === isRecommended && (
               <div key={crypto.randomUUID()} className="flex gap-3">
                 <AddSelect
                   options={lightConeOptions}
                   value={lightConesSetup[index]}
                   onChange={(option) =>
-                    handleChange(option, index, isRecommanded)
+                    handleChange(option, index, isRecommended)
                   }
                   index={index}
                   className="w-64"

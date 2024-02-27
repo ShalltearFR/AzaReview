@@ -2,47 +2,48 @@ import React from "react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import AddSelect from "../Add/AddSelect";
 import { typesStat } from "@/utils/statsOption";
+import AddInput from "../Add/AddInput";
 
 interface Option {
   value: string;
   label: string;
 }
 
-interface RecommandedStatsOption {
+interface recommendedStatsOption {
   type: Option;
   value: string;
   importance: string;
 }
 
-interface GlobalRecommandedStatsProps {
-  addRecommandedStats: any;
-  recommandedStatsSetup: any;
+interface GlobalrecommendedStatsProps {
+  addRecommendedStats: any;
+  recommendedStatsSetup: any;
   handleTypeStatChange: any;
   handleValueChange: any;
   handleImportanceChange: any;
-  deleteRecommandedStat: any;
+  deleteRecommendedStat: any;
 }
 
-const GlobalRecommandedStats: React.FC<GlobalRecommandedStatsProps> = ({
-  addRecommandedStats,
-  recommandedStatsSetup,
+const GlobalrecommendedStats: React.FC<GlobalrecommendedStatsProps> = ({
+  addRecommendedStats,
+  recommendedStatsSetup,
   handleTypeStatChange,
   handleValueChange,
   handleImportanceChange,
-  deleteRecommandedStat,
+  deleteRecommendedStat,
 }) => {
   return (
     <div className="flex flex-col">
       <button
         className="flex items-center ml-auto mr-5 r-5 h-8 p-4 bg-green rounded-full text-black font-bold"
-        onClick={() => addRecommandedStats()}
+        onClick={() => addRecommendedStats()}
       >
         <span>Ajouter une stat recommandée</span>
         <PlusIcon className="h-6 mt-1" />
       </button>
       <div className="flex flex-wrap justify-center gap-y-5 gap-x-16 mt-5">
-        {recommandedStatsSetup.map(
-          (mainStat: RecommandedStatsOption, index: number) => {
+        {recommendedStatsSetup.map(
+          (mainStat: recommendedStatsOption, index: number) => {
             return (
               <div key={crypto.randomUUID()} className="flex gap-3">
                 <AddSelect
@@ -52,21 +53,19 @@ const GlobalRecommandedStats: React.FC<GlobalRecommandedStatsProps> = ({
                   index={index}
                   className="w-48"
                 />
-                <input
+                <AddInput
+                  onChange={(value) => handleValueChange(value, index)}
                   value={mainStat.value}
-                  onChange={(e) => handleValueChange(e.target.value, index)}
                   className="text-black px-2"
                   placeholder="Valeur"
                 />
-                <input
+                <AddInput
+                  onChange={(value) => handleImportanceChange(value, index)}
                   value={mainStat.importance}
-                  onChange={(e) =>
-                    handleImportanceChange(e.target.value, index)
-                  }
                   className="text-black px-2"
                   placeholder="Importance"
                 />
-                <button onClick={() => deleteRecommandedStat(index)}>
+                <button onClick={() => deleteRecommendedStat(index)}>
                   <TrashIcon className="h-8 w-8 p-2 rounded-full bg-red" />
                 </button>
               </div>
@@ -78,4 +77,4 @@ const GlobalRecommandedStats: React.FC<GlobalRecommandedStatsProps> = ({
   );
 };
 
-export default GlobalRecommandedStats;
+export default GlobalrecommendedStats;
