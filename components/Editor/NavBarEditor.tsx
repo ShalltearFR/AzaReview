@@ -4,7 +4,9 @@ const NavBarEditor: React.FC = () => {
   return (
     <nav className="bg-[#030303] h-16 text-xl text-white">
       <ul className="flex px-7 items-center h-full">
-        <span className="font-bold">Espace Editeur</span>
+        <Link href={"/hsr-editor"} className="font-bold">
+          Espace Editeur
+        </Link>
         <span className="ml-auto font-medium">
           <Link href={"/hsr-editor/logout"}>Deconnexion</Link>
         </span>
