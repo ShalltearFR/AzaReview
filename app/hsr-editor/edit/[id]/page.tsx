@@ -38,6 +38,7 @@ function Page({ params }: { params: { id: number } }) {
       try {
         const response = await fetch(`/api/character/${params.id}`, {
           cache: "no-cache",
+          next: { revalidate: 0 },
         });
         const data: CharacterType = await response.json();
         setCharacterData(data);
@@ -60,6 +61,7 @@ function Page({ params }: { params: { id: number } }) {
         try {
           const response = await fetch(`${CDN}/index_min/fr/light_cones.json`, {
             cache: "no-cache",
+            next: { revalidate: 0 },
           });
           const data: any = await response.json();
           const toArray = Object.values(data).map((item) => item);
@@ -92,6 +94,7 @@ function Page({ params }: { params: { id: number } }) {
         try {
           const response = await fetch(`${CDN}/index_min/fr/relic_sets.json`, {
             cache: "no-cache",
+            next: { revalidate: 0 },
           });
           const data: any = await response.json();
           const toArray: any = Object.values(data).map((item) => item);
@@ -126,6 +129,7 @@ function Page({ params }: { params: { id: number } }) {
           const character = characterData as CharacterType;
           const response = await fetch(`/api/character/${character.id}`, {
             cache: "no-cache",
+            next: { revalidate: 0 },
           });
           const json: CharacterType = await response.json();
           console.log("json", json);
@@ -345,6 +349,7 @@ function Page({ params }: { params: { id: number } }) {
           fetch("/api/character", {
             method: "PUT",
             cache: "no-cache",
+            next: { revalidate: 0 },
             body: JSON.stringify(dataToDB),
           }).then((data: any) => {
             console.log("data envoyé", data);
