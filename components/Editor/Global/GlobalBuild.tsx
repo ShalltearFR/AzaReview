@@ -5,7 +5,11 @@ import GlobalLightCone from "./GlobalLightCone";
 import GlobalRelicsSet from "./GlobalRelicsSet";
 import GlobalMainStats from "./GlobalMainStats";
 import GlobalRecommendedStats from "./GlobalRecommendedStats";
-import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
+import {
+  PlusIcon,
+  TrashIcon,
+  ArrowsUpDownIcon,
+} from "@heroicons/react/24/outline";
 import type {
   Option,
   LightConeOption,
@@ -14,6 +18,7 @@ import type {
   recommendedStatsOption,
 } from "@/types/EditorPage";
 import { SingleValue } from "react-select";
+import { useSpring, animated } from "react-spring";
 
 interface GlobalBuildProps {
   data: any;
@@ -40,6 +45,12 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
     recommendedStatsOption[]
   >([]);
 
+  const [showBuild, setShowBuild] = useState<boolean>(false);
+  const { transform } = useSpring({
+    transform: `translateX(${showBuild ? "0%" : "-120%"})`,
+    config: { tension: 300, friction: 26 },
+  });
+
   // INIT DES VALEURS
   useEffect(() => {
     setBuildNameInput(data.buildName);
@@ -52,6 +63,7 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
 
   // SUPPRESSION DU BUILD
   const deleteBuild = useCallback(() => {
+    console.log("suppression", index);
     onDelete(index);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -242,63 +254,61 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
   }, 250);
 
   return (
-    <div className="mx-5 p-5 text-white border border-white">
-      <div className="relative">
-        <button
-          className="flex gap-2 font-bold absolute right-5 p-2 rounded-full bg-red"
-          onClick={deleteBuild}
-        >
-          SUPPRIMER LE BUILD
-          <TrashIcon className="h-6 " />
-        </button>
-        <label>
-          <span className="text-2xl">Nom du build : </span>
-          <input
-            className="px-2 text-black"
-            value={buildNameInput || data.buildName}
-            onChange={(e) => {
-              setBuildNameInput(e.target.value);
-              debounced();
+    <div className="mx-5 p-5 text-white border border-white overflow-hidden">
+      <div className="bg-black/50 cursor-pointer h-10 rounded-xl">
+        <div className="flex items-center">
+          <label className="flex items-center">
+            <span className="text-2xl ml-5 h-9 mr-2">Nom du build : </span>
+            <input
+              className="px-2 text-black rounded-full h-10 mt-auto self-center"
+              value={buildNameInput || data.buildName}
+              onChange={(e) => {
+                setBuildNameInput(e.target.value);
+                debounced();
+              }}
+            />
+          </label>
+          <button
+            className="flex gap-2 ml-5 font-bold p-2 rounded-xl bg-red"
+            onClick={(e) => {
+              deleteBuild();
             }}
-          />
-        </label>
-      </div>
-      {/* CONES DE LUMIERE */}
-      <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
-        <div className="flex">
-          <span className="text-2xl mx-auto font-bold mb-5">
-            Cones de lumière
-          </span>
+          >
+            SUPPRIMER LE BUILD
+            <TrashIcon className="h-6 " />
+          </button>
+          <button
+            className=" flex gap-2 ml-auto font-bold bg-gray p-2 rounded-xl"
+            onClick={() => setShowBuild(!showBuild)}
+          >
+            {showBuild ? "Masquer le build" : "Afficher le build"}
+
+            <ArrowsUpDownIcon className="h-6" />
+          </button>
         </div>
+      </div>
+      <animated.div
+        style={{
+          transform,
+          overflowY: "hidden",
+          height: showBuild ? "auto" : "0",
+        }}
+      >
+        {/* CONES DE LUMIERE */}
+        <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
+          <div className="flex">
+            <span className="text-2xl mx-auto font-bold mb-5">
+              Cones de lumière
+            </span>
+          </div>
 
-        {/* SEPARATION CONE ET RECOMMANDÉ */}
-        <div className="grid grid-cols-[1fr_1fr]">
-          <GlobalLightCone
-            lightConeOptions={lightConeOptions}
-            lightConesSetup={lightConesSetup || data.lightCones}
-            handleChange={(
-              option: any,
-              index: number,
-              isRecommended: boolean
-            ) => {
-              handleLightConeChange(option, index, isRecommended);
-              debounced();
-            }}
-            addLightCone={addLightCone}
-            deleteLightCone={(index: number) => {
-              deleteLightCone(index);
-              debounced();
-            }}
-            addButtonText={"Ajouter un cone"}
-            isRecommended={false}
-          />
-
-          <div className="col-span-1 border-l">
+          {/* SEPARATION CONE ET RECOMMANDÉ */}
+          <div className="grid grid-cols-[1fr_1fr]">
             <GlobalLightCone
               lightConeOptions={lightConeOptions}
               lightConesSetup={lightConesSetup || data.lightCones}
               handleChange={(
-                option: SingleValue<Option>,
+                option: any,
                 index: number,
                 isRecommended: boolean
               ) => {
@@ -310,46 +320,42 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
                 deleteLightCone(index);
                 debounced();
               }}
-              addButtonText={"Ajouter un cone recommandé"}
-              isRecommended={true}
+              addButtonText={"Ajouter un cone"}
+              isRecommended={false}
             />
+
+            <div className="col-span-1 border-l">
+              <GlobalLightCone
+                lightConeOptions={lightConeOptions}
+                lightConesSetup={lightConesSetup || data.lightCones}
+                handleChange={(
+                  option: SingleValue<Option>,
+                  index: number,
+                  isRecommended: boolean
+                ) => {
+                  handleLightConeChange(option, index, isRecommended);
+                  debounced();
+                }}
+                addLightCone={addLightCone}
+                deleteLightCone={(index: number) => {
+                  deleteLightCone(index);
+                  debounced();
+                }}
+                addButtonText={"Ajouter un cone recommandé"}
+                isRecommended={true}
+              />
+            </div>
           </div>
         </div>
-      </div>
-      {/* SET DE RELIQUES ET ORNEMENTS */}
-      <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
-        <div className="flex">
-          <span className="text-2xl mx-auto font-bold mb-5">
-            Sets de reliques/Ornements
-          </span>
-        </div>
-        {/* SEPARATION RELIQUES/ORNEMENTS RECOMMANDÉ */}
-        <div className="grid grid-cols-2">
-          <GlobalRelicsSet
-            relicsSetOptions={relicsSetOptions}
-            relicsSetSetup={relicsSetSetup || data.relic_sets}
-            handleRelicsSetChange={(
-              option: SingleValue<Option>,
-              index: number,
-              isRecommended: boolean
-            ) => {
-              handleRelicsSetChange(option, index, isRecommended);
-              debounced();
-            }}
-            handleRelicsNumChange={(value: number, index: number) => {
-              handleRelicsNumChange(value, index);
-              debounced();
-            }}
-            addRelicSet={addRelicsSet}
-            deleteRelicsSet={(index: number) => {
-              deleteRelicsSet(index);
-              debounced();
-            }}
-            addButtonText={"Ajouter un set"}
-            isrecommended={false}
-          />
-
-          <div className="border-l">
+        {/* SET DE RELIQUES ET ORNEMENTS */}
+        <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
+          <div className="flex">
+            <span className="text-2xl mx-auto font-bold mb-5">
+              Sets de reliques/Ornements
+            </span>
+          </div>
+          {/* SEPARATION RELIQUES/ORNEMENTS RECOMMANDÉ */}
+          <div className="grid grid-cols-2">
             <GlobalRelicsSet
               relicsSetOptions={relicsSetOptions}
               relicsSetSetup={relicsSetSetup || data.relic_sets}
@@ -370,73 +376,99 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
                 deleteRelicsSet(index);
                 debounced();
               }}
-              addButtonText={"Ajouter un set recommandé"}
-              isrecommended={true}
+              addButtonText={"Ajouter un set"}
+              isrecommended={false}
             />
+
+            <div className="border-l">
+              <GlobalRelicsSet
+                relicsSetOptions={relicsSetOptions}
+                relicsSetSetup={relicsSetSetup || data.relic_sets}
+                handleRelicsSetChange={(
+                  option: SingleValue<Option>,
+                  index: number,
+                  isRecommended: boolean
+                ) => {
+                  handleRelicsSetChange(option, index, isRecommended);
+                  debounced();
+                }}
+                handleRelicsNumChange={(value: number, index: number) => {
+                  handleRelicsNumChange(value, index);
+                  debounced();
+                }}
+                addRelicSet={addRelicsSet}
+                deleteRelicsSet={(index: number) => {
+                  deleteRelicsSet(index);
+                  debounced();
+                }}
+                addButtonText={"Ajouter un set recommandé"}
+                isrecommended={true}
+              />
+            </div>
           </div>
         </div>
-      </div>
-      {/* MAIN STATS */}
-      <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
-        <div className="flex">
-          <span className="text-2xl mx-auto font-bold mb-5">Main Stats</span>
+        {/* MAIN STATS */}
+        <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
+          <div className="flex">
+            <span className="text-2xl mx-auto font-bold mb-5">Main Stats</span>
+          </div>
+          <GlobalMainStats
+            mainStatsSetup={mainStatsSetup || data.main_stats}
+            handleEquipmentChange={(
+              option: SingleValue<Option>,
+              index: number
+            ) => {
+              handleEquipmentChange(option, index);
+              debounced();
+            }}
+            handleTypeStatChange={(
+              option: SingleValue<Option>,
+              index: number
+            ) => {
+              handleTypeStatChange(option, index);
+              debounced();
+            }}
+            deleteMainStats={(index: number) => {
+              deleteMainStats(index);
+              debounced();
+            }}
+            addMainStats={addMainStats}
+          />
         </div>
-        <GlobalMainStats
-          mainStatsSetup={mainStatsSetup || data.main_stats}
-          handleEquipmentChange={(
-            option: SingleValue<Option>,
-            index: number
-          ) => {
-            handleEquipmentChange(option, index);
-            debounced();
-          }}
-          handleTypeStatChange={(
-            option: SingleValue<Option>,
-            index: number
-          ) => {
-            handleTypeStatChange(option, index);
-            debounced();
-          }}
-          deleteMainStats={(index: number) => {
-            deleteMainStats(index);
-            debounced();
-          }}
-          addMainStats={addMainStats}
-        />
-      </div>
-      {/* STATS RECOMMANDÉS */}
-      <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
-        <div className="flex">
-          <span className="text-2xl mx-auto font-bold mb-5">
-            Statistiques recommandés
-          </span>
+        {/* STATS RECOMMANDÉS */}
+        <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
+          <div className="flex">
+            <span className="text-2xl mx-auto font-bold mb-5">
+              Statistiques recommandés
+            </span>
+          </div>
+          <GlobalRecommendedStats
+            recommendedStatsSetup={
+              recommendedStatsSetup || data.recommended_stats
+            }
+            handleImportanceChange={(value: string, index: number) => {
+              handleRecommendedImportanceChange(value, index);
+              debounced();
+            }}
+            handleTypeStatChange={(
+              option: SingleValue<Option>,
+              index: number
+            ) => {
+              handleRecommendedTypeStatChange(option, index);
+              debounced();
+            }}
+            handleValueChange={(value: string, index: number) => {
+              handleRecommendedValueChange(value, index);
+              debounced();
+            }}
+            addRecommendedStats={addRecommendedStat}
+            deleteRecommendedStat={(index: number) => {
+              deleteRecommendedStat(index);
+              debounced();
+            }}
+          />
         </div>
-        <GlobalRecommendedStats
-          recommendedStatsSetup={
-            recommendedStatsSetup || data.recommended_stats
-          }
-          handleImportanceChange={(value: string, index: number) => {
-            handleRecommendedImportanceChange(value, index);
-            debounced();
-          }}
-          handleTypeStatChange={(
-            option: SingleValue<Option>,
-            index: number
-          ) => {
-            handleRecommendedTypeStatChange(option, index);
-            debounced();
-          }}
-          handleValueChange={(value: string, index: number) => {
-            handleRecommendedValueChange(value, index);
-            debounced();
-          }}
-          addRecommendedStats={addRecommendedStat}
-          deleteRecommendedStat={(index: number) => {
-            deleteRecommendedStat(index);
-            debounced();
-          }}
-        />
-      </div>
+      </animated.div>
     </div>
   );
 };

@@ -22,15 +22,7 @@ function Page({ params }: { params: { id: number } }) {
   const [lightConeOptions, setLightConeOptions] = useState<Option[]>([]);
   const [relicsSetOptions, setRelicsSetOptions] = useState<Option[]>([]);
 
-  const [dataAfterLoading, setDataAfterLoading] = useState<Data[]>([
-    {
-      buildName: "",
-      lightCones: [],
-      relics_set: [],
-      main_stats: [],
-      recommended_stats: [],
-    },
-  ]);
+  const [dataAfterLoading, setDataAfterLoading] = useState<Data[]>([]);
   const memorizedData = useRef<Data[] | []>([]);
   const [disableSaveButton, setDisableSaveButton] = useState<boolean>(false);
 
@@ -242,12 +234,13 @@ function Page({ params }: { params: { id: number } }) {
   };
 
   const deleteBuild = (index: number) => {
-    setDataAfterLoading((prevData) => {
-      const data = [...prevData];
-      data.splice(index, 1);
-      memorizedData.current = data;
-      return data;
-    });
+    const data = [...memorizedData.current];
+    console.log("dataBefore", data);
+    data.splice(index, 1);
+    console.log("dataAfter", data);
+
+    memorizedData.current = data;
+    setDataAfterLoading(data);
   };
 
   const handleGoToDB = () => {

@@ -24,6 +24,7 @@
     "react-dom": "^18",
     "react-modal": "^3.16.1",
     "react-select": "^5.8.0",
+    "react-spring": "^9.7.3",
     "use-debounce": "^10.0.0"
   },
   "devDependencies": {
