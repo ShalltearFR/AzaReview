@@ -4,7 +4,7 @@ import { CDN } from "@/utils/cdn";
 import { useEffect, useRef, useState } from "react";
 import { LightCone as LightConeType } from "@/types/LightCone";
 import { equipments, allTypesStat } from "@/utils/statsOption";
-import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { PlusIcon } from "@heroicons/react/24/outline";
 import type {
   Option,
   LightConeOption,
@@ -22,7 +22,7 @@ function Page({ params }: { params: { id: number } }) {
   const [lightConeOptions, setLightConeOptions] = useState<Option[]>([]);
   const [relicsSetOptions, setRelicsSetOptions] = useState<Option[]>([]);
 
-  const [globalData, setGlobalData] = useState<Data[]>([
+  const [dataAfterLoading, setDataAfterLoading] = useState<Data[]>([
     {
       buildName: "",
       lightCones: [],
@@ -133,7 +133,6 @@ function Page({ params }: { params: { id: number } }) {
             next: { revalidate: 0 },
           });
           const json: CharacterType = await response.json();
-          console.log("json", json);
 
           const dataArray: any = json.data.map((singleData) => {
             // TRANSMETS DONNEES DES CONES
@@ -208,7 +207,7 @@ function Page({ params }: { params: { id: number } }) {
             return null;
           }
           memorizedData.current = dataArray;
-          setGlobalData(dataArray);
+          setDataAfterLoading(dataArray);
         } catch (error) {
           console.error("Erreur de recuperation sur la base de donnée", error);
         }
@@ -226,11 +225,10 @@ function Page({ params }: { params: { id: number } }) {
     prevData[index] = data;
 
     memorizedData.current = prevData;
-    console.log("globalDataRef", memorizedData);
   };
 
   const addBuild = () => {
-    setGlobalData((prevData) => {
+    setDataAfterLoading((prevData) => {
       const data = [...prevData];
       data.push({
         buildName: "",
@@ -244,7 +242,7 @@ function Page({ params }: { params: { id: number } }) {
   };
 
   const deleteBuild = (index: number) => {
-    setGlobalData((prevData) => {
+    setDataAfterLoading((prevData) => {
       const data = [...prevData];
       data.splice(index, 1);
       memorizedData.current = data;
@@ -289,8 +287,6 @@ function Page({ params }: { params: { id: number } }) {
 
       return dataSaved;
     });
-
-    console.log("dataArraySaved", dataArraySaved);
 
     const characterDataMemo = characterData as CharacterType;
     const dataToDB = {
@@ -367,8 +363,8 @@ function Page({ params }: { params: { id: number } }) {
       </div>
 
       <div className="flex flex-col gap-y-28">
-        {globalData &&
-          globalData.map((singleData: Data, index: number) => (
+        {dataAfterLoading &&
+          dataAfterLoading.map((singleData: Data, index: number) => (
             <div key={`globalBuild${index}`}>
               <GlobalBuild
                 key={index}
