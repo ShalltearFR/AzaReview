@@ -3,7 +3,11 @@ import { CharacterType, Data } from "@/types/CharacterModel";
 import { CDN } from "@/utils/cdn";
 import { useEffect, useRef, useState } from "react";
 import { LightCone as LightConeType } from "@/types/LightCone";
-import { mainStatOptions, recommendedStatsOptions } from "@/utils/statsOption";
+import {
+  mainStatOptions,
+  recommendedStatsOptions,
+  equipments,
+} from "@/utils/statsOption";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import type {
   Option,
@@ -158,7 +162,7 @@ function Page({ params }: { params: { id: number } }) {
             const mainStats: MainStatsOption[] = singleData.main_stats.map(
               (mainStat) => {
                 const labelType = findLabel(mainStat.type, mainStatOptions);
-                const labelPiece = findLabel(mainStat.piece, mainStatOptions);
+                const labelPiece = findLabel(mainStat.piece, equipments);
                 return {
                   typeStat: {
                     label: labelType,
