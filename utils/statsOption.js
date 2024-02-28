@@ -17,18 +17,50 @@ const equipments = [
   },
 ];
 
-const typesStat = [
+const mainStatOptions = [
   {
-    label: "PV",
-    value: "HPDelta",
+    label: "ATQ%",
+    value: "AttackAddedRatio",
   },
   {
-    label: "ATQ",
-    value: "AttackDelta",
+    label: "DEF%",
+    value: "DefenseAddedRatio",
   },
   {
-    label: "DEF",
-    value: "DefenseDelta",
+    label: "PV%",
+    value: "HPAddedRatio",
+  },
+  {
+    label: "Vitesse",
+    value: "SpeedDelta",
+  },
+  {
+    label: "Recharge énergie",
+    value: "SPRatioBase",
+  },
+  {
+    label: "Chances d'effets",
+    value: "StatusProbabilityBase",
+  },
+  {
+    label: "Taux crit",
+    value: "CriticalChanceBase",
+  },
+  {
+    label: "Dégâts crit",
+    value: "CriticalDamageBase",
+  },
+  {
+    label: "Rés. effets",
+    value: "StatusResistanceBase",
+  },
+  {
+    label: "Effet de rupture",
+    value: "BreakDamageAddedRatioBase",
+  },
+  {
+    label: "Bonus soins",
+    value: "HealRatioBase",
   },
   {
     label: "DGT Physique",
@@ -57,6 +89,33 @@ const typesStat = [
   {
     label: "DGT Feu",
     value: "FireAddedRatio",
+  },
+];
+
+const recommendedStatsOptions = [
+  {
+    label: "ATQ",
+    value: "AttackDelta",
+  },
+  {
+    label: "ATQ%",
+    value: "AttackAddedRatio",
+  },
+  {
+    label: "DEF",
+    value: "DefenseDelta",
+  },
+  {
+    label: "DEF%",
+    value: "DefenseAddedRatio",
+  },
+  {
+    label: "PV",
+    value: "HPDelta",
+  },
+  {
+    label: "PV%",
+    value: "HPAddedRatio",
   },
   {
     label: "Recharge énergie",
@@ -92,20 +151,4 @@ const typesStat = [
   },
 ];
 
-const allTypesStat = [
-  {
-    label: "PV%",
-    value: "HPAddedRatio",
-  },
-  {
-    label: "ATQ%",
-    value: "AttackAddedRatio",
-  },
-  {
-    label: "DEF%",
-    value: "DefenseAddedRatio",
-  },
-  ...typesStat,
-];
-
-export { equipments, typesStat, allTypesStat };
+export { equipments, mainStatOptions, recommendedStatsOptions };

@@ -1,7 +1,7 @@
 import React from "react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import AddSelect from "../Add/AddSelect";
-import { equipments, allTypesStat } from "@/utils/statsOption";
+import { equipments, mainStatOptions } from "@/utils/statsOption";
 
 interface Option {
   value: string;
@@ -50,7 +50,7 @@ const GlobalMainStats: React.FC<GlobalMainStatsProps> = ({
                 className="w-32"
               />
               <AddSelect
-                options={allTypesStat}
+                options={mainStatOptions}
                 value={mainStat.typeStat}
                 onChange={(option) => handleTypeStatChange(option, index)}
                 index={index}

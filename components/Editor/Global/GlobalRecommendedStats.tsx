@@ -1,7 +1,7 @@
 import React from "react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import AddSelect from "../Add/AddSelect";
-import { typesStat } from "@/utils/statsOption";
+import { recommendedStatsOptions } from "@/utils/statsOption";
 import AddInput from "../Add/AddInput";
 
 interface Option {
@@ -47,7 +47,7 @@ const GlobalrecommendedStats: React.FC<GlobalrecommendedStatsProps> = ({
             return (
               <div key={`recommendedStatsSetup${index}`} className="flex gap-3">
                 <AddSelect
-                  options={typesStat}
+                  options={recommendedStatsOptions}
                   value={mainStat.type}
                   onChange={(option) => handleTypeStatChange(option, index)}
                   index={index}

@@ -3,7 +3,7 @@ import { CharacterType, Data } from "@/types/CharacterModel";
 import { CDN } from "@/utils/cdn";
 import { useEffect, useRef, useState } from "react";
 import { LightCone as LightConeType } from "@/types/LightCone";
-import { equipments, allTypesStat } from "@/utils/statsOption";
+import { mainStatOptions, recommendedStatsOptions } from "@/utils/statsOption";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import type {
   Option,
@@ -157,8 +157,8 @@ function Page({ params }: { params: { id: number } }) {
             // TRANSMETS DONNEES DES MAINS STATS
             const mainStats: MainStatsOption[] = singleData.main_stats.map(
               (mainStat) => {
-                const labelType = findLabel(mainStat.type, allTypesStat);
-                const labelPiece = findLabel(mainStat.piece, equipments);
+                const labelType = findLabel(mainStat.type, mainStatOptions);
+                const labelPiece = findLabel(mainStat.piece, mainStatOptions);
                 return {
                   typeStat: {
                     label: labelType,
@@ -175,7 +175,10 @@ function Page({ params }: { params: { id: number } }) {
             // TRANSMETS DONNEES DES STATS RECOMMANDES
             const recommendedStats: recommendedStatsOption[] =
               singleData.recommended_stats.map((recommendedStat: any) => {
-                const labelType = findLabel(recommendedStat.type, allTypesStat);
+                const labelType = findLabel(
+                  recommendedStat.type,
+                  recommendedStatsOptions
+                );
                 return {
                   type: {
                     label: labelType,

@@ -438,7 +438,7 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
         <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
           <div className="flex">
             <span className="text-2xl mx-auto font-bold mb-5">
-              Statistiques recommandés
+              Statistiques recommandées
             </span>
           </div>
           <GlobalRecommendedStats
