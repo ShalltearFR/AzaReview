@@ -43,7 +43,7 @@ const CharacterList: React.FC = () => {
   };
 
   const getDataBaseCharacters = async () => {
-    const res = await fetch("/api/characters", {
+    const res = await fetch("/api/characters/all", {
       cache: "no-cache",
       next: { revalidate: 0 },
     });

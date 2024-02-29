@@ -63,7 +63,7 @@ const GlobalrecommendedStats: React.FC<GlobalrecommendedStatsProps> = ({
                   onChange={(value) => handleImportanceChange(value, index)}
                   value={mainStat.importance}
                   className="text-black px-2"
-                  placeholder="Importance"
+                  placeholder="Coef."
                 />
                 <button onClick={() => deleteRecommendedStat(index)}>
                   <TrashIcon className="h-8 w-8 p-2 rounded-full bg-red" />

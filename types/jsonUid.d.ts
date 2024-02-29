@@ -327,4 +327,5 @@ export type {
   Addition,
   RelicSet,
   Relic,
+  RelicSubAffix,
 };

@@ -1,27 +1,15 @@
 import { CDN, CDN2 } from "@/utils/cdn";
 import { Relic } from "@/types/jsonUid";
+import { RecommendedStats } from "@/types/CharacterModel";
+import calculateRelic from "@/utils/calculateRelic";
+import { useState } from "react";
 
 interface CharacterRelicProps {
   stats: Relic;
+  review: RecommendedStats[];
 }
 
-interface MainAffix {
-  type:
-    | "PhysicalAddedRatio"
-    | "QuantumAddedRatio"
-    | "ImaginaryAddedRatio"
-    | "WindAddedRatio"
-    | "LightningAddedRatio"
-    | "FireAddedRatio"
-    | "IceAddedRatio"
-    | "SPRatioBase"
-    | "StatusProbabilityBase"
-    | "CriticalChanceBase"
-    | "CriticalDamageBase"
-    | "HealRatioBase";
-}
-
-const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats }) => {
+const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats, review }) => {
   const { rarity, level, icon, main_affix, sub_affix } = stats;
 
   const typeValueMap = {
@@ -61,7 +49,10 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats }) => {
         <p>{main_affix.display}</p>
         <p className="absolute top-0 right-5 py-1 px-2 bg-gray rounded-full text-xs">{`+${level}`}</p>
       </div>
-      <div className="flex flex-col justify-center text-white !leading-0">
+      <div className="flex flex-col relative w-full h-full justify-center text-white">
+        <span className="absolute flex self-center text-gray text-[96px] -mt-3 -z-10 leading-10">
+          {calculateRelic(review, sub_affix)}
+        </span>
         {sub_affix.map((affix) => {
           const subDisplayValue =
             typeValueMap[affix.type as keyof typeof typeValueMap] || affix.name;

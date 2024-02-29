@@ -114,8 +114,7 @@ function Page({ params }: { params: { id: number } }) {
     if (lightConeOptions.length > 0 && relicsSetOptions.length > 0) {
       // RECUPERE L'ID DE L'ELEMENT ET RETOURNE SON NOM
       const findLabel = (id: string, array: Array<any>, type?: string) => {
-        let foundElement;
-        foundElement = array.find((el) => el.value === id);
+        const foundElement = array.find((el) => el.value === id);
         if (foundElement) return foundElement.label;
         return "";
       };
@@ -183,12 +182,25 @@ function Page({ params }: { params: { id: number } }) {
                   recommendedStat.type,
                   recommendedStatsOptions
                 );
+
+                // Converti ratio vers %
+                const statType = recommendedStat.type;
+                const value = [
+                  "CriticalChanceBase",
+                  "CriticalDamageBase",
+                  "break_dmg",
+                  "effect_res",
+                  "effect_hit",
+                ].includes(statType)
+                  ? Math.floor(recommendedStat.value * 100)
+                  : recommendedStat.value;
+
                 return {
                   type: {
                     label: labelType,
                     value: recommendedStat.type,
                   },
-                  value: recommendedStat.value,
+                  value: value || "",
                   importance: recommendedStat.importance,
                 };
               });
@@ -270,11 +282,24 @@ function Page({ params }: { params: { id: number } }) {
       }));
 
       const recommendedStatsSetupArray = data.recommended_stats.map(
-        (recommendedStat: any) => ({
-          type: recommendedStat.type.value,
-          value: recommendedStat.value,
-          importance: recommendedStat.importance,
-        })
+        (recommendedStat: any) => {
+          // Converti ratio vers %
+          const statType = recommendedStat.type.value;
+          const value = [
+            "CriticalChanceBase",
+            "CriticalDamageBase",
+            "break_dmg",
+            "effect_res",
+            "effect_hit",
+          ].includes(statType)
+            ? recommendedStat.value / 100
+            : recommendedStat.value;
+          return {
+            type: recommendedStat.type.value,
+            value: value,
+            importance: recommendedStat.importance,
+          };
+        }
       );
 
       const dataSaved: Data = {

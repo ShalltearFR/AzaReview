@@ -2,22 +2,24 @@
 import CharacterDetails from "@/components/Front/Character/CharacterDetails";
 import CharacterList from "@/components/Front/CharactersList";
 import NavBar from "@/components/Front/NavBar";
+import { CharacterType } from "@/types/CharacterModel";
 import type { jsonUID } from "@/types/jsonUid";
 import { useState, useEffect } from "react";
 
 interface UidPageProps {
-  json: jsonUID;
+  jsonUid: jsonUID;
+  jsonReview: CharacterType[];
 }
 
-const UidPage: React.FC<UidPageProps> = ({ json }) => {
+const UidPage: React.FC<UidPageProps> = ({ jsonUid, jsonReview }) => {
   const [uidData, setUidData] = useState<{ status: number } | jsonUID>({
     status: 206,
   });
   const [characterIndex, setCharacterIndex] = useState<number>(0);
 
   useEffect(() => {
-    setUidData(json);
-  }, [json]);
+    setUidData(jsonUid);
+  }, [jsonUid]);
 
   return (
     <div className="overflow-hidden min-h-[calc(100vh-178px)]">
@@ -31,6 +33,7 @@ const UidPage: React.FC<UidPageProps> = ({ json }) => {
           />
           <CharacterDetails
             uidData={uidData as jsonUID}
+            reviewData={jsonReview}
             index={characterIndex}
           />
         </section>

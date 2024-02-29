@@ -1,4 +1,4 @@
-import { jsonUID } from "@/types/jsonUid";
+import { Character, jsonUID } from "@/types/jsonUid";
 import CharacterSplash from "./CharacterSplash";
 import CharacterTrace from "./CharacterTrace";
 import CharacterLightCone from "./CharacterLightCone";
@@ -7,16 +7,26 @@ import RecommendedStat from "../RecommendedStat";
 import CharacterRelicsSet from "./CharacterRelicsSet";
 import CharacterRelic from "./CharacterRelic";
 import { CDN2 } from "@/utils/cdn";
+import { CharacterType } from "@/types/CharacterModel";
+import { useState } from "react";
+
+interface ReviewData {
+  data: CharacterType[];
+}
 
 interface CharacterDetailsProps {
   uidData: jsonUID;
   index: number;
+  reviewData: ReviewData;
 }
 
 const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   uidData,
   index,
+  reviewData,
 }) => {
+  const [characterBuild, setCharacterBuild] = useState<number>(0);
+
   const character = uidData.characters[index];
   return (
     <article
@@ -75,7 +85,11 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           <p className="text-yellow text-lg font-bold text-center">
             Statistiques recommandées
           </p>
-          <RecommendedStat />
+          <RecommendedStat
+            data={
+              reviewData?.data[index]?.data[characterBuild]?.recommended_stats
+            }
+          />
         </div>
 
         <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-4">
@@ -86,10 +100,16 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
         </div>
       </div>
       <div className="flex flex-col gap-3 my-auto pt-auto mx-auto mt-5 xl:mt-0 w-screen xl:w-full">
-        {character.relics.map((relic) => {
+        {character.relics.map((relic, i) => {
           return (
-            <span key={crypto.randomUUID()} className="flex">
-              <CharacterRelic stats={relic} />
+            <span key={`charRelic${i}`} className="flex">
+              <CharacterRelic
+                stats={relic}
+                review={
+                  reviewData?.data[index]?.data[characterBuild]
+                    ?.recommended_stats
+                }
+              />
             </span>
           );
         })}

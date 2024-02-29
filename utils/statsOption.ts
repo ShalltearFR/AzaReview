@@ -122,15 +122,15 @@ const recommendedStatsOptions = [
     value: "SPRatioBase",
   },
   {
-    label: "Chances d'effets",
+    label: "App. d'effets",
     value: "StatusProbabilityBase",
   },
   {
-    label: "Taux crit",
+    label: "Chances crit.",
     value: "CriticalChanceBase",
   },
   {
-    label: "Dégâts crit",
+    label: "DGT Crit.",
     value: "CriticalDamageBase",
   },
   {
@@ -151,4 +151,11 @@ const recommendedStatsOptions = [
   },
 ];
 
-export { equipments, mainStatOptions, recommendedStatsOptions };
+const findLabel = (id: string) => {
+  let foundElement;
+  foundElement = recommendedStatsOptions.find((el) => el.value === id);
+  if (foundElement) return foundElement.label;
+  return "";
+};
+
+export { equipments, mainStatOptions, recommendedStatsOptions, findLabel };
