@@ -32,7 +32,7 @@ const UidPage: React.FC<UidPageProps> = ({ jsonUid }) => {
     fetch(`/api/characters?ids=${charactersIds}`)
       .then((res) => res.json())
       .then((data) => {
-        setReviewData(data);
+        //setReviewData(data);
       });
 
     //Recupère les infos de review
