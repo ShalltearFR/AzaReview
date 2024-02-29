@@ -30,7 +30,10 @@ const UidPage: React.FC<UidPageProps> = ({ jsonUid }) => {
       .join(",");
 
     fetch(`/api/characters?ids=${charactersIds}`)
-      .then((res) => res.json())
+      .then((res) => {
+        res.json();
+        console.log("res", res);
+      })
       .then((data: any) => {
         console.log("change review Data");
         console.log("data", data);
