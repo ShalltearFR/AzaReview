@@ -57,41 +57,4 @@ const averageProc: AverageProc[] = [
   },
 ];
 
-const calculateRelic = (
-  list: RecommendedStats[],
-  sub_affix: RelicSubAffix[]
-) => {
-  const arrayResult = sub_affix.map((subStat) => {
-    const procValue =
-      averageProc.find((el) => el.type === subStat.type)?.value ?? 0;
-    const recommendedStat = list?.find((el) => el.type === subStat.type) ?? {
-      value: 0,
-      importance: 0,
-    };
-    return (subStat.value / procValue) * recommendedStat.importance || 0;
-  });
-
-  const result = arrayResult.reduce(
-    (acc, valeur) => (acc ?? 0) + (valeur ?? 0),
-    0
-  );
-
-  let resultLetter: string = "";
-  if (result >= 0.1 && result < 1.5) resultLetter = "D";
-  if (result >= 1.5 && result < 2.5) resultLetter = "D+";
-  if (result >= 2.5 && result < 3.5) resultLetter = "C";
-  if (result >= 3.5 && result < 4) resultLetter = "C+";
-  if (result >= 4 && result < 4.5) resultLetter = "B";
-  if (result >= 4.5 && result < 5) resultLetter = "B+";
-  if (result >= 5 && result < 5.5) resultLetter = "A";
-  if (result >= 5.5 && result < 6) resultLetter = "A+";
-  if (result >= 6 && result < 6.5) resultLetter = "S";
-  if (result >= 6.5 && result < 7) resultLetter = "S+";
-  if (result >= 7 && result < 7.5) resultLetter = "SS";
-  if (result >= 7.5 && result < 8) resultLetter = "SS+";
-  if (result >= 8) resultLetter = "SSS";
-
-  return resultLetter;
-};
-
-export default calculateRelic;
+export default averageProc;

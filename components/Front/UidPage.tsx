@@ -32,7 +32,8 @@ const UidPage: React.FC<UidPageProps> = ({ jsonUid }) => {
     fetch(`/api/characters?ids=${charactersIds}`)
       .then((res) => res.json())
       .then((data) => {
-        //setReviewData(data);
+        console.log("change review Data");
+        setReviewData(data);
       });
 
     //Recupère les infos de review
@@ -42,7 +43,8 @@ const UidPage: React.FC<UidPageProps> = ({ jsonUid }) => {
     //return Response.json(jsonData);
     //const resReview = getData(`/api/characters?ids=${charactersIds}`);
     //const jsonReview: ReviewData = await resReview.json();
-  }, [jsonUid]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="overflow-hidden min-h-[calc(100vh-178px)]">
