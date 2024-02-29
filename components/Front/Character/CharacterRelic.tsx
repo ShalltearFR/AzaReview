@@ -71,8 +71,10 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats, review }) => {
   };
 
   let result: string = "";
-  if (review.length > 0) {
-    result = calculateRelic(review, sub_affix);
+  if (Array.isArray(review)) {
+    if (review.length > 0) {
+      result = calculateRelic(review, sub_affix);
+    }
   }
 
   return (

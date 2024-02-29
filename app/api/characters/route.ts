@@ -17,7 +17,8 @@ export async function GET(req: Request) {
       .then((data: Array<any>) => {
         return data;
       });
-    if (dataReq.length === 0) return NextResponse.json({ status: 204 });
+    if (dataReq.length === 0)
+      return NextResponse.json({ status: 204, data: [] });
     return NextResponse.json({ status: 200, data: dataReq });
   } catch (error) {
     console.error("Error:", error);

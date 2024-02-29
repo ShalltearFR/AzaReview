@@ -36,6 +36,10 @@ const UidPage: React.FC<UidPageProps> = ({ jsonUid }) => {
       .then((data: any) => {
         console.log("change review Data");
         console.log("data", data);
+        // if (data.status === 204) {
+        //   setReviewData(undefined);
+        //   return null;
+        // }
         setReviewData(data);
       });
 
