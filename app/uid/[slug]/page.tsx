@@ -9,6 +9,18 @@ type Props = {
   params: { slug: number };
 };
 
+interface ReviewData {
+  data: CharacterType[];
+}
+
+async function getData(url: string) {
+  const data = await fetch(url, {
+    next: { revalidate: 0 },
+  });
+  const dataJson = await data.json();
+  return dataJson;
+}
+
 async function getDataUid(uid: number) {
   const data = await fetch(
     `https://api.mihomo.me/sr_info_parsed/${uid}?lang=fr&is_force_update=true`,
@@ -65,9 +77,22 @@ export default async function Page({ params }: { params: { slug: number } }) {
   const resUid = await getDataUid(params.slug);
   const jsonUid: jsonUID = await resUid.json();
 
+  //Recupère les characters ID du joueur
+  const charactersIds = jsonUid.characters
+    .map((character) => character.id)
+    .join(",");
+
+  const resReview: ReviewData = await getData(
+    `${process.env.WWW}/api/characters?ids=${charactersIds}`
+  );
+
+  if (!jsonUid || !resReview) {
+    return <div className="text-center mt-10">Chargement en cours ...</div>;
+  }
+
   return (
     <>
-      <UidPage jsonUid={jsonUid} />
+      <UidPage jsonUid={jsonUid} jsonReview={resReview} />
       <Footer />
     </>
   );
