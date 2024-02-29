@@ -12,10 +12,9 @@ interface ReviewData {
 
 interface UidPageProps {
   jsonUid: jsonUID;
-  jsonReview: ReviewData;
 }
 
-const UidPage: React.FC<UidPageProps> = ({ jsonUid, jsonReview }) => {
+const UidPage: React.FC<UidPageProps> = ({ jsonUid }) => {
   const [uidData, setUidData] = useState<{ status: number } | jsonUID>({
     status: 206,
   });
@@ -24,13 +23,26 @@ const UidPage: React.FC<UidPageProps> = ({ jsonUid, jsonReview }) => {
 
   useEffect(() => {
     setUidData(jsonUid);
-    setReviewData(jsonReview);
 
+    //Recupère les characters ID du joueur
+    const charactersIds = jsonUid.characters
+      .map((character) => character.id)
+      .join(",");
+
+    fetch(`/api/characters?ids=${charactersIds}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setReviewData(data);
+      });
+
+    //Recupère les infos de review
+    //const resReview = await getData(`/api/characters?ids=${charactersIds}`);
+    //const jsonReview: ReviewData = await resReview.json();
     //const jsonData = await data.json();
     //return Response.json(jsonData);
     //const resReview = getData(`/api/characters?ids=${charactersIds}`);
     //const jsonReview: ReviewData = await resReview.json();
-  }, [jsonUid, jsonReview]);
+  }, [jsonUid]);
 
   return (
     <div className="overflow-hidden min-h-[calc(100vh-178px)]">
