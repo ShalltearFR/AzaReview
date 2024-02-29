@@ -12,34 +12,25 @@ interface ReviewData {
 
 interface UidPageProps {
   jsonUid: jsonUID;
+  jsonReview: ReviewData;
 }
 
-const UidPage: React.FC<UidPageProps> = ({ jsonUid }) => {
+const UidPage: React.FC<UidPageProps> = ({ jsonUid, jsonReview }) => {
   const [uidData, setUidData] = useState<{ status: number } | jsonUID>({
     status: 206,
   });
   const [characterIndex, setCharacterIndex] = useState<number>(0);
-  const [reviewData, setReviewData] = useState<ReviewData | undefined>(
-    undefined
-  );
+  const [reviewData, setReviewData] = useState<ReviewData>();
 
   useEffect(() => {
     setUidData(jsonUid);
-    //Recupère les characters ID du joueur
-    const charactersIds = jsonUid.characters
-      .map((character) => character.id)
-      .join(",");
+    setReviewData(jsonReview);
 
-    //Recupère les infos de review
-    fetch(`/api/characters?ids=${charactersIds}`, {
-      next: { revalidate: 300 },
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        setReviewData(json);
-        console.log(json);
-      });
-  }, [jsonUid]);
+    //const jsonData = await data.json();
+    //return Response.json(jsonData);
+    //const resReview = getData(`/api/characters?ids=${charactersIds}`);
+    //const jsonReview: ReviewData = await resReview.json();
+  }, [jsonUid, jsonReview]);
 
   return (
     <div className="overflow-hidden min-h-[calc(100vh-178px)]">
@@ -53,7 +44,7 @@ const UidPage: React.FC<UidPageProps> = ({ jsonUid }) => {
           />
           <CharacterDetails
             uidData={uidData as jsonUID}
-            reviewData={reviewData as ReviewData}
+            reviewData={jsonReview}
             index={characterIndex}
           />
         </section>
