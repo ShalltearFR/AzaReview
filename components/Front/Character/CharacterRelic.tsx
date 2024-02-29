@@ -51,7 +51,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats, review }) => {
       </div>
       <div className="flex flex-col relative w-full h-full justify-center text-white">
         <span className="absolute flex self-center text-gray text-[96px] -mt-3 -z-10 leading-10">
-          {calculateRelic(review, sub_affix)}
+          {review && calculateRelic(review, sub_affix)}
         </span>
         {sub_affix.map((affix) => {
           const subDisplayValue =
