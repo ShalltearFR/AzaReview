@@ -31,8 +31,9 @@ const UidPage: React.FC<UidPageProps> = ({ jsonUid }) => {
 
     fetch(`/api/characters?ids=${charactersIds}`)
       .then((res) => res.json())
-      .then((data) => {
+      .then((data: any) => {
         console.log("change review Data");
+        console.log("data", data);
         setReviewData(data);
       });
 
