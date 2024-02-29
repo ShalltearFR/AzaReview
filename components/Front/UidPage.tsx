@@ -19,7 +19,9 @@ const UidPage: React.FC<UidPageProps> = ({ jsonUid }) => {
     status: 206,
   });
   const [characterIndex, setCharacterIndex] = useState<number>(0);
-  const [reviewData, setReviewData] = useState<ReviewData>();
+  const [reviewData, setReviewData] = useState<ReviewData | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     setUidData(jsonUid);
@@ -33,7 +35,10 @@ const UidPage: React.FC<UidPageProps> = ({ jsonUid }) => {
       next: { revalidate: 300 },
     })
       .then((res) => res.json())
-      .then((json) => setReviewData(json));
+      .then((json) => {
+        setReviewData(json);
+        console.log(json);
+      });
   }, [jsonUid]);
 
   return (
