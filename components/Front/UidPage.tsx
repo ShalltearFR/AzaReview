@@ -29,7 +29,9 @@ const UidPage: React.FC<UidPageProps> = ({ jsonUid }) => {
       .map((character) => character.id)
       .join(",");
 
-    fetch(`/api/characters?ids=${charactersIds}`)
+    fetch(`/api/characters?ids=${charactersIds}`, {
+      next: { revalidate: 0 },
+    })
       .then((res) => {
         res.json();
         console.log("res", res);
