@@ -43,8 +43,7 @@ const UidPage: React.FC<UidPageProps> = ({ jsonUid }) => {
     //return Response.json(jsonData);
     //const resReview = getData(`/api/characters?ids=${charactersIds}`);
     //const jsonReview: ReviewData = await resReview.json();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [jsonUid]);
 
   return (
     <div className="overflow-hidden min-h-[calc(100vh-178px)]">
