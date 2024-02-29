@@ -9,10 +9,6 @@ type Props = {
   params: { slug: number };
 };
 
-interface ReviewData {
-  data: CharacterType[];
-}
-
 async function getDataUid(uid: number) {
   const data = await fetch(
     `https://api.mihomo.me/sr_info_parsed/${uid}?lang=fr&is_force_update=true`,
@@ -37,15 +33,6 @@ async function getDataUid(uid: number) {
     return Response.json({ status });
   }
   return Response.json({ status: 200, ...jsonData });
-}
-
-async function getData(url: string) {
-  const data = await fetch(`${process.env.WWW}/${url}`, {
-    next: { revalidate: 300 },
-  });
-
-  const jsonData = await data.json();
-  return Response.json(jsonData);
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -78,20 +65,11 @@ export default async function Page({ params }: { params: { slug: number } }) {
   const resUid = await getDataUid(params.slug);
   const jsonUid: jsonUID = await resUid.json();
 
-  //Recupère les characters ID du joueur
-  const charactersIds = jsonUid.characters
-    .map((character) => character.id)
-    .join(",");
-
-  //Recupère les infos de review
-  const resReview = await getData(`/api/characters?ids=${charactersIds}`);
-  const jsonReview: ReviewData = await resReview.json();
-
   return (
     <>
-      {jsonUid && jsonReview && (
+      {jsonUid && (
         <>
-          <UidPage jsonUid={jsonUid} jsonReview={jsonReview} />
+          <UidPage jsonUid={jsonUid} />
           <Footer />
         </>
       )}

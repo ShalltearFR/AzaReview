@@ -64,7 +64,7 @@ const calculateRelic = (
   const arrayResult = sub_affix.map((subStat) => {
     const procValue =
       averageProc.find((el) => el.type === subStat.type)?.value ?? 0;
-    const recommendedStat = list.find((el) => el.type === subStat.type) ?? {
+    const recommendedStat = list?.find((el) => el.type === subStat.type) ?? {
       value: 0,
       importance: 0,
     };
@@ -77,7 +77,7 @@ const calculateRelic = (
   );
 
   let resultLetter: string = "";
-  if (result >= 0 && result < 1.5) resultLetter = "D";
+  if (result >= 0.1 && result < 1.5) resultLetter = "D";
   if (result >= 1.5 && result < 2.5) resultLetter = "D+";
   if (result >= 2.5 && result < 3.5) resultLetter = "C";
   if (result >= 3.5 && result < 4) resultLetter = "C+";
