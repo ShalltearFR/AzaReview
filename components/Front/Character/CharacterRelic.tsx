@@ -31,7 +31,10 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats, review }) => {
     typeValueMap[main_affix.type as keyof typeof typeValueMap] ||
     main_affix.name;
 
-  const result = calculateRelic(review, sub_affix);
+  let result: string = "";
+  if (review.length > 0) {
+    result = calculateRelic(review, sub_affix);
+  }
 
   return (
     <div
@@ -53,7 +56,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats, review }) => {
       </div>
       <div className="flex flex-col relative w-full h-full justify-center text-white">
         <span className="absolute flex self-center text-gray text-[96px] -mt-3 -z-10 leading-10">
-          {review && result}
+          {result}
         </span>
         {sub_affix.map((affix) => {
           const subDisplayValue =
