@@ -9,6 +9,10 @@ type Props = {
   params: { slug: number };
 };
 
+interface ReviewData {
+  data: CharacterType[];
+}
+
 async function getDataUid(uid: number) {
   const data = await fetch(
     `https://api.mihomo.me/sr_info_parsed/${uid}?lang=fr&is_force_update=true`,
@@ -81,7 +85,7 @@ export default async function Page({ params }: { params: { slug: number } }) {
 
   //Recupère les infos de review
   const resReview = await getData(`/api/characters?ids=${charactersIds}`);
-  const jsonReview: CharacterType[] = await resReview.json();
+  const jsonReview: ReviewData = await resReview.json();
 
   return (
     <>

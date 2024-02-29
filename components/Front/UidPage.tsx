@@ -6,9 +6,13 @@ import { CharacterType } from "@/types/CharacterModel";
 import type { jsonUID } from "@/types/jsonUid";
 import { useState, useEffect } from "react";
 
+interface ReviewData {
+  data: CharacterType[];
+}
+
 interface UidPageProps {
   jsonUid: jsonUID;
-  jsonReview: CharacterType[];
+  jsonReview: ReviewData;
 }
 
 const UidPage: React.FC<UidPageProps> = ({ jsonUid, jsonReview }) => {
