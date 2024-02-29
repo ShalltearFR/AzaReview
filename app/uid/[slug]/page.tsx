@@ -89,12 +89,8 @@ export default async function Page({ params }: { params: { slug: number } }) {
 
   return (
     <>
-      {jsonUid && jsonReview && (
-        <>
-          <UidPage jsonUid={jsonUid} jsonReview={jsonReview ?? undefined} />
-          <Footer />
-        </>
-      )}
+      <UidPage jsonUid={jsonUid} jsonReview={jsonReview} />
+      <Footer />
     </>
   );
 }
