@@ -44,7 +44,7 @@ const UidPage: React.FC<UidPageProps> = ({ jsonUid, jsonReview }) => {
           />
           <CharacterDetails
             uidData={uidData as jsonUID}
-            reviewData={jsonReview}
+            reviewData={reviewData}
             index={characterIndex}
           />
         </section>
