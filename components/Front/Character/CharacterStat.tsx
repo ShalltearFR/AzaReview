@@ -1,15 +1,18 @@
 import React from "react";
 import { CDN } from "@/utils/cdn";
 import { Addition, Attribute } from "@/types/jsonUid";
+import { RecommendedStats } from "@/types/CharacterModel";
+import { fieldToType } from "@/utils/calculateStat";
 
 interface CharacterStatProps {
   attributes: Attribute[];
   additions: Addition[];
-  type: string;
+  field: string;
+  review: RecommendedStats[];
 }
 
-const getDefaultValue = (type: string) => {
-  switch (type) {
+const getDefaultValue = (field: string) => {
+  switch (field) {
     case "sp_rate":
       return {
         img: "/icon/property/IconEnergyRecovery.png",
@@ -51,18 +54,17 @@ const getDefaultValue = (type: string) => {
 const CharacterStat: React.FC<CharacterStatProps> = ({
   attributes,
   additions,
-  type,
+  field,
+  review,
 }) => {
-  const numberFormat = new Intl.NumberFormat("fr-FR");
-
   const attributeIndex = attributes.findIndex(
-    (attribute) => attribute.field === type
+    (attribute) => attribute.field === field
   );
   const additionIndex = additions.findIndex(
-    (addition) => addition.field === type
+    (addition) => addition.field === field
   );
 
-  let { img, name, value, isPercent } = getDefaultValue(type);
+  let { img, name, value, isPercent } = getDefaultValue(field);
 
   if (attributeIndex !== -1) {
     img = attributes[attributeIndex].icon;
@@ -87,23 +89,43 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
 
     if (additions[additionIndex].percent) {
       value = Math.floor(value * 1000) / 10;
-      if (type === "sp_rate") value += 100;
+      if (field === "sp_rate") value += 100;
       isPercent = true;
     } else {
       value = Math.floor(value);
     }
   }
 
+  // Verifie si la stat est bonne
+  const isGoodValue = () => {
+    const recommendedObject =
+      review && review.find((el) => el.type === fieldToType(field));
+    const recommendedType = recommendedObject?.type || "";
+    let recommendedValue = recommendedObject?.value || 0;
+
+    const allowedTypes = [
+      "CriticalChanceBase",
+      "CriticalDamageBase",
+      "BreakDamageAddedRatioBase",
+      "StatusProbabilityBase",
+      "StatusResistanceBase",
+      "SPRatioBase",
+    ];
+    if (allowedTypes.includes(recommendedType)) {
+      recommendedValue = recommendedValue * 100;
+    }
+
+    if (value >= recommendedValue) return true;
+    return false;
+  };
+
   return (
-    <div
-      key={crypto.randomUUID()}
-      className="flex text-white items-center text-xl"
-    >
+    <div key={`stat${field}`} className="flex text-white items-center text-xl">
       <img src={`${CDN}/${img}`} className="w-8" alt={name} />
       <span className="ml-1">{name}</span>
-      <span className="ml-auto text-right">{`${value.toLocaleString("fr")}${
-        isPercent ? " %" : ""
-      }`}</span>
+      <span
+        className={`ml-auto text-right ${!isGoodValue() ? "text-red" : ""}`}
+      >{`${value.toLocaleString("fr")}${isPercent ? " %" : ""}`}</span>
     </div>
   );
 };

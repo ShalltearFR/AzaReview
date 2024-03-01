@@ -76,4 +76,4 @@ type CharacterType = {
   data: Data[];
 };
 
-export type { CharacterType, Data, RecommendedStats };
+export type { CharacterType, Data, RecommendedStats, MainStats };
