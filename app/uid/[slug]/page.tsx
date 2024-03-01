@@ -77,13 +77,9 @@ export default async function Page({ params }: { params: { slug: number } }) {
   const resUid = await getDataUid(params.slug);
   const jsonUid: jsonUID = await resUid.json();
 
-  //Recupère les characters ID du joueur
-  const charactersIds = jsonUid.characters
-    .map((character) => character.id)
-    .join(",");
-
+  //Recupère les reviews
   const resReview: ReviewData = await getData(
-    `${process.env.WWW}/api/characters?ids=${charactersIds}`
+    `${process.env.WWW}/api/characters/all`
   );
 
   if (!jsonUid || !resReview) {

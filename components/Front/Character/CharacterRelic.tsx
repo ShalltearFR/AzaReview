@@ -1,10 +1,8 @@
 "use client";
 import { CDN, CDN2 } from "@/utils/cdn";
-import { Relic, RelicSubAffix } from "@/types/jsonUid";
+import { Relic } from "@/types/jsonUid";
 import { RecommendedStats } from "@/types/CharacterModel";
 import calculateRelic from "@/utils/calculateRelic";
-import { useState } from "react";
-import averageProc from "@/utils/calculateRelic";
 
 interface CharacterRelicProps {
   stats: Relic;
@@ -33,48 +31,10 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats, review }) => {
     typeValueMap[main_affix.type as keyof typeof typeValueMap] ||
     main_affix.name;
 
-  const calculateRelic = (
-    list: RecommendedStats[],
-    sub_affix: RelicSubAffix[]
-  ) => {
-    const arrayResult = sub_affix.map((subStat) => {
-      const procValue =
-        averageProc.find((el) => el.type === subStat.type)?.value ?? 0;
-      const recommendedStat = list?.find((el) => el.type === subStat.type) ?? {
-        value: 0,
-        importance: 0,
-      };
-      return (subStat.value / procValue) * recommendedStat.importance || 0;
-    });
-
-    const result = arrayResult.reduce(
-      (acc, valeur) => (acc ?? 0) + (valeur ?? 0),
-      0
-    );
-
-    let resultLetter: string = "";
-    if (result >= 0.1 && result < 1.5) resultLetter = "D";
-    if (result >= 1.5 && result < 2.5) resultLetter = "D+";
-    if (result >= 2.5 && result < 3.5) resultLetter = "C";
-    if (result >= 3.5 && result < 4) resultLetter = "C+";
-    if (result >= 4 && result < 4.5) resultLetter = "B";
-    if (result >= 4.5 && result < 5) resultLetter = "B+";
-    if (result >= 5 && result < 5.5) resultLetter = "A";
-    if (result >= 5.5 && result < 6) resultLetter = "A+";
-    if (result >= 6 && result < 6.5) resultLetter = "S";
-    if (result >= 6.5 && result < 7) resultLetter = "S+";
-    if (result >= 7 && result < 7.5) resultLetter = "SS";
-    if (result >= 7.5 && result < 8) resultLetter = "SS+";
-    if (result >= 8) resultLetter = "SSS";
-
-    return resultLetter;
-  };
-
+  console.log("review", review);
   let result: string = "";
-  if (Array.isArray(review)) {
-    if (review.length > 0) {
-      result = calculateRelic(review, sub_affix);
-    }
+  if (Array.isArray(review) && review.length > 0) {
+    result = calculateRelic(review, sub_affix);
   }
 
   return (
@@ -96,7 +56,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({ stats, review }) => {
         <p className="absolute top-0 right-5 py-1 px-2 bg-gray rounded-full text-xs">{`+${level}`}</p>
       </div>
       <div className="flex flex-col relative w-full h-full justify-center text-white">
-        <span className="absolute flex self-center text-gray text-[96px] -mt-3 -z-10 leading-10">
+        <span className="absolute flex right-20 min-w-[87px] text-gray/50 text-[62px] -mt-3 -z-10">
           {result}
         </span>
         {sub_affix.map((affix) => {

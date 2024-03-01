@@ -7,10 +7,17 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   try {
     await dbConnect();
-    const data = await Character.find({}).select("-_id -__v");
-    return NextResponse.json(data, { status: 200 });
+
+    const dataReq: any = await Character.find({})
+      .select("-_id -__v")
+      .then((data: Array<any>) => {
+        return data;
+      });
+    if (dataReq.length === 0)
+      return NextResponse.json({ status: 204, data: [] });
+    return NextResponse.json({ status: 200, data: dataReq });
   } catch (error) {
     console.error("Error:", error);
-    return NextResponse.json({ error: true }, { status: 204 });
+    return NextResponse.json({ error: true }, { status: 202 });
   }
 }

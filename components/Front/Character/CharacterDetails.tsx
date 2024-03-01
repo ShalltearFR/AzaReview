@@ -8,8 +8,8 @@ import RecommendedStat from "../RecommendedStat";
 import CharacterRelicsSet from "./CharacterRelicsSet";
 import CharacterRelic from "./CharacterRelic";
 import { CDN2 } from "@/utils/cdn";
-import { CharacterType } from "@/types/CharacterModel";
-import { useState } from "react";
+import { CharacterType, RecommendedStats } from "@/types/CharacterModel";
+import { useEffect, useState } from "react";
 
 interface ReviewData {
   data: CharacterType[];
@@ -27,6 +27,37 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   reviewData,
 }) => {
   const [characterBuild, setCharacterBuild] = useState<number>(0);
+  const [review, setReview] = useState<any>();
+
+  useEffect(() => {
+    //console.log("uidData", uidData);
+    //console.log("reviewData", reviewData);
+    function sortReviewDataByUidData(reviewData: any, uidData: any) {
+      const sortedArray = uidData.map((uidItem: any) => {
+        const matchingItem = reviewData.find(
+          (reviewItem: any) => reviewItem.id === uidItem.id
+        );
+        return matchingItem ? matchingItem : { value: "NC" };
+      });
+
+      return sortedArray;
+    }
+    const sortedReviewData = sortReviewDataByUidData(
+      reviewData.data,
+      uidData.characters
+    );
+
+    setReview(sortedReviewData);
+
+    console.log("sortedReviewData", sortedReviewData);
+  }, [reviewData, uidData]);
+  // review &&
+  //   review[index]?.data &&
+  //   review[index].data[0] &&
+  //   console.log(
+  //     "sortedReviewData2",
+  //     review[index].data[characterBuild]?.recommended_stats
+  //   );
 
   const character = uidData.characters[index];
   return (
@@ -86,11 +117,17 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           <p className="text-yellow text-lg font-bold text-center">
             Statistiques recommandées
           </p>
-          <RecommendedStat
-            data={
-              reviewData?.data[index]?.data[characterBuild]?.recommended_stats
-            }
-          />
+          {review && (
+            <RecommendedStat
+              data={
+                review &&
+                review[index]?.data &&
+                review[index].data[characterBuild]?.recommended_stats
+                  ? review[index].data[characterBuild].recommended_stats
+                  : undefined
+              }
+            />
+          )}
         </div>
 
         <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-4">
@@ -107,8 +144,11 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
               <CharacterRelic
                 stats={relic}
                 review={
-                  reviewData?.data[index]?.data[characterBuild]
-                    ?.recommended_stats
+                  review &&
+                  review[index]?.data &&
+                  review[index].data[characterBuild]?.recommended_stats
+                    ? review[index].data[characterBuild].recommended_stats
+                    : undefined
                 }
               />
             </span>

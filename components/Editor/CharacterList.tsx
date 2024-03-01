@@ -35,17 +35,15 @@ const CharacterList: React.FC = () => {
 
   const getAllCharacters = async () => {
     const res = await fetch(`${CDN}/index_min/fr/characters.json`, {
-      cache: "no-cache",
-      next: { revalidate: 0 },
+      next: { revalidate: 300 },
     });
     const data = await res.json();
     return Object.values(data).map((item) => item) as Character[];
   };
 
   const getDataBaseCharacters = async () => {
-    const res = await fetch("/api/characters/all", {
-      cache: "no-cache",
-      next: { revalidate: 0 },
+    const res = await fetch("/api/characters", {
+      next: { revalidate: 300 },
     });
     return res.json();
   };
