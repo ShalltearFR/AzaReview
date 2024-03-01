@@ -9,7 +9,15 @@ import CharacterRelicsSet from "./CharacterRelicsSet";
 import CharacterRelic from "./CharacterRelic";
 import { CDN2 } from "@/utils/cdn";
 import { CharacterType, RecommendedStats } from "@/types/CharacterModel";
-import { useEffect, useState } from "react";
+import {
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { randomUUID } from "crypto";
+import { toPng } from "html-to-image";
 
 interface ReviewData {
   data: CharacterType[];
@@ -30,8 +38,6 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   const [review, setReview] = useState<any>();
 
   useEffect(() => {
-    //console.log("uidData", uidData);
-    //console.log("reviewData", reviewData);
     function sortReviewDataByUidData(reviewData: any, uidData: any) {
       const sortedArray = uidData.map((uidItem: any) => {
         const matchingItem = reviewData.find(
@@ -60,7 +66,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   if (review) {
     return (
       <article
-        className="grid xl:grid-cols-3 w-full max-w-[1450px] xl:h-[870px] mx-auto mt-[66px] xl:gap-x-5 py-5"
+        className="grid xl:grid-cols-3 w-full max-w-[1450px] xl:h-[870px] mx-auto xl:gap-x-5 py-5"
         style={{
           backgroundImage: `url('${CDN2}/img/character_bg.avif')`,
           backgroundRepeat: "repeat-y",
@@ -119,7 +125,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           </div>
           <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-3">
             <p className="text-yellow text-lg font-bold text-center">
-              Statistiques recommandées
+              Statistiques mini recommandées
             </p>
             {
               <RecommendedStat
@@ -144,7 +150,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
         <div className="flex flex-col gap-3 my-auto pt-auto mx-auto mt-5 xl:mt-0 w-screen xl:w-full">
           {character.relics.map((relic, i) => {
             return (
-              <span key={`charRelic${i}`} className="flex">
+              <span key={crypto.randomUUID()} className="flex">
                 <CharacterRelic
                   stats={relic}
                   equipmentIndex={i}

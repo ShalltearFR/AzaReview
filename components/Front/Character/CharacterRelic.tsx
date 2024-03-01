@@ -3,6 +3,7 @@ import { CDN, CDN2 } from "@/utils/cdn";
 import { Relic } from "@/types/jsonUid";
 import { MainStats, RecommendedStats } from "@/types/CharacterModel";
 import calculateRelic from "@/utils/calculateRelic";
+import { useEffect, useRef, useState } from "react";
 
 interface CharacterRelicProps {
   stats: Relic;
@@ -11,6 +12,21 @@ interface CharacterRelicProps {
   equipmentIndex: number;
 }
 
+const typeValueMap: any = {
+  PhysicalAddedRatio: "DGT Physique",
+  QuantumAddedRatio: "DGT Quantique",
+  ImaginaryAddedRatio: "DGT Imaginaire",
+  WindAddedRatio: "DGT Vent",
+  LightningAddedRatio: "DGT Foudre",
+  FireAddedRatio: "DGT Feu",
+  IceAddedRatio: "DGT Glace",
+  SPRatioBase: "Régén. d'énergie",
+  StatusProbabilityBase: "App. des effets",
+  CriticalChanceBase: "Chances Crit.",
+  CriticalDamageBase: "DGT Crit.",
+  HealRatioBase: "Augm. des soins",
+};
+
 const CharacterRelic: React.FC<CharacterRelicProps> = ({
   stats,
   reviewRecommanded,
@@ -18,6 +34,10 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
   equipmentIndex,
 }) => {
   const { rarity, level, icon, main_affix, sub_affix } = stats;
+  const [isGoodMainStat, setIsGoodMainStat] = useState<boolean>(true);
+  let displayValue: string = "";
+  let relicNotation: string = "";
+
   let equipment: string = "";
 
   switch (equipmentIndex) {
@@ -35,44 +55,26 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
       break;
   }
 
-  const isGoodEquipment = () => {
+  const verifMainStat = () => {
     if (reviewMainStat) {
       const recommendedObject =
         reviewMainStat.filter((el) => el.piece === equipment) || [];
       const isGood = recommendedObject.some(
         (objet) => objet.type === main_affix.type
       );
-      console.log("recommendedObject", recommendedObject);
-      console.log("mainAffix", main_affix);
-      console.log("auMoinsUnObjetAvecValeur", isGood);
       return isGood;
     }
     return true;
   };
 
-  console.log("reviewMainStat", reviewMainStat);
-  const typeValueMap = {
-    PhysicalAddedRatio: "DGT Physique",
-    QuantumAddedRatio: "DGT Quantique",
-    ImaginaryAddedRatio: "DGT Imaginaire",
-    WindAddedRatio: "DGT Vent",
-    LightningAddedRatio: "DGT Foudre",
-    FireAddedRatio: "DGT Feu",
-    IceAddedRatio: "DGT Glace",
-    SPRatioBase: "Régén. d'énergie",
-    StatusProbabilityBase: "App. des effets",
-    CriticalChanceBase: "Chances Crit.",
-    CriticalDamageBase: "DGT Crit.",
-    HealRatioBase: "Augm. des soins",
-  };
-
-  const displayValue =
-    typeValueMap[main_affix.type as keyof typeof typeValueMap] ||
-    main_affix.name;
-
-  let result: string = "";
+  displayValue = typeValueMap[main_affix.type] || main_affix.name;
   if (Array.isArray(reviewRecommanded) && reviewRecommanded.length > 0) {
-    result = calculateRelic(reviewRecommanded, sub_affix);
+    const value = calculateRelic(reviewRecommanded, sub_affix);
+    relicNotation = value;
+  }
+
+  if (displayValue === "") {
+    <div>Chargement...</div>;
   }
 
   return (
@@ -89,7 +91,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
     >
       <div
         className={`text-sm text-center relative my-auto${
-          equipmentIndex >= 2 ? (!isGoodEquipment() ? " text-red" : "") : ""
+          equipmentIndex >= 2 ? (!isGoodMainStat ? " text-red" : "") : ""
         }`}
       >
         <img src={`${CDN}/${icon}`} className="w-20 mx-auto" />
@@ -99,15 +101,15 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
       </div>
       <div className="flex flex-col relative w-full h-full justify-center text-white">
         <span className="absolute flex right-20 min-w-[87px] text-gray/50 text-[62px] -mt-3 -z-10">
-          {result}
+          {relicNotation}
         </span>
-        {sub_affix.map((affix) => {
+        {sub_affix.map((affix, i) => {
           const subDisplayValue =
             typeValueMap[affix.type as keyof typeof typeValueMap] || affix.name;
 
           return (
             <div
-              key={crypto.randomUUID()}
+              key={`characterRelic${affix.type}${i}`}
               className="grid grid-cols-[32px_1fr_50px_20px] items-center "
             >
               <img src={`${CDN}/${affix.icon}`} className="w-7" />

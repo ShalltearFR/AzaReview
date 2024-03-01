@@ -26,7 +26,7 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({ character }) => {
           <span className="text-white text-4xl z-10 ml-5 xl:ml-0">
             {character.name}
           </span>
-          <span className="text-orange text-right text-3xl pr-5 z-10">
+          <span className="text-orange text-right text-3xl pr-5 z-10 self-start">
             Niv. {character.level}
           </span>
         </div>
