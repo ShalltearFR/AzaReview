@@ -103,6 +103,7 @@ const recommendedStatsSchema = new Schema({
 
 const characterSchema = new Schema({
   buildName: String,
+  buildDesc: String,
   lightCones: [lightConeSchema],
   relics_set: [relicsSetSchema],
   main_stats: [mainStatsSchema],

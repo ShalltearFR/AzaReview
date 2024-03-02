@@ -129,17 +129,25 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
             <p className="text-yellow text-lg font-bold text-center">
               Statistiques mini recommandées
             </p>
-            {
-              <RecommendedStat
-                data={
-                  review &&
-                  review[index]?.data &&
-                  review[index].data[characterBuild]?.recommended_stats
-                    ? review[index].data[characterBuild].recommended_stats
-                    : undefined
-                }
-              />
-            }
+            <RecommendedStat
+              data={
+                review &&
+                review[index]?.data &&
+                review[index].data[characterBuild]?.recommended_stats
+                  ? review[index].data[characterBuild].recommended_stats
+                  : undefined
+              }
+            />
+            {/* Commentaire des stats mini */}
+            {review &&
+              review[index]?.data &&
+              review[index].data[characterBuild] &&
+              review[index].data[characterBuild].recommended_comment && (
+                <p>
+                  {review[index].data[characterBuild] &&
+                    review[index].data[characterBuild].recommended_comment}
+                </p>
+              )}
           </div>
 
           <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-4">
@@ -150,31 +158,41 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           </div>
         </div>
         <div className="flex flex-col gap-3 my-auto pt-auto mx-auto mt-5 w-screen xl:w-full xl:my-auto">
-          {character.relics.map((relic, i) => {
-            return (
-              <div key={crypto.randomUUID()} className="flex items-center">
-                <CharacterRelic
-                  stats={relic}
-                  equipmentIndex={i}
-                  statsTranslate={statsTranslate}
-                  reviewRecommanded={
-                    review &&
-                    review[index]?.data &&
-                    review[index].data[characterBuild]?.recommended_stats
-                      ? review[index].data[characterBuild].recommended_stats
-                      : undefined
-                  }
-                  reviewMainStat={
-                    review &&
-                    review[index]?.data &&
-                    review[index].data[characterBuild]?.main_stats
-                      ? review[index].data[characterBuild].main_stats
-                      : undefined
-                  }
-                />
-              </div>
-            );
-          })}
+          {character.relics.length === 6 ? (
+            character.relics.map((relic, i) => {
+              return (
+                <div key={crypto.randomUUID()} className="flex items-center">
+                  <CharacterRelic
+                    stats={relic}
+                    equipmentIndex={i}
+                    statsTranslate={statsTranslate}
+                    reviewRecommanded={
+                      review &&
+                      review[index]?.data &&
+                      review[index].data[characterBuild]?.recommended_stats
+                        ? review[index].data[characterBuild].recommended_stats
+                        : undefined
+                    }
+                    reviewMainStat={
+                      review &&
+                      review[index]?.data &&
+                      review[index].data[characterBuild]?.main_stats
+                        ? review[index].data[characterBuild].main_stats
+                        : undefined
+                    }
+                  />
+                </div>
+              );
+            })
+          ) : (
+            <div className="mx-auto text-center bg-light-blue/75 p-5 rounded-t-3xl text-white font-bold">
+              <p className="italic">Relique(s) ou Ornement(s) manquant(s)</p>
+              <p>
+                Veuillez équiper <span className="text-yellow">6 pièces</span>{" "}
+                pour aligner les Astres
+              </p>
+            </div>
+          )}
         </div>
       </article>
     );

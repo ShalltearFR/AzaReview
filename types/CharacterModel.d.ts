@@ -61,6 +61,7 @@ type RecommendedStats = {
 
 type Data = {
   buildName: string;
+  buildDesc: string;
   lightCones: LightCone[];
   relics_set: RelicsSet[];
   main_stats: MainStats[];

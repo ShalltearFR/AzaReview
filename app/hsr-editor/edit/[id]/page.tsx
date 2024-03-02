@@ -208,6 +208,7 @@ function Page({ params }: { params: { id: number } }) {
 
             return {
               buildName: singleData.buildName || "",
+              buildDesc: singleData.buildDesc || "",
               lightCones: lightcones || [],
               relics_set: relics || [],
               main_stats: mainStats || [],
@@ -245,6 +246,7 @@ function Page({ params }: { params: { id: number } }) {
       const data = [...prevData];
       data.push({
         buildName: "",
+        buildDesc: "",
         lightCones: [],
         relics_set: [],
         main_stats: [],
@@ -315,12 +317,13 @@ function Page({ params }: { params: { id: number } }) {
 
       const dataSaved: Data = {
         buildName: data.buildName,
+        buildDesc: data.buildDesc,
         lightCones: lightConesArray,
         relics_set: relicsSetArray,
         main_stats: mainStatsSetupArray,
         recommended_stats: recommendedStatsSetupArray,
         recommended_comment: data.recommended_comment,
-        total_coef: totalCoef,
+        total_coef: totalCoef || 0,
       };
 
       return dataSaved;

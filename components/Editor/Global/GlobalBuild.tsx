@@ -38,6 +38,8 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
   onDelete,
 }) => {
   const [buildNameInput, setBuildNameInput] = useState<string>("");
+  const [buildDescriptionInput, setBuildDescriptionInput] =
+    useState<string>("");
   const [recommendedCommentInput, setRecommendedCommentInput] =
     useState<string>("");
   const [lightConesSetup, setLightConesSetup] = useState<LightConeOption[]>([]);
@@ -244,6 +246,7 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
 
     const dataSaved = {
       buildName: buildNameInput,
+      buildDesc: buildDescriptionInput,
       lightCones: lightConesSetup,
       relics_set: relicsSetSetup,
       main_stats: mainStatsSetup,
@@ -260,7 +263,7 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
 
   return (
     <div className="mx-5 p-5 text-white border border-white">
-      <div className="h-10">
+      <div className="h-20">
         <div className="flex items-center">
           <label className="flex items-center">
             <span className="text-2xl ml-5 h-9 mr-2">Nom du build : </span>
@@ -291,6 +294,19 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
             <ArrowsUpDownIcon className="h-6" />
           </button>
         </div>
+        <label className="flex items-center mt-5">
+          <span className="text-2xl ml-5 h-9 mr-2 w-72">
+            Description du build :{" "}
+          </span>
+          <input
+            className="px-2 text-black rounded-full h-10 mt-auto self-center w-full"
+            value={buildDescriptionInput || data.buildDesc}
+            onChange={(e) => {
+              setBuildDescriptionInput(e.target.value);
+              debounced();
+            }}
+          />
+        </label>
       </div>
       <animated.div
         style={{
