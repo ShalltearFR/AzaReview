@@ -124,17 +124,16 @@ const UidPage: React.FC<UidPageProps> = ({
           desc: el.buildDesc,
         })
       );
-      setCharacterBuild(0);
       setCharacterOptions(options);
     } else {
-      const options = [
+      setCharacterOptions([
         {
-          value: "",
+          value: "0",
           label: "",
         },
-      ];
-      setCharacterOptions(options);
+      ]);
     }
+    setCharacterBuild(0);
   }, [uidData.status, review, characterIndex]);
 
   if (isloading) return <NavBar setData={setUidData} />;
