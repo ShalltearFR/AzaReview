@@ -125,7 +125,7 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
       <span className="ml-1">{name}</span>
       <span
         className={`ml-auto text-right ${!isGoodValue() ? "text-red" : ""}`}
-      >{`${value.toLocaleString("fr")}${isPercent ? " %" : ""}`}</span>
+      >{`${value.toLocaleString("fr")}${isPercent ? "%" : ""}`}</span>
     </div>
   );
 };

@@ -124,6 +124,7 @@ const UidPage: React.FC<UidPageProps> = ({
           desc: el.buildDesc,
         })
       );
+      setCharacterBuild(0);
       setCharacterOptions(options);
     } else {
       const options = [
@@ -166,7 +167,9 @@ const UidPage: React.FC<UidPageProps> = ({
                 />
               </label>
               <p className="px-5 mt-2 text-center xl:px-0 xl:ml-0 xl:mt-0 xl:text-left">
-                {characterOptions[characterBuild].desc ||
+                {(characterOptions[characterBuild] &&
+                  characterOptions[characterBuild].desc &&
+                  characterOptions[characterBuild].desc) ||
                   "Disponible prochainement"}
               </p>
             </div>

@@ -23,13 +23,14 @@ const recommendedStat: React.FC<recommendedStatProps> = ({ data }) => {
                 "StatusResistanceBase",
                 "SPRatioBase",
               ].includes(statType)
-                ? `${Math.floor(stat.value * 1000) / 10} %`
+                ? (Math.floor(stat.value * 1000) / 10).toLocaleString("fr") +
+                  "%"
                 : stat.value;
 
               return (
                 <p className="flex" key={`stat${index}`}>
                   <span>{findLabel(stat.type)}</span>
-                  <span className="ml-auto">{value.toLocaleString("fr")}</span>
+                  <span className="ml-auto">{value}</span>
                 </p>
               );
             })}

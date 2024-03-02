@@ -79,19 +79,30 @@ const calculateRelic = (
   );
 
   let resultLetter: string = "";
-  if (result >= 0 && result < 1.5) resultLetter = "D";
-  if (result >= 1.5 && result < 2.5) resultLetter = "D+";
-  if (result >= 2.5 && result < 3.5) resultLetter = "C";
-  if (result >= 3.5 && result < 4) resultLetter = "C+";
-  if (result >= 4 && result < 4.5) resultLetter = "B";
-  if (result >= 4.5 && result < 5) resultLetter = "B+";
-  if (result >= 5 && result < 5.5) resultLetter = "A";
-  if (result >= 5.5 && result < 6) resultLetter = "A+";
-  if (result >= 6 && result < 6.5) resultLetter = "S";
-  if (result >= 6.5 && result < 7) resultLetter = "S+";
-  if (result >= 7 && result < 7.5) resultLetter = "SS";
-  if (result >= 7.5 && result < 8) resultLetter = "SS+";
-  if (result >= 8) resultLetter = "SSS";
+  if (result >= 0 && result < 0.25 * totalCoef) resultLetter = "D";
+  if (result >= 0.25 * totalCoef && result < 0.4 * totalCoef)
+    resultLetter = "D+";
+  if (result >= 0.4 * totalCoef && result < 0.55 * totalCoef)
+    resultLetter = "C";
+  if (result >= 0.55 * totalCoef && result < 0.7 * totalCoef)
+    resultLetter = "C+";
+  if (result >= 0.7 * totalCoef && result < 0.78 * totalCoef)
+    resultLetter = "B";
+  if (result >= 0.78 * totalCoef && result < 0.86 * totalCoef)
+    resultLetter = "B+";
+  if (result >= 0.86 * totalCoef && result < 0.94 * totalCoef)
+    resultLetter = "A";
+  if (result >= 0.94 * totalCoef && result < 1.02 * totalCoef)
+    resultLetter = "A+";
+  if (result >= 1.02 * totalCoef && result < 1.1 * totalCoef)
+    resultLetter = "S";
+  if (result >= 1.1 * totalCoef && result < 1.18 * totalCoef)
+    resultLetter = "S+";
+  if (result >= 1.18 * totalCoef && result < 1.26 * totalCoef)
+    resultLetter = "SS";
+  if (result >= 1.26 * totalCoef && result < 1.34 * totalCoef)
+    resultLetter = "SS+";
+  if (result >= 1.34 * totalCoef) resultLetter = "SSS";
 
   return resultLetter;
 };
