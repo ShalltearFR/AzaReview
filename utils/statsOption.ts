@@ -35,7 +35,7 @@ const mainStatOptions = [
     value: "SpeedDelta",
   },
   {
-    label: "Recharge énergie",
+    label: "Régén. d'énergie",
     value: "SPRatioBase",
   },
   {
@@ -51,7 +51,7 @@ const mainStatOptions = [
     value: "CriticalDamageBase",
   },
   {
-    label: "Rés. effets",
+    label: "Rés. aux effets",
     value: "StatusResistanceBase",
   },
   {
@@ -118,7 +118,7 @@ const recommendedStatsOptions = [
     value: "HPAddedRatio",
   },
   {
-    label: "Recharge énergie",
+    label: "Régén. d'énergie",
     value: "SPRatioBase",
   },
   {
@@ -134,7 +134,7 @@ const recommendedStatsOptions = [
     value: "CriticalDamageBase",
   },
   {
-    label: "Rés. effets",
+    label: "Rés. aux effets",
     value: "StatusResistanceBase",
   },
   {

@@ -3,10 +3,17 @@ import CharacterDetails from "@/components/Front/Character/CharacterDetails";
 import CharacterList from "@/components/Front/CharactersList";
 import NavBar from "@/components/Front/NavBar";
 import { CharacterType } from "@/types/CharacterModel";
-import type { jsonUID } from "@/types/jsonUid";
+import type { Character, jsonUID } from "@/types/jsonUid";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { toPng } from "html-to-image";
+import ReactSelect from "react-select";
+
+interface Option {
+  value: string;
+  label: string;
+  desc?: string;
+}
 
 interface ReviewData {
   data: CharacterType[];
@@ -26,6 +33,20 @@ const UidPage: React.FC<UidPageProps> = ({
   const searchParams = useSearchParams();
   const characterQuery = searchParams.get("c");
   const [isloading, setIsLoading] = useState<Boolean>(true);
+  const [uidData, setUidData] = useState<{ status: number } | jsonUID>({
+    status: 206,
+  });
+  const [characterIndex, setCharacterIndex] = useState<number>(0);
+  const [characterBuild, setCharacterBuild] = useState<number>(0);
+  const [characterOptions, setCharacterOptions] = useState<Option[]>([
+    { value: "0", label: "" },
+  ]);
+
+  const characterDetailsRef = useRef<HTMLDivElement>(null);
+  const [exportImgUrl, setExportImgUrl] = useState<string>("");
+  const [disableButton, setDisableButton] = useState<boolean>(false);
+
+  const [review, setReview] = useState<any>();
 
   useEffect(() => {
     const transformCharacterQuery = () => {
@@ -42,17 +63,8 @@ const UidPage: React.FC<UidPageProps> = ({
       setCharacterIndex(Number(characterQuery));
     };
     transformCharacterQuery();
-    setIsLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const [uidData, setUidData] = useState<{ status: number } | jsonUID>({
-    status: 206,
-  });
-  const [characterIndex, setCharacterIndex] = useState<number>(0);
-  const characterDetailsRef = useRef<HTMLDivElement>(null);
-  const [exportImgUrl, setExportImgUrl] = useState<string>("");
-  const [disableButton, setDisableButton] = useState<boolean>(false);
 
   const htmlToImageConvert = useCallback(() => {
     setDisableButton(true);
@@ -71,8 +83,57 @@ const UidPage: React.FC<UidPageProps> = ({
   }, [characterDetailsRef]);
 
   useEffect(() => {
+    function sortReviewDataByUidData(reviewData: any, uidData: any) {
+      const sortedArray = uidData.map((uidItem: any) => {
+        const matchingItem = reviewData.find(
+          (reviewItem: any) => reviewItem.id === uidItem.id
+        );
+        return matchingItem ? matchingItem : { value: "NC" };
+      });
+
+      return sortedArray;
+    }
+
+    const jsonUid = uidData as jsonUID;
+    if (uidData.status === 200) {
+      const sortedReviewData = sortReviewDataByUidData(
+        jsonReview.data,
+        jsonUid.characters
+      );
+      setReview(sortedReviewData);
+      setIsLoading(false);
+    }
+  }, [jsonReview, uidData]);
+
+  useEffect(() => {
     setUidData(jsonUid);
   }, [jsonUid]);
+
+  useEffect(() => {
+    if (
+      uidData.status === 200 &&
+      review &&
+      review[characterIndex] &&
+      review[characterIndex].data
+    ) {
+      const options: Option[] = review[characterIndex].data.map(
+        (el: any, i: any) => ({
+          label: el.buildName,
+          value: `${i}`,
+          desc: el.buildDesc,
+        })
+      );
+      setCharacterOptions(options);
+    } else {
+      const options = [
+        {
+          value: "",
+          label: "",
+        },
+      ];
+      setCharacterOptions(options);
+    }
+  }, [uidData.status, review, characterIndex]);
 
   if (isloading) return <NavBar setData={setUidData} />;
 
@@ -80,19 +141,41 @@ const UidPage: React.FC<UidPageProps> = ({
     return (
       <div className="overflow-hidden min-h-[calc(100vh-178px)]">
         <NavBar setData={setUidData} />
-        {uidData.status === 200 && jsonReview && (
+        {uidData.status === 200 && review && (
           <section>
             <CharacterList
               uidData={uidData as jsonUID}
               setIndex={setCharacterIndex}
               index={characterIndex}
             />
+            <div className="grid grid-cols-[390px_1fr] justify-center items-center text-white font-bold xl:rounded-t-xl bg-light-blue/75 w-full max-w-[1450px] mx-auto xl:gap-x-5 py-5">
+              <label className="flex items-center gap-2 ml-5">
+                <span className="text-xl">Build :</span>
+                <ReactSelect
+                  options={characterOptions}
+                  styles={{
+                    menu: (base) => ({
+                      ...base,
+                      color: "black",
+                    }),
+                  }}
+                  onChange={(e) => setCharacterBuild(Number(e?.value))}
+                  value={characterOptions[characterBuild]}
+                  className="w-72 z-50"
+                />
+              </label>
+              <p>
+                {characterOptions[characterBuild].desc ||
+                  "Disponible prochainement"}
+              </p>
+            </div>
             <div ref={characterDetailsRef}>
               <CharacterDetails
                 uidData={uidData as jsonUID}
-                reviewData={jsonReview}
+                reviewData={review}
                 index={characterIndex}
                 statsTranslate={statsTranslate}
+                buildIndex={characterBuild}
               />
             </div>
             <div>

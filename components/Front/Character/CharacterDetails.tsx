@@ -27,7 +27,8 @@ interface CharacterDetailsProps {
   uidData: jsonUID;
   index: number;
   reviewData: ReviewData;
-  statsTranslate: Array<any>;
+  statsTranslate: any;
+  buildIndex: number;
 }
 
 const CharacterDetails: React.FC<CharacterDetailsProps> = ({
@@ -35,37 +36,17 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   index,
   reviewData,
   statsTranslate,
+  buildIndex = 0,
 }) => {
-  const [characterBuild, setCharacterBuild] = useState<number>(0);
-  const [review, setReview] = useState<any>();
-
-  useEffect(() => {
-    function sortReviewDataByUidData(reviewData: any, uidData: any) {
-      const sortedArray = uidData.map((uidItem: any) => {
-        const matchingItem = reviewData.find(
-          (reviewItem: any) => reviewItem.id === uidItem.id
-        );
-        return matchingItem ? matchingItem : { value: "NC" };
-      });
-
-      return sortedArray;
-    }
-    const sortedReviewData = sortReviewDataByUidData(
-      reviewData.data,
-      uidData.characters
-    );
-
-    setReview(sortedReviewData);
-    console.log("sortedReviewData", sortedReviewData);
-  }, [reviewData, uidData]);
-
   const character = uidData.characters[index];
+  // @ts-ignore
+  const characterReview = reviewData[index].data;
 
-  if (!review) {
+  if (!reviewData) {
     return <div>Chargement...</div>;
   }
 
-  if (review) {
+  if (reviewData) {
     return (
       <article
         className="grid xl:grid-cols-3 w-full max-w-[1450px] xl:h-[870px] mx-auto xl:gap-x-5 py-5"
@@ -93,7 +74,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           <CharacterLightCone lightCone={character.light_cone} />
         </div>
 
-        <div className="flex flex-col justify-evenly gap-y-5 xl:gap-y-0 w-screen xl:w-full mt-5 xl:mt-0">
+        <div className="flex flex-col justify-between gap-y-5 xl:gap-y-0 w-screen xl:w-full mt-5 xl:mt-0">
           <div className="bg-black/75 w-full rounded-3xl p-5 ">
             {[
               "hp",
@@ -114,10 +95,10 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                     additions={character.additions}
                     field={field}
                     review={
-                      review &&
-                      review[index]?.data &&
-                      review[index].data[characterBuild]?.recommended_stats
-                        ? review[index].data[characterBuild].recommended_stats
+                      characterReview &&
+                      characterReview?.data &&
+                      characterReview.data[buildIndex]?.recommended_stats
+                        ? characterReview.data[buildIndex].recommended_stats
                         : undefined
                     }
                   />
@@ -131,21 +112,21 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
             </p>
             <RecommendedStat
               data={
-                review &&
-                review[index]?.data &&
-                review[index].data[characterBuild]?.recommended_stats
-                  ? review[index].data[characterBuild].recommended_stats
+                characterReview &&
+                characterReview &&
+                characterReview[buildIndex]?.recommended_stats
+                  ? characterReview[buildIndex].recommended_stats
                   : undefined
               }
             />
             {/* Commentaire des stats mini */}
-            {review &&
-              review[index]?.data &&
-              review[index].data[characterBuild] &&
-              review[index].data[characterBuild].recommended_comment && (
-                <p>
-                  {review[index].data[characterBuild] &&
-                    review[index].data[characterBuild].recommended_comment}
+            {characterReview &&
+              characterReview &&
+              characterReview[buildIndex] &&
+              characterReview[buildIndex].recommended_comment && (
+                <p className="text-white font-bold italic text-center mt-2">
+                  {characterReview[buildIndex] &&
+                    characterReview[buildIndex].recommended_comment}
                 </p>
               )}
           </div>
@@ -167,17 +148,17 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                     equipmentIndex={i}
                     statsTranslate={statsTranslate}
                     reviewRecommanded={
-                      review &&
-                      review[index]?.data &&
-                      review[index].data[characterBuild]?.recommended_stats
-                        ? review[index].data[characterBuild].recommended_stats
+                      characterReview &&
+                      characterReview &&
+                      characterReview[buildIndex]?.recommended_stats
+                        ? characterReview[buildIndex].recommended_stats
                         : undefined
                     }
                     reviewMainStat={
-                      review &&
-                      review[index]?.data &&
-                      review[index].data[characterBuild]?.main_stats
-                        ? review[index].data[characterBuild].main_stats
+                      characterReview &&
+                      characterReview &&
+                      characterReview[buildIndex]?.main_stats
+                        ? characterReview[buildIndex].main_stats
                         : undefined
                     }
                   />

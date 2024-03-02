@@ -130,9 +130,9 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
         <p className="absolute top-0 right-5 py-1 px-2 bg-gray rounded-full text-xs text-white">{`+${level}`}</p>
       </div>
       <div className="flex flex-col relative w-full h-full justify-center text-white">
-        <span className="absolute flex right-20 min-w-[87px] text-gray/50 text-[62px] -mt-3 -z-10">
+        <div className="absolute flex right-20 min-w-[87px] text-gray/50 text-[62px] -mt-3 -z-10">
           {relicNotation}
-        </span>
+        </div>
         {sub_affix.map((affix, i) => {
           const subDisplayValue =
             typeValueMap[affix.type as keyof typeof typeValueMap] || affix.name;

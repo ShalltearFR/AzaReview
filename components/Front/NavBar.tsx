@@ -33,7 +33,7 @@ const NavBar: React.FC<NavBarProps> = ({ setData }) => {
           Rechercher
         </button>
       </nav>
-      <div className="xl:h-16 mb-[66px]"></div>
+      <div className="xl:h-16 mb-[25px]"></div>
     </>
   );
 };
