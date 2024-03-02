@@ -38,6 +38,8 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
   onDelete,
 }) => {
   const [buildNameInput, setBuildNameInput] = useState<string>("");
+  const [recommendedCommentInput, setRecommendedCommentInput] =
+    useState<string>("");
   const [lightConesSetup, setLightConesSetup] = useState<LightConeOption[]>([]);
   const [relicsSetSetup, setRelicsSetSetup] = useState<RelicSetOption[]>([]);
   const [mainStatsSetup, setMainStatsSetup] = useState<MainStatsOption[]>([]);
@@ -238,12 +240,15 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
   // MET A JOURS LES DONNEES
   const updateData = () => {
     console.log("update");
+    console.log("recommendedStatsSetup", recommendedStatsSetup);
+
     const dataSaved = {
       buildName: buildNameInput,
       lightCones: lightConesSetup,
       relics_set: relicsSetSetup,
       main_stats: mainStatsSetup,
       recommended_stats: recommendedStatsSetup,
+      recommended_comment: recommendedCommentInput,
     };
 
     onChange(dataSaved, index);
@@ -466,6 +471,17 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
               debounced();
             }}
           />
+          <label className="flex items-center mt-5">
+            <span className="text-xl ml-5 h-9 mr-2 w-40">Commentaire :</span>
+            <input
+              className="px-2 text-black rounded-full h-10 mt-auto self-center w-full"
+              value={recommendedCommentInput || data.recommended_comment}
+              onChange={(e) => {
+                setRecommendedCommentInput(e.target.value);
+                debounced();
+              }}
+            />
+          </label>
         </div>
       </animated.div>
     </div>

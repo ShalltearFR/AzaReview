@@ -65,6 +65,8 @@ type Data = {
   relics_set: RelicsSet[];
   main_stats: MainStats[];
   recommended_stats: RecommendedStats[];
+  recommended_comment: string;
+  total_coef: number;
 };
 
 type CharacterType = {

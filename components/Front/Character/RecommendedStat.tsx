@@ -18,17 +18,18 @@ const recommendedStat: React.FC<recommendedStatProps> = ({ data }) => {
               const value = [
                 "CriticalChanceBase",
                 "CriticalDamageBase",
-                "break_dmg",
-                "effect_res",
-                "effect_hit",
+                "BreakDamageAddedRatioBase",
+                "StatusProbabilityBase",
+                "StatusResistanceBase",
+                "SPRatioBase",
               ].includes(statType)
-                ? `${Math.floor(stat.value * 100)} %`
+                ? `${Math.floor(stat.value * 1000) / 10} %`
                 : stat.value;
 
               return (
                 <p className="flex" key={`stat${index}`}>
                   <span>{findLabel(stat.type)}</span>
-                  <span className="ml-auto">{value}</span>
+                  <span className="ml-auto">{value.toLocaleString("fr")}</span>
                 </p>
               );
             })}

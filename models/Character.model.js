@@ -107,6 +107,8 @@ const characterSchema = new Schema({
   relics_set: [relicsSetSchema],
   main_stats: [mainStatsSchema],
   recommended_stats: [recommendedStatsSchema],
+  recommended_comment: String,
+  total_coef: Number,
 });
 
 const dataSchema = new Schema(

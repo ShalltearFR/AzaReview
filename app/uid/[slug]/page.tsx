@@ -82,13 +82,23 @@ export default async function Page({ params }: { params: { slug: number } }) {
     `${process.env.WWW}/api/characters/all`
   );
 
+  //Recupère les tranductions de stats
+  const statsTranslate: Array<any> = await getData(
+    `${CDN}/index_min/fr/properties.json`
+  );
+  const statsTranslateToArray = Object.values(statsTranslate);
+
   if (!jsonUid || !resReview) {
     return <div className="text-center mt-10">Chargement en cours ...</div>;
   }
 
   return (
     <>
-      <UidPage jsonUid={jsonUid} jsonReview={resReview} />
+      <UidPage
+        jsonUid={jsonUid}
+        jsonReview={resReview}
+        statsTranslate={statsTranslateToArray}
+      />
       <Footer />
     </>
   );

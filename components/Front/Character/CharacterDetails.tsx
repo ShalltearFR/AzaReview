@@ -4,7 +4,7 @@ import CharacterSplash from "./CharacterSplash";
 import CharacterTrace from "./CharacterTrace";
 import CharacterLightCone from "./CharacterLightCone";
 import CharacterStat from "./CharacterStat";
-import RecommendedStat from "../RecommendedStat";
+import RecommendedStat from "./RecommendedStat";
 import CharacterRelicsSet from "./CharacterRelicsSet";
 import CharacterRelic from "./CharacterRelic";
 import { CDN2 } from "@/utils/cdn";
@@ -27,12 +27,14 @@ interface CharacterDetailsProps {
   uidData: jsonUID;
   index: number;
   reviewData: ReviewData;
+  statsTranslate: Array<any>;
 }
 
 const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   uidData,
   index,
   reviewData,
+  statsTranslate,
 }) => {
   const [characterBuild, setCharacterBuild] = useState<number>(0);
   const [review, setReview] = useState<any>();
@@ -147,13 +149,14 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
             <CharacterRelicsSet relics={character.relic_sets || "none"} />
           </div>
         </div>
-        <div className="flex flex-col gap-3 my-auto pt-auto mx-auto mt-5 xl:mt-0 w-screen xl:w-full">
+        <div className="flex flex-col gap-3 my-auto pt-auto mx-auto mt-5 w-screen xl:w-full xl:my-auto">
           {character.relics.map((relic, i) => {
             return (
-              <span key={crypto.randomUUID()} className="flex">
+              <div key={crypto.randomUUID()} className="flex items-center">
                 <CharacterRelic
                   stats={relic}
                   equipmentIndex={i}
+                  statsTranslate={statsTranslate}
                   reviewRecommanded={
                     review &&
                     review[index]?.data &&
@@ -169,7 +172,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                       : undefined
                   }
                 />
-              </span>
+              </div>
             );
           })}
         </div>

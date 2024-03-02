@@ -10,6 +10,7 @@ interface CharacterRelicProps {
   reviewRecommanded: RecommendedStats[];
   reviewMainStat: MainStats[];
   equipmentIndex: number;
+  statsTranslate: Array<any>;
 }
 
 const typeValueMap: any = {
@@ -32,9 +33,11 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
   reviewRecommanded,
   reviewMainStat,
   equipmentIndex,
+  statsTranslate,
 }) => {
   const { rarity, level, icon, main_affix, sub_affix } = stats;
-  const [isGoodMainStat, setIsGoodMainStat] = useState<boolean>(true);
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+  let requiredMainStat: any = [];
   let displayValue: string = "";
   let relicNotation: string = "";
 
@@ -59,9 +62,23 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
     if (reviewMainStat) {
       const recommendedObject =
         reviewMainStat.filter((el) => el.piece === equipment) || [];
+
+      const recommendedTranslate = recommendedObject.map((item) => {
+        const correspondingTranslate = statsTranslate.find(
+          (translateItem) => translateItem.type === item.type
+        );
+
+        if (correspondingTranslate) {
+          return { ...item, name: correspondingTranslate.name };
+        }
+        return item;
+      });
       const isGood = recommendedObject.some(
         (objet) => objet.type === main_affix.type
       );
+
+      console.log("recommendedTranslate", recommendedTranslate);
+      requiredMainStat = recommendedTranslate;
       return isGood;
     }
     return true;
@@ -74,7 +91,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
   }
 
   if (displayValue === "") {
-    <div>Chargement...</div>;
+    return <div>Chargement...</div>;
   }
 
   return (
@@ -90,10 +107,23 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
       }
     >
       <div
+        onMouseEnter={() => setIsTooltipVisible(true)}
+        onMouseLeave={() => setIsTooltipVisible(false)}
         className={`text-sm text-center relative my-auto${
-          equipmentIndex >= 2 ? (!isGoodMainStat ? " text-red" : "") : ""
+          equipmentIndex >= 2 && !verifMainStat() ? " text-red" : ""
         }`}
       >
+        {isTooltipVisible && equipmentIndex >= 2 && !verifMainStat() && (
+          <div className="absolute z-10 p-2 bg-background rounded-xl w-auto">
+            <div className="font-bold">Recommandé :</div>
+            {requiredMainStat?.map((el: any) => (
+              <div className="italic font-normal" key={el.type}>
+                {el.name}
+              </div>
+            ))}
+          </div>
+        )}
+
         <img src={`${CDN}/${icon}`} className="w-20 mx-auto" />
         <p>{displayValue}</p>
         <p>{main_affix.display}</p>

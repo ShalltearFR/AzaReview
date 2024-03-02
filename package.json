@@ -16,7 +16,6 @@
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "html-to-image": "^1.11.11",
-    "html2canvas": "^1.4.1",
     "jose": "^5.2.2",
     "jsonwebtoken": "^9.0.2",
     "micro": "^10.0.1",

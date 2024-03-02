@@ -68,6 +68,7 @@ const calculateRelic = (
       value: 0,
       importance: 0,
     };
+    //         3200       /    38      *          0.3
     return (subStat.value / procValue) * recommendedStat.importance || 0;
   });
 

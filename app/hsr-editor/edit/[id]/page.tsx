@@ -188,11 +188,12 @@ function Page({ params }: { params: { id: number } }) {
                 const value = [
                   "CriticalChanceBase",
                   "CriticalDamageBase",
-                  "break_dmg",
-                  "effect_res",
-                  "effect_hit",
+                  "BreakDamageAddedRatioBase",
+                  "StatusProbabilityBase",
+                  "StatusResistanceBase",
+                  "SPRatioBase",
                 ].includes(statType)
-                  ? Math.floor(recommendedStat.value * 100)
+                  ? Math.floor(recommendedStat.value * 1000) / 10
                   : recommendedStat.value;
 
                 return {
@@ -211,6 +212,7 @@ function Page({ params }: { params: { id: number } }) {
               relics_set: relics || [],
               main_stats: mainStats || [],
               recommended_stats: recommendedStats || [],
+              recommended_comment: singleData.recommended_comment || "",
             };
           });
 
@@ -247,6 +249,8 @@ function Page({ params }: { params: { id: number } }) {
         relics_set: [],
         main_stats: [],
         recommended_stats: [],
+        recommended_comment: "",
+        total_coef: 0,
       });
       return data;
     });
@@ -288,9 +292,10 @@ function Page({ params }: { params: { id: number } }) {
           const value = [
             "CriticalChanceBase",
             "CriticalDamageBase",
-            "break_dmg",
-            "effect_res",
-            "effect_hit",
+            "BreakDamageAddedRatioBase",
+            "StatusProbabilityBase",
+            "StatusResistanceBase",
+            "SPRatioBase",
           ].includes(statType)
             ? recommendedStat.value / 100
             : recommendedStat.value;
@@ -302,12 +307,20 @@ function Page({ params }: { params: { id: number } }) {
         }
       );
 
+      //Recupère total des coefs
+      const totalCoef = recommendedStatsSetupArray.reduce(
+        (acc, coef) => Number(acc) + Number(coef.importance),
+        0
+      );
+
       const dataSaved: Data = {
         buildName: data.buildName,
         lightCones: lightConesArray,
         relics_set: relicsSetArray,
         main_stats: mainStatsSetupArray,
         recommended_stats: recommendedStatsSetupArray,
+        recommended_comment: data.recommended_comment,
+        total_coef: totalCoef,
       };
 
       return dataSaved;

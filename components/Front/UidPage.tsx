@@ -15,9 +15,14 @@ interface ReviewData {
 interface UidPageProps {
   jsonUid: jsonUID;
   jsonReview: ReviewData;
+  statsTranslate: Array<any>;
 }
 
-const UidPage: React.FC<UidPageProps> = ({ jsonUid, jsonReview }) => {
+const UidPage: React.FC<UidPageProps> = ({
+  jsonUid,
+  jsonReview,
+  statsTranslate,
+}) => {
   const searchParams = useSearchParams();
   const characterQuery = searchParams.get("c");
   const [isloading, setIsLoading] = useState<Boolean>(true);
@@ -87,6 +92,7 @@ const UidPage: React.FC<UidPageProps> = ({ jsonUid, jsonReview }) => {
                 uidData={uidData as jsonUID}
                 reviewData={jsonReview}
                 index={characterIndex}
+                statsTranslate={statsTranslate}
               />
             </div>
             <div>
@@ -123,7 +129,7 @@ const UidPage: React.FC<UidPageProps> = ({ jsonUid, jsonReview }) => {
               </button>
               {exportImgUrl && (
                 <img
-                  className="mt-10 mb-10"
+                  className="flex mt-10 mb-10 mx-auto"
                   src={exportImgUrl}
                   alt="Export image url"
                 />
