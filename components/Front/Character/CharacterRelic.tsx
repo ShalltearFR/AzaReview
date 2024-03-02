@@ -7,10 +7,11 @@ import { useEffect, useRef, useState } from "react";
 
 interface CharacterRelicProps {
   stats: Relic;
-  reviewRecommanded: RecommendedStats[];
-  reviewMainStat: MainStats[];
+  reviewRecommanded: RecommendedStats[] | undefined;
+  reviewMainStat: MainStats[] | undefined;
   equipmentIndex: number;
   statsTranslate: Array<any>;
+  totalCoef: number;
 }
 
 const typeValueMap: any = {
@@ -34,6 +35,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
   reviewMainStat,
   equipmentIndex,
   statsTranslate,
+  totalCoef,
 }) => {
   const { rarity, level, icon, main_affix, sub_affix } = stats;
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
@@ -77,7 +79,6 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
         (objet) => objet.type === main_affix.type
       );
 
-      console.log("recommendedTranslate", recommendedTranslate);
       requiredMainStat = recommendedTranslate;
       return isGood;
     }
@@ -86,7 +87,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
 
   displayValue = typeValueMap[main_affix.type] || main_affix.name;
   if (Array.isArray(reviewRecommanded) && reviewRecommanded.length > 0) {
-    const value = calculateRelic(reviewRecommanded, sub_affix);
+    const value = calculateRelic(reviewRecommanded, sub_affix, totalCoef);
     relicNotation = value;
   }
 

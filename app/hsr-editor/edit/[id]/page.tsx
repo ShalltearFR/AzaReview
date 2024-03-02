@@ -260,10 +260,7 @@ function Page({ params }: { params: { id: number } }) {
 
   const deleteBuild = (index: number) => {
     const data = [...memorizedData.current];
-    console.log("dataBefore", data);
     data.splice(index, 1);
-    console.log("dataAfter", data);
-
     memorizedData.current = data;
     setDataAfterLoading(data);
   };

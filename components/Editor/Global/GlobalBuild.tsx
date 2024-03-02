@@ -242,7 +242,6 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
   // MET A JOURS LES DONNEES
   const updateData = () => {
     console.log("update");
-    console.log("recommendedStatsSetup", recommendedStatsSetup);
 
     const dataSaved = {
       buildName: buildNameInput,

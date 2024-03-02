@@ -31,7 +31,6 @@ export async function PUT(req: Request) {
   try {
     const json = await req.json();
     await dbConnect();
-    console.log("json", json);
 
     return Character.findOneAndUpdate(
       { id: json.characterId },

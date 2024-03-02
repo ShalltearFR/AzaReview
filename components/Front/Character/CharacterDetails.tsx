@@ -8,7 +8,7 @@ import RecommendedStat from "./RecommendedStat";
 import CharacterRelicsSet from "./CharacterRelicsSet";
 import CharacterRelic from "./CharacterRelic";
 import { CDN2 } from "@/utils/cdn";
-import { CharacterType, RecommendedStats } from "@/types/CharacterModel";
+import { CharacterType, Data, RecommendedStats } from "@/types/CharacterModel";
 import {
   MutableRefObject,
   useCallback,
@@ -40,7 +40,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
 }) => {
   const character = uidData.characters[index];
   // @ts-ignore
-  const characterReview = reviewData[index].data;
+  const characterReview: Data[] = reviewData[index].data as Data;
 
   if (!reviewData) {
     return <div>Chargement...</div>;
@@ -60,7 +60,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           <div className="flex gap-x-3 justify-center">
             {["Attaque", "Compétence", "Ultime", "Talent"].map((type, i) => {
               return (
-                <div key={`characterTrace${i}`}>
+                <div key={`CharacterTraces${i}+${index}+${buildIndex}`}>
                   <CharacterTrace
                     type={type}
                     img={`/${character.skills[i].icon}`}
@@ -89,17 +89,15 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
               "sp_rate",
             ].map((field, i) => {
               return (
-                <div key={`characterStat${i}`}>
+                <div key={`CharacterStat${i}+${index}+${buildIndex}`}>
                   <CharacterStat
                     attributes={character.attributes}
                     additions={character.additions}
                     field={field}
                     review={
                       characterReview &&
-                      characterReview?.data &&
-                      characterReview.data[buildIndex]?.recommended_stats
-                        ? characterReview.data[buildIndex].recommended_stats
-                        : undefined
+                      characterReview[buildIndex] &&
+                      characterReview[buildIndex]?.recommended_stats
                     }
                   />
                 </div>
@@ -113,15 +111,12 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
             <RecommendedStat
               data={
                 characterReview &&
-                characterReview &&
+                characterReview[buildIndex] &&
                 characterReview[buildIndex]?.recommended_stats
-                  ? characterReview[buildIndex].recommended_stats
-                  : undefined
               }
             />
             {/* Commentaire des stats mini */}
             {characterReview &&
-              characterReview &&
               characterReview[buildIndex] &&
               characterReview[buildIndex].recommended_comment && (
                 <p className="text-white font-bold italic text-center mt-2">
@@ -142,21 +137,30 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           {character.relics.length === 6 ? (
             character.relics.map((relic, i) => {
               return (
-                <div key={crypto.randomUUID()} className="flex items-center">
+                <div
+                  key={`CharacterRelics${i}+${index}+${buildIndex}`}
+                  className="flex items-center"
+                >
                   <CharacterRelic
                     stats={relic}
                     equipmentIndex={i}
                     statsTranslate={statsTranslate}
+                    totalCoef={
+                      characterReview &&
+                      characterReview[buildIndex] &&
+                      characterReview[buildIndex].total_coef
+                    }
                     reviewRecommanded={
                       characterReview &&
-                      characterReview &&
+                      characterReview[buildIndex] &&
                       characterReview[buildIndex]?.recommended_stats
-                        ? characterReview[buildIndex].recommended_stats
+                        ? (characterReview[buildIndex]
+                            .recommended_stats as RecommendedStats[])
                         : undefined
                     }
                     reviewMainStat={
                       characterReview &&
-                      characterReview &&
+                      characterReview[buildIndex] &&
                       characterReview[buildIndex]?.main_stats
                         ? characterReview[buildIndex].main_stats
                         : undefined

@@ -100,6 +100,7 @@ const UidPage: React.FC<UidPageProps> = ({
         jsonReview.data,
         jsonUid.characters
       );
+      console.log("review:", sortedReviewData);
       setReview(sortedReviewData);
       setIsLoading(false);
     }
@@ -148,7 +149,7 @@ const UidPage: React.FC<UidPageProps> = ({
               setIndex={setCharacterIndex}
               index={characterIndex}
             />
-            <div className="grid grid-cols-[390px_1fr] justify-center items-center text-white font-bold xl:rounded-t-xl bg-light-blue/75 w-full max-w-[1450px] mx-auto xl:gap-x-5 py-5">
+            <div className="grid xl:grid-cols-[390px_1fr] justify-center items-center text-white font-bold xl:rounded-t-xl bg-light-blue/75 w-full max-w-[1450px] mx-auto xl:gap-x-5 py-5">
               <label className="flex items-center gap-2 ml-5">
                 <span className="text-xl">Build :</span>
                 <ReactSelect
@@ -161,10 +162,10 @@ const UidPage: React.FC<UidPageProps> = ({
                   }}
                   onChange={(e) => setCharacterBuild(Number(e?.value))}
                   value={characterOptions[characterBuild]}
-                  className="w-72 z-50"
+                  className="w-72 z-30"
                 />
               </label>
-              <p>
+              <p className="px-5 mt-2 text-center xl:px-0 xl:ml-0 xl:mt-0 xl:text-left">
                 {characterOptions[characterBuild].desc ||
                   "Disponible prochainement"}
               </p>

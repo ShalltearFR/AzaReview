@@ -13,7 +13,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
   index,
 }) => {
   return (
-    <div className="flex flex-col xl:flex-row xl:h-36 w-11/12 xl:w-[1350px] py-5 xl:py-0 bg-[#4E4A82] rounded-3xl lg:rounded-full items-center mx-auto shadow-2xl mb-[25px]">
+    <div className="flex flex-col xl:flex-row xl:h-36 w-11/12 xl:w-[1350px] py-5 xl:py-0 bg-[#4E4A82] rounded-3xl lg:rounded-full items-center mx-auto shadow-2xl mb-[27px]">
       <img
         className="w-24 h-24 xl:ml-8"
         alt="UID logo"
@@ -31,6 +31,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
               className={`rounded-full w-20 h-20 overflow-hidden border ${
                 index === i ? "bg-orange" : "bg-background"
               }`}
+              key={`characterIndex${i}`}
               onClick={() => {
                 setIndex(i);
                 if (i > 0) {
@@ -43,7 +44,6 @@ const CharacterList: React.FC<CharacterListProps> = ({
                   window.history.pushState({}, "", window.location.pathname);
                 }
               }}
-              key={`characterIndex${i}`}
             >
               <img src={`${CDN}/${character.icon}`} />
             </div>
