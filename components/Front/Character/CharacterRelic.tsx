@@ -131,7 +131,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
         <p className="absolute top-0 right-5 py-1 px-2 bg-gray rounded-full text-xs text-white">{`+${level}`}</p>
       </div>
       <div className="flex flex-col relative w-full h-full justify-center text-white">
-        <div className="absolute flex right-20 min-w-[87px] text-gray/50 text-[62px] -mt-3 -z-10">
+        <div className="absolute flex right-20 min-w-[87px] text-gray/50 text-[62px] -mt-3">
           {relicNotation}
         </div>
         {sub_affix.map((affix, i) => {
@@ -141,7 +141,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
           return (
             <div
               key={`characterRelic${affix.type}${i}`}
-              className="grid grid-cols-[32px_1fr_50px_20px] items-center "
+              className="grid grid-cols-[32px_1fr_50px_20px] items-center z-10"
             >
               <img src={`${CDN}/${affix.icon}`} className="w-7" />
               <span>{subDisplayValue}</span>

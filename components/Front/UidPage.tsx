@@ -172,14 +172,16 @@ const UidPage: React.FC<UidPageProps> = ({
                   "Disponible prochainement"}
               </p>
             </div>
-            <div ref={characterDetailsRef}>
-              <CharacterDetails
-                uidData={uidData as jsonUID}
-                reviewData={review}
-                index={characterIndex}
-                statsTranslate={statsTranslate}
-                buildIndex={characterBuild}
-              />
+            <div className="flex justify-center w-full">
+              <div ref={characterDetailsRef} className=" w-full max-w-[1450px]">
+                <CharacterDetails
+                  uidData={uidData as jsonUID}
+                  reviewData={review}
+                  index={characterIndex}
+                  statsTranslate={statsTranslate}
+                  buildIndex={characterBuild}
+                />
+              </div>
             </div>
             <div>
               <button

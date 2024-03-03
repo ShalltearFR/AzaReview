@@ -1,5 +1,5 @@
 "use client";
-import { Character, jsonUID } from "@/types/jsonUid";
+import { jsonUID } from "@/types/jsonUid";
 import CharacterSplash from "./CharacterSplash";
 import CharacterTrace from "./CharacterTrace";
 import CharacterLightCone from "./CharacterLightCone";
@@ -9,15 +9,6 @@ import CharacterRelicsSet from "./CharacterRelicsSet";
 import CharacterRelic from "./CharacterRelic";
 import { CDN2 } from "@/utils/cdn";
 import { CharacterType, Data, RecommendedStats } from "@/types/CharacterModel";
-import {
-  MutableRefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { randomUUID } from "crypto";
-import { toPng } from "html-to-image";
 
 interface ReviewData {
   data: CharacterType[];
@@ -49,9 +40,10 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   if (reviewData) {
     return (
       <article
-        className="grid xl:grid-cols-3 w-full max-w-[1450px] xl:h-[870px] mx-auto xl:gap-x-5 py-5"
+        className="grid xl:grid-cols-3 xl:h-[870px] xl:gap-x-5 py-5"
         style={{
-          backgroundImage: `url('${CDN2}/img/character_bg.avif')`,
+          backgroundImage: `url('${CDN2}/img/character_bg.jpg')`,
+          backgroundSize: "100% auto",
           backgroundRepeat: "repeat-y",
         }}
       >
@@ -119,7 +111,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
             {characterReview &&
               characterReview[buildIndex] &&
               characterReview[buildIndex].recommended_comment && (
-                <p className="text-white font-bold italic text-center mt-2">
+                <p className="text-orange2 font-bold italic text-center mt-2">
                   {characterReview[buildIndex] &&
                     characterReview[buildIndex].recommended_comment}
                 </p>
