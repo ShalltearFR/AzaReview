@@ -269,11 +269,11 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
         <div className="flex items-center">
           <label className="flex items-center">
             <span className="text-2xl ml-5 h-9 mr-2">Nom du build : </span>
-            <input
+            <AddInput
+              value={buildNameInput}
               className="px-2 text-black rounded-full h-10 mt-auto self-center"
-              value={buildNameInput || data.buildName}
-              onChange={(e) => {
-                setBuildNameInput(e.target.value);
+              onChange={(value) => {
+                setBuildNameInput(value);
                 debounced();
               }}
             />
