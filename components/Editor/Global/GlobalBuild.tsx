@@ -58,10 +58,11 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
   // INIT DES VALEURS
   useEffect(() => {
     setBuildNameInput(data.buildName);
+    setBuildDescriptionInput(data.buildDesc);
     setLightConesSetup(data.lightCones);
     setRelicsSetSetup(data.relics_set);
     setMainStatsSetup(data.main_stats);
-    setRecommendedStatsSetup(data.recommended_stats);
+    setRecommendedCommentInput(data.recommended_comment);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
