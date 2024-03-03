@@ -24,14 +24,18 @@ const AddInput: React.FC<AddInputProps> = ({
 
   const debounced = useDebouncedCallback((value) => {
     onChange(value);
-  }, 1000);
+  }, 250);
 
   return (
     <input
       value={textInput || value}
       onChange={(e) => {
         setTextInput(e.target.value);
-        debounced(e.target.value);
+        if (e.target.value === "") {
+          onChange("");
+        } else {
+          debounced(e.target.value);
+        }
       }}
       className={className}
       placeholder={placeholder}

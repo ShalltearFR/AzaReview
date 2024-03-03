@@ -19,6 +19,7 @@ import type {
 } from "@/types/EditorPage";
 import { SingleValue } from "react-select";
 import { useSpring, animated } from "react-spring";
+import AddInput from "../Add/AddInput";
 
 interface GlobalBuildProps {
   data: any;
@@ -299,11 +300,11 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
           <span className="text-2xl ml-5 h-9 mr-2 w-72">
             Description du build :{" "}
           </span>
-          <input
+          <AddInput
+            value={buildDescriptionInput}
             className="px-2 text-black rounded-full h-10 mt-auto self-center w-full"
-            value={buildDescriptionInput || data.buildDesc}
-            onChange={(e) => {
-              setBuildDescriptionInput(e.target.value);
+            onChange={(value) => {
+              setBuildDescriptionInput(value);
               debounced();
             }}
           />
@@ -490,11 +491,11 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
           />
           <label className="flex items-center mt-5">
             <span className="text-xl ml-5 h-9 mr-2 w-40">Commentaire :</span>
-            <input
+            <AddInput
+              value={recommendedCommentInput}
               className="px-2 text-black rounded-full h-10 mt-auto self-center w-full"
-              value={recommendedCommentInput || data.recommended_comment}
-              onChange={(e) => {
-                setRecommendedCommentInput(e.target.value);
+              onChange={(value) => {
+                setRecommendedCommentInput(value);
                 debounced();
               }}
             />
