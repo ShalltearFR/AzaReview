@@ -1,6 +1,3 @@
-import { jsonUID } from "@/types/jsonUid";
-import CharacterSplash from "./CharacterSplash";
-import CharacterTrace from "./CharacterTrace";
 import { CDN } from "@/utils/cdn";
 import { LightCone } from "@/types/CharacterModel";
 import { useEffect, useState } from "react";
@@ -73,7 +70,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
             </div>
           )}
           <div
-            className="flex flex-col w-40 h-40 mx-auto mt-2 text-white"
+            className="relative flex flex-col w-40 h-40 mx-auto mt-2 text-white"
             style={{
               backgroundImage: `url("${CDN}/${lightCone.icon}")`,
               backgroundSize: "contain",

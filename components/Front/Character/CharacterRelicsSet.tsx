@@ -20,10 +20,12 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
     return accumulator;
   }, {} as Record<string, RelicSet>);
 
-  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
   const finalPossessedRelicSets = Object.values(processedRelicSets);
+  const [isTooltipRecommended, setIsTooltipRecommended] = useState(false);
+  const [isTooltipSet, setIsTooltipSet] = useState<boolean>(false);
   const [requiredRelicsSet, setRequiredRelicsSet] = useState<any>([]);
   const [colorRelics, setColorRelics] = useState<Array<any>>([]);
+  const [relics2pAlt, setRelics2pAlt] = useState<any>(null);
 
   useEffect(() => {
     const verifMainStat = () => {
@@ -41,22 +43,46 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
           // Si aucune correspondance n'est trouvée, retourne l'objet reviewMainStat sans modification
           return "text-red";
         });
-        console.log("setColors", setColors);
         setColorRelics(setColors);
 
+        // Filtre les relics recommandés
         const reviewRecommended = review.filter(
           (reviewEl) => reviewEl.recommended
         );
 
-        const combinedArray = reviewRecommended.map((item) => ({
+        // Ajoute le nom traduit des relics
+        const translateArray = reviewRecommended.map((item) => ({
           ...item,
           ...(relicsSetTranslate.find((obj2) => obj2.id === item.id) || {}),
         }));
 
-        console.log("combinedArray", combinedArray);
-        setRequiredRelicsSet(combinedArray);
+        if (setColors.some((el: any) => el === "text-red")) {
+          // Si un set n'est pas bon
+          const relics2P = review
+            .filter((reviewRelic) => {
+              // Filtre les relics equipés
+              const duplicateRelic = relics.find(
+                (singleRelic) => singleRelic.id === reviewRelic.id
+              );
+              return !duplicateRelic;
+            })
+            .filter((relic) => relic.num === 2) // Filtre toutes les relics 2p en non recommandés
+            .map((item) => ({
+              // Ajoute la traduction dans la relique
+              ...item,
+              ...(relicsSetTranslate.find(
+                (translate) => translate.id === item.id
+              ) || {}),
+            }));
+          setRelics2pAlt(relics2P);
+        } else {
+          setRelics2pAlt(null);
+        }
+
+        setRequiredRelicsSet(translateArray);
       } else {
         setColorRelics(["text-white", "text-white", "text-white"]);
+        setRelics2pAlt(null);
         setRequiredRelicsSet(false);
       }
     };
@@ -71,14 +97,14 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
           <>
             <p
               className="absolute right-0 px-3 py-1 bg-gray rounded-full text-black font-bold"
-              onMouseEnter={() => setIsTooltipVisible(true)}
-              onMouseLeave={() => setIsTooltipVisible(false)}
+              onMouseEnter={() => setIsTooltipRecommended(true)}
+              onMouseLeave={() => setIsTooltipRecommended(false)}
             >
               !
             </p>
-            {isTooltipVisible && (
+            {isTooltipRecommended && (
               <div className="absolute z-10 p-2 bg-background rounded-xl w-auto text-white">
-                <div className="font-bold">Recommandé :</div>
+                <div className="font-bold">Recommandés :</div>
                 {requiredRelicsSet?.map((el: any) => (
                   <div
                     className="flex gap-1 italic font-normal"
@@ -98,8 +124,20 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
         </p>
       </div>
       <div
-        className={`flex w-full text-white mt-5 text-sm font-bold text-center justify-center gap-[15px]`}
+        className={`flex w-full text-white mt-5 text-sm font-bold text-center justify-center gap-[15px] relative`}
+        onMouseEnter={() => setIsTooltipSet(true)}
+        onMouseLeave={() => setIsTooltipSet(false)}
       >
+        {relics2pAlt && isTooltipSet && (
+          <div className="absolute z-10 p-2 bottom-0 bg-background rounded-xl w-60 text-white flex flex-col">
+            <p>Reliques/Ornements possibles :</p>
+            <ul className="text-left list-outside font-normal">
+              {relics2pAlt.map((relic: any) => (
+                <li key={crypto.randomUUID()}>- {relic.name}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         {finalPossessedRelicSets.length !== 0 ? (
           <>
             {finalPossessedRelicSets.map((relic, i) => {

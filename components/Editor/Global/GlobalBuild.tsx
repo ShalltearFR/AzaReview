@@ -5,11 +5,7 @@ import GlobalLightCone from "./GlobalLightCone";
 import GlobalRelicsSet from "./GlobalRelicsSet";
 import GlobalMainStats from "./GlobalMainStats";
 import GlobalRecommendedStats from "./GlobalRecommendedStats";
-import {
-  PlusIcon,
-  TrashIcon,
-  ArrowsUpDownIcon,
-} from "@heroicons/react/24/outline";
+import { TrashIcon, ArrowsUpDownIcon } from "@heroicons/react/24/outline";
 import type {
   Option,
   LightConeOption,
