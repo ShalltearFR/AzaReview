@@ -70,20 +70,24 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
             </div>
           )}
           <div
-            className="flex flex-col w-40 h-40 mx-auto mt-2"
+            className="flex flex-col w-40 h-40 mx-auto mt-2 text-white"
             style={{
               backgroundImage: `url("${CDN}/${lightCone.icon}")`,
               backgroundSize: "contain",
             }}
           >
-            <p className="flex justify-center items-center p-1 rounded-full bg-orange2 text-white text-sm font-bold ml-auto mt-3">
+            <p className="flex justify-center items-center p-1 rounded-full bg-orange2 text-sm font-bold ml-auto mt-3">
               Niv. {lightCone.level}
             </p>
-            <p className="flex justify-center items-center w-6 p-1 rounded-full bg-brown text-white text-sm font-bold mt-auto mb-8 ml-2">
+            <p className="flex justify-center items-center w-6 p-1 rounded-full bg-brown text-sm font-bold mt-auto mb-8 ml-2">
               S{lightCone.rank}
             </p>
           </div>
-          <p className="text-center text-white px-2 font-bold">
+          <p
+            className={`text-center px-2 font-bold ${
+              !isGoodLightCone ? " text-red" : "text-white"
+            }`}
+          >
             {lightCone.name}
           </p>
         </div>
