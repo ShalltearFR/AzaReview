@@ -31,11 +31,14 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
   useEffect(() => {
     const verifMainStat = () => {
       if (review) {
-        const isGood = review.filter((el) => el.id === lightCone.id) || [];
+        const isGood = review.filter((el) => el.id === lightCone.id) || false;
 
-        if (isGood[0].id) {
+        console.log("isGood", isGood);
+        if (isGood.length > 0) {
           setIsGoodLightCone(true);
           return null;
+        } else {
+          setIsGoodLightCone(false);
         }
 
         const recommendedObject = review.filter((el) => el.recommended) || [];
@@ -43,6 +46,8 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
           (el) => el.id === recommendedObject[0].id
         );
         setRecommendedLightCone(recommendedTranslate[0]);
+      } else {
+        setIsGoodLightCone(true);
       }
     };
     verifMainStat();
@@ -85,7 +90,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
           </div>
           <p
             className={`text-center px-2 font-bold ${
-              !isGoodLightCone ? " text-red" : "text-white"
+              !isGoodLightCone ? "text-red" : "text-white"
             }`}
           >
             {lightCone.name}
