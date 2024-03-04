@@ -17,17 +17,21 @@ interface ReviewData {
 interface CharacterDetailsProps {
   uidData: jsonUID;
   index: number;
-  reviewData: ReviewData;
-  statsTranslate: any;
   buildIndex: number;
+  reviewData: ReviewData;
+  statsTranslate: Array<any>;
+  relicsSetTranslate: Array<any>;
+  lightconesTranslate: Array<any>;
 }
 
 const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   uidData,
   index,
+  buildIndex = 0,
   reviewData,
   statsTranslate,
-  buildIndex = 0,
+  relicsSetTranslate,
+  lightconesTranslate,
 }) => {
   const character = uidData.characters[index];
   // @ts-ignore
@@ -37,6 +41,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
     return <div>Chargement...</div>;
   }
 
+  console.log("reviewData", reviewData);
   if (reviewData) {
     return (
       <article
@@ -63,7 +68,15 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
               );
             })}
           </div>
-          <CharacterLightCone lightCone={character.light_cone} />
+          <CharacterLightCone
+            lightCone={character.light_cone}
+            lightconeTranslate={lightconesTranslate}
+            review={
+              characterReview &&
+              characterReview[buildIndex] &&
+              characterReview[buildIndex]?.lightCones
+            }
+          />
         </div>
 
         <div className="flex flex-col justify-between gap-y-5 xl:gap-y-0 w-screen xl:w-full mt-5 xl:mt-0">
@@ -111,7 +124,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
             {characterReview &&
               characterReview[buildIndex] &&
               characterReview[buildIndex].recommended_comment && (
-                <p className="text-orange2 font-bold italic text-center mt-2">
+                <p className="text-orange2 font-bold text-center mt-2">
                   {characterReview[buildIndex] &&
                     characterReview[buildIndex].recommended_comment}
                 </p>
@@ -119,10 +132,15 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           </div>
 
           <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-4">
-            <p className="text-yellow text-lg font-bold text-center leading-4 mb-5">
-              Sets equipés
-            </p>
-            <CharacterRelicsSet relics={character.relic_sets || "none"} />
+            <CharacterRelicsSet
+              relics={character.relic_sets || "none"}
+              relicsSetTranslate={relicsSetTranslate}
+              review={
+                characterReview &&
+                characterReview[buildIndex] &&
+                characterReview[buildIndex]?.relics_set
+              }
+            />
           </div>
         </div>
         <div className="flex flex-col gap-3 my-auto pt-auto mx-auto mt-5 w-screen xl:w-full xl:my-auto">

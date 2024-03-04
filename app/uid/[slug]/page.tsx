@@ -13,9 +13,9 @@ interface ReviewData {
   data: CharacterType[];
 }
 
-async function getData(url: string) {
+async function getData(url: string, revalidationValue: number) {
   const data = await fetch(url, {
-    next: { revalidate: 0 },
+    next: { revalidate: revalidationValue },
   });
   const dataJson = await data.json();
   return dataJson;
@@ -79,14 +79,30 @@ export default async function Page({ params }: { params: { slug: number } }) {
 
   //Recupère les reviews
   const resReview: ReviewData = await getData(
-    `${process.env.WWW}/api/characters/all`
+    `${process.env.WWW}/api/characters/all`,
+    300 //Cache de 5min
   );
 
-  //Recupère les tranductions de stats
+  //Recupère les traductions de stats
   const statsTranslate: Array<any> = await getData(
-    `${CDN}/index_min/fr/properties.json`
+    `${CDN}/index_min/fr/properties.json`,
+    86400 //Cache de 24h
   );
   const statsTranslateToArray = Object.values(statsTranslate);
+
+  //Recupère les traductions des sets de relics
+  const RelicsSetTranslate: Array<any> = await getData(
+    `${CDN}/index_min/fr/relic_sets.json`,
+    18000 //Cache de 5h
+  );
+  const RelicsSetTranslateToArray = Object.values(RelicsSetTranslate);
+
+  //Recupère les traductions des lightcones
+  const lightconesTranslate: Array<any> = await getData(
+    `${CDN}/index_min/fr/light_cones.json`,
+    18000 //Cache de 5h
+  );
+  const lightconesTranslateToArray = Object.values(lightconesTranslate);
 
   if (!jsonUid || !resReview) {
     return <div className="text-center mt-10">Chargement en cours ...</div>;
@@ -98,6 +114,8 @@ export default async function Page({ params }: { params: { slug: number } }) {
         jsonUid={jsonUid}
         jsonReview={resReview}
         statsTranslate={statsTranslateToArray}
+        relicsSetTranslate={RelicsSetTranslateToArray}
+        lightconesTranslate={lightconesTranslateToArray}
       />
       <Footer />
     </>

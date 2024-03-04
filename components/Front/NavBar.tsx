@@ -12,7 +12,10 @@ const NavBar: React.FC<NavBarProps> = ({ setData }) => {
 
   return (
     <>
-      <nav className="flex justify-center items-center bg-[#030303] w-screen h-16 gap-7 xl:fixed z-50">
+      <nav className="flex xl:justify-center items-center bg-[#030303] w-screen h-16 gap-7 xl:fixed z-50 relative">
+        <span className="text-white text-xl absolute right-5 text-center font-bold">
+          SITE EN BETA
+        </span>
         <input
           className="rounded-full w-40 h-10 pl-5 text-lg"
           maxLength={9}

@@ -23,12 +23,16 @@ interface UidPageProps {
   jsonUid: jsonUID;
   jsonReview: ReviewData;
   statsTranslate: Array<any>;
+  relicsSetTranslate: Array<any>;
+  lightconesTranslate: Array<any>;
 }
 
 const UidPage: React.FC<UidPageProps> = ({
   jsonUid,
   jsonReview,
   statsTranslate,
+  relicsSetTranslate,
+  lightconesTranslate,
 }) => {
   const searchParams = useSearchParams();
   const characterQuery = searchParams.get("c");
@@ -176,10 +180,12 @@ const UidPage: React.FC<UidPageProps> = ({
               <div ref={characterDetailsRef} className=" w-full max-w-[1450px]">
                 <CharacterDetails
                   uidData={uidData as jsonUID}
+                  buildIndex={characterBuild}
                   reviewData={review}
                   index={characterIndex}
                   statsTranslate={statsTranslate}
-                  buildIndex={characterBuild}
+                  relicsSetTranslate={relicsSetTranslate}
+                  lightconesTranslate={lightconesTranslate}
                 />
               </div>
             </div>

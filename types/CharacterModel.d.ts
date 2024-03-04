@@ -79,4 +79,11 @@ type CharacterType = {
   data: Data[];
 };
 
-export type { CharacterType, Data, RecommendedStats, MainStats };
+export type {
+  CharacterType,
+  Data,
+  RecommendedStats,
+  MainStats,
+  RelicsSet,
+  LightCone,
+};
