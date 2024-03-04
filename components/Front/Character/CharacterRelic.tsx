@@ -79,7 +79,17 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
         (objet) => objet.type === main_affix.type
       );
 
-      requiredMainStat = recommendedTranslate;
+      console.log("recommendedTranslate", recommendedTranslate);
+
+      // Modification FR
+      requiredMainStat = recommendedTranslate.map((el: any) => ({
+        name: typeValueMap[el.type] || el.name,
+      }));
+      console.log(
+        "typeValueMap[main_affix.type]",
+        typeValueMap[main_affix.type]
+      );
+
       return isGood;
     }
     return true;
@@ -118,7 +128,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
           <div className="absolute z-10 p-2 bg-background rounded-xl w-auto">
             <div className="font-bold">Recommandé :</div>
             {requiredMainStat?.map((el: any) => (
-              <div className="italic font-normal" key={el.type}>
+              <div className="italic font-normal" key={crypto.randomUUID()}>
                 {el.name}
               </div>
             ))}
@@ -135,8 +145,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
           {relicNotation}
         </div>
         {sub_affix.map((affix, i) => {
-          const subDisplayValue =
-            typeValueMap[affix.type as keyof typeof typeValueMap] || affix.name;
+          const subDisplayValue = typeValueMap[affix.type] || affix.name;
 
           return (
             <div

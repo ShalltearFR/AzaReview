@@ -63,7 +63,6 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
     verifMainStat();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [review]);
-  //console.log("IsGoodRelicSet", verifMainStat());
 
   return (
     <div>
@@ -71,7 +70,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
         {requiredRelicsSet && (
           <>
             <p
-              className="absolute right-0 px-3 py-1  bg-orange rounded-full text-black font-bold"
+              className="absolute right-0 px-3 py-1 bg-gray rounded-full text-black font-bold"
               onMouseEnter={() => setIsTooltipVisible(true)}
               onMouseLeave={() => setIsTooltipVisible(false)}
             >

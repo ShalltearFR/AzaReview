@@ -130,6 +130,14 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
     });
   }, []);
 
+  const handleRelicBool = useCallback((value: boolean, index: number) => {
+    setRelicsSetSetup((prevRelicsSetSetup) => {
+      const newSetup = [...prevRelicsSetSetup];
+      newSetup[index].ornament = value ?? false;
+      return newSetup;
+    });
+  }, []);
+
   const deleteRelicsSet = useCallback((index: number) => {
     setRelicsSetSetup((prevRelicsSetSetup) => {
       const newSetup = [...prevRelicsSetSetup];
@@ -141,7 +149,14 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
   const addRelicsSet = useCallback((isrecommended: boolean) => {
     setRelicsSetSetup((prevRelicsSetSetup) => [
       ...prevRelicsSetSetup,
-      { id: "", recommended: isrecommended, value: "", label: "", num: 2 },
+      {
+        id: "",
+        recommended: isrecommended,
+        value: "",
+        label: "",
+        num: 2,
+        ornament: false,
+      },
     ]);
   }, []);
 
@@ -393,6 +408,10 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
                 handleRelicsNumChange(value, index);
                 debounced();
               }}
+              handleRelicBool={(value, index) => {
+                handleRelicBool(value.target.checked, index);
+                debounced();
+              }}
               addRelicSet={addRelicsSet}
               deleteRelicsSet={(index: number) => {
                 deleteRelicsSet(index);
@@ -416,6 +435,10 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
                 }}
                 handleRelicsNumChange={(value: number, index: number) => {
                   handleRelicsNumChange(value, index);
+                  debounced();
+                }}
+                handleRelicBool={(value, index) => {
+                  handleRelicBool(value.target.checked, index);
                   debounced();
                 }}
                 addRelicSet={addRelicsSet}

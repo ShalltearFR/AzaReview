@@ -3,6 +3,7 @@ import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import AddSelect from "../Add/AddSelect";
 import { recommendedStatsOptions } from "@/utils/statsOption";
 import AddInput from "../Add/AddInput";
+import AddToggleButton from "../Add/AddToggleButton";
 
 interface Option {
   value: string;

@@ -149,6 +149,34 @@ const recommendedStatsOptions = [
     label: "Vitesse",
     value: "SpeedDelta",
   },
+  {
+    label: "DGT Physique",
+    value: "PhysicalAddedRatio",
+  },
+  {
+    label: "DGT Quantique",
+    value: "QuantumAddedRatio",
+  },
+  {
+    label: "DGT Imaginaire",
+    value: "ImaginaryAddedRatio",
+  },
+  {
+    label: "DGT Vent",
+    value: "WindAddedRatio",
+  },
+  {
+    label: "DGT Foudre",
+    value: "LightningAddedRatio",
+  },
+  {
+    label: "DGT Glace",
+    value: "IceAddedRatio",
+  },
+  {
+    label: "DGT Feu",
+    value: "FireAddedRatio",
+  },
 ];
 
 const findLabel = (id: string) => {

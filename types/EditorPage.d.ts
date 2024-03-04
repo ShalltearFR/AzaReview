@@ -17,6 +17,7 @@ interface RelicSetOption {
   label: string;
   num: number;
   id: string;
+  ornament: boolean;
 }
 
 interface MainStatsOption {

@@ -39,6 +39,7 @@ const relicsSetSchema = new Schema({
   id: String,
   num: { type: Number, enum: [2, 4] },
   recommended: Boolean,
+  ornament: Boolean,
 });
 
 const mainStatsSchema = new Schema({

@@ -153,6 +153,7 @@ function Page({ params }: { params: { id: number } }) {
                   num: relic.num,
                   recommended: relic.recommended,
                   label: label,
+                  ornament: relic.ornament,
                 };
               }
             );
@@ -277,6 +278,7 @@ function Page({ params }: { params: { id: number } }) {
         id: relic.id,
         num: relic.num,
         recommended: relic.recommended,
+        ornament: relic.ornament,
       }));
 
       const mainStatsSetupArray = data.main_stats.map((mainStat: any) => ({

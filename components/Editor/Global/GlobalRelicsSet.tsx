@@ -1,6 +1,7 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import AddSelect from "../Add/AddSelect";
+import AddToggleButton from "../Add/AddToggleButton";
 
 interface RelicsSetOption {
   value: any;
@@ -15,6 +16,7 @@ interface GlobalRelicsSetProps {
   relicsSetOptions: any;
   handleRelicsSetChange: any;
   handleRelicsNumChange: any;
+  handleRelicBool: (e: ChangeEvent<HTMLInputElement>, index: number) => void;
   deleteRelicsSet: any;
   isrecommended: boolean;
   addButtonText: string;
@@ -26,6 +28,7 @@ const GlobalRelicsSet: React.FC<GlobalRelicsSetProps> = ({
   relicsSetOptions,
   handleRelicsSetChange,
   handleRelicsNumChange,
+  handleRelicBool,
   deleteRelicsSet,
   isrecommended,
   addButtonText,
@@ -75,6 +78,10 @@ const GlobalRelicsSet: React.FC<GlobalRelicsSetProps> = ({
                   }
                   index={index}
                   className="w-32"
+                />
+                <AddToggleButton
+                  value={relicsSetSetup[index].ornament}
+                  onChange={(e) => handleRelicBool(e, index)}
                 />
                 <button onClick={() => deleteRelicsSet(index)}>
                   <TrashIcon className="h-8 w-8 p-2 rounded-full bg-red" />
