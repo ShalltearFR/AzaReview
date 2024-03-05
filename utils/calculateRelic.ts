@@ -85,13 +85,13 @@ const calculateRelic = (
   if (result >= 3 && result < 3.5) resultLetter = "C+";
   if (result >= 3.5 && result < 4) resultLetter = "B";
   if (result >= 4 && result < 4.5) resultLetter = "B+";
-  if (result >= 4.5 && result < 5) resultLetter = "A";
-  if (result >= 5 && result < 5.5) resultLetter = "A+";
-  if (result >= 5.5 && result < 6) resultLetter = "S";
-  if (result >= 6 && result < 6.5) resultLetter = "S+";
-  if (result >= 6.5 && result < 7) resultLetter = "SS";
-  if (result >= 7 && result < 7.5) resultLetter = "SS+";
-  if (result >= 7.5) resultLetter = "SSS";
+  if (result >= 4.5 && result < 5.25) resultLetter = "A";
+  if (result >= 5.25 && result < 6) resultLetter = "A+";
+  if (result >= 6 && result < 6.5) resultLetter = "S";
+  if (result >= 6.5 && result < 7) resultLetter = "S+";
+  if (result >= 7 && result < 7.5) resultLetter = "SS";
+  if (result >= 7.5 && result < 8) resultLetter = "SS+";
+  if (result >= 8) resultLetter = "SSS";
 
   return resultLetter;
 };
