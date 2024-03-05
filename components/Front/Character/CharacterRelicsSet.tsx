@@ -22,7 +22,11 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
 
   const finalPossessedRelicSets = Object.values(processedRelicSets);
   const [isTooltipRecommended, setIsTooltipRecommended] = useState(false);
-  const [isTooltipSet, setIsTooltipSet] = useState<boolean>(false);
+  const [isTooltipSet, setIsTooltipSet] = useState<boolean[]>([
+    false,
+    false,
+    false,
+  ]);
   const [requiredRelicsSet, setRequiredRelicsSet] = useState<any>([]);
   const [colorRelics, setColorRelics] = useState<Array<any>>([]);
   const [relics2pAlt, setRelics2pAlt] = useState<any>(null);
@@ -67,6 +71,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
               return !duplicateRelic;
             })
             .filter((relic) => relic.num === 2) // Filtre toutes les relics 2p en non recommandés
+            .filter((relic) => relic.ornament === false) // Filtre les reliques
             .map((item) => ({
               // Ajoute la traduction dans la relique
               ...item,
@@ -101,49 +106,67 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
               onMouseLeave={() => setIsTooltipRecommended(false)}
             >
               !
+              {isTooltipRecommended && (
+                <div className="absolute z-10 p-2 bg-background rounded-xl w-60 -left-24 top-7 text-white text-sm">
+                  <div className="font-bold">Recommandés :</div>
+                  {requiredRelicsSet?.map((el: any) => (
+                    <div
+                      className="flex gap-1 italic font-normal"
+                      key={crypto.randomUUID()}
+                    >
+                      <span className="font-bold">{el.num}P -</span>
+                      <span> {el.name}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </p>
-            {isTooltipRecommended && (
-              <div className="absolute z-10 p-2 bg-background rounded-xl w-auto text-white">
-                <div className="font-bold">Recommandés :</div>
-                {requiredRelicsSet?.map((el: any) => (
-                  <div
-                    className="flex gap-1 italic font-normal"
-                    key={crypto.randomUUID()}
-                  >
-                    <span className="font-bold">{el.num}P -</span>
-                    <span> {el.name}</span>
-                  </div>
-                ))}
-              </div>
-            )}
           </>
         )}
 
-        <p className="text-yellow text-lg font-bold text-center leading-4 ml-auto">
+        <p
+          className="text-yellow text-lg font-bold text-center leading-4 ml-auto"
+          onMouseEnter={() => setIsTooltipSet([false, false, false])}
+        >
           Sets equipés
         </p>
       </div>
       <div
-        className={`flex w-full text-white mt-5 text-sm font-bold text-center justify-center gap-[15px] relative`}
-        onMouseEnter={() => setIsTooltipSet(true)}
-        onMouseLeave={() => setIsTooltipSet(false)}
+        className={`flex w-full text-white text-sm font-bold text-center justify-center gap-[15px] relative`}
       >
-        {relics2pAlt && isTooltipSet && (
-          <div className="absolute z-10 p-2 bottom-0 bg-background rounded-xl w-60 text-white flex flex-col">
-            <p>Reliques/Ornements possibles :</p>
-            <ul className="text-left list-outside font-normal">
-              {relics2pAlt.map((relic: any) => (
-                <li key={crypto.randomUUID()}>- {relic.name}</li>
-              ))}
-            </ul>
-          </div>
-        )}
         {finalPossessedRelicSets.length !== 0 ? (
           <>
             {finalPossessedRelicSets.map((relic, i) => {
+              let array = [false, false, false];
+              if (i === 0) array = [true, false, false];
+              if (i === 1) array = [false, true, false];
+              if (i === 2) array = [false, false, true];
+
               return (
-                <div className="relative w-[135px]" key={crypto.randomUUID()}>
-                  <img src={`${CDN}/${relic.icon}`} />
+                <div
+                  key={crypto.randomUUID()}
+                  className="relative w-[135px] mt-5"
+                >
+                  {relics2pAlt &&
+                    isTooltipSet[i] &&
+                    colorRelics[i] === "text-red" && (
+                      <div className="absolute z-10 p-2 -left-14 top-5 bg-background rounded-xl w-60 text-white flex flex-col">
+                        <p>Reliques possibles :</p>
+                        <ul className="text-left list-outside font-normal">
+                          {relics2pAlt.map((relic: any) => (
+                            <li key={crypto.randomUUID()}>
+                              <strong>2P -</strong>{" "}
+                              <span className="italic">{relic.name}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  <img
+                    src={`${CDN}/${relic.icon}`}
+                    onMouseEnter={() => setIsTooltipSet(array)}
+                    onMouseLeave={() => setIsTooltipSet([false, false, false])}
+                  />
                   <span
                     className={`absolute top-0 left-0 p-1 bg-background/75 rounded-full ${colorRelics[i]}`}
                   >
@@ -151,6 +174,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                   </span>
                   <span
                     className={`absolute bottom-0 left-0 p-1 w-full bg-background/75 rounded-full text-xs ${colorRelics[i]}`}
+                    onMouseEnter={() => setIsTooltipSet([false, false, false])}
                   >
                     {relic.name}
                   </span>

@@ -28,12 +28,14 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
   useEffect(() => {
     const verifMainStat = () => {
       if (review) {
-        const isGood = review.filter((el) => el.id === lightCone.id) || false;
-        if (isGood.length > 0) {
-          setIsGoodLightCone(true);
-          return null;
-        } else {
-          setIsGoodLightCone(false);
+        if (lightCone) {
+          const isGood = review.filter((el) => el.id === lightCone.id) || false;
+          if (isGood.length > 0) {
+            setIsGoodLightCone(true);
+            return null;
+          } else {
+            setIsGoodLightCone(false);
+          }
         }
 
         const recommendedObject = review.filter((el) => el.recommended) || [];
@@ -61,7 +63,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
           onMouseLeave={() => setIsTooltipVisible(false)}
         >
           {isTooltipVisible && !isGoodLightCone && (
-            <div className="absolute z-10 p-2 bg-background rounded-xl w-auto text-red">
+            <div className="absolute z-10 p-2 bg-background rounded-xl w-auto text-red text-sm">
               <div className="font-bold">Recommandé :</div>
 
               <div className="italic font-normal">
