@@ -104,7 +104,6 @@ const UidPage: React.FC<UidPageProps> = ({
         jsonReview.data,
         jsonUid.characters
       );
-      console.log("review:", sortedReviewData);
       setReview(sortedReviewData);
       setIsLoading(false);
     }

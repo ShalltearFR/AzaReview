@@ -79,17 +79,10 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
         (objet) => objet.type === main_affix.type
       );
 
-      console.log("recommendedTranslate", recommendedTranslate);
-
       // Modification FR
       requiredMainStat = recommendedTranslate.map((el: any) => ({
         name: typeValueMap[el.type] || el.name,
       }));
-      console.log(
-        "typeValueMap[main_affix.type]",
-        typeValueMap[main_affix.type]
-      );
-
       return isGood;
     }
     return true;

@@ -41,7 +41,6 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
     return <div>Chargement...</div>;
   }
 
-  console.log("reviewData", reviewData);
   if (reviewData) {
     return (
       <article
