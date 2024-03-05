@@ -107,7 +107,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
             >
               !
               {isTooltipRecommended && (
-                <div className="absolute z-10 p-2 bg-background rounded-xl w-60 -left-24 top-7 text-white text-sm">
+                <div className="absolute z-10 p-2 bg-background rounded-xl w-60 right-0 xl:right-auto xl:-left-24 top-7 text-white text-sm">
                   <div className="font-bold">Recommandés :</div>
                   {requiredRelicsSet?.map((el: any) => (
                     <div
