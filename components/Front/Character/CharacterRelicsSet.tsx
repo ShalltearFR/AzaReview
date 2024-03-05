@@ -101,13 +101,13 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
         {requiredRelicsSet && (
           <>
             <p
-              className="absolute right-0 px-3 py-1 bg-gray rounded-full text-black font-bold"
+              className="absolute right-0 z-10 px-3 py-1 bg-gray rounded-full text-black font-bold"
               onMouseEnter={() => setIsTooltipRecommended(true)}
               onMouseLeave={() => setIsTooltipRecommended(false)}
             >
               !
               {isTooltipRecommended && (
-                <div className="absolute z-10 p-2 bg-background rounded-xl w-60 right-0 xl:right-auto xl:-left-24 top-7 text-white text-sm">
+                <div className="absolute z-20 p-2 bg-background rounded-xl w-60 right-0 xl:right-auto xl:-left-24 top-7 text-white text-sm">
                   <div className="font-bold">Recommandés :</div>
                   {requiredRelicsSet?.map((el: any) => (
                     <div
