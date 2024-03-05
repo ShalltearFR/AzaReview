@@ -60,7 +60,7 @@ const averageProc: AverageProc[] = [
 const calculateRelic = (
   list: RecommendedStats[],
   sub_affix: RelicSubAffix[],
-  totalCoef: number
+  mainAffixCoef: number
 ) => {
   const arrayResult = sub_affix.map((subStat) => {
     const procValue =
@@ -73,10 +73,12 @@ const calculateRelic = (
     return (subStat.value / procValue) * recommendedStat.importance || 0;
   });
 
-  const result = arrayResult.reduce(
+  let result = arrayResult.reduce(
     (acc, valeur) => (acc ?? 0) + (valeur ?? 0),
     0
   );
+
+  result = result + mainAffixCoef;
 
   let resultLetter: string = "";
   if (result >= 0 && result < 1.5) resultLetter = "D";

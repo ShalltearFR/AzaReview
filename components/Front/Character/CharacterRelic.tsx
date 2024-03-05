@@ -89,8 +89,16 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
   };
 
   displayValue = typeValueMap[main_affix.type] || main_affix.name;
+  const recommandedMainAffix =
+    reviewRecommanded?.find((el) => el.type === main_affix.type)?.importance ||
+    0;
+
   if (Array.isArray(reviewRecommanded) && reviewRecommanded.length > 0) {
-    const value = calculateRelic(reviewRecommanded, sub_affix, totalCoef);
+    const value = calculateRelic(
+      reviewRecommanded,
+      sub_affix,
+      recommandedMainAffix
+    );
     relicNotation = value;
   }
 
