@@ -30,6 +30,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
   const [requiredRelicsSet, setRequiredRelicsSet] = useState<any>([]);
   const [colorRelics, setColorRelics] = useState<Array<any>>([]);
   const [relics2pAlt, setRelics2pAlt] = useState<any>(null);
+  const [asOrnament, setAsOrnament] = useState<boolean>(true);
 
   useEffect(() => {
     const verifMainStat = () => {
@@ -48,6 +49,24 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
           return "text-red";
         });
         setColorRelics(setColors);
+
+        const getOrnament = finalPossessedRelicSets // Verifie si le joueur possède au moins un ornement ok
+          .map((relicPossessed) => {
+            const corresponding = review.find(
+              (reviewRelic) =>
+                reviewRelic.ornament === true &&
+                reviewRelic.id === relicPossessed.id
+            );
+            return corresponding;
+          })
+          .some((el) => el?.id);
+        console.log("corresponding", getOrnament);
+
+        if (getOrnament) {
+          setAsOrnament(true);
+        } else {
+          setAsOrnament(false);
+        }
 
         // Filtre les relics recommandés
         const reviewRecommended = review.filter(
@@ -101,7 +120,9 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
         {requiredRelicsSet && (
           <>
             <div
-              className="absolute right-0 z-10 px-3 py-1 bg-gray rounded-full text-black font-bold"
+              className={`absolute right-0 z-10 px-3 py-1 rounded-full text-black font-bold ${
+                asOrnament ? "bg-gray" : "bg-red"
+              }`}
               onMouseEnter={() => setIsTooltipRecommended(true)}
               onMouseLeave={() => setIsTooltipRecommended(false)}
             >
