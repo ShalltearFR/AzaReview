@@ -157,6 +157,7 @@ const UidPage: React.FC<UidPageProps> = ({
                 <span className="text-xl">Build :</span>
                 <ReactSelect
                   options={characterOptions}
+                  isSearchable={false}
                   styles={{
                     menu: (base) => ({
                       ...base,
