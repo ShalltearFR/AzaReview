@@ -24,7 +24,7 @@ const mainStatOptions = [
   },
   {
     label: "DEF%",
-    value: "DefenseAddedRatio",
+    value: "DefenceAddedRatio",
   },
   {
     label: "PV%",
@@ -103,11 +103,11 @@ const recommendedStatsOptions = [
   },
   {
     label: "DEF",
-    value: "DefenseDelta",
+    value: "DefenceDelta",
   },
   {
     label: "DEF%",
-    value: "DefenseAddedRatio",
+    value: "DefenceAddedRatio",
   },
   {
     label: "PV",

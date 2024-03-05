@@ -80,9 +80,22 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
       );
 
       // Modification FR
-      requiredMainStat = recommendedTranslate.map((el: any) => ({
-        name: typeValueMap[el.type] || el.name,
-      }));
+      const MainStatArray = recommendedTranslate.map((el: any) => {
+        let name;
+        if (typeValueMap[el.type]) {
+          name = typeValueMap[el.type];
+        } else {
+          let reviewType = reviewMainStat.find(
+            (translateItem) => translateItem.type === el.type
+          );
+          name = statsTranslate.find((stat) => stat.type === reviewType?.type);
+          name = name?.name || "";
+        }
+        return {
+          name: name,
+        };
+      });
+      requiredMainStat = MainStatArray;
       return isGood;
     }
     return true;
@@ -126,11 +139,11 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
         }`}
       >
         {isTooltipVisible && equipmentIndex >= 2 && !verifMainStat() && (
-          <div className="absolute z-10 p-2 bg-background rounded-xl w-auto">
+          <div className="absolute z-10 p-2 bg-background rounded-xl w-auto text-white text-left">
             <div className="font-bold">Recommandé :</div>
             {requiredMainStat?.map((el: any) => (
               <div className="italic font-normal" key={crypto.randomUUID()}>
-                {el.name}
+                - {el.name}
               </div>
             ))}
           </div>

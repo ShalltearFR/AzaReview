@@ -9,7 +9,7 @@ const fieldAndType = [
   },
   {
     field: "def",
-    type: "DefenseDelta",
+    type: "DefenceDelta",
   },
   {
     field: "spd",

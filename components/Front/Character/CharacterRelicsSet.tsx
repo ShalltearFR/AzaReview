@@ -100,7 +100,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
       <div className="relative">
         {requiredRelicsSet && (
           <>
-            <p
+            <div
               className="absolute right-0 z-10 px-3 py-1 bg-gray rounded-full text-black font-bold"
               onMouseEnter={() => setIsTooltipRecommended(true)}
               onMouseLeave={() => setIsTooltipRecommended(false)}
@@ -120,7 +120,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                   ))}
                 </div>
               )}
-            </p>
+            </div>
           </>
         )}
 

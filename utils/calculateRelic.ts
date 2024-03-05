@@ -16,11 +16,11 @@ const averageProc: AverageProc[] = [
     value: 0.0389,
   },
   {
-    type: "DefenseDelta",
+    type: "DefenceDelta",
     value: 19,
   },
   {
-    type: "DefenseAddedRatio",
+    type: "DefenceAddedRatio",
     value: 0.0486,
   },
   {
@@ -78,7 +78,7 @@ const calculateRelic = (
     0
   );
 
-  result = result + mainAffixCoef;
+  result += mainAffixCoef;
 
   let resultLetter: string = "";
   if (result >= 0 && result < 1.5) resultLetter = "D";
