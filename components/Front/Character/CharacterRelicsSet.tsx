@@ -60,7 +60,6 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
             return corresponding;
           })
           .some((el) => el?.id);
-        console.log("corresponding", getOrnament);
 
         if (getOrnament) {
           setAsOrnament(true);

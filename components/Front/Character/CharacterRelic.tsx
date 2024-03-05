@@ -4,6 +4,7 @@ import { Relic } from "@/types/jsonUid";
 import { MainStats, RecommendedStats } from "@/types/CharacterModel";
 import calculateRelic from "@/utils/calculateRelic";
 import { useEffect, useRef, useState } from "react";
+import typeValueMap from "@/utils/typeValueMap";
 
 interface CharacterRelicProps {
   stats: Relic;
@@ -13,21 +14,6 @@ interface CharacterRelicProps {
   statsTranslate: Array<any>;
   totalCoef: number;
 }
-
-const typeValueMap: any = {
-  PhysicalAddedRatio: "DGT Physique",
-  QuantumAddedRatio: "DGT Quantique",
-  ImaginaryAddedRatio: "DGT Imaginaire",
-  WindAddedRatio: "DGT Vent",
-  LightningAddedRatio: "DGT Foudre",
-  FireAddedRatio: "DGT Feu",
-  IceAddedRatio: "DGT Glace",
-  SPRatioBase: "Régén. d'énergie",
-  StatusProbabilityBase: "App. des effets",
-  CriticalChanceBase: "Chances Crit.",
-  CriticalDamageBase: "DGT Crit.",
-  HealRatioBase: "Augm. des soins",
-};
 
 const CharacterRelic: React.FC<CharacterRelicProps> = ({
   stats,

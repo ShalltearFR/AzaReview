@@ -3,7 +3,7 @@ type TypeValueMap = {
   QuantumAddedRatio: string;
   ImaginaryAddedRatio: string;
   WindAddedRatio: string;
-  LightningAddedRatio: string;
+  ThunderAddedRatio: string;
   FireAddedRatio: string;
   IceAddedRatio: string;
   SPRatioBase: string;
@@ -13,12 +13,12 @@ type TypeValueMap = {
   HealRatioBase: string;
 };
 
-const typeValueMap: TypeValueMap = {
+const typeValueMap: TypeValueMap | any = {
   PhysicalAddedRatio: "DGT Physique",
   QuantumAddedRatio: "DGT Quantique",
   ImaginaryAddedRatio: "DGT Imaginaire",
   WindAddedRatio: "DGT Vent",
-  LightningAddedRatio: "DGT Foudre",
+  ThunderAddedRatio: "DGT Foudre",
   FireAddedRatio: "DGT Feu",
   IceAddedRatio: "DGT Glace",
   SPRatioBase: "Régén. d'énergie",
