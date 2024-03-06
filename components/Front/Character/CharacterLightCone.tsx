@@ -39,10 +39,13 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
         }
 
         const recommendedObject = review.filter((el) => el.recommended) || [];
-        const recommendedTranslate = lightconeTranslate.filter(
-          (el) => el.id === recommendedObject[0]?.id || ""
-        );
-        setRecommendedLightCone(recommendedTranslate[0] || { name: "" });
+        const recommendedTranslate = recommendedObject.map((el) => {
+          const toTranslate = lightconeTranslate.find(
+            (translate) => translate.id === el.id
+          );
+          return toTranslate;
+        });
+        setRecommendedLightCone(recommendedTranslate || [{ name: "" }]);
       } else {
         setIsGoodLightCone(true);
       }
@@ -64,11 +67,20 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
         >
           {isTooltipVisible && !isGoodLightCone && (
             <div className="absolute z-10 p-2 bg-background rounded-xl w-auto text-white text-sm">
-              <div className="font-bold">F2P recommandé :</div>
-
-              <div className="italic font-normal">
-                {recommendedLightCone.name}
+              <div>
+                <p className="font-bold">F2P recommandé :</p>
+                <p className="italic font-normal">
+                  {recommendedLightCone[0].name}
+                </p>
               </div>
+              {recommendedLightCone[1] && (
+                <div className="mt-5">
+                  <p className="font-bold">Alternative :</p>
+                  <p className="italic font-normal">
+                    {recommendedLightCone[1].name}
+                  </p>
+                </div>
+              )}
             </div>
           )}
           <div
