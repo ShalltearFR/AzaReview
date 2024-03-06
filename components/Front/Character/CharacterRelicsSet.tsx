@@ -30,7 +30,10 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
   const [requiredRelicsSet, setRequiredRelicsSet] = useState<any>([]);
   const [colorRelics, setColorRelics] = useState<Array<any>>([]);
   const [relics2pAlt, setRelics2pAlt] = useState<any>(null);
-  const [asOrnament, setAsOrnament] = useState<boolean>(true);
+  const [asOrnament, setAsOrnament] = useState<{
+    isGood: boolean;
+    relicsNumber?: Array<any>;
+  }>({ isGood: true });
 
   useEffect(() => {
     const verifMainStat = () => {
@@ -50,7 +53,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
         });
         setColorRelics(setColors);
 
-        const getOrnament = finalPossessedRelicSets // Verifie si le joueur possède au moins un ornement ok
+        const asGoodOrnament = finalPossessedRelicSets // Verifie si le joueur possède au moins un ornement ok
           .map((relicPossessed) => {
             const corresponding = review.find(
               (reviewRelic) =>
@@ -61,10 +64,14 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
           })
           .some((el) => el?.id);
 
-        if (getOrnament) {
-          setAsOrnament(true);
+        const numberOfRelicsEquiped = finalPossessedRelicSets.map(
+          (equipedRelic) => equipedRelic.num
+        );
+
+        if (asGoodOrnament) {
+          setAsOrnament({ isGood: true, relicsNumber: numberOfRelicsEquiped });
         } else {
-          setAsOrnament(false);
+          setAsOrnament({ isGood: false, relicsNumber: numberOfRelicsEquiped });
         }
 
         // Filtre les relics recommandés
@@ -88,8 +95,8 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
               );
               return !duplicateRelic;
             })
-            .filter((relic) => relic.num === 2) // Filtre toutes les relics 2p en non recommandés
-            .filter((relic) => relic.ornament === false) // Filtre les reliques
+            .filter((relic) => relic.num === 2) // Filtre toutes les relics 2p
+            .filter((relic) => relic.recommended === false) // Filtre en non recommandés
             .map((item) => ({
               // Ajoute la traduction dans la relique
               ...item,
@@ -97,6 +104,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                 (translate) => translate.id === item.id
               ) || {}),
             }));
+
           setRelics2pAlt(relics2P);
         } else {
           setRelics2pAlt(null);
@@ -120,7 +128,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
           <>
             <div
               className={`absolute right-0 z-10 px-3 py-1 rounded-full text-black font-bold ${
-                asOrnament ? "bg-gray" : "bg-red"
+                asOrnament.isGood ? "bg-gray" : "bg-red"
               }`}
               onMouseEnter={() => setIsTooltipRecommended(true)}
               onMouseLeave={() => setIsTooltipRecommended(false)}
@@ -131,7 +139,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                   <div className="font-bold">Recommandés :</div>
                   {requiredRelicsSet?.map((el: any) => (
                     <div
-                      className="flex gap-1 italic font-normal"
+                      className="gap-1 italic font-normal"
                       key={crypto.randomUUID()}
                     >
                       <span className="font-bold">{el.num}P -</span>
@@ -144,10 +152,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
           </>
         )}
 
-        <p
-          className="text-yellow text-lg font-bold text-center leading-4 ml-auto"
-          onMouseEnter={() => setIsTooltipSet([false, false, false])}
-        >
+        <p className="text-yellow text-lg font-bold text-center leading-4 ml-auto">
           Sets equipés
         </p>
       </div>
@@ -162,30 +167,65 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
               if (i === 1) array = [false, true, false];
               if (i === 2) array = [false, false, true];
 
+              let relicsMap = [];
+              let description = "";
+
+              if (relics2pAlt) {
+                if (i === 2) {
+                  relicsMap = relics2pAlt.filter(
+                    (relic: any) => relic.ornament === true
+                  );
+                  description = "Ornements possible :";
+                } else if (i === 1 && asOrnament.isGood) {
+                  relicsMap = relics2pAlt.filter(
+                    (relic: any) => relic.ornament === true
+                  );
+                  description = "Ornements possible :";
+                } else if (
+                  i === 1 &&
+                  asOrnament?.relicsNumber &&
+                  asOrnament?.relicsNumber[0] === 4
+                ) {
+                  relicsMap = relics2pAlt.filter(
+                    (relic: any) => relic.ornament === true
+                  );
+                  description = "Ornements possible :";
+                } else {
+                  relicsMap = relics2pAlt.filter(
+                    (relic: any) => relic.ornament === false
+                  );
+                  description = "Reliques possible :";
+                }
+              }
+
               return (
                 <div
-                  key={crypto.randomUUID()}
+                  key={`${colorRelics[i]}+${i}`}
                   className="relative w-[135px] mt-5"
+                  onMouseEnter={() => setIsTooltipSet(array)}
+                  onMouseLeave={() => setIsTooltipSet([false, false, false])}
                 >
-                  {relics2pAlt &&
-                    isTooltipSet[i] &&
-                    colorRelics[i] === "text-red" && (
-                      <div className="absolute z-10 p-2 -left-14 top-5 bg-background rounded-xl w-60 text-white flex flex-col">
-                        <p>Reliques possibles :</p>
-                        <ul className="text-left list-outside font-normal">
-                          {relics2pAlt.map((relic: any) => (
-                            <li key={crypto.randomUUID()}>
-                              <strong>2P -</strong>{" "}
-                              <span className="italic">{relic.name}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                  {relicsMap && colorRelics[i] === "text-red" && (
+                    <div
+                      className={`absolute z-10 p-2 -left-14 top-5 bg-background rounded-xl w-60 text-white flex flex-col ${
+                        isTooltipSet[i] ? "block" : "hidden"
+                      }`}
+                    >
+                      <p className="text-left">{description}</p>
+                      <ul className="text-left list-outside font-normal">
+                        {relicsMap.map((relic: any) => (
+                          <li key={crypto.randomUUID()}>
+                            <strong>2P -</strong>{" "}
+                            <span className="italic">{relic.name}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
                   <img
                     src={`${CDN}/${relic.icon}`}
-                    onMouseEnter={() => setIsTooltipSet(array)}
-                    onMouseLeave={() => setIsTooltipSet([false, false, false])}
+                    className="w-[128px] h-[128px]"
                   />
                   <span
                     className={`absolute top-0 left-0 p-1 bg-background/75 rounded-full ${colorRelics[i]}`}
@@ -194,7 +234,6 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                   </span>
                   <span
                     className={`absolute bottom-0 left-0 p-1 w-full bg-background/75 rounded-full text-xs ${colorRelics[i]}`}
-                    onMouseEnter={() => setIsTooltipSet([false, false, false])}
                   >
                     {relic.name}
                   </span>
@@ -203,7 +242,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
             })}
           </>
         ) : (
-          <p>Pas de set équipé</p>
+          <p className="mt-5">Pas de set équipé</p>
         )}
       </div>
     </div>

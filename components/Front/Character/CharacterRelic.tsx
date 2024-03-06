@@ -127,8 +127,11 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
         {isTooltipVisible && equipmentIndex >= 2 && !verifMainStat() && (
           <div className="absolute z-10 p-2 bg-background rounded-xl w-auto text-white text-left">
             <div className="font-bold">Recommandé :</div>
-            {requiredMainStat?.map((el: any) => (
-              <div className="italic font-normal" key={crypto.randomUUID()}>
+            {requiredMainStat?.map((el: any, i: number) => (
+              <div
+                className="italic font-normal"
+                key={`mainStat+${el.name}+${i}`}
+              >
                 - {el.name}
               </div>
             ))}
