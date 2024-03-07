@@ -19,7 +19,7 @@ export default function App() {
           offset={1}
           speed={1}
           style={{ backgroundColor: "#805E73" }}
-        />
+        ></ParallaxLayer>
         <ParallaxLayer
           offset={2}
           speed={1}

@@ -171,30 +171,23 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
               let description = "";
 
               if (relics2pAlt) {
-                if (i === 2) {
-                  relicsMap = relics2pAlt.filter(
-                    (relic: any) => relic.ornament === true
-                  );
-                  description = "Ornements possible :";
-                } else if (i === 1 && asOrnament.isGood) {
-                  relicsMap = relics2pAlt.filter(
-                    (relic: any) => relic.ornament === true
-                  );
-                  description = "Ornements possible :";
-                } else if (
-                  i === 1 &&
-                  asOrnament?.relicsNumber &&
-                  asOrnament?.relicsNumber[0] === 4
+                const filterByOrnament = (relic: any) =>
+                  relic.ornament === true;
+
+                if (
+                  i === 2 ||
+                  (i === 1 && asOrnament.isGood) ||
+                  (i === 1 &&
+                    asOrnament?.relicsNumber &&
+                    asOrnament.relicsNumber[0] === 4)
                 ) {
-                  relicsMap = relics2pAlt.filter(
-                    (relic: any) => relic.ornament === true
-                  );
-                  description = "Ornements possible :";
+                  relicsMap = relics2pAlt.filter(filterByOrnament);
+                  description = "Ornements possibles :";
                 } else {
                   relicsMap = relics2pAlt.filter(
                     (relic: any) => relic.ornament === false
                   );
-                  description = "Reliques possible :";
+                  description = "Reliques possibles :";
                 }
               }
 
@@ -205,23 +198,25 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                   onMouseEnter={() => setIsTooltipSet(array)}
                   onMouseLeave={() => setIsTooltipSet([false, false, false])}
                 >
-                  {relicsMap && colorRelics[i] === "text-red" && (
-                    <div
-                      className={`absolute z-10 p-2 -left-14 top-5 bg-background rounded-xl w-60 text-white flex flex-col ${
-                        isTooltipSet[i] ? "block" : "hidden"
-                      }`}
-                    >
-                      <p className="text-left">{description}</p>
-                      <ul className="text-left list-outside font-normal">
-                        {relicsMap.map((relic: any) => (
-                          <li key={crypto.randomUUID()}>
-                            <strong>2P -</strong>{" "}
-                            <span className="italic">{relic.name}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+                  {relicsMap &&
+                    relicsMap.length > 0 &&
+                    colorRelics[i] === "text-red" && (
+                      <div
+                        className={`absolute z-10 p-2 -left-14 top-5 bg-background rounded-xl w-60 text-white flex flex-col ${
+                          isTooltipSet[i] ? "block" : "hidden"
+                        }`}
+                      >
+                        <p className="text-left">{description}</p>
+                        <ul className="text-left list-outside font-normal">
+                          {relicsMap.map((relic: any) => (
+                            <li key={crypto.randomUUID()}>
+                              <strong>2P -</strong>{" "}
+                              <span className="italic">{relic.name}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
 
                   <img
                     src={`${CDN}/${relic.icon}`}
