@@ -175,23 +175,20 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
               let description = "";
 
               if (relics2pAlt) {
-                const filterByOrnament = (relic: any) =>
-                  relic.ornament === true;
-
-                if (
-                  i === 2 ||
-                  (i === 1 && asOrnament.isGood) ||
+                const isOrnament =
                   (i === 1 &&
                     asOrnament?.relicsNumber &&
-                    asOrnament.relicsNumber[0] === 4)
-                ) {
-                  relicsMap = relics2pAlt.filter(filterByOrnament);
-                  description = "Ornements possibles :";
-                } else {
-                  relicsMap = relics2pAlt.filter(
-                    (relic: any) => relic.ornament === false
-                  );
-                  description = "Reliques possibles :";
+                    asOrnament?.relicsNumber[0] === 4) ||
+                  i === 2;
+
+                relicsMap = relics2pAlt.filter((relic: any) =>
+                  isOrnament ? relic.ornament : !relic.ornament
+                );
+                description = isOrnament
+                  ? "Ornements possible :"
+                  : "Reliques possible :";
+                if (isOrnament && i === 1 && asOrnament.isGood) {
+                  description = "Ornements possible :";
                 }
               }
 
