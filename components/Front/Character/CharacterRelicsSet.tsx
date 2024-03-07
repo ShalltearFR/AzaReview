@@ -35,6 +35,8 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
     relicsNumber?: Array<any>;
   }>({ isGood: true });
 
+  console.log("processedRelicSets", processedRelicSets);
+
   useEffect(() => {
     const verifMainStat = () => {
       if (review) {
@@ -128,7 +130,9 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
           <>
             <div
               className={`absolute right-0 z-10 px-3 py-1 rounded-full text-black font-bold ${
-                asOrnament.isGood ? "bg-gray" : "bg-red"
+                Object.keys(processedRelicSets).length > 0
+                  ? "bg-gray"
+                  : "bg-red"
               }`}
               onMouseEnter={() => setIsTooltipRecommended(true)}
               onMouseLeave={() => setIsTooltipRecommended(false)}
