@@ -35,8 +35,6 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
     relicsNumber?: Array<any>;
   }>({ isGood: true });
 
-  console.log("processedRelicSets", processedRelicSets);
-
   useEffect(() => {
     const verifMainStat = () => {
       if (review) {
