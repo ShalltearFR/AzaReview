@@ -15,7 +15,7 @@
 //    "QuantumAddedRatio"  //DGT Quantique//
 //    "ImaginaryAddedRatio"  //DGT Imaginaire//
 //    "WindAddedRatio"  //DGT Vent//
-//    "LightningAddedRatio"  //DGT Foudre//
+//    "ThunderAddedRatio"  //DGT Foudre//
 //    "IceAddedRatio"  //DGT Glace//
 //    "FireAddedRatio"  //DGT Feu//
 //    "SPRatioBase"  //Recharge energie//
@@ -58,7 +58,7 @@ const mainStatsSchema = new Schema({
       "QuantumAddedRatio",
       "ImaginaryAddedRatio",
       "WindAddedRatio",
-      "LightningAddedRatio",
+      "ThunderAddedRatio",
       "IceAddedRatio",
       "FireAddedRatio",
       "SPRatioBase",
@@ -85,7 +85,7 @@ const recommendedStatsSchema = new Schema({
       "QuantumAddedRatio",
       "ImaginaryAddedRatio",
       "WindAddedRatio",
-      "LightningAddedRatio",
+      "ThunderAddedRatio",
       "IceAddedRatio",
       "FireAddedRatio",
       "SPRatioBase",

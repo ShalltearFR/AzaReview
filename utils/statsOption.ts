@@ -80,7 +80,7 @@ const mainStatOptions = [
   },
   {
     label: "DGT Foudre",
-    value: "LightningAddedRatio",
+    value: "ThunderAddedRatio",
   },
   {
     label: "DGT Glace",
@@ -167,7 +167,7 @@ const recommendedStatsOptions = [
   },
   {
     label: "DGT Foudre",
-    value: "LightningAddedRatio",
+    value: "ThunderAddedRatio",
   },
   {
     label: "DGT Glace",
