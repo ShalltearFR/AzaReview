@@ -8,7 +8,6 @@ type RelicsSet = {
   id: string;
   num: 2 | 4;
   recommended: boolean;
-  ornament: boolean;
 };
 
 type MainStats = {
