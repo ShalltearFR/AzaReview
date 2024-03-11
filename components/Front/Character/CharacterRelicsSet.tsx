@@ -11,15 +11,25 @@ interface CharacterRelicsSetProps {
   relicsSetTranslate: Array<any>;
 }
 
+interface AsOrnamentState {
+  isGood: boolean;
+  asAnOrnamant: boolean;
+  relicsNumber?: Array<any>;
+}
+
+const processRelicSets = (relics: RelicSet[]) => {
+  return relics.reduce((accumulator, relicSet) => {
+    accumulator[relicSet.id] = relicSet;
+    return accumulator;
+  }, {} as Record<any, any>);
+};
+
 const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
   relics,
   review,
   relicsSetTranslate,
 }) => {
-  const processedRelicSets = relics.reduce((accumulator, relicSet) => {
-    accumulator[relicSet.id] = relicSet;
-    return accumulator;
-  }, {} as Record<any, any>);
+  const processedRelicSets = processRelicSets(relics);
 
   const finalPossessedRelicSets = Object.values(processedRelicSets);
   const [isTooltipRecommended, setIsTooltipRecommended] = useState(false);
@@ -28,39 +38,38 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
     false,
     false,
   ]);
-  const [requiredRelicsSet, setRequiredRelicsSet] = useState<any>([]);
+  const [requiredRelicsSet, setRequiredRelicsSet] = useState<any[]>([]);
   const [colorExclamation, setColorExclamation] = useState<boolean>();
-  const [colorRelics, setColorRelics] = useState<Array<any>>([]);
-  const [relics2pAlt, setRelics2pAlt] = useState<any>(null);
-  const [asOrnament, setAsOrnament] = useState<{
-    isGood: boolean;
-    asAnOrnamant: boolean;
-    relicsNumber?: Array<any>;
-  }>({ isGood: true, asAnOrnamant: true });
+  const [colorRelics, setColorRelics] = useState<string[]>([]);
+  const [relics2pAlt, setRelics2pAlt] = useState<any[]>([]);
+  const [asOrnament, setAsOrnament] = useState<AsOrnamentState>({
+    isGood: true,
+    asAnOrnamant: true,
+  });
 
   useEffect(() => {
-    const verifMainStat = () => {
+    const verifyMainStat = () => {
       if (review) {
-        // Parcours chaques elements et verifie si au moins un set de relique equipé = à au moins un set de recommandés
-        const setColors: any = finalPossessedRelicSets.map((relicPossessed) => {
-          const corresponding = review.find(
-            (reviewRelic) =>
-              reviewRelic.id === relicPossessed.id &&
-              reviewRelic.num === relicPossessed.num
-          );
-          if (corresponding) {
-            return "text-white";
+        const setColors: string[] = finalPossessedRelicSets.map(
+          (relicPossessed) => {
+            const corresponding = review.find(
+              (reviewRelic) =>
+                reviewRelic.id === relicPossessed.id &&
+                reviewRelic.num === relicPossessed.num
+            );
+            if (corresponding) {
+              return "text-white";
+            }
+            return "text-red";
           }
-          // Si aucune correspondance n'est trouvée, retourne l'objet reviewMainStat sans modification
-          return "text-red";
-        });
+        );
         setColorRelics(setColors);
 
         const ornamentsList = relicsSetList.filter(
           (relicCondition) => relicCondition.isOrnamant === true
         );
 
-        const asGoodOrnament = finalPossessedRelicSets // Verifie si le joueur possède au moins un ornement ok
+        const asGoodOrnament = finalPossessedRelicSets
           .map((relicPossessed) => {
             const corresponding = ornamentsList.some(
               (ornamant) =>
@@ -69,14 +78,11 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                   (reviewRelic) => reviewRelic.id === relicPossessed.id
                 )
             );
-            console.log("corresponding", corresponding);
             return corresponding;
           })
           .some((el) => el === true);
 
-        console.log("asGoodOrnament", asGoodOrnament);
-
-        const asAnOrnamant = finalPossessedRelicSets // Verifie si le joueur possède au moins un ornement ok
+        const asAnOrnamant = finalPossessedRelicSets
           .map((relicPossessed) => {
             const corresponding = ornamentsList.some(
               (ornamant) => ornamant.id === relicPossessed.id
@@ -95,31 +101,26 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
           relicsNumber: numberOfRelicsEquiped,
         });
 
-        // Filtre les relics recommandés
         const reviewRecommended = review.filter(
           (reviewEl) => reviewEl.recommended
         );
 
-        // Ajoute le nom traduit des relics
         const translateArray = reviewRecommended.map((item) => ({
           ...item,
           ...(relicsSetTranslate.find((obj2) => obj2.id === item.id) || {}),
         }));
 
-        if (setColors.some((el: any) => el === "text-red")) {
-          // Si un set n'est pas bon
+        if (setColors.some((el: string) => el === "text-red")) {
           const relics2P = review
             .filter((reviewRelic) => {
-              // Filtre les relics equipés
               const duplicateRelic = relics.find(
                 (singleRelic) => singleRelic.id === reviewRelic.id
               );
               return !duplicateRelic;
             })
-            .filter((relic) => relic.num === 2) // Filtre toutes les relics 2p
-            .filter((relic) => relic.recommended === false) // Filtre en non recommandés
+            .filter((relic) => relic.num === 2)
+            .filter((relic) => relic.recommended === false)
             .map((item) => ({
-              // Ajoute la traduction dans la relique
               ...item,
               ...(relicsSetTranslate.find(
                 (translate) => translate.id === item.id
@@ -128,19 +129,19 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
 
           setRelics2pAlt(relics2P);
         } else {
-          setRelics2pAlt(null);
+          setRelics2pAlt([]);
         }
 
         setRequiredRelicsSet(translateArray);
       } else {
         setColorRelics(["text-white", "text-white", "text-white"]);
-        setRelics2pAlt(null);
-        setRequiredRelicsSet(false);
+        setRelics2pAlt([]);
+        setRequiredRelicsSet([]);
       }
     };
-    verifMainStat();
+    verifyMainStat();
 
-    const exclamationProcess = () => {
+    const processExclamation = () => {
       if (finalPossessedRelicSets.length < 2) {
         setColorExclamation(false);
         return null;
@@ -154,14 +155,13 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
       }
       setColorExclamation(true);
     };
-    exclamationProcess();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    processExclamation();
   }, [review]);
 
   return (
     <div>
       <div className="relative">
-        {requiredRelicsSet && (
+        {requiredRelicsSet.length > 0 && (
           <>
             <div
               className={`absolute right-0 z-10 px-3 py-1 rounded-full text-black font-bold ${
@@ -174,11 +174,8 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
               {isTooltipRecommended && (
                 <div className="absolute z-20 p-2 bg-background rounded-xl w-60 right-0 xl:right-auto xl:-left-24 top-7 text-white text-sm">
                   <div className="font-bold">Recommandés :</div>
-                  {requiredRelicsSet?.map((el: any) => (
-                    <div
-                      className="gap-1 italic font-normal"
-                      key={crypto.randomUUID()}
-                    >
+                  {requiredRelicsSet.map((el: any) => (
+                    <div className="gap-1 italic font-normal" key={el.id}>
                       <span className="font-bold">{el.num}P -</span>
                       <span> {el.name}</span>
                     </div>
@@ -190,7 +187,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
         )}
 
         <p className="text-yellow text-lg font-bold text-center leading-4 ml-auto">
-          Sets equipés
+          Sets équipés
         </p>
       </div>
       <div
@@ -204,60 +201,54 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
               if (i === 1) array = [false, true, false];
               if (i === 2) array = [false, false, true];
 
-              let relicsMap = [];
+              let relicsMap: any[] = [];
               let description = "";
 
-              console.log("relics2pAlt", relics2pAlt);
-              console.log("asOrnament", asOrnament);
+              if (relics2pAlt.length > 0) {
+                const ornamantsList = relicsSetList
+                  .filter((el) => el.isOrnamant === true)
+                  .map((el) => el.id);
+                const relicsList = relicsSetList
+                  .filter((el) => el.isOrnamant === false)
+                  .map((el) => el.id);
 
-              if (relics2pAlt) {
-                const ornamantsList = relicsSetList.filter(
-                  (el) => el.isOrnamant
+                const ornamantsAltList = relics2pAlt.filter((relicAlt: any) =>
+                  ornamantsList.includes(relicAlt.id)
                 );
-                const relicsList = relicsSetList.filter(
-                  (el) => el.isOrnamant === false
+
+                const relicsAltList = relics2pAlt.filter((relicAlt: any) =>
+                  relicsList.includes(relicAlt.id)
                 );
 
-                const ornamantsAltList = relics2pAlt.map((relic: any) => {
-                  if (ornamantsList.includes(relic.id)) return relic;
-                  return null;
-                });
-                console.log("ornamantsAltList", ornamantsAltList);
-                console.log("relicsList", relicsList);
-
-                const relicsAltList = relics2pAlt.map((relic: any) => {
-                  if (relicsList.includes(relic.id)) return relic;
-                  return null;
-                });
                 if (i === 2) {
                   relicsMap = ornamantsAltList;
-                  description = "Ornements possible :";
+                  description = "Ornements possibles :";
                 } else if (
                   i === 1 &&
-                  asOrnament?.relicsNumber &&
-                  asOrnament?.relicsNumber[0] === 4 &&
+                  asOrnament.relicsNumber &&
+                  asOrnament.relicsNumber[0] === 4 &&
                   asOrnament.isGood
                 ) {
                   relicsMap = ornamantsAltList;
-                  description = "Ornements possible :";
+                  description = "Ornements possibles :";
                 } else if (
                   i === 1 &&
-                  asOrnament?.relicsNumber &&
-                  asOrnament?.relicsNumber[0] === 4
+                  asOrnament.relicsNumber &&
+                  asOrnament.relicsNumber[0] === 4
                 ) {
                   relicsMap = ornamantsAltList;
-                  description = "Ornements possible :";
+                  description = "Ornements possibles :";
                 } else if (
                   i === 0 &&
-                  asOrnament?.relicsNumber &&
-                  asOrnament?.relicsNumber[0] === 2 &&
-                  asOrnament?.asAnOrnamant === true
+                  asOrnament.relicsNumber &&
+                  asOrnament.relicsNumber[0] === 2 &&
+                  asOrnament.asAnOrnamant === true
                 ) {
                   relicsMap = ornamantsAltList;
-                  description = "Ornements possible :";
+                  description = "Ornements possibles :";
                 } else {
                   relicsMap = relicsAltList;
-                  description = "Reliques possible :";
+                  description = "Reliques possibles :";
                 }
               }
 
@@ -268,25 +259,23 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                   onMouseEnter={() => setIsTooltipSet(array)}
                   onMouseLeave={() => setIsTooltipSet([false, false, false])}
                 >
-                  {relicsMap &&
-                    relicsMap.length > 0 &&
-                    colorRelics[i] === "text-red" && (
-                      <div
-                        className={`absolute z-10 p-2 -left-14 top-5 bg-background rounded-xl w-60 text-white flex flex-col ${
-                          isTooltipSet[i] ? "block" : "hidden"
-                        }`}
-                      >
-                        <p className="text-left">{description}</p>
-                        <ul className="text-left list-outside font-normal">
-                          {relics2pAlt.map((relic: any) => (
-                            <li key={crypto.randomUUID()}>
-                              <strong>2P -</strong>{" "}
-                              <span className="italic">{relic.name}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                  {relicsMap.length > 0 && colorRelics[i] === "text-red" && (
+                    <div
+                      className={`absolute z-10 p-2 -left-14 top-5 bg-background rounded-xl w-60 text-white flex flex-col ${
+                        isTooltipSet[i] ? "block" : "hidden"
+                      }`}
+                    >
+                      <p className="text-left">{description}</p>
+                      <ul className="text-left list-outside font-normal">
+                        {relicsMap.map((relicAlt: any) => (
+                          <li key={relicAlt.id}>
+                            <strong>2P -</strong>{" "}
+                            <span className="italic">{relicAlt.name}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
 
                   <img
                     src={`${CDN}/${relic.icon}`}
@@ -307,7 +296,6 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
             })}
           </>
         ) : (
-          // Situation si pas de reliques ni ornements
           <p className="mt-5">Pas de set équipé</p>
         )}
       </div>
