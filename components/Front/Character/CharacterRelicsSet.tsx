@@ -156,7 +156,8 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
       setColorExclamation(true);
     };
     processExclamation();
-  }, [review, finalPossessedRelicSets]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [review]);
 
   return (
     <div>
