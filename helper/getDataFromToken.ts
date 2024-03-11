@@ -12,7 +12,6 @@ export const getDataFromToken = (request: NextRequest) => {
     // Return the user ID from the decoded token
     return decodedToken;
   } catch (error) {
-    //console.error("Error decoding token:", error);
     // Handle the error or return a response to the user
     return null;
   }
