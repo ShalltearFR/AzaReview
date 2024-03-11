@@ -156,7 +156,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
       setColorExclamation(true);
     };
     processExclamation();
-  }, [review]);
+  }, [review, finalPossessedRelicSets]);
 
   return (
     <div>
