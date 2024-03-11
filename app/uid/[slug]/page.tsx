@@ -104,6 +104,13 @@ export default async function Page({ params }: { params: { slug: number } }) {
   );
   const lightconesTranslateToArray = Object.values(lightconesTranslate);
 
+  //Recupère les traductions des lightcones
+  const relicsList: Array<any> = await getData(
+    `${CDN}/index_min/fr/relics.json`,
+    18000 //Cache de 5h
+  );
+  const RelicsListArray = Object.values(relicsList);
+
   if (!jsonUid || !resReview) {
     return <div className="text-center mt-10">Chargement en cours ...</div>;
   }
@@ -116,6 +123,7 @@ export default async function Page({ params }: { params: { slug: number } }) {
         statsTranslate={statsTranslateToArray}
         relicsSetTranslate={RelicsSetTranslateToArray}
         lightconesTranslate={lightconesTranslateToArray}
+        RelicsList={RelicsListArray}
       />
       <Footer />
     </>

@@ -25,6 +25,7 @@ interface UidPageProps {
   statsTranslate: Array<any>;
   relicsSetTranslate: Array<any>;
   lightconesTranslate: Array<any>;
+  RelicsList: Array<any>;
 }
 
 const UidPage: React.FC<UidPageProps> = ({
@@ -33,6 +34,7 @@ const UidPage: React.FC<UidPageProps> = ({
   statsTranslate,
   relicsSetTranslate,
   lightconesTranslate,
+  RelicsList,
 }) => {
   const searchParams = useSearchParams();
   const characterQuery = searchParams.get("c");
@@ -113,8 +115,35 @@ const UidPage: React.FC<UidPageProps> = ({
   }, [jsonReview, uidData]);
 
   useEffect(() => {
-    setUidData(jsonUid);
-  }, [jsonUid]);
+    const orderOfType = ["HEAD", "HAND", "BODY", "FOOT", "NECK", "OBJECT"];
+
+    const customSort = (a: any, b: any) => {
+      const typeA = RelicsList.find((item) => item.id === a.id)?.type;
+      const typeB = RelicsList.find((item) => item.id === b.id)?.type;
+
+      // Utiliser l'ordre défini pour trier
+      const indexA = orderOfType.indexOf(typeA);
+      const indexB = orderOfType.indexOf(typeB);
+
+      return indexA - indexB;
+    };
+
+    const charactersList = jsonUid.characters.map((character, index) => {
+      if (character.relics) {
+        if (character.relics.length === 0) return character;
+
+        // Create a sorted copy of the relics array
+        const data = jsonUid.characters[index];
+        data.relics = [...character.relics].sort(customSort);
+        return data;
+      }
+      return character;
+    });
+    const Uid = { ...jsonUid };
+    Uid.characters = charactersList;
+
+    setUidData(Uid);
+  }, [RelicsList, jsonUid]);
 
   useEffect(() => {
     if (
