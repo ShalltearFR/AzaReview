@@ -209,24 +209,26 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
 
               console.log("relics2pAlt", relics2pAlt);
               console.log("asOrnament", asOrnament);
-              const ornamantsList = relicsSetList.filter((el) => el.isOrnamant);
-              const relicsList = relicsSetList.filter(
-                (el) => el.isOrnamant === false
-              );
-
-              const ornamantsAltList = relics2pAlt.map((relic: any) => {
-                if (ornamantsList.includes(relic.id)) return relic;
-                return null;
-              });
-              console.log("ornamantsAltList", ornamantsAltList);
-              console.log("relicsList", relicsList);
-
-              const relicsAltList = relics2pAlt.map((relic: any) => {
-                if (relicsList.includes(relic.id)) return relic;
-                return null;
-              });
 
               if (relics2pAlt) {
+                const ornamantsList = relicsSetList.filter(
+                  (el) => el.isOrnamant
+                );
+                const relicsList = relicsSetList.filter(
+                  (el) => el.isOrnamant === false
+                );
+
+                const ornamantsAltList = relics2pAlt.map((relic: any) => {
+                  if (ornamantsList.includes(relic.id)) return relic;
+                  return null;
+                });
+                console.log("ornamantsAltList", ornamantsAltList);
+                console.log("relicsList", relicsList);
+
+                const relicsAltList = relics2pAlt.map((relic: any) => {
+                  if (relicsList.includes(relic.id)) return relic;
+                  return null;
+                });
                 if (i === 2) {
                   relicsMap = ornamantsAltList;
                   description = "Ornements possible :";
@@ -249,7 +251,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                   i === 0 &&
                   asOrnament?.relicsNumber &&
                   asOrnament?.relicsNumber[0] === 2 &&
-                  asOrnament?.asAnOrnamant
+                  asOrnament?.asAnOrnamant === true
                 ) {
                   relicsMap = ornamantsAltList;
                   description = "Ornements possible :";
