@@ -221,29 +221,35 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                   relicsList.includes(relicAlt.id)
                 );
 
-                if (
-                  i === 2 ||
-                  (i === 1 &&
-                    asOrnament.relicsNumber &&
-                    asOrnament.relicsNumber[0] === 4 &&
-                    asOrnament.isGood) ||
-                  (i === 1 &&
-                    asOrnament.relicsNumber &&
-                    asOrnament.relicsNumber[0] === 4) ||
-                  (i === 0 &&
-                    asOrnament.relicsNumber &&
-                    asOrnament.relicsNumber[0] === 2 &&
-                    asOrnament.asAnOrnamant)
+                if (i === 2) {
+                  relicsMap = ornamantsAltList;
+                  description = "Ornements possibles :";
+                } else if (
+                  i === 1 &&
+                  asOrnament.relicsNumber &&
+                  asOrnament.relicsNumber[0] === 4 &&
+                  asOrnament.isGood
                 ) {
-                  return {
-                    relicsMap: ornamantsAltList,
-                    description: "Ornements possibles :",
-                  };
+                  relicsMap = ornamantsAltList;
+                  description = "Ornements possibles :";
+                } else if (
+                  i === 1 &&
+                  asOrnament.relicsNumber &&
+                  asOrnament.relicsNumber[0] === 4
+                ) {
+                  relicsMap = ornamantsAltList;
+                  description = "Ornements possibles :";
+                } else if (
+                  i === 0 &&
+                  asOrnament.relicsNumber &&
+                  asOrnament.relicsNumber[0] === 2 &&
+                  asOrnament.asAnOrnamant === true
+                ) {
+                  relicsMap = ornamantsAltList;
+                  description = "Ornements possibles :";
                 } else {
-                  return {
-                    relicsMap: relicsAltList,
-                    description: "Reliques possibles :",
-                  };
+                  relicsMap = relicsAltList;
+                  description = "Reliques possibles :";
                 }
               }
 
