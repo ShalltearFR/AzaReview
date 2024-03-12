@@ -27,7 +27,7 @@ const NavBar: React.FC<NavBarProps> = ({ setData, isHomepage }) => {
             />
           </Link>
           <input
-            className="rounded-full w-40 h-10 pl-5 text-lg"
+            className="rounded-full w-40 h-10 pl-5 text-lg z-50"
             maxLength={9}
             placeholder="UID"
             value={uidInput}

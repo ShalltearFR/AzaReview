@@ -137,7 +137,7 @@ export default function App() {
             className="flex flex-col mt-20 md:flex-row md:mt-0 items-center justify-center gap-10"
           >
             <>
-              <div className="flex flex-col justify-center items-center w-[512px] h-96 bg-black rounded-3xl text-white">
+              <div className="flex flex-col justify-center items-center mt-20 xl:mt-0 w-full xl:w-[512px] h-96 bg-black rounded-3xl text-white p-2">
                 <h1 className="text-3xl font-bold mb-10">
                   Votre review Honkai : Star Rail
                 </h1>
@@ -214,7 +214,7 @@ export default function App() {
             className="flex flex-col mt-20 md:flex-row md:mt-0 items-center justify-center gap-10"
           >
             <>
-              <div className="flex flex-col justify-center items-center w-[512px] h-96 bg-black rounded-3xl text-white text-center px-16 text-2xl">
+              <div className="flex flex-col justify-center items-center w-full xl:w-[512px] h-96 bg-black rounded-3xl text-white text-center px-16 text-2xl">
                 <p className="font-bold mb-10">
                   Vous dépensez deja sur le jeu et vous voulez faire des
                   economies ?
