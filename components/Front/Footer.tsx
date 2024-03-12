@@ -18,6 +18,15 @@ const Footer: React.FC = () => {
           />
         </a>
       </p>
+      <p className="text-lg">
+        Payez moins cher avec{" "}
+        <a
+          className="font-bold underline hover:no-underline"
+          href="https://www.eneba.com/fr/top-up-honkai-star-rail-oneiric-shard-malaysia?enb_campaign=Main+Search&enb_content=search+dropdown+-+products&enb_medium=product+card&enb_source=https%3A%2F%2Fwww.eneba.com%2Ftop-up-genshin-impact-genesis-crystals-malaysia&enb_term=1&af_id=Azano&utm_medium=infl&utm_source=Azano&currency=EUR&region=global"
+        >
+          Eneba
+        </a>
+      </p>
       <p>_</p>
       <p className="italic">
         {

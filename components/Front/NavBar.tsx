@@ -34,7 +34,7 @@ const NavBar: React.FC<NavBarProps> = ({ setData, isHomepage }) => {
             onChange={(e) => setUidInput(e.target.value)}
           />
           <button
-            className="bg-[#3E7032] h-10 px-4 rounded-full text-white"
+            className="bg-[#3E7032] h-10 px-4 rounded-full text-white z-50"
             onClick={() => {
               if (uidInput !== "") {
                 if (isNaN(Number(uidInput)) && !isHomepage) {

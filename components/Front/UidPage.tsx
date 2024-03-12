@@ -181,7 +181,7 @@ const UidPage: React.FC<UidPageProps> = ({
 
   if (uidData.status === 404) {
     return (
-      <div className="min-h-[calc(100vh-178px)]">
+      <div className="min-h-[calc(100vh-270px)]">
         <NavBar setData={setUidData} />
         <div className="text-white text-center text-3xl">UID non-existant</div>
       </div>
@@ -190,7 +190,7 @@ const UidPage: React.FC<UidPageProps> = ({
 
   if (uidData.status === 400) {
     return (
-      <div className="min-h-[calc(100vh-178px)]">
+      <div className="min-h-[calc(100vh-270px)]">
         <NavBar setData={setUidData} />
         <div className="text-white text-center text-3xl">UID non-valide</div>
       </div>
@@ -199,7 +199,7 @@ const UidPage: React.FC<UidPageProps> = ({
 
   if (isloading)
     return (
-      <div className="min-h-[calc(100vh-178px)]">
+      <div className="min-h-[calc(100vh-270px)]">
         <NavBar setData={setUidData} />
         <div className="flex justify-center items-center">
           <div role="status">
@@ -226,7 +226,7 @@ const UidPage: React.FC<UidPageProps> = ({
 
   if (!isloading && uidData.status === 200 && review) {
     return (
-      <div className="overflow-hidden min-h-[calc(100vh-178px)]">
+      <div className="overflow-hidden min-h-[calc(100vh-270px)]">
         <NavBar setData={setUidData} />
 
         <section>
