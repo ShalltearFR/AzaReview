@@ -44,7 +44,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   if (reviewData) {
     return (
       <article
-        className="grid xl:grid-cols-3 xl:h-[870px] xl:gap-x-5 py-5 hover:opacity-15"
+        className="grid xl:grid-cols-3 xl:h-[870px] xl:gap-x-5 py-5"
         style={{
           backgroundImage: `url('${CDN2}/img/character_bg.avif')`,
           backgroundSize: "100% auto",
