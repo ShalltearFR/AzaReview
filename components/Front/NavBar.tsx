@@ -27,10 +27,12 @@ const NavBar: React.FC<NavBarProps> = ({ setData, isHomepage }) => {
         <button
           className="bg-[#3E7032] h-10 px-4 rounded-full text-white"
           onClick={() => {
-            if (isNaN(Number(uidInput)) && !isHomepage) {
-              setData({ status: 400 });
-            } else {
-              push(`/uid/${uidInput}`);
+            if (uidInput !== "") {
+              if (isNaN(Number(uidInput)) && !isHomepage) {
+                setData({ status: 400 });
+              } else {
+                push(`/uid/${uidInput}`);
+              }
             }
           }}
         >

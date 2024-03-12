@@ -1,3 +1,5 @@
+import { CDN2 } from "@/utils/cdn";
+
 const Footer: React.FC = () => {
   return (
     <div className="bg-black text-white text-center py-5 xl:mt-14">
@@ -10,7 +12,7 @@ const Footer: React.FC = () => {
         >
           Azano
           <img
-            src="/img/twitch-logo.svg"
+            src={`${CDN2}/img/twitch-logo.svg`}
             className="h-6 ml-1 inline"
             alt="logo twitch"
           />
