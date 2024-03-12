@@ -43,10 +43,10 @@ export default function App() {
             speed={-0.3}
             style={{ pointerEvents: "none" }}
           >
-            <img
+            {/* <img
               src={url("logo_SRE.webp")}
               style={{ width: "15%", marginLeft: "70%" }}
-            />
+            /> */}
           </ParallaxLayer>
 
           <ParallaxLayer offset={1} speed={0.8} style={{ opacity: 0.1 }}>
