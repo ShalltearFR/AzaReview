@@ -62,6 +62,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                     img={`/${character.skills[i].icon}`}
                     level={character.skills[i].level}
                     name={character.skills[i].name}
+                    desc={character.skills[i].desc}
                   />
                 </div>
               );
