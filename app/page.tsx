@@ -3,9 +3,9 @@ import React, { useRef } from "react";
 import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
 import { CDN2 } from "@/utils/cdn";
 
-// Little helpers ...
+// https://awv3node-homepage.surge.sh/build/assets   .svg
 const url = (name: string, wrap = false) =>
-  `${wrap ? "url(" : ""}${CDN2}/${name}.webp${wrap ? ")" : ""}`;
+  `${wrap ? "url(" : ""}${CDN2}/img/homepage/${name}${wrap ? ")" : ""}`;
 
 export default function App() {
   const parallax = useRef<IParallax>(null!);
@@ -28,7 +28,7 @@ export default function App() {
           speed={0}
           factor={3}
           style={{
-            backgroundImage: url("stars", true),
+            backgroundImage: url("stars.svg", true),
             backgroundSize: "cover",
           }}
         />
@@ -39,7 +39,7 @@ export default function App() {
           style={{ pointerEvents: "none" }}
         >
           <img
-            src={url("satellite4")}
+            src={url("logo_SRE.webp")}
             style={{ width: "15%", marginLeft: "70%" }}
           />
         </ParallaxLayer>
