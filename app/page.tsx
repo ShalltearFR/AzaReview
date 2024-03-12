@@ -1,14 +1,11 @@
 "use client";
 import React, { useRef } from "react";
 import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
+import { CDN2 } from "@/utils/cdn";
 
 // Little helpers ...
 const url = (name: string, wrap = false) =>
-  `${
-    wrap ? "url(" : ""
-  }https://awv3node-homepage.surge.sh/build/assets/${name}.svg${
-    wrap ? ")" : ""
-  }`;
+  `${wrap ? "url(" : ""}${CDN2}/${name}.webp${wrap ? ")" : ""}`;
 
 export default function App() {
   const parallax = useRef<IParallax>(null!);
