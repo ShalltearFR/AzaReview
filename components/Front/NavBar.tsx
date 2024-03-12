@@ -3,10 +3,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface NavBarProps {
-  setData: any;
+  setData?: any;
+  isHomepage?: boolean;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ setData }) => {
+const NavBar: React.FC<NavBarProps> = ({ setData, isHomepage }) => {
   const { push } = useRouter();
   const [uidInput, setUidInput] = useState<string>("");
 
@@ -26,7 +27,7 @@ const NavBar: React.FC<NavBarProps> = ({ setData }) => {
         <button
           className="bg-[#3E7032] h-10 px-4 rounded-full text-white"
           onClick={() => {
-            if (isNaN(Number(uidInput))) {
+            if (isNaN(Number(uidInput)) && !isHomepage) {
               setData({ status: 400 });
             } else {
               push(`/uid/${uidInput}`);
@@ -36,7 +37,8 @@ const NavBar: React.FC<NavBarProps> = ({ setData }) => {
           Rechercher
         </button>
       </nav>
-      <div className="xl:h-16 mb-[28px]"></div>
+
+      <div className={`xl:h-16 ${isHomepage ? "" : "mt-[28px]"}`}></div>
     </>
   );
 };

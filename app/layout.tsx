@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import Footer from "@/components/Front/Footer";
 import type { Metadata } from "next";
+import NavBar from "@/components/Front/NavBar";
 
 export const metadata: Metadata = {
   title: "Review HSR",
@@ -17,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className="bg-background">
-        {children}
+        <div>{children}</div>
         <Analytics />
         <SpeedInsights />
       </body>

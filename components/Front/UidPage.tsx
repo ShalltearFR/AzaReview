@@ -54,6 +54,8 @@ const UidPage: React.FC<UidPageProps> = ({
 
   const [review, setReview] = useState<any>();
 
+  console.log("uidData.status", uidData.status);
+
   useEffect(() => {
     const transformCharacterQuery = () => {
       if (isNaN(Number(characterQuery))) {
@@ -115,34 +117,40 @@ const UidPage: React.FC<UidPageProps> = ({
   }, [jsonReview, uidData]);
 
   useEffect(() => {
-    const orderOfType = ["HEAD", "HAND", "BODY", "FOOT", "NECK", "OBJECT"];
+    if (jsonUid.characters?.length > 0) {
+      const orderOfType = ["HEAD", "HAND", "BODY", "FOOT", "NECK", "OBJECT"];
 
-    const customSort = (a: any, b: any) => {
-      const typeA = RelicsList.find((item) => item.id === a.id)?.type;
-      const typeB = RelicsList.find((item) => item.id === b.id)?.type;
+      const customSort = (a: any, b: any) => {
+        const typeA = RelicsList.find((item) => item.id === a.id)?.type;
+        const typeB = RelicsList.find((item) => item.id === b.id)?.type;
 
-      // Utiliser l'ordre défini pour trier
-      const indexA = orderOfType.indexOf(typeA);
-      const indexB = orderOfType.indexOf(typeB);
+        // Utiliser l'ordre défini pour trier
+        const indexA = orderOfType.indexOf(typeA);
+        const indexB = orderOfType.indexOf(typeB);
 
-      return indexA - indexB;
-    };
+        return indexA - indexB;
+      };
 
-    const charactersList = jsonUid.characters.map((character, index) => {
-      if (character.relics) {
-        if (character.relics.length === 0) return character;
+      const charactersList = jsonUid.characters.map((character, index) => {
+        if (character.relics) {
+          if (character.relics.length === 0) return character;
 
-        // Create a sorted copy of the relics array
-        const data = jsonUid.characters[index];
-        data.relics = [...character.relics].sort(customSort);
-        return data;
-      }
-      return character;
-    });
-    const Uid = { ...jsonUid };
-    Uid.characters = charactersList;
+          // Create a sorted copy of the relics array
+          const data = jsonUid.characters[index];
+          data.relics = [...character.relics].sort(customSort);
+          return data;
+        }
+        return character;
+      });
+      const Uid = { ...jsonUid };
+      Uid.characters = charactersList;
 
-    setUidData(Uid);
+      setUidData(Uid);
+    } else {
+      setUidData({
+        status: jsonUid.status,
+      });
+    }
   }, [RelicsList, jsonUid]);
 
   useEffect(() => {
