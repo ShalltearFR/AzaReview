@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description:
     "Votre review de compte Honkai : Star Rail, rapidement et simplement",
   openGraph: {
-    images: [`/img/logo_SRE.webp`],
+    images: [`/img/homepage/logo_SRE.webp`],
   },
 };
 
