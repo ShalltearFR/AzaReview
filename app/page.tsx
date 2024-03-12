@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
 import { CDN2 } from "@/utils/cdn";
 import NavBar from "@/components/Front/NavBar";
