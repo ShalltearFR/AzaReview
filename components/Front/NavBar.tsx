@@ -17,9 +17,6 @@ const NavBar: React.FC<NavBarProps> = ({ setData, isHomepage }) => {
     <>
       <nav className="flex bg-[#030303] w-screen h-16 xl:fixed z-50">
         <div className="relative flex w-full gap-7 justify-center items-center">
-          {/* <span className="text-white text-xl absolute right-5 text-center font-bold">
-            SITE EN BETA
-          </span> */}
           <Link href={"/"}>
             <img
               src={`${CDN2}/img/homepage/logo_min.png`}

@@ -3,7 +3,7 @@ import { CDN, CDN2 } from "@/utils/cdn";
 import { Relic } from "@/types/jsonUid";
 import { MainStats, RecommendedStats } from "@/types/CharacterModel";
 import calculateRelic from "@/utils/calculateRelic";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import typeValueMap from "@/utils/typeValueMap";
 
 interface CharacterRelicProps {
@@ -21,7 +21,6 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
   reviewMainStat,
   equipmentIndex,
   statsTranslate,
-  totalCoef,
 }) => {
   const { rarity, level, icon, main_affix, sub_affix } = stats;
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);

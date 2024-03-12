@@ -66,7 +66,6 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
 
   // SUPPRESSION DU BUILD
   const deleteBuild = useCallback(() => {
-    console.log("suppression", index);
     onDelete(index);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -247,8 +246,6 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
 
   // MET A JOURS LES DONNEES
   const updateData = () => {
-    console.log("update");
-
     const dataSaved = {
       buildName: buildNameInput,
       buildDesc: buildDescriptionInput,

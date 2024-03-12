@@ -3,7 +3,7 @@ import CharacterDetails from "@/components/Front/Character/CharacterDetails";
 import CharacterList from "@/components/Front/CharactersList";
 import NavBar from "@/components/Front/NavBar";
 import { CharacterType } from "@/types/CharacterModel";
-import type { Character, jsonUID } from "@/types/jsonUid";
+import type { jsonUID } from "@/types/jsonUid";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { toPng } from "html-to-image";
@@ -53,8 +53,6 @@ const UidPage: React.FC<UidPageProps> = ({
   const [disableButton, setDisableButton] = useState<boolean>(false);
 
   const [review, setReview] = useState<any>();
-
-  console.log("uidData.status", uidData.status);
 
   useEffect(() => {
     const transformCharacterQuery = () => {

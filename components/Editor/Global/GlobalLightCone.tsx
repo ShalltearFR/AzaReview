@@ -1,13 +1,7 @@
 "use client";
 import React from "react";
-import Select, { SingleValue } from "react-select";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import AddSelect from "../Add/AddSelect";
-
-interface Option {
-  value: string;
-  label: string;
-}
 
 interface LightConeOption {
   value: any;

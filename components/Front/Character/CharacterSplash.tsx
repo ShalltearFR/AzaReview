@@ -18,10 +18,7 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({ character }) => {
           maskSize: "100% 480px",
         }}
       />
-      <div
-        className="w-full self-start font-semibold "
-        // style={{ WebkitTextStroke: "1px black" }}
-      >
+      <div className="w-full self-start font-semibold ">
         <div className="grid grid-cols-[1fr_120px] items-center align-top">
           <span className="text-white text-4xl z-10 ml-5 xl:ml-0">
             {character.name}

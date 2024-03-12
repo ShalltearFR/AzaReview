@@ -12,7 +12,6 @@ const CharacterTrace: React.FC<CharacterTraceProps> = ({
   level,
   img,
   type,
-  name,
   desc,
 }) => {
   return (
