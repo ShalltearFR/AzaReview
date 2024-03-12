@@ -22,8 +22,8 @@ const NavBar: React.FC<NavBarProps> = ({ setData, isHomepage }) => {
           </span> */}
           <Link href={"/"}>
             <img
-              src={`${CDN2}/img/homepage/logo_SRE.webp`}
-              className="absolute h-0 sm:h-24 left-2 top-1"
+              src={`${CDN2}/img/homepage/logo_min.png`}
+              className="absolute h-0 sm:h-20 left-2 top-2 z-50"
             />
           </Link>
           <input
