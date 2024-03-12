@@ -1,9 +1,7 @@
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
-import Footer from "@/components/Front/Footer";
 import type { Metadata } from "next";
-import NavBar from "@/components/Front/NavBar";
 import { CDN2 } from "@/utils/cdn";
 
 export const metadata: Metadata = {

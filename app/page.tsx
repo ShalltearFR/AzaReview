@@ -182,7 +182,7 @@ export default function App() {
                   <strong>en dessous de A</strong> {", il faut l'améliorer."}
                 </p>
                 <p className="mt-10">
-                  Les notations sont adaptés pour les besoins du personnage
+                  Les notations sont adaptées pour les besoins du personnage
                 </p>
                 <p className="mt-10 font-medium text-lg">
                   Elles sont toutes évaluées par{" "}
