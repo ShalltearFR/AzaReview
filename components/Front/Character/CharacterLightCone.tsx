@@ -90,7 +90,11 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
               backgroundSize: "contain",
             }}
           >
-            <p className="flex justify-center items-center p-1 rounded-full bg-orange2 text-sm font-bold ml-auto mt-3">
+            <p
+              className={`flex justify-center items-center p-1 rounded-full text-sm font-bold ml-auto mt-3 ${
+                lightCone.level < 80 ? "text-red bg-background" : " bg-orange2"
+              }`}
+            >
               Niv. {lightCone.level}
             </p>
             <p className="flex justify-center items-center w-6 p-1 rounded-full bg-brown text-sm font-bold mt-auto mb-8 ml-2">
