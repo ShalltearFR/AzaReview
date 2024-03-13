@@ -1,4 +1,6 @@
+"use client";
 import { CDN } from "@/utils/cdn";
+import { useState } from "react";
 
 interface CharacterTraceProps {
   type: string;
@@ -12,15 +14,26 @@ const CharacterTrace: React.FC<CharacterTraceProps> = ({
   level,
   img,
   type,
+  name,
   desc,
 }) => {
+  const [tooltip, setTooltip] = useState<boolean>(false);
+
   return (
     <div
-      key={crypto.randomUUID()}
       className="flex flex-col w-20 h-20 relative font-Agbalumo"
-      // title={name}
-      title={desc}
+      onMouseEnter={() => setTooltip(true)}
+      onMouseLeave={() => setTooltip(false)}
     >
+      <div
+        className={`hidden absolute z-20 p-2 bg-background rounded-xl xl:w-96 text-white top-16${
+          tooltip ? " xl:block" : ""
+        }`}
+      >
+        <p className="font-bold">{name}</p>
+        <p>{desc}</p>
+      </div>
+
       <div className="absolute w-16 h-16 top-1 left-1 rounded-full bg-black border border-gray">
         <img src={`${CDN}/${img}`} />
       </div>
