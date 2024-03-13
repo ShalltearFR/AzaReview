@@ -140,7 +140,11 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
         <img src={`${CDN}/${icon}`} className="w-20 mx-auto" />
         <p>{displayValue}</p>
         <p>{main_affix.display}</p>
-        <p className="absolute top-0 right-5 py-1 px-2 bg-gray rounded-full text-xs text-white">{`+${level}`}</p>
+        <p
+          className={`absolute top-0 right-5 py-1 px-2 rounded-full text-xs ${
+            level < 15 ? "text-red bg-background" : "text-white bg-gray"
+          }`}
+        >{`+${level}`}</p>
       </div>
       <div className="flex flex-col relative w-full h-full justify-center text-white">
         <div className="absolute flex right-20 min-w-[87px] text-gray/50 text-[62px] -mt-3">
