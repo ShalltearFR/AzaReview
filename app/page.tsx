@@ -9,7 +9,7 @@ export default function App() {
     <>
       <NavBar isHomepage />
       <div className="mt-10 text-white">
-        <section className="flex flex-col xl:flex-row justify-center items-center min-h-[calc(100vh-104px)] gap-y-10 xl:gap-x-10">
+        <section className="flex flex-col xl:flex-row justify-center items-center min-h-[calc(100vh-104px)] gap-y-10 lg:gap-x-10">
           <div className="bg-black p-5 w-full xl:w-[750px] xl:rounded-3xl">
             <h1 className="text-3xl xl:text-4xl font-bold text-center">
               {"Votre review Honkai : Star Rail"}
@@ -62,11 +62,14 @@ export default function App() {
             />
           </div>
         </section>
-        <section className="bg-purple py-20">
-          <div className="mx-auto w-full xl:w-[750px] translate-y-5">
-            <img src="/img/homepage/pela.webp" className="h-36 ml-auto" />
+        <section className="bg-purple py-20 min-h-screen">
+          <div className="mx-auto w-full xl:w-[750px]">
+            <img
+              src="/img/homepage/pela.webp"
+              className="h-36 ml-auto translate-y-5"
+            />
           </div>
-          <div className="flex flex-col gap-y-5 min-h-screen [&_article]:p-5 [&_article]:bg-black [&_article]:xl:w-[750px] [&_article]:w-full justify-center items-center [&_article]:xl:rounded-3xl">
+          <div className="flex flex-col gap-y-5 [&_article]:p-5 [&_article]:bg-black [&_article]:xl:w-[750px] [&_article]:w-full justify-center items-center [&_article]:xl:rounded-3xl">
             <article>
               <h2 className="text-xl font-bold text-center">
                 {"Comment l'utiliser et le comprendre ?"}
