@@ -10,47 +10,48 @@ export default function App() {
   const scrollEnabled = useRef(true);
 
   useEffect(() => {
-    if (window.innerWidth >= 1900) {
-      const handleScroll = (event: any) => {
-        if (!scrollEnabled.current) {
-          event.preventDefault();
-          return;
-        }
+    const handleScroll = (event: any) => {
+      if (!scrollEnabled.current) {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
 
-        if (!event.cancelable) {
-          return; // L'événement n'est pas annulable, donc on ne le prévient pas
-        }
+      const sections = document.querySelectorAll("section");
+      const targetNode = event.target;
+      const currentIndex = Array.from(sections).findIndex((section) =>
+        section.contains(targetNode)
+      );
 
+      const nextIndex = event.deltaY > 0 ? currentIndex + 1 : currentIndex - 1;
+
+      const nextSection = sections[nextIndex];
+      if (nextSection && nextIndex >= 0) {
+        event.preventDefault();
+        event.stopPropagation();
         scrollEnabled.current = false;
-        //clearTimeout(timeout);
-
-        const sections = document.querySelectorAll("section");
-        const currentIndex = Array.from(sections).findIndex((section) =>
-          section.contains(event.target)
-        );
-
-        const nextIndex =
-          event.deltaY > 0 ? currentIndex + 1 : currentIndex - 1;
-
-        const nextSection = sections[nextIndex];
-        if (nextSection) {
-          event.preventDefault();
-          scrollEnabled.current = false;
+        if (/Firefox/i.test(navigator.userAgent)) {
+          // Scroll sans smooth pour Firefox
+          nextSection.scrollIntoView({ behavior: "auto" });
+        } else {
+          // Utilisation de smooth pour les autres navigateurs
           nextSection.scrollIntoView({ behavior: "smooth" });
-
-          setTimeout(() => {
-            scrollEnabled.current = true;
-          }, 1000);
         }
-      };
 
+        // Réactiver le défilement après une courte période
+        setTimeout(() => {
+          scrollEnabled.current = true;
+        }, 1000);
+      }
+    };
+
+    if (window.innerWidth >= 1900) {
       window.addEventListener("wheel", handleScroll, { passive: false });
-
-      return () => {
-        window.removeEventListener("wheel", handleScroll);
-      };
     }
-    console.log(window.innerWidth);
+
+    return () => {
+      window.removeEventListener("wheel", handleScroll);
+    };
   }, []);
 
   return (
