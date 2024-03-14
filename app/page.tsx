@@ -27,12 +27,15 @@ export default function App() {
 
       const nextSection = sections[nextIndex];
       if (nextSection && nextIndex >= 0) {
+        scrollEnabled.current = false;
         event.preventDefault();
         event.stopPropagation();
-        scrollEnabled.current = false;
+
         if (/Firefox/i.test(navigator.userAgent)) {
           // Scroll sans smooth pour Firefox
-          nextSection.scrollIntoView({ behavior: "auto" });
+          nextSection.scrollIntoView({
+            behavior: "auto",
+          });
         } else {
           // Utilisation de smooth pour les autres navigateurs
           nextSection.scrollIntoView({ behavior: "smooth" });
@@ -248,6 +251,7 @@ export default function App() {
                     {"Au besoin, passez sur le live Twitch d'"}
                     <a
                       href="https://www.twitch.tv/azano__"
+                      target="_blank"
                       className="underline hover:no-underline"
                     >
                       Azano
