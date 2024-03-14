@@ -1,241 +1,132 @@
 "use client";
-import React, { useRef } from "react";
-import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
+import HorizontalNotationArray from "@/components/Front/Homepage/HorizontalNotationArray";
+import VerticalNotationArray from "@/components/Front/Homepage/VerticalNotationArray";
 import { CDN2 } from "@/utils/cdn";
-import NavBar from "@/components/Front/NavBar";
-import NotationArray from "@/components/Front/Homepage/NotationArray";
-
-// https://awv3node-homepage.surge.sh/build/assets   .svg
-const url = (name: string, wrap = false) =>
-  `${wrap ? "url(" : ""}${CDN2}/img/homepage/${name}${wrap ? ")" : ""}`;
 
 export default function App() {
-  const parallax = useRef<IParallax>(null!);
-
   return (
-    <>
-      <div className="w-full h-full bg-[#253237]">
-        <Parallax ref={parallax} pages={3}>
-          <NavBar isHomepage />
-          <ParallaxLayer
-            offset={1}
-            speed={1}
-            style={{ backgroundColor: "#805E73" }}
-          />
-          <ParallaxLayer
-            offset={2}
-            speed={1}
-            style={{ backgroundColor: "#2f1c5b" }}
-          />
-
-          <ParallaxLayer
-            offset={0}
-            speed={0}
-            factor={3}
-            style={{
-              backgroundImage: url("stars.svg", true),
-              backgroundSize: "cover",
-            }}
-          />
-
-          <ParallaxLayer
-            offset={1.3}
-            speed={-0.3}
-            style={{ pointerEvents: "none" }}
-          >
-            {/* <img
-              src={url("logo_SRE.webp")}
-              style={{ width: "15%", marginLeft: "70%" }}
-            /> */}
-          </ParallaxLayer>
-
-          <ParallaxLayer offset={1} speed={0.8} style={{ opacity: 0.1 }}>
-            {/* <img
-            src={url("stars.png")}
-            style={{ display: "block", width: "20%", marginLeft: "55%" }}
-          />
+    <div className="mt-10 text-white">
+      <section className="flex flex-col xl:flex-row justify-center items-center min-h-[calc(100vh-104px)] gap-y-10 xl:gap-x-10">
+        <div className="bg-black p-5 w-full xl:w-[750px] xl:rounded-3xl">
+          <h1 className="text-3xl xl:text-4xl font-bold text-center">
+            {"Votre review Honkai : Star Rail"}
+          </h1>
+          <h2 className="my-5 text-xl xl:text-2xl font-bold text-center">
+            {"C'est quoi Review HSR ?"}
+          </h2>
+          <p>{"Un site d'aide pour améliorer facilement vos personnages."}</p>
+          <p>
+            {
+              "Des conseils clairs et adaptés pour une utilisation en toute simplicité."
+            }
+          </p>
+          <p className="my-5">
+            {"Le moindre élément qui ne convient pas sera noté en "}
+            <span className="text-red">rouge</span>
+            {" et des recommandations seront faites pour vous aider."}
+          </p>
+          <p>{"Les éléments suivants sont analysés :"}</p>
+          <ul className="list-disc [&_*]:ml-5 mb-5">
+            <li>{"Le cône"}</li>
+            <li>{"Les ensembles de reliques et ornements"}</li>
+            <li>{"Les statistiques principales de vos pièces"}</li>
+            <li>{"Vos statistiques finales"}</li>
+            <li>
+              {
+                "La pertinance de vos pièces avec un système de notation ( de D à SSS)"
+              }
+            </li>
+          </ul>
+          <p>
+            {"Sélectionnez ou survolez les éléments en "}
+            <span className="text-red">rouge</span>
+            {" pour voir une recommandation accessible pour tous."}
+          </p>
+          <p className="mt-5">
+            {
+              "Si votre personnage n'a aucun élément en rouge alors il est bien équipé, libre à vous d'essayer d'améliorer la pièce avec la notation la plus faible ou de passer au personnage suivant !"
+            }
+          </p>
+        </div>
+        <div className="bg-black p-5 w-full xl:w-96 xl:rounded-3xl">
+          <p className="text-2xl font-bold text-center mb-5">
+            Sélectionnez vos personnages en vitrine
+          </p>
           <img
-            src={url("stars.png")}
-            style={{ display: "block", width: "10%", marginLeft: "15%" }}
-          /> */}
-          </ParallaxLayer>
-
-          <ParallaxLayer offset={1.75} speed={0.5} style={{ opacity: 0.1 }}>
-            {/* <img
-            src={url("stars.png")}
-            style={{ display: "block", width: "20%", marginLeft: "70%" }}
+            src="/img/homepage/vitrine.webp"
+            alt="personnages de vitrine"
+            className="mx-auto"
           />
-          <img
-            src={url("stars.png")}
-            style={{ display: "block", width: "20%", marginLeft: "40%" }}
-          /> */}
-          </ParallaxLayer>
+        </div>
+      </section>
+      <section className="bg-purple py-20">
+        <div className="mx-auto w-full xl:w-[750px] translate-y-5">
+          <img src="/img/homepage/pela.webp" className="h-36 ml-auto" />
+        </div>
+        <div className="flex flex-col gap-y-5 min-h-screen [&_article]:p-5 [&_article]:bg-black [&_article]:xl:w-[750px] [&_article]:w-full justify-center items-center [&_article]:xl:rounded-3xl">
+          <article>
+            <h2 className="text-xl font-bold text-center">
+              {"Comment l'utiliser et le comprendre ?"}
+            </h2>
+            <ul className="mt-5 list-decimal [&_*]:ml-5 marker:text-purple marker:text-xl marker:font-extrabold">
+              <li>{"Mettez vos personnages du jeu en vitrine"}</li>
+              <li>
+                {
+                  'Entrez votre UID sur le site et cliquez sur "Rechercher". Si vous venez de modifier votre vitrine en jeu, patientez 10 minutes pour que la synchronisation soit bien effectuée.'
+                }
+              </li>
+              <li>
+                {
+                  "Si un personnage possède plusieurs façons d'être équipé / joué, il faudra sélectionner le build correspondant à votre utilisation"
+                }
+              </li>
+            </ul>
+          </article>
+          <article>
+            <p>
+              {
+                "Le site analyse des personnages terminés, c'est à dire avec le niveau, le cône, les traces et les reliques / ornements améliorés. Prenez donc en considération qu'une relique sera par exemple mal notée si elle n'est pas montée."
+              }
+            </p>
+          </article>
+          <article>
+            <p>
+              {
+                "Les statistiques recommandés permettent d'évaluer le besoin d'un personnage et votre objectif à dépasser. Bien évidement si vous offrez de la vitesse ou des gains d'actions avec des personnages harmonies tels que Sparkle ou Bronya, la recommandation de Vitesse ne sera pas la même. Les recommandations sont donc faites pour possèder des personnages versatiles et équilibrés."
+              }
+            </p>
+          </article>
+          <article>
+            <p>
+              {
+                "Le système de notation de Reliques et Ornements prend en compte les besoins du personnage. Les statistiques les plus utiles amélioreront significativement la notation (chaque statistique a son coef. en fonction du personnage), les valeurs obtenues, le nombre d'augmentations de statistiques (4 ou 5) ainsi que la statistique principale. Les statistiques jugées totalement inutiles n'amélioreront pas la notation :"
+              }
+            </p>
+            <ul className="list-disc mt-5 [&_li]:ml-5">
+              <li>
+                {
+                  "Obtenir une note de A ou A+ est la moyenne à atteindre si possible partout"
+                }
+              </li>
+              <li>
+                {
+                  "Une notation inférieure (de D à B+) signifie qu'il est fortement recommandé de changer la pièce correspondante"
+                }
+              </li>
+              <li>
+                {
+                  "Une notation supérieur (de S à SSS) confirme que la pièce est très bien et qu'il n'y a pas besoin de perdre du temps à l'améliorer (sauf si vous souhaitez perfectionner votre personnage)"
+                }
+              </li>
+            </ul>
+          </article>
+          <div className="bg-black xl:bg-transparent w-full px-10 xl:w-auto xl:px-0">
+            <VerticalNotationArray />
 
-          <ParallaxLayer offset={1} speed={0.2} style={{ opacity: 0.2 }}>
-            {/* <img
-            src={url("stars.png")}
-            style={{ display: "block", width: "10%", marginLeft: "10%" }}
-          />
-          <img
-            src={url("stars.png")}
-            style={{ display: "block", width: "20%", marginLeft: "75%" }}
-          /> */}
-          </ParallaxLayer>
-
-          <ParallaxLayer offset={1.6} speed={-0.1} style={{ opacity: 0.4 }}>
-            {/* <img
-            src={url("stars.png")}
-            style={{ display: "block", width: "20%", marginLeft: "60%" }}
-          />
-          <img
-            src={url("stars.png")}
-            style={{ display: "block", width: "25%", marginLeft: "30%" }}
-          />
-          <img
-            src={url("stars.png")}
-            style={{ display: "block", width: "10%", marginLeft: "80%" }}
-          /> */}
-          </ParallaxLayer>
-
-          <ParallaxLayer offset={2.6} speed={0.4} style={{ opacity: 0.6 }}>
-            {/* <img
-            src={url("stars.png")}
-            style={{ display: "block", width: "20%", marginLeft: "5%" }}
-          />
-          <img
-            src={url("stars.png")}
-            style={{ display: "block", width: "15%", marginLeft: "75%" }}
-          /> */}
-          </ParallaxLayer>
-
-          <ParallaxLayer
-            offset={2.5}
-            speed={-0.4}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              pointerEvents: "none",
-            }}
-          >
-            {/* <img src={url("earth")} style={{ width: "60%" }} /> */}
-          </ParallaxLayer>
-
-          <ParallaxLayer
-            offset={2}
-            speed={-0.3}
-            style={{
-              backgroundSize: "80%",
-              backgroundPosition: "center",
-              // backgroundImage: url("clients", true),
-            }}
-          />
-
-          <ParallaxLayer
-            offset={0}
-            speed={0.1}
-            className="flex flex-col mt-20 md:flex-row md:mt-0 items-center justify-center gap-10"
-          >
-            <>
-              <div className="flex flex-col justify-center items-center mt-20 xl:mt-0 w-full xl:w-[512px] h-96 bg-black rounded-3xl text-white p-2">
-                <h1 className="text-3xl font-bold mb-10">
-                  Votre review Honkai : Star Rail
-                </h1>
-                <p className="font-bold text-xl">Comment ça marche ?</p>
-
-                <p>Entrez votre UID de jeu</p>
-                <p>
-                  Les elements en <span className="text-red">rouge</span> sont
-                  des statistiques à améliorer
-                </p>
-                <p className="mt-8 font-medium">
-                  Des recommandations peuvent apparaitre au passage de la souris
-                </p>
-              </div>
-              <div className="w-96 h-96 bg-black rounded-3xl text-white flex flex-col">
-                <p className="text-center font-bold text-lg mt-5">
-                  Selectionnez vos personnages en vitrine
-                </p>
-                <img
-                  src={`${CDN2}/img/homepage/expl02.webp`}
-                  className="h-80 object-contain my-auto mx-auto"
-                />
-              </div>
-            </>
-          </ParallaxLayer>
-
-          <ParallaxLayer
-            offset={1}
-            speed={0.1}
-            className="flex flex-col mt-20 md:flex-row md:mt-0 items-center justify-center gap-10"
-          >
-            <>
-              <div className="flex flex-col justify-center items-center w-[512px] h-96 bg-black rounded-3xl text-white text-center px-20">
-                <p>
-                  {"Si vous possedez un score "} <strong>au dessus de A</strong>
-                  {
-                    ", vous n'avez pas forcément besoin de trouver une meilleure relique/ornement."
-                  }
-                </p>
-                <p className="mt-5">
-                  {"En revanche, si votre score est "}
-                  <strong>en dessous de A</strong> {", il faut l'améliorer."}
-                </p>
-                <p className="mt-10">
-                  Les notations sont adaptées pour les besoins du personnage
-                </p>
-                <p className="mt-10 font-medium text-lg">
-                  Elles sont toutes évaluées par{" "}
-                  <span>
-                    <a
-                      href="https://www.twitch.tv/azano__"
-                      target="_blank"
-                      className="underline font-bold hover:no-underline"
-                    >
-                      Azano
-                    </a>
-                    <img
-                      src={`${CDN2}/img/twitch-logo.svg`}
-                      className="h-6 ml-1 inline"
-                      alt="logo twitch"
-                    />
-                  </span>
-                </p>
-              </div>
-              <div className="w-96 h-96 bg-black/75 rounded-3xl text-white flex flex-col justify-center items-center">
-                <NotationArray />
-              </div>
-            </>
-          </ParallaxLayer>
-
-          <ParallaxLayer
-            offset={2}
-            speed={-0}
-            className="flex flex-col mt-20 md:flex-row md:mt-0 items-center justify-center gap-10"
-          >
-            <>
-              <div className="flex flex-col justify-center items-center w-full xl:w-[512px] h-96 bg-black rounded-3xl text-white text-center px-16 text-2xl">
-                <p className="font-bold mb-10">
-                  Vous dépensez deja sur le jeu et vous voulez faire des
-                  economies ?
-                </p>
-                <p>
-                  Avec{" "}
-                  <a
-                    href="https://www.eneba.com/fr/top-up-honkai-star-rail-oneiric-shard-malaysia?enb_campaign=Main+Search&enb_content=search+dropdown+-+products&enb_medium=product+card&enb_source=https%3A%2F%2Fwww.eneba.com%2Ftop-up-genshin-impact-genesis-crystals-malaysia&enb_term=1&af_id=Azano&utm_medium=af&utm_source=Azano"
-                    target="_blank"
-                    className="font-bold underline hover:no-underline"
-                  >
-                    Eneba
-                  </a>
-                  , vous dépensez moins et vous avez un cashback quand vous
-                  achetez
-                </p>
-              </div>
-            </>
-          </ParallaxLayer>
-        </Parallax>
-      </div>
-    </>
+            <HorizontalNotationArray />
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import type { Metadata } from "next";
 import { CDN2 } from "@/utils/cdn";
+import NavBar from "@/components/Front/NavBar";
 
 export const metadata: Metadata = {
   metadataBase: new URL(CDN2),
@@ -22,7 +23,8 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className="bg-background">
-        <div>{children}</div>
+        <NavBar isHomepage />
+        {children}
         <Analytics />
         <SpeedInsights />
       </body>

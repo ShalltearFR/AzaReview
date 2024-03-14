@@ -15,6 +15,7 @@ const config: Config = {
     },
     fontFamily: {},
     colors: {
+      transparent: "transparent",
       background: "#1F2937", //Bleu foncé
       "light-blue": "#4E4A82",
       white: "#FFFFFF",
@@ -27,6 +28,8 @@ const config: Config = {
       "light-gray": "#D9D9D9",
       red: "#FF4B4B",
       green: "#00ff00",
+      purple: "#76617b",
+      darkRed: "#5b0f00",
     },
   },
   plugins: [],
