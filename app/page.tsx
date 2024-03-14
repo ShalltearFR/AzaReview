@@ -4,22 +4,25 @@ import HorizontalNotationArray from "@/components/Front/Homepage/HorizontalNotat
 import VerticalNotationArray from "@/components/Front/Homepage/VerticalNotationArray";
 import NavBar from "@/components/Front/NavBar";
 import { CDN2 } from "@/utils/cdn";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function App() {
-  const [scrollEnabled, setScrollEnabled] = useState(true);
+  const scrollEnabled = useRef(true);
 
   useEffect(() => {
     if (window.innerWidth >= 1900) {
-      let timeout: any;
-
       const handleScroll = (event: any) => {
-        if (!scrollEnabled) {
+        if (!scrollEnabled.current) {
           event.preventDefault();
           return;
         }
 
-        clearTimeout(timeout);
+        if (!event.cancelable) {
+          return; // L'événement n'est pas annulable, donc on ne le prévient pas
+        }
+
+        scrollEnabled.current = false;
+        //clearTimeout(timeout);
 
         const sections = document.querySelectorAll("section");
         const currentIndex = Array.from(sections).findIndex((section) =>
@@ -32,11 +35,11 @@ export default function App() {
         const nextSection = sections[nextIndex];
         if (nextSection) {
           event.preventDefault();
+          scrollEnabled.current = false;
           nextSection.scrollIntoView({ behavior: "smooth" });
 
-          setScrollEnabled(false);
-          timeout = setTimeout(() => {
-            setScrollEnabled(true);
+          setTimeout(() => {
+            scrollEnabled.current = true;
           }, 1000);
         }
       };
@@ -47,12 +50,13 @@ export default function App() {
         window.removeEventListener("wheel", handleScroll);
       };
     }
-  }, [scrollEnabled]);
+    console.log(window.innerWidth);
+  }, []);
 
   return (
     <>
       <NavBar isHomepage />
-      <div className="mt-10 text-white">
+      <div className="mt-10 text-white scroll-m-0">
         {/* 1ere section */}
         <section className="flex flex-col xl:flex-row justify-center items-center min-h-[calc(100vh-104px)] gap-y-10 lg:gap-x-10 scroll-m-96 snap-start pb-10 xl:pb-0">
           <div className=" bg-black p-5 w-full mmd:w-[750px] mmd:rounded-3xl">
@@ -110,14 +114,14 @@ export default function App() {
 
         {/* 2eme section */}
         <section className="bg-purple min-h-screen flex flex-col justify-center items-center">
-          <div className="my-auto mx-auto flex flex-col items-center justify-center">
-            <div className="mx-auto  w-full mmd:w-1/2 lg:w-11/12 xxl:w-1/2">
+          <div className=" mx-auto flex flex-col items-center justify-center [&_article]:lg:!w-11/12 [&_article]:xxl:w-1/2 [&_article]:w-full [&_article]:p-5 [&_article]:bg-black [&_article]:mmd:w-3/4 [&_article]:mmd:rounded-3xl">
+            <div className="mx-auto w-full mmd:w-1/2 lg:!w-11/12 xxl:w-1/2">
               <img
                 src={`${CDN2}/img/homepage/pela.webp`}
                 className="h-36 ml-auto translate-y-5"
               />
             </div>
-            <div className="flex flex-col gap-y-5 justify-center items-center my-auto [&_article]:p-5 [&_article]:bg-black [&_article]:mmd:w-3/4 [&_article]:lg:w-11/12 [&_article]:xxl:w-1/2 [&_article]:w-full [&_article]:mmd:rounded-3xl mb-10">
+            <div className="flex flex-col gap-y-5 justify-center items-center my-auto  mb-10">
               <article>
                 <h2 className="text-xl xl:text-2xl font-bold text-center">
                   {"Comment l'utiliser et le comprendre ?"}
@@ -255,7 +259,9 @@ export default function App() {
             </div>
           </div>
         </section>
-        <HomepageFooter />
+        <section>
+          <HomepageFooter />
+        </section>
       </div>
     </>
   );
