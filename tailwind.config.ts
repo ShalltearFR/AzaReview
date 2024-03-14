@@ -9,15 +9,19 @@ const config: Config = {
   theme: {
     screens: {
       sm: "510px",
+      smd: "650px",
+      mmd: "750px",
       md: "880px",
       lg: "990px",
       xl: "1350px",
+      xxl: "1920px",
     },
     fontFamily: {},
     colors: {
       transparent: "transparent",
       background: "#1F2937", //Bleu foncé
       "light-blue": "#4E4A82",
+      "light-blue2": "#6a91fd",
       white: "#FFFFFF",
       black: "#000000",
       orange: "#F0A83B",
@@ -29,6 +33,7 @@ const config: Config = {
       red: "#FF4B4B",
       green: "#00ff00",
       purple: "#76617b",
+      darkPurple: "#42368d",
       darkRed: "#5b0f00",
     },
   },

@@ -3,12 +3,13 @@ import { CDN2 } from "@/utils/cdn";
 const Footer: React.FC = () => {
   return (
     <div className="bg-black text-white text-center py-5 xl:mt-14">
-      <p className="font-bold flex gap-1 justify-center">
-        Copyright © 2024 - Creation par ShalltearFR ~ Review par
+      <p className="justify-center">
+        {"Copyright © 2024 - Creation par"} <strong>ShalltearFR</strong>{" "}
+        {" ~ Review par "}
         <a
           href="https://www.twitch.tv/azano__"
           target="_blank"
-          className="underline hover:no-underline"
+          className="underline hover:no-underline font-bold"
         >
           Azano
           <img

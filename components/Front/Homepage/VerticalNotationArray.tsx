@@ -1,6 +1,6 @@
 const VerticalNotationArray = () => {
   return (
-    <div className="xl:hidden rounded-xl overflow-hidden border border-white">
+    <div className="mmd:hidden rounded-xl overflow-hidden border border-white">
       <table className="w-full [&_td]:p-3">
         <thead className="bg-[#5b0f00] text-lg ">
           <tr>

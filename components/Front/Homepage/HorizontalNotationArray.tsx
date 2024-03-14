@@ -1,6 +1,6 @@
 const HorizontalNotationArray = () => {
   return (
-    <table className="hidden xl:table w-[750px] text-center rounded-2xl overflow-hidden">
+    <table className="hidden mmd:table w-[750px] text-center rounded-2xl overflow-hidden">
       <thead>
         <tr className="[&_th]:border-b [&_th]:border-white">
           <th className="w-2/5 bg-darkRed p-5 font-bold">Note</th>
