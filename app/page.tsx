@@ -9,7 +9,7 @@ import AOS from "aos";
 
 export default function App() {
   const [scrollEnabled, setScrollEnabled] = useState<boolean>(true);
-  let sectionIndex = useRef<number>(0);
+  const [sectionIndex, setSectionIndex] = useState<number>(0);
 
   const handleScroll = useCallback(
     (event: any) => {
@@ -30,7 +30,7 @@ export default function App() {
 
       if (sections[nextIndex] && nextIndex >= 0) {
         setScrollEnabled(false);
-        sectionIndex.current = nextIndex;
+        setSectionIndex(nextIndex);
         event.preventDefault();
         event.stopPropagation();
 
@@ -54,6 +54,7 @@ export default function App() {
     if (window.innerWidth >= 1900) {
       const beginEl: any = document.querySelector("#begin");
       beginEl.addEventListener("wheel", handleScroll, { passive: false });
+      beginEl.addEventListener("scroll", handleScroll, { passive: false });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -63,14 +64,17 @@ export default function App() {
       <div
         style={{ backgroundImage: `url("${CDN2}/img/homepage/stars.svg")` }}
         data-aos="animate-stars"
-        className={sectionIndex.current === 0 ? "xl:-z-10" : "xl:z-0"}
+        className={sectionIndex === 0 ? "xl:-z-10" : "xl:z-0"}
       ></div>
-      <div className="" id="begin">
+      <div className="">
         <NavBar isHomepage />
-        <div className="text-white mt-10 xl:mt-0 w-full h-full overflow-hidden">
+        <div
+          id="begin"
+          className="text-white mt-10 xl:mt-0 w-full h-full overflow-hidden z-50"
+        >
           {/* 1ere section */}
           <section
-            className={`flex flex-col z-[1] xl:flex-row justify-center items-center min-h-[calc(100vh)] gap-y-10 lg:gap-x-10 scroll-m-96 snap-start pb-10 xl:pb-0`}
+            className={`relative flex flex-col z-[1] w-full xl:flex-row justify-center items-center min-h-[calc(100vh)] gap-y-10 lg:gap-x-10 scroll-m-96 snap-start pb-10 xl:pb-0`}
           >
             <div
               data-aos="fade-right"
