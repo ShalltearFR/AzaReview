@@ -2,7 +2,7 @@ import { CDN2 } from "@/utils/cdn";
 
 const HomepageFooter: React.FC = () => {
   return (
-    <div className="bg-black text-white text-center py-5 w-full mt-auto z-10">
+    <footer className="bg-black text-white text-center py-5 w-full mt-auto z-10">
       <p className="justify-center">
         {"Copyright © 2024 - Creation par"} <strong>ShalltearFR</strong>{" "}
         {" ~ Review par "}
@@ -29,7 +29,7 @@ const HomepageFooter: React.FC = () => {
           "Ce site n'est pas affilié à Hoyoverse et tous les contenus et actifs du jeu sont des marques déposées et des droits d'auteur de Hoyoverse."
         }
       </p>
-    </div>
+    </footer>
   );
 };
 

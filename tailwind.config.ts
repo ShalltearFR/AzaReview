@@ -20,6 +20,7 @@ const config: Config = {
     colors: {
       transparent: "transparent",
       background: "#1F2937", //Bleu foncé
+      blue: "#006A89", //Bleu azano
       "light-blue": "#4E4A82",
       "light-blue2": "#6a91fd",
       white: "#FFFFFF",

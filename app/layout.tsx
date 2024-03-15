@@ -25,6 +25,7 @@ export default function RootLayout({
       <body className="bg-background">
         <section></section> {/* ANTI SCROLL FREEZE FIREFOX*/}
         {children}
+        <section></section> {/* ANTI SCROLL FREEZE FIREFOX*/}
         <Analytics />
         <SpeedInsights />
       </body>

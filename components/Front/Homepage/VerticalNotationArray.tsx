@@ -13,7 +13,7 @@ const VerticalNotationArray = () => {
             <td className="border-r border-white"> &gt;A+</td>
             <td>Genial</td>
           </tr>
-          <tr className="bg-gray">
+          <tr className="bg-blue">
             <td className="border-r border-white">A ou A+</td>
             <td>OK</td>
           </tr>
