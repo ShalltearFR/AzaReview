@@ -3,7 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import type { Metadata } from "next";
 import { CDN2 } from "@/utils/cdn";
-import NavBar from "@/components/Front/NavBar";
+import "aos/dist/aos.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(CDN2),

@@ -5,6 +5,7 @@ import VerticalNotationArray from "@/components/Front/Homepage/VerticalNotationA
 import NavBar from "@/components/Front/NavBar";
 import { CDN2 } from "@/utils/cdn";
 import { useCallback, useEffect, useState } from "react";
+import AOS from "aos";
 
 export default function App() {
   const [scrollEnabled, setScrollEnabled] = useState<boolean>(true);
@@ -41,6 +42,8 @@ export default function App() {
   );
 
   useEffect(() => {
+    AOS.init({ mirror: true });
+
     if (window.innerWidth >= 1900) {
       document.addEventListener("wheel", handleScroll, { passive: false });
     }
@@ -52,8 +55,14 @@ export default function App() {
       <NavBar isHomepage />
       <div className="text-white mt-10 mmd:mt-0">
         {/* 1ere section */}
-        <section className="flex flex-col xl:flex-row justify-center items-center min-h-[calc(100vh)] gap-y-10 lg:gap-x-10 scroll-m-96 snap-start pb-10 xl:pb-0">
-          <div className=" bg-black p-5 w-full mmd:w-[750px] mmd:rounded-3xl pt-10">
+        <section
+          className="flex flex-col xl:flex-row justify-center items-center min-h-[calc(100vh)] gap-y-10 lg:gap-x-10 scroll-m-96 snap-start pb-10 xl:pb-0"
+          style={{ backgroundImage: `url("${CDN2}/img/homepage/stars.svg")` }}
+        >
+          <div
+            data-aos="fade-right"
+            className=" bg-black p-5 w-full mmd:w-[750px] mmd:rounded-3xl pt-10"
+          >
             <h1 className="text-3xl xl:text-4xl font-bold text-center">
               {"Votre review Honkai : Star Rail"}
             </h1>
@@ -94,7 +103,10 @@ export default function App() {
               }
             </p>
           </div>
-          <div className="bg-black p-5 w-full mmd:w-96 mmd:rounded-3xl">
+          <div
+            data-aos="fade-left"
+            className="bg-black p-5 w-full mmd:w-96 mmd:rounded-3xl"
+          >
             <p className="text-2xl font-bold text-center mb-5">
               Sélectionnez vos personnages en vitrine
             </p>
@@ -107,15 +119,25 @@ export default function App() {
         </section>
 
         {/* 2eme section */}
-        <section className="bg-purple min-h-screen flex flex-col justify-center items-center">
+        <section
+          className="bg-purple min-h-screen flex flex-col justify-center items-center"
+          style={{ backgroundImage: `url("${CDN2}/img/homepage/stars.svg")` }}
+        >
           <div className=" mx-auto flex flex-col items-center justify-center [&_article]:lg:!w-11/12 [&_article]:xxl:w-1/2 [&_article]:w-full [&_article]:p-5 [&_article]:bg-black [&_article]:mmd:w-3/4 [&_article]:mmd:rounded-3xl">
-            <div className="mx-auto w-full mmd:w-1/2 lg:!w-11/12 xxl:w-1/2">
+            <div
+              data-aos="fade-up"
+              data-aos-delay="250"
+              className="mx-auto w-full mmd:w-1/2 lg:!w-11/12 xxl:w-1/2"
+            >
               <img
                 src={`${CDN2}/img/homepage/pela.webp`}
                 className="h-36 ml-auto translate-y-5"
               />
             </div>
-            <div className="flex flex-col gap-y-5 justify-center items-center my-auto  mb-10">
+            <div
+              data-aos="fade-right"
+              className="flex flex-col gap-y-5 justify-center items-center my-auto mb-10 z-10"
+            >
               <article>
                 <h2 className="text-xl xl:text-2xl font-bold text-center">
                   {"Comment l'utiliser et le comprendre ?"}
@@ -182,14 +204,24 @@ export default function App() {
         </section>
 
         {/* 3eme section */}
-        <section className="flex flex-col justify-center items-center bg-darkPurple min-h-screen pb-10">
-          <div className="mx-auto w-full mmd:w-[747px]">
+        <section
+          className="flex flex-col justify-center items-center bg-darkPurple min-h-screen pb-10"
+          style={{ backgroundImage: `url("${CDN2}/img/homepage/stars.svg")` }}
+        >
+          <div
+            data-aos="fade-up"
+            data-aos-delay="250"
+            className="mx-auto w-full mmd:w-[747px]"
+          >
             <img
               src={`${CDN2}/img/homepage/guinaifen.webp`}
               className="h-36 translate-y-1"
             />
           </div>
-          <div className="bg-black mmd:rounded-2xl w-full mmd:w-[747px] py-6">
+          <div
+            data-aos="fade-right"
+            className="bg-black mmd:rounded-2xl w-full mmd:w-[747px] py-6 z-10 "
+          >
             <div className="px-6">
               <h2 className="text-center font-bold text-xl mb-5">
                 Dépenser moins sur HSR tout en soutenant le site !
