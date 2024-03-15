@@ -53,7 +53,7 @@ export default function App() {
   return (
     <>
       <NavBar isHomepage />
-      <div className="text-white mt-10 mmd:mt-0">
+      <div className="text-white mt-10 xl:mt-0">
         {/* 1ere section */}
         <section
           className="flex flex-col xl:flex-row justify-center items-center min-h-[calc(100vh)] gap-y-10 lg:gap-x-10 scroll-m-96 snap-start pb-10 xl:pb-0"
