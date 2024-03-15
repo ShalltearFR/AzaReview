@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes animate-stars {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+[data-aos="animate-stars"] {
+  background-position: 0 0;
+  animation: animate-stars 30s infinite alternate;
+}

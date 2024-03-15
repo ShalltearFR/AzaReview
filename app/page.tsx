@@ -56,11 +56,13 @@ export default function App() {
       <div className="text-white mt-10 xl:mt-0">
         {/* 1ere section */}
         <section
-          className="flex flex-col xl:flex-row justify-center items-center min-h-[calc(100vh)] gap-y-10 lg:gap-x-10 scroll-m-96 snap-start pb-10 xl:pb-0"
+          className={`flex flex-col xl:flex-row justify-center items-center min-h-[calc(100vh)] gap-y-10 lg:gap-x-10 scroll-m-96 snap-start pb-10 xl:pb-0`}
           style={{ backgroundImage: `url("${CDN2}/img/homepage/stars.svg")` }}
+          data-aos="animate-stars"
         >
           <div
             data-aos="fade-right"
+            data-aos-id="section1"
             className=" bg-black p-5 w-full mmd:w-[750px] mmd:rounded-3xl pt-10"
           >
             <h1 className="text-3xl xl:text-4xl font-bold text-center">
@@ -129,13 +131,15 @@ export default function App() {
 
         {/* 2eme section */}
         <section
-          className="bg-purple min-h-screen flex flex-col justify-center items-center"
+          className={`bg-purple min-h-screen flex flex-col justify-center items-center`}
           style={{ backgroundImage: `url("${CDN2}/img/homepage/stars.svg")` }}
+          data-aos="animate-stars"
         >
           <div className=" mx-auto flex flex-col items-center justify-center [&_article]:lg:!w-11/12 [&_article]:xxl:w-1/2 [&_article]:w-full [&_article]:p-5 [&_article]:bg-black [&_article]:mmd:w-3/4 [&_article]:mmd:rounded-3xl">
             <div
               data-aos="fade-up"
               data-aos-delay="250"
+              data-aos-id="section2"
               className="mx-auto w-full mmd:w-1/2 lg:!w-11/12 xxl:w-1/2"
             >
               <img
@@ -227,8 +231,9 @@ export default function App() {
 
         {/* 3eme section */}
         <section
-          className="flex flex-col justify-center items-center bg-darkPurple min-h-screen"
+          className={`flex flex-col justify-center items-center bg-darkPurple min-h-screen`}
           style={{ backgroundImage: `url("${CDN2}/img/homepage/stars.svg")` }}
+          data-aos="animate-stars"
         >
           <div className="mt-auto">
             <div
@@ -243,6 +248,7 @@ export default function App() {
             </div>
             <div
               data-aos="fade-right"
+              data-aos-id="section3"
               className="bg-black mmd:rounded-2xl w-full mmd:w-[747px] py-6 z-20 relative"
             >
               <div className="px-6">
@@ -314,6 +320,7 @@ export default function App() {
 
           <HomepageFooter />
         </section>
+        <section></section>
       </div>
     </>
   );
