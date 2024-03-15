@@ -205,88 +205,91 @@ export default function App() {
 
         {/* 3eme section */}
         <section
-          className="flex flex-col justify-center items-center bg-darkPurple min-h-screen pb-10"
+          className="flex flex-col justify-center items-center bg-darkPurple min-h-screen"
           style={{ backgroundImage: `url("${CDN2}/img/homepage/stars.svg")` }}
         >
-          <div
-            data-aos="fade-up"
-            data-aos-delay="250"
-            className="mx-auto w-full mmd:w-[747px]"
-          >
-            <img
-              src={`${CDN2}/img/homepage/guinaifen.webp`}
-              className="h-36 translate-y-1"
-            />
-          </div>
-          <div
-            data-aos="fade-right"
-            className="bg-black mmd:rounded-2xl w-full mmd:w-[747px] py-6 z-10 "
-          >
-            <div className="px-6">
-              <h2 className="text-center font-bold text-xl mb-5">
-                Dépenser moins sur HSR tout en soutenant le site !
-              </h2>
-              <p>
-                {"En utilisant ce lien "}
-                <a
-                  href="https://www.eneba.com/fr/top-up-honkai-star-rail-oneiric-shard-malaysia?enb_campaign=Main+Search&enb_content=search+dropdown+-+products&enb_medium=product+card&enb_source=https%3A%2F%2Fwww.eneba.com%2Ftop-up-genshin-impact-genesis-crystals-malaysia&enb_term=1&af_id=Azano&utm_medium=infl&utm_source=Azano&currency=EUR&region=global"
-                  target="_blank"
-                  className="font-bold text-light-blue2"
-                >
-                  {"Eneba"}
-                </a>
-                {" avant vos achats, vous soutiendrez énormément !"}
-              </p>
-              <p>
-                {
-                  "Les mêmes prix qu'en jeu mais avec 10% de cashback pour dépenser moins les prochaines fois."
-                }
-              </p>
-              <p>
-                {
-                  "C'est bénéfique pour vous comme pour nous, alors n'hésitez pas à jeter un oeil !"
-                }
-              </p>
+          <div className="mt-auto">
+            <div
+              data-aos="fade-up"
+              data-aos-delay="250"
+              className="mx-auto w-full mmd:w-[747px] z-10"
+            >
+              <img
+                src={`${CDN2}/img/homepage/guinaifen.webp`}
+                className="h-36 translate-y-1"
+              />
             </div>
-            <div className="sm:px-6">
-              <div className="mt-5 relative">
-                <div className="absolute text-xs sm:text-sm smd:text-lg px-3 text-center w-1/2 right-0 top-1/2 -translate-y-1/2">
-                  <p>{"Rapide et sécurisé avec Razer Gold"}</p>
-                  <p>{"(partenaire Hoyoverse)"}</p>
-                </div>
-                <img src={`${CDN2}/img/homepage/banderole_razergold.webp`} />
+            <div
+              data-aos="fade-right"
+              className="bg-black mmd:rounded-2xl w-full mmd:w-[747px] py-6 z-20 relative"
+            >
+              <div className="px-6">
+                <h2 className="text-center font-bold text-xl mb-5">
+                  Dépenser moins sur HSR tout en soutenant le site !
+                </h2>
+                <p>
+                  {"En utilisant ce lien "}
+                  <a
+                    href="https://www.eneba.com/fr/top-up-honkai-star-rail-oneiric-shard-malaysia?enb_campaign=Main+Search&enb_content=search+dropdown+-+products&enb_medium=product+card&enb_source=https%3A%2F%2Fwww.eneba.com%2Ftop-up-genshin-impact-genesis-crystals-malaysia&enb_term=1&af_id=Azano&utm_medium=infl&utm_source=Azano&currency=EUR&region=global"
+                    target="_blank"
+                    className="font-bold text-light-blue2"
+                  >
+                    {"Eneba"}
+                  </a>
+                  {" avant vos achats, vous soutiendrez énormément !"}
+                </p>
+                <p>
+                  {
+                    "Les mêmes prix qu'en jeu mais avec 10% de cashback pour dépenser moins les prochaines fois."
+                  }
+                </p>
+                <p>
+                  {
+                    "C'est bénéfique pour vous comme pour nous, alors n'hésitez pas à jeter un oeil !"
+                  }
+                </p>
               </div>
-              <div className="mt-3 relative">
-                <div className="absolute text-xs sm:text-sm smd:text-[20px] px-2 text-center w-3/5 left-0 top-1/2 -translate-y-1/2">
-                  <p>
-                    {
-                      "Votre UID suffit, pas besoin de vos identifiants personnels."
-                    }
-                  </p>
-                  <p className="sm:mt-2">{"Réception instantanée en jeu !"}</p>
+              <div className="sm:px-6">
+                <div className="mt-5 relative">
+                  <div className="absolute text-xs sm:text-sm smd:text-lg px-3 text-center w-1/2 right-0 top-1/2 -translate-y-1/2">
+                    <p>{"Rapide et sécurisé avec Razer Gold"}</p>
+                    <p>{"(partenaire Hoyoverse)"}</p>
+                  </div>
+                  <img src={`${CDN2}/img/homepage/banderole_razergold.webp`} />
                 </div>
-                <img src={`${CDN2}/img/homepage/banderole_eneba.webp`} />
-              </div>
-              <div className="mt-3 relative">
-                <div className="absolute text-xs sm:text-base smd:text-lg px-2 smd:px-10 text-center w-3/5 right-0 top-1/2 -translate-y-1/2 font-semibold">
-                  <p>
-                    {"Au besoin, passez sur le live Twitch d'"}
-                    <a
-                      href="https://www.twitch.tv/azano__"
-                      target="_blank"
-                      className="underline hover:no-underline"
-                    >
-                      Azano
-                    </a>
-                    {" pour plus d'informations."}
-                  </p>
+                <div className="mt-3 relative">
+                  <div className="absolute text-xs sm:text-sm smd:text-[20px] px-2 text-center w-3/5 left-0 top-1/2 -translate-y-1/2">
+                    <p>
+                      {
+                        "Votre UID suffit, pas besoin de vos identifiants personnels."
+                      }
+                    </p>
+                    <p className="sm:mt-2">
+                      {"Réception instantanée en jeu !"}
+                    </p>
+                  </div>
+                  <img src={`${CDN2}/img/homepage/banderole_eneba.webp`} />
                 </div>
-                <img src={`${CDN2}/img/homepage/banderole_azano.webp`} />
+                <div className="mt-3 relative">
+                  <div className="absolute text-xs sm:text-base smd:text-lg px-2 smd:px-10 text-center w-3/5 right-0 top-1/2 -translate-y-1/2 font-semibold">
+                    <p>
+                      {"Au besoin, passez sur le live Twitch d'"}
+                      <a
+                        href="https://www.twitch.tv/azano__"
+                        target="_blank"
+                        className="underline hover:no-underline"
+                      >
+                        Azano
+                      </a>
+                      {" pour plus d'informations."}
+                    </p>
+                  </div>
+                  <img src={`${CDN2}/img/homepage/banderole_azano.webp`} />
+                </div>
               </div>
             </div>
           </div>
-        </section>
-        <section>
+
           <HomepageFooter />
         </section>
       </div>

@@ -2,7 +2,7 @@ import { CDN2 } from "@/utils/cdn";
 
 const HomepageFooter: React.FC = () => {
   return (
-    <div className="bg-black text-white text-center py-5">
+    <div className="bg-black text-white text-center py-5 w-full mt-auto">
       <p className="justify-center">
         {"Copyright © 2024 - Creation par"} <strong>ShalltearFR</strong>{" "}
         {" ~ Review par "}
