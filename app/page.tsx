@@ -66,10 +66,12 @@ export default function App() {
             <h1 className="text-3xl xl:text-4xl font-bold text-center">
               {"Votre review Honkai : Star Rail"}
             </h1>
-            <h2 className="my-5 text-xl xl:text-2xl font-bold text-center">
+            <h2 className="mt-5 mb-7 text-xl xl:text-2xl font-bold text-center">
               {"C'est quoi Review HSR ?"}
             </h2>
-            <p>{"Un site d'aide pour améliorer facilement vos personnages."}</p>
+            <p className="font-medium">
+              {"Un site d'aide pour améliorer facilement vos personnages."}
+            </p>
             <p>
               {
                 "Des conseils clairs et adaptés pour une utilisation en toute simplicité."
@@ -77,11 +79,13 @@ export default function App() {
             </p>
             <p className="my-5">
               {"Le moindre élément qui ne convient pas sera noté en "}
-              <span className="text-red">rouge</span>
+              <span className="text-red font-bold">rouge</span>
               {" et des recommandations seront faites pour vous aider."}
             </p>
-            <p>{"Les éléments suivants sont analysés :"}</p>
-            <ul className="list-disc [&_*]:ml-5 mb-5">
+            <p className="font-semibold">
+              {"Les éléments suivants sont analysés :"}
+            </p>
+            <ul className="list-disc [&_*]:ml-5 mb-5 font-semibold italic">
               <li>{"Le cône"}</li>
               <li>{"Les ensembles de reliques et ornements"}</li>
               <li>{"Les statistiques principales de vos pièces"}</li>
@@ -94,12 +98,17 @@ export default function App() {
             </ul>
             <p>
               {"Sélectionnez ou survolez les éléments en "}
-              <span className="text-red">rouge</span>
+              <span className="text-red font-bold">rouge</span>
               {" pour voir une recommandation accessible pour tous."}
             </p>
             <p className="mt-5">
+              <span className="font-semibold">
+                {
+                  "Si votre personnage n'a aucun élément en rouge alors il est bien équipé"
+                }
+              </span>
               {
-                "Si votre personnage n'a aucun élément en rouge alors il est bien équipé, libre à vous d'essayer d'améliorer la pièce avec la notation la plus faible ou de passer au personnage suivant !"
+                ", libre à vous d'essayer d'améliorer la pièce avec la notation la plus faible ou de passer au personnage suivant !"
               }
             </p>
           </div>
@@ -142,12 +151,20 @@ export default function App() {
                 <h2 className="text-xl xl:text-2xl font-bold text-center">
                   {"Comment l'utiliser et le comprendre ?"}
                 </h2>
-                <ul className="mt-5 list-decimal [&_*]:ml-5 marker:text-purple marker:text-xl marker:font-extrabold">
+                <ul className="mt-5 list-decimal [&_li]:ml-5 marker:text-purple marker:text-xl marker:font-extrabold">
                   <li>{"Mettez vos personnages du jeu en vitrine"}</li>
                   <li>
-                    {
-                      'Entrez votre UID sur le site et cliquez sur "Rechercher". Si vous venez de modifier votre vitrine en jeu, patientez 10 minutes pour que la synchronisation soit bien effectuée.'
-                    }
+                    <span>
+                      {
+                        'Entrez votre UID sur le site et cliquez sur "Rechercher".'
+                      }
+                    </span>
+                    <span className="font-semibold">
+                      {
+                        " Si vous venez de modifier votre vitrine en jeu, patientez 10 minutes "
+                      }
+                    </span>
+                    {"pour que la synchronisation soit bien effectuée."}
                   </li>
                   <li>
                     {
@@ -173,10 +190,15 @@ export default function App() {
               <article>
                 <p>
                   {
-                    "Le système de notation de Reliques et Ornements prend en compte les besoins du personnage. Les statistiques les plus utiles amélioreront significativement la notation (chaque statistique a son coef. en fonction du personnage), les valeurs obtenues, le nombre d'augmentations de statistiques (4 ou 5) ainsi que la statistique principale. Les statistiques jugées totalement inutiles n'amélioreront pas la notation :"
+                    "Le système de notation de Reliques et Ornements prend en compte les besoins du personnage. Les statistiques les plus utiles amélioreront significativement la notation (chaque statistique a son coef. en fonction du personnage), les valeurs obtenues, le nombre d'augmentations de statistiques (4 ou 5) ainsi que la statistique principale."
                   }
+                  <span className="font-semibold">
+                    {
+                      " Les statistiques jugées totalement inutiles n'amélioreront pas la notation :"
+                    }
+                  </span>
                 </p>
-                <ul className="list-disc mt-5 [&_li]:ml-5">
+                <ul className="list-disc mt-2 [&_li]:ml-5 italic">
                   <li>
                     {
                       "Obtenir une note de A ou A+ est la moyenne à atteindre si possible partout"
