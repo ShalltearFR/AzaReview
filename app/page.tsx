@@ -4,66 +4,70 @@ import HorizontalNotationArray from "@/components/Front/Homepage/HorizontalNotat
 import VerticalNotationArray from "@/components/Front/Homepage/VerticalNotationArray";
 import NavBar from "@/components/Front/NavBar";
 import { CDN2 } from "@/utils/cdn";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function App() {
-  const scrollEnabled = useRef(true);
+  const [scrollEnabled, setScrollEnabled] = useState(true);
 
-  useEffect(() => {
-    const handleScroll = (event: any) => {
-      if (!scrollEnabled.current) {
-        event.preventDefault();
-        event.stopPropagation();
-        return;
-      }
-
-      const sections = document.querySelectorAll("section");
-      const targetNode = event.target;
-      const currentIndex = Array.from(sections).findIndex((section) =>
-        section.contains(targetNode)
-      );
-
-      const nextIndex = event.deltaY > 0 ? currentIndex + 1 : currentIndex - 1;
-
-      const nextSection = sections[nextIndex];
-      if (nextSection && nextIndex >= 0) {
-        scrollEnabled.current = false;
-        event.preventDefault();
-        event.stopPropagation();
-
-        if (/Firefox/i.test(navigator.userAgent)) {
-          // Scroll sans smooth pour Firefox
-          nextSection.scrollIntoView({
-            behavior: "auto",
-          });
-        } else {
-          // Utilisation de smooth pour les autres navigateurs
-          nextSection.scrollIntoView({ behavior: "smooth" });
-        }
-
-        // Réactiver le défilement après une courte période
-        setTimeout(() => {
-          scrollEnabled.current = true;
-        }, 1000);
-      }
-    };
-
-    if (window.innerWidth >= 1900) {
-      window.addEventListener("wheel", handleScroll, { passive: false });
+  const handleScroll = (event: any) => {
+    if (!scrollEnabled) {
+      event.preventDefault();
+      return false;
     }
 
-    return () => {
-      window.removeEventListener("wheel", handleScroll);
-    };
+    const sections = document.querySelectorAll("section");
+    const targetNode = event.target;
+    const currentIndex = Array.from(sections).findIndex((section) =>
+      section.contains(targetNode)
+    );
+
+    const deltaY = event.deltaY;
+
+    const nextIndex = deltaY > 0 ? currentIndex + 1 : currentIndex - 1;
+    const nextSection = sections[nextIndex];
+    if (nextSection && nextIndex >= 0) {
+      setScrollEnabled(false);
+      event.preventDefault();
+      event.stopPropagation();
+
+      nextSection.scrollIntoView({ behavior: "smooth" });
+
+      // Re-enable scrolling after a short period
+      setTimeout(() => {
+        setScrollEnabled(true);
+      }, 1000); // Adjust this delay as needed
+    }
+  };
+
+  const handleScrollFirefox = (event: any) => {
+    if (!scrollEnabled) {
+      event.preventDefault();
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    if (window.innerWidth >= 1900) {
+      document.addEventListener("wheel", handleScroll, { passive: false });
+      if (/Firefox/i.test(navigator.userAgent)) {
+        document.addEventListener("scroll", handleScrollFirefox);
+        document.addEventListener("MozMousePixelScroll", handleScrollFirefox);
+        document.addEventListener("DOMMouseScroll", handleScrollFirefox);
+        document.addEventListener("mousewheel", handleScrollFirefox);
+      }
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
       <NavBar isHomepage />
-      <div className="mt-10 text-white scroll-m-0">
+      <div className="text-white">
+        {/* <section className="h-0"></section> */}
         {/* 1ere section */}
-        <section className="flex flex-col xl:flex-row justify-center items-center min-h-[calc(100vh-104px)] gap-y-10 lg:gap-x-10 scroll-m-96 snap-start pb-10 xl:pb-0">
-          <div className=" bg-black p-5 w-full mmd:w-[750px] mmd:rounded-3xl">
+        <section className="flex flex-col xl:flex-row justify-center items-center min-h-[calc(100vh)] gap-y-10 lg:gap-x-10 scroll-m-96 snap-start pb-10 xl:pb-0">
+          <div className=" bg-black p-5 w-full mmd:w-[750px] mmd:rounded-3xl pt-10">
             <h1 className="text-3xl xl:text-4xl font-bold text-center">
               {"Votre review Honkai : Star Rail"}
             </h1>
