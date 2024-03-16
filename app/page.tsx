@@ -247,7 +247,7 @@ export default function App() {
           <section
             className={`flex flex-col justify-center items-center bg-darkPurple min-h-screen z-[1]`}
           >
-            <div className="mt-auto z-[1]">
+            <div className="mt-auto z-[1] mb-10 xl:mb-0">
               <div
                 data-aos="fade-up"
                 data-aos-delay="250"

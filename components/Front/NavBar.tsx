@@ -14,12 +14,10 @@ const NavBar: React.FC<NavBarProps> = ({ setData, isHomepage }) => {
   const { push } = useRouter();
   const [uidInput, setUidInput] = useState<string>("");
   const [openMenu, setOpenMenu] = useState<boolean>(false);
-  const [mobile, setmobile] = useState<boolean>(false);
   const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-white transition ease transform duration-300`;
 
   useEffect(() => {
     if (isHomepage) setOpenMenu(true);
-    if (window.innerWidth <= 510) setmobile(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
