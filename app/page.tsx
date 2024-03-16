@@ -8,12 +8,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import AOS from "aos";
 
 export default function App() {
-  const [scrollEnabled, setScrollEnabled] = useState<boolean>(true);
+  // const [scrollEnabled, setScrollEnabled] = useState<boolean>(true);
+  const scrollEnabled = useRef(true);
   const [sectionIndex, setSectionIndex] = useState<number>(0);
 
   const handleScroll = useCallback(
     (event: any) => {
-      if (!scrollEnabled) {
+      if (!scrollEnabled.current) {
         event.preventDefault();
         event.stopPropagation();
         return false;
@@ -29,21 +30,46 @@ export default function App() {
       const nextIndex = deltaY > 0 ? currentIndex + 1 : currentIndex - 1;
 
       if (sections[nextIndex] && nextIndex >= 0) {
-        setScrollEnabled(false);
+        // setScrollEnabled(false);
+        scrollEnabled.current = false;
         setSectionIndex(nextIndex);
         event.preventDefault();
         event.stopPropagation();
 
-        if (nextIndex === 1) sections[0].scrollIntoView({ behavior: "smooth" });
-        else sections[nextIndex].scrollIntoView({ behavior: "smooth" });
+        if (nextIndex === 1) {
+          if (/Firefox/i.test(navigator.userAgent)) {
+            // Scroll sans smooth pour Firefox
+            sections[0].scrollIntoView({ behavior: "auto" });
+          } else {
+            // Utilisation de smooth pour les autres navigateurs
+            sections[0].scrollIntoView({ behavior: "smooth" });
+          }
+        } else {
+          if (/Firefox/i.test(navigator.userAgent)) {
+            // Scroll sans smooth pour Firefox
+            sections[nextIndex].scrollIntoView({ behavior: "auto" });
+          } else {
+            // Utilisation de smooth pour les autres navigateurs
+            sections[nextIndex].scrollIntoView({ behavior: "smooth" });
+          }
+        }
 
         setTimeout(() => {
-          setScrollEnabled(true);
-        }, 2000);
+          // setScrollEnabled(true);
+          scrollEnabled.current = true;
+        }, 1000);
       }
     },
     [scrollEnabled]
   );
+
+  const scrollFirefox = (event: any) => {
+    if (!scrollEnabled.current) {
+      event.preventDefault();
+      event.stopPropagation();
+      return false;
+    }
+  };
 
   useEffect(() => {
     AOS.init({ mirror: true });
@@ -54,7 +80,7 @@ export default function App() {
     if (window.innerWidth >= 1900) {
       const beginEl: any = document.querySelector("#begin");
       beginEl.addEventListener("wheel", handleScroll, { passive: false });
-      beginEl.addEventListener("scroll", handleScroll, { passive: false });
+      //beginEl.addEventListener("scroll", scrollFirefox, { passive: false });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -66,7 +92,11 @@ export default function App() {
         data-aos="animate-stars"
         className={sectionIndex === 0 ? "xl:-z-10" : "xl:z-0"}
       ></div>
-      <div className="">
+      <div
+        className={`xl:w-full xl:h-full ${
+          scrollEnabled.current ? "overflow-visible" : "overflow-hidden"
+        }`}
+      >
         <NavBar isHomepage />
         <div
           id="begin"
