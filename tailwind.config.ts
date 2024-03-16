@@ -37,6 +37,24 @@ const config: Config = {
       darkPurple: "#42368d",
       darkRed: "#5b0f00",
     },
+    extend: {
+      animation: {
+        // Définir des animations personnalisées ici
+        "fade-in": "fadeIn 0.5s ease-in-out",
+        "fade-out": "fadeOut 0.5s ease-in-out",
+      },
+      keyframes: {
+        // Définir les keyframes pour les animations personnalisées
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        fadeOut: {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
+        },
+      },
+    },
   },
   plugins: [],
 };
