@@ -42,9 +42,14 @@ const config: Config = {
         // Définir des animations personnalisées ici
         "fade-in": "fadeIn 0.5s ease-in-out",
         "fade-out": "fadeOut 0.5s ease-in-out",
+        alwaysShow: "alwaysShow 0.5s ease-in-out",
       },
       keyframes: {
         // Définir les keyframes pour les animations personnalisées
+        alwaysShow: {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "1" },
+        },
         fadeIn: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },

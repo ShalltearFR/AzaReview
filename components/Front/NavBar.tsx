@@ -14,11 +14,15 @@ const NavBar: React.FC<NavBarProps> = ({ setData, isHomepage }) => {
   const { push } = useRouter();
   const [uidInput, setUidInput] = useState<string>("");
   const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const [mobile, setmobile] = useState<boolean>(false);
   const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-white transition ease transform duration-300`;
 
   useEffect(() => {
     if (isHomepage) setOpenMenu(true);
+    if (window.innerWidth <= 510) setmobile(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <>
       <nav className="flex bg-[#030303] w-screen z-50 h-16 xl:fixed ">
@@ -26,7 +30,9 @@ const NavBar: React.FC<NavBarProps> = ({ setData, isHomepage }) => {
           <Link
             href={"/"}
             className={`sm:!block ${
-              openMenu ? "hidden animate-fade-out" : "animate-fade-in"
+              openMenu
+                ? "hidden animate-fade-out sm:!animate-alwaysShow"
+                : "animate-fade-in sm:!animate-alwaysShow"
             }`}
           >
             <img
@@ -36,7 +42,9 @@ const NavBar: React.FC<NavBarProps> = ({ setData, isHomepage }) => {
           </Link>
           <div
             className={`flex gap-7 ml-auto sm:!block mr-auto sm:mr-5 smd:mr-auto ${
-              openMenu ? "animate-fade-in" : "hidden animate-fade-out"
+              openMenu
+                ? "animate-fade-in sm:!animate-alwaysShow"
+                : "hidden animate-fade-out sm:!animate-alwaysShow"
             }`}
           >
             <input
