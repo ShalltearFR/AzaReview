@@ -35,7 +35,7 @@ const NavBar: React.FC<NavBarProps> = ({ setData, isHomepage }) => {
             />
           </Link>
           <div
-            className={`flex gap-7 ml-auto sm:!block mr-5 smd:mr-auto ${
+            className={`flex gap-7 ml-auto sm:!block mr-auto sm:mr-5 smd:mr-auto ${
               openMenu ? "animate-fade-in" : "hidden animate-fade-out"
             }`}
           >
