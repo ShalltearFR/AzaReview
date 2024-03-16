@@ -94,7 +94,7 @@ const NavBar: React.FC<NavBarProps> = ({ setData, isHomepage }) => {
         </div>
       </nav>
 
-      <div className={`xl:h-16 ${isHomepage ? "" : "mt-[28px]"}`}></div>
+      <div className={`${isHomepage ? "" : "xl:h-16 mt-[28px]"}`}></div>
     </>
   );
 };

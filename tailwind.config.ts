@@ -14,6 +14,7 @@ const config: Config = {
       md: "880px",
       lg: "990px",
       xl: "1350px",
+      xl2: "1700px",
       xxl: "1920px",
     },
     fontFamily: {},
@@ -29,6 +30,7 @@ const config: Config = {
       orange2: "#cf8800",
       yellow: "#FFCD6C",
       brown: "#8C5C00",
+      brown2: "#432e2b",
       gray: "#828282",
       "light-gray": "#D9D9D9",
       red: "#FF4B4B",
@@ -43,9 +45,9 @@ const config: Config = {
         "fade-in": "fadeIn 0.5s ease-in-out",
         "fade-out": "fadeOut 0.5s ease-in-out",
         alwaysShow: "alwaysShow 0.5s ease-in-out",
+        homePageBounce: "homePage-bounce 2s ease-in-out infinite",
       },
       keyframes: {
-        // Définir les keyframes pour les animations personnalisées
         alwaysShow: {
           "0%": { opacity: "1" },
           "100%": { opacity: "1" },
@@ -54,13 +56,18 @@ const config: Config = {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
-        fadeOut: {
-          "0%": { opacity: "1" },
-          "100%": { opacity: "0" },
+        "homePage-bounce": {
+          "0%, 100%": {
+            transform: "translateX(-25%)",
+            animationTimingFunction: "cubic-bezier(0.8, 0, 1, 1)",
+          },
+          "50%": {
+            transform: "none",
+            animationTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
+          },
         },
       },
     },
   },
-  plugins: [],
 };
 export default config;

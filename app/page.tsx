@@ -8,7 +8,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import AOS from "aos";
 
 export default function App() {
-  // const [scrollEnabled, setScrollEnabled] = useState<boolean>(true);
   const scrollEnabled = useRef(true);
   const [sectionIndex, setSectionIndex] = useState<number>(0);
 
@@ -30,32 +29,14 @@ export default function App() {
       const nextIndex = deltaY > 0 ? currentIndex + 1 : currentIndex - 1;
 
       if (sections[nextIndex] && nextIndex >= 0) {
-        // setScrollEnabled(false);
         scrollEnabled.current = false;
         setSectionIndex(nextIndex);
         event.preventDefault();
         event.stopPropagation();
 
-        if (nextIndex === 1) {
-          if (/Firefox/i.test(navigator.userAgent)) {
-            // Scroll sans smooth pour Firefox
-            sections[0].scrollIntoView({ behavior: "auto" });
-          } else {
-            // Utilisation de smooth pour les autres navigateurs
-            sections[0].scrollIntoView({ behavior: "smooth" });
-          }
-        } else {
-          if (/Firefox/i.test(navigator.userAgent)) {
-            // Scroll sans smooth pour Firefox
-            sections[nextIndex].scrollIntoView({ behavior: "auto" });
-          } else {
-            // Utilisation de smooth pour les autres navigateurs
-            sections[nextIndex].scrollIntoView({ behavior: "smooth" });
-          }
-        }
+        scrollAction(nextIndex);
 
         setTimeout(() => {
-          // setScrollEnabled(true);
           scrollEnabled.current = true;
         }, 1000);
       }
@@ -63,11 +44,14 @@ export default function App() {
     [scrollEnabled]
   );
 
-  const scrollFirefox = (event: any) => {
-    if (!scrollEnabled.current) {
-      event.preventDefault();
-      event.stopPropagation();
-      return false;
+  const scrollAction = (index: number) => {
+    const sections = document.querySelectorAll("section");
+    if (/Firefox/i.test(navigator.userAgent)) {
+      // Scroll sans smooth pour Firefox
+      sections[index].scrollIntoView({ behavior: "auto" });
+    } else {
+      // Utilisation de smooth pour les autres navigateurs
+      sections[index].scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -80,7 +64,6 @@ export default function App() {
     if (window.innerWidth >= 1900) {
       const beginEl: any = document.querySelector("#begin");
       beginEl.addEventListener("wheel", handleScroll, { passive: false });
-      //beginEl.addEventListener("scroll", scrollFirefox, { passive: false });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -106,6 +89,13 @@ export default function App() {
           <section
             className={`relative flex flex-col z-[1] w-full xl:flex-row justify-center items-center min-h-[calc(100vh)] gap-y-10 lg:gap-x-10 scroll-m-96 snap-start pb-10 xl:pb-0`}
           >
+            <button className="hidden xl2:block absolute bottom-0 right-1/2 z-50 opacity-50 hover:opacity-100 rotate-90">
+              <img
+                src="/img/homepage/nextSection.svg"
+                className="h-16 animate-homePageBounce"
+                onClick={() => scrollAction(1)}
+              />
+            </button>
             <div
               data-aos="fade-right"
               data-aos-id="section1"
@@ -177,8 +167,22 @@ export default function App() {
 
           {/* 2eme section */}
           <section
-            className={`bg-purple min-h-screen flex flex-col justify-center items-center`}
+            className={`relative bg-brown2 min-h-screen flex flex-col justify-center items-center`}
           >
+            <button className="hidden xl2:block absolute top-16 right-1/2 z-50 opacity-50 hover:opacity-100 -rotate-90">
+              <img
+                src="/img/homepage/nextSection.svg"
+                className="h-16 animate-homePageBounce"
+                onClick={() => scrollAction(0)}
+              />
+            </button>
+            <button className="hidden xl2:block absolute bottom-0 right-1/2 z-50 opacity-50 hover:opacity-100 rotate-90">
+              <img
+                src="/img/homepage/nextSection.svg"
+                className="h-16 animate-homePageBounce"
+                onClick={() => scrollAction(2)}
+              />
+            </button>
             <div className=" mx-auto z-[1] flex flex-col items-center justify-center [&_article]:lg:!w-11/12 [&_article]:xxl:w-1/2 [&_article]:w-full [&_article]:p-5 [&_article]:bg-black [&_article]:mmd:w-3/4 [&_article]:mmd:rounded-3xl">
               <div
                 data-aos="fade-up"
@@ -275,9 +279,16 @@ export default function App() {
 
           {/* 3eme section */}
           <section
-            className={`flex flex-col justify-center items-center bg-darkPurple min-h-screen z-[1]`}
+            className={`relative flex flex-col justify-center items-center bg-darkPurple min-h-screen z-[1] pt-5 xl2:pt-0`}
           >
-            <div className="mt-auto z-[1] mb-10 xl:mb-0">
+            <button className="hidden xl2:block absolute top-16 right-1/2 z-50 opacity-50 hover:opacity-100 -rotate-90">
+              <img
+                src="/img/homepage/nextSection.svg"
+                className="h-16 animate-homePageBounce"
+                onClick={() => scrollAction(1)}
+              />
+            </button>
+            <div className="mt-auto z-[1] mb-10 xl2:mb-0">
               <div
                 data-aos="fade-up"
                 data-aos-delay="250"
@@ -364,7 +375,6 @@ export default function App() {
 
             <HomepageFooter />
           </section>
-          <section></section>
         </div>
       </div>
     </>
