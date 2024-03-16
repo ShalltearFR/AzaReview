@@ -55,7 +55,7 @@ export default function App() {
           {/* 1ere section */}
           {showSection0 && (
             <section
-              className={`flex flex-col w-full xl:flex-row justify-center items-center min-h-screen gap-y-10 lg:gap-x-10 scroll-m-96 snap-start pb-10 xl:pb-0`}
+              className={`flex flex-col w-full xl:flex-row justify-center items-center xl:min-h-screen gap-y-10 lg:gap-x-10 scroll-m-96 snap-start pb-10 xl:pb-0`}
             >
               <div
                 data-aos="fade-right"
@@ -130,9 +130,9 @@ export default function App() {
           {/* 2eme section */}
           {showSection1 && (
             <section
-              className={`bg-brown2 min-h-screen flex flex-col justify-center items-center`}
+              className={`bg-brown2 xl:min-h-screen flex flex-col justify-center items-center`}
             >
-              <div className=" mx-auto  flex flex-col items-center justify-center [&_article]:lg:!w-11/12 [&_article]:xxl:w-1/2 [&_article]:w-full [&_article]:p-5 [&_article]:bg-black [&_article]:mmd:w-3/4 [&_article]:mmd:rounded-3xl">
+              <div className=" mx-auto flex flex-col items-center justify-center [&_article]:lg:!w-11/12 [&_article]:xxl:w-1/2 [&_article]:w-full [&_article]:p-5 [&_article]:bg-black [&_article]:mmd:w-3/4 [&_article]:mmd:rounded-3xl">
                 <div
                   data-aos="fade-up"
                   data-aos-delay="250"
@@ -229,7 +229,7 @@ export default function App() {
           {/* 3eme section */}
           {showSection2 && (
             <section
-              className={`flex flex-col justify-center items-center bg-darkPurple min-h-screen pt-5 xl2:pt-0`}
+              className={`flex flex-col justify-center items-center bg-darkPurple xl:min-h-screen pt-5 xl2:pt-0`}
             >
               <div className="mt-auto mb-10 xl2:mb-0 z-10">
                 <div
