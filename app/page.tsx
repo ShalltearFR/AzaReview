@@ -10,11 +10,24 @@ import AOS from "aos";
 export default function App() {
   const [sectionIndex, setSectionIndex] = useState<number>(0);
   const [sectionPrevIndex, setSectionPrevIndex] = useState<number>(0);
+  const [codes, setCodes] = useState<Array<string>>([""]);
 
   useEffect(() => {
     AOS.init({ mirror: true });
-
     if (window.innerWidth <= 1700) setSectionIndex(999);
+
+    fetch("/api/other/all")
+      .then((res) => res.json())
+      .then((json: any) => {
+        const { codes } = json.data;
+        const codesArray = codes.split(",");
+        if (codesArray[0] === "") {
+          setCodes(["Pas de code pour le moment"]);
+        } else {
+          setCodes(codesArray);
+        }
+      });
+
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -50,7 +63,6 @@ export default function App() {
                 data-aos={`${
                   sectionPrevIndex === 0 ? "fade-right" : "fade-left"
                 }`}
-                data-aos-id="section1"
                 className=" bg-black p-5 w-full mmd:w-[750px] mmd:rounded-3xl xl2:w-[900px] pt-10 z-10"
               >
                 <h1 className="text-3xl xl:text-4xl font-bold text-center">
@@ -158,7 +170,6 @@ export default function App() {
                 <div
                   data-aos="fade-up"
                   data-aos-delay="250"
-                  data-aos-id="section2"
                   className="mx-auto w-full mmd:w-1/2 lg:!w-11/12 xxl:w-1/2 z-10"
                 >
                   <img
@@ -224,18 +235,26 @@ export default function App() {
                     </p>
                     <ul className="list-disc mt-5 [&_li]:ml-5 italic">
                       <li>
+                        {"Une notation inférieure (de "}
+                        <strong className="text-red">{" D "}</strong> {"à "}
+                        <strong className="text-red">{"B+"}</strong>
                         {
-                          "Obtenir une note de A ou A+ est la moyenne à atteindre si possible partout."
+                          " ) signifie qu'il est fortement recommandé de changer la pièce correspondante."
                         }
                       </li>
                       <li>
-                        {
-                          "Une notation inférieure (de D à B+) signifie qu'il est fortement recommandé de changer la pièce correspondante."
-                        }
+                        {"Obtenir une note de"}
+                        <strong className="text-blue">{" A "}</strong> {"ou "}
+                        <strong className="text-blue">{"A+ "}</strong>
+                        {"est la moyenne à atteindre si possible partout."}
                       </li>
                       <li>
+                        {"Une notation supérieur (de "}
+                        <strong className="text-darkGreen">{"S "}</strong>{" "}
+                        {"à "}{" "}
+                        <strong className="text-darkGreen">{"SSS"}</strong>
                         {
-                          "Une notation supérieur (de S à SSS) confirme que la pièce est très bien et qu'il n'y a pas besoin de perdre du temps à l'améliorer (sauf si vous souhaitez perfectionner votre personnage)."
+                          ") confirme que la pièce est très bien et qu'il n'y a pas besoin de perdre du temps à l'améliorer (sauf si vous souhaitez perfectionner votre personnage)."
                         }
                       </li>
                     </ul>
@@ -255,86 +274,110 @@ export default function App() {
               // className={`bg-brown2 xl:min-h-screen flex flex-col justify-center items-center`}
               className={`flex flex-col justify-center items-center bg-darkPurple w-full xl:min-h-[calc(100vh-64px)] pt-5 xl2:pt-0`}
             >
-              <div className="mt-auto mb-10 xl2:mb-0 z-10">
-                <div
-                  data-aos="fade-up"
-                  data-aos-delay="250"
-                  className="mx-auto w-full mmd:w-[747px] z-10"
-                >
-                  <img
-                    src={`${CDN2}/img/homepage/guinaifen.webp`}
-                    className="h-36 translate-y-1"
-                  />
-                </div>
+              <div className="flex flex-col-reverse mb-16 xl2:mb-0 xl2:flex-row gap-5 justify-center items-center">
                 <div
                   data-aos="fade-right"
-                  data-aos-id="section3"
-                  className="bg-black mmd:rounded-2xl w-full mmd:w-[747px] py-6 z-20 relative"
+                  className="bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-20 relative"
                 >
-                  <div className="px-6 ">
-                    <h2 className="text-center font-bold text-xl mb-5">
-                      Dépenser moins sur HSR tout en soutenant le site !
-                    </h2>
-                    <p>
-                      {"En utilisant ce lien "}
-                      <a
-                        href="https://www.eneba.com/fr/top-up-honkai-star-rail-oneiric-shard-malaysia?enb_campaign=Main+Search&enb_content=search+dropdown+-+products&enb_medium=product+card&enb_source=https%3A%2F%2Fwww.eneba.com%2Ftop-up-genshin-impact-genesis-crystals-malaysia&enb_term=1&af_id=Azano&utm_medium=infl&utm_source=Azano&currency=EUR&region=global"
-                        target="_blank"
-                        className="font-bold text-light-blue2"
-                      >
-                        {"Eneba"}
-                      </a>
-                      {" pour vos achats, vous soutiendrez énormément !"}
-                    </p>
-                    <p>
-                      {
-                        "Les mêmes prix qu'en jeu mais avec 10% de cashback pour dépenser moins les prochaines fois."
-                      }
-                    </p>
-                    <p>
-                      {
-                        "C'est bénéfique pour vous comme pour nous, alors n'hésitez pas à jeter un oeil !"
-                      }
-                    </p>
+                  <h2 className="text-3xl font-bold text-center mb-5">
+                    Codes actifs
+                  </h2>
+                  {codes.length > 1 ? (
+                    <div className="grid grid-cols-2 text-center font-bold text-xl">
+                      {codes.map((code, i) => (
+                        <p className="py-2" key={`code${i}`}>
+                          {code}
+                        </p>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-center font-bold text-xl">{codes[0]}</p>
+                  )}
+                </div>
+                <div className="mt-auto mb-10 xl2:mb-0 z-10">
+                  <div
+                    data-aos="fade-up"
+                    data-aos-delay="250"
+                    className="mx-auto w-full mmd:w-[747px] z-10"
+                  >
+                    <img
+                      src={`${CDN2}/img/homepage/guinaifen.webp`}
+                      className="h-36 translate-y-1"
+                    />
                   </div>
-                  <div className="sm:px-6">
-                    <div className="mt-5 relative">
-                      <div className="absolute text-xs sm:text-sm smd:text-lg px-3 text-center w-1/2 right-0 top-1/2 -translate-y-1/2">
-                        <p>{"Rapide et sécurisé avec Razer Gold"}</p>
-                        <p>{"(partenaire Hoyoverse)"}</p>
-                      </div>
-                      <img
-                        src={`${CDN2}/img/homepage/banderole_razergold.webp`}
-                      />
+                  <div
+                    data-aos="fade-left"
+                    className="bg-black mmd:rounded-2xl w-full mmd:w-[747px] py-6 z-20 relative"
+                  >
+                    <div className="px-6 ">
+                      <h2 className="text-center font-bold text-xl mb-5">
+                        Dépenser moins sur HSR tout en soutenant le site !
+                      </h2>
+                      <p>
+                        {"En utilisant ce lien "}
+                        <a
+                          href="https://www.eneba.com/fr/top-up-honkai-star-rail-oneiric-shard-malaysia?enb_campaign=Main+Search&enb_content=search+dropdown+-+products&enb_medium=product+card&enb_source=https%3A%2F%2Fwww.eneba.com%2Ftop-up-genshin-impact-genesis-crystals-malaysia&enb_term=1&af_id=Azano&utm_medium=infl&utm_source=Azano&currency=EUR&region=global"
+                          target="_blank"
+                          className="font-bold text-light-blue2"
+                        >
+                          {"Eneba"}
+                        </a>
+                        {" pour vos achats, vous soutiendrez énormément !"}
+                      </p>
+                      <p>
+                        {
+                          "Les mêmes prix qu'en jeu mais avec 10% de cashback pour dépenser moins les prochaines fois."
+                        }
+                      </p>
+                      <p>
+                        {
+                          "C'est bénéfique pour vous comme pour nous, alors n'hésitez pas à jeter un oeil !"
+                        }
+                      </p>
                     </div>
-                    <div className="mt-3 relative">
-                      <div className="absolute text-xs sm:text-sm smd:text-[20px] px-2 text-center w-3/5 left-0 top-1/2 -translate-y-1/2">
-                        <p>
-                          {
-                            "Votre UID suffit, pas besoin de vos identifiants personnels."
-                          }
-                        </p>
-                        <p className="sm:mt-2">
-                          {"Réception instantanée en jeu !"}
-                        </p>
+                    <div className="sm:px-6">
+                      <div className="mt-5 relative">
+                        <div className="absolute text-xs sm:text-sm smd:text-lg px-3 text-center w-1/2 right-0 top-1/2 -translate-y-1/2">
+                          <p>{"Rapide et sécurisé avec Razer Gold"}</p>
+                          <p>{"(partenaire Hoyoverse)"}</p>
+                        </div>
+                        <img
+                          src={`${CDN2}/img/homepage/banderole_razergold.webp`}
+                        />
                       </div>
-                      <img src={`${CDN2}/img/homepage/banderole_eneba.webp`} />
-                    </div>
-                    <div className="mt-3 relative">
-                      <div className="absolute text-xs sm:text-base smd:text-lg px-2 smd:px-10 text-center w-3/5 right-0 top-1/2 -translate-y-1/2 font-semibold">
-                        <p>
-                          {"Au besoin, passez sur le live Twitch d'"}
-                          <a
-                            href="https://www.twitch.tv/azano__"
-                            target="_blank"
-                            className="underline hover:no-underline"
-                          >
-                            Azano
-                          </a>
-                          {" pour plus d'informations."}
-                        </p>
+                      <div className="mt-3 relative">
+                        <div className="absolute text-xs sm:text-sm smd:text-[20px] px-2 text-center w-3/5 left-0 top-1/2 -translate-y-1/2">
+                          <p>
+                            {
+                              "Votre UID suffit, pas besoin de vos identifiants personnels."
+                            }
+                          </p>
+                          <p className="sm:mt-2">
+                            {"Réception instantanée en jeu !"}
+                          </p>
+                        </div>
+                        <img
+                          src={`${CDN2}/img/homepage/banderole_eneba.webp`}
+                        />
                       </div>
-                      <img src={`${CDN2}/img/homepage/banderole_azano.webp`} />
+                      <div className="mt-3 relative">
+                        <div className="absolute text-xs sm:text-base smd:text-lg px-2 smd:px-10 text-center w-3/5 right-0 top-1/2 -translate-y-1/2 font-semibold">
+                          <p>
+                            {"Au besoin, passez sur le live Twitch d'"}
+                            <a
+                              href="https://www.twitch.tv/azano__"
+                              target="_blank"
+                              className="underline hover:no-underline"
+                            >
+                              Azano
+                            </a>
+                            {" pour plus d'informations."}
+                          </p>
+                        </div>
+                        <img
+                          src={`${CDN2}/img/homepage/banderole_azano.webp`}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
