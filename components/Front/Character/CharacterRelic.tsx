@@ -24,6 +24,10 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
 }) => {
   const { rarity, level, icon, main_affix, sub_affix } = stats;
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+  const goodRelic = ["SSS", "SS+", "SS", "S+", "S"];
+  const okRelic = ["A+", "A"];
+  const badRelic = ["B+", "B", "C+", "C", "D+", "D"];
+
   let requiredMainStat: any = [];
   let displayValue: string = "";
   let relicNotation: string = "";
@@ -103,6 +107,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
   if (displayValue === "") {
     return <div>Chargement...</div>;
   }
+  verifMainStat();
 
   return (
     <div
@@ -123,7 +128,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
           equipmentIndex >= 2 && !verifMainStat() ? " text-red" : ""
         }`}
       >
-        {isTooltipVisible && equipmentIndex >= 2 && !verifMainStat() && (
+        {isTooltipVisible && equipmentIndex >= 2 && (
           <div className="absolute z-10 p-2 bg-background rounded-xl w-auto text-white text-left">
             <div className="font-bold">Recommandé :</div>
             {requiredMainStat?.map((el: any, i: number) => (
@@ -148,7 +153,17 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
       </div>
       <div className="flex flex-col relative w-full h-full justify-center text-white">
         <div className="absolute flex right-20 min-w-[87px] text-gray/50 text-[62px] -mt-3">
-          {relicNotation}
+          {/* {relicNotation} */}
+          {goodRelic.includes(relicNotation) && (
+            <span className="text-darkGreen/50">{relicNotation}</span>
+          )}
+          {okRelic.includes(relicNotation) && (
+            <span className="text-blue/50">{relicNotation}</span>
+          )}
+
+          {badRelic.includes(relicNotation) && (
+            <span className="text-red/35">{relicNotation}</span>
+          )}
         </div>
         {sub_affix.map((affix, i) => {
           const subDisplayValue = typeValueMap[affix.type] || affix.name;

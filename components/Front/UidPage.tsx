@@ -57,7 +57,7 @@ const UidPage: React.FC<UidPageProps> = ({
   const [review, setReview] = useState<any>();
 
   useEffect(() => {
-    Aos.init({ mirror: true });
+    Aos.init();
     const transformCharacterQuery = () => {
       if (isNaN(Number(characterQuery))) {
         window.history.pushState({}, "", window.location.pathname);
@@ -191,7 +191,12 @@ const UidPage: React.FC<UidPageProps> = ({
           data-aos="animate-stars"
         ></div>
         <NavBar setData={setUidData} />
-        <div className="text-white text-center text-3xl">UID non-existant</div>
+        <div
+          data-aos="fade-down"
+          className="text-white text-center text-3xl mt-10"
+        >
+          UID non-existant
+        </div>
       </div>
     );
   }
@@ -207,7 +212,12 @@ const UidPage: React.FC<UidPageProps> = ({
           data-aos="animate-stars"
         ></div>
         <NavBar setData={setUidData} />
-        <div className="text-white text-center text-3xl">UID non-valide</div>
+        <div
+          data-aos="fade-down"
+          className="text-white text-center text-3xl mt-10"
+        >
+          UID non-valide
+        </div>
       </div>
     );
   }
@@ -223,7 +233,10 @@ const UidPage: React.FC<UidPageProps> = ({
           data-aos="animate-stars"
         ></div>
         <NavBar setData={setUidData} />
-        <div className="flex justify-center items-center">
+        <div
+          className="flex justify-center items-center mt-10"
+          data-aos="fade-down"
+        >
           <div role="status">
             <svg
               aria-hidden="true"
@@ -264,7 +277,10 @@ const UidPage: React.FC<UidPageProps> = ({
             setIndex={setCharacterIndex}
             index={characterIndex}
           />
-          <div className="grid xl:grid-cols-[390px_1fr] justify-center items-center text-white font-bold xl:rounded-t-xl bg-light-blue/75 w-full max-w-[1450px] mx-auto xl:gap-x-5 py-5">
+          <div
+            data-aos="fade-down"
+            className="grid xl:grid-cols-[390px_1fr] justify-center items-center text-white font-bold xl:rounded-t-xl bg-light-blue/75 w-full max-w-[1450px] mx-auto xl:gap-x-5 py-5"
+          >
             <label className="flex items-center gap-2 ml-5 px-2">
               <span className="text-xl w-20">Build :</span>
               <ReactSelect
@@ -288,7 +304,7 @@ const UidPage: React.FC<UidPageProps> = ({
                 "Disponible prochainement"}
             </p>
           </div>
-          <div className="flex justify-center w-full">
+          <div data-aos="fade-down" className="flex justify-center w-full">
             <div ref={characterDetailsRef} className=" w-full max-w-[1450px]">
               <CharacterDetails
                 uidData={uidData as jsonUID}
