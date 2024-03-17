@@ -44,5 +44,10 @@ export async function middleware(request: NextRequest) {
 
 // It specifies the paths for which this middleware should be executed.
 export const config = {
-  matcher: ["/hsr-editor/:path*", "/api/character", "/api/characters"],
+  matcher: [
+    "/hsr-editor/:path*",
+    "/api/character",
+    "/api/characters",
+    "/api/other",
+  ],
 };
