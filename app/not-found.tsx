@@ -11,7 +11,12 @@ const notFound = () => {
         <div className="">
           <h1 className="text-4xl text-center text-white">Kuru Kuru 404</h1>
           <div className="w-full md:w-[700px] md:m-6 my-5">
-            <video autoPlay muted loop src={`${CDN2}/video/404.webm`} />
+            <video
+              autoPlay
+              muted
+              loop
+              src={`https://res.cloudinary.com/shalltear/video/upload/v1710719830/review%20HSR/iwk9xt1rwtyim0cnkfju.webm`}
+            />
           </div>
           <h3 className="text-3xl text-center text-white">
             {"Il semble que vous soyez perdu dans l'espace"}
