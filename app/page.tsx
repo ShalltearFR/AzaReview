@@ -184,8 +184,8 @@ export default function App() {
                       {
                         "Les statistiques recommandés permettent d'évaluer le besoin d'un personnage et votre objectif à dépasser. Bien évidement si vous offrez de la vitesse ou des gains d'actions avec des personnages harmonies tels que Sparkle ou Bronya, la recommandation de Vitesse ne sera pas la même. Les recommandations sont donc faites pour posséder des personnages "
                       }
-                      <strong>versatiles</strong> et <strong>équilibrés</strong>
-                      .
+                      <strong className="text-darkGreen">versatiles</strong> et{" "}
+                      <strong className="text-darkGreen">équilibrés</strong>.
                     </p>
                   </article>
                   <article>

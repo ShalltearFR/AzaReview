@@ -21,7 +21,7 @@ const config: Config = {
     colors: {
       transparent: "transparent",
       background: "#1F2937", //Bleu foncé
-      blue: "#006A89", //Bleu azano
+      blue: "#04576f", //Bleu azano
       "light-blue": "#4E4A82",
       "light-blue2": "#6a91fd",
       white: "#FFFFFF",
@@ -35,9 +35,10 @@ const config: Config = {
       "light-gray": "#D9D9D9",
       red: "#FF4B4B",
       green: "#00ff00",
+      darkGreen: "#108f10",
       purple: "#76617b",
       darkPurple: "#42368d",
-      darkRed: "#5b0f00",
+      darkRed: "#420d02",
     },
     extend: {
       animation: {
