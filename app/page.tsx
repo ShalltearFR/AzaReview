@@ -31,25 +31,27 @@ export default function App() {
         }}
         data-aos="animate-stars"
       />
-      <div className={`xl2:w-screen xl2:h-screen xl2:overflow-hidden`}>
+      <div
+        className={`overflow-x-hidden xl2:w-screen xl2:h-screen xl2:overflow-y-hidden`}
+      >
         <NavBar
           isHomepage
           sectionIndex={sectionIndex}
           setSectionIndex={setSectionIndex}
           setSectionPrevIndex={setSectionPrevIndex}
         />
-        <div className="text-white mt-10 xl:mt-0 w-full h-full overflow-hidden">
+        <div className="text-white mt-10 xl2:mt-0   xl2:overflow-hidden xl2:h-[calc(100vh-64px)] flex flex-col justify-center items-center">
           {/* 1ere section */}
           {showSection0 && (
             <section
-              className={`flex flex-col w-full xl:flex-row justify-center items-center xl:min-h-screen gap-y-10 lg:gap-x-10 scroll-m-96 snap-start pb-10 xl:pb-0 xl:px-5`}
+              className={`flex flex-col w-full xl:flex-row justify-center items-center gap-y-10 lg:gap-x-10 pb-10 xl:pb-0 xl:px-5`}
             >
               <div
                 data-aos={`${
                   sectionPrevIndex === 0 ? "fade-right" : "fade-left"
                 }`}
                 data-aos-id="section1"
-                className=" bg-black p-5 w-full mmd:w-[750px] mmd:rounded-3xl pt-10 z-10"
+                className=" bg-black p-5 w-full mmd:w-[750px] mmd:rounded-3xl xl2:w-[900px] pt-10 z-10"
               >
                 <h1 className="text-3xl xl:text-4xl font-bold text-center">
                   {"Votre review Honkai : Star Rail"}
@@ -57,14 +59,38 @@ export default function App() {
                 <h2 className="mt-5 mb-7 text-xl xl:text-2xl font-bold text-center">
                   {"C'est quoi Review HSR ?"}
                 </h2>
-                <p className="font-medium">
+                <p className="text-center text-lg text-darkGreen font-semibold">
                   {"Un site d'aide pour améliorer facilement vos personnages."}
                 </p>
-                <p>
+                <p className="mt-5">
                   {
                     "Des conseils clairs et adaptés pour une utilisation en toute simplicité."
                   }
                 </p>
+                <ul className="list-decimal [&_li]:ml-5 marker:text-purple marker:text-xl marker:font-extrabold mb-5">
+                  <li>
+                    {"Mettez vos personnages du jeu en vitrine. "}
+                    <strong>(cf. vidéo de la page)</strong>
+                  </li>
+                  <li>
+                    <span>
+                      {
+                        'Entrez votre UID sur le site et cliquez sur "Rechercher".'
+                      }
+                    </span>
+                    <span className="font-semibold">
+                      {
+                        " Si vous venez de modifier votre vitrine en jeu, patientez 10 minutes "
+                      }
+                    </span>
+                    {"pour que la synchronisation soit bien effectuée."}
+                  </li>
+                  <li>
+                    {
+                      "Si un personnage possède plusieurs façons d'être équipé / joué, il faudra sélectionner le build correspondant à votre utilisation."
+                    }
+                  </li>
+                </ul>
                 <p className="my-5">
                   {"Le moindre élément qui ne convient pas sera noté en "}
                   <span className="text-red font-bold">rouge</span>
@@ -102,9 +128,9 @@ export default function App() {
               </div>
               <div
                 data-aos="fade-left"
-                className="bg-black p-5 w-full mmd:w-auto mmd:rounded-3xl z-10"
+                className="bg-black p-5 w-full mmd:w-auto mmd:rounded-3xl z-10 h-full flex flex-col justify-center"
               >
-                <p className="text-2xl font-bold text-center mb-5 ">
+                <p className="text-3xl font-bold text-center mb-5">
                   Sélectionnez vos personnages en vitrine
                 </p>
                 <video
@@ -126,7 +152,7 @@ export default function App() {
           {/* 2eme section */}
           {showSection1 && (
             <section
-              className={`bg-brown2 xl:min-h-screen flex flex-col justify-center items-center`}
+              className={`bg-brown2 mt-10 xl2:mt-0 xl:min-h-screen flex flex-col justify-center items-center`}
             >
               <div className=" mx-auto flex flex-col items-center justify-center [&_article]:lg:!w-11/12 [&_article]:xxl:w-1/2 [&_article]:w-full [&_article]:p-5 [&_article]:bg-black [&_article]:mmd:w-3/4 [&_article]:mmd:rounded-3xl">
                 <div
@@ -147,48 +173,45 @@ export default function App() {
                   className="flex flex-col gap-y-5 justify-center items-center my-auto mb-10 z-10"
                 >
                   <article>
-                    <h2 className="text-xl xl:text-2xl font-bold text-center">
-                      {"Comment l'utiliser et le comprendre ?"}
+                    <h2 className="text-xl xl:text-2xl font-bold text-center mb-5">
+                      {"Analyse des Recommandations"}
                     </h2>
-                    <ul className="mt-5 list-decimal [&_li]:ml-5 marker:text-purple marker:text-xl marker:font-extrabold">
-                      <li>{"Mettez vos personnages du jeu en vitrine."}</li>
-                      <li>
-                        <span>
-                          {
-                            'Entrez votre UID sur le site et cliquez sur "Rechercher".'
-                          }
-                        </span>
-                        <span className="font-semibold">
-                          {
-                            " Si vous venez de modifier votre vitrine en jeu, patientez 10 minutes "
-                          }
-                        </span>
-                        {"pour que la synchronisation soit bien effectuée."}
-                      </li>
-                      <li>
-                        {
-                          "Si un personnage possède plusieurs façons d'être équipé / joué, il faudra sélectionner le build correspondant à votre utilisation."
-                        }
-                      </li>
-                    </ul>
-                  </article>
-                  <article>
                     <p>
                       {
                         "Le site analyse des personnages terminés, c'est à dire avec le niveau, le cône, les traces et les reliques / ornements améliorés. Prenez donc en considération qu'une relique sera par exemple mal notée si elle n'est pas montée."
                       }
                     </p>
+                    <ul className="list-decimal [&_li]:ml-5 marker:text-purple marker:text-xl marker:font-extrabold mt-5">
+                      <li>
+                        <strong>{"Les statistiques recommandées "}</strong>
+                        {
+                          "permettent d'évaluer le besoin d'un personnage et votre objectif à dépasser."
+                        }
+                      </li>
+                      <li>
+                        {
+                          "Bien évidement si vous offrez de la vitesse ou des gains d'actions avec des personnages tels que Sparkle ou Bronya, alors "
+                        }
+                        <strong>
+                          {"la recommandation de vitesse ne sera pas la même "}
+                        </strong>
+                        {"(à vous d'ajuster / réduire)"}
+                      </li>
+                      <li>
+                        {
+                          "Les recommandations sont faites pour posséder des personnages "
+                        }
+                        <strong className="text-darkGreen">versatiles</strong>{" "}
+                        et{" "}
+                        <strong className="text-darkGreen">équilibrés</strong>.
+                      </li>
+                    </ul>
                   </article>
+
                   <article>
-                    <p>
-                      {
-                        "Les statistiques recommandés permettent d'évaluer le besoin d'un personnage et votre objectif à dépasser. Bien évidement si vous offrez de la vitesse ou des gains d'actions avec des personnages harmonies tels que Sparkle ou Bronya, la recommandation de Vitesse ne sera pas la même. Les recommandations sont donc faites pour posséder des personnages "
-                      }
-                      <strong className="text-darkGreen">versatiles</strong> et{" "}
-                      <strong className="text-darkGreen">équilibrés</strong>.
-                    </p>
-                  </article>
-                  <article>
+                    <h2 className="text-xl xl:text-2xl font-bold text-center mb-5">
+                      {"Les Notes et Objectifs"}
+                    </h2>
                     <p>
                       {
                         "Le système de notation de Reliques et Ornements prend en compte les besoins du personnage. Les statistiques les plus utiles amélioreront significativement la notation (chaque statistique a son coef. en fonction du personnage), les valeurs obtenues, le nombre d'augmentations de statistiques (4 ou 5) ainsi que la statistique principale."
@@ -199,7 +222,7 @@ export default function App() {
                         }
                       </span>
                     </p>
-                    <ul className="list-disc mt-2 [&_li]:ml-5 italic">
+                    <ul className="list-disc mt-5 [&_li]:ml-5 italic">
                       <li>
                         {
                           "Obtenir une note de A ou A+ est la moyenne à atteindre si possible partout."
@@ -229,7 +252,8 @@ export default function App() {
           {/* 3eme section */}
           {showSection2 && (
             <section
-              className={`flex flex-col justify-center items-center bg-darkPurple xl:min-h-screen pt-5 xl2:pt-0`}
+              // className={`bg-brown2 xl:min-h-screen flex flex-col justify-center items-center`}
+              className={`flex flex-col justify-center items-center bg-darkPurple w-full xl:min-h-[calc(100vh-64px)] pt-5 xl2:pt-0`}
             >
               <div className="mt-auto mb-10 xl2:mb-0 z-10">
                 <div

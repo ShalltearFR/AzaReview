@@ -169,7 +169,7 @@ const NavBar: React.FC<NavBarProps> = ({
         </div>
       </nav>
 
-      <div className={`${isHomepage ? "" : "xl:h-16 mt-[28px]"}`}></div>
+      <div className={`xl:h-16`}></div>
     </>
   );
 };
