@@ -53,7 +53,7 @@ export default function App() {
           setSectionIndex={setSectionIndex}
           setSectionPrevIndex={setSectionPrevIndex}
         />
-        <div className="text-white mt-10 xl2:mt-0   xl2:overflow-hidden xl2:h-[calc(100vh-64px)] flex flex-col justify-center items-center">
+        <div className="text-white mt-10 xl2:mt-0 xl2:overflow-hidden xl2:h-[calc(100vh-64px)] flex flex-col justify-center items-center">
           {/* 1ere section */}
           {showSection0 && (
             <section
@@ -271,10 +271,9 @@ export default function App() {
           {/* 3eme section */}
           {showSection2 && (
             <section
-              // className={`bg-brown2 xl:min-h-screen flex flex-col justify-center items-center`}
               className={`flex flex-col justify-center items-center bg-darkPurple w-full xl:min-h-[calc(100vh-64px)] pt-5 xl2:pt-0`}
             >
-              <div className="flex flex-col-reverse mb-16 xl2:mb-0 xl2:flex-row gap-5 justify-center items-center">
+              <div className="flex flex-col-reverse mb-16 xl2:mb-0 xl2:flex-row gap-5 justify-center items-center my-auto">
                 <div
                   data-aos="fade-right"
                   className="bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-20 relative"
@@ -283,7 +282,7 @@ export default function App() {
                     Codes actifs
                   </h2>
                   {codes.length > 1 ? (
-                    <div className="grid grid-cols-2 text-center font-bold text-xl">
+                    <div className="grid sm:grid-cols-2 text-center font-bold text-xl">
                       {codes.map((code, i) => (
                         <p className="py-2" key={`code${i}`}>
                           {code}
