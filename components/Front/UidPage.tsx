@@ -182,7 +182,7 @@ const UidPage: React.FC<UidPageProps> = ({
 
   if (uidData.status === 404) {
     return (
-      <div className="min-h-[calc(100vh-270px)]">
+      <div className="min-h-[calc(100vh-230px)] overflow-hidden">
         <div
           style={{
             backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,
@@ -198,7 +198,7 @@ const UidPage: React.FC<UidPageProps> = ({
 
   if (uidData.status === 400) {
     return (
-      <div className="min-h-[calc(100vh-270px)]">
+      <div className="min-h-[calc(100vh-230px)] overflow-hidden">
         <div
           style={{
             backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,
@@ -214,7 +214,7 @@ const UidPage: React.FC<UidPageProps> = ({
 
   if (isloading)
     return (
-      <div className="min-h-[calc(100vh-270px)]">
+      <div className="min-h-[calc(100vh-230px)] overflow-hidden">
         <div
           style={{
             backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,

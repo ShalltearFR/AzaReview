@@ -9,6 +9,7 @@ import AOS from "aos";
 
 export default function App() {
   const [sectionIndex, setSectionIndex] = useState<number>(0);
+  const [sectionPrevIndex, setSectionPrevIndex] = useState<number>(0);
 
   useEffect(() => {
     AOS.init({ mirror: true });
@@ -31,34 +32,22 @@ export default function App() {
         data-aos="animate-stars"
       />
       <div className={`xl2:w-screen xl2:h-screen xl2:overflow-hidden`}>
-        <NavBar isHomepage />
+        <NavBar
+          isHomepage
+          sectionIndex={sectionIndex}
+          setSectionIndex={setSectionIndex}
+          setSectionPrevIndex={setSectionPrevIndex}
+        />
         <div className="text-white mt-10 xl:mt-0 w-full h-full overflow-hidden">
-          {sectionIndex !== 0 && (
-            <button className="hidden xl2:block absolute top-16 right-1/2 z-50 opacity-50 hover:opacity-100 -rotate-90">
-              <img
-                src="/img/homepage/nextSection.svg"
-                className="h-16 animate-homePageBounce"
-                onClick={() => setSectionIndex(sectionIndex - 1)}
-              />
-            </button>
-          )}
-          {sectionIndex !== 2 && (
-            <button className="hidden xl2:block absolute bottom-0 right-1/2 z-50 opacity-50 hover:opacity-100 rotate-90">
-              <img
-                src="/img/homepage/nextSection.svg"
-                className="h-16 animate-homePageBounce"
-                onClick={() => setSectionIndex(sectionIndex + 1)}
-              />
-            </button>
-          )}
-
           {/* 1ere section */}
           {showSection0 && (
             <section
-              className={`flex flex-col w-full xl:flex-row justify-center items-center xl:min-h-screen gap-y-10 lg:gap-x-10 scroll-m-96 snap-start pb-10 xl:pb-0`}
+              className={`flex flex-col w-full xl:flex-row justify-center items-center xl:min-h-screen gap-y-10 lg:gap-x-10 scroll-m-96 snap-start pb-10 xl:pb-0 xl:px-5`}
             >
               <div
-                data-aos="fade-right"
+                data-aos={`${
+                  sectionPrevIndex === 0 ? "fade-right" : "fade-left"
+                }`}
                 data-aos-id="section1"
                 className=" bg-black p-5 w-full mmd:w-[750px] mmd:rounded-3xl pt-10 z-10"
               >
@@ -113,16 +102,23 @@ export default function App() {
               </div>
               <div
                 data-aos="fade-left"
-                className="bg-black p-5 w-full mmd:w-96 mmd:rounded-3xl z-10"
+                className="bg-black p-5 w-full mmd:w-auto mmd:rounded-3xl z-10"
               >
                 <p className="text-2xl font-bold text-center mb-5 ">
                   Sélectionnez vos personnages en vitrine
                 </p>
-                <img
-                  src="/img/homepage/vitrine.webp"
-                  alt="personnages de vitrine"
-                  className="mx-auto "
-                />
+                <video
+                  autoPlay
+                  playsInline
+                  muted
+                  loop
+                  className="rounded-2xl mx-auto"
+                >
+                  <source
+                    src={`${CDN2}/video/homepage/vitrine.webm`}
+                    type="video/webm"
+                  />
+                </video>
               </div>
             </section>
           )}
@@ -145,7 +141,9 @@ export default function App() {
                   />
                 </div>
                 <div
-                  data-aos="fade-right"
+                  data-aos={`${
+                    sectionPrevIndex === 0 ? "fade-right" : "fade-left"
+                  }`}
                   className="flex flex-col gap-y-5 justify-center items-center my-auto mb-10 z-10"
                 >
                   <article>
