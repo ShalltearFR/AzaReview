@@ -9,7 +9,9 @@ const notFound = () => {
       <NavBar />
       <section className="flex justify-center items-center min-h-[calc(100vh-295px)]">
         <div className="">
-          <h1 className="text-4xl text-center text-white">Kuru Kuru 404</h1>
+          <h1 className="text-4xl text-center text-white font-bold">
+            Kuru Kuru 404
+          </h1>
           <div className="w-full md:w-[700px] md:m-6 my-5">
             <video
               autoPlay
