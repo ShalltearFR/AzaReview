@@ -74,13 +74,13 @@ export default function App() {
                   {"Les éléments suivants sont analysés :"}
                 </p>
                 <ul className="list-disc [&_*]:ml-5 mb-5 font-semibold italic">
-                  <li>{"Le cône"}</li>
-                  <li>{"Les ensembles de reliques et ornements"}</li>
-                  <li>{"Les statistiques principales de vos pièces"}</li>
-                  <li>{"Vos statistiques finales"}</li>
+                  <li>{"Le cône."}</li>
+                  <li>{"Les ensembles de reliques et ornements."}</li>
+                  <li>{"Les statistiques principales de vos pièces."}</li>
+                  <li>{"Vos statistiques finales."}</li>
                   <li>
                     {
-                      "La pertinance de vos pièces avec un système de notation ( de D à SSS)"
+                      "La pertinance de vos pièces avec un système de notation ( de D à SSS)."
                     }
                   </li>
                 </ul>
@@ -151,7 +151,7 @@ export default function App() {
                       {"Comment l'utiliser et le comprendre ?"}
                     </h2>
                     <ul className="mt-5 list-decimal [&_li]:ml-5 marker:text-purple marker:text-xl marker:font-extrabold">
-                      <li>{"Mettez vos personnages du jeu en vitrine"}</li>
+                      <li>{"Mettez vos personnages du jeu en vitrine."}</li>
                       <li>
                         <span>
                           {
@@ -167,7 +167,7 @@ export default function App() {
                       </li>
                       <li>
                         {
-                          "Si un personnage possède plusieurs façons d'être équipé / joué, il faudra sélectionner le build correspondant à votre utilisation"
+                          "Si un personnage possède plusieurs façons d'être équipé / joué, il faudra sélectionner le build correspondant à votre utilisation."
                         }
                       </li>
                     </ul>
@@ -182,8 +182,10 @@ export default function App() {
                   <article>
                     <p>
                       {
-                        "Les statistiques recommandés permettent d'évaluer le besoin d'un personnage et votre objectif à dépasser. Bien évidement si vous offrez de la vitesse ou des gains d'actions avec des personnages harmonies tels que Sparkle ou Bronya, la recommandation de Vitesse ne sera pas la même. Les recommandations sont donc faites pour posséder des personnages versatiles et équilibrés."
+                        "Les statistiques recommandés permettent d'évaluer le besoin d'un personnage et votre objectif à dépasser. Bien évidement si vous offrez de la vitesse ou des gains d'actions avec des personnages harmonies tels que Sparkle ou Bronya, la recommandation de Vitesse ne sera pas la même. Les recommandations sont donc faites pour posséder des personnages "
                       }
+                      <strong>versatiles</strong> et <strong>équilibrés</strong>
+                      .
                     </p>
                   </article>
                   <article>
@@ -200,17 +202,17 @@ export default function App() {
                     <ul className="list-disc mt-2 [&_li]:ml-5 italic">
                       <li>
                         {
-                          "Obtenir une note de A ou A+ est la moyenne à atteindre si possible partout"
+                          "Obtenir une note de A ou A+ est la moyenne à atteindre si possible partout."
                         }
                       </li>
                       <li>
                         {
-                          "Une notation inférieure (de D à B+) signifie qu'il est fortement recommandé de changer la pièce correspondante"
+                          "Une notation inférieure (de D à B+) signifie qu'il est fortement recommandé de changer la pièce correspondante."
                         }
                       </li>
                       <li>
                         {
-                          "Une notation supérieur (de S à SSS) confirme que la pièce est très bien et qu'il n'y a pas besoin de perdre du temps à l'améliorer (sauf si vous souhaitez perfectionner votre personnage)"
+                          "Une notation supérieur (de S à SSS) confirme que la pièce est très bien et qu'il n'y a pas besoin de perdre du temps à l'améliorer (sauf si vous souhaitez perfectionner votre personnage)."
                         }
                       </li>
                     </ul>
@@ -258,7 +260,7 @@ export default function App() {
                       >
                         {"Eneba"}
                       </a>
-                      {" avant vos achats, vous soutiendrez énormément !"}
+                      {" pour vos achats, vous soutiendrez énormément !"}
                     </p>
                     <p>
                       {
