@@ -2,7 +2,8 @@
 import { CDN2 } from "@/utils/cdn";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface NavBarProps {
   setData?: any;
@@ -20,7 +21,9 @@ const NavBar: React.FC<NavBarProps> = ({
   setSectionPrevIndex,
 }) => {
   const { push } = useRouter();
+  const pathname = usePathname();
   const [uidInput, setUidInput] = useState<string>("");
+  const [uidPathName, setUidPathName] = useState<string>("");
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const [disableSearchButton, setDisableSearchButton] =
     useState<boolean>(false);
@@ -28,7 +31,8 @@ const NavBar: React.FC<NavBarProps> = ({
 
   useEffect(() => {
     if (isHomepage) setOpenMenu(true);
-
+    const pathNameArray = pathname.split("/");
+    setUidPathName(pathNameArray[2]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -72,7 +76,7 @@ const NavBar: React.FC<NavBarProps> = ({
             </div>
 
             <div
-              className={`flex ${
+              className={`flex gap-2 ${
                 openMenu
                   ? "animate-fade-in sm:!animate-alwaysShow"
                   : "hidden animate-fade-out sm:!flex sm:!animate-alwaysShow"
@@ -89,7 +93,7 @@ const NavBar: React.FC<NavBarProps> = ({
                 disabled={disableSearchButton}
                 className="bg-[#3E7032] flex gap-2 items-center h-10 px-4 rounded-full text-white z-50 disabled:bg-gray"
                 onClick={() => {
-                  if (uidInput !== "") {
+                  if (uidInput !== "" && uidInput !== uidPathName) {
                     setDisableSearchButton(true);
                     if (isNaN(Number(uidInput)) && !isHomepage) {
                       setData({ status: 400 });
@@ -146,7 +150,7 @@ const NavBar: React.FC<NavBarProps> = ({
           </div>
           <button
             onClick={() => setOpenMenu(!openMenu)}
-            className={`z-50 text-white mr-2 flex flex-col h-10 w-10 justify-center items-center group sm:hidden ${
+            className={`z-50 text-white flex flex-col h-10 w-10 justify-center items-center group sm:hidden ${
               openMenu ? " " : "ml-auto "
             }`}
           >
