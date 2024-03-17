@@ -276,7 +276,7 @@ export default function App() {
               <div className="flex flex-col-reverse mb-16 xl2:mb-0 xl2:flex-row gap-5 justify-center items-center my-auto">
                 <div
                   data-aos="fade-right"
-                  className="bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-20 relative"
+                  className="bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-20 xl2:mt-36"
                 >
                   <h2 className="text-3xl font-bold text-center mb-5">
                     Codes actifs
