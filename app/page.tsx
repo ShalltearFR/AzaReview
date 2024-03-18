@@ -133,7 +133,7 @@ export default function App() {
 
   return (
     <>
-      <Suspense>
+      <Suspense fallback={<>Chargement...</>}>
         <div
           style={{
             backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,
