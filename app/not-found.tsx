@@ -8,7 +8,14 @@ const notFound = () => {
     <>
       <NavBar />
       <section className="flex justify-center items-center min-h-[calc(100vh-295px)]">
-        <div className="">
+        <div
+          style={{
+            backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,
+            zIndex: -10,
+          }}
+          data-aos="animate-stars"
+        />
+        <div>
           <h1 className="text-4xl text-center text-white font-bold">
             Kuru Kuru 404
           </h1>
