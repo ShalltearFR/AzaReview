@@ -59,7 +59,7 @@ const CharacterList: React.FC = () => {
 
         const options = filter.map((el) => ({
           value: el.id,
-          label: el.id,
+          label: el.name.toLocaleLowerCase(),
           preview: el.preview,
           portrait: el.portrait,
           name: el.name,
@@ -192,7 +192,7 @@ const CharacterList: React.FC = () => {
             <div className="flex flex-wrap gap-5 px-5 justify-center border-r border-dashed">
               {dataBaseCharactersRef.current &&
                 dataBaseCharactersRef.current.map((data: Character) => (
-                  <div key={crypto.randomUUID()}>
+                  <div key={`dataCard+${data.id}`}>
                     <CharacterCard
                       id={data.id}
                       preview={data.preview}
@@ -237,6 +237,8 @@ const CharacterList: React.FC = () => {
                       }),
                       input: (base) => ({
                         ...base,
+                        paddingLeft: "40px",
+                        color: "white",
                       }),
                       menu: (base) => ({
                         ...base,
@@ -244,7 +246,7 @@ const CharacterList: React.FC = () => {
                       }),
                     }}
                     formatOptionLabel={(option: Option) => (
-                      <div className="">
+                      <div>
                         <img
                           src={`${CDN}/${option.preview}`}
                           className="w-48"
