@@ -6,6 +6,7 @@ import Modal from "react-modal";
 import NavBarEditor from "@/components/Editor/NavBarEditor";
 import CharacterCard from "@/components/Editor/CharacterCard";
 import { CDN } from "@/utils/cdn";
+import { toast } from "react-toastify";
 
 type Character = {
   id: string;
@@ -111,7 +112,13 @@ const CharacterList: React.FC = () => {
       cache: "no-cache",
       next: { revalidate: 0 },
       body: JSON.stringify(data),
-    }).then(() => init());
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.id) toast.success("Ajout de personnage réussi");
+        else toast.error("Erreur d'ajout de personnage");
+        init();
+      });
   };
 
   const deleteCharacterFromDB = (
@@ -129,10 +136,15 @@ const CharacterList: React.FC = () => {
       cache: "no-cache",
       next: { revalidate: 0 },
       body: JSON.stringify({ id: cardCharacterID }),
-    }).then(() => {
-      init();
-      setEnableDeleteModal(false);
-    });
+    })
+      .then((res) => res.json())
+      .then((data: any) => {
+        if (data && data.message === "ok")
+          toast.success("Suppression de personnage réussi");
+        else toast.error("Erreur de suppression de personnage");
+        init();
+        setEnableDeleteModal(false);
+      });
   };
 
   return (
