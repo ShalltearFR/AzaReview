@@ -204,7 +204,7 @@ const CharacterList: React.FC = () => {
           <div>
             <div className="relative">
               <input
-                placeholder="Recherche de personnage dans la DB"
+                placeholder="Recherche de personnages dans la DB"
                 className="absolute right-0 rounded-xl p-2 w-72"
                 onChange={(e) => setCharactersSearchInput(e.target.value)}
                 value={charactersSearchInput}
