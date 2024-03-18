@@ -17,6 +17,7 @@ import type {
   recommendedStatsOption,
 } from "@/types/EditorPage";
 import GlobalBuild from "@/components/Editor/Global/GlobalBuild";
+import { ToastContainer, toast } from "react-toastify";
 
 function Page({ params }: { params: { id: number } }) {
   const [characterData, setCharacterData] = useState<
@@ -338,6 +339,11 @@ function Page({ params }: { params: { id: number } }) {
       next: { revalidate: 0 },
       body: JSON.stringify(dataToDB),
     }).then((data: any) => {
+      if (data.status === 200) {
+        toast.success("Sauvegarde terminé");
+      } else {
+        toast.error("Erreur de sauvegarde");
+      }
       console.log("data envoyé", data);
       setDisableSaveButton(false);
     });
