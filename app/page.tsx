@@ -4,16 +4,18 @@ import HorizontalNotationArray from "@/components/Front/Homepage/HorizontalNotat
 import VerticalNotationArray from "@/components/Front/Homepage/VerticalNotationArray";
 import NavBar from "@/components/Front/NavBar";
 import { CDN2 } from "@/utils/cdn";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import AOS from "aos";
 
 export default function App() {
   const [sectionIndex, setSectionIndex] = useState<number>(0);
   const [sectionPrevIndex, setSectionPrevIndex] = useState<number>(0);
   const [codes, setCodes] = useState<Array<string>>([""]);
+  const desktopMode = useRef(false);
 
   useEffect(() => {
     AOS.init({ mirror: true });
+    window.addEventListener("resize", userResizing, true);
     if (window.innerWidth <= 1700) setSectionIndex(999);
 
     fetch("/api/other/all")
@@ -30,6 +32,13 @@ export default function App() {
 
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const userResizing = () => {
+    if (window.innerWidth <= 1700) setSectionIndex(999);
+    if (window.innerWidth > 1700) setSectionIndex(0);
+    const startPage: any = document.querySelector("body");
+    startPage.scrollIntoView({ behavior: "auto" });
+  };
 
   const showSection0 = sectionIndex === 0 || sectionIndex === 999;
   const showSection1 = sectionIndex === 1 || sectionIndex === 999;
