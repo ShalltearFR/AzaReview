@@ -10,6 +10,7 @@ import { toPng } from "html-to-image";
 import ReactSelect from "react-select";
 import { CDN2 } from "@/utils/cdn";
 import Aos from "aos";
+import { notFound } from "next/navigation";
 
 interface Option {
   value: string;
@@ -202,24 +203,7 @@ const UidPage: React.FC<UidPageProps> = ({
   }
 
   if (uidData.status === 400) {
-    return (
-      <div className="min-h-[calc(100vh-230px)] overflow-hidden">
-        <div
-          style={{
-            backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,
-            zIndex: -10,
-          }}
-          data-aos="animate-stars"
-        ></div>
-        <NavBar setData={setUidData} />
-        <div
-          data-aos="fade-down"
-          className="text-white text-center text-3xl mt-10"
-        >
-          UID non-valide
-        </div>
-      </div>
-    );
+    return notFound();
   }
 
   if (isloading)
@@ -231,7 +215,7 @@ const UidPage: React.FC<UidPageProps> = ({
             zIndex: -10,
           }}
           data-aos="animate-stars"
-        ></div>
+        />
         <NavBar setData={setUidData} />
         <div
           className="flex justify-center items-center mt-10"
