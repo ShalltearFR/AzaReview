@@ -53,7 +53,7 @@ const NavBar: React.FC<NavBarProps> = ({
               className="absolute h-16 sm:h-20 left-2 top-2 z-50"
             />
           </Link>
-          <div className="flex gap-7 mx-auto items-center mr-auto sm:mr-5 smd:mr-auto">
+          <div className="flex gap-16 mx-auto items-center mr-auto sm:mr-5 smd:mr-auto">
             <div className="h-0 w-0 xl2:h-16 xl2:w-16">
               {isHomepage &&
                 setSectionIndex &&
