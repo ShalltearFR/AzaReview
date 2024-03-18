@@ -17,12 +17,13 @@ function Homepage() {
   const [isCodeAnimation, setIsCodeAnimation] = useState<Boolean>(true);
 
   const searchParams = useSearchParams();
-  const codesParams = searchParams.get("codes");
 
   const isCodes = useRef(false);
   const [isLoading, setIsloading] = useState<boolean>(true);
 
   useEffect(() => {
+    const codesParams = searchParams.get("codes");
+
     window.addEventListener("resize", userResizing, true);
     if (window.innerWidth >= 1700) {
       AOS.init({ mirror: true });
