@@ -36,7 +36,7 @@ function Homepage() {
       .then((res) => res.json())
       .then((json: any) => {
         const { codes } = json.data;
-        const codesArray = codes.split(",");
+        const codesArray = codes.split("\n");
         if (codesArray[0] === "") {
           setCodes(["Pas de code pour le moment"]);
         } else {
@@ -383,11 +383,26 @@ function Homepage() {
                   </h2>
                   {codes.length > 1 ? (
                     <div className="grid sm:grid-cols-2 text-center font-bold text-xl">
-                      {codes.map((code, i) => (
-                        <p className="py-2" key={`code${i}`}>
-                          {code}
-                        </p>
-                      ))}
+                      {codes.map((code, i) => {
+                        const codeWithoutSpace = code.split(" ");
+                        return (
+                          <p
+                            className={`py-2 font-bold ${
+                              codeWithoutSpace[1]
+                                ? "text-yellow"
+                                : "text-light-blue2"
+                            } `}
+                            key={`code${i}`}
+                          >
+                            <a
+                              target="_blank"
+                              href={`https://hsr.hoyoverse.com/gift?code=${codeWithoutSpace[0]}`}
+                            >
+                              {code}
+                            </a>
+                          </p>
+                        );
+                      })}
                     </div>
                   ) : (
                     <p className="text-center font-bold text-xl">{codes[0]}</p>
