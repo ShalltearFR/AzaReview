@@ -15,13 +15,14 @@ export default function App() {
   const [sectionPrevIndex, setSectionPrevIndex] = useState<number>(0);
   const [codes, setCodes] = useState<Array<string>>([""]);
   const [isCodeAnimation, setIsCodeAnimation] = useState<Boolean>(true);
+
+  const searchParams = useSearchParams();
+  const codesParams = searchParams.get("codes");
+
   const isCodes = useRef(false);
   const [isLoading, setIsloading] = useState<boolean>(true);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const searchParams = useSearchParams();
-
     window.addEventListener("resize", userResizing, true);
     if (window.innerWidth >= 1700) {
       AOS.init({ mirror: true });
@@ -42,9 +43,8 @@ export default function App() {
         }
       });
 
-    const codes = searchParams.get("codes");
     // Si l'url possède ?codes
-    if (codes !== null) {
+    if (codesParams !== null) {
       isCodes.current = true;
       if (window.innerWidth >= 1700) {
         // Version desktop
