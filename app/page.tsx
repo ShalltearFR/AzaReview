@@ -9,17 +9,18 @@ import AOS from "aos";
 import { useSearchParams } from "next/navigation";
 import Footer from "@/components/Front/Footer";
 import { Suspense } from "react";
+import { LinkIcon } from "@heroicons/react/24/outline";
 
 function Homepage() {
   const [sectionIndex, setSectionIndex] = useState<number>(999);
   const [sectionPrevIndex, setSectionPrevIndex] = useState<number>(0);
   const [codes, setCodes] = useState<Array<string>>([""]);
   const [isCodeAnimation, setIsCodeAnimation] = useState<Boolean>(true);
-
-  const searchParams = useSearchParams();
-
   const isCodes = useRef(false);
   const [isLoading, setIsloading] = useState<boolean>(true);
+  const [isShareCodes, setIsShareCodes] = useState<boolean>(false);
+
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const codesParams = searchParams.get("codes");
@@ -375,12 +376,34 @@ function Homepage() {
                   data-aos={isCodeAnimation ? "fade-right" : ""}
                   className="bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-20 xl2:mt-36"
                 >
-                  <h2
-                    id="codes"
-                    className="text-3xl font-bold text-center mb-5"
-                  >
-                    Codes actifs
-                  </h2>
+                  <div className="relative">
+                    <h2
+                      id="codes"
+                      className="text-3xl font-bold text-center mb-5 mx-auto"
+                    >
+                      Codes actifs
+                    </h2>
+
+                    <p
+                      className={`absolute p-2 bg-gray right-0 top-0 z-10 rounded-xl ${
+                        isShareCodes ? "animate-fade-in" : "hidden"
+                      }`}
+                    >
+                      Lien copié
+                    </p>
+                    <LinkIcon
+                      className="absolute right-0 top-2 h-6 hover:cursor-pointer"
+                      onClick={() => {
+                        navigator.clipboard.writeText(
+                          "https://review-hsr.vercel.app/?codes"
+                        );
+                        setIsShareCodes(true);
+                        setTimeout(() => {
+                          setIsShareCodes(false);
+                        }, 3000);
+                      }}
+                    />
+                  </div>
                   {codes.length > 1 ? (
                     <div className="grid sm:grid-cols-2 text-center font-bold text-xl">
                       {codes.map((code, i) => {
