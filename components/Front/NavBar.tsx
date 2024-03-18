@@ -88,6 +88,19 @@ const NavBar: React.FC<NavBarProps> = ({
                 placeholder="UID"
                 value={uidInput}
                 onChange={(e) => setUidInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    if (uidInput !== "" && uidInput !== uidPathName) {
+                      setDisableSearchButton(true);
+                      if (isNaN(Number(uidInput)) && !isHomepage) {
+                        setData({ status: 400 });
+                        setDisableSearchButton(false);
+                      } else {
+                        push(`/uid/${uidInput}`);
+                      }
+                    }
+                  }
+                }}
               />
               <button
                 disabled={disableSearchButton}
