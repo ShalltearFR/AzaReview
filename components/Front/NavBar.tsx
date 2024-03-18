@@ -93,7 +93,7 @@ const NavBar: React.FC<NavBarProps> = ({
                     if (uidInput !== "" && uidInput !== uidPathName) {
                       setDisableSearchButton(true);
                       if (isNaN(Number(uidInput)) && !isHomepage) {
-                        setData({ status: 400 });
+                        if (setData) setData({ status: 400 });
                         setDisableSearchButton(false);
                       } else {
                         push(`/uid/${uidInput}`);
@@ -109,7 +109,7 @@ const NavBar: React.FC<NavBarProps> = ({
                   if (uidInput !== "" && uidInput !== uidPathName) {
                     setDisableSearchButton(true);
                     if (isNaN(Number(uidInput)) && !isHomepage) {
-                      setData({ status: 400 });
+                      if (setData) setData({ status: 400 });
                       setDisableSearchButton(false);
                     } else {
                       push(`/uid/${uidInput}`);

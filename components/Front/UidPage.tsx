@@ -182,24 +182,7 @@ const UidPage: React.FC<UidPageProps> = ({
   }, [uidData.status, review, characterIndex]);
 
   if (uidData.status === 404) {
-    return (
-      <div className="min-h-[calc(100vh-230px)] overflow-hidden">
-        <div
-          style={{
-            backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,
-            zIndex: -10,
-          }}
-          data-aos="animate-stars"
-        ></div>
-        <NavBar setData={setUidData} />
-        <div
-          data-aos="fade-down"
-          className="text-white text-center text-3xl mt-10"
-        >
-          UID non-existant
-        </div>
-      </div>
-    );
+    return notFound();
   }
 
   if (uidData.status === 400) {
