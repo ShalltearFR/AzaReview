@@ -19,9 +19,13 @@ export default function App() {
   const [isLoading, setIsloading] = useState<boolean>(false);
 
   useEffect(() => {
-    AOS.init({ mirror: true });
     window.addEventListener("resize", userResizing, true);
-    if (window.innerWidth >= 1700) setSectionIndex(0);
+    if (window.innerWidth >= 1700) {
+      AOS.init({ mirror: true });
+      setSectionIndex(0);
+    } else {
+      AOS.init();
+    }
 
     fetch("/api/other/all")
       .then((res) => res.json())
@@ -55,9 +59,14 @@ export default function App() {
       setTimeout(() => {
         const codesEl: any = document.querySelector("#codes");
         codesEl.scrollIntoView({ behavior: "auto" });
-      }, 1000);
+      }, 100);
     }
   }, [isLoading]);
+
+  // falsy isCodes.current pour donner accès à sectionIndex[0]
+  useEffect(() => {
+    if (isCodes.current && sectionIndex === 1) isCodes.current = false;
+  }, [sectionIndex]);
 
   const userResizing = () => {
     const startPage: any = document.querySelector("body");
@@ -118,6 +127,7 @@ export default function App() {
       </>
     );
   }
+
   return (
     <>
       <div
