@@ -27,7 +27,12 @@ interface Option {
 
 const CharacterList: React.FC = () => {
   const allCharactersRef = useRef<Character[] | undefined>();
+
   const dataBaseCharactersRef = useRef<any>(undefined);
+  const [charactersSearch, setCharactersSearch] = useState<any>(undefined);
+  const [charactersSearchInput, setCharactersSearchInput] =
+    useState<string>("");
+
   const selectOptionsRef = useRef<Option[] | undefined>();
 
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
@@ -78,6 +83,7 @@ const CharacterList: React.FC = () => {
     const dataBaseCharactersData = await getDataBaseCharacters();
 
     allCharactersRef.current = allCharactersData;
+    setCharactersSearch(dataBaseCharactersData);
     dataBaseCharactersRef.current = dataBaseCharactersData;
     getCharactersOptions();
   };
@@ -147,6 +153,16 @@ const CharacterList: React.FC = () => {
       });
   };
 
+  useEffect(() => {
+    if (dataBaseCharactersRef.current) {
+      const dataBaseCharactersCopy = [...dataBaseCharactersRef.current].filter(
+        (text) =>
+          text.name.toLowerCase().includes(charactersSearchInput.toLowerCase())
+      );
+      setCharactersSearch(dataBaseCharactersCopy);
+    }
+  }, [charactersSearchInput]);
+
   return (
     <div>
       <NavBarEditor />
@@ -186,12 +202,20 @@ const CharacterList: React.FC = () => {
         </Modal>
         <section className="grid grid-cols-[1fr_320px] justify-center min-h-[calc(100vh-260px)]">
           <div>
-            <div className="text-center font-bold text-white mx-auto w-96 p-2 rounded-full bg-black mb-5">
-              Personnages dans la base de donnée
+            <div className="relative">
+              <input
+                placeholder="Recherche de personnage"
+                className="absolute right-0 rounded-xl p-2 w-64"
+                onChange={(e) => setCharactersSearchInput(e.target.value)}
+                value={charactersSearchInput}
+              />
+              <div className="text-center font-bold text-white mx-auto w-96 p-2 rounded-full bg-black mb-5">
+                Personnages dans la base de donnée
+              </div>
             </div>
             <div className="flex flex-wrap gap-5 px-5 justify-center border-r border-dashed">
-              {dataBaseCharactersRef.current &&
-                dataBaseCharactersRef.current.map((data: Character) => (
+              {charactersSearch &&
+                charactersSearch.map((data: Character) => (
                   <div key={`dataCard+${data.id}`}>
                     <CharacterCard
                       id={data.id}
@@ -211,7 +235,6 @@ const CharacterList: React.FC = () => {
                 </p>
 
                 <div className="bg-black relative">
-                  {/* Composant ReactSelect avec la clé ajoutée */}
                   <button
                     className={`absolute z-10 w-12 p-2 bg-green rounded-full border-black border bottom-0`}
                     onMouseDown={
