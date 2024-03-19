@@ -232,6 +232,7 @@ const UidPage: React.FC<UidPageProps> = ({
         <div
           style={{
             backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,
+            //backgroundImage: `url("${CDN2}/img/homepage/kuruKuru.gif")`,
             zIndex: -10,
           }}
           data-aos="animate-stars"

@@ -138,6 +138,7 @@ function Homepage() {
       <div
         style={{
           backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,
+          //backgroundImage: `url("${CDN2}/img/homepage/kuruKuru.gif")`,
           zIndex: 2,
         }}
         data-aos="animate-stars"
