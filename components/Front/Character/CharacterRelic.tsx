@@ -3,7 +3,7 @@ import { CDN, CDN2 } from "@/utils/cdn";
 import { Relic } from "@/types/jsonUid";
 import { MainStats, RecommendedStats } from "@/types/CharacterModel";
 import calculateRelic from "@/utils/calculateRelic";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import typeValueMap from "@/utils/typeValueMap";
 
 interface CharacterRelicProps {
@@ -24,90 +24,105 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
 }) => {
   const { rarity, level, icon, main_affix, sub_affix } = stats;
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+  const [requiredMainStat, setRequiredMainStat] = useState<any[]>([]);
+  const [displayValue, setDisplayValue] = useState<string>("");
+  const [relicNotation, setRelicNotation] = useState<string>("");
+  const [isGood, setIsGood] = useState<boolean>(false);
+
   const goodRelic = ["SSS", "SS+", "SS", "S+", "S"];
   const okRelic = ["A+", "A"];
   const badRelic = ["B+", "B", "C+", "C", "D+", "D"];
 
-  let requiredMainStat: any = [];
-  let displayValue: string = "";
-  let relicNotation: string = "";
+  useEffect(() => {
+    let equipment: string = "";
 
-  let equipment: string = "";
+    switch (equipmentIndex) {
+      case 2:
+        equipment = "body";
+        break;
+      case 3:
+        equipment = "feet";
+        break;
+      case 4:
+        equipment = "planar_sphere";
+        break;
+      case 5:
+        equipment = "link_rope";
+        break;
+    }
+    const verifMainStat = () => {
+      if (reviewMainStat) {
+        const recommendedObject =
+          reviewMainStat.filter((el) => el.piece === equipment) || [];
 
-  switch (equipmentIndex) {
-    case 2:
-      equipment = "body";
-      break;
-    case 3:
-      equipment = "feet";
-      break;
-    case 4:
-      equipment = "planar_sphere";
-      break;
-    case 5:
-      equipment = "link_rope";
-      break;
-  }
+        const recommendedTranslate = recommendedObject.map((item) => {
+          const correspondingTranslate = statsTranslate.find(
+            (translateItem) => translateItem.type === item.type
+          );
 
-  const verifMainStat = () => {
-    if (reviewMainStat) {
-      const recommendedObject =
-        reviewMainStat.filter((el) => el.piece === equipment) || [];
-
-      const recommendedTranslate = recommendedObject.map((item) => {
-        const correspondingTranslate = statsTranslate.find(
-          (translateItem) => translateItem.type === item.type
+          if (correspondingTranslate) {
+            return { ...item, name: correspondingTranslate.name };
+          }
+          return item;
+        });
+        const isGood = recommendedObject.some(
+          (objet) => objet.type === main_affix.type
         );
 
-        if (correspondingTranslate) {
-          return { ...item, name: correspondingTranslate.name };
-        }
-        return item;
-      });
-      const isGood = recommendedObject.some(
-        (objet) => objet.type === main_affix.type
+        const MainStatArray = recommendedTranslate.map((el: any) => {
+          let name;
+          if (typeValueMap[el.type]) {
+            name = typeValueMap[el.type];
+          } else {
+            let reviewType = reviewMainStat.find(
+              (translateItem) => translateItem.type === el.type
+            );
+            name = statsTranslate.find(
+              (stat) => stat.type === reviewType?.type
+            );
+            name = name?.name || "";
+          }
+          return {
+            name: name,
+          };
+        });
+        setRequiredMainStat(MainStatArray);
+        setIsGood(isGood);
+        return null;
+      }
+      setIsGood(true);
+      return null;
+    };
+
+    const displayVal = typeValueMap[main_affix.type] || main_affix.name;
+    setDisplayValue(displayVal);
+
+    const recommandedMainAffix =
+      reviewRecommanded?.find((el) => el.type === main_affix.type)
+        ?.importance || 0;
+
+    if (Array.isArray(reviewRecommanded) && reviewRecommanded.length > 0) {
+      const value = calculateRelic(
+        reviewRecommanded,
+        sub_affix,
+        recommandedMainAffix
       );
-
-      // Modification FR
-      const MainStatArray = recommendedTranslate.map((el: any) => {
-        let name;
-        if (typeValueMap[el.type]) {
-          name = typeValueMap[el.type];
-        } else {
-          let reviewType = reviewMainStat.find(
-            (translateItem) => translateItem.type === el.type
-          );
-          name = statsTranslate.find((stat) => stat.type === reviewType?.type);
-          name = name?.name || "";
-        }
-        return {
-          name: name,
-        };
-      });
-      requiredMainStat = MainStatArray;
-      return isGood;
+      setRelicNotation(value);
     }
-    return true;
-  };
 
-  displayValue = typeValueMap[main_affix.type] || main_affix.name;
-  const recommandedMainAffix =
-    reviewRecommanded?.find((el) => el.type === main_affix.type)?.importance ||
-    0;
-
-  if (Array.isArray(reviewRecommanded) && reviewRecommanded.length > 0) {
-    const value = calculateRelic(
-      reviewRecommanded,
-      sub_affix,
-      recommandedMainAffix
-    );
-    relicNotation = value;
-  }
+    verifMainStat();
+  }, [
+    reviewMainStat,
+    main_affix,
+    sub_affix,
+    statsTranslate,
+    reviewRecommanded,
+    equipmentIndex,
+  ]);
 
   if (displayValue === "") {
     return <div>Chargement...</div>;
   }
-  verifMainStat();
 
   return (
     <div
@@ -125,22 +140,24 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
         onMouseEnter={() => setIsTooltipVisible(true)}
         onMouseLeave={() => setIsTooltipVisible(false)}
         className={`text-sm text-center relative my-auto${
-          equipmentIndex >= 2 && !verifMainStat() ? " text-red" : ""
+          equipmentIndex >= 2 && !isGood ? " text-red" : ""
         }`}
       >
-        {isTooltipVisible && equipmentIndex >= 2 && (
-          <div className="absolute z-10 p-2 bg-background rounded-xl w-auto text-white text-left">
-            <div className="font-bold">Recommandé :</div>
-            {requiredMainStat?.map((el: any, i: number) => (
-              <div
-                className="italic font-normal"
-                key={`mainStat+${el.name}+${i}`}
-              >
-                - {el.name}
-              </div>
-            ))}
-          </div>
-        )}
+        {isTooltipVisible &&
+          requiredMainStat.length > 0 &&
+          equipmentIndex >= 2 && (
+            <div className="absolute z-10 p-2 bg-background rounded-xl w-auto text-white text-left">
+              <div className="font-bold">Recommandé :</div>
+              {requiredMainStat.map((el: any, i: number) => (
+                <div
+                  className="italic font-normal"
+                  key={`mainStat+${el.name}+${i}`}
+                >
+                  - {el.name}
+                </div>
+              ))}
+            </div>
+          )}
 
         <img src={`${CDN}/${icon}`} className="w-20 mx-auto" />
         <p>{displayValue}</p>
@@ -153,14 +170,12 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
       </div>
       <div className="flex flex-col relative w-full h-full justify-center text-white">
         <div className="absolute flex right-20 min-w-[87px] text-gray/50 text-[62px] -mt-3">
-          {/* {relicNotation} */}
           {goodRelic.includes(relicNotation) && (
             <span className="text-darkGreen/50">{relicNotation}</span>
           )}
           {okRelic.includes(relicNotation) && (
             <span className="text-blue/50">{relicNotation}</span>
           )}
-
           {badRelic.includes(relicNotation) && (
             <span className="text-red/35">{relicNotation}</span>
           )}

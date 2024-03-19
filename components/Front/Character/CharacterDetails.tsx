@@ -147,7 +147,10 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           {character.relics.length === 6 ? (
             character.relics.map((relic, i) => {
               return (
-                <div key={crypto.randomUUID()} className="flex items-center">
+                <div
+                  key={`relicCharacter${index}+build${buildIndex}+${i}`}
+                  className="flex items-center"
+                >
                   <CharacterRelic
                     stats={relic}
                     equipmentIndex={i}
