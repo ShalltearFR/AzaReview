@@ -6,6 +6,14 @@ interface recommendedStatProps {
 }
 
 const recommendedStat: React.FC<recommendedStatProps> = ({ data }) => {
+  if (data && data.length === 0) {
+    return (
+      <div className="mt-5 text-lg font-bold text-red text-center">
+        <p>BUILD EN COURS DE CONSTRUCTION</p>
+        <p>NE PAS TENIR COMPTE DES RECOMMANDATIONS</p>
+      </div>
+    );
+  }
   return (
     <div className="w-1/2 mx-auto text-white font-bold">
       <div className="mt-2 ">
