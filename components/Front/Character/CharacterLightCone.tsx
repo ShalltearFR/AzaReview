@@ -65,7 +65,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
           onMouseEnter={() => setIsTooltipVisible(true)}
           onMouseLeave={() => setIsTooltipVisible(false)}
         >
-          {isTooltipVisible && !isGoodLightCone && (
+          {isTooltipVisible && !isGoodLightCone && recommendedLightCone[0] && (
             <div className="absolute z-10 p-2 bg-background rounded-xl w-auto text-white text-sm">
               <div>
                 <p className="font-bold">F2P recommandé :</p>
