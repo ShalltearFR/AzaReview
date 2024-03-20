@@ -111,7 +111,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           </div>
           <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-3">
             <p className="text-yellow text-lg font-bold text-center">
-              Statistiques mini recommandées
+              Statistiques recommandées
             </p>
             <RecommendedStat
               data={
