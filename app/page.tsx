@@ -14,7 +14,7 @@ import { LinkIcon } from "@heroicons/react/24/outline";
 function Homepage() {
   const [sectionIndex, setSectionIndex] = useState<number>(999);
   const [sectionPrevIndex, setSectionPrevIndex] = useState<number>(0);
-  const [codes, setCodes] = useState<Array<string>>([""]);
+  const [codes, setCodes] = useState<Array<string>>(["Chargement des codes"]);
   const [isCodeAnimation, setIsCodeAnimation] = useState<Boolean>(true);
   const isCodes = useRef(false);
   const [isLoading, setIsloading] = useState<boolean>(true);
@@ -29,9 +29,8 @@ function Homepage() {
     if (window.innerWidth >= 1700) {
       AOS.init({ mirror: true });
       setSectionIndex(0);
-    } else {
-      AOS.init();
-    }
+    } else AOS.init()
+    
 
     fetch("/api/other/all")
       .then((res) => res.json())
@@ -63,7 +62,7 @@ function Homepage() {
       setIsCodeAnimation(false);
       setTimeout(() => {
         const codesEl: any = document.querySelector("#codes");
-        codesEl.scrollIntoView({ behavior: "auto" });
+        if (codesEl)codesEl.scrollIntoView({ behavior: "auto" });
       }, 100);
     }
   }, [isLoading]);
@@ -79,7 +78,7 @@ function Homepage() {
       setSectionIndex(999);
       if (isCodes.current) {
         const codesEl: any = document.querySelector("#codes");
-        codesEl.scrollIntoView({ behavior: "auto" });
+        if (codesEl) codesEl.scrollIntoView({ behavior: "auto" });
       } else {
         startPage.scrollIntoView({ behavior: "auto" });
       }
@@ -265,7 +264,7 @@ function Homepage() {
             <section
               className={`bg-brown2 mt-10 xl2:mt-0 xl:min-h-screen flex flex-col justify-center items-center`}
             >
-              <div className=" mx-auto flex flex-col items-center justify-center [&_article]:lg:!w-11/12 [&_article]:xxl:w-1/2 [&_article]:w-full [&_article]:p-5 [&_article]:bg-black [&_article]:mmd:w-3/4 [&_article]:mmd:rounded-3xl">
+              <div className=" mx-auto flex flex-col items-center justify-center [&_article]:lg:!w-11/12 [&_article]:!xxl:w-1/2 [&_article]:w-full [&_article]:p-5 [&_article]:bg-black [&_article]:mmd:w-3/4 [&_article]:mmd:rounded-3xl">
                 <div
                   data-aos="fade-up"
                   data-aos-delay="250"
@@ -370,23 +369,23 @@ function Homepage() {
           {/* 3eme section */}
           {showSection2 && (
             <section
-              className={`flex flex-col justify-center items-center bg-darkPurple w-full xl:min-h-[calc(100vh-64px)] pt-5 xl2:pt-0`}
+              className={`flex flex-col justify-center items-center bg-darkPurple w-full xl2:min-h-[calc(100vh-64px)] pt-5 xl2:pt-0 mmd:mx-auto my-auto`}
             >
-              <div className="flex flex-col-reverse mb-16 xl2:mb-0 xl2:flex-row gap-5 justify-center items-center my-auto">
-                <div className="relative mt-44 xl2:mt-0">
+              <div className="flex flex-col-reverse mb-16 xl2:mb-0 xl2:flex-row gap-20 justify-center items-center my-auto mx-auto w-full xl2:w-auto mmd:mx-auto my-auto">
+                <div className="relative mt-44 w-full mmd:mx-auto">
                   <div
-                    data-aos="fade-up"
+                    data-aos="zoom-out-left"
                     data-aos-delay="250"
-                    className="absolute mx-auto w-full mmd:w-1/2 lg:!w-11/12 xxl:w-1/2 z-20"
+                    className="absolute mx-auto my-auto w-full z-20"
                   >
                     <img
                       src={`/img/homepage/topaz.gif`}
-                      className="h-44 -mt-44 translate-y-7"
+                      className="h-44 -mt-44 translate-y-7 mmd:mx-auto"
                     />
                   </div>
                   <div
                     data-aos={isCodeAnimation ? "fade-right" : ""}
-                    className="relative bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-10"
+                    className="relative bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-10 mmd:mx-auto my-auto"
                   >
                     <div className="relative z-10">
                       <h2
