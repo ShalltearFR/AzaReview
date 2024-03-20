@@ -22,7 +22,6 @@ const recommendedStat: React.FC<recommendedStatProps> = ({ data }) => {
           <div>
             {data.map((stat: RecommendedStats, index: number) => {
               if (!stat.value) return null;
-
               const statType = stat.type;
               const value = [
                 "CriticalChanceBase",
