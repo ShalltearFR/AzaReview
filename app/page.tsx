@@ -373,64 +373,78 @@ function Homepage() {
               className={`flex flex-col justify-center items-center bg-darkPurple w-full xl:min-h-[calc(100vh-64px)] pt-5 xl2:pt-0`}
             >
               <div className="flex flex-col-reverse mb-16 xl2:mb-0 xl2:flex-row gap-5 justify-center items-center my-auto">
-                <div
-                  data-aos={isCodeAnimation ? "fade-right" : ""}
-                  className="bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-20 xl2:mt-36"
-                >
-                  <div className="relative">
-                    <h2
-                      id="codes"
-                      className="text-3xl font-bold text-center mb-5 mx-auto"
-                    >
-                      Codes actifs
-                    </h2>
-
-                    <p
-                      className={`absolute p-2 bg-gray right-0 top-0 z-10 rounded-xl ${
-                        isShareCodes ? "animate-fade-in" : "hidden"
-                      }`}
-                    >
-                      Lien copié
-                    </p>
-                    <LinkIcon
-                      className="absolute right-0 top-2 h-6 hover:cursor-pointer"
-                      onClick={() => {
-                        navigator.clipboard.writeText(
-                          "https://review-hsr.vercel.app/?codes"
-                        );
-                        setIsShareCodes(true);
-                        setTimeout(() => {
-                          setIsShareCodes(false);
-                        }, 3000);
-                      }}
+                <div className="relative mt-44 xl2:mt-0">
+                  <div
+                    data-aos="fade-up"
+                    data-aos-delay="250"
+                    className="absolute mx-auto w-full mmd:w-1/2 lg:!w-11/12 xxl:w-1/2 z-20"
+                  >
+                    <img
+                      src={`/img/homepage/topaz.gif`}
+                      className="h-44 -mt-44 translate-y-7"
                     />
                   </div>
-                  {codes.length > 1 ? (
-                    <div className="grid sm:grid-cols-2 text-center font-bold text-xl">
-                      {codes.map((code, i) => {
-                        const codeWithoutSpace = code.split(" ");
-                        return (
-                          <p
-                            className={`py-2 font-bold ${
-                              codeWithoutSpace[1]
-                                ? "text-yellow"
-                                : "text-light-blue2"
-                            } `}
-                            key={`code${i}`}
-                          >
-                            <a
-                              target="_blank"
-                              href={`https://hsr.hoyoverse.com/gift?code=${codeWithoutSpace[0]}`}
-                            >
-                              {code}
-                            </a>
-                          </p>
-                        );
-                      })}
+                  <div
+                    data-aos={isCodeAnimation ? "fade-right" : ""}
+                    className="relative bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-10"
+                  >
+                    <div className="relative z-10">
+                      <h2
+                        id="codes"
+                        className="text-3xl font-bold text-center mb-5 mx-auto"
+                      >
+                        Codes actifs
+                      </h2>
+
+                      <p
+                        className={`absolute p-2 bg-gray right-0 top-0 z-10 rounded-xl ${
+                          isShareCodes ? "animate-fade-in" : "hidden"
+                        }`}
+                      >
+                        Lien copié
+                      </p>
+                      <LinkIcon
+                        className="absolute right-0 top-2 h-6 hover:cursor-pointer"
+                        onClick={() => {
+                          navigator.clipboard.writeText(
+                            "https://review-hsr.vercel.app/?codes"
+                          );
+                          setIsShareCodes(true);
+                          setTimeout(() => {
+                            setIsShareCodes(false);
+                          }, 3000);
+                        }}
+                      />
                     </div>
-                  ) : (
-                    <p className="text-center font-bold text-xl">{codes[0]}</p>
-                  )}
+                    {codes.length > 1 ? (
+                      <div className="grid sm:grid-cols-2 text-center font-bold text-xl">
+                        {codes.map((code, i) => {
+                          const codeWithoutSpace = code.split(" ");
+                          return (
+                            <p
+                              className={`py-2 font-bold ${
+                                codeWithoutSpace[1]
+                                  ? "text-yellow"
+                                  : "text-light-blue2"
+                              } `}
+                              key={`code${i}`}
+                            >
+                              <a
+                                target="_blank"
+                                href={`https://hsr.hoyoverse.com/gift?code=${codeWithoutSpace[0]}`}
+                              >
+                                {code}
+                              </a>
+                            </p>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <p className="text-center font-bold text-xl">
+                        {codes[0]}
+                      </p>
+                    )}
+                  </div>
                 </div>
                 <div className="mt-auto mb-10 xl2:mb-0 z-10">
                   <div

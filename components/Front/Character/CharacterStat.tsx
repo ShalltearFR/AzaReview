@@ -120,7 +120,7 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
   };
 
   return (
-    <div key={`stat${field}`} className="flex text-white items-center text-xl">
+    <div className="flex text-white items-center text-xl">
       <img src={`${CDN}/${img}`} className="w-8" alt={name} />
       <span className="ml-1">{name}</span>
       <span

@@ -91,7 +91,6 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
         return null;
       }
       setIsGood(true);
-      return null;
     };
 
     const displayVal = typeValueMap[main_affix.type] || main_affix.name;
@@ -111,14 +110,8 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
     }
 
     verifMainStat();
-  }, [
-    reviewMainStat,
-    main_affix,
-    sub_affix,
-    statsTranslate,
-    reviewRecommanded,
-    equipmentIndex,
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (displayValue === "") {
     return <div>Chargement...</div>;

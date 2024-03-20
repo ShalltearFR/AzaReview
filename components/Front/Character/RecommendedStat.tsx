@@ -14,6 +14,7 @@ const recommendedStat: React.FC<recommendedStatProps> = ({ data }) => {
       </div>
     );
   }
+
   return (
     <div className="w-1/2 mx-auto text-white font-bold">
       <div className="mt-2 ">
