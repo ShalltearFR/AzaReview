@@ -49,7 +49,7 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
           const eidolonId = eidolonsList.find(
             (el) => el.id === `${character.id}0${i + 1}`
           );
-          //console.log("eidolonId", eidolonId);
+
           return (
             <div key={`${character.id}+${i}`}>
               <CharacterEidolon

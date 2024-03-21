@@ -49,5 +49,6 @@ export const config = {
     "/api/character",
     "/api/characters",
     "/api/other",
+    "/api/changelog",
   ],
 };

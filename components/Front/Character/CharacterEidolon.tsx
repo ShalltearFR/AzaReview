@@ -22,9 +22,6 @@ const CharacterEidolon: React.FC<CharacterEidolonProps> = ({
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
   const descSplitN = eidolon.desc.split("\\n");
 
-  console.log("eidolon", eidolon);
-  console.log("descSplitN", descSplitN);
-
   return (
     <div
       className="w-12 rounded-full bg-black border border-gray relative"
