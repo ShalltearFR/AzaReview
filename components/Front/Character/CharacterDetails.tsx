@@ -22,6 +22,7 @@ interface CharacterDetailsProps {
   statsTranslate: Array<any>;
   relicsSetTranslate: Array<any>;
   lightconesTranslate: Array<any>;
+  eidolonsList: Array<any>;
 }
 
 const CharacterDetails: React.FC<CharacterDetailsProps> = ({
@@ -32,6 +33,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   statsTranslate,
   relicsSetTranslate,
   lightconesTranslate,
+  eidolonsList,
 }) => {
   const character = uidData.characters[index];
   // @ts-ignore
@@ -52,7 +54,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
         }}
       >
         <div className="flex flex-col my-auto xl:ml-5 w-screen xl:w-full">
-          <CharacterSplash character={character} />
+          <CharacterSplash character={character} eidolonsList={eidolonsList} />
           <div className="flex gap-x-3 justify-center">
             {["Attaque", "Compétence", "Ultime", "Talent"].map((type, i) => {
               return (

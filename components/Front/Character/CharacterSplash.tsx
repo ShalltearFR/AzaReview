@@ -4,9 +4,13 @@ import CharacterEidolon from "./CharacterEidolon";
 
 interface CharacterSplashProps {
   character: Character;
+  eidolonsList: Array<any>;
 }
 
-const CharacterSplash: React.FC<CharacterSplashProps> = ({ character }) => {
+const CharacterSplash: React.FC<CharacterSplashProps> = ({
+  character,
+  eidolonsList,
+}) => {
   return (
     <div className="flex flex-col h-[480px] relative items-center">
       <img
@@ -40,14 +44,20 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({ character }) => {
           />
         </div>
       </div>
-      <div className="flex mt-auto w-full h-20 items-center justify-center gap-2 z-10">
+      <div className="flex mt-auto w-full h-20 items-center justify-center gap-2">
         {character.rank_icons.map((eidolon, i) => {
+          const eidolonId = eidolonsList.find(
+            (el) => el.id === `${character.id}0${i + 1}`
+          );
+          //console.log("eidolonId", eidolonId);
           return (
-            <CharacterEidolon
-              key={crypto.randomUUID()}
-              img={eidolon}
-              isActive={character.rank > i ? true : false}
-            />
+            <div key={`${character.id}+${i}`}>
+              <CharacterEidolon
+                img={eidolon}
+                isActive={character.rank > i ? true : false}
+                eidolon={eidolonId}
+              />
+            </div>
           );
         })}
       </div>

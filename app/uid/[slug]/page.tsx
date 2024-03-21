@@ -1,7 +1,7 @@
 import Footer from "@/components/Front/Footer";
 import UidPage from "@/components/Front/UidPage";
 import { CharacterType } from "@/types/CharacterModel";
-import { Character, jsonUID } from "@/types/jsonUid";
+import { jsonUID } from "@/types/jsonUid";
 import { CDN } from "@/utils/cdn";
 import type { Metadata } from "next";
 
@@ -91,11 +91,11 @@ export default async function Page({ params }: { params: { slug: number } }) {
   const statsTranslateToArray = Object.values(statsTranslate);
 
   //Recupère les traductions des sets de relics
-  const RelicsSetTranslate: Array<any> = await getData(
+  const relicsSetTranslate: Array<any> = await getData(
     `${CDN}/index_min/fr/relic_sets.json`,
     18000 //Cache de 5h
   );
-  const RelicsSetTranslateToArray = Object.values(RelicsSetTranslate);
+  const relicsSetTranslateToArray = Object.values(relicsSetTranslate);
 
   //Recupère les traductions des lightcones
   const lightconesTranslate: Array<any> = await getData(
@@ -109,7 +109,14 @@ export default async function Page({ params }: { params: { slug: number } }) {
     `${CDN}/index_min/fr/relics.json`,
     18000 //Cache de 5h
   );
-  const RelicsListArray = Object.values(relicsList);
+  const relicsListArray = Object.values(relicsList);
+
+  //Recupère la liste des eidelons de tous les personnages
+  const eidolonsList: Array<any> = await getData(
+    `${CDN}/index_min/fr/character_ranks.json`,
+    18000 //Cache de 5h
+  );
+  const eidolonsListArray = Object.values(eidolonsList);
 
   if (!jsonUid || !resReview) {
     return <div className="text-center mt-10">Chargement en cours ...</div>;
@@ -121,9 +128,10 @@ export default async function Page({ params }: { params: { slug: number } }) {
         jsonUid={jsonUid}
         jsonReview={resReview}
         statsTranslate={statsTranslateToArray}
-        relicsSetTranslate={RelicsSetTranslateToArray}
+        relicsSetTranslate={relicsSetTranslateToArray}
         lightconesTranslate={lightconesTranslateToArray}
-        RelicsList={RelicsListArray}
+        RelicsList={relicsListArray}
+        eidolonsList={eidolonsListArray}
       />
       <Footer />
     </>
