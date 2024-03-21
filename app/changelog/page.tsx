@@ -1,13 +1,14 @@
 import { CommitData } from "@/types/GitHubCommit";
 
+async function getData(url: string) {
+  const data = await fetch(url, {
+    next: { revalidate: 300 },
+  });
+  const dataJson = await data.json();
+  return dataJson;
+}
+
 const Changelog: React.FC = async () => {
-  const getData = async (url: string) => {
-    const res = await fetch(url, {
-      next: { revalidate: 300 },
-    });
-    const json = await res.json();
-    return json;
-  };
   const json: CommitData = await getData(`${process.env.WWW}/api/changelog`);
 
   if (json) {
