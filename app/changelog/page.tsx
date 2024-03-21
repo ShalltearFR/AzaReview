@@ -1,5 +1,4 @@
 import { CommitData } from "@/types/GitHubCommit";
-import { Suspense } from "react";
 
 const getData = async (url: string) => {
   const res = await fetch(url, {
@@ -9,7 +8,7 @@ const getData = async (url: string) => {
   return json;
 };
 
-const Page: React.FC = async () => {
+const Changelog: React.FC = async () => {
   const json: CommitData = await getData(`${process.env.WWW}/api/changelog`);
 
   if (json) {
@@ -42,10 +41,4 @@ const Page: React.FC = async () => {
   return <div></div>;
 };
 
-export default function Changelog() {
-  return (
-    <Suspense>
-      <Page />
-    </Suspense>
-  );
-}
+export default Changelog;

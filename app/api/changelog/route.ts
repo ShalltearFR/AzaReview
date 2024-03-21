@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import type { GitHubCommit } from "@/types/GitHubCommit";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: Request) {
   try {
     let allCommits: any = [];
