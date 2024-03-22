@@ -27,8 +27,7 @@ function Homepage() {
     if (window.innerWidth >= 1700) {
       AOS.init({ mirror: true });
       setSectionIndex(0);
-    } else AOS.init()
-
+    } else AOS.init();
 
     fetch("/api/other/all")
       .then((res) => res.json())
@@ -151,17 +150,13 @@ function Homepage() {
         />
         <div className="text-white mt-10 xl2:mt-0 xl2:overflow-hidden xl2:h-[calc(100vh-64px)] flex flex-col justify-center items-center">
           {/* 1ere section */}
-          {showSection0 && (
-            <Section0 sectionPrevIndex={sectionPrevIndex} />
-          )}
+          {showSection0 && <Section0 sectionPrevIndex={sectionPrevIndex} />}
 
           {/* 2eme section */}
-          {showSection1 && (
-            <Section1 sectionPrevIndex={sectionPrevIndex} />
-          )}
+          {showSection1 && <Section1 sectionPrevIndex={sectionPrevIndex} />}
           {/* 3eme section */}
           {showSection2 && (
-            <Section2 codes={codes} isCodeAnimation={isCodeAnimation} sectionPrevIndex={sectionPrevIndex} />
+            <Section2 codes={codes} isCodeAnimation={isCodeAnimation} />
           )}
         </div>
       </div>
