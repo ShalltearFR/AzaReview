@@ -64,7 +64,7 @@ const NavBar: React.FC<NavBarProps> = ({
                     className="hidden xl2:block xl2:h-16 xl2:w-16 z-50 opacity-50 hover:opacity-100 rotate-180"
                   >
                     <img
-                      src="/img/homepage/nextSection.svg"
+                      src={`${CDN2}/img/homepage/nextSection.svg`}
                       className="animate-homePageBounce"
                       onClick={() => {
                         setSectionIndex(sectionIndex - 1);
@@ -150,7 +150,7 @@ const NavBar: React.FC<NavBarProps> = ({
                     className="hidden xl2:block xl2:h-16 xl2:w-16 z-50 opacity-50 hover:opacity-100"
                   >
                     <img
-                      src="/img/homepage/nextSection.svg"
+                      src={`${CDN2}/img/homepage/nextSection.svg`}
                       className="h-16 animate-homePageBounce"
                       onClick={() => {
                         setSectionIndex(sectionIndex + 1);

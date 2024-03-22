@@ -109,6 +109,8 @@ const NavBarEditor: React.FC = () => {
       .then((res) => res.json())
       .then((json: any) => setLastUpdate(json.data[0].version));
     setPatchType(patchOptions[0]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -171,13 +173,14 @@ const NavBarEditor: React.FC = () => {
         ariaHideApp={false}
         style={modalStyle}
       >
-        <div className="w-[600px] h-[470px] bg-black text-white text-center">
+        <div className="w-[600px] h-[490px] bg-black text-white text-center">
           <h2 className="text-3xl font-bold mb-5 text-yellow">
             AJOUT DE PATCH
           </h2>
           <p>
             Liste des changements à indiquer au retour à la ligne sans tirets
           </p>
+          <p className="font-bold">ATTENTION : {"L'ajout est definitif"}</p>
           <label className="flex items-center gap-2 mx-auto justify-center my-5">
             Type de version :
             <ReactSelect

@@ -7,7 +7,10 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   try {
     await dbConnect();
-    const dataReq: any = await PatchNote.find({}).select("-_id -__v");
+    const dataReq = await PatchNote.find({})
+      .select("-_id -__v -updatedAt")
+      .sort({ version: -1 });
+
     return NextResponse.json({ status: 200, data: dataReq });
   } catch (error) {
     console.error("Error:", error);
