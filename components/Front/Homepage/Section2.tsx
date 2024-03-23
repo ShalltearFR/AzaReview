@@ -1,7 +1,11 @@
 "use client";
 import { CDN2 } from "@/utils/cdn";
 import HomepageFooter from "./HomepageFooter";
-import { LinkIcon } from "@heroicons/react/24/outline";
+import {
+  LinkIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { FR_Month } from "@/utils/month";
 
@@ -41,7 +45,7 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
       className={`flex flex-col justify-center items-center bg-darkPurple w-full xl2:min-h-[calc(100vh-64px)] pt-5 xl2:pt-0 mmd:mx-auto my-auto`}
     >
       <div className="flex flex-col-reverse mb-16 xl2:mb-0 xl2:flex-row gap-20 justify-center items-center my-auto mx-auto w-full xl2:w-auto mmd:mx-auto my-auto">
-        <div className="flex flex-col gap-5 relative mt-44 w-full mmd:mx-auto">
+        <div className="flex flex-col gap-5 relative mt-32 w-full mmd:mx-auto">
           {/* PARTIE CODES */}
           <div>
             <div
@@ -51,7 +55,7 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
             >
               <img
                 src={`/img/homepage/topaz.gif`}
-                className="h-44 -mt-44 translate-y-7 mmd:mx-auto"
+                className="h-40 -mt-40 translate-y-7 mmd:mx-auto"
               />
             </div>
             <div
@@ -119,15 +123,24 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
               {/* PARTIE CHANGELOG */}
               <div
                 data-aos={isCodeAnimation ? "fade-right" : ""}
-                className="relative bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-10 mmd:mx-auto my-auto grid grid-cols-[64px_1fr_64px] items-center"
+                className="relative bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-10 mmd:mx-auto my-auto items-center"
               >
                 {/* FLECHE GAUCHE */}
-                <div>
+                <div className="absolute left-2">
                   {patchPage > 0 && (
-                    <img
-                      src={`${CDN2}/img/homepage/nextSection.svg`}
-                      className="h-16 rotate-180"
+                    <ChevronLeftIcon
+                      className="h-10 text-white hover:cursor-pointer"
                       onClick={() => setPatchPage(patchPage - 1)}
+                    />
+                  )}
+                </div>
+
+                {/* FLECHE DROITE */}
+                <div className="absolute right-2">
+                  {patchPage < changeLog.length - 1 && (
+                    <ChevronRightIcon
+                      className="h-10 text-white hover:cursor-pointer"
+                      onClick={() => setPatchPage(patchPage + 1)}
                     />
                   )}
                 </div>
@@ -147,16 +160,6 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
                       <li key={crypto.randomUUID()}>{el}</li>
                     ))}
                   </ul>
-                </div>
-                {/* FLECHE DROITE */}
-                <div>
-                  {patchPage < changeLog.length - 1 && (
-                    <img
-                      src={`${CDN2}/img/homepage/nextSection.svg`}
-                      className="h-16"
-                      onClick={() => setPatchPage(patchPage + 1)}
-                    />
-                  )}
                 </div>
               </div>
             </div>
