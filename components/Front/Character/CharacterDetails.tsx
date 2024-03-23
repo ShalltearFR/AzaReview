@@ -39,6 +39,24 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   // @ts-ignore
   const characterReview: Data[] = reviewData[index].data as Data;
 
+  const getMainStats = (piece: string) => {
+    const result = characterReview[buildIndex]?.main_stats
+      .filter((el) => el.piece === piece)
+      .map((el, i) => {
+        // statsTranslate
+        const translated = statsTranslate.find((stat) => stat.type === el.type);
+        return (
+          <li
+            className="ml-7"
+            key={`${characterReview[buildIndex].buildName}+${i}+${piece}`}
+          >
+            {translated.name}
+          </li>
+        );
+      });
+    return <ul className="list-disc">{result}</ul>;
+  };
+
   if (!reviewData) {
     return <div>Chargement...</div>;
   }
@@ -188,6 +206,21 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                 Veuillez équiper <span className="text-yellow">6 pièces</span>{" "}
                 pour aligner les Astres
               </p>
+              {characterReview[buildIndex]?.main_stats && (
+                <div className="[&_div]:mt-5 text-left [&_div]:text-orange">
+                  <div>Torse recommandé(s) :</div>
+                  {getMainStats("body")}
+
+                  <div className="mt-5">Bottes recommandé(s) :</div>
+                  {getMainStats("feet")}
+
+                  <div>Orbe recommandé(s) :</div>
+                  {getMainStats("planar_sphere")}
+
+                  <div>Corde recommandé(s) :</div>
+                  {getMainStats("link_rope")}
+                </div>
+              )}
             </div>
           )}
         </div>
