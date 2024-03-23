@@ -179,7 +179,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
           return (
             <div
               key={`characterRelic${affix.type}${i}`}
-              className="grid grid-cols-[32px_1fr_50px_20px] items-center z-10"
+              className="grid grid-cols-[32px_1fr_50px_20px] items-center z-[1]"
             >
               <img src={`${CDN}/${affix.icon}`} className="w-7" />
               <span>{subDisplayValue}</span>

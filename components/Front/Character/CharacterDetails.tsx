@@ -64,7 +64,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   if (reviewData) {
     return (
       <article
-        className="grid xl:grid-cols-3 xl:h-[870px] xl:gap-x-5 py-5"
+        className="grid xl:grid-cols-3 xl:h-[870px] xl:gap-x-5 py-6"
         style={{
           backgroundImage: `url('${CDN2}/img/character_bg.avif')`,
           backgroundSize: "100% auto",
@@ -99,7 +99,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           />
         </div>
 
-        <div className="flex flex-col justify-between gap-y-5 xl:gap-y-0 w-screen xl:w-full mt-5 xl:mt-0">
+        <div className="flex flex-col justify-between gap-y-5 xl:gap-y-0 w-screen xl:w-full mt-5 xl:mt-0 py-[1px]">
           <div className="bg-black/75 w-full rounded-3xl p-5 ">
             {[
               "hp",

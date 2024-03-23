@@ -159,6 +159,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [review]);
 
+  console.log("requiredRelicsSet", requiredRelicsSet);
   return (
     <div>
       <div className="relative">
@@ -173,14 +174,27 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
             >
               !
               {isTooltipRecommended && (
-                <div className="absolute z-20 p-2 bg-background rounded-xl w-60 right-0 xl:right-auto xl:-left-24 top-7 text-white text-sm">
-                  <div className="font-bold">Recommandés :</div>
-                  {requiredRelicsSet.map((el: any) => (
-                    <div className="gap-1 italic font-normal ml-1" key={el.id}>
-                      <span className="font-bold">{el.num}P -</span>
-                      <span> {el.name}</span>
-                    </div>
-                  ))}
+                <div
+                  className={`absolute z-20 p-2 bg-background rounded-xl w-60 right-0 xl:right-auto xl:-left-60 top-7 text-white text-sm ${
+                    requiredRelicsSet[2] ? "xl:-top-[244px]" : "xl:-top-[108px]"
+                  }`}
+                >
+                  <div className="font-bold z-10 flex">Recommandés :</div>
+                  <div className="flex flex-col gap-5">
+                    {requiredRelicsSet.map((el: any) => (
+                      <div
+                        className="gap-1 italic font-normal ml-1"
+                        key={el.id}
+                      >
+                        <span className="font-bold">{el.num}P</span>
+                        <span> - {el.name}</span>
+                        <img
+                          src={`${CDN}/${el.icon}`}
+                          className="h-24 mx-auto"
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>

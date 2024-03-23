@@ -65,12 +65,20 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
           {isTooltipRecommendedVisible &&
             recommendedLightCone &&
             recommendedLightCone[0] && (
-              <div className="absolute z-20 p-2 bg-background rounded-xl w-60 right-0 xl:right-auto xl:-left-24 top-7 text-white text-sm">
+              <div
+                className={`absolute z-20 p-2 bg-background rounded-xl w-60 right-0 xl:right-auto xl:left-8 top-8 text-white text-sm ${
+                  recommendedLightCone[1] ? "xl:-top-[196px]" : "xl:-top-[98px]"
+                }`}
+              >
                 <div>
                   <p className="font-bold">F2P recommandé :</p>
                   <p className="italic font-normal ml-1">
                     {recommendedLightCone[0].name}
                   </p>
+                  <img
+                    src={`${CDN}/${recommendedLightCone[0].portrait}`}
+                    className="w-1/2 mx-auto"
+                  />
                 </div>
                 {recommendedLightCone[1] && (
                   <div className="mt-5">
@@ -78,6 +86,10 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
                     <p className="italic font-normal ml-1">
                       {recommendedLightCone[1].name}
                     </p>
+                    <img
+                      src={`${CDN}/${recommendedLightCone[1].portrait}`}
+                      className="w-1/2 mx-auto"
+                    />
                   </div>
                 )}
               </div>
