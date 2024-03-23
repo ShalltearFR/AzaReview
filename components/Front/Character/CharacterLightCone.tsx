@@ -23,19 +23,16 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
 }) => {
   const [isGoodLightCone, setIsGoodLightCone] = useState<Boolean>(true);
   const [recommendedLightCone, setRecommendedLightCone] = useState<any>();
-  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+  const [isTooltipRecommendedVisible, setIsTooltipRecommendedVisible] =
+    useState(false);
 
   useEffect(() => {
     const verifMainStat = () => {
       if (review) {
         if (lightCone) {
           const isGood = review.filter((el) => el.id === lightCone.id) || false;
-          if (isGood.length > 0) {
-            setIsGoodLightCone(true);
-            return null;
-          } else {
-            setIsGoodLightCone(false);
-          }
+          if (isGood.length > 0) setIsGoodLightCone(true);
+          else setIsGoodLightCone(false);
         }
 
         const recommendedObject = review.filter((el) => el.recommended) || [];
@@ -52,37 +49,46 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
     };
     verifMainStat();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [review]);
+  }, [lightCone]);
 
   return (
-    <div className=" w-full xl:w-auto rounded-t-3xl bg-light-blue/75 mx-auto p-3 mt-5">
-      <p className="text-yellow text-lg font-bold text-center">
-        Cône de lumière
-      </p>
-      {lightCone ? (
+    <div className=" w-full xl:min-w-60 xl:max-w-80 xl:w-auto rounded-t-3xl bg-light-blue/75 mx-auto p-3 mt-5">
+      <div className="relative">
         <div
-          className="relative"
-          onMouseEnter={() => setIsTooltipVisible(true)}
-          onMouseLeave={() => setIsTooltipVisible(false)}
+          className={`absolute z-10 px-3 py-1 rounded-full font-bold right-0 ${
+            isGoodLightCone ? "bg-gray" : "bg-red"
+          }`}
+          onMouseEnter={() => setIsTooltipRecommendedVisible(true)}
+          onMouseLeave={() => setIsTooltipRecommendedVisible(false)}
         >
-          {isTooltipVisible && !isGoodLightCone && recommendedLightCone[0] && (
-            <div className="absolute z-10 p-2 bg-background rounded-xl w-auto text-white text-sm">
-              <div>
-                <p className="font-bold">F2P recommandé :</p>
-                <p className="italic font-normal">
-                  {recommendedLightCone[0].name}
-                </p>
-              </div>
-              {recommendedLightCone[1] && (
-                <div className="mt-5">
-                  <p className="font-bold">Alternative :</p>
-                  <p className="italic font-normal">
-                    {recommendedLightCone[1].name}
+          !
+          {isTooltipRecommendedVisible &&
+            recommendedLightCone &&
+            recommendedLightCone[0] && (
+              <div className="absolute z-20 p-2 bg-background rounded-xl w-60 right-0 xl:right-auto xl:-left-24 top-7 text-white text-sm">
+                <div>
+                  <p className="font-bold">F2P recommandé :</p>
+                  <p className="italic font-normal ml-1">
+                    {recommendedLightCone[0].name}
                   </p>
                 </div>
-              )}
-            </div>
-          )}
+                {recommendedLightCone[1] && (
+                  <div className="mt-5">
+                    <p className="font-bold">Alternative :</p>
+                    <p className="italic font-normal ml-1">
+                      {recommendedLightCone[1].name}
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
+        </div>
+        <p className="text-yellow text-lg font-bold text-center">
+          Cône de lumière
+        </p>
+      </div>
+      {lightCone ? (
+        <div>
           <div
             className="relative flex flex-col w-40 h-40 mx-auto mt-2 text-white"
             style={{

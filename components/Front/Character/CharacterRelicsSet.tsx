@@ -176,7 +176,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                 <div className="absolute z-20 p-2 bg-background rounded-xl w-60 right-0 xl:right-auto xl:-left-24 top-7 text-white text-sm">
                   <div className="font-bold">Recommandés :</div>
                   {requiredRelicsSet.map((el: any) => (
-                    <div className="gap-1 italic font-normal" key={el.id}>
+                    <div className="gap-1 italic font-normal ml-1" key={el.id}>
                       <span className="font-bold">{el.num}P -</span>
                       <span> {el.name}</span>
                     </div>

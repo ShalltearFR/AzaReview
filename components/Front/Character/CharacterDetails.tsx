@@ -207,7 +207,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                 pour aligner les Astres
               </p>
               {characterReview[buildIndex]?.main_stats && (
-                <div className="[&_div]:mt-5 text-left [&_div]:text-orange">
+                <div className="[&_div]:mt-5 mt-10 text-left [&_div]:text-orange">
                   <div>Torse recommandé(s) :</div>
                   {getMainStats("body")}
 
