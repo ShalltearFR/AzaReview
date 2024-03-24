@@ -120,8 +120,8 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
   };
 
   return (
-    <div className="flex text-white items-center text-xl">
-      <img src={`${CDN}/${img}`} className="w-8" alt={name} />
+    <div className="flex text-white items-center text-lg">
+      <img src={`${CDN}/${img}`} className="w-[30px]" alt={name} />
       <span className="ml-1">{name}</span>
       <span
         className={`ml-auto text-right ${!isGoodValue() ? "text-red" : ""}`}

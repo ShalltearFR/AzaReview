@@ -64,9 +64,11 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   if (reviewData) {
     return (
       <article
-        className="grid xl:grid-cols-3 xl:h-[870px] xl:gap-x-5 py-6"
+        className="grid xl:grid-cols-3 xl:h-[870px] xl:gap-x-5 py-4"
         style={{
           backgroundImage: `url('${CDN2}/img/character_bg.avif')`,
+          // backgroundImage: `url('${CDN2}/img/AzanoThug.jpg')`,
+          // backgroundSize: "100% 100%",
           backgroundSize: "100% auto",
           backgroundRepeat: "repeat-y",
         }}
@@ -144,7 +146,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
             {characterReview &&
               characterReview[buildIndex] &&
               characterReview[buildIndex].recommended_comment && (
-                <p className="text-orange2 font-bold text-center mt-2">
+                <p className="text-orange2 font-bold text-center mt-2 text-[15px]">
                   {characterReview[buildIndex] &&
                     characterReview[buildIndex].recommended_comment}
                 </p>
