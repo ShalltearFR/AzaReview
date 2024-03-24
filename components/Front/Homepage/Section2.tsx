@@ -1,5 +1,5 @@
 "use client";
-import { CDN2 } from "@/utils/cdn";
+import { CDN, CDN2 } from "@/utils/cdn";
 import HomepageFooter from "./HomepageFooter";
 import {
   LinkIcon,
@@ -44,7 +44,7 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
     <section
       className={`flex flex-col justify-center items-center bg-darkPurple w-full xl2:min-h-[calc(100vh-64px)] pt-5 xl2:pt-0 mmd:mx-auto my-auto`}
     >
-      <div className="flex flex-col-reverse mb-16 xl2:mb-0 xl2:flex-row gap-20 justify-center items-center my-auto mx-auto w-full xl2:w-auto mmd:mx-auto my-auto">
+      <div className="flex flex-col-reverse mb-16 xl2:mb-0 xl2:flex-row gap-20 justify-center items-center my-auto mx-auto w-full xl2:w-auto mmd:mx-auto">
         <div className="flex flex-col gap-5 relative mt-32 w-full mmd:mx-auto">
           {/* PARTIE CODES */}
           <div>
@@ -54,8 +54,8 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
               className="absolute mx-auto my-auto w-full z-20"
             >
               <img
-                src={`/img/homepage/topaz.gif`}
-                className="h-40 -mt-40 translate-y-7 mmd:mx-auto"
+                src={`${CDN}/img/homepage/topaz.gif`}
+                className="h-40 -mt-40 translate-y-[25px] mmd:mx-auto"
               />
             </div>
             <div
