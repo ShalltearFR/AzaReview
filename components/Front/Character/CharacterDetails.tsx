@@ -216,10 +216,10 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                   <div className="mt-5">Bottes recommandé(s) :</div>
                   {getMainStats("feet")}
 
-                  <div>Orbe recommandé(s) :</div>
+                  <div>Orbe recommandée(s) :</div>
                   {getMainStats("planar_sphere")}
 
-                  <div>Corde recommandé(s) :</div>
+                  <div>Corde recommandée(s) :</div>
                   {getMainStats("link_rope")}
                 </div>
               )}

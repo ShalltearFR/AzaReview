@@ -54,7 +54,7 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
               className="absolute mx-auto my-auto w-full z-20"
             >
               <img
-                src={`${CDN}/img/homepage/topaz.gif`}
+                src={`${CDN2}/img/homepage/topaz.gif`}
                 className="h-40 -mt-40 translate-y-[25px] mmd:mx-auto"
               />
             </div>
