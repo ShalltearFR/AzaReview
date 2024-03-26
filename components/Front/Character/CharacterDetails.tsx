@@ -208,7 +208,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                 Veuillez équiper <span className="text-yellow">6 pièces</span>{" "}
                 pour aligner les Astres
               </p>
-              {characterReview[buildIndex]?.main_stats && (
+              {characterReview && characterReview[buildIndex]?.main_stats && (
                 <div className="[&_div]:mt-5 mt-10 text-left [&_div]:text-orange">
                   <div>Torse recommandé(s) :</div>
                   {getMainStats("body")}
