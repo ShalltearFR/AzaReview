@@ -11,6 +11,7 @@ import ReactSelect from "react-select";
 import { CDN2 } from "@/utils/cdn";
 import Aos from "aos";
 import { notFound } from "next/navigation";
+import translateBBCode from "@/utils/translateBBCode";
 
 interface Option {
   value: string;
@@ -267,7 +268,7 @@ const UidPage: React.FC<UidPageProps> = ({
             <p className="px-5 mt-2 text-center xl:px-0 xl:ml-0 xl:mt-0 xl:text-left">
               {(characterOptions[characterBuild] &&
                 characterOptions[characterBuild].desc &&
-                characterOptions[characterBuild].desc) ||
+                translateBBCode(characterOptions[characterBuild].desc ?? "")) ||
                 "Disponible prochainement"}
             </p>
           </div>

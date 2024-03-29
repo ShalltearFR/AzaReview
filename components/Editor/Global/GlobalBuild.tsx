@@ -16,6 +16,8 @@ import type {
 import { SingleValue } from "react-select";
 import { useSpring, animated } from "react-spring";
 import AddInput from "../Add/AddInput";
+import AddTextArea from "../Add/AddTextArea";
+import translateBBCode from "@/utils/translateBBCode";
 
 interface GlobalBuildProps {
   data: any;
@@ -46,6 +48,10 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
     recommendedStatsOption[]
   >([]);
 
+  // const [showBuildDesc, setShowBuildDesc] = useState<boolean>(false);
+  const [showRecommendedBuildDescPrev, setShowRecommendedBuildDescPrev] =
+    useState<boolean>(false);
+  const [showBuildDescPrev, setShowBuildDescPrev] = useState<boolean>(false);
   const [showBuild, setShowBuild] = useState<boolean>(false);
   const { transform } = useSpring({
     transform: `translateX(${showBuild ? "0%" : "-120%"})`,
@@ -265,7 +271,7 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
 
   return (
     <div className="mx-5 p-5 text-white border border-white">
-      <div className="h-20">
+      <div className="">
         <div className="flex items-center">
           <label className="flex items-center">
             <span className="text-2xl ml-5 h-9 mr-2">Nom du build : </span>
@@ -296,18 +302,39 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
             <ArrowsUpDownIcon className="h-6" />
           </button>
         </div>
-        <label className="flex items-center mt-5">
-          <span className="text-2xl ml-5 h-9 mr-2 w-72">
-            Description du build :{" "}
+        <label className="flex items-center mt-5 relative">
+          <span className="text-2xl ml-5 h-9 mr-2 w-72 flex flex-col items-center">
+            Description du build :
           </span>
-          <AddInput
+          <AddTextArea
             value={buildDescriptionInput}
-            className="px-2 text-black rounded-full h-10 mt-auto self-center w-full"
+            className={`px-2 text-black rounded-2xl h-10 mt-auto self-center w-full`}
             onChange={(value) => {
               setBuildDescriptionInput(value);
               debounced();
             }}
           />
+          <div
+            onMouseOver={() => setShowBuildDescPrev(true)}
+            onMouseLeave={() => setShowBuildDescPrev(false)}
+          >
+            <span className="underline text-light-blue2 ml-5">Aperçu</span>
+
+            <div
+              className={`absolute bg-black p-2 border border-white rounded-2xl z-20 right-16 top-0 font-bold ${
+                showBuildDescPrev ? "" : "hidden"
+              }`}
+            >
+              <p className="text">Desktop :</p>
+              <div className="w-[1450px] bg-light-blue">
+                {translateBBCode(buildDescriptionInput)}
+              </div>
+              <p className="mt-5 text-">Mobile :</p>
+              <div className="w-[500px] bg-light-blue">
+                {translateBBCode(buildDescriptionInput)}
+              </div>
+            </div>
+          </div>
         </label>
       </div>
       <animated.div
@@ -489,17 +516,40 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
               debounced();
             }}
           />
-          <label className="flex items-center mt-5">
-            <span className="text-xl ml-5 h-9 mr-2 w-40">Commentaire :</span>
-            <AddInput
-              value={recommendedCommentInput}
-              className="px-2 text-black rounded-full h-10 mt-auto self-center w-full"
-              onChange={(value) => {
-                setRecommendedCommentInput(value);
-                debounced();
-              }}
-            />
-          </label>
+          <div className="flex w-full items-center relative">
+            <label className="flex items-center mt-5 w-full">
+              <span className="text-xl ml-5 h-9 mr-2 w-40">Commentaire :</span>
+              <AddTextArea
+                value={recommendedCommentInput}
+                className="px-2 text-black rounded-2xl h-10 mt-auto self-center w-full"
+                onChange={(value) => {
+                  setRecommendedCommentInput(value);
+                  debounced();
+                }}
+              />
+            </label>
+            <div
+              onMouseOver={() => setShowRecommendedBuildDescPrev(true)}
+              onMouseLeave={() => setShowRecommendedBuildDescPrev(false)}
+            >
+              <span className="underline text-light-blue2 ml-5">Aperçu</span>
+
+              <div
+                className={`absolute bg-black p-2 border border-white rounded-2xl z-20 right-16 top-0 font-bold ${
+                  showRecommendedBuildDescPrev ? "" : "hidden"
+                }`}
+              >
+                <p className="text">Desktop :</p>
+                <div className="w-[445px] bg-light-blue text-orange2 text-center">
+                  {translateBBCode(recommendedCommentInput)}
+                </div>
+                <p className="mt-5 text-">Mobile :</p>
+                <div className="w-[400px] bg-light-blue text-orange2 text-center">
+                  {translateBBCode(recommendedCommentInput)}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </animated.div>
     </div>

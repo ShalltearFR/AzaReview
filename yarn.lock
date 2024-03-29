@@ -479,6 +479,13 @@
   resolved "https://registry.yarnpkg.com/@types/aos/-/aos-3.0.7.tgz#81c60dde68d67b7ea941a37ec3638b88ac90001c"
   integrity sha512-sEhyFqvKauUJZDbvAB3Pggynrq6g+2PS4XB3tmUr+mDL1gfDJnwslUC4QQ7/l8UD+LWpr3RxZVR/rHoZrLqZVg==
 
+"@types/bbcode-to-react@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@types/bbcode-to-react/-/bbcode-to-react-0.2.3.tgz#f260aca8235a877d67d6ab335ebcb78a33346e4a"
+  integrity sha512-fbAbLwZtTZAtG9845WP+yz5eSkPAwmVhh0wkh1nrH4eW0IAcTEw1r9EaHrOgnFLwDd7J7Tn7WEibtJ3wd/iqAg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/bcrypt@^5.0.2":
   version "5.0.2"
   resolved "https://registry.npmjs.org/@types/bcrypt/-/bcrypt-5.0.2.tgz"
@@ -902,6 +909,11 @@ balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
+
+bbcode-to-react@^0.2.9:
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/bbcode-to-react/-/bbcode-to-react-0.2.9.tgz#75ec5358c78e9c2a486a62274bb5f4695fb99e60"
+  integrity sha512-ZuqVg44xi0nqMbZJMB/j1WxVvDnpfQYHLGFdZW8FQfW7uoCMyF48iEUVbYontcdrD5uZTcqMs3qbGeIa/bCi+g==
 
 bcrypt@^5.1.1:
   version "5.1.1"

@@ -2,14 +2,14 @@
 import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
-interface AddInputProps {
+interface AddTextAreaProps {
   value?: string;
   className?: string;
   placeholder?: string;
   onChange: (value: string) => void;
 }
 
-const AddInput: React.FC<AddInputProps> = ({
+const AddTextArea: React.FC<AddTextAreaProps> = ({
   value = "",
   className,
   placeholder = "",
@@ -22,7 +22,7 @@ const AddInput: React.FC<AddInputProps> = ({
   }, 250);
 
   return (
-    <input
+    <textarea
       value={textInput || value}
       onChange={(e) => {
         setTextInput(e.target.value);
@@ -38,4 +38,4 @@ const AddInput: React.FC<AddInputProps> = ({
   );
 };
 
-export default AddInput;
+export default AddTextArea;

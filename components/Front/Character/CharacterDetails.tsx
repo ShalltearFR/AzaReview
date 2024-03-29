@@ -9,6 +9,7 @@ import CharacterRelicsSet from "./CharacterRelicsSet";
 import CharacterRelic from "./CharacterRelic";
 import { CDN2 } from "@/utils/cdn";
 import { CharacterType, Data, RecommendedStats } from "@/types/CharacterModel";
+import translateBBCode from "@/utils/translateBBCode";
 
 interface ReviewData {
   data: CharacterType[];
@@ -148,7 +149,9 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
               characterReview[buildIndex].recommended_comment && (
                 <p className="text-orange2 font-bold text-center mt-2 text-[15px]">
                   {characterReview[buildIndex] &&
-                    characterReview[buildIndex].recommended_comment}
+                    translateBBCode(
+                      characterReview[buildIndex].recommended_comment ?? ""
+                    )}
                 </p>
               )}
           </div>
