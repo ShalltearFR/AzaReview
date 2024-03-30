@@ -48,8 +48,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
       }
     };
     verifMainStat();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lightCone]);
+  }, [lightCone, lightconeTranslate, review]);
 
   return (
     <div className=" w-full xl:min-w-60 xl:max-w-80 xl:w-auto rounded-t-3xl bg-light-blue/75 mx-auto p-3 mt-5">
