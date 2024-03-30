@@ -156,9 +156,9 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
       setColorExclamation(true);
     };
     processExclamation();
-  }, [finalPossessedRelicSets, relics, relicsSetTranslate, review]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [relics, review]);
 
-  console.log("requiredRelicsSet", requiredRelicsSet);
   return (
     <div>
       <div className="relative">

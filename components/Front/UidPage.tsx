@@ -265,12 +265,12 @@ const UidPage: React.FC<UidPageProps> = ({
                 className="w-full xl:w-72 z-30"
               />
             </label>
-            <p className="px-5 mt-2 text-center xl:px-0 xl:ml-0 xl:mt-0 xl:text-left">
+            <div className="px-5 mt-2 text-center xl:px-0 xl:ml-0 xl:mt-0 xl:text-left">
               {(characterOptions[characterBuild] &&
                 characterOptions[characterBuild].desc &&
                 translateBBCode(characterOptions[characterBuild].desc ?? "")) ||
                 "Disponible prochainement"}
-            </p>
+            </div>
           </div>
           <div className="flex justify-center w-full">
             <div ref={characterDetailsRef} className=" w-full max-w-[1450px]">

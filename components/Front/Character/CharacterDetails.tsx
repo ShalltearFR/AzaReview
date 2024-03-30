@@ -147,12 +147,12 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
             {characterReview &&
               characterReview[buildIndex] &&
               characterReview[buildIndex].recommended_comment && (
-                <p className="text-orange2 font-bold text-center mt-2 text-[15px]">
+                <div className="text-orange2 font-bold text-center mt-2 text-[15px]">
                   {characterReview[buildIndex] &&
                     translateBBCode(
                       characterReview[buildIndex].recommended_comment ?? ""
                     )}
-                </p>
+                </div>
               )}
           </div>
 
