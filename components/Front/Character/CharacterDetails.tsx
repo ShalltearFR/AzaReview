@@ -67,10 +67,10 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
       <article
         className="grid xl:grid-cols-3 xl:h-[870px] xl:gap-x-5 py-4"
         style={{
-          backgroundImage: `url('${CDN2}/img/character_bg.avif')`,
-          // backgroundImage: `url('${CDN2}/img/AzanoThug.jpg')`,
-          // backgroundSize: "100% 100%",
-          backgroundSize: "100% auto",
+          //backgroundImage: `url('${CDN2}/img/character_bg.avif')`,
+          backgroundImage: `url('${CDN2}/img/AzanoThug.jpg')`,
+          backgroundSize: "100% 100%",
+          //backgroundSize: "100% auto",
           backgroundRepeat: "repeat-y",
         }}
       >

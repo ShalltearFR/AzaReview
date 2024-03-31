@@ -234,8 +234,8 @@ const UidPage: React.FC<UidPageProps> = ({
       <div className="overflow-hidden min-h-[calc(100vh-270px)]">
         <div
           style={{
-            backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,
-            //backgroundImage: `url("${CDN2}/img/homepage/kuruKuru.gif")`,
+            //backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,
+            backgroundImage: `url("${CDN2}/img/homepage/kuruKuru.gif")`,
             zIndex: -10,
           }}
           data-aos="animate-stars"
