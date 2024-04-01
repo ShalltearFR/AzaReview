@@ -29,12 +29,11 @@ const CharacterEidolon: React.FC<CharacterEidolonProps> = ({
       onMouseLeave={() => setIsTooltipVisible(false)}
     >
       {isTooltipVisible && (
-        <div className="absolute bg-background text-white z-40 hidden xl:block rounded-xl xl:w-96 p-2 top-12">
+        <div className="absolute bg-background text-white z-40 hidden xl:block rounded-xl xl:w-[400px] p-2 top-12">
           <p className="z-40 font-bold">{eidolon.name}</p>
           {descSplitN.map((el, i) => (
             <p key={`${eidolon.id}+${i}`}>{el}</p>
           ))}
-          {/* <p className="z-40">{eidolon.desc.replace(/\n/g, "")}</p> */}
         </div>
       )}
       <img

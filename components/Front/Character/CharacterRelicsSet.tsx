@@ -159,6 +159,14 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [relics, review]);
 
+  const reduceText = (text: string) => {
+    if (text.length > 36) {
+      return text.substring(0, 36) + " ...";
+    } else {
+      return text;
+    }
+  };
+
   return (
     <div>
       <div className="relative">
@@ -174,22 +182,26 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
               !
               {isTooltipRecommended && (
                 <div
-                  className={`absolute z-20 p-2 bg-background rounded-xl w-60 right-0 xl:right-auto xl:-left-60 top-7 text-white text-sm ${
-                    requiredRelicsSet[2] ? "xl:-top-[244px]" : "xl:-top-[108px]"
+                  className={`absolute z-20 p-2 bg-background rounded-xl xl:-top-44 xl:h-44 right-8 w-60 text-white text-sm ${
+                    requiredRelicsSet[2]
+                      ? "xl:w-[476px] xl:-left-52 -top-52"
+                      : "xl:w-80 xl:-left-36 -top-36"
                   }`}
                 >
                   <div className="font-bold z-10 flex">Recommandés :</div>
-                  <div className="flex flex-col gap-5">
+                  <div className="xl:flex gap-2 w-full xl:h-[140px]">
                     {requiredRelicsSet.map((el: any) => (
                       <div
-                        className="gap-1 italic font-normal ml-1"
+                        className={`italic font-normal h-full flex flex-col w-full`}
                         key={el.id}
                       >
-                        <span className="font-bold">{el.num}P</span>
-                        <span> - {el.name}</span>
+                        <p>
+                          <span className="font-bold">{el.num}P</span>
+                          <span> - {reduceText(el.name)}</span>
+                        </p>
                         <img
                           src={`${CDN}/${el.icon}`}
-                          className="h-24 mx-auto"
+                          className="h-24 w-24 mx-auto mt-auto"
                         />
                       </div>
                     ))}
@@ -256,7 +268,15 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                   i === 0 &&
                   asOrnament.relicsNumber &&
                   asOrnament.relicsNumber[0] === 2 &&
-                  asOrnament.asAnOrnamant === true
+                  asOrnament.asAnOrnamant === true &&
+                  finalPossessedRelicSets.length === 2
+                ) {
+                  relicsMap = ornamantsAltList;
+                  description = "Ornements possibles :";
+                } else if (
+                  i === 1 &&
+                  asOrnament.asAnOrnamant === true &&
+                  finalPossessedRelicSets.length === 2
                 ) {
                   relicsMap = ornamantsAltList;
                   description = "Ornements possibles :";
@@ -268,7 +288,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
 
               return (
                 <div
-                  key={`RelicSet${colorRelics[i]}+${i}`}
+                  key={crypto.randomUUID()}
                   className="relative w-[135px] mt-5"
                   onMouseEnter={() => setIsTooltipSet(array)}
                   onMouseLeave={() => setIsTooltipSet([false, false, false])}

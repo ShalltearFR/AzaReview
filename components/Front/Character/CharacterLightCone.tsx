@@ -66,7 +66,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
             recommendedLightCone &&
             recommendedLightCone[0] && (
               <div
-                className={`absolute z-20 p-2 bg-background rounded-xl w-60 right-0 xl:right-auto xl:left-8 top-8 text-white text-sm ${
+                className={`absolute z-20 p-2 bg-background rounded-xl w-72 right-0 xl:right-auto xl:left-8 top-8 text-white text-sm ${
                   recommendedLightCone[1] ? "xl:-top-[196px]" : "xl:-top-[98px]"
                 }`}
               >
@@ -77,7 +77,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
                   </p>
                   <img
                     src={`${CDN}/${recommendedLightCone[0].portrait}`}
-                    className="w-1/2 mx-auto"
+                    className="h-36 mx-auto"
                   />
                 </div>
                 {recommendedLightCone[1] && (
@@ -88,7 +88,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
                     </p>
                     <img
                       src={`${CDN}/${recommendedLightCone[1].portrait}`}
-                      className="w-1/2 mx-auto"
+                      className="h-36 mx-auto"
                     />
                   </div>
                 )}

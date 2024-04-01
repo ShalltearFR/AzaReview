@@ -25,7 +25,7 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
       <div className="w-full self-start font-semibold ">
         <div className="grid grid-cols-[1fr_120px] items-center align-top">
           <span className="text-white text-4xl z-10 ml-5 xl:ml-0">
-            {"Kuru Kuru"}
+            {character.name}
           </span>
           <span className="text-orange text-right text-3xl pr-5 z-10 self-start">
             Niv. {character.level}

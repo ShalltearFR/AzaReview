@@ -26,7 +26,7 @@ const CharacterTrace: React.FC<CharacterTraceProps> = ({
       onMouseLeave={() => setTooltip(false)}
     >
       <div
-        className={`hidden absolute z-20 p-2 bg-background rounded-xl xl:w-96 text-white top-16${
+        className={`hidden absolute z-20 p-2 bg-background rounded-xl xl:w-[650px] text-white top-16${
           tooltip ? " xl:block" : ""
         }`}
       >
