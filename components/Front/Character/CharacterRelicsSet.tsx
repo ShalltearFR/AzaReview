@@ -288,7 +288,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
 
               return (
                 <div
-                  key={crypto.randomUUID()}
+                  key={`RelicSet${colorRelics[i]}+${i}`}
                   className="relative w-[135px] mt-5"
                   onMouseEnter={() => setIsTooltipSet(array)}
                   onMouseLeave={() => setIsTooltipSet([false, false, false])}
