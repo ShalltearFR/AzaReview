@@ -160,8 +160,8 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
   }, [relics, review]);
 
   const reduceText = (text: string) => {
-    if (text.length > 36) {
-      return text.substring(0, 36) + " ...";
+    if (text.length > 32) {
+      return text.substring(0, 32) + "...";
     } else {
       return text;
     }
