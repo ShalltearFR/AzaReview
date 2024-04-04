@@ -18,6 +18,7 @@ function Homepage() {
   const isCodes = useRef(false);
   const [isLoading, setIsloading] = useState<boolean>(true);
   const windowWidth = useRef<number>();
+  const windowPixelRatio = useRef<number>();
 
   const searchParams = useSearchParams();
 
@@ -53,6 +54,7 @@ function Homepage() {
     }
     setIsloading(false);
     windowWidth.current = window.outerWidth;
+    windowPixelRatio.current = window.devicePixelRatio;
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -73,7 +75,10 @@ function Homepage() {
 
   const userResizing = () => {
     // Detecte uniquement le resize en X, permet d'eviter le saut de page debut de page si scroll trop rapide sur mobile
-    if (windowWidth.current !== window.outerWidth) {
+    if (
+      windowWidth.current !== window.outerWidth || // Detecte le resize width
+      windowPixelRatio.current !== window.devicePixelRatio // Detecte le resize en zoomant
+    ) {
       windowWidth.current = window.outerWidth;
       const startPage: any = document.querySelector("body");
       if (window.innerWidth <= 1700) {
