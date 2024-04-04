@@ -185,7 +185,7 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
                 target="_blank"
               >
                 <img
-                  src={`${CDN}/img/eneba-logo.svg`}
+                  src={`${CDN2}/img/eneba-logo.svg`}
                   className="h-10 mx-auto"
                 />
               </a>
