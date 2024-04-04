@@ -164,16 +164,32 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
             </div>
           )}
         </div>
+        {/* PARTIE ENEBA */}
         <div className="mt-auto mb-10 xl2:mb-0 z-10">
           <div
             data-aos="fade-up"
             data-aos-delay="250"
-            className="mx-auto w-full mmd:w-[747px] z-10"
+            className="mx-auto w-full mmd:w-[747px] z-10 flex"
           >
             <img
               src={`${CDN2}/img/homepage/guinaifen.webp`}
               className="h-36 translate-y-1"
             />
+            <div className="ml-auto mt-auto mr-5 px-4 py-2 bg-background rounded-t-2xl translate-y-[1px] xl2:flex xl2:gap-2">
+              <div className=" text-xl font-bold text-white xl2:mt-1">
+                <span className="text-yellow">10%</span>
+                <span> de cashback avec</span>
+              </div>
+              <a
+                href="https://www.eneba.com/fr/?af_id=Azano&utm_source=Azano"
+                target="_blank"
+              >
+                <img
+                  src={`${CDN}/img/eneba-logo.svg`}
+                  className="h-10 mx-auto"
+                />
+              </a>
+            </div>
           </div>
           <div
             data-aos="fade-left"
@@ -184,14 +200,8 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
                 Dépenser moins sur HSR tout en soutenant le site !
               </h2>
               <p>
-                {"En utilisant ce lien "}
-                <a
-                  href="https://www.eneba.com/fr/top-up-honkai-star-rail-oneiric-shard-malaysia?enb_campaign=Main+Search&enb_content=search+dropdown+-+products&enb_medium=product+card&enb_source=https%3A%2F%2Fwww.eneba.com%2Ftop-up-genshin-impact-genesis-crystals-malaysia&enb_term=1&af_id=Azano&utm_medium=infl&utm_source=Azano&currency=EUR&region=global"
-                  target="_blank"
-                  className="font-bold text-light-blue2"
-                >
-                  {"Eneba"}
-                </a>
+                {"En utilisant ces liens Eneba "}
+
                 {" pour vos achats, vous soutiendrez énormément !"}
               </p>
               <p>
@@ -200,9 +210,24 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
                 }
               </p>
               <p>
-                {
-                  "C'est bénéfique pour vous comme pour nous, alors n'hésitez pas à jeter un oeil !"
-                }
+                <a
+                  href="https://www.eneba.com/fr/top-up-honkai-star-rail-oneiric-shard-malaysia?enb_campaign=Main+Search&enb_content=search+dropdown+-+products&enb_medium=product+card&enb_source=https%3A%2F%2Fwww.eneba.com%2Ftop-up-genshin-impact-genesis-crystals-malaysia&enb_term=1&af_id=Azano&currency=MYR&region=malaysia&utm_source=Azano&utm_medium=infl"
+                  target="_blank"
+                  className="text-light-blue2 font-bold"
+                >
+                  <span className="">Payez en MYR </span>
+                </a>
+                {"pour économiser "}
+                <span className="text-green font-bold">{"22% "}</span>
+                {"supplémentaire ou bien "}
+                <a
+                  href="https://www.eneba.com/fr/top-up-honkai-star-rail-oneiric-shard-malaysia?enb_campaign=Main+Search&enb_content=search+dropdown+-+products&enb_medium=product+card&enb_source=https%3A%2F%2Fwww.eneba.com%2Ftop-up-genshin-impact-genesis-crystals-malaysia&enb_term=1&af_id=Azano&utm_medium=infl&utm_source=Azano&currency=EUR&region=global"
+                  target="_blank"
+                  className="font-bold text-light-blue2"
+                >
+                  payez en Euro
+                </a>
+                .
               </p>
             </div>
             <div className="sm:px-6">
