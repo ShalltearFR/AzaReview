@@ -39,10 +39,9 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
     }
   }, [changeLog, patchPage]);
 
-  console.log("changeLog", changeLog);
   return (
     <section
-      className={`flex flex-col justify-center items-center bg-darkPurple w-full xl2:min-h-[calc(100vh-64px)] pt-5 xl2:pt-0 mmd:mx-auto my-auto`}
+      className={`flex flex-col justify-center items-center bg-darkPurple w-full xl2:min-h-[calc(100vh-64px)] pt-5 xl2:pt-0 mmd:mx-auto my-auto overflow-x-hidden`}
     >
       <div className="flex flex-col-reverse mb-16 xl2:mb-0 xl2:flex-row gap-20 justify-center items-center my-auto mx-auto w-full xl2:w-auto mmd:mx-auto">
         <div className="flex flex-col gap-5 relative mt-32 w-full mmd:mx-auto">
@@ -156,8 +155,8 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
                     <span className="ml-2 italic">- {patchDate}</span>
                   </div>
                   <ul className="mt-2 ml-5 list-disc">
-                    {patchDesc.map((el) => (
-                      <li key={crypto.randomUUID()}>{el}</li>
+                    {patchDesc.map((el, i) => (
+                      <li key={`${el.substring(0, 10)}+${i}`}>{el}</li>
                     ))}
                   </ul>
                 </div>

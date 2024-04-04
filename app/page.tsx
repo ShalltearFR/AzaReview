@@ -17,6 +17,7 @@ function Homepage() {
   const [isCodeAnimation, setIsCodeAnimation] = useState<Boolean>(true);
   const isCodes = useRef(false);
   const [isLoading, setIsloading] = useState<boolean>(true);
+  const windowWidth = useRef<number>();
 
   const searchParams = useSearchParams();
 
@@ -51,6 +52,7 @@ function Homepage() {
       }
     }
     setIsloading(false);
+    windowWidth.current = window.outerWidth;
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -70,21 +72,25 @@ function Homepage() {
   }, [sectionIndex]);
 
   const userResizing = () => {
-    const startPage: any = document.querySelector("body");
-    if (window.innerWidth <= 1700) {
-      setSectionIndex(999);
-      if (isCodes.current) {
-        const codesEl: any = document.querySelector("#codes");
-        if (codesEl) codesEl.scrollIntoView({ behavior: "auto" });
+    // Detecte uniquement le resize en X, permet d'eviter le saut de page debut de page si scroll trop rapide sur mobile
+    if (windowWidth.current !== window.outerWidth) {
+      windowWidth.current = window.outerWidth;
+      const startPage: any = document.querySelector("body");
+      if (window.innerWidth <= 1700) {
+        setSectionIndex(999);
+        if (isCodes.current) {
+          const codesEl: any = document.querySelector("#codes");
+          if (codesEl) codesEl.scrollIntoView({ behavior: "auto" });
+        } else {
+          startPage.scrollIntoView({ behavior: "auto" });
+        }
       } else {
-        startPage.scrollIntoView({ behavior: "auto" });
-      }
-    } else {
-      if (isCodes.current) {
-        setSectionIndex(2);
-      } else {
-        setSectionIndex(0);
-        startPage.scrollIntoView({ behavior: "auto" });
+        if (isCodes.current) {
+          setSectionIndex(2);
+        } else {
+          setSectionIndex(0);
+          startPage.scrollIntoView({ behavior: "auto" });
+        }
       }
     }
   };
