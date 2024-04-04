@@ -53,7 +53,7 @@ function Homepage() {
       }
     }
     setIsloading(false);
-    windowWidth.current = window.outerWidth;
+    windowWidth.current = window.innerWidth;
     windowPixelRatio.current = window.devicePixelRatio;
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -76,10 +76,10 @@ function Homepage() {
   const userResizing = () => {
     // Detecte uniquement le resize en X, permet d'eviter le saut de page debut de page si scroll trop rapide sur mobile
     if (
-      windowWidth.current !== window.outerWidth || // Detecte le resize width
+      windowWidth.current !== window.innerWidth || // Detecte le resize width
       windowPixelRatio.current !== window.devicePixelRatio // Detecte le resize en zoomant
     ) {
-      windowWidth.current = window.outerWidth;
+      windowWidth.current = window.innerWidth;
       const startPage: any = document.querySelector("body");
       if (window.innerWidth <= 1700) {
         setSectionIndex(999);

@@ -61,7 +61,7 @@ const UidPage: React.FC<UidPageProps> = ({
   const [review, setReview] = useState<any>();
 
   useEffect(() => {
-    Aos.init();
+    Aos.init({ disable: window.innerWidth <= 1450 });
     const transformCharacterQuery = () => {
       if (isNaN(Number(characterQuery))) {
         window.history.pushState({}, "", window.location.pathname);
