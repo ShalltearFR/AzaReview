@@ -377,7 +377,7 @@ const UidPage: React.FC<UidPageProps> = ({
               )}
             </button>
 
-            <div className="mt-5 mx-auto flex justify-center">
+            <div className="mt-10 mx-auto flex justify-center">
               <div className="w-full max-w-[1450px]" ref={reviewRef}>
                 {exportImg && <div>{exportImg}</div>}
               </div>
