@@ -14,6 +14,8 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
   return (
     <div className="flex flex-col h-[480px] relative items-center">
       <img
+        height={480}
+        width={"100%"}
         src={`${CDN}/${character.portrait}`}
         alt=""
         className="absolute xl:top-10 xl:w-[520px] object-contain h-[480px] mx-auto"

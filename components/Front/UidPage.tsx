@@ -6,7 +6,7 @@ import { CharacterType } from "@/types/CharacterModel";
 import type { jsonUID } from "@/types/jsonUid";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { toJpeg, toPng, toSvg } from "html-to-image";
+import { toBlob, toCanvas, toJpeg, toPng, toSvg } from "html-to-image";
 import ReactSelect from "react-select";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Aos from "aos";
@@ -90,9 +90,10 @@ const UidPage: React.FC<UidPageProps> = ({
       return;
     }
 
-    toPng(characterDetailsRef.current, { cacheBust: true })
+    toPng(characterDetailsRef.current)
       .then((dataUrl) => {
         // Generation du Header et impression du CharactersDetails
+        console.log("dataUrl", dataUrl);
         const reviewDiv = (
           <div id="exportedImage">
             <div className="w-full max-w-[1450px] mx-auto">
@@ -143,19 +144,33 @@ const UidPage: React.FC<UidPageProps> = ({
   useEffect(() => {
     // Generation d'image finale header + CharacterDetails
     if (reviewRef.current !== null && disableButton) {
-      toJpeg(reviewRef.current, {
-        cacheBust: false,
-        quality: window.innerWidth >= 650 ? 1 : 0.5,
-      })
-        .then((image) => {
-          setExportImg(<img src={image} />);
-          const link = document.createElement("a");
-          link.download = `ReviewHSR ${jsonUid.characters[characterIndex].name}`;
-          link.href = image;
-          link.click();
-          setDisableButton(false);
+      if (window.innerWidth <= 650) {
+        // Mobile
+        toJpeg(reviewRef.current, {
+          cacheBust: false,
+          quality: window.innerWidth >= 650 ? 1 : 0.5,
         })
-        .catch((err) => console.log("erreur image", err));
+          .then((image) => {
+            const link = document.createElement("a");
+            link.download = `ReviewHSR ${jsonUid.characters[characterIndex].name}`;
+            link.href = image;
+            link.click();
+            setExportImg(<img src={image} />);
+            setDisableButton(false);
+          })
+          .catch((err) => console.log("erreur image", err));
+      } else {
+        // Tablette/PC
+        toPng(reviewRef.current, {
+          cacheBust: false,
+        })
+          .then((image) => {
+            console.log("image", image);
+            setExportImg(<img src={image} />);
+            setDisableButton(false);
+          })
+          .catch((err) => console.log("erreur image", err));
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exportImg]);
@@ -381,7 +396,11 @@ const UidPage: React.FC<UidPageProps> = ({
             </button>
 
             <div className="mt-10 mx-auto flex justify-center">
-              <div className="w-full max-w-[1450px]" ref={reviewRef}>
+              <div
+                className="w-full max-w-[1450px]"
+                id="exportEEEEEEEED"
+                ref={reviewRef}
+              >
                 {exportImg && <div>{exportImg}</div>}
               </div>
             </div>
