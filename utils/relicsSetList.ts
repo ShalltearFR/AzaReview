@@ -124,6 +124,14 @@ const relicsSetList: objectProps[] = [
     id: "312",
     isOrnamant: true,
   },
+  {
+    id: "313", // Sigonia
+    isOrnamant: true,
+  },
+  {
+    id: "314", // Izumo
+    isOrnamant: true,
+  },
 ];
 
 export default relicsSetList;
