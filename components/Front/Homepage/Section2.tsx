@@ -181,7 +181,7 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
                 <span> de cashback avec</span>
               </div>
               <a
-                href="https://www.eneba.com/fr/?af_id=Azano&utm_source=Azano"
+                href="https://www.eneba.com/fr/?af_id=Azano&currency=EUR&region=global&utm_source=Azano&utm_medium=infl"
                 target="_blank"
               >
                 <img

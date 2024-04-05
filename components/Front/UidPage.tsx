@@ -6,12 +6,13 @@ import { CharacterType } from "@/types/CharacterModel";
 import type { jsonUID } from "@/types/jsonUid";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { toPng } from "html-to-image";
+import { toJpeg, toPng, toSvg } from "html-to-image";
 import ReactSelect from "react-select";
-import { CDN2 } from "@/utils/cdn";
+import { CDN, CDN2 } from "@/utils/cdn";
 import Aos from "aos";
 import { notFound } from "next/navigation";
 import translateBBCode from "@/utils/translateBBCode";
+import React from "react";
 
 interface Option {
   value: string;
@@ -55,7 +56,8 @@ const UidPage: React.FC<UidPageProps> = ({
   ]);
 
   const characterDetailsRef = useRef<HTMLDivElement>(null);
-  const [exportImgUrl, setExportImgUrl] = useState<string>("");
+  const reviewRef = useRef<HTMLDivElement>(null);
+  const [exportImg, setExportImg] = useState<any>("");
   const [disableButton, setDisableButton] = useState<boolean>(false);
 
   const [review, setReview] = useState<any>();
@@ -90,13 +92,70 @@ const UidPage: React.FC<UidPageProps> = ({
 
     toPng(characterDetailsRef.current, { cacheBust: true })
       .then((dataUrl) => {
-        setExportImgUrl(dataUrl);
-        setDisableButton(false);
+        // Generation du Header et impression du CharactersDetails
+        const reviewDiv = (
+          <div id="exportedImage">
+            <div className="w-full max-w-[1450px] mx-auto">
+              <div
+                id="exportHTML"
+                className="mx-auto w-full max-w-[1450px] border rounded-t-xl overflow-hidden"
+                style={{
+                  backgroundImage: `url('${CDN2}/img/character_bg.avif')`,
+                  marginBlock: "auto",
+                  width: "100%",
+                  height: "96px",
+                }}
+              >
+                <div className="flex items-center w-full h-24 text-white smd:text-xl bg-black/50">
+                  <img
+                    className="ml-2 smd:ml-5 h-20"
+                    src={`${CDN}/${jsonUid?.player?.avatar.icon}`}
+                  />
+                  <p className="ml-5 flex flex-col">
+                    <span className="font-bold">
+                      {jsonUid?.player?.nickname}
+                    </span>
+                    <span className="smd:text-base">
+                      UID : {jsonUid?.player?.uid}
+                    </span>
+                  </p>
+                  <img
+                    src={`${CDN2}/img/homepage/logo_min.png`}
+                    className="ml-auto hidden smd:block mr-2 smd:mr-5 h-10 smd:h-14"
+                  />
+                  <p className="ml-auto smd:ml-0 mr-5 font-bold">
+                    review-hsr.vercel.app
+                  </p>
+                </div>
+              </div>
+              <img src={dataUrl} />
+            </div>
+          </div>
+        );
+        setExportImg(reviewDiv);
       })
       .catch((err) => {
         console.log(err);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterDetailsRef]);
+
+  useEffect(() => {
+    // Generation d'image finale header + CharacterDetails
+    if (reviewRef.current !== null && disableButton) {
+      toJpeg(reviewRef.current, { cacheBust: false })
+        .then((image) => {
+          setExportImg(<img src={image} />);
+          const link = document.createElement("a");
+          link.download = `ReviewHSR ${jsonUid.characters[characterIndex].name}`;
+          link.href = image;
+          link.click();
+          setDisableButton(false);
+        })
+        .catch((err) => console.log("erreur image", err));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [exportImg]);
 
   useEffect(() => {
     function sortReviewDataByUidData(reviewData: any, uidData: any) {
@@ -272,7 +331,7 @@ const UidPage: React.FC<UidPageProps> = ({
             </div>
           </div>
           <div className="flex justify-center w-full">
-            <div ref={characterDetailsRef} className=" w-full max-w-[1450px]">
+            <div ref={characterDetailsRef} className="w-full max-w-[1450px]">
               <CharacterDetails
                 uidData={uidData as jsonUID}
                 buildIndex={characterBuild}
@@ -317,13 +376,12 @@ const UidPage: React.FC<UidPageProps> = ({
                 "Exporter l'image"
               )}
             </button>
-            {exportImgUrl && (
-              <img
-                className="flex mt-10 mb-10 mx-auto"
-                src={exportImgUrl}
-                alt="Export image url"
-              />
-            )}
+
+            <div className="mt-5 mx-auto flex justify-center">
+              <div className="w-full max-w-[1450px]" ref={reviewRef}>
+                {exportImg && <div>{exportImg}</div>}
+              </div>
+            </div>
           </div>
         </section>
       </div>
