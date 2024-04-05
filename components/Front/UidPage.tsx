@@ -143,7 +143,10 @@ const UidPage: React.FC<UidPageProps> = ({
   useEffect(() => {
     // Generation d'image finale header + CharacterDetails
     if (reviewRef.current !== null && disableButton) {
-      toJpeg(reviewRef.current, { cacheBust: false })
+      toJpeg(reviewRef.current, {
+        cacheBust: false,
+        quality: window.innerWidth >= 650 ? 1 : 0.5,
+      })
         .then((image) => {
           setExportImg(<img src={image} />);
           const link = document.createElement("a");
