@@ -6,7 +6,7 @@ import { CharacterType } from "@/types/CharacterModel";
 import type { jsonUID } from "@/types/jsonUid";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { toBlob, toJpeg, toPng, toSvg } from "html-to-image";
+import { toBlob, toCanvas, toJpeg, toPng, toSvg } from "html-to-image";
 import ReactSelect from "react-select";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Aos from "aos";
@@ -100,10 +100,10 @@ const UidPage: React.FC<UidPageProps> = ({
     exportType: string,
     disableButton: (value: boolean) => void
   ) => {
-    disableButton(true);
     if (characterDetailsRef.current === null) {
       return;
     }
+    disableButton(true);
 
     setTimeout(() => {
       //Leger timeout pour eviter le tronc d'image du au rajout du header Image
@@ -131,8 +131,12 @@ const UidPage: React.FC<UidPageProps> = ({
       conversionPromise
         .then((dataImage) => {
           if (isFirefox) {
-            setExportImg(<img src={dataImage} />);
-            disableButton(false);
+            toCanvas(characterDetailsRef.current as HTMLDivElement).then(
+              (canvas) => {
+                const canvasUrl = canvas.toDataURL();
+                setExportImg(<img src={canvasUrl} />);
+              }
+            );
             return;
           }
 
@@ -165,8 +169,22 @@ const UidPage: React.FC<UidPageProps> = ({
         .catch((err) => {
           console.log(err);
         });
-    }, 5000);
+    }, 1000);
   };
+
+  // useEffect(() => {
+  //   if (
+  //     isFirefox &&
+  //     document.querySelector("#exportFirefox") &&
+  //     disableShareButton
+  //   ) {
+  //     toPng(document.querySelector("#exportFirefox")).then((dataImageFirefox) =>
+  //       setExportImg(<img src={dataImageFirefox} />)
+  //     );
+  //     setDisableShareButton(false);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [exportImg]);
 
   useEffect(() => {
     reviewHeaderRef.current = (
@@ -467,11 +485,13 @@ const UidPage: React.FC<UidPageProps> = ({
               </button>
             </div>
 
-            {exportImg && (
-              <div className="mt-10 mx-auto flex justify-center">
-                <div className="w-full max-w-[1450px]">{exportImg}</div>
-              </div>
-            )}
+            <div id="exportFirefox">
+              {exportImg && (
+                <div className="mt-10 mx-auto flex justify-center">
+                  <div className="w-full max-w-[1450px]">{exportImg}</div>
+                </div>
+              )}
+            </div>
           </div>
         </section>
       </div>
