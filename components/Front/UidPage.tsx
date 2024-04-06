@@ -165,7 +165,7 @@ const UidPage: React.FC<UidPageProps> = ({
         .catch((err) => {
           console.log(err);
         });
-    }, 1000);
+    }, 5000);
   };
 
   useEffect(() => {
