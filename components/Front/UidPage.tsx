@@ -135,6 +135,7 @@ const UidPage: React.FC<UidPageProps> = ({
               (canvas) => {
                 const canvasUrl = canvas.toDataURL();
                 setExportImg(<img src={canvasUrl} />);
+                disableButton(false);
               }
             );
             return;
