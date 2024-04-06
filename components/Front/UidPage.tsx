@@ -69,7 +69,13 @@ const UidPage: React.FC<UidPageProps> = ({
   const isFirefox = navigator.userAgent.toLowerCase().includes("firefox");
 
   useEffect(() => {
-    Aos.init({ disable: window.innerWidth <= 1450 });
+    if (isFirefox)
+      // Desactive le temps de fixer la fonctionnalité de presse papier
+      Aos.init({
+        disable: true,
+      });
+    else Aos.init({ disable: window.innerWidth <= 1450 });
+
     const transformCharacterQuery = () => {
       if (isNaN(Number(characterQuery))) {
         window.history.pushState({}, "", window.location.pathname);
