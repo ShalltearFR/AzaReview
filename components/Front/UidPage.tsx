@@ -6,7 +6,7 @@ import { CharacterType } from "@/types/CharacterModel";
 import type { jsonUID } from "@/types/jsonUid";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { toBlob, toCanvas, toJpeg, toPng, toSvg } from "html-to-image";
+import { toBlob, toJpeg, toPng, toSvg } from "html-to-image";
 import ReactSelect from "react-select";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Aos from "aos";
@@ -109,11 +109,7 @@ const UidPage: React.FC<UidPageProps> = ({
       //Leger timeout pour eviter le tronc d'image du au rajout du header Image
       let conversionPromise;
 
-      if (isFirefox) {
-        conversionPromise = toSvg(
-          characterDetailsRef.current as HTMLDivElement
-        );
-      } else if (window.innerWidth >= 650) {
+      if (window.innerWidth >= 650) {
         // Tablette/Desktop
         conversionPromise = toPng(
           characterDetailsRef.current as HTMLDivElement
@@ -131,13 +127,8 @@ const UidPage: React.FC<UidPageProps> = ({
       conversionPromise
         .then((dataImage) => {
           if (isFirefox) {
-            toCanvas(characterDetailsRef.current as HTMLDivElement).then(
-              (canvas) => {
-                const canvasUrl = canvas.toDataURL();
-                setExportImg(<img src={canvasUrl} />);
-                disableButton(false);
-              }
-            );
+            setExportImg(<img src={dataImage} />);
+            disableButton(false);
             return;
           }
 
@@ -172,20 +163,6 @@ const UidPage: React.FC<UidPageProps> = ({
         });
     }, 1000);
   };
-
-  // useEffect(() => {
-  //   if (
-  //     isFirefox &&
-  //     document.querySelector("#exportFirefox") &&
-  //     disableShareButton
-  //   ) {
-  //     toPng(document.querySelector("#exportFirefox")).then((dataImageFirefox) =>
-  //       setExportImg(<img src={dataImageFirefox} />)
-  //     );
-  //     setDisableShareButton(false);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [exportImg]);
 
   useEffect(() => {
     reviewHeaderRef.current = (
