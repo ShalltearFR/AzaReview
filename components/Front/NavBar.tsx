@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useCookies } from "next-client-cookies";
 
 interface NavBarProps {
   setData?: any;
@@ -20,7 +21,7 @@ const NavBar: React.FC<NavBarProps> = ({
   setSectionIndex,
   setSectionPrevIndex,
 }) => {
-  const { push } = useRouter();
+  const { push, refresh } = useRouter();
   const pathname = usePathname();
   const [uidInput, setUidInput] = useState<string>("");
   const [uidPathName, setUidPathName] = useState<string>("");
@@ -28,6 +29,8 @@ const NavBar: React.FC<NavBarProps> = ({
   const [disableSearchButton, setDisableSearchButton] =
     useState<boolean>(false);
   const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-white transition ease transform duration-300`;
+  const cookies = useCookies();
+  const lang = cookies.get("lang");
 
   useEffect(() => {
     if (isHomepage) setOpenMenu(true);
@@ -36,24 +39,30 @@ const NavBar: React.FC<NavBarProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleChangeLang = (country: string) => {
+    cookies.set("lang", country);
+    refresh();
+  };
+
   return (
     <>
-      <nav className="flex bg-[#030303] w-screen z-50 h-16 xl:fixed ">
-        <div className="relative flex w-full justify-center items-center">
+      <nav className="flex bg-[#030303] w-screen z-50 h-16 xl:fixed">
+        <div className="relative flex w-full  items-center">
           <Link
             href={"/"}
-            className={`sm:!block ${
+            className={`smd:!block ${
               openMenu
-                ? "hidden animate-fade-out sm:!animate-alwaysShow"
-                : "animate-fade-in sm:!animate-alwaysShow"
+                ? "hidden animate-fade-out smd:!animate-alwaysShow"
+                : "animate-fade-in smd:!animate-alwaysShow"
             }`}
           >
             <img
               src={`${CDN2}/img/homepage/logo_min.png`}
-              className="absolute h-16 sm:h-20 left-2 top-2 z-50"
+              className="absolute h-16 smd:h-20 left-2 top-2 z-50"
             />
           </Link>
-          <div className="flex gap-16 mx-auto items-center mr-auto sm:mr-5 smd:mr-auto">
+          <div className="w-28 mmd:w-28" />
+          <div className="flex gap-16 mx-auto smd:mx-0 smd:ml-auto mmd:mx-auto items-center ">
             <div className="h-0 w-0 xl2:h-16 xl2:w-16">
               {isHomepage &&
                 setSectionIndex &&
@@ -76,14 +85,14 @@ const NavBar: React.FC<NavBarProps> = ({
             </div>
 
             <div
-              className={`flex gap-2 ${
+              className={`flex gap-5 ${
                 openMenu
-                  ? "animate-fade-in sm:!animate-alwaysShow"
-                  : "hidden animate-fade-out sm:!flex sm:!animate-alwaysShow"
+                  ? "animate-fade-in smd:!animate-alwaysShow"
+                  : "hidden animate-fade-out smd:!flex smd:!animate-alwaysShow"
               }`}
             >
               <input
-                className="rounded-full w-40 h-10 pl-5 text-lg z-50 sm:mr-7"
+                className="rounded-full w-40 h-10 pl-5 text-lg z-50 "
                 maxLength={9}
                 placeholder="UID"
                 value={uidInput}
@@ -163,7 +172,7 @@ const NavBar: React.FC<NavBarProps> = ({
           </div>
           <button
             onClick={() => setOpenMenu(!openMenu)}
-            className={`z-50 text-white flex flex-col h-10 w-10 justify-center items-center group sm:hidden ${
+            className={`z-50 text-white flex flex-col mr-2 h-10 w-10 justify-center items-center group smd:hidden ${
               openMenu ? " " : "ml-auto "
             }`}
           >
@@ -183,6 +192,37 @@ const NavBar: React.FC<NavBarProps> = ({
               }`}
             />
           </button>
+          {/* Partie langue */}
+          <div
+            className={`${
+              openMenu ? "hidden smd:flex" : "flex"
+            } items-center mx-5 flex-grow-0 flex-shrink-0`}
+          >
+            <button
+              className={`p-2 rounded-full z-50 ${
+                lang === "fr" || lang === undefined ? "bg-white/80" : ""
+              }`}
+              onClick={() => handleChangeLang("fr")}
+            >
+              <img
+                src={`/img/lang/FR.webp`}
+                className="w-10"
+                alt="French Flag"
+              />
+            </button>
+            <button
+              className={`p-2 rounded-full z-50 ${
+                lang === "en" ? "bg-white/80" : ""
+              }`}
+              onClick={() => handleChangeLang("en")}
+            >
+              <img
+                src={`/img/lang/EN.webp`}
+                className="w-10"
+                alt="English Flag"
+              />
+            </button>
+          </div>
         </div>
       </nav>
 

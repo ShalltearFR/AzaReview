@@ -4,6 +4,7 @@ import { CharacterType } from "@/types/CharacterModel";
 import { jsonUID } from "@/types/jsonUid";
 import { CDN } from "@/utils/cdn";
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 
 type Props = {
   params: { slug: number };
@@ -21,9 +22,11 @@ async function getData(url: string, revalidationValue: number) {
   return dataJson;
 }
 
-async function getDataUid(uid: number) {
+async function getDataUid(uid: number, lang: string | undefined) {
   const data = await fetch(
-    `https://api.mihomo.me/sr_info_parsed/${uid}?lang=fr&is_force_update=true`,
+    `https://api.mihomo.me/sr_info_parsed/${uid}?lang=${
+      lang ?? "fr"
+    }&is_force_update=true`,
     {
       next: { revalidate: 300 },
     }
@@ -48,7 +51,7 @@ async function getDataUid(uid: number) {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const res = await getDataUid(params.slug);
+  const res = await getDataUid(params.slug, undefined);
   const json = await res.json();
 
   if (json.player) {
@@ -73,8 +76,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Page({ params }: { params: { slug: number } }) {
+  const cookieStore = cookies();
+  const lang = cookieStore.get("lang");
+
+  console.log("lang", lang);
+
   //Recupère les infos du joueur
-  const resUid = await getDataUid(params.slug);
+  const resUid = await getDataUid(params.slug, lang?.value);
   const jsonUid: jsonUID = await resUid.json();
 
   //Recupère les reviews
@@ -85,35 +93,35 @@ export default async function Page({ params }: { params: { slug: number } }) {
 
   //Recupère les traductions de stats
   const statsTranslate: Array<any> = await getData(
-    `${CDN}/index_min/fr/properties.json`,
+    `${CDN}/index_min/${lang?.value || "fr"}/properties.json`,
     86400 //Cache de 24h
   );
   const statsTranslateToArray = Object.values(statsTranslate);
 
   //Recupère les traductions des sets de relics
   const relicsSetTranslate: Array<any> = await getData(
-    `${CDN}/index_min/fr/relic_sets.json`,
+    `${CDN}/index_min/${lang?.value || "fr"}/relic_sets.json`,
     18000 //Cache de 5h
   );
   const relicsSetTranslateToArray = Object.values(relicsSetTranslate);
 
   //Recupère les traductions des lightcones
   const lightconesTranslate: Array<any> = await getData(
-    `${CDN}/index_min/fr/light_cones.json`,
+    `${CDN}/index_min/${lang?.value || "fr"}/light_cones.json`,
     18000 //Cache de 5h
   );
   const lightconesTranslateToArray = Object.values(lightconesTranslate);
 
   //Recupère les traductions des lightcones
   const relicsList: Array<any> = await getData(
-    `${CDN}/index_min/fr/relics.json`,
+    `${CDN}/index_min/${lang?.value || "fr"}/relics.json`,
     18000 //Cache de 5h
   );
   const relicsListArray = Object.values(relicsList);
 
-  //Recupère la liste des eidelons de tous les personnages
+  //Recupère la liste des eidolons de tous les personnages
   const eidolonsList: Array<any> = await getData(
-    `${CDN}/index_min/fr/character_ranks.json`,
+    `${CDN}/index_min/${lang?.value || "fr"}/character_ranks.json`,
     18000 //Cache de 5h
   );
   const eidolonsListArray = Object.values(eidolonsList);
@@ -132,6 +140,7 @@ export default async function Page({ params }: { params: { slug: number } }) {
         lightconesTranslate={lightconesTranslateToArray}
         RelicsList={relicsListArray}
         eidolonsList={eidolonsListArray}
+        lang={lang?.value}
       />
       <Footer />
     </>

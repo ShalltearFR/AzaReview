@@ -32,6 +32,7 @@ interface UidPageProps {
   lightconesTranslate: Array<any>;
   RelicsList: Array<any>;
   eidolonsList: Array<any>;
+  lang: string | undefined;
 }
 
 const UidPage: React.FC<UidPageProps> = ({
@@ -42,6 +43,7 @@ const UidPage: React.FC<UidPageProps> = ({
   lightconesTranslate,
   RelicsList,
   eidolonsList,
+  lang,
 }) => {
   const searchParams = useSearchParams();
   const characterQuery = searchParams.get("c");
@@ -387,6 +389,7 @@ const UidPage: React.FC<UidPageProps> = ({
                 relicsSetTranslate={relicsSetTranslate}
                 lightconesTranslate={lightconesTranslate}
                 eidolonsList={eidolonsList}
+                lang={lang}
               />
             </div>
           </div>

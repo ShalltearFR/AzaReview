@@ -3,59 +3,23 @@ import { CDN } from "@/utils/cdn";
 import { Addition, Attribute } from "@/types/jsonUid";
 import { RecommendedStats } from "@/types/CharacterModel";
 import { fieldToType } from "@/utils/calculateStat";
+import { cookies } from "next/headers";
+import { getENDefaultValue, getFRDefaultValue } from "@/utils/dictionnary";
 
 interface CharacterStatProps {
   attributes: Attribute[];
   additions: Addition[];
   field: string;
   review: RecommendedStats[];
+  lang: string | undefined;
 }
-
-const getDefaultValue = (field: string) => {
-  switch (field) {
-    case "sp_rate":
-      return {
-        img: "/icon/property/IconEnergyRecovery.png",
-        name: "Taux de régénération d'énergie",
-        value: 100,
-        isPercent: true,
-      };
-    case "effect_res":
-      return {
-        img: "/icon/property/IconStatusResistance.png",
-        name: "RÉS aux effets",
-        value: 0,
-        isPercent: true,
-      };
-    case "effect_hit":
-      return {
-        img: "icon/property/IconStatusProbability.png",
-        name: "Chances d'app. des effets",
-        value: 0,
-        isPercent: true,
-      };
-    case "break_dmg":
-      return {
-        img: "icon/property/IconBreakUp.png",
-        name: "Effet de Rupture",
-        value: 0,
-        isPercent: true,
-      };
-    default:
-      return {
-        img: "",
-        name: "",
-        value: 0,
-        isPercent: false,
-      };
-  }
-};
 
 const CharacterStat: React.FC<CharacterStatProps> = ({
   attributes,
   additions,
   field,
   review,
+  lang,
 }) => {
   const attributeIndex = attributes.findIndex(
     (attribute) => attribute.field === field
@@ -64,7 +28,24 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
     (addition) => addition.field === field
   );
 
-  let { img, name, value, isPercent } = getDefaultValue(field);
+  let value = 0;
+  let img: string, name: string, isPercent: boolean;
+
+  if (lang === "fr" || lang === undefined) {
+    console.log("langue française");
+    name = getFRDefaultValue(field).name;
+    img = getFRDefaultValue(field).img;
+    isPercent = getFRDefaultValue(field).isPercent;
+    console.log("name", name);
+  } else {
+    console.log("langue anglaise");
+    name = getENDefaultValue(field).name;
+    img = getENDefaultValue(field).img;
+    isPercent = getENDefaultValue(field).isPercent;
+  }
+
+  console.log("field", field);
+  console.log("attributes", attributes);
 
   if (attributeIndex !== -1) {
     img = attributes[attributeIndex].icon;

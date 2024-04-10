@@ -10,6 +10,8 @@ import CharacterRelic from "./CharacterRelic";
 import { CDN2 } from "@/utils/cdn";
 import { CharacterType, Data, RecommendedStats } from "@/types/CharacterModel";
 import translateBBCode from "@/utils/translateBBCode";
+import { useEffect, useState } from "react";
+import { traces } from "@/utils/dictionnary";
 
 interface ReviewData {
   data: CharacterType[];
@@ -24,6 +26,7 @@ interface CharacterDetailsProps {
   relicsSetTranslate: Array<any>;
   lightconesTranslate: Array<any>;
   eidolonsList: Array<any>;
+  lang: string | undefined;
 }
 
 const CharacterDetails: React.FC<CharacterDetailsProps> = ({
@@ -35,10 +38,16 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   relicsSetTranslate,
   lightconesTranslate,
   eidolonsList,
+  lang,
 }) => {
   const character = uidData.characters[index];
   // @ts-ignore
   const characterReview: Data[] = reviewData[index].data as Data;
+  const [tracesNames, setTracesNames] = useState<Array<string>>([]);
+
+  useEffect(() => {
+    setTracesNames(traces[lang ?? "fr"]);
+  }, [lang]);
 
   const getMainStats = (piece: string) => {
     const result = characterReview[buildIndex]?.main_stats
@@ -75,7 +84,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
         <div className="flex flex-col my-auto xl:ml-5 w-screen xl:w-full">
           <CharacterSplash character={character} eidolonsList={eidolonsList} />
           <div className="flex gap-x-3 justify-center">
-            {["Attaque", "Compétence", "Ultime", "Talent"].map((type, i) => {
+            {tracesNames.map((type, i) => {
               return (
                 <div key={`CharacterTraces${i}+${index}+${buildIndex}`}>
                   <CharacterTrace
@@ -120,6 +129,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                     attributes={character.attributes}
                     additions={character.additions}
                     field={field}
+                    lang={lang}
                     review={
                       characterReview &&
                       characterReview[buildIndex] &&

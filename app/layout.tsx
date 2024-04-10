@@ -4,6 +4,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { CDN2 } from "@/utils/cdn";
 import "aos/dist/aos.css";
+import { CookiesProvider } from "next-client-cookies/server";
 
 export const metadata: Metadata = {
   metadataBase: new URL(CDN2),
@@ -21,12 +22,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
-      <body className="bg-background">
-        {children}
-        <Analytics />
-        <SpeedInsights />
-      </body>
-    </html>
+    <CookiesProvider>
+      <html lang="fr">
+        <body className="bg-background">
+          {children}
+          <Analytics />
+          <SpeedInsights />
+        </body>
+      </html>
+    </CookiesProvider>
   );
 }
