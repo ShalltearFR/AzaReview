@@ -1,15 +1,18 @@
 import { CDN, CDN2 } from "@/utils/cdn";
 import { Character } from "@/types/jsonUid";
 import CharacterEidolon from "./CharacterEidolon";
+import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
 
 interface CharacterSplashProps {
   character: Character;
   eidolonsList: Array<any>;
+  lang: string | undefined;
 }
 
 const CharacterSplash: React.FC<CharacterSplashProps> = ({
   character,
   eidolonsList,
+  lang,
 }) => {
   return (
     <div className="flex flex-col h-[480px] relative items-center">
@@ -30,7 +33,8 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
             {character.name}
           </span>
           <span className="text-orange text-right text-3xl pr-5 z-10 self-start">
-            Niv. {character.level}
+            {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].levelMin}
+            {character.level}
           </span>
         </div>
         <div className="flex gap-1 mt-2 ml-5 xl:ml-0">

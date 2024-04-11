@@ -4,7 +4,8 @@ import { Relic } from "@/types/jsonUid";
 import { MainStats, RecommendedStats } from "@/types/CharacterModel";
 import calculateRelic from "@/utils/calculateRelic";
 import { useState, useEffect } from "react";
-import typeValueMap from "@/utils/typeValueMap";
+import { typeValueMap, typeValueMapEN } from "@/utils/typeValueMap";
+import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
 
 interface CharacterRelicProps {
   stats: Relic;
@@ -13,6 +14,7 @@ interface CharacterRelicProps {
   equipmentIndex: number;
   statsTranslate: Array<any>;
   totalCoef: number;
+  lang: string | undefined;
 }
 
 const CharacterRelic: React.FC<CharacterRelicProps> = ({
@@ -21,6 +23,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
   reviewMainStat,
   equipmentIndex,
   statsTranslate,
+  lang,
 }) => {
   const { rarity, level, icon, main_affix, sub_affix } = stats;
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
@@ -71,9 +74,11 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
 
         const MainStatArray = recommendedTranslate.map((el: any) => {
           let name;
-          if (typeValueMap[el.type]) {
+          if (typeValueMap[el.type] && (lang === "fr" || lang === undefined))
             name = typeValueMap[el.type];
-          } else {
+          else if (typeValueMapEN[el.type] && lang === "en")
+            name = typeValueMapEN[el.type];
+          else {
             let reviewType = reviewMainStat.find(
               (translateItem) => translateItem.type === el.type
             );
@@ -93,8 +98,8 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
       setIsGood(true);
     };
 
-    const displayVal = typeValueMap[main_affix.type] || main_affix.name;
-    setDisplayValue(displayVal);
+    // const displayVal = typeValueMap[main_affix.type] || main_affix.name;
+    // setDisplayValue(displayVal);
 
     const recommandedMainAffix =
       reviewRecommanded?.find((el) => el.type === main_affix.type)
@@ -111,7 +116,15 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
 
     verifMainStat();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [lang]);
+
+  useEffect(() => {
+    let displayVal;
+    if (lang === "fr" || lang === undefined)
+      displayVal = typeValueMap[main_affix.type] || main_affix.name;
+    else displayVal = typeValueMapEN[main_affix.type] || main_affix.name;
+    setDisplayValue(displayVal);
+  }, [lang, main_affix.name, main_affix.type]);
 
   if (displayValue === "") {
     return <div>Chargement...</div>;
@@ -140,7 +153,12 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
           requiredMainStat.length > 0 &&
           equipmentIndex >= 2 && (
             <div className="absolute z-10 p-2 bg-background rounded-xl w-auto text-white text-left">
-              <div className="font-bold">Recommandé :</div>
+              <div className="font-bold">
+                {
+                  UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                    .Recommended
+                }
+              </div>
               {requiredMainStat.map((el: any, i: number) => (
                 <div
                   className="italic font-normal"
@@ -174,7 +192,10 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
           )}
         </div>
         {sub_affix.map((affix, i) => {
-          const subDisplayValue = typeValueMap[affix.type] || affix.name;
+          let subDisplayValue;
+          if (lang === "fr" || lang === undefined)
+            subDisplayValue = typeValueMap[affix.type] || affix.name;
+          else subDisplayValue = affix.name;
 
           return (
             <div

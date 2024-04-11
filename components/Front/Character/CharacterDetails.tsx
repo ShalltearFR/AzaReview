@@ -11,7 +11,8 @@ import { CDN2 } from "@/utils/cdn";
 import { CharacterType, Data, RecommendedStats } from "@/types/CharacterModel";
 import translateBBCode from "@/utils/translateBBCode";
 import { useEffect, useState } from "react";
-import { traces } from "@/utils/dictionnary";
+import { traces, UIDtitles } from "@/utils/dictionnary";
+import type { TitlesByLanguage } from "@/utils/dictionnary";
 
 interface ReviewData {
   data: CharacterType[];
@@ -82,7 +83,11 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
         }}
       >
         <div className="flex flex-col my-auto xl:ml-5 w-screen xl:w-full">
-          <CharacterSplash character={character} eidolonsList={eidolonsList} />
+          <CharacterSplash
+            character={character}
+            eidolonsList={eidolonsList}
+            lang={lang}
+          />
           <div className="flex gap-x-3 justify-center">
             {tracesNames.map((type, i) => {
               return (
@@ -101,6 +106,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           <CharacterLightCone
             lightCone={character.light_cone}
             lightconeTranslate={lightconesTranslate}
+            lang={lang}
             review={
               characterReview &&
               characterReview[buildIndex] &&
@@ -142,9 +148,10 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           </div>
           <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-3">
             <p className="text-yellow text-lg font-bold text-center">
-              Statistiques recommandées
+              {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].stat}
             </p>
             <RecommendedStat
+              lang={lang}
               data={
                 characterReview &&
                 characterReview[buildIndex] &&
@@ -167,6 +174,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-4">
             <CharacterRelicsSet
               relics={character.relic_sets || "none"}
+              lang={lang}
               relicsSetTranslate={relicsSetTranslate}
               review={
                 characterReview &&
@@ -188,6 +196,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                     stats={relic}
                     equipmentIndex={i}
                     statsTranslate={statsTranslate}
+                    lang={lang}
                     totalCoef={
                       characterReview &&
                       characterReview[buildIndex] &&
@@ -214,23 +223,52 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
             })
           ) : (
             <div className="mx-auto text-center bg-light-blue/75 p-5 rounded-t-3xl text-white font-bold">
-              <p className="italic">Relique(s) ou Ornement(s) manquant(s)</p>
+              <p className="italic">
+                {
+                  UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                    .NoCompletlyRelics1
+                }
+              </p>
               <p>
-                Veuillez équiper <span className="text-yellow">6 pièces</span>{" "}
-                pour aligner les Astres
+                {translateBBCode(
+                  UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                    .NoCompletlyRelics2
+                )}
+                {/* Veuillez équiper <span className="text-yellow">6 pièces</span>{" "}
+                pour aligner les Astres */}
               </p>
               {characterReview && characterReview[buildIndex]?.main_stats && (
                 <div className="[&_div]:mt-5 mt-10 text-left [&_div]:text-orange">
-                  <div>Torse recommandé(s) :</div>
+                  <div>
+                    {
+                      UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                        .RecommendedChests
+                    }
+                  </div>
                   {getMainStats("body")}
 
-                  <div className="mt-5">Bottes recommandé(s) :</div>
+                  <div className="mt-5">
+                    {
+                      UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                        .RecommendedBoots
+                    }
+                  </div>
                   {getMainStats("feet")}
 
-                  <div>Orbe recommandée(s) :</div>
+                  <div>
+                    {
+                      UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                        .RecommendedOrbs
+                    }
+                  </div>
                   {getMainStats("planar_sphere")}
 
-                  <div>Corde recommandée(s) :</div>
+                  <div>
+                    {
+                      UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                        .RecommendedLinkRopes
+                    }
+                  </div>
                   {getMainStats("link_rope")}
                 </div>
               )}

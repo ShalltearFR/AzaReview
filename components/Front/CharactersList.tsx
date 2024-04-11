@@ -1,16 +1,19 @@
 import { CDN } from "@/utils/cdn";
 import type { jsonUID } from "@/types/jsonUid";
+import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
 
 interface CharacterListProps {
   uidData: jsonUID;
   setIndex: any;
   index: number;
+  lang: string | undefined;
 }
 
 const CharacterList: React.FC<CharacterListProps> = ({
   uidData,
   setIndex,
   index,
+  lang,
 }) => {
   return (
     <div className="flex flex-col mt-7 xl:flex-row xl:h-36 w-11/12 xl:w-[1350px] py-5 xl:py-0 bg-[#4E4A82] rounded-3xl lg:rounded-full items-center mx-auto shadow-2xl mb-[27px]">
@@ -21,7 +24,10 @@ const CharacterList: React.FC<CharacterListProps> = ({
       />
       <div className="text-center w-48 text-white">
         <p className="text-lg font-medium">{uidData.player.nickname}</p>
-        <p className="text-sm">Pionnier {uidData.player.level}</p>
+        <p className="text-sm">
+          {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].pioneer}
+          {uidData.player.level}
+        </p>
         <p className="text-sm italic">UID : {uidData.player.uid}</p>
       </div>
       <div className="flex flex-wrap ml-20 gap-5 w-full mr-16 mt-5 justify-center px-5">

@@ -1,11 +1,12 @@
 import { RecommendedStats } from "@/types/CharacterModel";
-import { findLabel } from "@/utils/statsOption";
+import { findLabel, findLabelEN } from "@/utils/statsOption";
 
 interface recommendedStatProps {
   data: RecommendedStats[];
+  lang: string | undefined;
 }
 
-const recommendedStat: React.FC<recommendedStatProps> = ({ data }) => {
+const recommendedStat: React.FC<recommendedStatProps> = ({ data, lang }) => {
   if (data && data.length === 0) {
     return (
       <div className="mt-5 text-lg font-bold text-red text-center">
@@ -37,7 +38,11 @@ const recommendedStat: React.FC<recommendedStatProps> = ({ data }) => {
 
               return (
                 <p className="flex" key={`stat${index}`}>
-                  <span>{findLabel(stat.type)}</span>
+                  <span>
+                    {lang === "en"
+                      ? findLabelEN(stat.type)
+                      : findLabel(stat.type)}
+                  </span>
                   <span className="ml-auto">{value}</span>
                 </p>
               );

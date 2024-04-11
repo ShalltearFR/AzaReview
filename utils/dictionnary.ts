@@ -84,4 +84,118 @@ const traces: Record<string, string[]> = {
   en: ["Attack", "Skill", "Ultimate", "Talent"],
 };
 
-export { getFRDefaultValue, getENDefaultValue, traces };
+// PARTIE TITRES et Mots page UID
+interface Titles {
+  stat: string;
+  relicsSet: string;
+  lightCone: string;
+  pioneer: string;
+  search: string;
+  searching: string;
+  downloadImage: string;
+  shareImage: string;
+  levelMin: string;
+  RecommendedF2P: string;
+  Recommendeds: string;
+  Recommended: string;
+  emptyCone: string;
+  emptyRelicSet: string;
+  PossibleOrnaments: string;
+  PossibleRelics: string;
+  NoCompletlyRelics1: string;
+  NoCompletlyRelics2: string;
+  RecommendedChests: string;
+  RecommendedBoots: string;
+  RecommendedOrbs: string;
+  RecommendedLinkRopes: string;
+  AvailableSoon: string;
+  Downloading: string;
+  DownloadImage: string;
+  Saving: string;
+  ImageCopied: string;
+  CreatedBy: string;
+  ReviewBy: string;
+  PayLess: string;
+  HoyoCopyright: string;
+}
+
+interface TitlesByLanguage {
+  fr: Titles;
+  en: Titles;
+}
+
+const UIDtitles: TitlesByLanguage = {
+  fr: {
+    stat: "Statistiques recommandées",
+    relicsSet: "Sets équipés",
+    lightCone: "Cône de lumière",
+    pioneer: "Pionnier ",
+    search: "Rechercher",
+    searching: "Recherche",
+    downloadImage: "Telecharger l'image",
+    shareImage: "Partager",
+    levelMin: "Niv. ",
+    RecommendedF2P: "F2P recommandé :",
+    Recommendeds: "Recommandés :",
+    Recommended: "Recommandé :",
+    emptyCone: "Aucun cône equipé",
+    emptyRelicSet: "Pas de set équipé",
+    PossibleOrnaments: "Ornements possibles :",
+    PossibleRelics: "Reliques possibles :",
+    NoCompletlyRelics1: "Relique(s) ou Ornement(s) manquant(s)",
+    NoCompletlyRelics2:
+      "Veuillez équiper [color=#FFCD6C]6 pièces[/color] pour aligner les Astres",
+    RecommendedChests: "Torse recommandés :",
+    RecommendedBoots: "Bottes recommandées :",
+    RecommendedOrbs: "Orbe recommandées :",
+    RecommendedLinkRopes: "Corde recommandées :",
+    AvailableSoon: "Disponible prochainement",
+    Downloading: "Telechargement en cours...",
+    DownloadImage: "Telecharger l'image",
+    Saving: "Sauvegarde en cours...",
+    ImageCopied: "Image copiée avec succès",
+    CreatedBy: "Création par ",
+    ReviewBy: "Review par ",
+    PayLess: "Payez moins cher avec ",
+    HoyoCopyright:
+      "Ce site n'est pas affilié à Hoyoverse et tous les contenus et actifs du jeu sont des marques déposées et des droits d'auteur de Hoyoverse.",
+  },
+  en: {
+    stat: "Recommended Statistics",
+    relicsSet: "Equipped Sets",
+    lightCone: "Light Cone",
+    pioneer: "Pioneer ",
+    search: "Search",
+    searching: "Searching",
+    downloadImage: "Download Image",
+    shareImage: "Share",
+    levelMin: "Lvl. ",
+    RecommendedF2P: "Recommended F2P :",
+    Recommendeds: "Recommended :",
+    Recommended: "Recommended :",
+    emptyCone: "No cone equipped",
+    emptyRelicSet: "No set equipped",
+    PossibleOrnaments: "Possible ornaments :",
+    PossibleRelics: "Possible relics :",
+    NoCompletlyRelics1: "Missing relic(s) or ornament(s)",
+    NoCompletlyRelics2:
+      "Please equip [color=#FFCD6C]6 pieces[/color] to align the Stars",
+    RecommendedChests: "Recommended chest :",
+    RecommendedBoots: "Recommended boots :",
+    RecommendedOrbs: "Recommended orb :",
+    RecommendedLinkRopes: "Recommended Link Rope :",
+    AvailableSoon: "Available soon",
+    Downloading: "Downloading..",
+    DownloadImage: "Download image",
+    Saving: "Saving...",
+    ImageCopied: "Image copied successfully",
+    CreatedBy: "Created by ",
+    ReviewBy: "Review By ",
+    PayLess: "Pay less with ",
+    HoyoCopyright:
+      "This site is not affiliated with Hoyoverse and all game content and assets are trademarks and copyrights of Hoyoverse.",
+  },
+};
+
+export { getFRDefaultValue, getENDefaultValue, traces, UIDtitles };
+export type { TitlesByLanguage };

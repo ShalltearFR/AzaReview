@@ -1,6 +1,7 @@
 import { CDN } from "@/utils/cdn";
 import { LightCone } from "@/types/CharacterModel";
 import { useEffect, useState } from "react";
+import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
 
 interface lightCone {
   id: string;
@@ -14,12 +15,14 @@ interface CharacterLightConeProps {
   lightCone: lightCone;
   review: LightCone[];
   lightconeTranslate: Array<any>;
+  lang: string | undefined;
 }
 
 const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
   lightCone,
   review,
   lightconeTranslate,
+  lang,
 }) => {
   const [isGoodLightCone, setIsGoodLightCone] = useState<Boolean>(true);
   const [recommendedLightCone, setRecommendedLightCone] = useState<any>();
@@ -71,7 +74,12 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
                 }`}
               >
                 <div>
-                  <p className="font-bold">F2P recommandé :</p>
+                  <p className="font-bold">
+                    {
+                      UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                        .RecommendedF2P
+                    }
+                  </p>
                   <p className="italic font-normal ml-1">
                     {recommendedLightCone[0].name}
                   </p>
@@ -96,7 +104,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
             )}
         </div>
         <p className="text-yellow text-lg font-bold text-center">
-          Cône de lumière
+          {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].lightCone}
         </p>
       </div>
       {lightCone ? (
@@ -113,7 +121,8 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
                 lightCone.level < 80 ? "text-red bg-background" : " bg-orange2"
               }`}
             >
-              Niv. {lightCone.level}
+              {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].levelMin}
+              {lightCone.level}
             </p>
             <p className="flex justify-center items-center w-6 p-1 rounded-full bg-brown text-sm font-bold mt-auto mb-8 ml-2">
               S{lightCone.rank}
@@ -129,7 +138,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
         </div>
       ) : (
         <p className="text-center text-red mt-2 px-2 font-bold">
-          {"Aucun cône equipé"}
+          {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].emptyCone}
         </p>
       )}
     </div>

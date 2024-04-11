@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useCookies } from "next-client-cookies";
+import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
 
 interface NavBarProps {
   setData?: any;
@@ -126,7 +127,13 @@ const NavBar: React.FC<NavBarProps> = ({
                   }
                 }}
               >
-                <span>{disableSearchButton ? "Recherche" : "Rechercher"}</span>
+                <span>
+                  {disableSearchButton
+                    ? UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                        .searching
+                    : UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                        .search}
+                </span>
                 {disableSearchButton && (
                   <span>
                     <svg
@@ -205,7 +212,7 @@ const NavBar: React.FC<NavBarProps> = ({
               onClick={() => handleChangeLang("fr")}
             >
               <img
-                src={`/img/lang/FR.webp`}
+                src={`${CDN2}/img/lang/FR.webp`}
                 className="w-10"
                 alt="French Flag"
               />
@@ -217,7 +224,7 @@ const NavBar: React.FC<NavBarProps> = ({
               onClick={() => handleChangeLang("en")}
             >
               <img
-                src={`/img/lang/EN.webp`}
+                src={`${CDN2}/img/lang/EN.webp`}
                 className="w-10"
                 alt="English Flag"
               />

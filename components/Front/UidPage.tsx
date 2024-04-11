@@ -13,6 +13,7 @@ import Aos from "aos";
 import { notFound } from "next/navigation";
 import translateBBCode from "@/utils/translateBBCode";
 import React from "react";
+import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
 
 interface Option {
   value: string;
@@ -63,9 +64,7 @@ const UidPage: React.FC<UidPageProps> = ({
   const [disableDownloadButton, setDisableDownloadButton] =
     useState<boolean>(false);
   const [disableShareButton, setDisableShareButton] = useState<boolean>(false);
-  const [shareButtonText, setShareButtonText] = useState<string>(
-    "Sauvegarde en cours..."
-  );
+  const [shareButtonText, setShareButtonText] = useState<string>("");
 
   const [review, setReview] = useState<any>();
   const isFirefox = navigator.userAgent.toLowerCase().includes("firefox");
@@ -106,6 +105,11 @@ const UidPage: React.FC<UidPageProps> = ({
       return;
     }
     disableButton(true);
+
+    if (exportType === "share")
+      setShareButtonText(
+        UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].Saving
+      );
 
     setTimeout(() => {
       //Leger timeout pour eviter le tronc d'image du au rajout du header Image
@@ -152,7 +156,10 @@ const UidPage: React.FC<UidPageProps> = ({
                     }),
                   ])
                   .then(() => {
-                    setShareButtonText("Image copiée avec succès");
+                    setShareButtonText(
+                      UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                        .ImageCopied
+                    );
                     setTimeout(() => disableButton(false), 1000);
                   })
                   .catch((err) => console.log("Erreur presse papier :", err));
@@ -347,6 +354,7 @@ const UidPage: React.FC<UidPageProps> = ({
             uidData={uidData as jsonUID}
             setIndex={setCharacterIndex}
             index={characterIndex}
+            lang={lang}
           />
           <div className="grid xl:grid-cols-[390px_1fr] justify-center items-center text-white font-bold xl:rounded-t-xl bg-light-blue/75 w-full max-w-[1450px] mx-auto xl:gap-x-5 py-5">
             <label className="flex items-center gap-2 ml-5 px-2">
@@ -369,7 +377,8 @@ const UidPage: React.FC<UidPageProps> = ({
               {(characterOptions[characterBuild] &&
                 characterOptions[characterBuild].desc &&
                 translateBBCode(characterOptions[characterBuild].desc ?? "")) ||
-                "Disponible prochainement"}
+                UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                  .AvailableSoon}
             </div>
           </div>
           <div className="flex justify-center w-full">
@@ -405,7 +414,12 @@ const UidPage: React.FC<UidPageProps> = ({
                 >
                   {disableDownloadButton ? (
                     <div className="flex gap-2">
-                      <span>Telechargement en cours...</span>
+                      <span>
+                        {
+                          UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                            .Downloading
+                        }
+                      </span>
                       <div role="status">
                         <svg
                           aria-hidden="true"
@@ -426,7 +440,8 @@ const UidPage: React.FC<UidPageProps> = ({
                       </div>
                     </div>
                   ) : (
-                    "Telecharger l'image"
+                    UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                      .DownloadImage
                   )}
                 </button>
               )}
@@ -461,7 +476,7 @@ const UidPage: React.FC<UidPageProps> = ({
                     </div>
                   </div>
                 ) : (
-                  "Partager"
+                  UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].shareImage
                 )}
               </button>
             </div>

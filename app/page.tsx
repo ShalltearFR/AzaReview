@@ -9,6 +9,7 @@ import { Suspense } from "react";
 import Section0 from "@/components/Front/Homepage/Section0";
 import Section1 from "@/components/Front/Homepage/Section1";
 import Section2 from "@/components/Front/Homepage/Section2";
+import HomepageFooter from "@/components/Front/Homepage/HomepageFooter";
 
 function Homepage() {
   const [sectionIndex, setSectionIndex] = useState<number>(999);
@@ -135,7 +136,7 @@ function Homepage() {
             </svg>
           </div>
         </div>
-        <Footer />
+        <HomepageFooter />
       </div>
     );
   }

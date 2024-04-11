@@ -4,11 +4,13 @@ import { RelicSet } from "@/types/jsonUid";
 import { RelicsSet } from "@/types/CharacterModel";
 import { useEffect, useState } from "react";
 import relicsSetList from "@/utils/relicsSetList";
+import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
 
 interface CharacterRelicsSetProps {
   relics: RelicSet[];
   review: RelicsSet[];
   relicsSetTranslate: Array<any>;
+  lang: string | undefined;
 }
 
 interface AsOrnamentState {
@@ -28,6 +30,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
   relics,
   review,
   relicsSetTranslate,
+  lang,
 }) => {
   const processedRelicSets = processRelicSets(relics);
 
@@ -188,7 +191,12 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                       : "xl:w-80 xl:-left-36 -top-36"
                   }`}
                 >
-                  <div className="font-bold z-10 flex">Recommandés :</div>
+                  <div className="font-bold z-10 flex">
+                    {
+                      UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                        .Recommendeds
+                    }
+                  </div>
                   <div className="xl:flex gap-2 w-full xl:h-[140px]">
                     {requiredRelicsSet.map((el: any) => (
                       <div
@@ -213,7 +221,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
         )}
 
         <p className="text-yellow text-lg font-bold text-center leading-4 ml-auto">
-          Sets équipés
+          {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].relicsSet}
         </p>
       </div>
       <div
@@ -248,7 +256,9 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
 
                 if (i === 2) {
                   relicsMap = ornamantsAltList;
-                  description = "Ornements possibles :";
+                  description =
+                    UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                      .PossibleOrnaments;
                 } else if (
                   i === 1 &&
                   asOrnament.relicsNumber &&
@@ -256,14 +266,18 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                   asOrnament.isGood
                 ) {
                   relicsMap = ornamantsAltList;
-                  description = "Ornements possibles :";
+                  description =
+                    UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                      .PossibleOrnaments;
                 } else if (
                   i === 1 &&
                   asOrnament.relicsNumber &&
                   asOrnament.relicsNumber[0] === 4
                 ) {
                   relicsMap = ornamantsAltList;
-                  description = "Ornements possibles :";
+                  description =
+                    UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                      .PossibleOrnaments;
                 } else if (
                   i === 0 &&
                   asOrnament.relicsNumber &&
@@ -272,17 +286,23 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                   finalPossessedRelicSets.length === 2
                 ) {
                   relicsMap = ornamantsAltList;
-                  description = "Ornements possibles :";
+                  description =
+                    UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                      .PossibleOrnaments;
                 } else if (
                   i === 1 &&
                   asOrnament.asAnOrnamant === true &&
                   finalPossessedRelicSets.length === 2
                 ) {
                   relicsMap = ornamantsAltList;
-                  description = "Ornements possibles :";
+                  description =
+                    UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                      .PossibleOrnaments;
                 } else {
                   relicsMap = relicsAltList;
-                  description = "Reliques possibles :";
+                  description =
+                    UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
+                      .PossibleRelics;
                 }
               }
 
@@ -330,7 +350,9 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
             })}
           </>
         ) : (
-          <p className="mt-5">Pas de set équipé</p>
+          <p className="mt-5">
+            {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].emptyRelicSet}
+          </p>
         )}
       </div>
     </div>

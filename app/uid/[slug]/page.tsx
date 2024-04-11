@@ -142,7 +142,7 @@ export default async function Page({ params }: { params: { slug: number } }) {
         eidolonsList={eidolonsListArray}
         lang={lang?.value}
       />
-      <Footer />
+      <Footer lang={lang?.value} />
     </>
   );
 }
