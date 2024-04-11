@@ -1,5 +1,5 @@
 "use client";
-import { CDN, CDN2 } from "@/utils/cdn";
+import { CDN2 } from "@/utils/cdn";
 import HomepageFooter from "./HomepageFooter";
 import {
   LinkIcon,
@@ -8,18 +8,36 @@ import {
 } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { FR_Month } from "@/utils/month";
+import {
+  TranslateSection,
+  TranslateSection2,
+} from "@/utils/homepageDictionnary";
+import translateBBCode from "@/utils/translateBBCode";
 
 interface Section2Props {
   isCodeAnimation: Boolean;
   codes: Array<string>;
+  lang: string | undefined;
 }
 
-const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
+const Section2: React.FC<Section2Props> = ({
+  isCodeAnimation,
+  codes,
+  lang,
+}) => {
   const [isShareCodes, setIsShareCodes] = useState<boolean>(false);
   const [changeLog, setChangelog] = useState<Array<any>>([]);
   const [patchPage, setPatchPage] = useState<number>(0);
   const [patchDate, setPatchDate] = useState<string>("");
   const [patchDesc, setPatchDesc] = useState<Array<string>>([""]);
+
+  const [translateSection, setTranslateSection] = useState<Array<string>>([""]);
+
+  useEffect(() => {
+    setTranslateSection(
+      TranslateSection2[(lang as keyof TranslateSection) ?? "fr"]
+    );
+  }, [lang]);
 
   useEffect(() => {
     fetch("/api/changelog/all")
@@ -66,7 +84,7 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
                   id="codes"
                   className="text-3xl font-bold text-center mb-5 mx-auto"
                 >
-                  Codes actifs
+                  {translateSection[0]}
                 </h2>
 
                 <p
@@ -74,7 +92,7 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
                     isShareCodes ? "animate-fade-in" : "hidden"
                   }`}
                 >
-                  Lien copié
+                  {translateSection[1]}
                 </p>
                 <LinkIcon
                   className="absolute right-0 top-2 h-6 hover:cursor-pointer"
@@ -177,8 +195,7 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
             />
             <div className="ml-auto mt-auto mr-5 px-4 py-2 bg-background rounded-t-2xl translate-y-[1px] xl2:flex xl2:gap-2">
               <div className=" text-xl font-bold text-white xl2:mt-1">
-                <span className="text-yellow">10%</span>
-                <span> de cashback avec</span>
+                {translateBBCode(translateSection[2], true)}
               </div>
               <a
                 href="https://www.eneba.com/fr/?af_id=Azano&currency=EUR&region=global&utm_source=Azano&utm_medium=infl"
@@ -197,35 +214,25 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
           >
             <div className="px-6 ">
               <h2 className="text-center font-bold text-xl mb-5">
-                Dépenser moins sur HSR tout en soutenant le site !
+                {translateSection[3]}
               </h2>
-              <p>
-                {"En utilisant ces liens Eneba "}
-
-                {" pour vos achats, vous soutiendrez énormément !"}
-              </p>
-              <p>
-                {
-                  "Les mêmes prix qu'en jeu mais avec 10% de cashback pour dépenser moins les prochaines fois."
-                }
-              </p>
+              <p>{translateSection[4]}</p>
+              <p>{translateSection[5]}</p>
               <p>
                 <a
                   href="https://www.eneba.com/fr/top-up-honkai-star-rail-oneiric-shard-malaysia?enb_campaign=Main+Search&enb_content=search+dropdown+-+products&enb_medium=product+card&enb_source=https%3A%2F%2Fwww.eneba.com%2Ftop-up-genshin-impact-genesis-crystals-malaysia&enb_term=1&af_id=Azano&currency=MYR&region=malaysia&utm_source=Azano&utm_medium=infl"
                   target="_blank"
                   className="text-light-blue2 font-bold"
                 >
-                  <span className="">Payez en MYR </span>
+                  {translateSection[6]}
                 </a>
-                {"pour économiser "}
-                <span className="text-green font-bold">{"22% "}</span>
-                {"supplémentaire ou bien "}
+                {translateBBCode(translateSection[7], true)}
                 <a
                   href="https://www.eneba.com/fr/top-up-honkai-star-rail-oneiric-shard-malaysia?enb_campaign=Main+Search&enb_content=search+dropdown+-+products&enb_medium=product+card&enb_source=https%3A%2F%2Fwww.eneba.com%2Ftop-up-genshin-impact-genesis-crystals-malaysia&enb_term=1&af_id=Azano&utm_medium=infl&utm_source=Azano&currency=EUR&region=global"
                   target="_blank"
                   className="font-bold text-light-blue2"
                 >
-                  payez en Euro
+                  {translateSection[8]}
                 </a>
                 .
               </p>
@@ -233,26 +240,22 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
             <div className="sm:px-6">
               <div className="mt-5 relative">
                 <div className="absolute text-xs sm:text-sm smd:text-lg px-3 text-center w-1/2 right-0 top-1/2 -translate-y-1/2">
-                  <p>{"Rapide et sécurisé avec Razer Gold"}</p>
-                  <p>{"(partenaire Hoyoverse)"}</p>
+                  <p>{translateSection[9]}</p>
+                  <p>{translateSection[10]}</p>
                 </div>
                 <img src={`${CDN2}/img/homepage/banderole_razergold.webp`} />
               </div>
               <div className="mt-3 relative">
                 <div className="absolute text-xs sm:text-sm smd:text-[20px] px-2 text-center w-3/5 left-0 top-1/2 -translate-y-1/2">
-                  <p>
-                    {
-                      "Votre UID suffit, pas besoin de vos identifiants personnels."
-                    }
-                  </p>
-                  <p className="sm:mt-2">{"Réception instantanée en jeu !"}</p>
+                  <p>{translateSection[11]}</p>
+                  <p className="sm:mt-2">{translateSection[12]}</p>
                 </div>
                 <img src={`${CDN2}/img/homepage/banderole_eneba.webp`} />
               </div>
               <div className="mt-3 relative">
                 <div className="absolute text-xs sm:text-base smd:text-lg px-2 smd:px-10 text-center w-3/5 right-0 top-1/2 -translate-y-1/2 font-semibold">
                   <p>
-                    {"Au besoin, passez sur le live Twitch d'"}
+                    {translateSection[13]}
                     <a
                       href="https://www.twitch.tv/azano__"
                       target="_blank"
@@ -260,7 +263,7 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
                     >
                       Azano
                     </a>
-                    {" pour plus d'informations."}
+                    {translateSection[14]}
                   </p>
                 </div>
                 <img src={`${CDN2}/img/homepage/banderole_azano.webp`} />
@@ -270,7 +273,7 @@ const Section2: React.FC<Section2Props> = ({ isCodeAnimation, codes }) => {
         </div>
       </div>
 
-      <HomepageFooter />
+      <HomepageFooter lang={lang} />
     </section>
   );
 };

@@ -1,11 +1,18 @@
 import { CDN2 } from "@/utils/cdn";
+import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
 
-const HomepageFooter: React.FC = () => {
+interface FooterProps {
+  lang: string | undefined;
+}
+
+const HomepageFooter: React.FC<FooterProps> = ({ lang }) => {
   return (
     <footer className="bg-black text-white text-center py-5 w-full mt-auto z-10">
       <p className="justify-center">
-        {"Copyright © 2024 - Creation par"} <strong>ShalltearFR</strong>{" "}
-        {" ~ Review par "}
+        {"Copyright © 2024 - "}
+        {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].CreatedBy}{" "}
+        <strong>ShalltearFR</strong> {" ~ "}
+        {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].ReviewBy}
         <a
           href="https://www.twitch.tv/azano__"
           target="_blank"
@@ -20,14 +27,12 @@ const HomepageFooter: React.FC = () => {
         </a>
       </p>
       <p>
-        {"Design page d'accueil par "}
+        {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].HomepageDesign}
         <strong>Amane</strong>
       </p>
       <p>_</p>
       <p className="italic">
-        {
-          "Ce site n'est pas affilié à Hoyoverse et tous les contenus et actifs du jeu sont des marques déposées et des droits d'auteur de Hoyoverse."
-        }
+        {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].HoyoCopyright}
       </p>
     </footer>
   );

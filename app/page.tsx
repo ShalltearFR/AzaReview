@@ -4,12 +4,12 @@ import { CDN2 } from "@/utils/cdn";
 import { useEffect, useRef, useState } from "react";
 import AOS from "aos";
 import { useSearchParams } from "next/navigation";
-import Footer from "@/components/Front/Footer";
 import { Suspense } from "react";
 import Section0 from "@/components/Front/Homepage/Section0";
 import Section1 from "@/components/Front/Homepage/Section1";
 import Section2 from "@/components/Front/Homepage/Section2";
 import HomepageFooter from "@/components/Front/Homepage/HomepageFooter";
+import { useCookies } from "next-client-cookies";
 
 function Homepage() {
   const [sectionIndex, setSectionIndex] = useState<number>(999);
@@ -20,6 +20,8 @@ function Homepage() {
   const [isLoading, setIsloading] = useState<boolean>(true);
   const windowWidth = useRef<number>();
   const windowPixelRatio = useRef<number>();
+  const cookies = useCookies();
+  const lang = cookies.get("lang");
 
   const searchParams = useSearchParams();
 
@@ -136,7 +138,7 @@ function Homepage() {
             </svg>
           </div>
         </div>
-        <HomepageFooter />
+        <HomepageFooter lang={lang} />
       </div>
     );
   }
@@ -161,13 +163,21 @@ function Homepage() {
         />
         <div className="text-white mt-10 xl2:mt-0 xl2:overflow-hidden xl2:h-[calc(100vh-64px)] flex flex-col justify-center items-center">
           {/* 1ere section */}
-          {showSection0 && <Section0 sectionPrevIndex={sectionPrevIndex} />}
+          {showSection0 && (
+            <Section0 sectionPrevIndex={sectionPrevIndex} lang={lang} />
+          )}
 
           {/* 2eme section */}
-          {showSection1 && <Section1 sectionPrevIndex={sectionPrevIndex} />}
+          {showSection1 && (
+            <Section1 sectionPrevIndex={sectionPrevIndex} lang={lang} />
+          )}
           {/* 3eme section */}
           {showSection2 && (
-            <Section2 codes={codes} isCodeAnimation={isCodeAnimation} />
+            <Section2
+              codes={codes}
+              isCodeAnimation={isCodeAnimation}
+              lang={lang}
+            />
           )}
         </div>
       </div>

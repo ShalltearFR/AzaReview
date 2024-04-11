@@ -115,6 +115,7 @@ interface Titles {
   ImageCopied: string;
   CreatedBy: string;
   ReviewBy: string;
+  HomepageDesign: string;
   PayLess: string;
   HoyoCopyright: string;
 }
@@ -156,6 +157,7 @@ const UIDtitles: TitlesByLanguage = {
     ImageCopied: "Image copiée avec succès",
     CreatedBy: "Création par ",
     ReviewBy: "Review par ",
+    HomepageDesign: "Design page d'accueil par ",
     PayLess: "Payez moins cher avec ",
     HoyoCopyright:
       "Ce site n'est pas affilié à Hoyoverse et tous les contenus et actifs du jeu sont des marques déposées et des droits d'auteur de Hoyoverse.",
@@ -191,6 +193,7 @@ const UIDtitles: TitlesByLanguage = {
     ImageCopied: "Image copied successfully",
     CreatedBy: "Created by ",
     ReviewBy: "Review By ",
+    HomepageDesign: "Homepage design by ",
     PayLess: "Pay less with ",
     HoyoCopyright:
       "This site is not affiliated with Hoyoverse and all game content and assets are trademarks and copyrights of Hoyoverse.",
