@@ -79,8 +79,6 @@ export default async function Page({ params }: { params: { slug: number } }) {
   const cookieStore = cookies();
   const lang = cookieStore.get("lang");
 
-  console.log("lang", lang);
-
   //Recupère les infos du joueur
   const resUid = await getDataUid(params.slug, lang?.value);
   const jsonUid: jsonUID = await resUid.json();
