@@ -2,8 +2,12 @@ import Footer from "@/components/Front/Footer";
 import NavBar from "@/components/Front/NavBar";
 import { CDN2 } from "@/utils/cdn";
 import React from "react";
+import { cookies } from "next/headers";
 
 const notFound = () => {
+  const cookieStore = cookies();
+  const lang = cookieStore.get("lang");
+
   return (
     <>
       <NavBar />
@@ -32,7 +36,7 @@ const notFound = () => {
           </h3>
         </div>
       </section>
-      <Footer />
+      <Footer lang={lang?.value} />
     </>
   );
 };
