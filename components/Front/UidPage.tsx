@@ -305,6 +305,7 @@ const UidPage: React.FC<UidPageProps> = ({
       ]);
     }
     setCharacterBuild(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uidData.status, review, characterIndex, lang]);
 
   if (uidData.status === 404) {

@@ -32,13 +32,10 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
   let img: string, name: string, isPercent: boolean;
 
   if (lang === "fr" || lang === undefined) {
-    console.log("langue française");
     name = getFRDefaultValue(field).name;
     img = getFRDefaultValue(field).img;
     isPercent = getFRDefaultValue(field).isPercent;
-    console.log("name", name);
   } else {
-    console.log("langue anglaise");
     name = getENDefaultValue(field).name;
     img = getENDefaultValue(field).img;
     isPercent = getENDefaultValue(field).isPercent;
@@ -46,6 +43,9 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
 
   console.log("field", field);
   console.log("attributes", attributes);
+  console.log("isPercent", isPercent);
+  console.log("additionIndex", additionIndex);
+  if (field === "sp_rate") value = 100;
 
   if (attributeIndex !== -1) {
     img = attributes[attributeIndex].icon;
@@ -69,8 +69,9 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
     value = additions[additionIndex].value;
 
     if (additions[additionIndex].percent) {
+      if (field === "sp_rate") value = value + 1; // Permet d'avoir le 100% de base
       value = Math.floor(value * 1000) / 10;
-      if (field === "sp_rate") value += 100;
+
       isPercent = true;
     } else {
       value = Math.floor(value);
