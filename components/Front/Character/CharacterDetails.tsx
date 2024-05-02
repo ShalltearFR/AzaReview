@@ -13,6 +13,7 @@ import translateBBCode from "@/utils/translateBBCode";
 import { useEffect, useState } from "react";
 import { traces, UIDtitles } from "@/utils/dictionnary";
 import type { TitlesByLanguage } from "@/utils/dictionnary";
+import characterEN from "@/utils/charactersEN";
 
 interface ReviewData {
   data: CharacterType[];
@@ -163,10 +164,17 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
               characterReview[buildIndex] &&
               characterReview[buildIndex].recommended_comment && (
                 <div className="text-orange2 font-bold text-center mt-2 text-[15px]">
-                  {characterReview[buildIndex] &&
-                    translateBBCode(
-                      characterReview[buildIndex].recommended_comment ?? ""
-                    )}
+                  {characterReview[buildIndex] && lang === "en"
+                    ? characterEN[(uidData as any).characters[index].id]
+                      ? translateBBCode(
+                          characterEN[(uidData as any).characters[index].id][
+                            buildIndex
+                          ].comment
+                        )
+                      : ""
+                    : translateBBCode(
+                        characterReview[buildIndex].recommended_comment ?? ""
+                      )}
                 </div>
               )}
           </div>
@@ -234,8 +242,6 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                   UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
                     .NoCompletlyRelics2
                 )}
-                {/* Veuillez équiper <span className="text-yellow">6 pièces</span>{" "}
-                pour aligner les Astres */}
               </p>
               {characterReview && characterReview[buildIndex]?.main_stats && (
                 <div className="[&_div]:mt-5 mt-10 text-left [&_div]:text-orange">

@@ -34,7 +34,34 @@ const TranslateSection0: TranslateSection = {
     ", libre à vous d'essayer d'améliorer la pièce avec la notation la plus faible ou de passer au personnage suivant !",
     "Sélectionnez vos personnages en vitrine",
   ],
-  en: [""],
+  en: [
+    "Your Honkai Star Rail review",
+    "What is HSR review?",
+    "A website to help your build for characters easily",
+    "Some clear and relevant advices for a simple use.",
+    `[list]
+    [*] Put your characters for show. [b](see video)[/b]
+    [*] Type your UID on the site and click on "research". [b]If you just modified your showing panel, please wait about 10 minutes[/b] so the synchronizing could be complete.
+    [*] If one of your characters can have 2 builds or more, you will have to select the one who shall meet your use.
+    [/list]
+    `,
+    "Every element who shall not meet expectations will be shown in",
+    " red ",
+    "and recommandations are done to help you.",
+    "Those elements are analysed :",
+    `[list]
+    [*] Lightcone
+    [*] Relics and ornaments sets
+    [*] Main stats of all of your pieces
+    [*] Your final stats. 
+    [*] Matching of your pieces with a D to SSS ranking
+    [/list]`,
+    "Select or go over the elements to",
+    "to see an easy-to-get recommandation for all players.",
+    "If your character doesnt have a red element then he's well-equiped,",
+    "you're free to improve its lowest ranked piece or to take care of the next character",
+    "Select your characters on showing panel",
+  ],
 };
 
 const TranslateSection1: TranslateSection = {
@@ -67,8 +94,10 @@ const TranslateSection2: TranslateSection = {
     "Dépenser moins sur HSR tout en soutenant le site !",
     "En utilisant ces liens Eneba pour vos achats, vous soutiendrez énormément !",
     "Les mêmes prix qu'en jeu mais avec 10% de cashback pour dépenser moins les prochaines fois.",
+    "https://ene.ba/HSRAzanoFR",
     "Payez en MYR ",
     "pour économiser [b][color=#00ff00]22%[/color][/b] supplémentaire ou bien ",
+    "https://ene.ba/HSRAzanoFR2",
     "payez en Euro",
     "Rapide et sécurisé avec Razer Gold",
     "Réception instantanée en jeu !",
@@ -77,7 +106,25 @@ const TranslateSection2: TranslateSection = {
     "Au besoin, passez sur le live Twitch d'",
     " pour plus d'informations.",
   ],
-  en: [""],
+  en: [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "https://ene.ba/HSRAzanoEN",
+    "",
+    "",
+    "https://ene.ba/HSRAzanoEN2",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+  ],
 };
 
 export {

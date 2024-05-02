@@ -14,6 +14,7 @@ import { notFound } from "next/navigation";
 import translateBBCode from "@/utils/translateBBCode";
 import React from "react";
 import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
+import characterEN, { CharacterBuild } from "@/utils/charactersEN";
 
 interface Option {
   value: string;
@@ -273,14 +274,28 @@ const UidPage: React.FC<UidPageProps> = ({
       review[characterIndex] &&
       review[characterIndex].data
     ) {
-      const options: Option[] = review[characterIndex].data.map(
-        (el: any, i: any) => ({
-          label: el.buildName,
+      if (
+        lang === "en" &&
+        characterEN[(uidData as any).characters[characterIndex].id]
+      ) {
+        const options: Option[] = characterEN[
+          (uidData as any).characters[characterIndex].id
+        ].map((build: CharacterBuild, i: number) => ({
+          label: build.name,
           value: `${i}`,
-          desc: el.buildDesc,
-        })
-      );
-      setCharacterOptions(options);
+          desc: build.desc,
+        }));
+        setCharacterOptions(options);
+      } else {
+        const options: Option[] = review[characterIndex].data.map(
+          (el: any, i: any) => ({
+            label: el.buildName,
+            value: `${i}`,
+            desc: el.buildDesc,
+          })
+        );
+        setCharacterOptions(options);
+      }
     } else {
       setCharacterOptions([
         {
@@ -290,7 +305,7 @@ const UidPage: React.FC<UidPageProps> = ({
       ]);
     }
     setCharacterBuild(0);
-  }, [uidData.status, review, characterIndex]);
+  }, [uidData.status, review, characterIndex, lang]);
 
   if (uidData.status === 404) {
     return notFound();

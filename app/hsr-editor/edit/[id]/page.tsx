@@ -40,6 +40,7 @@ function Page({ params }: { params: { id: number } }) {
         });
         const data: CharacterType = await response.json();
         setCharacterData(data);
+        console.log("characterID:", data.id);
       } catch (error) {
         setCharacterData({ error: true });
       }

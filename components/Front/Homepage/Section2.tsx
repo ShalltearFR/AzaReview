@@ -220,19 +220,19 @@ const Section2: React.FC<Section2Props> = ({
               <p>{translateSection[5]}</p>
               <p>
                 <a
-                  href="https://www.eneba.com/fr/top-up-honkai-star-rail-oneiric-shard-malaysia?enb_campaign=Main+Search&enb_content=search+dropdown+-+products&enb_medium=product+card&enb_source=https%3A%2F%2Fwww.eneba.com%2Ftop-up-genshin-impact-genesis-crystals-malaysia&enb_term=1&af_id=Azano&currency=MYR&region=malaysia&utm_source=Azano&utm_medium=infl"
+                  href={translateSection[6]}
                   target="_blank"
                   className="text-light-blue2 font-bold"
                 >
-                  {translateSection[6]}
+                  {translateSection[7]}
                 </a>
-                {translateBBCode(translateSection[7], true)}
+                {translateBBCode(translateSection[8], true)}
                 <a
-                  href="https://www.eneba.com/fr/top-up-honkai-star-rail-oneiric-shard-malaysia?enb_campaign=Main+Search&enb_content=search+dropdown+-+products&enb_medium=product+card&enb_source=https%3A%2F%2Fwww.eneba.com%2Ftop-up-genshin-impact-genesis-crystals-malaysia&enb_term=1&af_id=Azano&utm_medium=infl&utm_source=Azano&currency=EUR&region=global"
+                  href={translateSection[9]}
                   target="_blank"
                   className="font-bold text-light-blue2"
                 >
-                  {translateSection[8]}
+                  {translateSection[10]}
                 </a>
                 .
               </p>
@@ -240,22 +240,22 @@ const Section2: React.FC<Section2Props> = ({
             <div className="sm:px-6">
               <div className="mt-5 relative">
                 <div className="absolute text-xs sm:text-sm smd:text-lg px-3 text-center w-1/2 right-0 top-1/2 -translate-y-1/2">
-                  <p>{translateSection[9]}</p>
-                  <p>{translateSection[10]}</p>
+                  <p>{translateSection[11]}</p>
+                  <p>{translateSection[12]}</p>
                 </div>
                 <img src={`${CDN2}/img/homepage/banderole_razergold.webp`} />
               </div>
               <div className="mt-3 relative">
                 <div className="absolute text-xs sm:text-sm smd:text-[20px] px-2 text-center w-3/5 left-0 top-1/2 -translate-y-1/2">
-                  <p>{translateSection[11]}</p>
-                  <p className="sm:mt-2">{translateSection[12]}</p>
+                  <p>{translateSection[13]}</p>
+                  <p className="sm:mt-2">{translateSection[14]}</p>
                 </div>
                 <img src={`${CDN2}/img/homepage/banderole_eneba.webp`} />
               </div>
               <div className="mt-3 relative">
                 <div className="absolute text-xs sm:text-base smd:text-lg px-2 smd:px-10 text-center w-3/5 right-0 top-1/2 -translate-y-1/2 font-semibold">
                   <p>
-                    {translateSection[13]}
+                    {translateSection[15]}
                     <a
                       href="https://www.twitch.tv/azano__"
                       target="_blank"
@@ -263,7 +263,7 @@ const Section2: React.FC<Section2Props> = ({
                     >
                       Azano
                     </a>
-                    {translateSection[14]}
+                    {translateSection[16]}
                   </p>
                 </div>
                 <img src={`${CDN2}/img/homepage/banderole_azano.webp`} />
