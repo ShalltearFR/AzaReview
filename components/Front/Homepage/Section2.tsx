@@ -216,9 +216,9 @@ const Section2: React.FC<Section2Props> = ({
               <h2 className="text-center font-bold text-xl mb-5">
                 {translateSection[3]}
               </h2>
-              <p>{translateSection[4]}</p>
-              <p>{translateSection[5]}</p>
-              <p>
+              <div>{translateSection[4]}</div>
+              <div>{translateSection[5]}</div>
+              <div>
                 <a
                   href={translateSection[6]}
                   target="_blank"
@@ -235,26 +235,26 @@ const Section2: React.FC<Section2Props> = ({
                   {translateSection[10]}
                 </a>
                 .
-              </p>
+              </div>
             </div>
             <div className="sm:px-6">
               <div className="mt-5 relative">
                 <div className="absolute text-xs sm:text-sm smd:text-lg px-3 text-center w-1/2 right-0 top-1/2 -translate-y-1/2">
-                  <p>{translateSection[11]}</p>
-                  <p>{translateSection[12]}</p>
+                  <div>{translateSection[11]}</div>
+                  <div>{translateSection[12]}</div>
                 </div>
                 <img src={`${CDN2}/img/homepage/banderole_razergold.webp`} />
               </div>
               <div className="mt-3 relative">
                 <div className="absolute text-xs sm:text-sm smd:text-[20px] px-2 text-center w-3/5 left-0 top-1/2 -translate-y-1/2">
-                  <p>{translateSection[13]}</p>
-                  <p className="sm:mt-2">{translateSection[14]}</p>
+                  <div>{translateSection[13]}</div>
+                  <div className="sm:mt-2">{translateSection[14]}</div>
                 </div>
                 <img src={`${CDN2}/img/homepage/banderole_eneba.webp`} />
               </div>
               <div className="mt-3 relative">
                 <div className="absolute text-xs sm:text-base smd:text-lg px-2 smd:px-10 text-center w-3/5 right-0 top-1/2 -translate-y-1/2 font-semibold">
-                  <p>
+                  <div>
                     {translateSection[15]}
                     <a
                       href="https://www.twitch.tv/azano__"
@@ -264,7 +264,7 @@ const Section2: React.FC<Section2Props> = ({
                       Azano
                     </a>
                     {translateSection[16]}
-                  </p>
+                  </div>
                 </div>
                 <img src={`${CDN2}/img/homepage/banderole_azano.webp`} />
               </div>

@@ -35,39 +35,39 @@ const Section0: React.FC<Section0Props> = ({ sectionPrevIndex, lang }) => {
             TranslateSection0[(lang as keyof TranslateSection) ?? "fr"][1]
           )}
         </h2>
-        <p className="text-center text-lg text-darkGreen font-semibold">
+        <div className="text-center text-lg text-darkGreen font-semibold">
           {translateBBCode(translateSection[2])}
-        </p>
-        <p className="mt-5">{translateBBCode(translateSection[3])}</p>
+        </div>
+        <div className="mt-5">{translateBBCode(translateSection[3])}</div>
         <ul className="list-decimal [&_li]:ml-5 marker:text-purple marker:text-xl marker:font-extrabold mb-5">
           {translateBBCode(translateSection[4])}
         </ul>
-        <p className="my-5">
+        <div className="my-5">
           {translateSection[5]}
           <span className="text-red font-bold">{translateSection[6]}</span>
           {translateSection[7]}
-        </p>
-        <p className="font-semibold">{translateSection[8]}</p>
+        </div>
+        <div className="font-semibold">{translateSection[8]}</div>
         <ul className="list-disc [&_*]:ml-3 mb-5 font-semibold italic">
           {translateBBCode(translateSection[9])}
         </ul>
-        <p>
+        <div>
           {translateSection[10]}
           <span className="text-red font-bold">{translateSection[6]}</span>
           {translateSection[11]}
-        </p>
-        <p className="mt-5">
+        </div>
+        <div className="mt-5">
           <span className="font-semibold">{translateSection[12]}</span>
           {translateSection[13]}
-        </p>
+        </div>
       </div>
       <div
         data-aos="fade-left"
         className="bg-black p-5 w-full mmd:w-auto mmd:rounded-3xl z-10 h-full flex flex-col justify-center"
       >
-        <p className="text-3xl font-bold text-center mb-5">
+        <div className="text-3xl font-bold text-center mb-5">
           {translateSection[14]}
-        </p>
+        </div>
         <video autoPlay playsInline muted loop className="rounded-2xl mx-auto">
           <source
             src={`${CDN2}/video/homepage/vitrine.webm`}

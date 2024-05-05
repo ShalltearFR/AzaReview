@@ -40,7 +40,7 @@ function Page({ params }: { params: { id: number } }) {
         });
         const data: CharacterType = await response.json();
         setCharacterData(data);
-        console.log("characterID:", data.id);
+        console.log("characterID:", data.id); // Ne pas supprimer
       } catch (error) {
         setCharacterData({ error: true });
       }
@@ -345,7 +345,6 @@ function Page({ params }: { params: { id: number } }) {
       } else {
         toast.error("Erreur de sauvegarde");
       }
-      console.log("data envoyé", data);
       setDisableSaveButton(false);
     });
   };

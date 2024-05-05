@@ -118,6 +118,7 @@ interface Titles {
   HomepageDesign: string;
   PayLess: string;
   HoyoCopyright: string;
+  ENtranslate: string;
 }
 
 interface TitlesByLanguage {
@@ -161,6 +162,7 @@ const UIDtitles: TitlesByLanguage = {
     PayLess: "Payez moins cher avec ",
     HoyoCopyright:
       "Ce site n'est pas affilié à Hoyoverse et tous les contenus et actifs du jeu sont des marques déposées et des droits d'auteur de Hoyoverse.",
+    ENtranslate: `Traduction anglaise par `,
   },
   en: {
     stat: "Recommended Statistics",
@@ -197,6 +199,7 @@ const UIDtitles: TitlesByLanguage = {
     PayLess: "Pay less with ",
     HoyoCopyright:
       "This site is not affiliated with Hoyoverse and all game content and assets are trademarks and copyrights of Hoyoverse.",
+    ENtranslate: `English translation by `,
   },
 };
 

@@ -6,7 +6,7 @@ const translateBBCode = (text: string, oneLine?: boolean) => {
 
   const textArray = text.split("\n");
   const result = textArray.map((el) => (
-    <p key={crypto.randomUUID()}>{parser.toReact(el)}</p>
+    <div key={crypto.randomUUID()}>{parser.toReact(el)}</div>
   ));
   return result;
 };

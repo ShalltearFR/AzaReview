@@ -52,7 +52,7 @@ const Section1: React.FC<Section1Props> = ({ sectionPrevIndex, lang }) => {
             <h2 className="text-xl xl:text-2xl font-bold text-center mb-5">
               {translateSection[0]}
             </h2>
-            <p>{translateSection[1]}</p>
+            <div>{translateSection[1]}</div>
             <ul className="list-decimal [&_li]:ml-5 marker:text-purple marker:text-xl marker:font-extrabold mt-5">
               <li>
                 <strong>{translateSection[2]}</strong>
@@ -67,7 +67,7 @@ const Section1: React.FC<Section1Props> = ({ sectionPrevIndex, lang }) => {
             <h2 className="text-xl xl:text-2xl font-bold text-center mb-5">
               {translateSection[6]}
             </h2>
-            <p>{translateSection[7]}</p>
+            <div>{translateSection[7]}</div>
             <ul className="list-disc mt-5 [&_li]:ml-5 italic">
               <li>{translateBBCode(translateSection[8])}</li>
               <li>{translateBBCode(translateSection[9])}</li>

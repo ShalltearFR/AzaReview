@@ -1,5 +1,6 @@
 import { CDN2 } from "@/utils/cdn";
 import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
+import translateBBCode from "@/utils/translateBBCode";
 
 interface FooterProps {
   lang: string | undefined;
@@ -25,6 +26,20 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
             alt="logo twitch"
           />
         </a>
+        {" ~ "}{" "}
+        {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].ENtranslate}
+        <a
+          href="https://twitter.com/orelsan01"
+          target="_blank"
+          className="underline hover:no-underline font-bold"
+        >
+          Orelsan
+        </a>
+        <img
+          src={`${CDN2}/img/twitter-logo.webp`}
+          className="h-6 ml-1 inline"
+          alt="logo twitter"
+        />
       </p>
       <p className="text-lg">
         {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].PayLess}

@@ -268,9 +268,167 @@ const characterEN: CharacterENProps = {
     // Acheron
     {
       name: "Flower of",
-      desc: "Acheron (The Queen) is a multi-target [color=#DB76ED]Lightning[/color] dps with a very special [u]Ultimate[/u] that doesn’t use [u]Energy[/u] but [u]Stacks[/u].\nPrioritize allies that applies [u]DeBuffs[/u] to quickly gain [u]Stacks[/u].",
+      desc: "Acheron (The Queen) is a multi-target [color=#DB76ED]Lightning[/color] dps with a very special [u]Ultimate[/u] that doesn't use [u]Energy[/u] but [u]Stacks[/u].\nPrioritize allies that applies [u]DeBuffs[/u] to quickly gain [u]Stacks[/u].",
       comment:
         "If E2 ➜ [u]Crit RATE[/u] at 50%.\nIf E2 ➜ you can try to get 134 [u]Speed[/u] (if no ally gives action/speed).",
+    },
+  ],
+  1106: [
+    // Pela
+    {
+      name: "Surveillance Drone",
+      desc: "[color=Orchid]『 SUPPORT BUILD 』[/color]\nPela reduces enemies' s [u]Defense[/u] and helps generate [u]Skill Points[/u] for the team.",
+      comment:
+        "Requirements for [u]Effect RES[/u] only when equipped with Ornaments [u]Broken Keel[/u].",
+    },
+    {
+      name: "Apocalypse Mode",
+      desc: "[color=#ED5F65]『 DPS/SUB-DPS BUILD 』[/color]\nPela deals [color=#6CACD4]Ice[/color] damages while reducing enemies’s [u]Defense[/u] (E6 recommended).",
+      comment:
+        "If equipped with Ornaments [u]Glamoth[/u] ➜ Set [u]Speed[/u] at 135.\n[u]Crit. Rate[/u] at 70 if equipped with Ornaments [u]Rutilant Arena[/u] + something different than [u]Pioneer Diver[/u] in 4P.",
+    },
+  ],
+  1202: [
+    // Tingyun
+    {
+      name: "I have a Headpain...",
+      desc: "Tingyun gives [u]Attack[/u] and [u]Energy[/u] to an ally.\nShe also helps generate [u]Skill Points[/u] for the team.",
+      comment:
+        "With 155 [u]Speed[/u] you can achieve 160 with her trace [u]Nourished Joviality[/u].\nRequirements for [u]Effect RES[/u] only when equipped with Ornaments [u]Broken Keel[/u].",
+    },
+  ],
+  1013: [
+    // Herta
+    {
+      name: "Kuru Kuru Kururin",
+      desc: "Herta deals [color=#6CACD4]Ice[/color] ice damage on multiple targets with her [u]Follow-up Attacks[/u] (Performs very well in Pure Fiction).",
+      comment:
+        "Can be played without [u]Speed[/u].\nIf equipped with Ornaments [u]Glamoth[/u] ➜ Set [u]Speed[/u] at 135.",
+    },
+  ],
+  1201: [
+    // Qingque
+    {
+      name: "Sorry I've Mah-Jong",
+      desc: "Qingque deals [color=#b892ff]Quantum[/color] damages on multiple targets with a bit of random with her [u]Jade Tiles[/u].",
+      comment:
+        "With 129 [u]Speed[/u] you can reach 134 when using her [u]Reinforced Attack[/u].",
+    },
+  ],
+  1210: [
+    // Guinaifen
+    {
+      name: "Follow + RT + Like (*ç*)",
+      desc: "Guinaifen applies [color=#FF4747]Fire DoTs[/color] on multiple enemies and “activate” them with her [u]Ultimate[/u].",
+      comment:
+        "150 [u]Speed[/u] lets you play 4 times before 2 cycles (It is equivalent to 160 [u]Speed[/u] thanks to her trace [u]Bladed Hoop[/u].",
+    },
+  ],
+  1214: [
+    // Xueyi
+    {
+      name: "Alita",
+      desc: "Xueyi is a muti-target [color=#b892ff]Quantum[/color] dps that ignores the type of the break bar of an enemy when attacking.",
+      comment:
+        "If equipped with Ornaments [u]Talia[/u] ➜ Set [u]Speed[/u] at 145.\nIf equipped with Ornaments [u]Glamoth[/u] ➜ Set [u]Speed[/u] at 135.",
+    },
+  ],
+  1301: [
+    // Gallagher
+    {
+      name: "It's my round.",
+      desc: "Gallagher heals his teammates regularly when they attack targets inflicted by his [u]Ultimate[/u]’s [u]Debuff[/u].\nHe can also deal decent [u]Rupture Dmg[/u] [color=#FF4747]Feu[/color].",
+      comment:
+        " If equipped with Ornaments [u]Talia[/u] ➜ Set [u]Rupture[/u] at 130%.\nWith E6, lower minimum requirement for [u]Rupture[/u] by 20%.\nIncrease [u]Speed[/u] when minimum requirements achieved on other stats.",
+    },
+  ],
+  1215: [
+    // Hanya
+    {
+      name: "Watashi wa Hanya !",
+      desc: "Hanya boosts [u]Attk[/u] and [u]Speed[/u] of an ally.\nShe also helps generates [u]Skill points[/u] for the team.",
+      comment:
+        "If [u]Torso PV%[/u] ➜ [u]Sphere Déf%[/u] (or vice versa).\nPrerequisite [u]Resistance to effects[/u] only if set [u]Broken Pin[/u].",
+    },
+  ],
+  1207: [
+    // Yukong
+    {
+      name: "After you",
+      desc: "Yukong boosts [u]Atk[/u], [u]Crit Rate[/u] and [u]Crit Dmg[/u] of the team for a few actions.\n• [u]Speed[/u] [color=#FF4747]-1[/color] to [color=#FF4747]-3[/color] difference to the survival support (heal/shield/...)",
+      comment:
+        "If [u]Body PV%[/u] ➜ [u]Sphere Déf%[/u] (or the other way around).\nRequirements for [u]Effect RES[/u] only when equipped with Ornaments [u]Broken Keel[/u].",
+    },
+  ],
+  1009: [
+    // Asta
+    {
+      name: "Asta, la vice-T.A.",
+      desc: "Asta increases [u]Speed[/u] and [u]Attk[/u] of all allies.\nShe can also deal decent [u]Rupture Dmg[/u] [color=#FF4747]Fire[/color].",
+      comment:
+        "You should keep [u]Break effect%[/u] stats as bonus.\nRequirements for [u]Effect RES[/u] only when equipped with Ornaments [u]Broken Keel[/u].",
+    },
+  ],
+  1105: [
+    // Natasha
+    {
+      name: "Sweet Vaccin",
+      desc: "Natasha heals all allies with her [u]Ultimate[/u] and one ally with her [u]Skill[/u].",
+      comment:
+        "Increase [u]Effect RES[/u] as much as possible once the rest is achieved.",
+    },
+  ],
+  1110: [
+    // Lynx
+    {
+      name: "Blue pill or red pill ?",
+      desc: "Lynx heals the team and removes 1 [u]Debuff[/u] with her [u]Ultimate[/u].\nShe can also increases the chances of a [u]Destruction[/u] or [/u]Préservation[/u] path character been attacked.",
+      comment:
+        "Increase [u]Effect RES[/u] when minimum requirements achieved on other stats.",
+    },
+  ],
+  1108: [
+    // Sampo
+    {
+      name: "James send Smogogo",
+      desc: "Sampo deals [color=lightgreen]Wind[/color] DoT damages and increases other DoT damages received by the enemy.",
+      comment:
+        "If equipped with Light cone [u]Let the Show begin[/u] ➜ [u]Effect Hit Rate[/u] at 80%.",
+    },
+  ],
+  1312: [
+    // Micha
+    {
+      name: "Sorry chief i slipped !",
+      desc: "Micha deals [color=#6CACD4]Ice[/color] damages and can frequently freeze enemies (Works perfectly with [u]Remenbrance[/u] path in Simulated Universe.",
+      comment:
+        "If equipped with Ornaments [u]Glamoth[/u] ➜ Set [u]Speed[/u] at 135.",
+    },
+  ],
+  1103: [
+    // Serval
+    {
+      name: "Rock'N Roll !",
+      desc: "Serval deals [color=#DB76ED]Lightning[/color] damages to multiple targets and inflicts [u]Shock[/u].",
+      comment:
+        "If equipped with Ornaments [u]Glamoth[/u] ➜ Set [u]Speed[/u] at 135.",
+    },
+  ],
+  1109: [
+    // Hook
+    {
+      name: "Moles's Chief",
+      desc: "Hook deals [color=#FF4747]Fire[/color] and apply [u]Burn[/u].\nShe deals more damages to enemies inflicted with [u]Burn[/u].",
+      comment:
+        "If equipped with Ornaments [u]Glamoth[/u] ➜ Set [u]Speed[/u] at 135.",
+    },
+  ],
+  1001: [
+    // March 7th
+    {
+      name: "March 7th",
+      desc: "March 7th protects her allies with a [u]Shield[/u] using her [u]Skill[/u].\nHer [u]Shield[/u] can trigger the enemies's aggro when up.",
+      comment: "",
     },
   ],
 };

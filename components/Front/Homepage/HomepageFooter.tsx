@@ -8,7 +8,7 @@ interface FooterProps {
 const HomepageFooter: React.FC<FooterProps> = ({ lang }) => {
   return (
     <footer className="bg-black text-white text-center py-5 w-full mt-auto z-10">
-      <p className="justify-center">
+      <div className="justify-center">
         {"Copyright © 2024 - "}
         {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].CreatedBy}{" "}
         <strong>ShalltearFR</strong> {" ~ "}
@@ -25,15 +25,29 @@ const HomepageFooter: React.FC<FooterProps> = ({ lang }) => {
             alt="logo twitch"
           />
         </a>
-      </p>
-      <p>
+        {" ~ "}{" "}
+        {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].ENtranslate}
+        <a
+          href="http://twitch.tv/fred_night0wl"
+          target="_blank"
+          className="underline hover:no-underline font-bold"
+        >
+          Fred_NightOwl
+        </a>
+        <img
+          src={`${CDN2}/img/twitch-logo.svg`}
+          className="h-6 ml-1 inline"
+          alt="logo twitch"
+        />
+      </div>
+      <div>
         {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].HomepageDesign}
         <strong>Amane</strong>
-      </p>
-      <p>_</p>
-      <p className="italic">
+      </div>
+      <div>_</div>
+      <div className="italic">
         {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].HoyoCopyright}
-      </p>
+      </div>
     </footer>
   );
 };

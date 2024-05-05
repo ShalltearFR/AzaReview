@@ -41,10 +41,6 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
     isPercent = getENDefaultValue(field).isPercent;
   }
 
-  console.log("field", field);
-  console.log("attributes", attributes);
-  console.log("isPercent", isPercent);
-  console.log("additionIndex", additionIndex);
   if (field === "sp_rate") value = 100;
 
   if (attributeIndex !== -1) {
