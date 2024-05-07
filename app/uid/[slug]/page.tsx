@@ -132,7 +132,7 @@ export default async function Page({ params }: { params: { slug: number } }) {
   if (jsonUid.status === 504) {
     return (
       <>
-        <div className="overflow-hidden min-h-[calc(100vh-270px)]">
+        <div className="overflow-hidden min-h-[calc(100vh-230px)]">
           <div
             style={{
               backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,
