@@ -43,7 +43,7 @@ async function getDataUid(uid: number, lang: string | undefined) {
         status = 400;
         break;
       default:
-        status = 503;
+        status = 504;
     }
     return Response.json({ status });
   }
@@ -127,6 +127,19 @@ export default async function Page({ params }: { params: { slug: number } }) {
   if (!jsonUid || !resReview) {
     return <div className="text-center mt-10">Chargement en cours ...</div>;
   }
+
+  if (jsonUid.status === 504) {
+    return (
+      <>
+        <div>
+          {"L'API reçoit trop de requetes, veuillez relancer plus tard"}
+        </div>
+        <Footer lang={lang?.value} />
+      </>
+    );
+  }
+
+  console.log(jsonUid);
 
   return (
     <>
