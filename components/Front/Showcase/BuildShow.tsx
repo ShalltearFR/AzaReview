@@ -62,13 +62,13 @@ const BuildShow: React.FC<BuildShowProps> = ({
   return (
     <div className="px-2 xl:px-5">
       <div className="font-bold text-2xl">
-        {lang === "en"
-          ? translateBBCode(characterEN[characterID as any][i].name)
+        {lang === "en" && characterEN[characterID as any]
+          ? translateBBCode(characterEN[characterID as any][i]?.name ?? "")
           : translateBBCode(build.buildName)}
       </div>
       <div>
-        {lang === "en"
-          ? translateBBCode(characterEN[characterID as any][i].desc)
+        {lang === "en" && characterEN[characterID as any]
+          ? translateBBCode(characterEN[characterID as any][i]?.desc ?? "")
           : translateBBCode(build.buildDesc)}
       </div>
       <div className="mt-10">
@@ -174,8 +174,10 @@ const BuildShow: React.FC<BuildShowProps> = ({
             ))}
           </ul>
           <div className="mt-5">
-            {lang === "en"
-              ? translateBBCode(characterEN[characterID as any][i].comment)
+            {lang === "en" && characterEN[characterID as any]
+              ? translateBBCode(
+                  characterEN[characterID as any][i]?.comment ?? ""
+                )
               : translateBBCode(build.recommended_comment)}
           </div>
         </div>
