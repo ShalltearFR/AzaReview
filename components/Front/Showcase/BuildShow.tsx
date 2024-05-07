@@ -113,9 +113,9 @@ const BuildShow: React.FC<BuildShowProps> = ({
 
           <MainStats
             lang={lang}
-            type={getMainStats("planar sphere")}
+            type={getMainStats("planar_sphere")}
             name={{
-              en: "Planar_sphere",
+              en: "Planar sphere",
               fr: "Spheres planaires",
             }}
           />
