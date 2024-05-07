@@ -141,7 +141,7 @@ export default async function Page({ params }: { params: { slug: number } }) {
             data-aos="animate-stars"
           />
           <NavBar />
-          <div className="text-3xl text-white font-bold">
+          <div className="text-3xl text-white font-bold mt-10 text-center">
             {"L'API reçoit trop de requetes, veuillez relancer plus tard"}
           </div>
         </div>
@@ -149,8 +149,6 @@ export default async function Page({ params }: { params: { slug: number } }) {
       </>
     );
   }
-
-  console.log(jsonUid);
 
   return (
     <>
