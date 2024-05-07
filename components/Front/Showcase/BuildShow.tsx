@@ -30,8 +30,17 @@ const BuildShow: React.FC<BuildShowProps> = ({
     (relic) => relic.recommended === false
   );
   const recommendedStatsFilter = build.recommended_stats.filter(
-    (relic) => relic.value !== null
+    (relic) => relic.value !== null && relic.value !== 0
   );
+
+  const percentStats = [
+    "CriticalChanceBase",
+    "CriticalDamageBase",
+    "SPRatioBase",
+    "StatusProbabilityBase",
+    "StatusResistanceBase",
+    "BreakDamageAddedRatioBase",
+  ];
 
   const getMainStats = (piece: string) => {
     const result = build?.main_stats
@@ -151,7 +160,16 @@ const BuildShow: React.FC<BuildShowProps> = ({
           <ul className="list-disc">
             {recommendedStatsFilter.map((stat) => (
               <li className="ml-5" key={crypto.randomUUID()}>
-                {lang === "en" ? findLabelEN(stat.type) : findLabel(stat.type)}
+                <span>
+                  {lang === "en"
+                    ? findLabelEN(stat.type)
+                    : findLabel(stat.type)}
+                </span>{" "}
+                <span>
+                  {percentStats.includes(stat.type)
+                    ? `${stat.value * 100}%`
+                    : stat.value}
+                </span>
               </li>
             ))}
           </ul>
