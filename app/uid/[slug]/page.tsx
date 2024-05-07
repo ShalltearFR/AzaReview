@@ -2,9 +2,10 @@ import Footer from "@/components/Front/UID/Footer";
 import UidPage from "@/components/Front/Homepage/UidPage";
 import { CharacterType } from "@/types/CharacterModel";
 import { jsonUID } from "@/types/jsonUid";
-import { CDN } from "@/utils/cdn";
+import { CDN, CDN2 } from "@/utils/cdn";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
+import NavBar from "@/components/Front/NavBar";
 
 type Props = {
   params: { slug: number };
@@ -131,8 +132,18 @@ export default async function Page({ params }: { params: { slug: number } }) {
   if (jsonUid.status === 504) {
     return (
       <>
-        <div>
-          {"L'API reçoit trop de requetes, veuillez relancer plus tard"}
+        <div className="overflow-hidden min-h-[calc(100vh-270px)]">
+          <div
+            style={{
+              backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,
+              zIndex: -10,
+            }}
+            data-aos="animate-stars"
+          />
+          <NavBar />
+          <div className="text-3xl text-white font-bold">
+            {"L'API reçoit trop de requetes, veuillez relancer plus tard"}
+          </div>
         </div>
         <Footer lang={lang?.value} />
       </>
