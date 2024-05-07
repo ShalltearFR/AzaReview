@@ -17,7 +17,7 @@ import type {
   recommendedStatsOption,
 } from "@/types/EditorPage";
 import GlobalBuild from "@/components/Editor/Global/GlobalBuild";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 function Page({ params }: { params: { id: number } }) {
   const [characterData, setCharacterData] = useState<

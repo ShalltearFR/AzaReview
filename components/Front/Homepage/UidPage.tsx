@@ -1,12 +1,12 @@
 "use client";
-import CharacterDetails from "@/components/Front/Character/CharacterDetails";
-import CharacterList from "@/components/Front/CharactersList";
+import CharacterDetails from "@/components/Front/UID/CharacterDetails";
+import CharacterList from "@/components/Front/Homepage/CharactersList";
 import NavBar from "@/components/Front/NavBar";
 import { CharacterType } from "@/types/CharacterModel";
 import type { jsonUID } from "@/types/jsonUid";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { toBlob, toJpeg, toPng, toSvg } from "html-to-image";
+import { toBlob, toJpeg, toPng } from "html-to-image";
 import ReactSelect from "react-select";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Aos from "aos";
@@ -308,11 +308,7 @@ const UidPage: React.FC<UidPageProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uidData.status, review, characterIndex, lang]);
 
-  if (uidData.status === 404) {
-    return notFound();
-  }
-
-  if (uidData.status === 400) {
+  if (uidData.status === 404 || uidData.status === 400) {
     return notFound();
   }
 
@@ -362,7 +358,7 @@ const UidPage: React.FC<UidPageProps> = ({
             zIndex: -10,
           }}
           data-aos="animate-stars"
-        ></div>
+        />
         <NavBar setData={setUidData} />
 
         <section data-aos="fade-down">

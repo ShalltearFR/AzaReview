@@ -34,7 +34,7 @@ function Homepage() {
       setSectionIndex(0);
     } else AOS.init();
 
-    fetch("/api/other/all")
+    fetch("/api/other/all", { next: { revalidate: 300 } })
       .then((res) => res.json())
       .then((json: any) => {
         const { codes } = json.data;

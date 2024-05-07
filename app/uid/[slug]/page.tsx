@@ -1,5 +1,5 @@
-import Footer from "@/components/Front/Footer";
-import UidPage from "@/components/Front/UidPage";
+import Footer from "@/components/Front/UID/Footer";
+import UidPage from "@/components/Front/Homepage/UidPage";
 import { CharacterType } from "@/types/CharacterModel";
 import { jsonUID } from "@/types/jsonUid";
 import { CDN } from "@/utils/cdn";
@@ -110,7 +110,7 @@ export default async function Page({ params }: { params: { slug: number } }) {
   );
   const lightconesTranslateToArray = Object.values(lightconesTranslate);
 
-  //Recupère les traductions des lightcones
+  //Recupère les traductions des relics
   const relicsList: Array<any> = await getData(
     `${CDN}/index_min/${lang?.value || "fr"}/relics.json`,
     18000 //Cache de 5h

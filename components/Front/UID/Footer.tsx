@@ -1,6 +1,5 @@
 import { CDN2 } from "@/utils/cdn";
 import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
-import translateBBCode from "@/utils/translateBBCode";
 
 interface FooterProps {
   lang: string | undefined;
@@ -8,7 +7,7 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ lang }) => {
   return (
-    <div className="bg-black text-white text-center py-5 xl:mt-14">
+    <div className="bg-black text-white text-center py-5 xl:mt-14 z-10">
       <p className="justify-center">
         {"Copyright © 2024 - "}
         {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].CreatedBy}

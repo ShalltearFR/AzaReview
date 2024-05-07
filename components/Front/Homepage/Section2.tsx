@@ -40,7 +40,7 @@ const Section2: React.FC<Section2Props> = ({
   }, [lang]);
 
   useEffect(() => {
-    fetch("/api/changelog/all")
+    fetch("/api/changelog/all", { next: { revalidate: 300 } })
       .then((res) => res.json())
       .then((json) => setChangelog(json.data));
   }, []);

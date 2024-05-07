@@ -1,4 +1,4 @@
-import Footer from "@/components/Front/Footer";
+import Footer from "@/components/Front/UID/Footer";
 import NavBar from "@/components/Front/NavBar";
 import { CDN2 } from "@/utils/cdn";
 import React from "react";

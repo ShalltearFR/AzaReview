@@ -59,7 +59,7 @@ const NavBar: React.FC<NavBarProps> = ({
           >
             <img
               src={`${CDN2}/img/homepage/logo_min.png`}
-              className="absolute h-16 smd:h-20 left-2 top-2 z-50"
+              className="absolute h-16 smd:h-20 left-2 top-2 z-50 smd:mt-2 xl:mt-0"
             />
           </Link>
           <div className="w-28 mmd:w-28" />
@@ -176,34 +176,19 @@ const NavBar: React.FC<NavBarProps> = ({
                   </button>
                 )}
             </div>
+            <Link
+              href={"/guides"}
+              className="hidden xl:block py-2 px-3 bg-orange font-bold rounded-3xl"
+            >
+              Guides
+            </Link>
           </div>
-          <button
-            onClick={() => setOpenMenu(!openMenu)}
-            className={`z-50 text-white flex flex-col mr-2 h-10 w-10 justify-center items-center group smd:hidden ${
-              openMenu ? " " : "ml-auto "
-            }`}
-          >
-            <div
-              className={`${genericHamburgerLine} ${
-                openMenu ? "rotate-45 translate-y-3 " : ""
-              }`}
-            />
-            <div
-              className={`${genericHamburgerLine} ${
-                openMenu ? "opacity-0" : ""
-              }`}
-            />
-            <div
-              className={`${genericHamburgerLine} ${
-                openMenu ? "-rotate-45 -translate-y-3 " : ""
-              }`}
-            />
-          </button>
+
           {/* Partie langue */}
           <div
             className={`${
               openMenu ? "hidden smd:flex" : "flex"
-            } items-center mx-5 flex-grow-0 flex-shrink-0`}
+            } items-center  flex-grow-0 flex-shrink-0 mr-5`}
           >
             <button
               className={`p-2 rounded-full z-50 ${
@@ -230,9 +215,41 @@ const NavBar: React.FC<NavBarProps> = ({
               />
             </button>
           </div>
+          <button
+            onClick={() => setOpenMenu(!openMenu)}
+            className={`z-50 text-white flex flex-col mr-2 h-10 w-10 justify-center items-center group smd:hidden`}
+          >
+            <div
+              className={`${genericHamburgerLine} ${
+                openMenu ? "rotate-45 translate-y-3 " : ""
+              }`}
+            />
+            <div
+              className={`${genericHamburgerLine} ${
+                openMenu ? "opacity-0" : ""
+              }`}
+            />
+            <div
+              className={`${genericHamburgerLine} ${
+                openMenu ? "-rotate-45 -translate-y-3 " : ""
+              }`}
+            />
+          </button>
         </div>
       </nav>
-
+      <div
+        className={`bg-black pb-2 w-full ${
+          openMenu ? "flex xl:hidden" : "hidden smd:flex xl:hidden"
+        }`}
+      >
+        <Link
+          href={"/guides"}
+          className="py-2 px-3 bg-orange font-bold rounded-3xl ml-5 smd:ml-32"
+        >
+          Guides
+        </Link>
+        Guides
+      </div>
       <div className={`xl:h-16`}></div>
     </>
   );

@@ -55,7 +55,7 @@ const characterEN: CharacterENProps = {
       name: "Break in Hospitality",
       desc: "Ruan Mei helps the team deal more damage via multiple [u]Buffs[/u].\nShe fit even more in teams that plays around [u]Break[/u] effects.",
       comment:
-        "If equipped with Ornaments [u]Talia[/u] ➜ [u]Rupture[/u] at 140%.\nRequirements for [u]Effect RES[/u] only when equipped with Ornaments [u]Broken Keel[/u].",
+        "If equipped with Ornaments [u]Watchmaker[/u] ➜ [u]Break Effect[/u] at -30%.\nIf equipped with Ornaments [u]Talia[/u] ➜ [u]Break Effect[/u] at -20%.\nRequirements for [u]Effect RES[/u] only when equipped with Ornaments [u]Broken Keel[/u].",
     },
   ],
   1208: [
