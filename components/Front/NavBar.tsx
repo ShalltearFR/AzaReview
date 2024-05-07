@@ -180,7 +180,7 @@ const NavBar: React.FC<NavBarProps> = ({
               href={"/guides"}
               className="hidden xl:block py-2 px-3 bg-orange font-bold rounded-3xl"
             >
-              Guides
+              {lang === "en" ? "Showcase" : "Guides"}
             </Link>
           </div>
 
@@ -246,9 +246,8 @@ const NavBar: React.FC<NavBarProps> = ({
           href={"/guides"}
           className="py-2 px-3 bg-orange font-bold rounded-3xl ml-5 smd:ml-32"
         >
-          Guides
+          {lang === "en" ? "Showcase" : "Guides"}
         </Link>
-        Guides
       </div>
       <div className={`xl:h-16`}></div>
     </>
