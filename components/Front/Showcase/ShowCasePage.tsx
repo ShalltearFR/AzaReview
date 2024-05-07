@@ -24,7 +24,7 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({ id }) => {
   const lang = cookies.get("lang");
 
   function hasStatus(value: any): value is { status: number } {
-    return typeof value === "object" && "status" in value;
+    return typeof value === "object" && "error" in value;
   }
 
   useEffect(() => {

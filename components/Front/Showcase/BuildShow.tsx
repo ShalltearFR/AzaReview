@@ -173,11 +173,11 @@ const BuildShow: React.FC<BuildShowProps> = ({
               </li>
             ))}
           </ul>
-          <p className="mt-5">
+          <div className="mt-5">
             {lang === "en"
               ? translateBBCode(characterEN[characterID as any][i].comment)
               : translateBBCode(build.recommended_comment)}
-          </p>
+          </div>
         </div>
       </div>
     </div>
