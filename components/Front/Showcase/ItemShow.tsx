@@ -42,8 +42,8 @@ const ItemShow: React.FC<ItemShowProps> = ({
         <img src={`${CDN}/${itemName.icon}`} className="m-auto" />
 
         <p className="absolute bottom-0 px-1 text-center w-full bg-black/75">
-          {itemName.name.length > 15
-            ? `${itemName.name.substring(0, 15)}...`
+          {itemName.name.length > 14
+            ? `${itemName.name.substring(0, 14)}...`
             : itemName.name}
         </p>
       </div>
