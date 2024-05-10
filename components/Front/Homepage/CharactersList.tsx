@@ -20,15 +20,15 @@ const CharacterList: React.FC<CharacterListProps> = ({
       <img
         className="w-24 h-24 xl:ml-8"
         alt="UID logo"
-        src={`${CDN}/${uidData.player.avatar.icon}`}
+        src={`${CDN}/${uidData?.player?.avatar?.icon}`}
       />
       <div className="text-center w-48 text-white">
-        <p className="text-lg font-medium">{uidData.player.nickname}</p>
+        <p className="text-lg font-medium">{uidData?.player?.nickname}</p>
         <p className="text-sm">
           {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].pioneer}
-          {uidData.player.level}
+          {uidData?.player?.level}
         </p>
-        <p className="text-sm italic">UID : {uidData.player.uid}</p>
+        <p className="text-sm italic">UID : {uidData?.player?.uid}</p>
       </div>
       <div className="flex flex-wrap ml-20 gap-5 w-full mr-16 mt-5 justify-center px-5">
         {uidData.characters.map((character, i) => {

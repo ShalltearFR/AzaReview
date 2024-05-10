@@ -27,7 +27,7 @@ interface ReviewData {
 }
 
 interface UidPageProps {
-  jsonUid: jsonUID;
+  jsonUid: jsonUID | { status: number };
   jsonReview: ReviewData;
   statsTranslate: Array<any>;
   relicsSetTranslate: Array<any>;
@@ -35,6 +35,7 @@ interface UidPageProps {
   RelicsList: Array<any>;
   eidolonsList: Array<any>;
   lang: string | undefined;
+  error504?: boolean;
 }
 
 const UidPage: React.FC<UidPageProps> = ({
@@ -46,6 +47,7 @@ const UidPage: React.FC<UidPageProps> = ({
   RelicsList,
   eidolonsList,
   lang,
+  error504,
 }) => {
   const searchParams = useSearchParams();
   const characterQuery = searchParams.get("c");
@@ -78,13 +80,14 @@ const UidPage: React.FC<UidPageProps> = ({
       });
     else Aos.init({ disable: window.innerWidth <= 1450 });
 
+    const uidDataCopy = { ...uidData } as jsonUID;
     const transformCharacterQuery = () => {
       if (isNaN(Number(characterQuery))) {
         window.history.pushState({}, "", window.location.pathname);
         setCharacterIndex(0);
         return null;
       }
-      if (Number(characterQuery) > jsonUid.characters.length) {
+      if (Number(characterQuery) > uidDataCopy.characters.length) {
         window.history.pushState({}, "", window.location.pathname);
         setCharacterIndex(0);
         return null;
@@ -92,7 +95,7 @@ const UidPage: React.FC<UidPageProps> = ({
       setCharacterIndex(Number(characterQuery));
     };
 
-    if (jsonUid.characters) {
+    if (uidDataCopy.characters) {
       transformCharacterQuery();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -141,8 +144,9 @@ const UidPage: React.FC<UidPageProps> = ({
 
           if (exportType === "save") {
             // Bouton sauvegarder
+            const uidDataCopy = { ...uidData } as jsonUID;
             const link = document.createElement("a");
-            link.download = `Review HSR - ${jsonUid.characters[characterIndex].name}`;
+            link.download = `Review HSR - ${uidDataCopy.characters[characterIndex].name}`;
             link.href = dataImage;
             link.click();
             disableButton(false);
@@ -175,6 +179,7 @@ const UidPage: React.FC<UidPageProps> = ({
   };
 
   useEffect(() => {
+    const uidDataCopy = { ...uidData } as jsonUID;
     reviewHeaderRef.current = (
       <div
         id="exportHTML"
@@ -189,11 +194,13 @@ const UidPage: React.FC<UidPageProps> = ({
         <div className="flex items-center w-full h-24 text-white smd:text-xl bg-black/50">
           <img
             className="ml-2 smd:ml-5 h-20"
-            src={`${CDN}/${jsonUid?.player?.avatar.icon}`}
+            src={`${CDN}/${uidDataCopy?.player?.avatar.icon}`}
           />
           <p className="ml-5 flex flex-col">
-            <span className="font-bold">{jsonUid?.player?.nickname}</span>
-            <span className="smd:text-base">UID : {jsonUid?.player?.uid}</span>
+            <span className="font-bold">{uidDataCopy?.player?.nickname}</span>
+            <span className="smd:text-base">
+              UID : {uidDataCopy?.player?.uid}
+            </span>
           </p>
           <img
             src={`${CDN2}/img/homepage/logo_min.png`}
@@ -205,7 +212,7 @@ const UidPage: React.FC<UidPageProps> = ({
         </div>
       </div>
     );
-  }, [jsonUid]);
+  }, [uidData]);
 
   useEffect(() => {
     function sortReviewDataByUidData(reviewData: any, uidData: any) {
@@ -219,11 +226,11 @@ const UidPage: React.FC<UidPageProps> = ({
       return sortedArray;
     }
 
-    const jsonUid = uidData as jsonUID;
+    const jsonUidData = uidData as jsonUID;
     if (uidData.status === 200) {
       const sortedReviewData = sortReviewDataByUidData(
         jsonReview.data,
-        jsonUid.characters
+        jsonUidData.characters
       );
       setReview(sortedReviewData);
       setIsLoading(false);
@@ -231,7 +238,8 @@ const UidPage: React.FC<UidPageProps> = ({
   }, [jsonReview, uidData]);
 
   useEffect(() => {
-    if (jsonUid.characters?.length > 0) {
+    const uidDataCopy = { ...uidData } as jsonUID;
+    if (uidDataCopy.characters?.length > 0) {
       const orderOfType = ["HEAD", "HAND", "BODY", "FOOT", "NECK", "OBJECT"];
 
       const customSort = (a: any, b: any) => {
@@ -245,26 +253,26 @@ const UidPage: React.FC<UidPageProps> = ({
         return indexA - indexB;
       };
 
-      const charactersList = jsonUid.characters.map((character, index) => {
+      const charactersList = uidDataCopy.characters.map((character, index) => {
         if (character.relics) {
           if (character.relics.length === 0) return character;
 
           // Create a sorted copy of the relics array
-          const data = jsonUid.characters[index];
+          const data = uidDataCopy.characters[index];
           data.relics = [...character.relics].sort(customSort);
           return data;
         }
         return character;
       });
-      const Uid = { ...jsonUid };
-      Uid.characters = charactersList;
+      uidDataCopy.characters = charactersList;
 
-      setUidData(Uid);
+      setUidData(uidDataCopy);
     } else {
       setUidData({
-        status: jsonUid.status,
+        status: uidData.status,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [RelicsList, jsonUid]);
 
   useEffect(() => {
@@ -308,8 +316,45 @@ const UidPage: React.FC<UidPageProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uidData.status, review, characterIndex, lang]);
 
+  useEffect(() => {
+    if (!error504) {
+      setUidData(jsonUid);
+      const jsonToStorage = { ...jsonUid };
+      jsonToStorage.status = 200;
+      localStorage.setItem("dataUID", JSON.stringify(jsonToStorage));
+    } else {
+      const dataStorage = localStorage.getItem("dataUID");
+      if (dataStorage) setUidData(JSON.parse(dataStorage));
+      else setUidData({ status: 504 });
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
+
   if (uidData.status === 404 || uidData.status === 400) {
     return notFound();
+  }
+  if (uidData.status === 504) {
+    return (
+      <div className="min-h-[calc(100vh-230px)] overflow-hidden">
+        <div
+          style={{
+            backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,
+            zIndex: -10,
+          }}
+          data-aos="animate-stars"
+        />
+        <NavBar setData={setUidData} />
+        {error504 && (
+          <div className="text-3xl text-white font-bold mt-10 text-center">
+            {/* {"L'API reçoit trop de requetes, veuillez relancer plus tard"} */}
+            {lang === "en"
+              ? "The API is receiving too many requests, please restart later"
+              : "L'API reçoit trop de requetes, veuillez relancer plus tard"}
+          </div>
+        )}
+      </div>
+    );
   }
 
   if (isloading)
@@ -361,6 +406,13 @@ const UidPage: React.FC<UidPageProps> = ({
         />
         <NavBar setData={setUidData} />
 
+        {error504 && (
+          <div className="text-3xl text-white font-bold mt-10 text-center">
+            {lang === "en"
+              ? "The API receives too many requests, the update could not be done"
+              : "L'API reçoit trop de requetes, l'actualisation n'a pas pu se faire"}
+          </div>
+        )}
         <section data-aos="fade-down">
           <CharacterList
             uidData={uidData as jsonUID}

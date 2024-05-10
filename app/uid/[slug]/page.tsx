@@ -1,5 +1,5 @@
 import Footer from "@/components/Front/UID/Footer";
-import UidPage from "@/components/Front/Homepage/UidPage";
+import UidPage from "@/components/Front/UID/UidPage";
 import { CharacterType } from "@/types/CharacterModel";
 import { jsonUID } from "@/types/jsonUid";
 import { CDN, CDN2 } from "@/utils/cdn";
@@ -34,6 +34,8 @@ async function getDataUid(uid: number, lang: string | undefined) {
   );
 
   const jsonData = await data.json();
+  // const status = 504; // Simule une erreur 504 pour les tests
+  // return Response.json({ status });
   if (!data.ok) {
     let status;
     switch (jsonData.detail) {
@@ -132,19 +134,17 @@ export default async function Page({ params }: { params: { slug: number } }) {
   if (jsonUid.status === 504) {
     return (
       <>
-        <div className="overflow-hidden min-h-[calc(100vh-230px)]">
-          <div
-            style={{
-              backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,
-              zIndex: -10,
-            }}
-            data-aos="animate-stars"
-          />
-          <NavBar />
-          <div className="text-3xl text-white font-bold mt-10 text-center">
-            {"L'API reçoit trop de requetes, veuillez relancer plus tard"}
-          </div>
-        </div>
+        <UidPage
+          jsonUid={{ status: 200 }}
+          jsonReview={resReview}
+          statsTranslate={statsTranslateToArray}
+          relicsSetTranslate={relicsSetTranslateToArray}
+          lightconesTranslate={lightconesTranslateToArray}
+          RelicsList={relicsListArray}
+          eidolonsList={eidolonsListArray}
+          lang={lang?.value}
+          error504
+        />
         <Footer lang={lang?.value} />
       </>
     );
