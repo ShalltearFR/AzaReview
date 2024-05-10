@@ -167,7 +167,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
                 </span>{" "}
                 <span>
                   {percentStats.includes(stat.type)
-                    ? `${stat.value * 100}%`
+                    ? `${parseFloat((stat.value * 100).toFixed(1))}%`
                     : stat.value}
                 </span>
               </li>
