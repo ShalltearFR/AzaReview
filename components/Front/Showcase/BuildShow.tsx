@@ -4,6 +4,7 @@ import translateBBCode from "@/utils/translateBBCode";
 import ItemShow from "./ItemShow";
 import MainStats from "./MainStats";
 import { findLabel, findLabelEN } from "@/utils/statsOption";
+import relicsSetList from "@/utils/relicsSetList";
 
 interface BuildShowProps {
   build: Data;
@@ -57,6 +58,18 @@ const filterRelicID = (items: itemsProps[]) => {
   return result;
 };
 
+const separateRelics = (items: itemsProps[], isOrnament: boolean) => {
+  //relicsSetList
+  //if (type === "relic") return
+  const test = [...items].filter((item) =>
+    relicsSetList.find(
+      (relic) => relic.isOrnamant === isOrnament && item.id === relic.id
+    )
+  );
+  return test;
+  console.log("test", test);
+};
+
 const percentStats = [
   "CriticalChanceBase",
   "CriticalDamageBase",
@@ -81,11 +94,13 @@ const BuildShow: React.FC<BuildShowProps> = ({
   const lightConeFilter = filterLightconeID(build.lightCones);
   const relicsSetFilter = filterRelicID(build.relics_set);
 
+  const relicsFilter = separateRelics(relicsSetFilter, false);
+  const ornamentsFilter = separateRelics(relicsSetFilter, true);
+
   const getMainStats = (piece: string) => {
     const result = build?.main_stats
       .filter((el: any) => el.piece === piece)
       .map((el: any, i: number) => {
-        // statsTranslate
         const translated = properties.find(
           (stat: any) => stat.type === el.type
         );
@@ -234,9 +249,9 @@ const BuildShow: React.FC<BuildShowProps> = ({
             <p className="text-lg font-bold mb-2">
               {lang === "en" ? "Other good choices" : "Autres bons choix"}
             </p>
-            <div className="flex flex-wrap gap-5 justify-center">
-              {relicsSetFilter.map((relic) => {
-                if (!relic.recommended)
+            <div className="flex flex-col gap-5">
+              <div className="flex flex-wrap gap-5 justify-center">
+                {relicsFilter.map((relic) => {
                   return (
                     <div key={crypto.randomUUID()}>
                       <ItemShow
@@ -247,8 +262,22 @@ const BuildShow: React.FC<BuildShowProps> = ({
                       />
                     </div>
                   );
-                return null;
-              })}
+                })}
+              </div>
+              <div className="flex flex-wrap gap-5 justify-center">
+                {ornamentsFilter.map((relic) => {
+                  return (
+                    <div key={crypto.randomUUID()}>
+                      <ItemShow
+                        type={relicsSet}
+                        id={relic.id}
+                        className="h-36 w-36"
+                        relicSet={relic}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
