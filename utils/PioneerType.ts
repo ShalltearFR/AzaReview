@@ -7,18 +7,18 @@ interface PioneerTypeProps {
 const PioneerType: PioneerTypeProps[] = [
   {
     id: "8001",
-    nameFR: "Pionnier Physique",
-    nameEN: "Pioneer Physical",
+    nameFR: "Caelius Destruction",
+    nameEN: "Caelius Destruction",
   },
   {
     id: "8003",
-    nameFR: "Pionnier Feu",
-    nameEN: "Pioneer Fire",
+    nameFR: "Caelius Preservation",
+    nameEN: "Caelius Preservation",
   },
   {
     id: "8005",
-    nameFR: "Pionnier Imaginaire",
-    nameEN: "Pioneer Imaginary",
+    nameFR: "Caelius Harmonie",
+    nameEN: "Caelius Harmony",
   },
 ];
 
