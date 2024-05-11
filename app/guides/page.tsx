@@ -7,6 +7,7 @@ import CharactersList from "@/components/Front/Showcase/CharactersList";
 import Footer from "@/components/Front/UID/Footer";
 import Aos from "aos";
 import { CDN2 } from "@/utils/cdn";
+import { PioneerToRemove } from "@/utils/PioneerType";
 
 interface charactersListJSON {
   status: number;
@@ -33,10 +34,15 @@ const Guides: React.FC = () => {
 
     fetch("/api/characters/all", { next: { revalidate: 300 } })
       .then((res) => res.json())
-      .then((data: charactersListJSON) => {
-        if (data.status === 200) {
-          setCharactersSearch(data.data);
-          characterList.current = data.data;
+      .then((json: charactersListJSON) => {
+        if (json.status === 200) {
+          // Filtre les doublons de pionniers
+          const Data = json.data as CharacterType[];
+          const filteredCharacters = Data.filter(
+            (objet) => !PioneerToRemove.includes(objet.id)
+          );
+          setCharactersSearch(filteredCharacters);
+          characterList.current = filteredCharacters;
         } else setCharactersSearch({ status: 404 });
       })
       .catch(() => setCharactersSearch({ status: 404 }));
@@ -72,7 +78,10 @@ const Guides: React.FC = () => {
             }}
             placeholder="Rechercher un personnage"
           />
-          <CharactersList list={charactersSearch as CharacterType[]} />
+          <CharactersList
+            list={charactersSearch as CharacterType[]}
+            lang={lang}
+          />
         </div>
         <Footer lang={lang} />
       </>
