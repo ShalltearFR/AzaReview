@@ -22,12 +22,13 @@ interface itemsProps {
   num?: number;
 }
 
+// Evite les doublons d'id entre les recommandés et non recommandés
 const filterLightconeID = (items: itemsProps[]) => {
-  const encounteredIdsData: { [id: string]: boolean } = {};
+  const lightconesIdsData: { [id: string]: boolean } = {};
   const itemsFilter: any[] = [];
   for (const item of items) {
-    if (!encounteredIdsData[item.id]) {
-      encounteredIdsData[item.id] = true;
+    if (!lightconesIdsData[item.id]) {
+      lightconesIdsData[item.id] = true;
       itemsFilter.push(item);
     } else if (item.recommended) {
       const existingItem = itemsFilter.find(
@@ -41,6 +42,8 @@ const filterLightconeID = (items: itemsProps[]) => {
   return itemsFilter;
 };
 
+// Evite les doublon d'id sur les relics
+// Si 2P et 4P sur meme ID, renomage de num à 2.4 pour indiquer 2P et 4P
 const filterRelicID = (items: itemsProps[]) => {
   const uniqueIDs = new Set();
   const result = [...items]
@@ -58,16 +61,14 @@ const filterRelicID = (items: itemsProps[]) => {
   return result;
 };
 
+// Sépare les reliques et ornements
 const separateRelics = (items: itemsProps[], isOrnament: boolean) => {
-  //relicsSetList
-  //if (type === "relic") return
-  const test = [...items].filter((item) =>
+  const filteredItems = [...items].filter((item) =>
     relicsSetList.find(
       (relic) => relic.isOrnamant === isOrnament && item.id === relic.id
     )
   );
-  return test;
-  console.log("test", test);
+  return filteredItems;
 };
 
 const percentStats = [
@@ -181,7 +182,6 @@ const BuildShow: React.FC<BuildShowProps> = ({
       {/* Main stats */}
       <div className="mt-14">
         <p className="font-bold text-xl underline text-orange">Main stats</p>
-        {/* <div className="p-5 bg-white/15 rounded-3xl"></div> */}
         <div className="flex flex-wrap gap-5 p-5 justify-center text-start bg-white/15 rounded-3xl mt-2">
           <MainStats
             lang={lang}
@@ -283,6 +283,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
         </div>
       </div>
 
+      {/* Statistiques recommandées */}
       <div className="my-10 xl:mb-0">
         <p className="font-bold text-xl underline text-orange">
           {lang === "en"
