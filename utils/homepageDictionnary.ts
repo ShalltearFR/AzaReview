@@ -41,7 +41,7 @@ const TranslateSection0: TranslateSection = {
     "Some clear and relevant advices for a simple use.",
     `[list]
     [*] Put your characters for show. [b](see video)[/b]
-    [*] Type your UID on the site and click on "research". [b]If you just modified your showing panel, please wait about 10 minutes[/b] so the synchronizing could be complete.
+    [*] Type your UID on the site and click on "Search". [b]If you just modified your showing panel, please wait about 10 minutes[/b] so the synchronizing could be complete.
     [*] If one of your characters can have 2 builds or more, you will have to select the one who shall meet your use.
     [/list]
     `,
@@ -54,7 +54,7 @@ const TranslateSection0: TranslateSection = {
     [*] Relics and ornaments sets
     [*] Main stats of all of your pieces
     [*] Your final stats. 
-    [*] Matching of your pieces with a D to SSS ranking
+    [*] The efficiency of your relics rated from D to SSS
     [/list]`,
     "Select or go over the elements to",
     "to see an easy-to-get recommandation for all players.",
