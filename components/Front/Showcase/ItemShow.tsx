@@ -21,8 +21,13 @@ const ItemShow: React.FC<ItemShowProps> = ({
   return (
     <div className="relative">
       {relicSet && (
-        <p className="bg-gray flex justify-center items-center h-8 w-8 rounded-full absolute -top-2 -left-2 text-black font-semibold text-lg z-10">
-          {relicSet.num}P
+        <p
+          className={`bg-gray flex justify-center items-center rounded-full absolute -top-2 -left-2 text-black font-semibold text-lg z-10 h-8 ${
+            relicSet.num === 2.4 ? "w-12" : "w-8" // Si 2 et 4P
+          }`}
+        >
+          {/* Si 2 et 4P */}
+          {relicSet.num === 2.4 ? "2/4P" : `${relicSet.num}P`}
         </p>
       )}
       <div

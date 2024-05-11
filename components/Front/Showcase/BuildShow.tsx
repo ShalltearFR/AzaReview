@@ -17,25 +17,54 @@ interface BuildShowProps {
 
 interface itemsProps {
   id: string;
-  recommended: boolean
+  recommended: boolean;
+  num?: number;
 }
 
-const filterUniqueID = (items: itemsProps[]) => {
-  const encounteredLightconeData: { [id: string]: boolean } = {};
+const filterLightconeID = (items: itemsProps[]) => {
+  const encounteredIdsData: { [id: string]: boolean } = {};
   const itemsFilter: any[] = [];
   for (const item of items) {
-    if (!encounteredLightconeData[item.id]) {
-      encounteredLightconeData[item.id] = true;
+    if (!encounteredIdsData[item.id]) {
+      encounteredIdsData[item.id] = true;
       itemsFilter.push(item);
     } else if (item.recommended) {
-      const existingItem = itemsFilter.find(existing => existing.id === item.id);
+      const existingItem = itemsFilter.find(
+        (existing) => existing.id === item.id
+      );
       if (existingItem) {
         existingItem.recommended = true;
       }
     }
   }
-  return itemsFilter
-}
+  return itemsFilter;
+};
+
+const filterRelicID = (items: itemsProps[]) => {
+  const uniqueIDs = new Set();
+  const result = [...items]
+    .filter((relic) => relic.recommended === false)
+    .filter((item) => {
+      if (uniqueIDs.has(item.id)) {
+        return false;
+      }
+      uniqueIDs.add(item.id);
+      if (item.num === 4) {
+        item.num = 2.4;
+      }
+      return true;
+    });
+  return result;
+};
+
+const percentStats = [
+  "CriticalChanceBase",
+  "CriticalDamageBase",
+  "SPRatioBase",
+  "StatusProbabilityBase",
+  "StatusResistanceBase",
+  "BreakDamageAddedRatioBase",
+];
 
 const BuildShow: React.FC<BuildShowProps> = ({
   build,
@@ -46,29 +75,11 @@ const BuildShow: React.FC<BuildShowProps> = ({
   properties,
   relicsSet,
 }) => {
-
-
-  // const relicsSetFilter = build.relics_set.filter(
-  //   (relic) => relic.recommended === false
-  // );
   const recommendedStatsFilter = build.recommended_stats.filter(
     (relic) => relic.value !== null && relic.value !== 0
   );
-  const lightConeFilter = filterUniqueID(build.lightCones)
-  const relicsSetFilter = filterUniqueID(build.relics_set)
-
-  console.log("buid", build.lightCones)
-  console.log("filteredLightcone", lightConeFilter)
-  //console.log("encounteredLightconeData", encounteredLightconeData)
-
-  const percentStats = [
-    "CriticalChanceBase",
-    "CriticalDamageBase",
-    "SPRatioBase",
-    "StatusProbabilityBase",
-    "StatusResistanceBase",
-    "BreakDamageAddedRatioBase",
-  ];
+  const lightConeFilter = filterLightconeID(build.lightCones);
+  const relicsSetFilter = filterRelicID(build.relics_set);
 
   const getMainStats = (piece: string) => {
     const result = build?.main_stats
@@ -100,8 +111,8 @@ const BuildShow: React.FC<BuildShowProps> = ({
           : translateBBCode(build.buildDesc)}
       </div>
       {/* Cone de lumière */}
-      <div className="mt-10">
-        <p className="font-bold text-xl underline">
+      <div className="mt-14">
+        <p className="font-bold text-xl underline text-orange">
           {lang === "en" ? "Light Cones" : "Cônes de lumière"}
         </p>
 
@@ -121,16 +132,17 @@ const BuildShow: React.FC<BuildShowProps> = ({
                         className="h-36 w-36"
                       />
                     </div>
-                  )
-                return null
-              }
-              )}
+                  );
+                return null;
+              })}
             </div>
           </div>
 
           <div className="p-5 bg-white/15 rounded-3xl">
             <p className="text-lg font-bold mb-2">
-              {lang === "en" ? "Recommended F2P/Accessible" : "Recommandés F2P/Accessibles"}
+              {lang === "en"
+                ? "Recommended F2P/Accessible"
+                : "Recommandés F2P/Accessibles"}
             </p>
             <div className="flex flex-wrap gap-5 justify-center">
               {lightConeFilter.map((lightcone) => {
@@ -143,19 +155,19 @@ const BuildShow: React.FC<BuildShowProps> = ({
                         className="h-36 w-36"
                       />
                     </div>
-                  )
-                return null
-              }
-              )}
+                  );
+                return null;
+              })}
             </div>
           </div>
         </div>
       </div>
 
       {/* Main stats */}
-      <div className="mt-10">
-        <p className="font-bold text-xl underline">Main stats</p>
-        <div className="flex flex-wrap gap-5 px-2 mt-2 justify-center text-start">
+      <div className="mt-14">
+        <p className="font-bold text-xl underline text-orange">Main stats</p>
+        {/* <div className="p-5 bg-white/15 rounded-3xl"></div> */}
+        <div className="flex flex-wrap gap-5 p-5 justify-center text-start bg-white/15 rounded-3xl mt-2">
           <MainStats
             lang={lang}
             type={getMainStats("body")}
@@ -192,18 +204,16 @@ const BuildShow: React.FC<BuildShowProps> = ({
       </div>
 
       {/* Sets de reliques */}
-      <div className="mt-10">
-        <p className="font-bold text-xl underline">
+      <div className="mt-14">
+        <p className="font-bold text-xl underline text-orange">
           {lang === "en" ? "Relics sets" : "Sets de reliques"}
         </p>
 
         <div className="mt-2 flex flex-col lg:flex-row gap-10 justify-center">
           <div className="p-5 bg-white/15 rounded-3xl">
-            <p className="text-lg font-bold mb-2">
-              Top
-            </p>
+            <p className="text-lg font-bold mb-2">Top</p>
             <div className="flex flex-wrap gap-5 justify-center">
-              {relicsSetFilter.map((relic) => {
+              {build.relics_set.map((relic) => {
                 if (relic.recommended)
                   return (
                     <div key={crypto.randomUUID()}>
@@ -211,12 +221,12 @@ const BuildShow: React.FC<BuildShowProps> = ({
                         type={relicsSet}
                         id={relic.id}
                         className="h-36 w-36"
+                        relicSet={relic}
                       />
                     </div>
-                  )
-                return null
-              }
-              )}
+                  );
+                return null;
+              })}
             </div>
           </div>
 
@@ -233,25 +243,25 @@ const BuildShow: React.FC<BuildShowProps> = ({
                         type={relicsSet}
                         id={relic.id}
                         className="h-36 w-36"
+                        relicSet={relic}
                       />
                     </div>
-                  )
-                return null
-              }
-              )}
+                  );
+                return null;
+              })}
             </div>
           </div>
         </div>
       </div>
 
       <div className="my-10 xl:mb-0">
-        <p className="font-bold text-xl underline">
+        <p className="font-bold text-xl underline text-orange">
           {lang === "en"
             ? "Recommended Statistics"
             : "Statistiques recommandées"}
         </p>
-        <div className="flex justify-center text-start">
-          <ul className="list-disc">
+        <div className="flex flex-col justify-center text-start">
+          <ul className="list-disc mx-auto">
             {recommendedStatsFilter.map((stat) => (
               <li className="ml-5" key={crypto.randomUUID()}>
                 <span>
@@ -267,11 +277,11 @@ const BuildShow: React.FC<BuildShowProps> = ({
               </li>
             ))}
           </ul>
-          <div className="mt-5">
+          <div className="mt-5 mx-auto">
             {lang === "en" && characterEN[characterID as any]
               ? translateBBCode(
-                characterEN[characterID as any][i]?.comment ?? ""
-              )
+                  characterEN[characterID as any][i]?.comment ?? ""
+                )
               : translateBBCode(build.recommended_comment)}
           </div>
         </div>
