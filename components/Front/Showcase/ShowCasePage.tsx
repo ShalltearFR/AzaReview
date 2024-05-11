@@ -8,6 +8,7 @@ import { useCookies } from "next-client-cookies";
 import { useEffect, useState } from "react";
 import BuildShow from "@/components/Front/Showcase/BuildShow";
 import Aos from "aos";
+import { PioneerType } from "@/utils/PioneerType";
 
 interface ShowCasePageProps {
   id: string;
@@ -84,7 +85,12 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({ id }) => {
             className="fixed -right-1/2 -left-1/2 grayscale opacity-50 object-cover h-full translate-y-5 -z-10 mx-auto"
           />
           <p className="font-bold text-4xl text-center mt-10">
-            {character.name}
+            {/* Adapte le nom du pionnier, si ce n'est pas le pionnier, donne le nom du personnage */}
+            {PioneerType.some((item) => item.id === character.id)
+              ? lang === "en"
+                ? PioneerType.find((item) => item.id === character.id)?.nameEN
+                : PioneerType.find((item) => item.id === character.id)?.nameFR
+              : character.name}
           </p>
           <section className="flex flex-col gap-y-10 mt-10">
             {character.data.map((build: Data, i: number) => (
