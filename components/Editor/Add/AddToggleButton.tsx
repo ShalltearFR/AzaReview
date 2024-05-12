@@ -46,12 +46,12 @@ const AddToggleButton: React.FC<AddToggleButtonProps> = ({
           }`}
         />
         <span
-          className={`flex items-center space-x-[6px] py-2 px-[18px] text-sm font-medium mx-auto`}
+          className={`flex justify-center items-center space-x-[6px] py-2 px-[18px] text-sm font-medium mx-auto w-[49%]`}
         >
           <span className="z-20">{name[0]}</span>
         </span>
         <span
-          className={`flex items-center space-x-[6px] py-2 px-[18px] text-sm font-medium mx-auto`}
+          className={`flex justify-center items-center space-x-[6px] py-2 px-[18px] text-sm font-medium mx-auto w-[49%]`}
         >
           <span className="z-20">{name[1]}</span>
         </span>

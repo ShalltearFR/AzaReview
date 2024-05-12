@@ -7,7 +7,7 @@ interface GuidesProps {
   lang: string | undefined;
 }
 
-const CharactersList: React.FC<GuidesProps> = ({ list, lang }) => {
+const CharactersList: React.FC<GuidesProps> = ({ list }) => {
   return (
     <div className="flex flex-wrap gap-5 justify-center my-10">
       {list &&

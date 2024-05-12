@@ -100,12 +100,13 @@ const Guides: React.FC = () => {
           data-aos="animate-stars"
         />
         <div className="min-h-[calc(100vh-205px)]">
-          <div className="mx-auto p-5 bg-gray/45 w-full smd:w-[610px] smd:rounded-3xl mt-10">
+          <div className="mx-auto p-5 bg-gray/45 w-full smd:w-[670px] smd:rounded-3xl mt-10">
             <p className="text-center text-white font-bold text-xl mb-2">
               {lang === "en" ? "Sort by:" : "Trier par :"}
             </p>
             <div className="flex flex-col items-center smd:flex-row gap-2 justify-around">
               <AddToggleButton
+                className={lang === "en" ? "w-60" : "w-[320px]"}
                 onChange={() => setCBA(!CBA)}
                 value={CBA}
                 name={
@@ -113,15 +114,15 @@ const Guides: React.FC = () => {
                     ? ["Asc. order", "Desc. order"]
                     : ["Ordre croissant", "Ordre décroissant"]
                 }
-                className={lang === "en" ? "w-56" : "w-[295px]"}
               />
               <AddToggleButton
+                className={lang === "en" ? "w-72" : "w-[300px]"}
                 onChange={() => setReleaseDate(!releaseDate)}
                 value={releaseDate}
                 name={
                   lang === "en"
-                    ? ["Alphabetic", "Release date"]
-                    : ["Alphabetique", "Date de sortie"]
+                    ? ["Alphabetic", "Guide arrivals"]
+                    : ["Alphabetique", "Sorties de guide"]
                 }
               />
             </div>
