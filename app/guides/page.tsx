@@ -1,13 +1,14 @@
 "use client";
 import NavBar from "@/components/Front/NavBar";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useCookies } from "next-client-cookies";
 import { CharacterType } from "@/types/CharacterModel";
 import CharactersList from "@/components/Front/Showcase/CharactersList";
 import Footer from "@/components/Front/UID/Footer";
 import Aos from "aos";
 import { CDN2 } from "@/utils/cdn";
-import { PioneerToRemove } from "@/utils/PioneerType";
+import { PioneerToRemove, replacePioneerName } from "@/utils/PioneerType";
+import AddToggleButton from "@/components/Editor/Add/AddToggleButton";
 
 interface charactersListJSON {
   status: number;
@@ -21,6 +22,8 @@ const Guides: React.FC = () => {
     CharacterType[] | { status: number } | undefined
   >(undefined);
   const [searchInput, setSearchInput] = useState<string>("");
+  const [CBA, setCBA] = useState<boolean>(false);
+  const [releaseDate, setReleaseDate] = useState<boolean>(true);
 
   const cookies = useCookies();
   const lang = cookies.get("lang");
@@ -41,22 +44,49 @@ const Guides: React.FC = () => {
           const filteredCharacters = Data.filter(
             (objet) => !PioneerToRemove.includes(objet.id)
           );
-          setCharactersSearch(filteredCharacters);
-          characterList.current = filteredCharacters;
+          const remplacedCharacters = replacePioneerName(
+            lang,
+            filteredCharacters
+          );
+
+          characterList.current = remplacedCharacters;
+          setCharactersSearch(remplacedCharacters);
         } else setCharactersSearch({ status: 404 });
       })
       .catch(() => setCharactersSearch({ status: 404 }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(event.target.value);
-    if (characterList.current) {
-      const dataBaseCharactersCopy = [...characterList.current].filter((text) =>
-        text.name.toLowerCase().includes(event.target.value.toLowerCase())
+  useEffect(() => {
+    if (Array.isArray(charactersSearch) && characterList.current) {
+      const remplacedCharacters = replacePioneerName(
+        lang,
+        characterList.current
       );
-      setCharactersSearch(dataBaseCharactersCopy);
+
+      characterList.current = remplacedCharacters;
+      const charactersSearchCopy = [...remplacedCharacters].filter((text) =>
+        text.name.toLowerCase().includes(searchInput.toLowerCase())
+      );
+      if (!releaseDate) {
+        // Trie par ordre alphabetique
+        charactersSearchCopy.sort((a, b) => {
+          const nameA = a.name.toLowerCase();
+          const nameB = b.name.toLowerCase();
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+          return 0;
+        });
+      }
+      if (CBA) charactersSearchCopy.reverse();
+      setCharactersSearch(charactersSearchCopy);
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [CBA, searchInput, releaseDate, lang]);
 
   if (charactersSearch) {
     return (
@@ -70,14 +100,40 @@ const Guides: React.FC = () => {
           data-aos="animate-stars"
         />
         <div className="min-h-[calc(100vh-205px)]">
-          <input
-            className="flex mt-10 mx-auto sm:ml-auto sm:mr-5 rounded-full pl-5 text-lg h-10 w-64"
-            value={searchInput}
-            onChange={(e) => {
-              handleChangeInput(e);
-            }}
-            placeholder="Rechercher un personnage"
-          />
+          <div className="mx-auto p-5 bg-gray/45 w-full smd:w-[610px] smd:rounded-3xl mt-10">
+            <p className="text-center text-white font-bold text-xl mb-2">
+              {lang === "en" ? "Sort by:" : "Trier par :"}
+            </p>
+            <div className="flex flex-col items-center smd:flex-row gap-2 justify-around">
+              <AddToggleButton
+                onChange={() => setCBA(!CBA)}
+                value={CBA}
+                name={
+                  lang === "en"
+                    ? ["Asc. order", "Desc. order"]
+                    : ["Ordre croissant", "Ordre décroissant"]
+                }
+                className={lang === "en" ? "w-56" : "w-[295px]"}
+              />
+              <AddToggleButton
+                onChange={() => setReleaseDate(!releaseDate)}
+                value={releaseDate}
+                name={
+                  lang === "en"
+                    ? ["Alphabetic", "Release date"]
+                    : ["Alphabetique", "Date de sortie"]
+                }
+              />
+            </div>
+            <input
+              className="flex mx-auto rounded-full pl-5 text-lg h-10 w-64 mt-5"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              placeholder={
+                lang === "en" ? "Character search" : "Rechercher un personnage"
+              }
+            />
+          </div>
           <CharactersList
             list={charactersSearch as CharacterType[]}
             lang={lang}
