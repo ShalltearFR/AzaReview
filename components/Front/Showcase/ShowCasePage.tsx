@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Footer from "@/components/Front/UID/Footer";
 import { CharacterType, Data } from "@/types/CharacterModel";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import BuildShow from "@/components/Front/Showcase/BuildShow";
 import Aos from "aos";
 import { replaceCharacterName } from "@/utils/PioneerType";
@@ -24,14 +24,28 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
   relicsSet,
   properties,
 }) => {
-  function hasStatus(value: any): value is { status: number } {
-    return typeof value === "object" && "error" in value;
-  }
+  const initCharacter = () => {
+    return replaceCharacterName(lang, character as CharacterType).then(
+      (character) => setCharacterName(character)
+    );
+  };
 
   useEffect(() => {
     Aos.init({ disable: window.innerWidth <= 1450 });
+    if (character) initCharacter();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const [characterName, setCharacterName] = useState<string>("");
+
+  useEffect(() => {
+    if (character) initCharacter();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
+
+  const hasStatus = (value: any): value is { status: number } => {
+    return typeof value === "object" && "error" in value;
+  };
   if (hasStatus(character)) return notFound();
 
   if (
@@ -58,7 +72,7 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
           />
           <p className="font-bold text-4xl text-center mt-10">
             {/* Adapte le nom du personnage, */}
-            {replaceCharacterName(lang, character)}
+            {characterName}
           </p>
           <section className="flex flex-col gap-y-10 mt-10">
             {character.data.map((build: Data, i: number) => (
