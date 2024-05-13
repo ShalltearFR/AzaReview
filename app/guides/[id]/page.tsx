@@ -1,22 +1,40 @@
 import ShowCasePage from "@/components/Front/Showcase/ShowCasePage";
 import { CDN } from "@/utils/cdn";
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
+
 type Props = {
   params: { id: number };
 };
 
-async function getData(id: number) {
-  const data = await fetch(`${process.env.WWW}/api/character/${id}`, {
-    next: { revalidate: 18000 },
+const getData = async (
+  url: string,
+  revalidate: number,
+  convertToObject?: boolean,
+  isMetadata?: boolean
+) => {
+  const data = await fetch(url, {
+    next: { revalidate: revalidate },
   });
-
   const jsonData = await data.json();
 
-  return Response.json(jsonData);
-}
+  if (convertToObject) {
+    const toArray = Object.values(jsonData).map((item) => item);
+    return toArray;
+  }
+
+  if (isMetadata) return Response.json(jsonData);
+
+  return jsonData;
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const res = await getData(params.id);
+  const res = await getData(
+    `${process.env.WWW}/api/character/${params.id}`,
+    18000,
+    false,
+    true
+  );
   const json = await res.json();
 
   if (json.name) {
@@ -40,8 +58,38 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const GuideID = ({ params }: { params: { id: string } }) => {
-  return <ShowCasePage id={params.id} />;
+const GuideID = async ({ params }: { params: { id: string } }) => {
+  const cookieStore = cookies();
+  const lang = cookieStore.get("lang")?.value;
+
+  try {
+    const [lightcones, relicsSet, properties, character] = await Promise.all([
+      getData(`${CDN}/index_min/${lang || "fr"}/light_cones.json`, 18000, true),
+      getData(`${CDN}/index_min/${lang || "fr"}/relic_sets.json`, 18000, true),
+      getData(`${CDN}/index_min/${lang || "fr"}/properties.json`, 18000, true),
+      getData(`${process.env.WWW}/api/character/${params.id}`, 300, false),
+    ]);
+
+    if (lightcones && relicsSet && properties) {
+      return (
+        <ShowCasePage
+          character={character}
+          lang={lang}
+          lightCones={lightcones}
+          relicsSet={relicsSet}
+          properties={properties}
+        />
+      );
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+
+  return (
+    <div className="mt-10 text-center text-xl font-bold">
+      {"Erreur avec le site, veuillez contacter l'administrateur"}
+    </div>
+  );
 };
 
 export default GuideID;

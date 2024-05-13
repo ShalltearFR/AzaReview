@@ -4,25 +4,36 @@ import { notFound } from "next/navigation";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Footer from "@/components/Front/UID/Footer";
 import { CharacterType, Data } from "@/types/CharacterModel";
-import { useCookies } from "next-client-cookies";
 import { useEffect, useState } from "react";
 import BuildShow from "@/components/Front/Showcase/BuildShow";
 import Aos from "aos";
 import { PioneerType } from "@/utils/PioneerType";
 
 interface ShowCasePageProps {
-  id: string;
+  //id: string;
+  character: CharacterType | undefined | { error: true };
+  lang: string | undefined;
+  lightCones: any;
+  relicsSet: any;
+  properties: any;
 }
 
-const ShowCasePage: React.FC<ShowCasePageProps> = ({ id }) => {
-  const [character, setCharacter] = useState<
-    CharacterType | undefined | { error: true }
-  >(undefined);
-  const [lightCones, setLightCones] = useState<any>();
-  const [relicsSet, setRelicsSet] = useState<any>();
-  const [properties, setProperties] = useState<any>();
-  const cookies = useCookies();
-  const lang = cookies.get("lang");
+const ShowCasePage: React.FC<ShowCasePageProps> = ({
+  // id,
+  character,
+  lang,
+  lightCones,
+  relicsSet,
+  properties,
+}) => {
+  // const [character, setCharacter] = useState<
+  //   CharacterType | undefined | { error: true }
+  // >(undefined);
+  //const [lightCones, setLightCones] = useState<any>();
+  //const [relicsSet, setRelicsSet] = useState<any>();
+  // [properties, setProperties] = useState<any>();
+  //const cookies = useCookies();
+  //const lang = cookies.get("lang");
 
   function hasStatus(value: any): value is { status: number } {
     return typeof value === "object" && "error" in value;
@@ -31,37 +42,38 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({ id }) => {
   useEffect(() => {
     Aos.init({ disable: window.innerWidth <= 1450 });
 
-    fetch(`/api/character/${id}`, {
-      next: { revalidate: 300 },
-    })
-      .then((res) => res.json())
-      .then((data) => setCharacter(data));
+    // fetch(`/api/character/${id}`, {
+    //   next: { revalidate: 300 },
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => setCharacter(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    fetch(`${CDN}/index_min/${lang || "fr"}/light_cones.json`, {
-      next: { revalidate: 18000 },
-    })
-      .then((res) => res.json())
-      .then((cone) => setLightCones(Object.values(cone)));
+  // useEffect(() => {
+  //   fetch(`${CDN}/index_min/${lang || "fr"}/light_cones.json`, {
+  //     next: { revalidate: 18000 },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((cone) => setLightCones(Object.values(cone)));
 
-    fetch(`${CDN}/index_min/${lang || "fr"}/relic_sets.json`, {
-      next: { revalidate: 18000 },
-    })
-      .then((res) => res.json())
-      .then((cone) => setRelicsSet(Object.values(cone)));
+  //   fetch(`${CDN}/index_min/${lang || "fr"}/relic_sets.json`, {
+  //     next: { revalidate: 18000 },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((cone) => setRelicsSet(Object.values(cone)));
 
-    fetch(`${CDN}/index_min/${lang || "fr"}/properties.json`, {
-      next: { revalidate: 18000 },
-    })
-      .then((res) => res.json())
-      .then((cone) => setProperties(Object.values(cone)));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lang]);
+  //   fetch(`${CDN}/index_min/${lang || "fr"}/properties.json`, {
+  //     next: { revalidate: 18000 },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((cone) => setProperties(Object.values(cone)));
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [lang]);
 
   if (hasStatus(character)) return notFound();
 
+  //console.log(lightCones);
   if (
     character &&
     "portrait" in character &&
