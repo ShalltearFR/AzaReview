@@ -116,7 +116,7 @@ const UidPage: React.FC<UidPageProps> = ({
       );
 
     setTimeout(() => {
-      //Leger timeout pour eviter le tronc d'image du au rajout du header Image
+      //Leger timeout pour eviter le troncage d'image dû au rajout du header Image
       let conversionPromise;
 
       if (window.innerWidth >= 650) {

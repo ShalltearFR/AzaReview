@@ -1,25 +1,27 @@
 import Footer from "@/components/Front/UID/Footer";
 import UidPage from "@/components/Front/UID/UidPage";
-import { CharacterType } from "@/types/CharacterModel";
 import { jsonUID } from "@/types/jsonUid";
-import { CDN, CDN2 } from "@/utils/cdn";
+import { CDN } from "@/utils/cdn";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import NavBar from "@/components/Front/NavBar";
 
 type Props = {
   params: { slug: number };
 };
 
-interface ReviewData {
-  data: CharacterType[];
-}
-
-async function getData(url: string, revalidationValue: number) {
+async function getData(
+  url: string,
+  revalidationValue: number,
+  convertToObject?: boolean
+) {
   const data = await fetch(url, {
     next: { revalidate: revalidationValue },
   });
   const dataJson = await data.json();
+  if (convertToObject) {
+    const toArray = Object.values(dataJson).map((item) => item);
+    return toArray;
+  }
   return dataJson;
 }
 
@@ -80,52 +82,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: { params: { slug: number } }) {
   const cookieStore = cookies();
-  const lang = cookieStore.get("lang");
+  const lang = cookieStore.get("lang")?.value;
 
   //Recupère les infos du joueur
-  const resUid = await getDataUid(params.slug, lang?.value);
+  const resUid = await getDataUid(params.slug, lang);
   const jsonUid: jsonUID = await resUid.json();
 
-  //Recupère les reviews
-  const resReview: ReviewData = await getData(
-    `${process.env.WWW}/api/characters/all`,
-    300 //Cache de 5min
-  );
-
-  //Recupère les traductions de stats
-  const statsTranslate: Array<any> = await getData(
-    `${CDN}/index_min/${lang?.value || "fr"}/properties.json`,
-    86400 //Cache de 24h
-  );
-  const statsTranslateToArray = Object.values(statsTranslate);
-
-  //Recupère les traductions des sets de relics
-  const relicsSetTranslate: Array<any> = await getData(
-    `${CDN}/index_min/${lang?.value || "fr"}/relic_sets.json`,
-    18000 //Cache de 5h
-  );
-  const relicsSetTranslateToArray = Object.values(relicsSetTranslate);
-
-  //Recupère les traductions des lightcones
-  const lightconesTranslate: Array<any> = await getData(
-    `${CDN}/index_min/${lang?.value || "fr"}/light_cones.json`,
-    18000 //Cache de 5h
-  );
-  const lightconesTranslateToArray = Object.values(lightconesTranslate);
-
-  //Recupère les traductions des relics
-  const relicsList: Array<any> = await getData(
-    `${CDN}/index_min/${lang?.value || "fr"}/relics.json`,
-    18000 //Cache de 5h
-  );
-  const relicsListArray = Object.values(relicsList);
-
-  //Recupère la liste des eidolons de tous les personnages
-  const eidolonsList: Array<any> = await getData(
-    `${CDN}/index_min/${lang?.value || "fr"}/character_ranks.json`,
-    18000 //Cache de 5h
-  );
-  const eidolonsListArray = Object.values(eidolonsList);
+  const [
+    resReview,
+    statsTranslate,
+    relicsSetTranslate,
+    lightconesTranslate,
+    relicsList,
+    eidolonsList,
+  ] = await Promise.all([
+    getData(`${process.env.WWW}/api/characters/all`, 300, false),
+    getData(`${CDN}/index_min/${lang || "fr"}/properties.json`, 86400, true),
+    getData(`${CDN}/index_min/${lang || "fr"}/relic_sets.json`, 18000, true),
+    getData(`${CDN}/index_min/${lang || "fr"}/light_cones.json`, 18000, true),
+    getData(`${CDN}/index_min/${lang || "fr"}/relics.json`, 18000, true),
+    getData(
+      `${CDN}/index_min/${lang || "fr"}/character_ranks.json`,
+      18000,
+      true
+    ),
+  ]);
 
   if (!jsonUid || !resReview) {
     return <div className="text-center mt-10">Chargement en cours ...</div>;
@@ -137,15 +118,15 @@ export default async function Page({ params }: { params: { slug: number } }) {
         <UidPage
           jsonUid={{ status: 200 }}
           jsonReview={resReview}
-          statsTranslate={statsTranslateToArray}
-          relicsSetTranslate={relicsSetTranslateToArray}
-          lightconesTranslate={lightconesTranslateToArray}
-          RelicsList={relicsListArray}
-          eidolonsList={eidolonsListArray}
-          lang={lang?.value}
+          statsTranslate={statsTranslate}
+          relicsSetTranslate={relicsSetTranslate}
+          lightconesTranslate={lightconesTranslate}
+          RelicsList={relicsList}
+          eidolonsList={eidolonsList}
+          lang={lang}
           error504
         />
-        <Footer lang={lang?.value} />
+        <Footer lang={lang} />
       </>
     );
   }
@@ -155,14 +136,14 @@ export default async function Page({ params }: { params: { slug: number } }) {
       <UidPage
         jsonUid={jsonUid}
         jsonReview={resReview}
-        statsTranslate={statsTranslateToArray}
-        relicsSetTranslate={relicsSetTranslateToArray}
-        lightconesTranslate={lightconesTranslateToArray}
-        RelicsList={relicsListArray}
-        eidolonsList={eidolonsListArray}
-        lang={lang?.value}
+        statsTranslate={statsTranslate}
+        relicsSetTranslate={relicsSetTranslate}
+        lightconesTranslate={lightconesTranslate}
+        RelicsList={relicsList}
+        eidolonsList={eidolonsList}
+        lang={lang}
       />
-      <Footer lang={lang?.value} />
+      <Footer lang={lang} />
     </>
   );
 }
