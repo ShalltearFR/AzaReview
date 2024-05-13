@@ -222,8 +222,8 @@ const BuildShow: React.FC<BuildShowProps> = ({
       <div className="mt-14">
         <p className="font-bold text-xl underline text-orange">
           {lang === "en"
-            ? "Relics sets and Ornaments"
-            : "Sets de reliques et Ornements"}
+            ? "Relics sets + Ornaments"
+            : "Sets de reliques + Ornements"}
         </p>
 
         <div className="mt-2 flex flex-col lg:flex-row gap-10 justify-center">
