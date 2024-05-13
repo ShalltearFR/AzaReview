@@ -1,25 +1,19 @@
 "use client";
 import NavBar from "@/components/Front/NavBar";
 import { useEffect, useRef, useState } from "react";
-import { useCookies } from "next-client-cookies";
 import { CharacterType } from "@/types/CharacterModel";
 import CharactersList from "@/components/Front/Showcase/CharactersList";
 import Footer from "@/components/Front/UID/Footer";
 import Aos from "aos";
 import { CDN2 } from "@/utils/cdn";
-import { PioneerToRemove, replacePioneerName } from "@/utils/PioneerType";
 import AddToggleButton from "@/components/Editor/Add/AddToggleButton";
 
-interface charactersListJSON {
-  status: number;
-  data?: CharacterType[];
-}
-
 interface GuidesPageProps {
-  character: charactersListJSON;
+  character: CharacterType[];
+  lang: string | undefined;
 }
 
-const GuidesPage: React.FC<GuidesPageProps> = ({ character }) => {
+const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
   const characterList = useRef<CharacterType[] | undefined>(undefined);
 
   const [charactersSearch, setCharactersSearch] = useState<
@@ -28,9 +22,6 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character }) => {
   const [searchInput, setSearchInput] = useState<string>("");
   const [CBA, setCBA] = useState<boolean>(false);
   const [releaseDate, setReleaseDate] = useState<boolean>(true);
-
-  const cookies = useCookies();
-  const lang = cookies.get("lang");
 
   function hasStatus(value: any): value is { status: number } {
     return typeof value === "object" && "status" in value;
@@ -44,29 +35,16 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character }) => {
       return;
     }
 
-    if (character && character.data) {
-      // Filtre les doublons de pionniers
-      const Data: CharacterType[] = character.data;
-      const filteredCharacters = Data.filter(
-        (objet) => !PioneerToRemove.includes(objet.id)
-      );
-      const remplacedCharacters = replacePioneerName(lang, filteredCharacters);
+    characterList.current = character;
+    setCharactersSearch(character);
 
-      characterList.current = remplacedCharacters;
-      setCharactersSearch(remplacedCharacters);
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (Array.isArray(charactersSearch) && characterList.current) {
-      const remplacedCharacters = replacePioneerName(
-        lang,
-        characterList.current
-      );
-
-      characterList.current = remplacedCharacters;
-      const charactersSearchCopy = [...remplacedCharacters].filter((text) =>
+      characterList.current = [...character];
+      const charactersSearchCopy = [...character].filter((text) =>
         text.name.toLowerCase().includes(searchInput.toLowerCase())
       );
       if (!releaseDate) {
@@ -166,6 +144,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character }) => {
       </>
     );
   }
+
   return (
     <>
       <NavBar />

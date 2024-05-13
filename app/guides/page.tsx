@@ -1,7 +1,9 @@
 import GuidesPage from "@/components/Front/Showcase/GuidesPage";
 import { CharacterType } from "@/types/CharacterModel";
+import { PioneerToRemove, replacePioneersName } from "@/utils/PioneerType";
 import { CDN2 } from "@/utils/cdn";
 import { Metadata } from "next";
+import { cookies } from "next/headers";
 
 interface charactersListJSON {
   status: number;
@@ -33,19 +35,32 @@ const getData = async (
 };
 
 const Guides: React.FC = async () => {
+  const cookieStore = cookies();
+  const lang = cookieStore.get("lang")?.value;
+
   const character: charactersListJSON = await getData(
     `${process.env.WWW}/api/characters/all`,
     300
   );
 
-  if (!character)
-    return (
-      <div className="mt-10 text-center text-xl font-bold">
-        {"Erreur avec le site, veuillez contacter l'administrateur"}
-      </div>
+  if (character?.data) {
+    const Data: CharacterType[] = character.data;
+    const filteredCharacters = Data.filter(
+      (objet) => !PioneerToRemove.includes(objet.id)
+    );
+    const remplacedCharacters = await replacePioneersName(
+      lang,
+      filteredCharacters
     );
 
-  return <GuidesPage character={character} />;
+    return <GuidesPage character={remplacedCharacters} lang={lang} />;
+  }
+
+  return (
+    <div className="mt-10 text-center text-xl font-bold">
+      {"Erreur avec le site, veuillez contacter l'administrateur, pages Guides"}
+    </div>
+  );
 };
 
 export default Guides;

@@ -87,7 +87,7 @@ const GuideID = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="mt-10 text-center text-xl font-bold">
-      {"Erreur avec le site, veuillez contacter l'administrateur"}
+      {"Erreur avec le site, veuillez contacter l'administrateur, page Guide"}
     </div>
   );
 };

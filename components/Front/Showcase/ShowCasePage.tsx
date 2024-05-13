@@ -7,7 +7,7 @@ import { CharacterType, Data } from "@/types/CharacterModel";
 import { useEffect } from "react";
 import BuildShow from "@/components/Front/Showcase/BuildShow";
 import Aos from "aos";
-import { PioneerType } from "@/utils/PioneerType";
+import { replaceCharacterName } from "@/utils/PioneerType";
 
 interface ShowCasePageProps {
   character: CharacterType | undefined | { error: true };
@@ -57,12 +57,8 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
             className="fixed -right-1/2 -left-1/2 grayscale opacity-50 object-cover h-full translate-y-5 -z-10 mx-auto"
           />
           <p className="font-bold text-4xl text-center mt-10">
-            {/* Adapte le nom du pionnier, si ce n'est pas le pionnier, donne le nom du personnage */}
-            {PioneerType.some((item) => item.id === character.id)
-              ? lang === "en"
-                ? PioneerType.find((item) => item.id === character.id)?.nameEN
-                : PioneerType.find((item) => item.id === character.id)?.nameFR
-              : character.name}
+            {/* Adapte le nom du personnage, */}
+            {replaceCharacterName(lang, character)}
           </p>
           <section className="flex flex-col gap-y-10 mt-10">
             {character.data.map((build: Data, i: number) => (
