@@ -205,7 +205,7 @@ const characterEN: CharacterENProps = {
     // Pionnier feu F
     {
       name: "Adblock Plus Plus",
-      desc: "Stelle protects the team by [u]Taunting[/u] enemies to take damage herself.\nThe [u]Shiedls[/u] she provides can't take all damages received by allies as they are thin.",
+      desc: "MC Preservation protects the team by [u]Taunting[/u] enemies to take damage herself.\nThe [u]Shiedls[/u] she provides can't take all damages received by allies as they are thin.",
       comment:
         "Increase [u]Effect RES[/u] when minimum requirements achieved on other stats.",
     },
@@ -214,7 +214,7 @@ const characterEN: CharacterENProps = {
     // Pionnier feu M
     {
       name: "Adblock Plus Plus",
-      desc: "Caelus protects the team by [u]Taunting[/u] enemies to take damage herself.\nThe [u]Shiedls[/u] he provides can't take all damages received by allies as they are thin.",
+      desc: "MC Preservation protects the team by [u]Taunting[/u] enemies to take damage herself.\nThe [u]Shiedls[/u] he provides can't take all damages received by allies as they are thin.",
       comment:
         "Increase [u]Effect RES[/u] when minimum requirements achieved on other stats.",
     },
@@ -223,7 +223,7 @@ const characterEN: CharacterENProps = {
     // Pionnier Physique M
     {
       name: "Home Run Lucille !",
-      desc: "Caelus deals [color=gray]Physical[/color] damages on multiple targets.\nHe can choose to launch his [u]Ultimate[/u] on one target to deal greater damage.",
+      desc: "MC Destruction deals [color=gray]Physical[/color] damages on multiple targets.\nHe can choose to launch his [u]Ultimate[/u] on one target to deal greater damage.",
       comment:
         "If equipped with Ornaments [u]Glamoth[/u] ➜ Set [u]Speed[/u] at 135.",
     },
@@ -232,7 +232,7 @@ const characterEN: CharacterENProps = {
     // Pionnier Physique F
     {
       name: "Home Run Lucille !",
-      desc: "Stelle deals [color=gray]Physical[/color] damages on multiple targets.\nShe can choose to launch his [u]Ultimate[/u] on one target to deal greater damage.",
+      desc: "MC Destruction deals [color=gray]Physical[/color] damages on multiple targets.\nShe can choose to launch his [u]Ultimate[/u] on one target to deal greater damage.",
       comment:
         "If equipped with Ornaments [u]Glamoth[/u] ➜ Set [u]Speed[/u] at 135.",
     },
