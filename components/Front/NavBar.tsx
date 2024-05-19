@@ -48,7 +48,7 @@ const NavBar: React.FC<NavBarProps> = ({
   return (
     <>
       <nav className="flex bg-[#030303] w-screen z-50 h-16 xl:fixed">
-        <div className="relative flex w-full  items-center">
+        <div className="relative flex w-full items-center">
           <Link
             href={"/"}
             className={`smd:!block ${
@@ -62,8 +62,8 @@ const NavBar: React.FC<NavBarProps> = ({
               className="absolute h-16 smd:h-20 left-2 top-2 z-50 smd:mt-2 xl:mt-0"
             />
           </Link>
-          <div className="w-28 mmd:w-28" />
-          <div className="flex gap-16 mx-auto smd:mx-0 smd:ml-auto mmd:mx-auto items-center ">
+          <div className="w-0 mmd:w-28" />
+          <div className="flex mx-auto smd:mx-0 smd:ml-auto mmd:mx-auto items-center">
             <div className="h-0 w-0 xl2:h-16 xl2:w-16">
               {isHomepage &&
                 setSectionIndex &&
@@ -93,7 +93,7 @@ const NavBar: React.FC<NavBarProps> = ({
               }`}
             >
               <input
-                className="rounded-full w-40 h-10 pl-5 text-lg z-50 "
+                className="rounded-full w-40 sm:w-40 h-10 pl-5 text-lg z-50 "
                 maxLength={9}
                 placeholder="UID"
                 value={uidInput}
@@ -114,7 +114,7 @@ const NavBar: React.FC<NavBarProps> = ({
               />
               <button
                 disabled={disableSearchButton}
-                className="bg-[#3E7032] flex gap-2 items-center h-10 px-4 rounded-full text-white z-50 disabled:bg-gray"
+                className="bg-[#3E7032] flex gap-2 items-center h-10 px-4 rounded-full text-white z-50 disabled:bg-gray over"
                 onClick={() => {
                   if (uidInput !== "" && uidInput !== uidPathName) {
                     setDisableSearchButton(true);
@@ -178,7 +178,7 @@ const NavBar: React.FC<NavBarProps> = ({
             </div>
             <Link
               href={"/guides"}
-              className="hidden xl:block py-2 px-3 bg-orange font-bold rounded-3xl"
+              className="hidden xl:block xl:py-2 xl:px-3 bg-orange font-bold rounded-3xl xl:ml-32"
             >
               {lang === "en" ? "Showcase" : "Guides"}
             </Link>
@@ -238,7 +238,7 @@ const NavBar: React.FC<NavBarProps> = ({
         </div>
       </nav>
       <div
-        className={`bg-black pb-2 w-full ${
+        className={`bg-black pb-2 w-screen ${
           openMenu ? "flex xl:hidden" : "hidden smd:flex xl:hidden"
         }`}
       >
