@@ -26,7 +26,7 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
 }) => {
   const initCharacter = () => {
     return replaceCharacterName(lang, character as CharacterType).then(
-      (character) => setCharacterName(character)
+      (character) => setCharacterName(character as string)
     );
   };
 
