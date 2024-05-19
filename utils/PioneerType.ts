@@ -5,54 +5,62 @@ interface PioneerTypeProps {
   id: string;
   nameFR: string;
   nameEN: string;
+  preview: string;
 }
 
-const getCharacterEN = async () => {
+const getCharacterEN = async (): Promise<CharacterType[]> => {
   const data = await fetch(`${CDN}/index_min/en/characters.json`, {
     next: { revalidate: 18000 },
   });
-  const jsonData = await data.json();
-  const toArray = Object.values(jsonData).map((item) => item);
-  return toArray;
+  return Object.values(await data.json()) as CharacterType[];
 };
 
 const PioneerType: PioneerTypeProps[] = [
   {
     id: "8001",
-    nameFR: "Caelius Destruction",
-    nameEN: "Caelius Destruction",
+    nameFR: "MC Destruction",
+    nameEN: "MC Destruction",
+    preview: "img/guides/preview/8001.png",
   },
   {
     id: "8003",
-    nameFR: "Caelius Preservation",
-    nameEN: "Caelius Preservation",
+    nameFR: "MC Preservation",
+    nameEN: "MC Preservation",
+    preview: "img/guides/preview/8003.png",
   },
   {
     id: "8005",
-    nameFR: "Caelius Harmonie",
-    nameEN: "Caelius Harmony",
+    nameFR: "MC Harmonie",
+    nameEN: "MC Harmony",
+    preview: "img/guides/preview/8005.png",
   },
 ];
 
-const PioneerToADD: Array<String> = ["8001", "8003", "8005"];
-const PioneerToRemove: Array<String> = ["8002", "8004", "8006"];
+const PioneerToADD: string[] = ["8001", "8003", "8005"];
+const PioneerToRemove: string[] = ["8002", "8004", "8006"];
+
+const findPioneer = (id: string, lang: string): string | undefined => {
+  const pioneer = PioneerType.find((item) => item.id === id);
+  return pioneer
+    ? lang === "en"
+      ? pioneer.nameEN
+      : pioneer.nameFR
+    : undefined;
+};
 
 const replaceCharacterName = async (
   lang: string | undefined,
   character: CharacterType
-) => {
+): Promise<string | undefined> => {
   if (PioneerToADD.includes(character.id)) {
-    if (lang === "en")
-      return PioneerType.find((item) => item.id === character.id)?.nameEN;
-    return PioneerType.find((item) => item.id === character.id)?.nameFR;
+    return findPioneer(character.id, lang || "fr");
   }
-
   if (lang === "en") {
     const CharacterEN = await getCharacterEN();
-    const characterObject: any = CharacterEN.find(
-      (char: any) => char.id === character.id
+    const characterObject = CharacterEN.find(
+      (char) => char.id === character.id
     );
-    return characterObject.name;
+    return characterObject?.name;
   }
   return character.name;
 };
@@ -60,62 +68,39 @@ const replaceCharacterName = async (
 const replacePioneersName = async (
   lang: string | undefined,
   charactersList: CharacterType[]
-) => {
-  if (lang === "en") {
-    const CharacterEN = await getCharacterEN();
-    const filteredCharactersCopy = [...charactersList].map((character) => {
-      if (character.id === "8001")
+): Promise<CharacterType[]> => {
+  const CharacterEN = lang === "en" ? await getCharacterEN() : [];
+  return charactersList.map((character) => {
+    const pioneerName = findPioneer(character.id, lang || "fr");
+    if (pioneerName) {
+      const pioneer = PioneerType.find((item) => item.id === character.id);
+      if (pioneer) {
         return {
           ...character,
-          name: "Caelius Destruction",
+          name: pioneerName,
+          preview: pioneer.preview,
+          pionneer: true,
         };
-      if (character.id === "8003")
-        return {
-          ...character,
-          name: "Caelius Preservation",
-        };
-      if (character.id === "8005")
-        return {
-          ...character,
-          name: "Caelius Harmony",
-        };
-
-      const characterObject: any = CharacterEN.find(
-        (char: any) => char.id === character.id
+      }
+    }
+    if (lang === "en") {
+      const characterObject = CharacterEN.find(
+        (char) => char.id === character.id
       );
-
       return {
         ...character,
-        name: characterObject.name,
+        name: characterObject?.name || character.name,
+        preview: character.preview,
       };
-    });
-    return filteredCharactersCopy;
-  } else {
-    const filteredCharactersCopy = [...charactersList].map((character) => {
-      if (character.id === "8001")
-        return {
-          ...character,
-          name: "Caelius Destruction",
-        };
-      if (character.id === "8003")
-        return {
-          ...character,
-          name: "Caelius Preservation",
-        };
-      if (character.id === "8005")
-        return {
-          ...character,
-          name: "Caelius Harmonie",
-        };
-      return character;
-    });
-    return filteredCharactersCopy;
-  }
+    }
+    return character;
+  });
 };
 
 export {
   PioneerType,
   PioneerToRemove,
+  PioneerToADD,
   replacePioneersName,
   replaceCharacterName,
 };

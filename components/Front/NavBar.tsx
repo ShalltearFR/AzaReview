@@ -244,7 +244,7 @@ const NavBar: React.FC<NavBarProps> = ({
       >
         <Link
           href={"/guides"}
-          className="py-2 px-3 bg-orange font-bold rounded-3xl ml-5 smd:ml-32"
+          className="py-2 px-3 bg-orange font-bold rounded-3xl ml-5 smd:ml-32 z-50"
         >
           {lang === "en" ? "Showcase" : "Guides"}
         </Link>

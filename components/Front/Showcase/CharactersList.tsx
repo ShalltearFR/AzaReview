@@ -1,5 +1,6 @@
 import { CharacterType } from "@/types/CharacterModel";
-import { CDN } from "@/utils/cdn";
+import { PioneerToADD, PioneerType } from "@/utils/PioneerType";
+import { CDN, CDN2 } from "@/utils/cdn";
 import Link from "next/link";
 
 interface GuidesProps {
@@ -20,7 +21,13 @@ const CharactersList: React.FC<GuidesProps> = ({ list }) => {
             <p className="absolute bottom-0 text-center text-white font-bold bg-black w-full h-10 flex items-center justify-center">
               {character.name}
             </p>
-            <img src={`${CDN}/${character.preview}`} />
+            <img
+              src={
+                PioneerToADD.includes(character.id)
+                  ? `${CDN2}/${character.preview}`
+                  : `${CDN}/${character.preview}`
+              }
+            />
           </Link>
         ))}
     </div>

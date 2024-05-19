@@ -77,6 +77,7 @@ type CharacterType = {
   portrait: string;
   path: string;
   data: Data[];
+  pionner?: boolean;
 };
 
 export type {
