@@ -75,7 +75,7 @@ const NavBar: React.FC<NavBarProps> = ({
                   >
                     <img
                       src={`${CDN2}/img/homepage/nextSection.svg`}
-                      className="animate-homePageBounce"
+                      className="ml-8 h-16 animate-homePageBounce"
                       onClick={() => {
                         setSectionIndex(sectionIndex - 1);
                         setSectionPrevIndex(sectionIndex);
@@ -167,7 +167,7 @@ const NavBar: React.FC<NavBarProps> = ({
                   >
                     <img
                       src={`${CDN2}/img/homepage/nextSection.svg`}
-                      className="h-16 animate-homePageBounce"
+                      className="ml-8 h-16 animate-homePageBounce"
                       onClick={() => {
                         setSectionIndex(sectionIndex + 1);
                         setSectionPrevIndex(sectionIndex);
