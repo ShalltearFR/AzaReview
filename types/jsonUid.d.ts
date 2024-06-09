@@ -70,6 +70,7 @@ interface RelicSubAffix {
 interface Relic {
   id: string;
   name: string;
+  type: number;
   set_id: string;
   set_name: string;
   rarity: number;

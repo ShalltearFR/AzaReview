@@ -1,5 +1,5 @@
 "use client";
-import { jsonUID } from "@/types/jsonUid";
+import { Character, Relic, jsonUID } from "@/types/jsonUid";
 import CharacterSplash from "./CharacterSplash";
 import CharacterTrace from "./CharacterTrace";
 import CharacterLightCone from "./CharacterLightCone";
@@ -46,10 +46,20 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   // @ts-ignore
   const characterReview: Data[] = reviewData[index].data as Data;
   const [tracesNames, setTracesNames] = useState<Array<string>>([]);
+  const [characterRelics, setCharacterRelics] = useState<Relic[] | []>([]);
 
   useEffect(() => {
     setTracesNames(traces[lang ?? "fr"]);
   }, [lang]);
+
+  useEffect(() => {
+    if (character.relics) {
+      const characterRelicsFilter: Relic[] = { ...character }.relics.sort(
+        (a, b) => a.type - b.type
+      );
+      setCharacterRelics(characterRelicsFilter);
+    }
+  }, [character, index]);
 
   const getMainStats = (piece: string) => {
     const result = characterReview[buildIndex]?.main_stats
@@ -83,7 +93,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           backgroundRepeat: "repeat-y",
         }}
       >
-        <div className="flex flex-col my-auto xl:ml-5 w-screen xl:w-full">
+        <div className="flex flex-col xl:ml-5 w-screen xl:w-full">
           <CharacterSplash
             character={character}
             eidolonsList={eidolonsList}
@@ -173,7 +183,8 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                         )
                       : ""
                     : translateBBCode(
-                        characterReview[buildIndex].recommended_comment ?? ""
+                        characterReview[buildIndex].recommended_comment ?? "",
+                        true
                       )}
                 </div>
               )}
@@ -193,13 +204,10 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           </div>
         </div>
         <div className="flex flex-col gap-3 my-auto pt-auto mx-auto mt-5 w-screen xl:w-full xl:my-auto">
-          {character.relics.length === 6 ? (
-            character.relics.map((relic, i) => {
+          {characterRelics.length === 6 ? (
+            characterRelics.map((relic, i) => {
               return (
-                <div
-                  key={`relicCharacter${index}+build${buildIndex}+${i}`}
-                  className="flex items-center"
-                >
+                <div key={crypto.randomUUID()} className="flex items-center">
                   <CharacterRelic
                     stats={relic}
                     equipmentIndex={i}
@@ -240,7 +248,8 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
               <p>
                 {translateBBCode(
                   UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
-                    .NoCompletlyRelics2
+                    .NoCompletlyRelics2,
+                  true
                 )}
               </p>
               {characterReview && characterReview[buildIndex]?.main_stats && (
