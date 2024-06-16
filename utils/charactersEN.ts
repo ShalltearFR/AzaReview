@@ -434,6 +434,15 @@ const characterEN: CharacterENProps = {
       comment: "",
     },
   ],
+  1008: [
+    // Arlan
+    {
+      name: "Saving soldier Arlan",
+      desc: "Arlan deals [color=#DB76ED]Thunder[/color] damage and consumes his life instead of Skill Points.\nThe less life he has, the more damage he deals.",
+      comment:
+        "If Glamoth Ornaments ➜ [u]Speed[/u] at 135.\nIf different Relics from [u]Everlasting Disciple[/u] ➜ [u]Crit Chance[/u] at 70%.",
+    },
+  ],
   1315: [
     // Boothill
     {
