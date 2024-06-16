@@ -100,12 +100,12 @@ const characterEN: CharacterENProps = {
   1101: [
     // Bronya
     {
-      name: "Me First",
+      name: "1- Me First",
       desc: "Brony is played with max [u]Speed[/u] to offer a turn at an ally (the ally can be slow).",
       comment: "",
     },
     {
-      name: "After you",
+      name: "2- After you",
       desc: "Bronya matches her [u]Speed[/u] to play right after the ally she boosts (the ally should be fast)\n•	Ideally the ally should be at 135/136 of [u]Speed[/u] and Bronya at 134.",
       comment: "",
     },
@@ -279,13 +279,13 @@ const characterEN: CharacterENProps = {
   1106: [
     // Pela
     {
-      name: "Surveillance Drone",
+      name: "1- Surveillance Drone",
       desc: "[color=Orchid]『 SUPPORT BUILD 』[/color]\nPela reduces enemies' s [u]Defense[/u] and helps generate [u]Skill Points[/u] for the team.",
       comment:
         "Requirements for [u]Effect RES[/u] only when equipped with Ornaments [u]Broken Keel[/u].",
     },
     {
-      name: "Apocalypse Mode",
+      name: "2- Apocalypse Mode",
       desc: "[color=#ED5F65]『 DPS/SUB-DPS BUILD 』[/color]\nPela deals [color=#6CACD4]Ice[/color] damages while reducing enemies’s [u]Defense[/u] (E6 recommended).",
       comment:
         "If equipped with Ornaments [u]Glamoth[/u] ➜ Set [u]Speed[/u] at 135.\n[u]Crit. Rate[/u] at 70 if equipped with Ornaments [u]Rutilant Arena[/u] + something different than [u]Pioneer Diver[/u] in 4P.",
