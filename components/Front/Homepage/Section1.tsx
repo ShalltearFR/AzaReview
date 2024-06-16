@@ -67,7 +67,7 @@ const Section1: React.FC<Section1Props> = ({ sectionPrevIndex, lang }) => {
             <h2 className="text-xl xl:text-2xl font-bold text-center mb-5">
               {translateSection[6]}
             </h2>
-            <div>{translateSection[7]}</div>
+            <div>{translateBBCode(translateSection[7])}</div>
             <ul className="list-disc mt-5 [&_li]:ml-5 italic">
               <li>{translateBBCode(translateSection[8])}</li>
               <li>{translateBBCode(translateSection[9])}</li>
