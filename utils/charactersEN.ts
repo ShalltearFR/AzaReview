@@ -26,7 +26,7 @@ const characterEN: CharacterENProps = {
   1112: [
     // Topaz
     {
-      name: "_____",
+      name: "Launch your Magoret",
       desc: "Topaz is a [color=#FF4747]Fire[/color] dps that deals damage trough [u]Follow-up Attack[/u].\nCompti fights by her side and attack very frequently.",
       comment: "",
     },
@@ -43,7 +43,7 @@ const characterEN: CharacterENProps = {
   1217: [
     // Huo Huo
     {
-      name: "_____",
+      name: "Swiffer Duster",
       desc: "HuoHuo maintains the team alive by healing them at the start of each the ally’s turn.\nShe effectively removes [u]Debuffs[/u] on allies.",
       comment:
         "Max [u]Speed[/u] after reaching minimum requirements on other stats.",
@@ -70,7 +70,7 @@ const characterEN: CharacterENProps = {
   1102: [
     // Selee
     {
-      name: "Who’s next ?",
+      name: "Who's next ?",
       desc: "Seele acts multiple time to inflict [color=#b892ff]Quantum[/color] damage and finish off enemies.\nShe gains an [u]Extra tour[/u] whenever she kills an enemy (Unless she already is using an [u]Extra tour[/u]).",
       comment:
         "If E2 (or higher) there is no minimum requirements for [u]Speed[/u].",
@@ -79,19 +79,22 @@ const characterEN: CharacterENProps = {
   1006: [
     // Silver Wolf
     {
-      name: "_____",
-      desc: "",
-      comment: "",
+      name: "1- Easy Mode",
+      desc: "[color=Orchid]『 SUPPORT BUILD 』[/color]\nSilver Wolf joins the group solely to apply all her [u]Debuffs[/u] as often as possible.",
+      comment:
+        "Requirements [u]Effect RES[/u] only if the set [u]Broken Keel[/u] is used.\nIf E2 (or higher), the prerequisite in [u]Effect Hit Rate[/u] drops to 68%.",
     },
     {
-      name: "_____",
-      desc: "",
-      comment: "",
+      name: "2- Game Breaker",
+      desc: "[color=Yellowgreen]『 BREAK BUILD 』[/color]\nSilver Wolf specializes in [u]Break effect[/u] to deal [color=#b892ff]Quantum[/color] damage and delay enemies.",
+      comment:
+        "If E2 (or higher), the requirements for [u]Effect Hit Rate[/u] drops to 68%.",
     },
     {
-      name: "_____",
-      desc: "",
-      comment: "",
+      name: "3- I'll carry",
+      desc: "[color=#ED5F65]『 DAMAGE BUILD 』[/color]\nSilver Wolf deals [color=#b892ff]Quantum[/color] damage directly with her attacks (E2 minimum recommended).",
+      comment:
+        "If E2 (or higher), the requirements for [u]Effect Hit Rate[/u] drops to 25%.",
     },
   ],
   1101: [
@@ -110,7 +113,7 @@ const characterEN: CharacterENProps = {
   1204: [
     // Jing Yuan
     {
-      name: "_____",
+      name: "Stroke of Genius",
       desc: "Jing Yuan is a [color=#DB76ED]Lightning[/color] dps that deals damage to all enemies with all his attacks. Lightning-Lord is his principal source of damage using [u]Follow-up Attacks[/u].",
       comment: "[u]Speed[/u] should be adjusted based on the team.",
     },
@@ -240,7 +243,7 @@ const characterEN: CharacterENProps = {
   1203: [
     // Luocha
     {
-      name: "_____",
+      name: "Undertaker",
       desc: "Luocha heals teammates when an ally attacks.\nHis [u]Ultimate[/u] can suppress 1 [u]DeBuff[/u] on each enemy.",
       comment:
         "If Light cone [u]Multiplication[/u] ➜ [u]Defense[/u] at 700.\nIncrease [u]Effect RES[/u] when minimum requirements achieved on other stats.",
@@ -366,7 +369,7 @@ const characterEN: CharacterENProps = {
       name: "Asta, la vice-T.A.",
       desc: "Asta increases [u]Speed[/u] and [u]Attk[/u] of all allies.\nShe can also deal decent [u]Rupture Dmg[/u] [color=#FF4747]Fire[/color].",
       comment:
-        "You should keep [u]Break effect%[/u] stats as bonus.\nRequirements for [u]Effect RES[/u] only when equipped with Ornaments [u]Broken Keel[/u].",
+        "You should keep [u]Break effect[/u] stats as bonus.\nRequirements for [u]Effect RES[/u] only when equipped with Ornaments [u]Broken Keel[/u].",
     },
   ],
   1105: [
@@ -428,6 +431,14 @@ const characterEN: CharacterENProps = {
     {
       name: "March 7th",
       desc: "March 7th protects her allies with a [u]Shield[/u] using her [u]Skill[/u].\nHer [u]Shield[/u] can trigger the enemies's aggro when up.",
+      comment: "",
+    },
+  ],
+  1315: [
+    // Boothill
+    {
+      name: "",
+      desc: "",
       comment: "",
     },
   ],
