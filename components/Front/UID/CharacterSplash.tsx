@@ -3,6 +3,7 @@ import { Character } from "@/types/jsonUid";
 import CharacterEidolon from "./CharacterEidolon";
 import { UIDtitles } from "@/utils/dictionnary";
 import { TranslateSection } from "@/types/homepageDictionnary";
+import Image from "next/image";
 
 interface CharacterSplashProps {
   character: Character;
@@ -17,16 +18,17 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
 }) => {
   return (
     <div className="flex flex-col h-[480px] relative items-center">
-      <img
-        height={480}
-        width={"100%"}
+      <Image
+        height={470}
+        width={470}
         src={`${CDN}/${character.portrait}`}
         alt=""
-        className="absolute xl:top-10 xl:w-[520px] object-contain h-[480px] mx-auto"
+        className="absolute xl:top-10 xl:w-[480px] object-contain xl:object-fill h-[480px] mx-auto"
         style={{
           maskImage: `url(${CDN2}/img/characterMask.png)`,
           maskSize: "100% 480px",
         }}
+        priority
       />
       <div className="w-full self-start font-semibold ">
         <div className="grid grid-cols-[1fr_120px] items-center align-top">
