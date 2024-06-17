@@ -4,6 +4,7 @@ import CharacterEidolon from "./CharacterEidolon";
 import { UIDtitles } from "@/utils/dictionnary";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 interface CharacterSplashProps {
   character: Character;
@@ -16,12 +17,18 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
   eidolonsList,
   lang,
 }) => {
+  // Refresh l'image correctement lors de la transformation du DOM en image
+  const [characterPortrait, setCharacterPortrait] = useState<string>("");
+  useEffect(() => {
+    setCharacterPortrait(character.portrait);
+  }, [character]);
+
   return (
     <div className="flex flex-col h-[480px] relative items-center">
       <Image
         height={470}
         width={470}
-        src={`${CDN}/${character.portrait}`}
+        src={`${CDN}/${characterPortrait}`}
         alt=""
         className="absolute xl:top-10 xl:w-[480px] object-contain xl:object-fill h-[480px] mx-auto"
         style={{
