@@ -1,5 +1,6 @@
 import Footer from "@/components/Front/UID/Footer";
 import UidPage from "@/components/Front/UID/UidPage";
+import { TranslateSection } from "@/types/homepageDictionnary";
 import { jsonUID } from "@/types/jsonUid";
 import { CDN } from "@/utils/cdn";
 import type { Metadata } from "next";
@@ -82,7 +83,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: { params: { slug: number } }) {
   const cookieStore = cookies();
-  const lang = cookieStore.get("lang")?.value;
+  const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
 
   //Recupère les infos du joueur
   const resUid = await getDataUid(params.slug, lang);

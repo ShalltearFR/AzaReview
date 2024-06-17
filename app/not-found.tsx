@@ -3,10 +3,11 @@ import NavBar from "@/components/Front/NavBar";
 import { CDN2 } from "@/utils/cdn";
 import React from "react";
 import { cookies } from "next/headers";
+import { TranslateSection } from "@/types/homepageDictionnary";
 
 const notFound = () => {
   const cookieStore = cookies();
-  const lang = cookieStore.get("lang");
+  const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
 
   return (
     <>
@@ -36,7 +37,7 @@ const notFound = () => {
           </h3>
         </div>
       </section>
-      <Footer lang={lang?.value} />
+      <Footer lang={lang} />
     </>
   );
 };

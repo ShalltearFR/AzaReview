@@ -1,5 +1,6 @@
 import GuidesPage from "@/components/Front/Showcase/GuidesPage";
 import { CharacterType } from "@/types/CharacterModel";
+import { TranslateSection } from "@/types/homepageDictionnary";
 import { PioneerToRemove, replacePioneersName } from "@/utils/PioneerType";
 import { CDN2 } from "@/utils/cdn";
 import { Metadata } from "next";
@@ -36,7 +37,7 @@ const getData = async (
 
 const Guides: React.FC = async () => {
   const cookieStore = cookies();
-  const lang = cookieStore.get("lang")?.value;
+  const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
 
   const character: charactersListJSON = await getData(
     `${process.env.WWW}/api/characters/all`,
