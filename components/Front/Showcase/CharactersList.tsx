@@ -23,6 +23,8 @@ const CharactersList: React.FC<GuidesProps> = ({ list }) => {
               {character.name}
             </p>
             <img
+              width={208}
+              height={257}
               src={
                 PioneerToADD.includes(character.id)
                   ? `${CDN2}/${character.preview}`
