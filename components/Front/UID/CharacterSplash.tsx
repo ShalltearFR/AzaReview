@@ -4,7 +4,6 @@ import CharacterEidolon from "./CharacterEidolon";
 import { UIDtitles } from "@/utils/dictionnary";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 interface CharacterSplashProps {
   character: Character;
