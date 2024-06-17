@@ -275,7 +275,7 @@ const characterEN: CharacterENProps = {
       name: "Flower of",
       desc: "Acheron (The Queen) is a multi-target [color=#DB76ED]Lightning[/color] dps with a very special [u]Ultimate[/u] that doesn't use [u]Energy[/u] but [u]Stacks[/u].\nPrioritize allies that applies [u]DeBuffs[/u] to quickly gain [u]Stacks[/u].",
       comment:
-        "If E2 ➜ [u]Crit RATE[/u] at 50%.\nIf E2 ➜ you can try to get 134 [u]Speed[/u] (if no ally gives action/speed).",
+        "If E1 ➜ [u]Crit RATE[/u] at 50%.\nIf E2 ➜ you can try to get 134 [u]Speed[/u] (if no ally gives action/speed).",
     },
   ],
   1106: [
