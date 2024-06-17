@@ -17,25 +17,19 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
   eidolonsList,
   lang,
 }) => {
-  // Refresh l'image correctement lors de la transformation du DOM en image
-  const [characterPortrait, setCharacterPortrait] = useState<string>("");
-  useEffect(() => {
-    setCharacterPortrait(character.portrait);
-  }, [character]);
-
   return (
-    <div className="flex flex-col h-[480px] relative items-center">
-      <Image
+    <div className="flex flex-col h-[470px] relative items-center">
+      <img
         height={470}
         width={470}
-        src={`${CDN}/${characterPortrait}`}
+        fetchPriority="high"
+        src={`${CDN}/${character.portrait}`}
         alt=""
-        className="absolute xl:top-10 xl:w-[480px] object-contain xl:object-fill h-[480px] mx-auto"
+        className="absolute xl:top-10 xl:w-[470px] object-contain xl:object-cover h-[470px] mx-auto"
         style={{
           maskImage: `url(${CDN2}/img/characterMask.png)`,
           maskSize: "100% 480px",
         }}
-        priority
       />
       <div className="w-full self-start font-semibold ">
         <div className="grid grid-cols-[1fr_120px] items-center align-top">
