@@ -44,7 +44,12 @@ const ItemShow: React.FC<ItemShowProps> = ({
             {itemName.name}
           </p>
         )}
-        <img src={`${CDN}/${itemName.icon}`} className="m-auto" />
+        <img
+          src={`${CDN}/${itemName.icon}`}
+          className="m-auto"
+          width={128}
+          height={128}
+        />
 
         <p className="absolute bottom-0 px-1 text-center w-full bg-black/75">
           {itemName.name.length > 14
