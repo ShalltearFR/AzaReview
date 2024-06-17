@@ -1,4 +1,5 @@
 import ShowCasePage from "@/components/Front/Showcase/ShowCasePage";
+import { TranslateSection } from "@/types/homepageDictionnary";
 import { CDN } from "@/utils/cdn";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
@@ -60,7 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const GuideID = async ({ params }: { params: { id: string } }) => {
   const cookieStore = cookies();
-  const lang = cookieStore.get("lang")?.value;
+  const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
 
   try {
     const [lightcones, relicsSet, properties, character] = await Promise.all([
