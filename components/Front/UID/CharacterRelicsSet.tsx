@@ -1,4 +1,3 @@
-"use client";
 import { CDN } from "@/utils/cdn";
 import { RelicSet } from "@/types/jsonUid";
 import { RelicsSet } from "@/types/CharacterModel";

@@ -1,4 +1,3 @@
-"use client";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import { CDN2 } from "@/utils/cdn";
 import { TranslateSection0 } from "@/utils/homepageDictionnary";

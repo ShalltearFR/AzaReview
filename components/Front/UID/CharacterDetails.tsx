@@ -1,4 +1,3 @@
-"use client";
 import { Relic, jsonUID } from "@/types/jsonUid";
 import CharacterSplash from "./CharacterSplash";
 import CharacterTrace from "./CharacterTrace";

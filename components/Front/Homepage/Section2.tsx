@@ -1,4 +1,3 @@
-"use client";
 import { CDN2 } from "@/utils/cdn";
 import HomepageFooter from "./HomepageFooter";
 import {

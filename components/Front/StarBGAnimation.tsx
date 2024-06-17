@@ -1,11 +1,15 @@
 import { CDN2 } from "@/utils/cdn";
 
-const StarBGAnimation: React.FC = () => {
+interface StarBGAnimationProps {
+  zIndex?: number;
+}
+
+const StarBGAnimation: React.FC<StarBGAnimationProps> = ({ zIndex = -10 }) => {
   return (
     <div
       style={{
         backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,
-        zIndex: -10,
+        zIndex: zIndex,
       }}
       data-aos="animate-stars"
     />

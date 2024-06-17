@@ -1,6 +1,6 @@
 "use client";
 import CharacterDetails from "@/components/Front/UID/CharacterDetails";
-import CharacterList from "@/components/Front/Homepage/CharactersList";
+import CharacterList from "@/components/Front/UID/CharactersList";
 import NavBar from "@/components/Front/NavBar";
 import { CharacterType } from "@/types/CharacterModel";
 import type { jsonUID } from "@/types/jsonUid";

@@ -1,4 +1,3 @@
-"use client";
 import { CDN2 } from "@/utils/cdn";
 import VerticalNotationArray from "./VerticalNotationArray";
 import HorizontalNotationArray from "./HorizontalNotationArray";

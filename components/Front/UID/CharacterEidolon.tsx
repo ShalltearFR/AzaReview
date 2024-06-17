@@ -1,4 +1,3 @@
-"use client";
 import { CDN } from "@/utils/cdn";
 import { useState } from "react";
 

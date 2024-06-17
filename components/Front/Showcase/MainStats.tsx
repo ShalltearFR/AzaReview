@@ -1,4 +1,3 @@
-"use client";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import { ReactElement, useState } from "react";
 
