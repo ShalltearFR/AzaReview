@@ -98,9 +98,6 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
       setIsGood(true);
     };
 
-    // const displayVal = typeValueMap[main_affix.type] || main_affix.name;
-    // setDisplayValue(displayVal);
-
     const recommandedMainAffix =
       reviewRecommanded?.find((el) => el.type === main_affix.type)
         ?.importance || 0;
@@ -167,7 +164,12 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
             </div>
           )}
 
-        <img src={`${CDN}/${icon}`} className="w-20 mx-auto" />
+        <img
+          src={`${CDN}/${icon}`}
+          className="mx-auto"
+          width={80}
+          height={80}
+        />
         <p>{displayValue}</p>
         <p>{main_affix.display}</p>
         <p
@@ -199,7 +201,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
               key={`characterRelic${affix.type}${i}`}
               className="grid grid-cols-[32px_1fr_50px_20px] items-center z-[1]"
             >
-              <img src={`${CDN}/${affix.icon}`} className="w-7" />
+              <img src={`${CDN}/${affix.icon}`} width={28} height={28} />
               <span>{subDisplayValue}</span>
               <span className="text-right mr-2">{affix.display}</span>
               <span className="bg-green rounded-full text-center text-black">
