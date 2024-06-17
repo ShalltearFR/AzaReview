@@ -11,6 +11,7 @@ import HomepageFooter from "@/components/Front/Homepage/HomepageFooter";
 import { useCookies } from "next-client-cookies";
 import StarBGAnimation from "@/components/Front/StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
+import { TranslateSection } from "@/types/homepageDictionnary";
 
 function Homepage() {
   const [sectionIndex, setSectionIndex] = useState<number>(999);
@@ -21,7 +22,7 @@ function Homepage() {
   const windowWidth = useRef<number>();
   const windowPixelRatio = useRef<number>();
   const cookies = useCookies();
-  const lang = cookies.get("lang");
+  const lang = cookies.get("lang") as keyof TranslateSection;
   const [isLoading, setIsloading] = useState<boolean>(true);
 
   const searchParams = useSearchParams();
@@ -132,7 +133,7 @@ function Homepage() {
           setSectionIndex={setSectionIndex}
           setSectionPrevIndex={setSectionPrevIndex}
         />
-        <StarBGAnimation />
+        <StarBGAnimation zIndex={0} />
         <div className="text-white mt-10 xl2:mt-0 xl2:overflow-hidden xl2:h-[calc(100vh-64px)] flex flex-col justify-center items-center">
           {/* 1ere section */}
           {showSection0 && (
