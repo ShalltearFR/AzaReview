@@ -1,9 +1,10 @@
 import { RecommendedStats } from "@/types/CharacterModel";
+import { TranslateSection } from "@/types/homepageDictionnary";
 import { findLabel, findLabelEN } from "@/utils/statsOption";
 
 interface recommendedStatProps {
   data: RecommendedStats[];
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
 }
 
 const recommendedStat: React.FC<recommendedStatProps> = ({ data, lang }) => {

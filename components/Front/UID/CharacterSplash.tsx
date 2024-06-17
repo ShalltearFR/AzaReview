@@ -1,12 +1,13 @@
 import { CDN, CDN2 } from "@/utils/cdn";
 import { Character } from "@/types/jsonUid";
 import CharacterEidolon from "./CharacterEidolon";
-import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
+import { UIDtitles } from "@/utils/dictionnary";
+import { TranslateSection } from "@/types/homepageDictionnary";
 
 interface CharacterSplashProps {
   character: Character;
   eidolonsList: Array<any>;
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
 }
 
 const CharacterSplash: React.FC<CharacterSplashProps> = ({
@@ -33,7 +34,7 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
             {character.name}
           </span>
           <span className="text-orange text-right text-3xl pr-5 z-10 self-start">
-            {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].levelMin}
+            {UIDtitles[lang ?? "fr"].levelMin}
             {character.level}
           </span>
         </div>

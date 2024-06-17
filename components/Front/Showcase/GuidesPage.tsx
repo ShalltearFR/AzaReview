@@ -8,10 +8,11 @@ import Aos from "aos";
 import AddToggleButton from "@/components/Editor/Add/AddToggleButton";
 import StarBGAnimation from "../StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
+import { TranslateSection } from "@/types/homepageDictionnary";
 
 interface GuidesPageProps {
   character: CharacterType[];
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
 }
 
 const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {

@@ -5,8 +5,9 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useCookies } from "next-client-cookies";
-import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
+import { UIDtitles } from "@/utils/dictionnary";
 import LoadingSpin from "../LoadingSpin";
+import { TranslateSection } from "@/types/homepageDictionnary";
 
 interface NavBarProps {
   setData?: any;
@@ -32,7 +33,7 @@ const NavBar: React.FC<NavBarProps> = ({
     useState<boolean>(false);
   const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-white transition ease transform duration-300`;
   const cookies = useCookies();
-  const lang = cookies.get("lang");
+  const lang = cookies.get("lang") as keyof TranslateSection;
 
   useEffect(() => {
     if (isHomepage) setOpenMenu(true);
@@ -130,10 +131,8 @@ const NavBar: React.FC<NavBarProps> = ({
               >
                 <span>
                   {disableSearchButton
-                    ? UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
-                        .searching
-                    : UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
-                        .search}
+                    ? UIDtitles[lang ?? "fr"].searching
+                    : UIDtitles[lang ?? "fr"].search}
                 </span>
                 {disableSearchButton && (
                   <span>

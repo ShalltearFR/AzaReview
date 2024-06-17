@@ -1,8 +1,9 @@
 "use client";
+import { TranslateSection } from "@/types/homepageDictionnary";
 import { ReactElement, useState } from "react";
 
 interface MainStatsProps {
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
   type: ReactElement<any, any>;
   name: { en: string; fr: string };
 }

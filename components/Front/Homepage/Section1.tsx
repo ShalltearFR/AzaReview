@@ -3,16 +3,16 @@ import { CDN2 } from "@/utils/cdn";
 import VerticalNotationArray from "./VerticalNotationArray";
 import HorizontalNotationArray from "./HorizontalNotationArray";
 import { useEffect, useState } from "react";
-import type { TranslateSection } from "@/utils/homepageDictionnary";
 import {
   TranslateSection1,
   TranslateSection1Array,
 } from "@/utils/homepageDictionnary";
 import translateBBCode from "@/utils/translateBBCode";
+import { TranslateSection } from "@/types/homepageDictionnary";
 
 interface Section1Props {
   sectionPrevIndex: number;
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
 }
 
 const Section1: React.FC<Section1Props> = ({ sectionPrevIndex, lang }) => {
@@ -22,12 +22,8 @@ const Section1: React.FC<Section1Props> = ({ sectionPrevIndex, lang }) => {
   >([""]);
 
   useEffect(() => {
-    setTranslateSection(
-      TranslateSection1[(lang as keyof TranslateSection) ?? "fr"]
-    );
-    setTranslateSectionArray(
-      TranslateSection1Array[(lang as keyof TranslateSection) ?? "fr"]
-    );
+    setTranslateSection(TranslateSection1[lang ?? "fr"]);
+    setTranslateSectionArray(TranslateSection1Array[lang ?? "fr"]);
   }, [lang]);
   return (
     <section

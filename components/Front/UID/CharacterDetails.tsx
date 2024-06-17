@@ -12,8 +12,8 @@ import { CharacterType, Data, RecommendedStats } from "@/types/CharacterModel";
 import translateBBCode from "@/utils/translateBBCode";
 import { useEffect, useState } from "react";
 import { traces, UIDtitles } from "@/utils/dictionnary";
-import type { TitlesByLanguage } from "@/utils/dictionnary";
 import characterEN from "@/utils/charactersEN";
+import { TranslateSection } from "@/types/homepageDictionnary";
 
 interface ReviewData {
   data: CharacterType[];
@@ -28,7 +28,7 @@ interface CharacterDetailsProps {
   relicsSetTranslate: Array<any>;
   lightconesTranslate: Array<any>;
   eidolonsList: Array<any>;
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
 }
 
 const CharacterDetails: React.FC<CharacterDetailsProps> = ({
@@ -152,7 +152,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           </div>
           <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-3">
             <p className="text-yellow text-lg font-bold text-center">
-              {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].stat}
+              {UIDtitles[lang ?? "fr"].stat}
             </p>
             <RecommendedStat
               lang={lang}
@@ -208,50 +208,28 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           ) : (
             <div className="mx-auto text-center bg-light-blue/75 p-5 rounded-t-3xl text-white font-bold">
               <p className="italic">
-                {
-                  UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
-                    .NoCompletlyRelics1
-                }
+                {UIDtitles[lang ?? "fr"].NoCompletlyRelics1}
               </p>
               <p>
                 {translateBBCode(
-                  UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
-                    .NoCompletlyRelics2,
+                  UIDtitles[lang ?? "fr"].NoCompletlyRelics2,
                   true
                 )}
               </p>
               {characterReview?.main_stats && (
                 <div className="[&_div]:mt-5 mt-10 text-left [&_div]:text-orange">
-                  <div>
-                    {
-                      UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
-                        .RecommendedChests
-                    }
-                  </div>
+                  <div>{UIDtitles[lang ?? "fr"].RecommendedChests}</div>
                   {getMainStats("body")}
 
                   <div className="mt-5">
-                    {
-                      UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
-                        .RecommendedBoots
-                    }
+                    {UIDtitles[lang ?? "fr"].RecommendedBoots}
                   </div>
                   {getMainStats("feet")}
 
-                  <div>
-                    {
-                      UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
-                        .RecommendedOrbs
-                    }
-                  </div>
+                  <div>{UIDtitles[lang ?? "fr"].RecommendedOrbs}</div>
                   {getMainStats("planar_sphere")}
 
-                  <div>
-                    {
-                      UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
-                        .RecommendedLinkRopes
-                    }
-                  </div>
+                  <div>{UIDtitles[lang ?? "fr"].RecommendedLinkRopes}</div>
                   {getMainStats("link_rope")}
                 </div>
               )}

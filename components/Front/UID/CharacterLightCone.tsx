@@ -1,7 +1,8 @@
 import { CDN } from "@/utils/cdn";
 import { LightCone } from "@/types/CharacterModel";
 import { useEffect, useState } from "react";
-import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
+import { UIDtitles } from "@/utils/dictionnary";
+import { TranslateSection } from "@/types/homepageDictionnary";
 
 interface lightCone {
   id: string;
@@ -15,7 +16,7 @@ interface CharacterLightConeProps {
   lightCone: lightCone;
   review: LightCone[];
   lightconeTranslate: Array<any>;
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
 }
 
 const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
@@ -75,10 +76,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
               >
                 <div>
                   <p className="font-bold">
-                    {
-                      UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
-                        .RecommendedF2P
-                    }
+                    {UIDtitles[lang ?? "fr"].RecommendedF2P}
                   </p>
                   <p className="italic font-normal ml-1">
                     {recommendedLightCone[0].name}
@@ -104,7 +102,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
             )}
         </div>
         <p className="text-yellow text-lg font-bold text-center">
-          {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].lightCone}
+          {UIDtitles[lang ?? "fr"].lightCone}
         </p>
       </div>
       {lightCone ? (
@@ -121,7 +119,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
                 lightCone.level < 80 ? "text-red bg-background" : " bg-orange2"
               }`}
             >
-              {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].levelMin}
+              {UIDtitles[lang ?? "fr"].levelMin}
               {lightCone.level}
             </p>
             <p className="flex justify-center items-center w-6 p-1 rounded-full bg-brown text-sm font-bold mt-auto mb-8 ml-2">
@@ -138,7 +136,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
         </div>
       ) : (
         <p className="text-center text-red mt-2 px-2 font-bold">
-          {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].emptyCone}
+          {UIDtitles[lang ?? "fr"].emptyCone}
         </p>
       )}
     </div>

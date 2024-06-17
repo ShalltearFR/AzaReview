@@ -5,7 +5,8 @@ import { MainStats, RecommendedStats } from "@/types/CharacterModel";
 import calculateRelic from "@/utils/calculateRelic";
 import { useState, useEffect } from "react";
 import { typeValueMap, typeValueMapEN } from "@/utils/typeValueMap";
-import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
+import { UIDtitles } from "@/utils/dictionnary";
+import { TranslateSection } from "@/types/homepageDictionnary";
 
 interface CharacterRelicProps {
   stats: Relic;
@@ -14,7 +15,7 @@ interface CharacterRelicProps {
   equipmentIndex: number;
   statsTranslate: Array<any>;
   totalCoef: number;
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
 }
 
 const CharacterRelic: React.FC<CharacterRelicProps> = ({
@@ -154,10 +155,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
           equipmentIndex >= 2 && (
             <div className="absolute z-10 p-2 bg-background rounded-xl w-auto text-white text-left">
               <div className="font-bold">
-                {
-                  UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
-                    .Recommended
-                }
+                {UIDtitles[lang ?? "fr"].Recommended}
               </div>
               {requiredMainStat.map((el: any, i: number) => (
                 <div

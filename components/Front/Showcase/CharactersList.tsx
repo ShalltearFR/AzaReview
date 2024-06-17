@@ -1,11 +1,12 @@
 import { CharacterType } from "@/types/CharacterModel";
+import { TranslateSection } from "@/types/homepageDictionnary";
 import { PioneerToADD } from "@/utils/PioneerType";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Link from "next/link";
 
 interface GuidesProps {
   list: CharacterType[];
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
 }
 
 const CharactersList: React.FC<GuidesProps> = ({ list }) => {

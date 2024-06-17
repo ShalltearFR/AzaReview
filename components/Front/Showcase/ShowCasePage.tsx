@@ -10,10 +10,11 @@ import Aos from "aos";
 import { replaceCharacterName } from "@/utils/PioneerType";
 import StarBGAnimation from "../StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
+import { TranslateSection } from "@/types/homepageDictionnary";
 
 interface ShowCasePageProps {
   character: CharacterType | undefined | { error: true };
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
   lightCones: any;
   relicsSet: any;
   properties: any;

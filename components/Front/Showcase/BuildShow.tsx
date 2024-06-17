@@ -5,11 +5,12 @@ import ItemShow from "./ItemShow";
 import MainStats from "./MainStats";
 import { findLabel, findLabelEN } from "@/utils/statsOption";
 import relicsSetList from "@/utils/relicsSetList";
+import { TranslateSection } from "@/types/homepageDictionnary";
 
 interface BuildShowProps {
   build: Data;
   i: number;
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
   characterID: string;
   lightCones: any;
   properties: any;

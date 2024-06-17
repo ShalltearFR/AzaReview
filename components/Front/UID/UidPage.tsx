@@ -12,12 +12,13 @@ import { CDN, CDN2 } from "@/utils/cdn";
 import Aos from "aos";
 import { notFound } from "next/navigation";
 import translateBBCode from "@/utils/translateBBCode";
-import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
+import { UIDtitles } from "@/utils/dictionnary";
 import characterEN from "@/utils/charactersEN";
 import StarBGAnimation from "../StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
 
 import { CharacterBuild as CharacterBuildType } from "@/types/charactersEN";
+import { TranslateSection } from "@/types/homepageDictionnary";
 
 interface Option {
   value: string;
@@ -37,7 +38,7 @@ interface UidPageProps {
   lightconesTranslate: Array<any>;
   RelicsList: Array<any>;
   eidolonsList: Array<any>;
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
   error504?: boolean;
 }
 
@@ -107,9 +108,7 @@ const UidPage: React.FC<UidPageProps> = ({
     disableButton(true);
 
     if (exportType === "share")
-      setShareButtonText(
-        UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].Saving
-      );
+      setShareButtonText(UIDtitles[lang ?? "fr"].Saving);
 
     setTimeout(() => {
       //Leger timeout pour eviter le troncage d'image dû au rajout du header Image
@@ -151,10 +150,7 @@ const UidPage: React.FC<UidPageProps> = ({
                     }),
                   ])
                   .then(() => {
-                    setShareButtonText(
-                      UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
-                        .ImageCopied
-                    );
+                    setShareButtonText(UIDtitles[lang ?? "fr"].ImageCopied);
                     setTimeout(() => disableButton(false), 1000);
                   })
                   .catch((err) => console.log("Erreur presse papier :", err));
@@ -395,8 +391,7 @@ const UidPage: React.FC<UidPageProps> = ({
               {(characterOptions[characterBuild] &&
                 characterOptions[characterBuild].desc &&
                 translateBBCode(characterOptions[characterBuild].desc ?? "")) ||
-                UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
-                  .AvailableSoon}
+                UIDtitles[lang ?? "fr"].AvailableSoon}
             </div>
           </div>
           <div className="flex justify-center w-full">
@@ -431,17 +426,11 @@ const UidPage: React.FC<UidPageProps> = ({
               >
                 {disableDownloadButton ? (
                   <div className="flex gap-2">
-                    <span>
-                      {
-                        UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
-                          .Downloading
-                      }
-                    </span>
+                    <span>{UIDtitles[lang ?? "fr"].Downloading}</span>
                     <LoadingSpin width="w-6" height="h-6" />
                   </div>
                 ) : (
-                  UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"]
-                    .DownloadImage
+                  UIDtitles[lang ?? "fr"].DownloadImage
                 )}
               </button>
 
@@ -458,7 +447,7 @@ const UidPage: React.FC<UidPageProps> = ({
                     <LoadingSpin width="w-6" height="h-6" />
                   </div>
                 ) : (
-                  UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].shareImage
+                  UIDtitles[lang ?? "fr"].shareImage
                 )}
               </button>
             </div>

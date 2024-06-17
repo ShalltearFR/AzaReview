@@ -142,4 +142,3 @@ export {
   TranslateSection2,
   TranslateSection1Array,
 };
-export type { TranslateSection };

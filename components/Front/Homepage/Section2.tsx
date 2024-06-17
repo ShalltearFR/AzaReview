@@ -8,16 +8,14 @@ import {
 } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { FR_Month } from "@/utils/month";
-import {
-  TranslateSection,
-  TranslateSection2,
-} from "@/utils/homepageDictionnary";
+import { TranslateSection2 } from "@/utils/homepageDictionnary";
 import translateBBCode from "@/utils/translateBBCode";
+import { TranslateSection } from "@/types/homepageDictionnary";
 
 interface Section2Props {
   isCodeAnimation: Boolean;
   codes: Array<string>;
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
 }
 
 const Section2: React.FC<Section2Props> = ({
@@ -34,9 +32,7 @@ const Section2: React.FC<Section2Props> = ({
   const [translateSection, setTranslateSection] = useState<Array<string>>([""]);
 
   useEffect(() => {
-    setTranslateSection(
-      TranslateSection2[(lang as keyof TranslateSection) ?? "fr"]
-    );
+    setTranslateSection(TranslateSection2[lang ?? "fr"]);
   }, [lang]);
 
   useEffect(() => {

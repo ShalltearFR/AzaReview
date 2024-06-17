@@ -1,22 +1,20 @@
 "use client";
+import { TranslateSection } from "@/types/homepageDictionnary";
 import { CDN2 } from "@/utils/cdn";
-import type { TranslateSection } from "@/utils/homepageDictionnary";
 import { TranslateSection0 } from "@/utils/homepageDictionnary";
 import translateBBCode from "@/utils/translateBBCode";
 import { useEffect, useState } from "react";
 
 interface Section0Props {
   sectionPrevIndex: number;
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
 }
 
 const Section0: React.FC<Section0Props> = ({ sectionPrevIndex, lang }) => {
   const [translateSection, setTranslateSection] = useState<Array<string>>([""]);
 
   useEffect(() => {
-    setTranslateSection(
-      TranslateSection0[(lang as keyof TranslateSection) ?? "fr"]
-    );
+    setTranslateSection(TranslateSection0[lang ?? "fr"]);
   }, [lang]);
 
   return (
@@ -31,9 +29,7 @@ const Section0: React.FC<Section0Props> = ({ sectionPrevIndex, lang }) => {
           {translateBBCode(translateSection[0])}
         </h1>
         <h2 className="mt-5 mb-7 text-xl xl:text-2xl font-bold text-center">
-          {translateBBCode(
-            TranslateSection0[(lang as keyof TranslateSection) ?? "fr"][1]
-          )}
+          {translateBBCode(TranslateSection0[lang ?? "fr"][1])}
         </h2>
         <div className="text-center text-lg text-darkGreen font-semibold">
           {translateBBCode(translateSection[2])}

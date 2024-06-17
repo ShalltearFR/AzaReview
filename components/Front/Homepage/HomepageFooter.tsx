@@ -1,8 +1,9 @@
+import { TranslateSection } from "@/types/homepageDictionnary";
 import { CDN2 } from "@/utils/cdn";
-import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
+import { UIDtitles } from "@/utils/dictionnary";
 
 interface FooterProps {
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
 }
 
 const HomepageFooter: React.FC<FooterProps> = ({ lang }) => {
@@ -10,9 +11,8 @@ const HomepageFooter: React.FC<FooterProps> = ({ lang }) => {
     <footer className="bg-black text-white text-center py-5 w-full mt-auto z-10">
       <div className="justify-center z-10">
         {"Copyright © 2024 - "}
-        {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].CreatedBy}{" "}
-        <strong>ShalltearFR</strong> {" ~ "}
-        {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].ReviewBy}
+        {UIDtitles[lang ?? "fr"].CreatedBy} <strong>ShalltearFR</strong> {" ~ "}
+        {UIDtitles[lang ?? "fr"].ReviewBy}
         <a
           href="https://www.twitch.tv/azano__"
           target="_blank"
@@ -25,8 +25,7 @@ const HomepageFooter: React.FC<FooterProps> = ({ lang }) => {
             alt="logo twitch"
           />
         </a>
-        {" ~ "}{" "}
-        {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].ENtranslate}
+        {" ~ "} {UIDtitles[lang ?? "fr"].ENtranslate}
         <a
           href="http://twitch.tv/fred_night0wl"
           target="_blank"
@@ -41,13 +40,11 @@ const HomepageFooter: React.FC<FooterProps> = ({ lang }) => {
         />
       </div>
       <div>
-        {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].HomepageDesign}
+        {UIDtitles[lang ?? "fr"].HomepageDesign}
         <strong>Amane</strong>
       </div>
       <div>_</div>
-      <div className="italic">
-        {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].HoyoCopyright}
-      </div>
+      <div className="italic">{UIDtitles[lang ?? "fr"].HoyoCopyright}</div>
     </footer>
   );
 };

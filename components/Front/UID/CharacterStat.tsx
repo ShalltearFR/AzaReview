@@ -4,13 +4,14 @@ import { Addition, Attribute } from "@/types/jsonUid";
 import { RecommendedStats } from "@/types/CharacterModel";
 import { fieldToType } from "@/utils/calculateStat";
 import { getENDefaultValue, getFRDefaultValue } from "@/utils/dictionnary";
+import { TranslateSection } from "@/types/homepageDictionnary";
 
 interface CharacterStatProps {
   attributes: Attribute[];
   additions: Addition[];
   field: string;
   review: RecommendedStats[];
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
 }
 
 const CharacterStat: React.FC<CharacterStatProps> = ({

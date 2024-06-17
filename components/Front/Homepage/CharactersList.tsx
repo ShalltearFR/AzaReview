@@ -1,12 +1,13 @@
 import { CDN } from "@/utils/cdn";
 import type { jsonUID } from "@/types/jsonUid";
-import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
+import { UIDtitles } from "@/utils/dictionnary";
+import { TranslateSection } from "@/types/homepageDictionnary";
 
 interface CharacterListProps {
   uidData: jsonUID;
   setIndex: any;
   index: number;
-  lang: string | undefined;
+  lang: keyof TranslateSection | undefined;
 }
 
 const CharacterList: React.FC<CharacterListProps> = ({
@@ -25,7 +26,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
       <div className="text-center w-48 text-white">
         <p className="text-lg font-medium">{uidData?.player?.nickname}</p>
         <p className="text-sm">
-          {UIDtitles[(lang as keyof TitlesByLanguage) ?? "fr"].pioneer}
+          {UIDtitles[lang ?? "fr"].pioneer}
           {uidData?.player?.level}
         </p>
         <p className="text-sm italic">UID : {uidData?.player?.uid}</p>
