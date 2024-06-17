@@ -1,6 +1,5 @@
 "use client";
 import NavBar from "@/components/Front/NavBar";
-import { CDN2 } from "@/utils/cdn";
 import { useEffect, useRef, useState } from "react";
 import AOS from "aos";
 import { useSearchParams } from "next/navigation";
@@ -19,11 +18,11 @@ function Homepage() {
   const [codes, setCodes] = useState<Array<string>>(["Chargement des codes"]);
   const [isCodeAnimation, setIsCodeAnimation] = useState<Boolean>(true);
   const isCodes = useRef(false);
-  const [isLoading, setIsloading] = useState<boolean>(true);
   const windowWidth = useRef<number>();
   const windowPixelRatio = useRef<number>();
   const cookies = useCookies();
   const lang = cookies.get("lang");
+  const [isLoading, setIsloading] = useState<boolean>(true);
 
   const searchParams = useSearchParams();
 

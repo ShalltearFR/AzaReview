@@ -13,9 +13,11 @@ import Aos from "aos";
 import { notFound } from "next/navigation";
 import translateBBCode from "@/utils/translateBBCode";
 import { TitlesByLanguage, UIDtitles } from "@/utils/dictionnary";
-import characterEN, { CharacterBuild } from "@/utils/charactersEN";
+import characterEN from "@/utils/charactersEN";
 import StarBGAnimation from "../StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
+
+import { CharacterBuild as CharacterBuildType } from "@/types/charactersEN";
 
 interface Option {
   value: string;
@@ -276,7 +278,7 @@ const UidPage: React.FC<UidPageProps> = ({
       ) {
         const options: Option[] = characterEN[
           (uidData as any).characters[characterIndex].id
-        ].map((build: CharacterBuild, i: number) => ({
+        ].map((build: CharacterBuildType, i: number) => ({
           label: build.name,
           value: `${i}`,
           desc: build.desc,

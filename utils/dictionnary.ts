@@ -1,3 +1,8 @@
+interface TitlesByLanguage {
+  fr: Titles;
+  en: Titles;
+}
+
 const getFRDefaultValue = (field: string) => {
   switch (field) {
     case "sp_rate":
@@ -119,11 +124,6 @@ interface Titles {
   PayLess: string;
   HoyoCopyright: string;
   ENtranslate: string;
-}
-
-interface TitlesByLanguage {
-  fr: Titles;
-  en: Titles;
 }
 
 const UIDtitles: TitlesByLanguage = {

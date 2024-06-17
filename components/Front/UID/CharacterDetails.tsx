@@ -1,5 +1,5 @@
 "use client";
-import { Character, Relic, jsonUID } from "@/types/jsonUid";
+import { Relic, jsonUID } from "@/types/jsonUid";
 import CharacterSplash from "./CharacterSplash";
 import CharacterTrace from "./CharacterTrace";
 import CharacterLightCone from "./CharacterLightCone";
@@ -23,7 +23,7 @@ interface CharacterDetailsProps {
   uidData: jsonUID;
   index: number;
   buildIndex: number;
-  reviewData: ReviewData;
+  reviewData: ReviewData[];
   statsTranslate: Array<any>;
   relicsSetTranslate: Array<any>;
   lightconesTranslate: Array<any>;
@@ -42,11 +42,12 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   eidolonsList,
   lang,
 }) => {
-  const character = uidData.characters[index];
-  // @ts-ignore
-  const characterReview: Data[] = reviewData[index].data as Data;
   const [tracesNames, setTracesNames] = useState<Array<string>>([]);
   const [characterRelics, setCharacterRelics] = useState<Relic[] | []>([]);
+
+  const character = uidData.characters[index];
+  const characterReview: Data =
+    (reviewData[index]?.data[buildIndex] as unknown as Data) ?? undefined;
 
   useEffect(() => {
     setTracesNames(traces[lang ?? "fr"]);
@@ -62,7 +63,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   }, [character, index]);
 
   const getMainStats = (piece: string) => {
-    const result = characterReview[buildIndex]?.main_stats
+    const result = characterReview?.main_stats
       .filter((el) => el.piece === piece)
       .map((el, i) => {
         // statsTranslate
@@ -70,7 +71,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
         return (
           <li
             className="ml-7"
-            key={`${characterReview[buildIndex].buildName}+${i}+${piece}`}
+            key={`${characterReview?.buildName}+${i}+${piece}`}
           >
             {translated.name}
           </li>
@@ -118,11 +119,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
             lightCone={character.light_cone}
             lightconeTranslate={lightconesTranslate}
             lang={lang}
-            review={
-              characterReview &&
-              characterReview[buildIndex] &&
-              characterReview[buildIndex]?.lightCones
-            }
+            review={characterReview?.lightCones}
           />
         </div>
 
@@ -147,11 +144,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                     additions={character.additions}
                     field={field}
                     lang={lang}
-                    review={
-                      characterReview &&
-                      characterReview[buildIndex] &&
-                      characterReview[buildIndex]?.recommended_stats
-                    }
+                    review={characterReview?.recommended_stats}
                   />
                 </div>
               );
@@ -163,31 +156,25 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
             </p>
             <RecommendedStat
               lang={lang}
-              data={
-                characterReview &&
-                characterReview[buildIndex] &&
-                characterReview[buildIndex]?.recommended_stats
-              }
+              data={characterReview?.recommended_stats}
             />
             {/* Commentaire des stats mini */}
-            {characterReview &&
-              characterReview[buildIndex] &&
-              characterReview[buildIndex].recommended_comment && (
-                <div className="text-orange2 font-bold text-center mt-2 text-[15px]">
-                  {characterReview[buildIndex] && lang === "en"
-                    ? characterEN[(uidData as any).characters[index].id]
-                      ? translateBBCode(
-                          characterEN[(uidData as any).characters[index].id][
-                            buildIndex
-                          ].comment
-                        )
-                      : ""
-                    : translateBBCode(
-                        characterReview[buildIndex].recommended_comment ?? "",
-                        true
-                      )}
-                </div>
-              )}
+            {characterReview?.recommended_comment && (
+              <div className="text-orange2 font-bold text-center mt-2 text-[15px]">
+                {characterReview && lang === "en"
+                  ? characterEN[(uidData as any).characters[index].id]
+                    ? translateBBCode(
+                        characterEN[(uidData as any).characters[index].id][
+                          buildIndex
+                        ].comment
+                      )
+                    : ""
+                  : translateBBCode(
+                      characterReview?.recommended_comment ?? "",
+                      true
+                    )}
+              </div>
+            )}
           </div>
 
           <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-4">
@@ -195,11 +182,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
               relics={character.relic_sets || "none"}
               lang={lang}
               relicsSetTranslate={relicsSetTranslate}
-              review={
-                characterReview &&
-                characterReview[buildIndex] &&
-                characterReview[buildIndex]?.relics_set
-              }
+              review={characterReview?.relics_set}
             />
           </div>
         </div>
@@ -213,26 +196,11 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                     equipmentIndex={i}
                     statsTranslate={statsTranslate}
                     lang={lang}
-                    totalCoef={
-                      characterReview &&
-                      characterReview[buildIndex] &&
-                      characterReview[buildIndex].total_coef
-                    }
+                    totalCoef={characterReview?.total_coef}
                     reviewRecommanded={
-                      characterReview &&
-                      characterReview[buildIndex] &&
-                      characterReview[buildIndex]?.recommended_stats
-                        ? (characterReview[buildIndex]
-                            .recommended_stats as RecommendedStats[])
-                        : undefined
+                      characterReview?.recommended_stats as RecommendedStats[]
                     }
-                    reviewMainStat={
-                      characterReview &&
-                      characterReview[buildIndex] &&
-                      characterReview[buildIndex]?.main_stats
-                        ? characterReview[buildIndex].main_stats
-                        : undefined
-                    }
+                    reviewMainStat={characterReview?.main_stats}
                   />
                 </div>
               );
@@ -252,7 +220,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                   true
                 )}
               </p>
-              {characterReview && characterReview[buildIndex]?.main_stats && (
+              {characterReview?.main_stats && (
                 <div className="[&_div]:mt-5 mt-10 text-left [&_div]:text-orange">
                   <div>
                     {

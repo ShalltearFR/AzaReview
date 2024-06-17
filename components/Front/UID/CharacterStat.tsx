@@ -3,7 +3,6 @@ import { CDN } from "@/utils/cdn";
 import { Addition, Attribute } from "@/types/jsonUid";
 import { RecommendedStats } from "@/types/CharacterModel";
 import { fieldToType } from "@/utils/calculateStat";
-import { cookies } from "next/headers";
 import { getENDefaultValue, getFRDefaultValue } from "@/utils/dictionnary";
 
 interface CharacterStatProps {

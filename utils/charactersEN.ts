@@ -1,3 +1,5 @@
+import { CharacterENProps } from "@/types/charactersEN";
+
 const characterEN: CharacterENProps = {
   1302: [
     // Argenti
@@ -453,15 +455,4 @@ const characterEN: CharacterENProps = {
   ],
 };
 
-interface CharacterBuild {
-  name: string;
-  desc: string;
-  comment: string;
-}
-
-interface CharacterENProps {
-  [key: number]: CharacterBuild[];
-}
-
 export default characterEN;
-export type { CharacterBuild };

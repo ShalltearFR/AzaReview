@@ -1,7 +1,7 @@
 "use client";
 import NavBar from "@/components/Front/NavBar";
 import { notFound } from "next/navigation";
-import { CDN, CDN2 } from "@/utils/cdn";
+import { CDN } from "@/utils/cdn";
 import Footer from "@/components/Front/UID/Footer";
 import { CharacterType, Data } from "@/types/CharacterModel";
 import { useEffect, useState } from "react";

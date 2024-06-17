@@ -1,6 +1,6 @@
 "use client";
 import { CDN } from "@/utils/cdn";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface eidolon {
   desc: string;

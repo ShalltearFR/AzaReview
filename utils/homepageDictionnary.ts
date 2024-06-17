@@ -1,7 +1,4 @@
-type TranslateSection = {
-  fr: string[];
-  en: string[];
-};
+import { TranslateSection } from "@/types/homepageDictionnary";
 
 const TranslateSection0: TranslateSection = {
   fr: [

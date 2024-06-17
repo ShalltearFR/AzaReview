@@ -1,5 +1,5 @@
 import { CharacterType } from "@/types/CharacterModel";
-import { PioneerToADD, PioneerType } from "@/utils/PioneerType";
+import { PioneerToADD } from "@/utils/PioneerType";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Link from "next/link";
 
