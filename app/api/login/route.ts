@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 export async function POST(request: Request) {
-  const WrongInformations = () => {
+  const WrongInformations = (): Promise<NextResponse> => {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(NextResponse.json({ status: 203 }));
