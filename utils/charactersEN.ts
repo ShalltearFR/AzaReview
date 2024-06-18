@@ -436,6 +436,58 @@ const characterEN: CharacterENProps = {
       comment: "",
     },
   ],
+  1304: [
+    // Aventurine
+    {
+      name: "All or Nothing",
+      desc: "Aventurine protects the team with [u]Shields[/u] formed by his [u]Skill[/u] and [u]Follow-up Attack[/u].\nHe increases the [u]Effect RES[/u] of protected characters by 50%.",
+      comment:
+        "Have at least 3 Main Statistics in [u]DEF%[/u].\nIf Eidolon 1 ➜ Cord possibility [u]Energy Regen[/u] and Feet [u]DEF%[/u] (ignore [u]Speed[/u] requirements).",
+    },
+  ],
+  1002: [
+    // Dan Heng
+    {
+      name: "Let there be Silence.",
+      desc: "Dan Heng deals [color=lightgreen]Wind[/color] damage and reduces the speed of his target.",
+      comment: "",
+    },
+  ],
+  1206: [
+    // Sushang
+    {
+      name: "Chicken run !",
+      desc: "Sushang deals [color=gray]Physical[/color] damage and takes advantage of enemies in [u]Weakness Break[/u].",
+      comment:
+        "Thanks to her gains in [u]Speed[/u] and [u]Action[/u], Sushang doesn't need much [u]Speed[/u].",
+    },
+  ],
+  1111: [
+    // Luka
+    {
+      name: "Four punchs man",
+      desc: "Luka deals [color=gray]Physical[/color] damage and inflicts [u]Bleeding[/u] on enemies.",
+      comment: "",
+    },
+  ],
+  1309: [
+    // Robin
+    {
+      name: "Welcome to my ♪♫ ♫♪♪",
+      desc: "Robin provides numerous boosts to the team and grants a turn to allies directly after her [u]Ultimate[/u].\nShe deals additional [color=gray]Physical[/color] damage when an ally attacks during her Concerto.",
+      comment:
+        "If Station Ornaments ➜ [u]Speed[/u] at 120.\nIf Glamoth Ornaments ➜ [u]Speed[/u] at 135.\nRequirements [u]Effect RES[/u] only if [u]Broken Keel[/u] set.",
+    },
+  ],
+  8005: [
+    // MC Harmonie
+    {
+      name: "Rupture waits for no one.",
+      desc: "MC Harmony enables the team to perform [u]Extreme Breaks[/u] and increases the team's [u]Break[/u].\nOften requires [u]Ruan Mei[/u] on the team to be truly effective.",
+      comment:
+        "If [u]HP% Chest[/u] ➜ [u]Defense% Sphere[/u] (or vice versa).\nIf the [u]Clockmaker[/u] set is present on another character ➜ [u]Meteorite Thief[/u] set on Caelus.\nOnce everything is achieved, maximize [u]Break[/u] and [u]Speed[/u].",
+    },
+  ],
   1008: [
     // Arlan
     {
