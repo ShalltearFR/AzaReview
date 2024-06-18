@@ -45,7 +45,7 @@ const NavBar: React.FC<NavBarProps> = ({
   const handleChangeLang = (country: string) => {
     //Evite le refresh si même langue
     if (lang !== country) {
-      cookies.set("lang", country);
+      cookies.set("lang", country, { sameSite: "Lax" });
       refresh();
     }
   };

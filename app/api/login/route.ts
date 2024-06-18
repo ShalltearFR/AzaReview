@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import User from "@/models/User.model";
 import jwt from "jsonwebtoken";
@@ -6,7 +6,11 @@ import bcrypt from "bcrypt";
 
 export async function POST(request: Request) {
   const WrongInformations = () => {
-    return NextResponse.json({ status: 203 });
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(NextResponse.json({ status: 203 }));
+      }, 3000);
+    });
   };
 
   try {
@@ -15,7 +19,10 @@ export async function POST(request: Request) {
 
     return User.findOne({ username }).then((user) => {
       if (!user) {
-        return WrongInformations();
+        // Simule un hashage pour embrouiller les tentatives de hacking
+        return bcrypt
+          .hash(password, Number(process.env.HASH_SALT as string))
+          .then(() => WrongInformations());
       }
 
       return bcrypt
@@ -45,6 +52,7 @@ export async function POST(request: Request) {
           // Set the token as an HTTP-only cookie
           response.cookies.set("token", token, {
             httpOnly: true,
+            sameSite: "lax",
           });
 
           return response;
