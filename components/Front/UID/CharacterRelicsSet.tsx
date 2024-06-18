@@ -207,6 +207,8 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                         <img
                           src={`${CDN}/${el.icon}`}
                           className="h-24 w-24 mx-auto mt-auto"
+                          width={96}
+                          height={96}
                         />
                       </div>
                     ))}
@@ -319,6 +321,8 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                   <img
                     src={`${CDN}/${relic.icon}`}
                     className="w-[128px] h-[128px]"
+                    width={128}
+                    height={128}
                   />
                   <span
                     className={`absolute top-0 left-0 p-1 bg-background/75 rounded-full ${colorRelics[i]}`}

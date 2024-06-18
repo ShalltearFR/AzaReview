@@ -43,11 +43,15 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
         <div className="flex gap-1 mt-2 ml-5 xl:ml-0">
           <img
             src={`${CDN}/${character.element.icon}`}
+            width={32}
+            height={32}
             className="w-8 z-10"
             alt="element"
           />
           <img
             src={`${CDN}/${character.path.icon}`}
+            width={32}
+            height={32}
             className="w-8 z-10"
             alt="path"
           />

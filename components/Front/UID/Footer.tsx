@@ -21,6 +21,8 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
           Azano
           <img
             src={`${CDN2}/img/twitch-logo.svg`}
+            width={22}
+            height={24}
             className="h-6 ml-1 inline"
             alt="logo twitch"
           />
@@ -35,6 +37,8 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
         </a>
         <img
           src={`${CDN2}/img/twitter-logo.webp`}
+          width={24}
+          height={24}
           className="h-6 ml-1 inline"
           alt="logo twitter"
         />

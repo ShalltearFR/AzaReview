@@ -178,8 +178,10 @@ const UidPage: React.FC<UidPageProps> = ({
       >
         <div className="flex items-center w-full h-24 text-white smd:text-xl bg-black/50">
           <img
-            className="ml-2 smd:ml-5 h-20"
+            className="ml-2 smd:ml-5 h-24"
             src={`${CDN}/${uidDataCopy?.player?.avatar.icon}`}
+            width={96}
+            height={96}
           />
           <p className="ml-5 flex flex-col">
             <span className="font-bold">{uidDataCopy?.player?.nickname}</span>
@@ -200,25 +202,27 @@ const UidPage: React.FC<UidPageProps> = ({
   }, [uidData]);
 
   useEffect(() => {
-    function sortReviewDataByUidData(reviewData: any, uidData: any) {
-      const sortedArray = uidData.map((uidItem: any) => {
-        const matchingItem = reviewData.find(
-          (reviewItem: any) => reviewItem.id === uidItem.id
+    if (uidData && jsonReview) {
+      function sortReviewDataByUidData(reviewData: any, uidData: any) {
+        const sortedArray = uidData.map((uidItem: any) => {
+          const matchingItem = reviewData.find(
+            (reviewItem: any) => reviewItem.id === uidItem.id
+          );
+          return matchingItem ? matchingItem : { value: "NC" };
+        });
+
+        return sortedArray;
+      }
+
+      const jsonUidData = uidData as jsonUID;
+      if (uidData.status === 200) {
+        const sortedReviewData = sortReviewDataByUidData(
+          jsonReview.data,
+          jsonUidData.characters
         );
-        return matchingItem ? matchingItem : { value: "NC" };
-      });
-
-      return sortedArray;
-    }
-
-    const jsonUidData = uidData as jsonUID;
-    if (uidData.status === 200) {
-      const sortedReviewData = sortReviewDataByUidData(
-        jsonReview.data,
-        jsonUidData.characters
-      );
-      setReview(sortedReviewData);
-      setIsLoading(false);
+        setReview(sortedReviewData);
+        setIsLoading(false);
+      }
     }
   }, [jsonReview, uidData]);
 
@@ -257,7 +261,7 @@ const UidPage: React.FC<UidPageProps> = ({
         status: uidData.status,
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setIsLoading(false);
   }, [RelicsList, jsonUid]);
 
   useEffect(() => {
@@ -298,7 +302,6 @@ const UidPage: React.FC<UidPageProps> = ({
       ]);
     }
     setCharacterBuild(0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uidData.status, review, characterIndex, lang]);
 
   useEffect(() => {
@@ -312,13 +315,26 @@ const UidPage: React.FC<UidPageProps> = ({
       if (dataStorage) setUidData(JSON.parse(dataStorage));
       else setUidData({ status: 504 });
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
+
+  if (isloading)
+    return (
+      <div className="min-h-[calc(100vh-230px)] overflow-hidden">
+        <StarBGAnimation />
+        <NavBar setData={setUidData} />
+        <div
+          className="flex justify-center items-center mt-10"
+          data-aos="fade-down"
+        >
+          <LoadingSpin width="w-24" height="h-24" />
+        </div>
+      </div>
+    );
 
   if (uidData.status === 404 || uidData.status === 400) {
     return notFound();
   }
+
   if (uidData.status === 504) {
     return (
       <div className="min-h-[calc(100vh-230px)] overflow-hidden">
@@ -334,20 +350,6 @@ const UidPage: React.FC<UidPageProps> = ({
       </div>
     );
   }
-
-  if (isloading)
-    return (
-      <div className="min-h-[calc(100vh-230px)] overflow-hidden">
-        <StarBGAnimation />
-        <NavBar setData={setUidData} />
-        <div
-          className="flex justify-center items-center mt-10"
-          data-aos="fade-down"
-        >
-          <LoadingSpin width="w-24" height="h-24" />
-        </div>
-      </div>
-    );
 
   if (!isloading && uidData.status === 200 && review) {
     return (

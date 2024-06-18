@@ -80,6 +80,8 @@ const NavBar: React.FC<NavBarProps> = ({
                   >
                     <img
                       src={`${CDN2}/img/homepage/nextSection.svg`}
+                      width={64}
+                      height={64}
                       className="ml-8 h-16 animate-homePageBounce"
                       onClick={() => {
                         setSectionIndex(sectionIndex - 1);
@@ -155,6 +157,8 @@ const NavBar: React.FC<NavBarProps> = ({
                   >
                     <img
                       src={`${CDN2}/img/homepage/nextSection.svg`}
+                      width={64}
+                      height={64}
                       className="ml-8 h-16 animate-homePageBounce"
                       onClick={() => {
                         setSectionIndex(sectionIndex + 1);
@@ -186,6 +190,8 @@ const NavBar: React.FC<NavBarProps> = ({
             >
               <img
                 src={`${CDN2}/img/lang/FR.webp`}
+                width={40}
+                height={30}
                 className="w-10"
                 alt="French Flag"
               />
@@ -198,6 +204,8 @@ const NavBar: React.FC<NavBarProps> = ({
             >
               <img
                 src={`${CDN2}/img/lang/EN.webp`}
+                width={40}
+                height={27}
                 className="w-10"
                 alt="English Flag"
               />
