@@ -31,13 +31,15 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
 
   useEffect(() => {
     Aos.init({ disable: window.innerWidth <= 1450 });
-    if ("status" in character && character.status === 404) {
-      setCharactersSearch({ status: 404 });
-      return;
-    }
-    characterList.current = character;
-    setCharactersSearch(character);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const init = async () => {
+      if ("status" in character && character.status === 404)
+        return { status: 404 };
+
+      characterList.current = character;
+      return character;
+    };
+
+    init().then((data) => setCharactersSearch(data));
   }, []);
 
   useEffect(() => {
@@ -63,7 +65,6 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
       if (CBA) charactersSearchCopy.reverse();
       setCharactersSearch(charactersSearchCopy);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [CBA, searchInput, releaseDate, lang]);
 
   if (charactersSearch) {

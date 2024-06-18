@@ -76,26 +76,25 @@ const UidPage: React.FC<UidPageProps> = ({
 
   useEffect(() => {
     Aos.init({ disable: window.innerWidth <= 1450 });
+    const init = async () => {
+      const uidDataCopy = { ...uidData } as jsonUID;
+      const transformCharacterQuery = () => {
+        if (isNaN(Number(characterQuery))) {
+          window.history.pushState({}, "", window.location.pathname);
+          return 0;
+        }
+        if (Number(characterQuery) > uidDataCopy.characters.length) {
+          window.history.pushState({}, "", window.location.pathname);
+          return 0;
+        }
+        return Number(characterQuery);
+      };
 
-    const uidDataCopy = { ...uidData } as jsonUID;
-    const transformCharacterQuery = () => {
-      if (isNaN(Number(characterQuery))) {
-        window.history.pushState({}, "", window.location.pathname);
-        setCharacterIndex(0);
-        return null;
-      }
-      if (Number(characterQuery) > uidDataCopy.characters.length) {
-        window.history.pushState({}, "", window.location.pathname);
-        setCharacterIndex(0);
-        return null;
-      }
-      setCharacterIndex(Number(characterQuery));
+      if (uidDataCopy.characters) transformCharacterQuery();
+      return 0;
     };
 
-    if (uidDataCopy.characters) {
-      transformCharacterQuery();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    init().then((data: number) => setCharacterIndex(data));
   }, []);
 
   const handleConvertImage = (
