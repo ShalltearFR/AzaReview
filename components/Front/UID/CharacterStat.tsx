@@ -40,13 +40,9 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
     const attribute = attributes.find((attr) => attr.field === field);
     const addition = additions.find((add) => add.field === field);
 
-    if (attribute) {
-      totalValue += attribute.value;
-    }
+    if (attribute) totalValue += attribute.value;
 
-    if (addition) {
-      totalValue += addition.value;
-    }
+    if (addition) totalValue += addition.value;
 
     // Gère la partie sp_rate
     if (field === "sp_rate") {
