@@ -1,6 +1,10 @@
 import dbConnect from "@/lib/dbConnect";
 import Character from "@/models/Character.model";
 import { NextResponse } from "next/server";
+import NodeCache from "node-cache";
+
+// Cache pour les données récupérées (TTL: 20 minutes)
+const cache = new NodeCache({ stdTTL: 1200 });
 
 export async function GET(
   req: Request,
@@ -8,14 +12,22 @@ export async function GET(
 ) {
   const id = params.id;
   try {
+    const cachedData = cache.get(`character${id}`);
+    if (cachedData) {
+      return NextResponse.json({ status: 200, data: cachedData });
+    }
+
     await dbConnect();
-    let data = await Character.findOne({ id }).lean().select("-__v -_id");
+    const data = await Character.findOne({ id }).lean().select("-__v -_id");
 
     // Supprimer les _id des tableaux
-    data = removeIdsFromArrays(data);
+    const cleanedData = removeIdsFromArrays(data);
 
-    if (data) {
-      return NextResponse.json(data, { status: 200 });
+    if (cleanedData) {
+      // Mettre en cache les données récupérées
+      cache.set(`character${id}`, cleanedData);
+
+      return NextResponse.json(cleanedData, { status: 200 });
     }
     return NextResponse.json({ error: true });
   } catch (error) {
@@ -24,23 +36,16 @@ export async function GET(
   }
 }
 
-// Fonction pour supprimer les _id des tableaux
-function removeIdsFromArrays(data: any) {
-  // Utilisez map pour parcourir les tableaux et supprimer les _id
-  const removeIds = (item: any) => {
-    if (item && typeof item === "object" && !Array.isArray(item)) {
-      Object.keys(item).forEach((key) => {
-        if (key === "_id") {
-          delete item[key];
-        } else {
-          removeIds(item[key]);
-        }
-      });
-    } else if (Array.isArray(item)) {
-      item.forEach(removeIds);
+// Fonction pour supprimer les _id des objets
+function removeIdsFromArrays(data: any): any {
+  if (Array.isArray(data)) {
+    return data.map(removeIdsFromArrays);
+  } else if (data && typeof data === "object") {
+    const { _id, ...rest } = data;
+    for (const key in rest) {
+      rest[key] = removeIdsFromArrays(rest[key]);
     }
-    return item;
-  };
-
-  return removeIds(data);
+    return rest;
+  }
+  return data;
 }
