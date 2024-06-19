@@ -132,6 +132,22 @@ const relicsSetList: objectProps[] = [
     id: "314", // Izumo
     isOrnamant: true,
   },
+  {
+    id: "119", // Brigade de fer
+    isOrnamant: false,
+  },
+  {
+    id: "120", // Vaillance du guerrier
+    isOrnamant: false,
+  },
+  {
+    id: "315", // Duran
+    isOrnamant: true,
+  },
+  {
+    id: "316", // Kalpagni
+    isOrnamant: true,
+  },
 ];
 
 export default relicsSetList;
