@@ -1,7 +1,7 @@
 "use client";
 import NavBar from "@/components/Front/NavBar";
 import { useSearchParams } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { toBlob, toJpeg, toPng } from "html-to-image";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Aos from "aos";
@@ -11,23 +11,18 @@ import { UIDtitles } from "@/utils/dictionnary";
 import characterEN from "@/utils/charactersEN";
 import StarBGAnimation from "../StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
-import dynamic from "next/dynamic";
+import CharacterList from "./CharactersList";
+import CharacterBuild from "./CharacterBuild";
 
+import dynamic from "next/dynamic";
 const CharacterDetails = dynamic(() => import("./CharacterDetails"), {
   loading: () => (
     <div className="flex justify-center items-center h-full">
       <LoadingSpin width="w-24" height="h-24" />
     </div>
   ),
-  ssr: false,
+  ssr: true,
 });
-
-const CharacterList = dynamic(() => import("./CharactersList"), {
-  loading: () => <p></p>,
-  ssr: false,
-});
-
-const CharacterBuild = dynamic(() => import("./CharacterBuild"));
 
 import type { CharacterBuild as CharacterBuildType } from "@/types/charactersEN";
 import type { TranslateSection } from "@/types/homepageDictionnary";
@@ -378,89 +373,93 @@ const UidPage: React.FC<UidPageProps> = ({
               : "L'API reçoit trop de requetes, l'actualisation n'a pas pu se faire"}
           </div>
         )}
-        <section>
-          <CharacterList
-            uidData={uidData as jsonUID}
-            setIndex={setCharacterIndex}
-            index={characterIndex}
-            lang={lang}
-          />
-          <div
-            className={
-              "grid xl:grid-cols-[390px_1fr] justify-center items-center text-white font-bold xl:rounded-t-xl bg-light-blue/75 w-full max-w-[1450px] mx-auto xl:gap-x-5 py-5"
-            }
-          >
-            <CharacterBuild
-              characterBuild={characterBuild}
-              characterOptions={characterOptions}
-              setCharacterBuild={setCharacterBuild}
+        <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}>
+          <section data-aos="fade-down">
+            <CharacterList
+              uidData={uidData as jsonUID}
+              setIndex={setCharacterIndex}
+              index={characterIndex}
+              lang={lang}
             />
-            <div className="px-5 mt-2 text-center xl:px-0 xl:ml-0 xl:mt-0 xl:text-left">
-              {(characterOptions[characterBuild] &&
-                characterOptions[characterBuild].desc &&
-                translateBBCode(characterOptions[characterBuild].desc ?? "")) ||
-                UIDtitles[lang ?? "fr"].AvailableSoon}
-            </div>
-          </div>
-          <div className="flex justify-center w-full">
             <div
-              ref={characterDetailsRef}
-              className="w-full max-w-[1450px] h-full"
+              className={
+                "grid xl:grid-cols-[390px_1fr] justify-center items-center text-white font-bold xl:rounded-t-xl bg-light-blue/75 w-full max-w-[1450px] mx-auto xl:gap-x-5 py-5"
+              }
             >
-              {disableDownloadButton || disableShareButton
-                ? reviewHeaderRef.current
-                : null}
-              <CharacterDetails
-                uidData={uidData as jsonUID}
-                buildIndex={characterBuild}
-                reviewData={review}
-                index={characterIndex}
-                statsTranslate={statsTranslate}
-                relicsSetTranslate={relicsSetTranslate}
-                lightconesTranslate={lightconesTranslate}
-                eidolonsList={eidolonsList}
-                lang={lang}
+              <CharacterBuild
+                characterBuild={characterBuild}
+                characterOptions={characterOptions}
+                setCharacterBuild={setCharacterBuild}
               />
+              <div className="px-5 mt-2 text-center xl:px-0 xl:ml-0 xl:mt-0 xl:text-left">
+                {(characterOptions[characterBuild] &&
+                  characterOptions[characterBuild].desc &&
+                  translateBBCode(
+                    characterOptions[characterBuild].desc ?? ""
+                  )) ||
+                  UIDtitles[lang ?? "fr"].AvailableSoon}
+              </div>
             </div>
-          </div>
-          <div>
-            <div className="flex justify-center gap-10">
-              <button
-                disabled={disableDownloadButton}
-                className="flex px-5 py-2 mt-10 rounded-full bg-green text-xl font-bold mb-10 xl:mb-0 disabled:bg-gray"
-                onClick={() =>
-                  handleConvertImage("save", setDisableDownloadButton)
-                }
+            <div className="flex justify-center w-full">
+              <div
+                ref={characterDetailsRef}
+                className="w-full max-w-[1450px] h-full"
               >
-                {disableDownloadButton ? (
-                  <div className="flex gap-2">
-                    <span>{UIDtitles[lang ?? "fr"].Downloading}</span>
-                    <LoadingSpin width="w-6" height="h-6" />
-                  </div>
-                ) : (
-                  UIDtitles[lang ?? "fr"].DownloadImage
-                )}
-              </button>
+                {disableDownloadButton || disableShareButton
+                  ? reviewHeaderRef.current
+                  : null}
+                <CharacterDetails
+                  uidData={uidData as jsonUID}
+                  buildIndex={characterBuild}
+                  reviewData={review}
+                  index={characterIndex}
+                  statsTranslate={statsTranslate}
+                  relicsSetTranslate={relicsSetTranslate}
+                  lightconesTranslate={lightconesTranslate}
+                  eidolonsList={eidolonsList}
+                  lang={lang}
+                />
+              </div>
+            </div>
+            <div>
+              <div className="flex justify-center gap-10">
+                <button
+                  disabled={disableDownloadButton}
+                  className="flex px-5 py-2 mt-10 rounded-full bg-green text-xl font-bold mb-10 xl:mb-0 disabled:bg-gray"
+                  onClick={() =>
+                    handleConvertImage("save", setDisableDownloadButton)
+                  }
+                >
+                  {disableDownloadButton ? (
+                    <div className="flex gap-2">
+                      <span>{UIDtitles[lang ?? "fr"].Downloading}</span>
+                      <LoadingSpin width="w-6" height="h-6" />
+                    </div>
+                  ) : (
+                    UIDtitles[lang ?? "fr"].DownloadImage
+                  )}
+                </button>
 
-              <button
-                disabled={disableShareButton}
-                className="flex px-5 py-2 mt-10 rounded-full bg-green text-xl font-bold mb-10 xl:mb-0 disabled:bg-gray"
-                onClick={() =>
-                  handleConvertImage("share", setDisableShareButton)
-                }
-              >
-                {disableShareButton ? (
-                  <div className="flex gap-2">
-                    <span>{shareButtonText}</span>
-                    <LoadingSpin width="w-6" height="h-6" />
-                  </div>
-                ) : (
-                  UIDtitles[lang ?? "fr"].shareImage
-                )}
-              </button>
+                <button
+                  disabled={disableShareButton}
+                  className="flex px-5 py-2 mt-10 rounded-full bg-green text-xl font-bold mb-10 xl:mb-0 disabled:bg-gray"
+                  onClick={() =>
+                    handleConvertImage("share", setDisableShareButton)
+                  }
+                >
+                  {disableShareButton ? (
+                    <div className="flex gap-2">
+                      <span>{shareButtonText}</span>
+                      <LoadingSpin width="w-6" height="h-6" />
+                    </div>
+                  ) : (
+                    UIDtitles[lang ?? "fr"].shareImage
+                  )}
+                </button>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </Suspense>
       </div>
     );
   }
