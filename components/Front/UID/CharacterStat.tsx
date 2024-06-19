@@ -106,7 +106,6 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
     <div className="flex text-white items-center text-lg">
       <img
         src={`${CDN}/${displayImg}`}
-        loading="lazy"
         width={30}
         height={30}
         alt={displayName}

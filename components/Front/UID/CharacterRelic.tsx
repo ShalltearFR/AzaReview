@@ -166,7 +166,6 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
 
         <img
           src={`${CDN}/${icon}`}
-          loading="lazy"
           className="mx-auto"
           width={80}
           height={80}

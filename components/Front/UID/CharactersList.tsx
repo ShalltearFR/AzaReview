@@ -20,7 +20,6 @@ const CharacterList: React.FC<CharacterListProps> = ({
     <div className="flex flex-col mt-7 xl:flex-row xl:h-36 w-11/12 xl:w-[1350px] py-5 xl:py-0 bg-[#4E4A82] rounded-3xl lg:rounded-full items-center mx-auto shadow-2xl mb-[27px]">
       <img
         className="w-24 h-24 xl:ml-8"
-        loading="lazy"
         width={96}
         height={96}
         alt="UID logo"
@@ -55,12 +54,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
                 }
               }}
             >
-              <img
-                src={`${CDN}/${character.icon}`}
-                loading="lazy"
-                width={96}
-                height={96}
-              />
+              <img src={`${CDN}/${character.icon}`} width={96} height={96} />
             </div>
           );
         })}

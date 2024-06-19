@@ -37,7 +37,6 @@ const CharacterEidolon: React.FC<CharacterEidolonProps> = ({
       )}
       <img
         src={`${CDN}/${img}`}
-        loading="lazy"
         className={`${isActive ? "" : "opacity-25"}`}
         width={46}
         height={46}
