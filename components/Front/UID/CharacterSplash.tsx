@@ -3,7 +3,6 @@ import { Character } from "@/types/jsonUid";
 import CharacterEidolon from "./CharacterEidolon";
 import { UIDtitles } from "@/utils/dictionnary";
 import { TranslateSection } from "@/types/homepageDictionnary";
-import Image from "next/image";
 
 interface CharacterSplashProps {
   character: Character;
@@ -19,10 +18,11 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
   return (
     <div className="flex flex-col h-[470px] relative items-center">
       <img
+        key={character.portrait}
         height={470}
         width={470}
         fetchPriority="high"
-        src={`${CDN}/${character.portrait}`}
+        src={`${CDN2}/img/portraits/${character.id}.webp`}
         alt=""
         className="absolute xl:top-10 xl:w-[470px] object-contain xl:object-cover h-[470px] mx-auto"
         style={{
