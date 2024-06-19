@@ -187,56 +187,54 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           </div>
         </div>
         <div className="flex flex-col gap-3 my-auto pt-auto mx-auto mt-5 w-screen xl:w-full xl:my-auto">
-          <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}>
-            {characterRelics.length === 6 ? (
-              characterRelics.map((relic, i) => {
-                return (
-                  <div key={crypto.randomUUID()} className="flex items-center">
-                    <CharacterRelic
-                      stats={relic}
-                      equipmentIndex={i}
-                      statsTranslate={statsTranslate}
-                      lang={lang}
-                      totalCoef={characterReview?.total_coef}
-                      reviewRecommanded={
-                        characterReview?.recommended_stats as RecommendedStats[]
-                      }
-                      reviewMainStat={characterReview?.main_stats}
-                    />
-                  </div>
-                );
-              })
-            ) : (
-              <div className="mx-auto text-center bg-light-blue/75 p-5 rounded-t-3xl text-white font-bold">
-                <p className="italic">
-                  {UIDtitles[lang ?? "fr"].NoCompletlyRelics1}
-                </p>
-                <p>
-                  {translateBBCode(
-                    UIDtitles[lang ?? "fr"].NoCompletlyRelics2,
-                    true
-                  )}
-                </p>
-                {characterReview?.main_stats && (
-                  <div className="[&_div]:mt-5 mt-10 text-left [&_div]:text-orange">
-                    <div>{UIDtitles[lang ?? "fr"].RecommendedChests}</div>
-                    {getMainStats("body")}
-
-                    <div className="mt-5">
-                      {UIDtitles[lang ?? "fr"].RecommendedBoots}
-                    </div>
-                    {getMainStats("feet")}
-
-                    <div>{UIDtitles[lang ?? "fr"].RecommendedOrbs}</div>
-                    {getMainStats("planar_sphere")}
-
-                    <div>{UIDtitles[lang ?? "fr"].RecommendedLinkRopes}</div>
-                    {getMainStats("link_rope")}
-                  </div>
+          {characterRelics.length === 6 ? (
+            characterRelics.map((relic, i) => {
+              return (
+                <div key={crypto.randomUUID()} className="flex items-center">
+                  <CharacterRelic
+                    stats={relic}
+                    equipmentIndex={i}
+                    statsTranslate={statsTranslate}
+                    lang={lang}
+                    totalCoef={characterReview?.total_coef}
+                    reviewRecommanded={
+                      characterReview?.recommended_stats as RecommendedStats[]
+                    }
+                    reviewMainStat={characterReview?.main_stats}
+                  />
+                </div>
+              );
+            })
+          ) : (
+            <div className="mx-auto text-center bg-light-blue/75 p-5 rounded-t-3xl text-white font-bold">
+              <p className="italic">
+                {UIDtitles[lang ?? "fr"].NoCompletlyRelics1}
+              </p>
+              <p>
+                {translateBBCode(
+                  UIDtitles[lang ?? "fr"].NoCompletlyRelics2,
+                  true
                 )}
-              </div>
-            )}
-          </Suspense>
+              </p>
+              {characterReview?.main_stats && (
+                <div className="[&_div]:mt-5 mt-10 text-left [&_div]:text-orange">
+                  <div>{UIDtitles[lang ?? "fr"].RecommendedChests}</div>
+                  {getMainStats("body")}
+
+                  <div className="mt-5">
+                    {UIDtitles[lang ?? "fr"].RecommendedBoots}
+                  </div>
+                  {getMainStats("feet")}
+
+                  <div>{UIDtitles[lang ?? "fr"].RecommendedOrbs}</div>
+                  {getMainStats("planar_sphere")}
+
+                  <div>{UIDtitles[lang ?? "fr"].RecommendedLinkRopes}</div>
+                  {getMainStats("link_rope")}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </article>
     );
