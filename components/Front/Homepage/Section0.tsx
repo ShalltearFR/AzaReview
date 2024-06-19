@@ -63,7 +63,15 @@ const Section0: React.FC<Section0Props> = ({ sectionPrevIndex, lang }) => {
         <div className="text-3xl font-bold text-center mb-5">
           {translateSection[14]}
         </div>
-        <video autoPlay playsInline muted loop className="rounded-2xl mx-auto">
+        <video
+          width={596}
+          height={596}
+          autoPlay
+          playsInline
+          muted
+          loop
+          className="rounded-2xl mx-auto"
+        >
           <source
             src={`${CDN2}/video/homepage/vitrine.webm`}
             type="video/webm"

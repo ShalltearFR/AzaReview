@@ -67,6 +67,8 @@ const Section2: React.FC<Section2Props> = ({
             >
               <img
                 src={`${CDN2}/img/homepage/topaz.gif`}
+                width={125}
+                height={160}
                 className="h-40 -mt-40 translate-y-[25px] mmd:mx-auto"
               />
             </div>
@@ -186,6 +188,8 @@ const Section2: React.FC<Section2Props> = ({
           >
             <img
               src={`${CDN2}/img/homepage/guinaifen.webp`}
+              width={160}
+              height={144}
               className="h-36 translate-y-1"
             />
             <div className="ml-auto mt-auto mr-5 px-4 py-2 bg-background rounded-t-2xl translate-y-[1px] xl2:flex xl2:gap-2">
@@ -198,6 +202,8 @@ const Section2: React.FC<Section2Props> = ({
               >
                 <img
                   src={`${CDN2}/img/eneba-logo.svg`}
+                  width={128}
+                  height={40}
                   className="h-10 mx-auto"
                 />
               </a>
@@ -238,14 +244,22 @@ const Section2: React.FC<Section2Props> = ({
                   <div>{translateSection[11]}</div>
                   <div>{translateSection[12]}</div>
                 </div>
-                <img src={`${CDN2}/img/homepage/banderole_razergold.webp`} />
+                <img
+                  src={`${CDN2}/img/homepage/banderole_razergold.webp`}
+                  width={700}
+                  height={99}
+                />
               </div>
               <div className="mt-3 relative">
                 <div className="absolute text-xs sm:text-sm smd:text-[20px] px-2 text-center w-3/5 left-0 top-1/2 -translate-y-1/2">
                   <div>{translateSection[13]}</div>
                   <div className="sm:mt-2">{translateSection[14]}</div>
                 </div>
-                <img src={`${CDN2}/img/homepage/banderole_eneba.webp`} />
+                <img
+                  src={`${CDN2}/img/homepage/banderole_eneba.webp`}
+                  width={700}
+                  height={99}
+                />
               </div>
               <div className="mt-3 relative">
                 <div className="absolute text-xs sm:text-base smd:text-lg px-2 smd:px-10 text-center w-3/5 right-0 top-1/2 -translate-y-1/2 font-semibold">
@@ -261,7 +275,11 @@ const Section2: React.FC<Section2Props> = ({
                     {translateSection[16]}
                   </div>
                 </div>
-                <img src={`${CDN2}/img/homepage/banderole_azano.webp`} />
+                <img
+                  src={`${CDN2}/img/homepage/banderole_azano.webp`}
+                  width={700}
+                  height={99}
+                />
               </div>
             </div>
           </div>
