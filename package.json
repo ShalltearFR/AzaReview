@@ -27,6 +27,7 @@
     "mongoose": "^8.4.1",
     "next": "^15.0.0-rc.0",
     "next-client-cookies": "^1.1.1",
+    "node-cache": "^5.1.2",
     "react": "^19.0.0-rc-fb9a90fa48-20240614",
     "react-dom": "^19.0.0-rc-fb9a90fa48-20240614",
     "react-modal": "^3.16.1",
