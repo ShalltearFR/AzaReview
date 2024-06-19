@@ -19,11 +19,12 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
   return (
     <div className="flex flex-col h-[470px] relative items-center">
       <img
+        key={character.portrait}
+        src={`${CDN2}/img/portraits/${character.id}.webp`}
         height={470}
         width={470}
         fetchPriority="high"
-        src={`${CDN}/${character.portrait}`}
-        alt=""
+        alt="character portrait"
         className="absolute xl:top-10 xl:w-[470px] object-contain xl:object-cover h-[470px] mx-auto"
         style={{
           maskImage: `url(${CDN2}/img/characterMask.png)`,
