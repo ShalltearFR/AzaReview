@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /uid/*
+Allow: /guides/*
+
+# Sitemaps
+Sitemap: https://review-hsr.vercel.app/sitemap.xml
