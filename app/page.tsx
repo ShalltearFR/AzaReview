@@ -134,25 +134,27 @@ function Homepage() {
           setSectionPrevIndex={setSectionPrevIndex}
         />
         <StarBGAnimation zIndex={0} />
-        <div className="text-white mt-10 xl2:mt-0 xl2:overflow-hidden xl2:h-[calc(100vh-64px)] flex flex-col justify-center items-center">
-          {/* 1ere section */}
-          {showSection0 && (
-            <Section0 sectionPrevIndex={sectionPrevIndex} lang={lang} />
-          )}
+        <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}>
+          <div className="text-white mt-10 xl2:mt-0 xl2:overflow-hidden xl2:h-[calc(100vh-64px)] flex flex-col justify-center items-center">
+            {/* 1ere section */}
+            {showSection0 && (
+              <Section0 sectionPrevIndex={sectionPrevIndex} lang={lang} />
+            )}
 
-          {/* 2eme section */}
-          {showSection1 && (
-            <Section1 sectionPrevIndex={sectionPrevIndex} lang={lang} />
-          )}
-          {/* 3eme section */}
-          {showSection2 && (
-            <Section2
-              codes={codes}
-              isCodeAnimation={isCodeAnimation}
-              lang={lang}
-            />
-          )}
-        </div>
+            {/* 2eme section */}
+            {showSection1 && (
+              <Section1 sectionPrevIndex={sectionPrevIndex} lang={lang} />
+            )}
+            {/* 3eme section */}
+            {showSection2 && (
+              <Section2
+                codes={codes}
+                isCodeAnimation={isCodeAnimation}
+                lang={lang}
+              />
+            )}
+          </div>
+        </Suspense>
       </div>
     </>
   );

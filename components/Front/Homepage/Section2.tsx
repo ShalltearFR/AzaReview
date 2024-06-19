@@ -65,12 +65,20 @@ const Section2: React.FC<Section2Props> = ({
               data-aos-delay="250"
               className="absolute mx-auto my-auto w-full z-20"
             >
-              <img
-                src={`${CDN2}/img/homepage/topaz.gif`}
+              <video
                 width={125}
                 height={160}
+                autoPlay
+                playsInline
+                muted
+                loop
                 className="h-40 -mt-40 translate-y-[25px] mmd:mx-auto"
-              />
+              >
+                <source
+                  src={`${CDN2}/video/homepage/topaz.webm`}
+                  type="video/webm"
+                />
+              </video>
             </div>
             <div
               data-aos={isCodeAnimation ? "fade-right" : ""}
