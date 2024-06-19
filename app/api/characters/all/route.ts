@@ -5,8 +5,8 @@ import NodeCache from "node-cache";
 
 export const dynamic = "force-dynamic";
 
-// Cache pour les données récupérées (TTL: 60 secondes)
-const cache = new NodeCache({ stdTTL: 60 });
+// Cache pour les données récupérées (TTL: 10 minutes)
+const cache = new NodeCache({ stdTTL: 600 });
 
 export async function GET() {
   try {
