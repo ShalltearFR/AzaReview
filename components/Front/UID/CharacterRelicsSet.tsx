@@ -206,6 +206,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                         </p>
                         <img
                           src={`${CDN}/${el.icon}`}
+                          loading="lazy"
                           className="h-24 w-24 mx-auto mt-auto"
                           width={96}
                           height={96}

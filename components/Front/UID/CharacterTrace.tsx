@@ -34,7 +34,7 @@ const CharacterTrace: React.FC<CharacterTraceProps> = ({
       </div>
 
       <div className="absolute w-16 h-16 top-1 left-1 rounded-full bg-black border border-gray">
-        <img src={`${CDN}/${img}`} width={62} height={62} />
+        <img src={`${CDN}/${img}`} width={62} height={62} loading="lazy" />
       </div>
       <span className="z-10 h-5 flex justify-center items-center bg-light-gray rounded-full text-xs font-bold">
         {type}
