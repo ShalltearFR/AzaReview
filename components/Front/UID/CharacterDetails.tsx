@@ -50,9 +50,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
       (reviewData[index]?.data[buildIndex] as unknown as Data)) ||
     [];
 
-  useEffect(() => {
-    setTracesNames(traces[lang ?? "fr"]);
-  }, [lang]);
+  useEffect(() => setTracesNames(traces[lang ?? "fr"]), [lang]);
 
   useEffect(() => {
     if (character.relics) {
