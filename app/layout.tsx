@@ -24,6 +24,7 @@ export default function RootLayout({
   return (
     <CookiesProvider>
       <html lang="fr">
+        <link rel="manifest" href="/manifest.json" />
         <body className="bg-background">
           {children}
           <Analytics />
