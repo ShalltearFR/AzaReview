@@ -36,7 +36,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
       <div className="flex flex-wrap ml-20 gap-5 w-full mr-16 mt-5 justify-center px-5">
         {uidData.characters.map((character, i) => {
           return (
-            <div
+            <button
               className={`rounded-full w-20 h-20 overflow-hidden border ${
                 index === i ? "bg-orange" : "bg-background"
               }`}
@@ -55,7 +55,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
               }}
             >
               <img src={`${CDN}/${character.icon}`} width={96} height={96} />
-            </div>
+            </button>
           );
         })}
       </div>
