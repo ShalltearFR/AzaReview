@@ -36,6 +36,7 @@ const Section1: React.FC<Section1Props> = ({ sectionPrevIndex, lang }) => {
         >
           <img
             src={`${CDN2}/img/homepage/pela.webp`}
+            alt="Pela"
             width={145}
             height={145}
             className="h-36 ml-auto translate-y-5 "

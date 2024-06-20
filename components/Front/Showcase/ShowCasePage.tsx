@@ -65,6 +65,7 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
         <div className="min-h-[calc(100vh-205px)] relative text-white">
           <img
             src={`${CDN}/${character.portrait}`}
+            alt={characterName}
             className="fixed -right-1/2 -left-1/2 grayscale opacity-50 object-cover h-full translate-y-5 -z-10 mx-auto"
           />
           <p className="font-bold text-4xl text-center mt-10">

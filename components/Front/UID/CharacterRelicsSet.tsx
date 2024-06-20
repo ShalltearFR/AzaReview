@@ -206,6 +206,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                         </p>
                         <img
                           src={`${CDN}/${el.icon}`}
+                          alt={el.name}
                           className="h-24 w-24 mx-auto mt-auto"
                           width={96}
                           height={96}
@@ -320,6 +321,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
 
                   <img
                     src={`${CDN}/${relic.icon}`}
+                    alt={relic.name}
                     className="w-[128px] h-[128px]"
                     width={128}
                     height={128}

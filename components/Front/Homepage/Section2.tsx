@@ -196,6 +196,7 @@ const Section2: React.FC<Section2Props> = ({
           >
             <img
               src={`${CDN2}/img/homepage/guinaifen.webp`}
+              alt="Guinaifen"
               width={160}
               height={144}
               className="h-36 translate-y-1"
@@ -210,6 +211,7 @@ const Section2: React.FC<Section2Props> = ({
               >
                 <img
                   src={`${CDN2}/img/eneba-logo.svg`}
+                  alt="Logo Eneba"
                   width={128}
                   height={40}
                   className="h-10 mx-auto"
@@ -254,6 +256,7 @@ const Section2: React.FC<Section2Props> = ({
                 </div>
                 <img
                   src={`${CDN2}/img/homepage/banderole_razergold.webp`}
+                  alt="Razer Gold"
                   width={700}
                   height={99}
                 />
@@ -265,6 +268,7 @@ const Section2: React.FC<Section2Props> = ({
                 </div>
                 <img
                   src={`${CDN2}/img/homepage/banderole_eneba.webp`}
+                  alt="Eneba"
                   width={700}
                   height={99}
                 />
@@ -285,6 +289,7 @@ const Section2: React.FC<Section2Props> = ({
                 </div>
                 <img
                   src={`${CDN2}/img/homepage/banderole_azano.webp`}
+                  alt="Azano"
                   width={700}
                   height={99}
                 />

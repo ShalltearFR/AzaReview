@@ -24,7 +24,7 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
         height={470}
         width={470}
         fetchPriority="high"
-        alt="character portrait"
+        alt={`${character.name} portrait`}
         className="absolute xl:top-10 xl:w-[470px] object-contain xl:object-cover h-[470px] mx-auto"
         style={{
           maskImage: `url(${CDN2}/img/characterMask.png)`,
@@ -44,17 +44,17 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
         <div className="flex gap-1 mt-2 ml-5 xl:ml-0">
           <img
             src={`${CDN}/${character.element.icon}`}
+            alt={`character element ${character.element.name}`}
             width={32}
             height={32}
             className="w-8 z-10"
-            alt="element"
           />
           <img
             src={`${CDN}/${character.path.icon}`}
+            alt={`character element ${character.path.name}`}
             width={32}
             height={32}
             className="w-8 z-10"
-            alt="path"
           />
         </div>
       </div>

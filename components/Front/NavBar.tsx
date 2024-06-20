@@ -65,6 +65,7 @@ const NavBar: React.FC<NavBarProps> = ({
             <img
               src={`${CDN2}/img/homepage/logo_min.png`}
               className="absolute h-16 smd:h-20 left-2 top-2 z-50 smd:mt-2 xl:mt-0"
+              alt="Logo"
             />
           </Link>
           <div className="w-0 mmd:w-28" />
@@ -80,6 +81,7 @@ const NavBar: React.FC<NavBarProps> = ({
                   >
                     <img
                       src={`${CDN2}/img/homepage/nextSection.svg`}
+                      alt=""
                       width={64}
                       height={64}
                       className="ml-8 h-16 animate-homePageBounce"
@@ -157,6 +159,7 @@ const NavBar: React.FC<NavBarProps> = ({
                   >
                     <img
                       src={`${CDN2}/img/homepage/nextSection.svg`}
+                      alt=""
                       width={64}
                       height={64}
                       className="ml-8 h-16 animate-homePageBounce"

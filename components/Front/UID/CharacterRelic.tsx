@@ -166,6 +166,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
 
         <img
           src={`${CDN}/${icon}`}
+          alt={displayValue}
           className="mx-auto"
           width={80}
           height={80}
@@ -201,7 +202,12 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
               key={`characterRelic${affix.type}${i}`}
               className="grid grid-cols-[32px_1fr_50px_20px] items-center z-[1]"
             >
-              <img src={`${CDN}/${affix.icon}`} width={28} height={28} />
+              <img
+                src={`${CDN}/${affix.icon}`}
+                alt={`Piece N°${equipmentIndex}`}
+                width={28}
+                height={28}
+              />
               <span>{subDisplayValue}</span>
               <span className="text-right mr-2">{affix.display}</span>
               <span className="bg-green rounded-full text-center text-black">

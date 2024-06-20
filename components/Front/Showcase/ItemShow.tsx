@@ -46,6 +46,7 @@ const ItemShow: React.FC<ItemShowProps> = ({
         )}
         <img
           src={`${CDN}/${itemName.icon}`}
+          alt={itemName.name}
           className="m-auto"
           width={128}
           height={128}

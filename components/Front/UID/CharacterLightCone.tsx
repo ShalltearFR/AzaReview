@@ -83,6 +83,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
                   </p>
                   <img
                     src={`${CDN}/${recommendedLightCone[0].portrait}`}
+                    alt={recommendedLightCone[0].name}
                     className="h-36 mx-auto object-contain"
                     width={144}
                     height={103}
@@ -96,6 +97,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
                     </p>
                     <img
                       src={`${CDN}/${recommendedLightCone[1].portrait}`}
+                      alt={recommendedLightCone[1].name}
                       className="h-36 mx-auto object-contain"
                       width={144}
                       height={103}
