@@ -26,9 +26,11 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    name: "Review HSR",
     url: "https://review-hsr.vercel.app",
     potentialAction: {
       "@type": "SearchAction",
+      name: "Rechercher via l'UID Honaki : Star Rail",
       target: "https://review-hsr.vercel.app/uid/{search_term_string}",
       "query-input": "required name=search_term_string",
     },
