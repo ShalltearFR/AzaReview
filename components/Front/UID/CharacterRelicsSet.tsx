@@ -175,7 +175,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
       <div className="relative">
         {requiredRelicsSet.length > 0 && (
           <>
-            <div
+            <button
               className={`absolute right-0 z-10 px-3 py-1 rounded-full text-black font-bold ${
                 colorExclamation ? "bg-gray" : "bg-red"
               }`}
@@ -215,7 +215,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                   </div>
                 </div>
               )}
-            </div>
+            </button>
           </>
         )}
 
