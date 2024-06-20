@@ -58,7 +58,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
   return (
     <div className=" w-full xl:min-w-60 xl:max-w-80 xl:w-auto rounded-t-3xl bg-light-blue/75 mx-auto p-3 mt-5">
       <div className="relative">
-        <div
+        <button
           className={`absolute z-10 px-3 py-1 rounded-full font-bold right-0 ${
             isGoodLightCone ? "bg-gray" : "bg-red"
           }`}
@@ -104,7 +104,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
                 )}
               </div>
             )}
-        </div>
+        </button>
         <p className="text-yellow text-lg font-bold text-center">
           {UIDtitles[lang ?? "fr"].lightCone}
         </p>
