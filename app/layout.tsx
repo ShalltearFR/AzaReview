@@ -29,7 +29,7 @@ export default function RootLayout({
     url: "https://review-hsr.vercel.app",
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://exemple.com/uid/{search_term_string}",
+      target: "https://review-hsr.vercel.app/uid/{search_term_string}",
       "query-input": "Entrez votre UID Honkai : Star Rail",
     },
   };
