@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [`/img/homepage/logo_SRE.webp`],
   },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -21,14 +22,29 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Ajout barre de recherche UID dans le moteur de recherche
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    url: "https://review-hsr.vercel.app",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://exemple.com/uid/{search_term_string}",
+      "query-input": "Entrez votre UID Honkai : Star Rail",
+    },
+  };
+
   return (
     <CookiesProvider>
       <html lang="fr">
-        <link rel="manifest" href="/manifest.json" />
         <body className="bg-background">
-          {children}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
           <Analytics />
           <SpeedInsights />
+          {children}
         </body>
       </html>
     </CookiesProvider>
