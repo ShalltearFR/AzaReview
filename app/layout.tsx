@@ -40,10 +40,6 @@ export default function RootLayout({
     <CookiesProvider>
       <html lang="fr">
         <body className="bg-background">
-          <meta
-            name="google-site-verification"
-            content="ZLx-TEYRpUDvIbAC4Tr73kuQJRUJ4LYHgZMAW5QtuLc"
-          />
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
