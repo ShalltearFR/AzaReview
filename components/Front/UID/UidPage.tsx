@@ -72,14 +72,17 @@ const UidPage: React.FC<UidPageProps> = ({
   const [shareButtonText, setShareButtonText] = useState<string>("");
 
   const [review, setReview] = useState<any>();
+  const [isloading, setIsLoading] = useState<Boolean>(true);
 
-  const loaded =
-    uidData.status === 200 &&
-    review &&
-    review[characterIndex] &&
-    review[characterIndex].data;
+  // const loaded =
+  //   uidData.status === 200 &&
+  //   review &&
+  //   review[characterIndex] &&
+  //   review[characterIndex].data;
 
-  useEffect(() => Aos.init({ disable: window.innerWidth <= 1450 }), []);
+  useEffect(() => {
+    Aos.init({ disable: window.innerWidth <= 1450 });
+  }, []);
 
   const handleConvertImage = useCallback(
     (exportType: string, disableButton: (value: boolean) => void) => {
@@ -112,6 +115,7 @@ const UidPage: React.FC<UidPageProps> = ({
           jsonUidData.characters
         );
         setReview(sortedReviewData);
+        setIsLoading(false);
       }
     }
   }, [jsonReview, uidData]);
@@ -127,7 +131,12 @@ const UidPage: React.FC<UidPageProps> = ({
   }, [RelicsList, jsonUid]);
 
   useEffect(() => {
-    if (loaded) {
+    if (
+      uidData.status === 200 &&
+      review &&
+      review[characterIndex] &&
+      review[characterIndex].data
+    ) {
       if (
         lang === "en" &&
         characterEN[(uidData as any).characters[characterIndex].id]
@@ -174,7 +183,7 @@ const UidPage: React.FC<UidPageProps> = ({
     }
   }, [lang]);
 
-  if (!loaded)
+  if (isloading)
     return (
       <div className="min-h-[calc(100vh-230px)] overflow-hidden">
         <StarBGAnimation />
@@ -208,7 +217,7 @@ const UidPage: React.FC<UidPageProps> = ({
     );
   }
 
-  if (loaded) {
+  if (!isloading && uidData.status === 200 && review) {
     return (
       <div className="overflow-hidden min-h-[calc(100vh-270px)]">
         <StarBGAnimation />
