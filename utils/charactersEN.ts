@@ -505,6 +505,22 @@ const characterEN: CharacterENProps = {
       comment: "",
     },
   ],
+  1310: [
+    // Firefly
+    {
+      name: "",
+      desc: "",
+      comment: "",
+    },
+  ],
+  1314: [
+    // Jade
+    {
+      name: "",
+      desc: "",
+      comment: "",
+    },
+  ],
 };
 
 export default characterEN;
