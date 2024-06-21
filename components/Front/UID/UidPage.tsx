@@ -74,12 +74,6 @@ const UidPage: React.FC<UidPageProps> = ({
   const [review, setReview] = useState<any>();
   const [isloading, setIsLoading] = useState<Boolean>(true);
 
-  // const loaded =
-  //   uidData.status === 200 &&
-  //   review &&
-  //   review[characterIndex] &&
-  //   review[characterIndex].data;
-
   useEffect(() => {
     Aos.init({ disable: window.innerWidth <= 1450 });
   }, []);
