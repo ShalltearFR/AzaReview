@@ -63,7 +63,7 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
   // Memorise la valeur
   const isGoodValue = useMemo(() => {
     // Si review n'est pas defini, arrete la fonction
-    if (!review || review.length === 0) return false;
+    if (!review || review.length === 0) return true;
 
     // Va chercher l'objet de la stat recherché
     const recommendedObject = review.find(
