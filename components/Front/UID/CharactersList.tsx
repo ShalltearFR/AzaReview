@@ -41,18 +41,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
                 index === i ? "bg-orange" : "bg-background"
               }`}
               key={`characterIndex${i}`}
-              onClick={() => {
-                setIndex(i);
-                if (i > 0) {
-                  window.history.pushState(
-                    {},
-                    "",
-                    window.location.pathname + `?c=${i}`
-                  );
-                } else {
-                  window.history.pushState({}, "", window.location.pathname);
-                }
-              }}
+              onClick={() => setIndex(i)}
             >
               <img src={`${CDN}/${character.icon}`} width={96} height={96} />
             </button>

@@ -1,8 +1,6 @@
 "use client";
 import NavBar from "@/components/Front/NavBar";
-import { useSearchParams } from "next/navigation";
-import { useState, useEffect, useRef, Suspense } from "react";
-import { toBlob, toJpeg, toPng } from "html-to-image";
+import { useState, useEffect, useRef, Suspense, useCallback } from "react";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Aos from "aos";
 import { notFound } from "next/navigation";
@@ -13,21 +11,16 @@ import StarBGAnimation from "../StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
 import CharacterList from "./CharactersList";
 import CharacterBuild from "./CharacterBuild";
-
-import dynamic from "next/dynamic";
-const CharacterDetails = dynamic(() => import("./CharacterDetails"), {
-  loading: () => (
-    <div className="flex justify-center items-center h-full">
-      <LoadingSpin width="w-24" height="h-24" />
-    </div>
-  ),
-  ssr: true,
-});
+import CharacterDetails from "./CharacterDetails";
+import { convertImage } from "@/utils/imageConversion";
+import ReviewHeader from "./ReviewHeader";
+import { sortRelics, sortReviewDataByUidData } from "@/utils/sorts";
 
 import type { CharacterBuild as CharacterBuildType } from "@/types/charactersEN";
 import type { TranslateSection } from "@/types/homepageDictionnary";
 import type { jsonUID } from "@/types/jsonUid";
 import type { CharacterType } from "@/types/CharacterModel";
+import CharacterButtons from "./CharacterButtons";
 
 interface Option {
   value: string;
@@ -62,9 +55,6 @@ const UidPage: React.FC<UidPageProps> = ({
   lang,
   error504,
 }) => {
-  const searchParams = useSearchParams();
-  const characterQuery = searchParams.get("c");
-  const [isloading, setIsLoading] = useState<Boolean>(true);
   const [uidData, setUidData] = useState<{ status: number } | jsonUID>({
     status: 206,
   });
@@ -83,146 +73,38 @@ const UidPage: React.FC<UidPageProps> = ({
 
   const [review, setReview] = useState<any>();
 
-  useEffect(() => {
-    Aos.init({ disable: window.innerWidth <= 1450 });
-    const init = async () => {
-      const uidDataCopy = { ...uidData } as jsonUID;
-      const transformCharacterQuery = () => {
-        if (isNaN(Number(characterQuery))) {
-          window.history.pushState({}, "", window.location.pathname);
-          return 0;
-        }
-        if (Number(characterQuery) > uidDataCopy.characters.length) {
-          window.history.pushState({}, "", window.location.pathname);
-          return 0;
-        }
-        return Number(characterQuery);
-      };
+  const loaded =
+    uidData.status === 200 &&
+    review &&
+    review[characterIndex] &&
+    review[characterIndex].data;
 
-      if (uidDataCopy.characters) transformCharacterQuery();
-      return 0;
-    };
+  useEffect(() => Aos.init({ disable: window.innerWidth <= 1450 }), []);
 
-    init().then((data: number) => setCharacterIndex(data));
-  }, []);
-
-  const handleConvertImage = (
-    exportType: string,
-    disableButton: (value: boolean) => void
-  ) => {
-    if (characterDetailsRef.current === null) {
-      return;
-    }
-    disableButton(true);
-
-    if (exportType === "share")
-      setShareButtonText(UIDtitles[lang ?? "fr"].Saving);
-
-    setTimeout(() => {
-      //Leger timeout pour eviter le troncage d'image dû au rajout du header Image
-      let conversionPromise;
-
-      if (window.innerWidth >= 650) {
-        // Tablette/Desktop
-        conversionPromise = toPng(
-          characterDetailsRef.current as HTMLDivElement
-        );
-      } else {
-        // Mobile
-        conversionPromise = toJpeg(
-          characterDetailsRef.current as HTMLDivElement,
-          {
-            quality: 0.5,
-          }
-        );
-      }
-
-      conversionPromise
-        .then((dataImage) => {
-          if (exportType === "save") {
-            // Bouton sauvegarder
-            const uidDataCopy = { ...uidData } as jsonUID;
-            const link = document.createElement("a");
-            link.download = `Review HSR - ${uidDataCopy.characters[characterIndex].name}`;
-            link.href = dataImage;
-            link.click();
-            disableButton(false);
-          } else if (exportType === "share") {
-            // Bouton Copier Presse Papier
-            toBlob(characterDetailsRef.current as HTMLDivElement).then(
-              (blob: any) => {
-                navigator.clipboard
-                  .write([
-                    new ClipboardItem({
-                      "image/png": blob,
-                    }),
-                  ])
-                  .then(() => {
-                    setShareButtonText(UIDtitles[lang ?? "fr"].ImageCopied);
-                    setTimeout(() => disableButton(false), 1000);
-                  })
-                  .catch((err) => console.log("Erreur presse papier :", err));
-              }
-            );
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }, 1000);
-  };
+  const handleConvertImage = useCallback(
+    (exportType: string, disableButton: (value: boolean) => void) => {
+      convertImage(
+        exportType,
+        disableButton,
+        setShareButtonText,
+        characterDetailsRef,
+        lang,
+        characterIndex,
+        uidData as jsonUID
+      );
+    },
+    [characterIndex]
+  );
 
   useEffect(() => {
     const uidDataCopy = { ...uidData } as jsonUID;
     reviewHeaderRef.current = (
-      <div
-        id="exportHTML"
-        className="mx-auto w-full max-w-[1450px] border rounded-t-xl overflow-hidden"
-        style={{
-          backgroundImage: `url('${CDN2}/img/character_bg.avif')`,
-          marginBlock: "auto",
-          width: "100%",
-          height: "96px",
-        }}
-      >
-        <div className="flex items-center w-full h-24 text-white smd:text-xl bg-black/50">
-          <img
-            className="ml-2 smd:ml-5 h-24"
-            src={`${CDN}/${uidDataCopy?.player?.avatar.icon}`}
-            width={96}
-            height={96}
-          />
-          <p className="ml-5 flex flex-col">
-            <span className="font-bold">{uidDataCopy?.player?.nickname}</span>
-            <span className="smd:text-base">
-              UID : {uidDataCopy?.player?.uid}
-            </span>
-          </p>
-          <img
-            src={`${CDN2}/img/homepage/logo_min.png`}
-            className="ml-auto hidden smd:block mr-2 smd:mr-5 h-10 smd:h-14"
-          />
-          <p className="ml-auto smd:ml-0 mr-5 font-bold">
-            review-hsr.vercel.app
-          </p>
-        </div>
-      </div>
+      <ReviewHeader CDN={CDN} CDN2={CDN2} uidDataCopy={uidDataCopy} />
     );
   }, [uidData]);
 
   useEffect(() => {
     if (uidData && jsonReview) {
-      function sortReviewDataByUidData(reviewData: any, uidData: any) {
-        const sortedArray = uidData.map((uidItem: any) => {
-          const matchingItem = reviewData.find(
-            (reviewItem: any) => reviewItem.id === uidItem.id
-          );
-          return matchingItem ? matchingItem : { value: "NC" };
-        });
-
-        return sortedArray;
-      }
-
       const jsonUidData = uidData as jsonUID;
       if (uidData.status === 200) {
         const sortedReviewData = sortReviewDataByUidData(
@@ -230,56 +112,22 @@ const UidPage: React.FC<UidPageProps> = ({
           jsonUidData.characters
         );
         setReview(sortedReviewData);
-        setIsLoading(false);
       }
     }
   }, [jsonReview, uidData]);
 
   useEffect(() => {
     const uidDataCopy = { ...uidData } as jsonUID;
-    if (uidDataCopy.characters?.length > 0) {
-      const orderOfType = ["HEAD", "HAND", "BODY", "FOOT", "NECK", "OBJECT"];
-
-      const customSort = (a: any, b: any) => {
-        const typeA = RelicsList.find((item) => item.id === a.id)?.type;
-        const typeB = RelicsList.find((item) => item.id === b.id)?.type;
-
-        // Utiliser l'ordre défini pour trier
-        const indexA = orderOfType.indexOf(typeA);
-        const indexB = orderOfType.indexOf(typeB);
-
-        return indexA - indexB;
-      };
-
-      const charactersList = uidDataCopy.characters.map((character, index) => {
-        if (character.relics) {
-          if (character.relics.length === 0) return character;
-
-          // Create a sorted copy of the relics array
-          const data = uidDataCopy.characters[index];
-          data.relics = [...character.relics].sort(customSort);
-          return data;
-        }
-        return character;
-      });
-      uidDataCopy.characters = charactersList;
-
-      setUidData(uidDataCopy);
-    } else {
+    if (uidDataCopy.characters?.length > 0)
+      sortRelics(RelicsList, uidDataCopy, setUidData);
+    else
       setUidData({
         status: uidData.status,
       });
-    }
-    // setIsLoading(false);
   }, [RelicsList, jsonUid]);
 
   useEffect(() => {
-    if (
-      uidData.status === 200 &&
-      review &&
-      review[characterIndex] &&
-      review[characterIndex].data
-    ) {
+    if (loaded) {
       if (
         lang === "en" &&
         characterEN[(uidData as any).characters[characterIndex].id]
@@ -326,7 +174,7 @@ const UidPage: React.FC<UidPageProps> = ({
     }
   }, [lang]);
 
-  if (isloading)
+  if (!loaded)
     return (
       <div className="min-h-[calc(100vh-230px)] overflow-hidden">
         <StarBGAnimation />
@@ -360,7 +208,7 @@ const UidPage: React.FC<UidPageProps> = ({
     );
   }
 
-  if (!isloading && uidData.status === 200 && review) {
+  if (loaded) {
     return (
       <div className="overflow-hidden min-h-[calc(100vh-270px)]">
         <StarBGAnimation />
@@ -421,43 +269,17 @@ const UidPage: React.FC<UidPageProps> = ({
                 />
               </div>
             </div>
-            <div>
-              <div className="flex justify-center gap-10">
-                <button
-                  disabled={disableDownloadButton}
-                  className="flex px-5 py-2 mt-10 rounded-full bg-green text-xl font-bold mb-10 xl:mb-0 disabled:bg-gray"
-                  onClick={() =>
-                    handleConvertImage("save", setDisableDownloadButton)
-                  }
-                >
-                  {disableDownloadButton ? (
-                    <div className="flex gap-2">
-                      <span>{UIDtitles[lang ?? "fr"].Downloading}</span>
-                      <LoadingSpin width="w-6" height="h-6" />
-                    </div>
-                  ) : (
-                    UIDtitles[lang ?? "fr"].DownloadImage
-                  )}
-                </button>
 
-                <button
-                  disabled={disableShareButton}
-                  className="flex px-5 py-2 mt-10 rounded-full bg-green text-xl font-bold mb-10 xl:mb-0 disabled:bg-gray"
-                  onClick={() =>
-                    handleConvertImage("share", setDisableShareButton)
-                  }
-                >
-                  {disableShareButton ? (
-                    <div className="flex gap-2">
-                      <span>{shareButtonText}</span>
-                      <LoadingSpin width="w-6" height="h-6" />
-                    </div>
-                  ) : (
-                    UIDtitles[lang ?? "fr"].shareImage
-                  )}
-                </button>
-              </div>
-            </div>
+            <CharacterButtons
+              disableDownloadButton={disableDownloadButton}
+              disableShareButton={disableShareButton}
+              lang={lang}
+              handleConvertImage={handleConvertImage}
+              setDisableDownloadButton={setDisableDownloadButton}
+              setDisableShareButton={setDisableShareButton}
+              shareButtonText={shareButtonText}
+              UIDtitles={UIDtitles}
+            />
           </section>
         </Suspense>
       </div>
