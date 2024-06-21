@@ -10,8 +10,6 @@ type Props = {
   params: { slug: number };
 };
 
-export const runtime = "edge";
-
 async function getData(
   url: string,
   revalidationValue: number,
