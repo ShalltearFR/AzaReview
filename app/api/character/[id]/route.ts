@@ -14,7 +14,7 @@ export async function GET(
   try {
     const cachedData = cache.get(`character${id}`);
     if (cachedData) {
-      return NextResponse.json({ status: 200, data: cachedData });
+      return NextResponse.json(cachedData, { status: 200 });
     }
 
     await dbConnect();

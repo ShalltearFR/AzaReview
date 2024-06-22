@@ -71,11 +71,6 @@ const GuideID = async ({ params }: { params: { id: string } }) => {
       getData(`${process.env.WWW}/api/character/${params.id}`, 300, false),
     ]);
 
-    console.log("lightcones", lightcones);
-    console.log("relicsSet", relicsSet);
-    console.log("properties", properties);
-    console.log("character", character);
-
     if (lightcones && relicsSet && properties) {
       return (
         <ShowCasePage
