@@ -1,35 +1,29 @@
 import dbConnect from "@/lib/dbConnect";
 import Character from "@/models/Character.model";
 import { NextResponse } from "next/server";
-import NodeCache from "node-cache";
+import cacheData from "@/utils/cacheData";
 
 export const dynamic = "force-dynamic";
-
-// Cache pour les données récupérées (TTL: 20 minutes)
-const cache = new NodeCache({ stdTTL: 1200 });
 
 export async function GET() {
   try {
     // Vérifiez si les données sont en cache
-    const cachedData = cache.get("characters");
+    const cachedData = cacheData.get("characters");
     if (cachedData) {
       return NextResponse.json({ status: 200, data: cachedData });
     }
 
     await dbConnect();
-
-    // Utilisez lean() pour obtenir des objets JS purs sans surcharge Mongoose
     const dataReq = await Character.find({}).select("-_id -__v").lean();
 
-    if (dataReq.length === 0) {
+    if (dataReq.length === 0)
       return NextResponse.json({ status: 204, data: [] });
-    }
 
     // Supprime les _id si nécessaire
     const cleanedData = removeIdsFromArrays(dataReq);
 
     // Mettre en cache les données récupérées
-    cache.set("characters", cleanedData);
+    cacheData.set("characters", cleanedData);
 
     return NextResponse.json({ status: 200, data: cleanedData });
   } catch (error) {

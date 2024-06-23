@@ -68,7 +68,7 @@ const GuideID = async ({ params }: { params: { id: string } }) => {
       getData(`${CDN}/index_min/${lang || "fr"}/light_cones.json`, 18000, true),
       getData(`${CDN}/index_min/${lang || "fr"}/relic_sets.json`, 18000, true),
       getData(`${CDN}/index_min/${lang || "fr"}/properties.json`, 18000, true),
-      getData(`${process.env.WWW}/api/character/${params.id}`, 30, false),
+      getData(`${process.env.WWW}/api/character/${params.id}`, 300, false),
     ]);
 
     if (lightcones && relicsSet && properties) {
