@@ -64,19 +64,38 @@ const GuideID = async ({ params }: { params: { id: string } }) => {
   const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
 
   try {
-    const [lightcones, relicsSet, properties, character] = await Promise.all([
-      getData(`${CDN}/index_min/${lang || "fr"}/light_cones.json`, 18000, true),
-      getData(`${CDN}/index_min/${lang || "fr"}/relic_sets.json`, 18000, true),
-      getData(`${CDN}/index_min/${lang || "fr"}/properties.json`, 18000, true),
-      getData(`${process.env.WWW}/api/character/${params.id}`, 5, false),
-    ]);
+    const [lightcones, lightconesRanks, relicsSet, properties, character] =
+      await Promise.all([
+        getData(
+          `${CDN}/index_min/${lang || "fr"}/light_cones.json`,
+          18000,
+          true
+        ),
+        getData(
+          `${CDN}/index_min/${lang || "fr"}/light_cone_ranks.json`,
+          18000,
+          true
+        ),
+        getData(
+          `${CDN}/index_min/${lang || "fr"}/relic_sets.json`,
+          18000,
+          true
+        ),
+        getData(
+          `${CDN}/index_min/${lang || "fr"}/properties.json`,
+          18000,
+          true
+        ),
+        getData(`${process.env.WWW}/api/character/${params.id}`, 5, false),
+      ]);
 
-    if (lightcones && relicsSet && properties) {
+    if (lightcones && relicsSet && properties && lightconesRanks) {
       return (
         <ShowCasePage
           character={character}
           lang={lang}
           lightCones={lightcones}
+          lightconesRanks={lightconesRanks}
           relicsSet={relicsSet}
           properties={properties}
         />

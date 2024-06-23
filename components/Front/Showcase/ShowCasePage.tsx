@@ -18,6 +18,7 @@ interface ShowCasePageProps {
   lightCones: any;
   relicsSet: any;
   properties: any;
+  lightconesRanks: any;
 }
 
 const ShowCasePage: React.FC<ShowCasePageProps> = ({
@@ -26,6 +27,7 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
   lightCones,
   relicsSet,
   properties,
+  lightconesRanks,
 }) => {
   const initCharacter = () => {
     return replaceCharacterName(lang, character as CharacterType).then(
@@ -83,6 +85,7 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
                   i={i}
                   characterID={character.id}
                   lightCones={lightCones}
+                  lightconesRanks={lightconesRanks}
                   properties={properties}
                   relicsSet={relicsSet}
                   lang={lang}

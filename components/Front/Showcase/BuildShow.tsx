@@ -13,6 +13,7 @@ interface BuildShowProps {
   lang: keyof TranslateSection | undefined;
   characterID: string;
   lightCones: any;
+  lightconesRanks: any;
   properties: any;
   relicsSet: any;
 }
@@ -87,6 +88,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
   characterID,
   lang,
   lightCones,
+  lightconesRanks,
   properties,
   relicsSet,
 }) => {
@@ -147,6 +149,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
                         type={lightCones}
                         id={lightcone.id}
                         className="h-36 w-36"
+                        lightconesRanks={lightconesRanks}
                       />
                     </div>
                   );
@@ -170,6 +173,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
                         type={lightCones}
                         id={lightcone.id}
                         className="h-36 w-36"
+                        lightconesRanks={lightconesRanks}
                       />
                     </div>
                   );
