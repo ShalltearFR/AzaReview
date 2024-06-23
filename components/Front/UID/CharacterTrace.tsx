@@ -1,7 +1,9 @@
 import { CDN } from "@/utils/cdn";
-import { useState } from "react";
+import { splitAndKeepDelimiters } from "@/utils/format";
+import { useEffect, useState } from "react";
 
 interface CharacterTraceProps {
+  id: string;
   type: string;
   level: number;
   img: string;
@@ -10,6 +12,7 @@ interface CharacterTraceProps {
 }
 
 const CharacterTrace: React.FC<CharacterTraceProps> = ({
+  id,
   level,
   img,
   type,
@@ -17,6 +20,12 @@ const CharacterTrace: React.FC<CharacterTraceProps> = ({
   desc,
 }) => {
   const [tooltip, setTooltip] = useState<boolean>(false);
+  const [descArray, setDescArray] = useState<string[]>([]);
+
+  useEffect(() => {
+    const descriptionsArray = splitAndKeepDelimiters(desc, ". ");
+    setDescArray(descriptionsArray);
+  }, []);
 
   return (
     <div
@@ -26,11 +35,13 @@ const CharacterTrace: React.FC<CharacterTraceProps> = ({
     >
       <div
         className={`hidden absolute z-20 p-2 bg-background border border-orange rounded-xl xl:w-[650px] text-white top-16${
-          tooltip ? " xl:block" : ""
+          tooltip ? " xl:flex flex-col gap-2" : ""
         }`}
       >
         <p className="font-bold">{name}</p>
-        <p>{desc}</p>
+        {descArray.map((desc: string) => (
+          <p key={`trace${id}`}>{desc}</p>
+        ))}
       </div>
 
       <div className="absolute w-16 h-16 top-1 left-1 rounded-full bg-black border border-gray">

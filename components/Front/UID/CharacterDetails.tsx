@@ -105,6 +105,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
               return (
                 <div key={`CharacterTraces${i}+${index}+${buildIndex}`}>
                   <CharacterTrace
+                    id={character.skills[i].id}
                     type={type}
                     img={`/${character.skills[i].icon}`}
                     level={character.skills[i].level}
