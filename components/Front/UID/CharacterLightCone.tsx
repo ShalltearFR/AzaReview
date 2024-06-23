@@ -3,6 +3,7 @@ import { LightCone } from "@/types/CharacterModel";
 import { useEffect, useState } from "react";
 import { UIDtitles } from "@/utils/dictionnary";
 import { TranslateSection } from "@/types/homepageDictionnary";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
 interface lightCone {
   id: string;
@@ -31,7 +32,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
     useState(false);
 
   useEffect(() => {
-    const verifMainStat = () => {
+    const verifLightcone = () => {
       if (review) {
         if (lightCone) {
           const isGood = review.filter((el) => el.id === lightCone.id) || false;
@@ -51,26 +52,27 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
         setIsGoodLightCone(true);
       }
     };
-    verifMainStat();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    verifLightcone();
   }, [lightCone, review]);
 
   return (
     <div className=" w-full xl:min-w-60 xl:max-w-80 xl:w-auto rounded-t-3xl bg-light-blue/75 mx-auto p-3 mt-5">
       <div className="relative">
         <button
-          className={`absolute z-10 px-3 py-1 rounded-full font-bold right-0 ${
-            isGoodLightCone ? "bg-gray" : "bg-red"
-          }`}
+          className={`absolute z-10 top-0 right-8`}
           onMouseEnter={() => setIsTooltipRecommendedVisible(true)}
           onMouseLeave={() => setIsTooltipRecommendedVisible(false)}
         >
-          !
+          <InformationCircleIcon
+            className={`size-9 absolute ${
+              isGoodLightCone ? "fill-gray" : "fill-red"
+            }`}
+          />
           {isTooltipRecommendedVisible &&
             recommendedLightCone &&
             recommendedLightCone[0] && (
               <div
-                className={`absolute z-20 p-2 bg-background rounded-xl w-72 right-0 xl:right-auto xl:left-8 top-8 text-white text-sm ${
+                className={`absolute z-20 p-2 bg-background border border-orange rounded-xl w-72 right-0 xl:right-auto xl:left-8 top-8 text-white text-sm ${
                   recommendedLightCone[1] ? "xl:-top-[196px]" : "xl:-top-[98px]"
                 }`}
               >

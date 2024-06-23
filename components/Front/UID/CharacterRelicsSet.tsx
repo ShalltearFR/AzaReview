@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import relicsSetList from "@/utils/relicsSetList";
 import { UIDtitles } from "@/utils/dictionnary";
 import { TranslateSection } from "@/types/homepageDictionnary";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
 interface CharacterRelicsSetProps {
   relics: RelicSet[];
@@ -51,7 +52,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
   });
 
   useEffect(() => {
-    const verifyMainStat = () => {
+    const verifyRelicSet = () => {
       if (review) {
         const setColors: string[] = finalPossessedRelicSets.map(
           (relicPossessed) => {
@@ -142,11 +143,11 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
         setRequiredRelicsSet([]);
       }
     };
-    verifyMainStat();
+    verifyRelicSet();
 
     const processExclamation = () => {
       if (finalPossessedRelicSets.length < 2) {
-        setColorExclamation(false);
+        setColorExclamation(true);
         return null;
       }
       if (
@@ -159,7 +160,6 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
       setColorExclamation(true);
     };
     processExclamation();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [relics, review]);
 
   const reduceText = (text: string) => {
@@ -176,16 +176,18 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
         {requiredRelicsSet.length > 0 && (
           <>
             <button
-              className={`absolute right-0 z-10 px-3 py-1 rounded-full text-black font-bold ${
-                colorExclamation ? "bg-gray" : "bg-red"
-              }`}
+              className={`absolute right-0 top-0 z-10`}
               onMouseEnter={() => setIsTooltipRecommended(true)}
               onMouseLeave={() => setIsTooltipRecommended(false)}
             >
-              !
+              <InformationCircleIcon
+                className={`size-9 absolute top-0 right-0 rounded-full ${
+                  colorExclamation ? "fill-gray" : "fill-red"
+                }`}
+              />
               {isTooltipRecommended && (
                 <div
-                  className={`absolute z-20 p-2 bg-background rounded-xl xl:-top-44 xl:h-44 right-8 w-60 text-white text-sm ${
+                  className={`absolute z-20 p-2 bg-background border border-orange rounded-xl xl:-top-44 xl:h-44 right-8 w-60 text-white text-sm ${
                     requiredRelicsSet[2]
                       ? "xl:w-[476px] xl:-left-52 -top-52"
                       : "xl:w-80 xl:-left-36 -top-36"
