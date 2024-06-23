@@ -97,7 +97,7 @@ export default async function Page({ params }: { params: { slug: number } }) {
     relicsList,
     eidolonsList,
   ] = await Promise.all([
-    getData(`${process.env.WWW}/api/characters/all`, 300, false),
+    getData(`${process.env.WWW}/api/characters/all`, 5, false),
     getData(`${CDN}/index_min/${lang || "fr"}/properties.json`, 86400, true),
     getData(`${CDN}/index_min/${lang || "fr"}/relic_sets.json`, 18000, true),
     getData(`${CDN}/index_min/${lang || "fr"}/light_cones.json`, 18000, true),

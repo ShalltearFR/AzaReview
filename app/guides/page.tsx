@@ -41,7 +41,7 @@ const Guides: React.FC = async () => {
 
   const character: charactersListJSON = await getData(
     `${process.env.WWW}/api/characters/all`,
-    300
+    5
   );
 
   if (character?.data) {
