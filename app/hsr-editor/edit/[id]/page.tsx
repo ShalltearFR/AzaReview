@@ -65,14 +65,12 @@ function Page({ params }: { params: { id: number } }) {
           });
           const data: any = await response.json();
           const toArray = Object.values(data).map((item) => item);
-          const character = characterData as unknown as CharacterType;
+          const character = characterData as CharacterType;
 
           const filtered: LightConeType[] = toArray.filter(
             (obj): obj is LightConeType => {
               if (obj instanceof Object && "path" in obj) {
-                return (
-                  obj.path === (character.path as unknown as CharacterType)
-                );
+                return obj.path === character.path;
               }
               return false;
             }
