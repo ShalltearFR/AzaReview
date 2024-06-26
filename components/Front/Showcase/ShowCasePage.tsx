@@ -38,14 +38,12 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
   useEffect(() => {
     Aos.init({ disable: window.innerWidth <= 1450 });
     if (character) initCharacter();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [characterName, setCharacterName] = useState<string>("");
 
   useEffect(() => {
     if (character) initCharacter();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
 
   const hasStatus = (value: any): value is { status: number } => {

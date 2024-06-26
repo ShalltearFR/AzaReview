@@ -1,5 +1,6 @@
 import { RecommendedStats } from "@/types/CharacterModel";
 import { TranslateSection } from "@/types/homepageDictionnary";
+import { UIDtitles } from "@/utils/dictionnary";
 import { findLabel, findLabelEN } from "@/utils/statsOption";
 
 interface recommendedStatProps {
@@ -50,7 +51,7 @@ const recommendedStat: React.FC<recommendedStatProps> = ({ data, lang }) => {
             })}
           </div>
         ) : (
-          <p>Disponible prochainement</p>
+          <p className="text-center">{UIDtitles[lang ?? "fr"].AvailableSoon}</p>
         )}
       </div>
     </div>

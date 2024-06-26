@@ -94,6 +94,7 @@ interface Titles {
   stat: string;
   relicsSet: string;
   lightCone: string;
+  lightCones: string;
   pioneer: string;
   search: string;
   searching: string;
@@ -101,6 +102,11 @@ interface Titles {
   shareImage: string;
   levelMin: string;
   RecommendedF2P: string;
+  RecommendedsF2P: string;
+  RelicsOrnaments: string;
+  OtherChoices: string;
+  RecommendedStats: string;
+  SortBy: string;
   Recommendeds: string;
   Recommended: string;
   emptyCone: string;
@@ -124,6 +130,7 @@ interface Titles {
   PayLess: string;
   HoyoCopyright: string;
   ENtranslate: string;
+  CharacterSearch: string;
 }
 
 const UIDtitles: TitlesByLanguage = {
@@ -131,6 +138,7 @@ const UIDtitles: TitlesByLanguage = {
     stat: "Statistiques recommandées",
     relicsSet: "Sets équipés",
     lightCone: "Cône de lumière",
+    lightCones: "Cône de lumières",
     pioneer: "Pionnier ",
     search: "Rechercher",
     searching: "Recherche",
@@ -138,7 +146,12 @@ const UIDtitles: TitlesByLanguage = {
     shareImage: "Partager",
     levelMin: "Niv. ",
     RecommendedF2P: "F2P recommandé :",
-    Recommendeds: "Recommandés :",
+    RecommendedsF2P: "Recommandés F2P/Accessibles",
+    RelicsOrnaments: "Sets de reliques + Ornements",
+    OtherChoices: "Autres bons choix",
+    RecommendedStats: "Statistiques recommandées",
+    SortBy: "Trier par :",
+    Recommendeds: "Recommandés",
     Recommended: "Recommandé :",
     emptyCone: "Aucun cône equipé",
     emptyRelicSet: "Pas de set équipé",
@@ -163,11 +176,13 @@ const UIDtitles: TitlesByLanguage = {
     HoyoCopyright:
       "Ce site n'est pas affilié à Hoyoverse et tous les contenus et actifs du jeu sont des marques déposées et des droits d'auteur de Hoyoverse.",
     ENtranslate: `Traduction anglaise par `,
+    CharacterSearch: "Rechercher un personnage",
   },
   en: {
     stat: "Recommended Statistics",
     relicsSet: "Equipped Sets",
     lightCone: "Light Cone",
+    lightCones: "Light Cones",
     pioneer: "Pioneer ",
     search: "Search",
     searching: "Searching",
@@ -175,6 +190,11 @@ const UIDtitles: TitlesByLanguage = {
     shareImage: "Share",
     levelMin: "Lvl. ",
     RecommendedF2P: "Recommended F2P :",
+    RecommendedsF2P: "Recommended F2P/Accessible",
+    RelicsOrnaments: "Relics sets + Ornaments",
+    OtherChoices: "Other good choices",
+    RecommendedStats: "Recommended Statistics",
+    SortBy: "Sort by",
     Recommendeds: "Recommended :",
     Recommended: "Recommended :",
     emptyCone: "No cone equipped",
@@ -199,7 +219,8 @@ const UIDtitles: TitlesByLanguage = {
     PayLess: "Pay less with ",
     HoyoCopyright:
       "This site is not affiliated with Hoyoverse and all game content and assets are trademarks and copyrights of Hoyoverse.",
-    ENtranslate: `English translation by `,
+    ENtranslate: "English translation by ",
+    CharacterSearch: "Character search",
   },
 };
 

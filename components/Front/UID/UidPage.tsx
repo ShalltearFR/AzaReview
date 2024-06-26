@@ -14,7 +14,7 @@ import CharacterBuild from "./CharacterBuild";
 import CharacterDetails from "./CharacterDetails";
 import { convertImage } from "@/utils/imageConversion";
 import ReviewHeader from "./ReviewHeader";
-import { sortRelics, sortReviewDataByUidData } from "@/utils/sorts";
+import { sortRelics, sortReviewDataByUidData } from "@/utils/sorts&Filter";
 
 import type { CharacterBuild as CharacterBuildType } from "@/types/charactersEN";
 import type { TranslateSection } from "@/types/homepageDictionnary";

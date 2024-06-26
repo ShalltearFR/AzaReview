@@ -4,8 +4,13 @@ import translateBBCode from "@/utils/translateBBCode";
 import ItemShow from "./ItemShow";
 import MainStats from "./MainStats";
 import { findLabel, findLabelEN } from "@/utils/statsOption";
-import relicsSetList from "@/utils/relicsSetList";
 import { TranslateSection } from "@/types/homepageDictionnary";
+import {
+  filterLightconeID,
+  filterRelicID,
+  separateRelics,
+} from "@/utils/sorts&Filter";
+import { UIDtitles } from "@/utils/dictionnary";
 
 interface BuildShowProps {
   build: Data;
@@ -17,61 +22,6 @@ interface BuildShowProps {
   properties: any;
   relicsSet: any;
 }
-
-interface itemsProps {
-  id: string;
-  recommended: boolean;
-  num?: number;
-}
-
-// Evite les doublons d'id entre les recommandés et non recommandés
-const filterLightconeID = (items: itemsProps[]) => {
-  const lightconesIdsData: { [id: string]: boolean } = {};
-  const itemsFilter: any[] = [];
-  for (const item of items) {
-    if (!lightconesIdsData[item.id]) {
-      lightconesIdsData[item.id] = true;
-      itemsFilter.push(item);
-    } else if (item.recommended) {
-      const existingItem = itemsFilter.find(
-        (existing) => existing.id === item.id
-      );
-      if (existingItem) {
-        existingItem.recommended = true;
-      }
-    }
-  }
-  return itemsFilter;
-};
-
-// Evite les doublon d'id sur les relics
-// Si 2P et 4P sur meme ID, renomage de num à 2.4 pour indiquer 2P et 4P
-const filterRelicID = (items: itemsProps[]) => {
-  const uniqueIDs = new Set();
-  const result = [...items]
-    .filter((relic) => relic.recommended === false)
-    .filter((item) => {
-      if (uniqueIDs.has(item.id)) {
-        return false;
-      }
-      uniqueIDs.add(item.id);
-      if (item.num === 4) {
-        item.num = 2.4;
-      }
-      return true;
-    });
-  return result;
-};
-
-// Sépare les reliques et ornements
-const separateRelics = (items: itemsProps[], isOrnament: boolean) => {
-  const filteredItems = [...items].filter((item) =>
-    relicsSetList.find(
-      (relic) => relic.isOrnamant === isOrnament && item.id === relic.id
-    )
-  );
-  return filteredItems;
-};
 
 const percentStats = [
   "CriticalChanceBase",
@@ -132,13 +82,13 @@ const BuildShow: React.FC<BuildShowProps> = ({
       {/* Cone de lumière */}
       <div className="mt-14">
         <p className="font-bold text-xl underline text-orange">
-          {lang === "en" ? "Light Cones" : "Cônes de lumière"}
+          {UIDtitles[lang ?? "fr"].lightCones}
         </p>
 
         <div className="mt-2 flex flex-col lg:flex-row gap-10 justify-center">
           <div className="p-5 bg-white/15 rounded-3xl">
             <p className="text-lg font-bold mb-2">
-              {lang === "en" ? "Recommended" : "Recommandés"}
+              {UIDtitles[lang ?? "fr"].Recommendeds}
             </p>
             <div className="flex flex-wrap gap-5 justify-center">
               {lightConeFilter.map((lightcone) => {
@@ -160,9 +110,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
 
           <div className="p-5 bg-white/15 rounded-3xl">
             <p className="text-lg font-bold mb-2">
-              {lang === "en"
-                ? "Recommended F2P/Accessible"
-                : "Recommandés F2P/Accessibles"}
+              {UIDtitles[lang ?? "fr"].RecommendedsF2P}
             </p>
             <div className="flex flex-wrap gap-5 justify-center">
               {lightConeFilter.map((lightcone) => {
@@ -226,9 +174,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
       {/* Sets de reliques */}
       <div className="mt-14">
         <p className="font-bold text-xl underline text-orange">
-          {lang === "en"
-            ? "Relics sets + Ornaments"
-            : "Sets de reliques + Ornements"}
+          {UIDtitles[lang ?? "fr"].RecommendedsF2P}
         </p>
 
         <div className="mt-2 flex flex-col lg:flex-row gap-10 justify-center">
@@ -254,7 +200,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
 
           <div className="p-5 bg-white/15 rounded-3xl">
             <p className="text-lg font-bold mb-2">
-              {lang === "en" ? "Other good choices" : "Autres bons choix"}
+              {UIDtitles[lang ?? "fr"].OtherChoices}
             </p>
             <div className="flex flex-col gap-5">
               <div className="flex flex-wrap gap-5 justify-center">
@@ -293,9 +239,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
       {/* Statistiques recommandées */}
       <div className="my-10 xl:mb-0">
         <p className="font-bold text-xl underline text-orange">
-          {lang === "en"
-            ? "Recommended Statistics"
-            : "Statistiques recommandées"}
+          {UIDtitles[lang ?? "fr"].RecommendedStats}
         </p>
         <div className="flex flex-col justify-center text-start">
           <ul className="list-disc mx-auto">

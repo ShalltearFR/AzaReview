@@ -9,6 +9,7 @@ import AddToggleButton from "@/components/Editor/Add/AddToggleButton";
 import StarBGAnimation from "../StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
 import { TranslateSection } from "@/types/homepageDictionnary";
+import { UIDtitles } from "@/utils/dictionnary";
 
 interface GuidesPageProps {
   character: CharacterType[];
@@ -75,7 +76,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
         <div className="min-h-[calc(100vh-295px)]">
           <div className="mx-auto p-5 bg-gray/45 w-full smd:w-[670px] smd:rounded-3xl mt-10">
             <p className="text-center text-white font-bold text-xl mb-2">
-              {lang === "en" ? "Sort by:" : "Trier par :"}
+              {UIDtitles[lang ?? "fr"].SortBy}
             </p>
             <div className="flex flex-col items-center smd:flex-row gap-2 justify-around">
               <AddToggleButton
@@ -103,9 +104,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
               className="flex mx-auto rounded-full pl-5 text-lg h-10 w-64 mt-5"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              placeholder={
-                lang === "en" ? "Character search" : "Rechercher un personnage"
-              }
+              placeholder={UIDtitles[lang ?? "fr"].CharacterSearch}
             />
           </div>
           <CharactersList
@@ -125,7 +124,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
         <StarBGAnimation />
         <div className="min-h-[calc(100vh-295px)]">
           <p className="text-center text-bold text-xl text-white mt-6">
-            {"Erreur de requete serveur, contactez l'administrateur"}
+            {"Erreur de requete serveur 001, contactez l'administrateur"}
           </p>
         </div>
         <Footer lang={lang} />
