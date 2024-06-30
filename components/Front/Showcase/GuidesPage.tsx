@@ -10,6 +10,9 @@ import StarBGAnimation from "../StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import { UIDtitles } from "@/utils/dictionnary";
+import { useCookies } from "next-client-cookies";
+
+import type { guidePref } from "@/types/userPref";
 
 interface GuidesPageProps {
   character: CharacterType[];
@@ -23,8 +26,8 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
     CharacterType[] | { status: number } | undefined
   >(undefined);
   const [searchInput, setSearchInput] = useState<string>("");
-  const [CBA, setCBA] = useState<boolean>(false);
-  const [releaseDate, setReleaseDate] = useState<boolean>(true);
+  const [descentOrder, setDescentOrder] = useState<boolean>(false);
+  const [sortArrival, setSortArrival] = useState<boolean>(false);
 
   function hasStatus(value: any): value is { status: number } {
     return typeof value === "object" && "status" in value;
@@ -32,24 +35,40 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
 
   useEffect(() => {
     Aos.init({ disable: window.innerWidth <= 1450 });
-    const init = async () => {
-      if ("status" in character && character.status === 404)
-        return { status: 404 };
 
+    if ("status" in character && character.status === 404)
+      setCharactersSearch({ status: 404 });
+    else {
       characterList.current = character;
-      return character;
-    };
+      setCharactersSearch(character);
+    }
 
-    init().then((data) => setCharactersSearch(data));
+    // Set les prefs utilisateurs sinon les valeurs par defaut
+    const item = localStorage.getItem("guidePref");
+    const guidePref = item ? JSON.parse(item) : undefined;
+    setDescentOrder(guidePref?.sortDescent ?? false);
+    setSortArrival(guidePref?.sortArrival ?? false);
   }, []);
 
+  // Sauvegarde les prefs utilisateurs
+  useEffect(() => {
+    localStorage.setItem(
+      "guidePref",
+      JSON.stringify({
+        sortDescent: descentOrder,
+        sortArrival: sortArrival,
+      })
+    );
+  }, [sortArrival, descentOrder]);
+
+  // Trie les personnages
   useEffect(() => {
     if (Array.isArray(charactersSearch) && characterList.current) {
       characterList.current = [...character];
       const charactersSearchCopy = [...character].filter((text) =>
         text.name.toLowerCase().includes(searchInput.toLowerCase())
       );
-      if (!releaseDate) {
+      if (!sortArrival) {
         // Trie par ordre alphabetique
         charactersSearchCopy.sort((a, b) => {
           const nameA = a.name.toLowerCase();
@@ -63,10 +82,10 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
           return 0;
         });
       }
-      if (CBA) charactersSearchCopy.reverse();
+      if (descentOrder) charactersSearchCopy.reverse();
       setCharactersSearch(charactersSearchCopy);
     }
-  }, [CBA, searchInput, releaseDate, lang]);
+  }, [descentOrder, searchInput, sortArrival, lang]);
 
   if (charactersSearch) {
     return (
@@ -81,8 +100,8 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
             <div className="flex flex-col items-center smd:flex-row gap-2 justify-around">
               <AddToggleButton
                 className={lang === "en" ? "w-60" : "w-[320px]"}
-                onChange={() => setCBA(!CBA)}
-                value={CBA}
+                onChange={() => setDescentOrder(!descentOrder)}
+                value={descentOrder}
                 name={
                   lang === "en"
                     ? ["Asc. order", "Desc. order"]
@@ -91,8 +110,8 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
               />
               <AddToggleButton
                 className={lang === "en" ? "w-72" : "w-[300px]"}
-                onChange={() => setReleaseDate(!releaseDate)}
-                value={releaseDate}
+                onChange={() => setSortArrival(!sortArrival)}
+                value={sortArrival}
                 name={
                   lang === "en"
                     ? ["Alphabetic", "Guide arrivals"]

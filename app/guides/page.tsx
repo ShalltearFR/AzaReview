@@ -1,10 +1,12 @@
 import GuidesPage from "@/components/Front/Showcase/GuidesPage";
 import { CharacterType } from "@/types/CharacterModel";
-import { TranslateSection } from "@/types/homepageDictionnary";
+import type { TranslateSection } from "@/types/homepageDictionnary";
 import { PioneerToRemove, replacePioneersName } from "@/utils/PioneerType";
 import { CDN2 } from "@/utils/cdn";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
+
+import type { guidePref } from "@/types/userPref";
 
 interface charactersListJSON {
   status: number;
