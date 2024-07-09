@@ -500,17 +500,19 @@ const characterEN: CharacterENProps = {
   1315: [
     // Boothill
     {
-      name: "",
-      desc: "",
-      comment: "",
+      name: "Fudge",
+      desc: "Boothill deals [color=gray]Physical[/color] damage and specializes in [u]Rupture[/u] damage.\nHe creates a [color=gray]Physical[/color] Weakness with his [u]Ultimate[/u].",
+      comment:
+        "Boothill should focus his stats on [u]Rupture[/u] and [u]Speed[/u].\n[u]Crit[/u] and [u]Attack[/u] are entirely optional, so you can instead allocate stats to [u]HP[/u] and [u]Defense[/u] while aiming for as much [u]Rupture[/u] and [u]Speed[/u] as possible in the substats.",
     },
   ],
   1310: [
     // Firefly
     {
-      name: "",
-      desc: "",
-      comment: "",
+      name: "Eva AR-26710",
+      desc: "Firefly deals [color=#FF4747]Fire[/color] damage and specializes in [u]Rupture[/u] and [u]Extreme Rupture[/u] damage.\nShe creates a [color=#FF4747]Fire[/color] Weakness with her [u]Skill[/u] under [u]Combustion[/u].",
+      comment:
+        "If cone [u]Where Dreams Rest[/u] ➜ [u]Rupture[/u] at 270.\nIf cone [u]Indelible Promise[/u] ➜ [u]Rupture[/u] at (S1) 238 / (S5) 266.\nFor each [u]Rupture[/u] bonus provided by other team members, reduce the required [u]Rupture[/u] accordingly ➜ Goal 360 in combat.",
     },
   ],
   1314: [
