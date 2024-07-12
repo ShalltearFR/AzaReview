@@ -28,7 +28,7 @@ const characterEN: CharacterENProps = {
   1112: [
     // Topaz
     {
-      name: "Launch your Magoret",
+      name: "Launch your Trotter",
       desc: "Topaz is a [color=#FF4747]Fire[/color] dps that deals damage trough [u]Follow-up Attack[/u].\nCompti fights by her side and attack very frequently.",
       comment: "",
     },
