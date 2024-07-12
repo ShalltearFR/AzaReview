@@ -103,7 +103,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           <div className="flex gap-x-3 justify-center">
             {tracesNames.map((type, i) => {
               return (
-                <div key={`CharacterTraces${i}+${index}+${buildIndex}`}>
+                <div key={`CharacterTraces${i}+${index}+${buildIndex}+${lang}`}>
                   <CharacterTrace
                     id={character.skills[i].id}
                     type={type}

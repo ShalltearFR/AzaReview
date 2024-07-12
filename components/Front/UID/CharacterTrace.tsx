@@ -1,3 +1,4 @@
+import { TranslateSection } from "@/types/homepageDictionnary";
 import { CDN } from "@/utils/cdn";
 import { splitAndKeepDelimiters } from "@/utils/format";
 import { useEffect, useState } from "react";
@@ -25,7 +26,7 @@ const CharacterTrace: React.FC<CharacterTraceProps> = ({
   useEffect(() => {
     const descriptionsArray = splitAndKeepDelimiters(desc, ". ");
     setDescArray(descriptionsArray);
-  }, []);
+  }, [desc]);
 
   return (
     <div
