@@ -149,7 +149,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
         {isTooltipVisible &&
           requiredMainStat.length > 0 &&
           equipmentIndex >= 2 && (
-            <div className="absolute z-10 p-2 bg-background border border-orange right-0 rounded-xl w-auto text-white text-left">
+            <div className="absolute z-10 p-2 bg-background border border-orange -right-2 rounded-xl w-[130px] text-white text-left">
               <div className="font-bold">
                 {UIDtitles[lang ?? "fr"].Recommended}
               </div>
