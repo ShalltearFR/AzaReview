@@ -518,8 +518,8 @@ const characterEN: CharacterENProps = {
   1314: [
     // Jade
     {
-      name: "",
-      desc: "",
+      name: "Trust me !",
+      desc: "Jade deals [color=#b892ff]Quantum[/color] damage primarily with her [u]follow-up attacks[/u].\nThe more enemies there are, the more effective Jade becomes (ideal in Pure Fiction).",
       comment: "",
     },
   ],
