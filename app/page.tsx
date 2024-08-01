@@ -60,7 +60,6 @@ function Homepage() {
     setIsloading(false);
     windowWidth.current = window.innerWidth;
     windowPixelRatio.current = window.devicePixelRatio;
-    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -162,7 +161,7 @@ function Homepage() {
 
 export default function App() {
   return (
-    <Suspense>
+    <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}>
       <Homepage />
     </Suspense>
   );
