@@ -50,6 +50,7 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
         setRecommendedLightCone(recommendedTranslate || [{ name: "" }]);
       } else {
         setIsGoodLightCone(true);
+        setRecommendedLightCone(undefined);
       }
     };
     verifLightcone();
@@ -58,19 +59,19 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
   return (
     <div className=" w-full xl:min-w-60 xl:max-w-80 xl:w-auto rounded-t-3xl bg-light-blue/75 mx-auto p-3 mt-5">
       <div className="relative">
-        <button
-          className={`absolute z-10 top-0 right-8`}
-          onMouseEnter={() => setIsTooltipRecommendedVisible(true)}
-          onMouseLeave={() => setIsTooltipRecommendedVisible(false)}
-        >
-          <InformationCircleIcon
-            className={`size-9 absolute ${
-              isGoodLightCone ? "fill-gray" : "fill-red"
-            }`}
-          />
-          {isTooltipRecommendedVisible &&
-            recommendedLightCone &&
-            recommendedLightCone[0] && (
+        {recommendedLightCone && (
+          <button
+            className={`absolute z-10 top-0 right-8`}
+            onMouseEnter={() => setIsTooltipRecommendedVisible(true)}
+            onMouseLeave={() => setIsTooltipRecommendedVisible(false)}
+          >
+            {" "}
+            <InformationCircleIcon
+              className={`size-9 absolute ${
+                isGoodLightCone ? "fill-gray" : "fill-red"
+              }`}
+            />
+            {isTooltipRecommendedVisible && recommendedLightCone[0] && (
               <div
                 className={`absolute z-20 p-2 bg-background border border-orange rounded-xl w-72 right-0 xl:right-auto xl:left-8 top-8 text-white text-sm ${
                   recommendedLightCone[1] ? "xl:-top-[196px]" : "xl:-top-[98px]"
@@ -108,7 +109,8 @@ const CharacterLightCone: React.FC<CharacterLightConeProps> = ({
                 )}
               </div>
             )}
-        </button>
+          </button>
+        )}
         <p className="text-yellow text-lg font-bold text-center">
           {UIDtitles[lang ?? "fr"].lightCone}
         </p>
