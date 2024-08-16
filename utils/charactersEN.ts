@@ -523,6 +523,30 @@ const characterEN: CharacterENProps = {
       comment: "",
     },
   ],
+  1224: [
+    // March Imaginaire
+    {
+      name: "Yanqing Sensei",
+      desc: "[color=#ED5F65]『 DAMAGE BUILD 』[/color]\nMarch 7th deals [color=yellow]Imaginary[/color] damage by taking as [u]Master[/u] a character from the [u]Erudition[/u], [u]Destruction[/u], or [u]Hunt[/u] path.",
+      comment:
+        "The proposed [u]Speed[/u] takes into account the action passive and the E1 gain.\nIf using [u]Glamoth[/u] Ornaments ➜ [u]Speed[/u] at 125.\nIf using [u]Izumo[/u] Ornaments ➜ 1 other [u]Hunt[/u] character in the team.",
+    },
+    {
+      name: "Yunli Sensei",
+      desc: "[color=Yellowgreen]『 RUPTURE BUILD 』[/color]\nMarch 7th specializes in [color=yellow]Imaginary Rupture[/color] by taking as [u]Master[/u] a character from the [u]Harmony[/u], [u]Nihility[/u], [u]Preservation[/u], or [u]Abundance[/u] path.",
+      comment:
+        "Si cône [u]Le début d'une seconde vie[/u] ➜ [u]Rupture[/u] à 210.\nSi [u]Torse PV%[/u] ➜ [u]Sphère Déf%[/u] (ou inversement).\nPossibilité de mettre du [u]Critique[/u] sur le [u]Torse[/u] et [u]Dégâts Imaginaire[/u] ou [u]Attaque%[/u] sur [u]Sphère[/u], mais priorité à la [u]Rupture[/u] et [u]Vitesse[/u] en Sub Stats.",
+    },
+  ],
+  1221: [
+    // Yunli
+    {
+      name: "I block everything !",
+      desc: "Yunli deals [color=gray]Physical[/color] damage with a [u]Follow-up Attack[/u] when she is attacked.\nParticularly effective when enemies are numerous and fast.",
+      comment:
+        "The [u]Wind Warrior's Valor[/u] Relic set is far superior to other options.\nIf you can't or don't want to use it, you can mix 2-piece sets with % Attack / % Physical / % Follow-up Attack (but this is much less effective).",
+    },
+  ],
 };
 
 export default characterEN;
