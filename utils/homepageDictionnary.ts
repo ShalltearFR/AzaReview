@@ -117,7 +117,7 @@ const TranslateSection2: TranslateSection = {
     "Spend less on HSR while supporting the site!",
     "By using this Lootbar link for your purchases, you will greatly support us!",
     "https://lootbar.gg/top-up/honkai-star-rail?utm_source=Azano",
-    "Buy on the site",
+    "Buy on the site ",
     "to get [b][color=#00ff00]10%[/color][/b] to [b][color=#00ff00]20%[/color][/b] discount on the €100 pack.",
     "Fast and secure with Razer Gold",
     "Instant in-game delivery!",
