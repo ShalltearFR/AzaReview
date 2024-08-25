@@ -187,7 +187,7 @@ const Section2: React.FC<Section2Props> = ({
             </div>
           )}
         </div>
-        {/* PARTIE ENEBA */}
+        {/* PARTIE LOOTBAR */}
         <div className="mt-auto mb-10 xl2:mb-0 z-10">
           <div
             data-aos="fade-up"
@@ -202,18 +202,15 @@ const Section2: React.FC<Section2Props> = ({
               className="h-36 translate-y-1"
             />
             <div className="ml-auto mt-auto mr-5 px-4 py-2 bg-background rounded-t-2xl translate-y-[1px] xl2:flex xl2:gap-2">
-              <div className=" text-xl font-bold text-white xl2:mt-1">
-                {translateBBCode(translateSection[2], true)}
-              </div>
               <a
-                href="https://www.eneba.com/fr/?af_id=Azano&currency=EUR&region=global&utm_source=Azano&utm_medium=infl"
+                href="https://lootbar.gg/fr/top-up/honkai-star-rail?utm_source=Azano"
                 target="_blank"
               >
                 <img
-                  src={`${CDN2}/img/eneba-logo.svg`}
-                  alt="Logo Eneba"
-                  width={128}
-                  height={40}
+                  src={`${CDN2}/img/LootbarLogo.webp`}
+                  alt="Logo Lootbar"
+                  width={211}
+                  height={30}
                   className="h-10 mx-auto"
                 />
               </a>
@@ -225,34 +222,26 @@ const Section2: React.FC<Section2Props> = ({
           >
             <div className="px-6 ">
               <h2 className="text-center font-bold text-xl mb-5">
-                {translateSection[3]}
+                {translateSection[2]}
               </h2>
-              <div>{translateSection[4]}</div>
-              <div>{translateSection[5]}</div>
+              <div>{translateSection[3]}</div>
               <div>
                 <a
-                  href={translateSection[6]}
+                  href={translateSection[4]}
                   target="_blank"
                   className="text-light-blue2 font-bold"
                 >
-                  {translateSection[7]}
+                  {translateSection[5]}
                 </a>
-                {translateBBCode(translateSection[8], true)}
-                <a
-                  href={translateSection[9]}
-                  target="_blank"
-                  className="font-bold text-light-blue2"
-                >
-                  {translateSection[10]}
-                </a>
-                .
+                {translateBBCode(translateSection[6], true)}
               </div>
             </div>
             <div className="sm:px-6">
               <div className="mt-5 relative">
                 <div className="absolute text-xs sm:text-sm smd:text-lg px-3 text-center w-1/2 right-0 top-1/2 -translate-y-1/2">
-                  <div>{translateSection[11]}</div>
-                  <div>{translateSection[12]}</div>
+                  <div>{translateSection[7]}</div>
+                  <div>{translateSection[8]}</div>
+                  <div>{translateSection[9]}</div>
                 </div>
                 <img
                   src={`${CDN2}/img/homepage/banderole_razergold.webp`}
@@ -263,12 +252,11 @@ const Section2: React.FC<Section2Props> = ({
               </div>
               <div className="mt-3 relative">
                 <div className="absolute text-xs sm:text-sm smd:text-[20px] px-2 text-center w-3/5 left-0 top-1/2 -translate-y-1/2">
-                  <div>{translateSection[13]}</div>
-                  <div className="sm:mt-2">{translateSection[14]}</div>
+                  <div className="sm:mt-2">{translateSection[10]}</div>
                 </div>
                 <img
-                  src={`${CDN2}/img/homepage/banderole_eneba.webp`}
-                  alt="Eneba"
+                  src={`${CDN2}/img/homepage/banderole_lootbar.webp`}
+                  alt="Lootbar"
                   width={700}
                   height={99}
                 />
@@ -276,7 +264,7 @@ const Section2: React.FC<Section2Props> = ({
               <div className="mt-3 relative">
                 <div className="absolute text-xs sm:text-base smd:text-lg px-2 smd:px-10 text-center w-3/5 right-0 top-1/2 -translate-y-1/2 font-semibold">
                   <div>
-                    {translateSection[15]}
+                    {translateSection[11]}
                     <a
                       href="https://www.twitch.tv/azano__"
                       target="_blank"
@@ -284,7 +272,7 @@ const Section2: React.FC<Section2Props> = ({
                     >
                       Azano
                     </a>
-                    {translateSection[16]}
+                    {translateSection[12]}
                   </div>
                 </div>
                 <img
