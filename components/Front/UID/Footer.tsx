@@ -47,7 +47,11 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
         {UIDtitles[lang ?? "fr"].PayLess}
         <a
           className="font-bold underline hover:no-underline"
-          href="https://lootbar.gg/fr/top-up/honkai-star-rail?utm_source=Azano"
+          href={
+            lang === "en"
+              ? "https://lootbar.gg/top-up/honkai-star-rail?utm_source=Azano"
+              : "https://lootbar.gg/fr/top-up/honkai-star-rail?utm_source=Azano"
+          }
         >
           Lootbar
         </a>

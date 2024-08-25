@@ -202,10 +202,7 @@ const Section2: React.FC<Section2Props> = ({
               className="h-36 translate-y-1"
             />
             <div className="ml-auto mt-auto mr-5 px-4 py-2 bg-background rounded-t-2xl translate-y-[1px] xl2:flex xl2:gap-2">
-              <a
-                href="https://lootbar.gg/fr/top-up/honkai-star-rail?utm_source=Azano"
-                target="_blank"
-              >
+              <a href={translateSection[4]} target="_blank">
                 <img
                   src={`${CDN2}/img/LootbarLogo.webp`}
                   alt="Logo Lootbar"
