@@ -547,6 +547,15 @@ const characterEN: CharacterENProps = {
         "The [u]Wind Warrior's Valor[/u] Relic set is far superior to other options.\nIf you can't or don't want to use it, you can mix 2-piece sets with % Attack / % Physical / % Follow-up Attack (but this is much less effective).",
     },
   ],
+  1218: [
+    // Jiaoqiu
+    {
+      name: "Fullcharbon Alchemist",
+      desc: "Jiaoqiu deals [color=#FF4747]Fire[/color] damage in the form of [u]Burns[/u] (Smoldering Embers).\nHe increases all damage taken by enemies, which amplifies the damage dealt by the entire team.",
+      comment:
+        "Ornaments [u]Interstellar Business Enterprise[/u] only if [u]Eff. Rate[/u] < 130%.\nIncrease [u]Speed[/u] as much as possible once the rest is achieved.",
+    },
+  ],
 };
 
 export default characterEN;
