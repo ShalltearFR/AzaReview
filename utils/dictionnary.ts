@@ -89,7 +89,53 @@ const traces: Record<string, string[]> = {
   en: ["Attack", "Skill", "Ultimate", "Talent"],
 };
 
-// PARTIE TITRES et Mots page UID
+// PARTIE OPTIONS DE L'UTILISATEUR UID
+interface UserOptionsLanguageType {
+  displayOptions: string;
+  reliquesOrnaments: string;
+  notations: string;
+  procs: string;
+  recommandedStatistics: string;
+  statistics: string;
+  commentary: string;
+  others: string;
+  redStats: string;
+  informations: string;
+}
+
+interface LanguageOptions {
+  fr: UserOptionsLanguageType;
+  en: UserOptionsLanguageType;
+}
+
+const userOptionsLanguage: LanguageOptions = {
+  fr: {
+    displayOptions: "Options d'affichage",
+    reliquesOrnaments: "Reliques/Ornements",
+    notations: "Notations",
+    procs: "Procs",
+    recommandedStatistics: "Statistiques recommandées",
+    statistics: "Statistiques",
+    commentary: "Commentaires / Espacements",
+    others: "Autres",
+    redStats: "Elements mauvais en rouge",
+    informations: "Afficher les icones d'informations",
+  },
+  en: {
+    displayOptions: "Display Options",
+    reliquesOrnaments: "Relics / Ornaments",
+    notations: "Notations",
+    procs: "Procs",
+    recommandedStatistics: "Recommended Statistics",
+    statistics: "Statistics",
+    commentary: "Commentary / Spacing",
+    others: "Others",
+    redStats: "Bad elements in red",
+    informations: "Display information icons",
+  },
+};
+
+// PARTIE TITRES et MOTS PAGE UID
 interface Titles {
   stat: string;
   relicsSet: string;
@@ -224,5 +270,11 @@ const UIDtitles: TitlesByLanguage = {
   },
 };
 
-export { getFRDefaultValue, getENDefaultValue, traces, UIDtitles };
+export {
+  getFRDefaultValue,
+  getENDefaultValue,
+  traces,
+  UIDtitles,
+  userOptionsLanguage,
+};
 export type { TitlesByLanguage };

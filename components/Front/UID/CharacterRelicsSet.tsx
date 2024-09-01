@@ -12,6 +12,8 @@ interface CharacterRelicsSetProps {
   review: RelicsSet[];
   relicsSetTranslate: Array<any>;
   lang: keyof TranslateSection | undefined;
+  showRedstats: boolean;
+  showInformations: boolean;
 }
 
 interface AsOrnamentState {
@@ -32,6 +34,8 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
   review,
   relicsSetTranslate,
   lang,
+  showRedstats,
+  showInformations,
 }) => {
   const processedRelicSets = processRelicSets(relics);
 
@@ -180,43 +184,47 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
               onMouseEnter={() => setIsTooltipRecommended(true)}
               onMouseLeave={() => setIsTooltipRecommended(false)}
             >
-              <InformationCircleIcon
-                className={`size-9 absolute top-0 right-0 rounded-full ${
-                  colorExclamation ? "fill-gray" : "fill-red"
-                }`}
-              />
-              {isTooltipRecommended && (
-                <div
-                  className={`absolute z-20 p-2 bg-background border border-orange rounded-xl xl:-top-44 xl:h-44 right-8 w-60 text-white text-sm ${
-                    requiredRelicsSet[2]
-                      ? "xl:w-[476px] xl:-left-52 -top-52"
-                      : "xl:w-80 xl:-left-36 -top-36"
-                  }`}
-                >
-                  <div className="font-bold z-10 flex">
-                    {UIDtitles[lang ?? "fr"].Recommendeds}
-                  </div>
-                  <div className="xl:flex gap-2 w-full xl:h-[140px]">
-                    {requiredRelicsSet.map((el: any) => (
-                      <div
-                        className={`italic font-normal h-full flex flex-col w-full`}
-                        key={el.id}
-                      >
-                        <p>
-                          <span className="font-bold">{el.num}P</span>
-                          <span> - {reduceText(el.name)}</span>
-                        </p>
-                        <img
-                          src={`${CDN}/${el.icon}`}
-                          alt={el.name}
-                          className="h-24 w-24 mx-auto mt-auto"
-                          width={96}
-                          height={96}
-                        />
+              {showInformations && (
+                <>
+                  <InformationCircleIcon
+                    className={`size-9 absolute top-0 right-0 rounded-full ${
+                      colorExclamation ? "fill-gray" : "fill-red"
+                    }`}
+                  />
+                  {isTooltipRecommended && (
+                    <div
+                      className={`absolute z-20 p-2 bg-background border border-orange rounded-xl xl:-top-44 xl:h-44 right-8 w-60 text-white text-sm ${
+                        requiredRelicsSet[2]
+                          ? "xl:w-[476px] xl:-left-52 -top-52"
+                          : "xl:w-80 xl:-left-36 -top-36"
+                      }`}
+                    >
+                      <div className="font-bold z-10 flex">
+                        {UIDtitles[lang ?? "fr"].Recommendeds}
                       </div>
-                    ))}
-                  </div>
-                </div>
+                      <div className="xl:flex gap-2 w-full xl:h-[140px]">
+                        {requiredRelicsSet.map((el: any) => (
+                          <div
+                            className={`italic font-normal h-full flex flex-col w-full`}
+                            key={el.id}
+                          >
+                            <p>
+                              <span className="font-bold">{el.num}P</span>
+                              <span> - {reduceText(el.name)}</span>
+                            </p>
+                            <img
+                              src={`${CDN}/${el.icon}`}
+                              alt={el.name}
+                              className="h-24 w-24 mx-auto mt-auto"
+                              width={96}
+                              height={96}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </>
               )}
             </button>
           </>
@@ -329,12 +337,16 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                     height={128}
                   />
                   <span
-                    className={`absolute top-0 left-0 p-1 bg-background/75 rounded-full ${colorRelics[i]}`}
+                    className={`absolute top-0 left-0 p-1 bg-background/75 rounded-full ${
+                      showRedstats && colorRelics[i]
+                    }`}
                   >
                     {relic.num}P
                   </span>
                   <span
-                    className={`absolute bottom-0 left-0 p-1 w-full bg-background/75 rounded-full text-xs ${colorRelics[i]}`}
+                    className={`absolute bottom-0 left-0 p-1 w-full bg-background/75 rounded-full text-xs ${
+                      showRedstats && colorRelics[i]
+                    }`}
                   >
                     {relic.name}
                   </span>

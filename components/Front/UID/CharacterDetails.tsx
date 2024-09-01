@@ -9,11 +9,11 @@ import CharacterRelic from "./CharacterRelic";
 import { CDN2 } from "@/utils/cdn";
 import { CharacterType, Data, RecommendedStats } from "@/types/CharacterModel";
 import translateBBCode from "@/utils/translateBBCode";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { traces, UIDtitles } from "@/utils/dictionnary";
 import characterEN from "@/utils/charactersEN";
 import { TranslateSection } from "@/types/homepageDictionnary";
-import LoadingSpin from "@/components/LoadingSpin";
+import { UserOptionsProps } from "@/types/UserOptions";
 
 interface ReviewData {
   data: CharacterType[];
@@ -29,6 +29,7 @@ interface CharacterDetailsProps {
   lightconesTranslate: Array<any>;
   eidolonsList: Array<any>;
   lang: keyof TranslateSection | undefined;
+  userOptions: UserOptionsProps;
 }
 
 const CharacterDetails: React.FC<CharacterDetailsProps> = ({
@@ -41,6 +42,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   lightconesTranslate,
   eidolonsList,
   lang,
+  userOptions,
 }) => {
   const [tracesNames, setTracesNames] = useState<Array<string>>([]);
   const [characterRelics, setCharacterRelics] = useState<Relic[] | []>([]);
@@ -87,7 +89,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   if (reviewData) {
     return (
       <article
-        className="grid xl:grid-cols-3 xl:h-[870px] xl:gap-x-5 py-4"
+        className="grid xl:h-[870px] xl:gap-x-5 py-4 xl:grid-cols-3"
         style={{
           backgroundImage: `url('${CDN2}/img/character_bg.avif')`,
           backgroundSize: "100% auto",
@@ -121,10 +123,19 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
             lightconeTranslate={lightconesTranslate}
             lang={lang}
             review={characterReview?.lightCones}
+            showRedstats={userOptions.showRedstats}
+            showInformations={userOptions.showInformations}
           />
         </div>
 
-        <div className="flex flex-col justify-between gap-y-5 xl:gap-y-0 w-screen xl:w-full mt-5 xl:mt-0 py-[1px]">
+        <div
+          className={`flex flex-col gap-y-5 xl:gap-y-0 w-screen xl:w-full mt-5 xl:mt-0 py-[1px] ${
+            userOptions.showRecommandedStats &&
+            userOptions.showRecommandedStatsCom
+              ? "justify-between"
+              : "justify-evenly"
+          }`}
+        >
           <div className="bg-black/75 w-full rounded-3xl p-5 ">
             {[
               "hp",
@@ -146,37 +157,46 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                     field={field}
                     lang={lang}
                     review={characterReview?.recommended_stats}
+                    showRedstats={userOptions.showRedstats}
                   />
                 </div>
               );
             })}
           </div>
-          <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-3">
-            <p className="text-yellow text-lg font-bold text-center">
-              {UIDtitles[lang ?? "fr"].stat}
-            </p>
-            <RecommendedStat
-              lang={lang}
-              data={characterReview?.recommended_stats}
-            />
-            {/* Commentaire des stats mini */}
-            {characterReview?.recommended_comment && (
-              <div className="text-orange2 font-bold text-center mt-2 text-[15px]">
-                {characterReview && lang === "en"
-                  ? characterEN[(uidData as any).characters[index].id]
-                    ? translateBBCode(
-                        characterEN[(uidData as any).characters[index].id][
-                          buildIndex
-                        ].comment
-                      )
-                    : ""
-                  : translateBBCode(
-                      characterReview?.recommended_comment ?? "",
-                      true
-                    )}
-              </div>
-            )}
-          </div>
+          {((userOptions.showRecommandedStatsCom &&
+            characterReview?.recommended_comment) ||
+            userOptions.showRecommandedStats) && (
+            <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-3">
+              <p className="text-yellow text-lg font-bold text-center">
+                {UIDtitles[lang ?? "fr"].stat}
+              </p>
+
+              {userOptions.showRecommandedStats && (
+                <RecommendedStat
+                  lang={lang}
+                  data={characterReview?.recommended_stats}
+                />
+              )}
+              {/* Commentaire des stats mini */}
+              {characterReview?.recommended_comment &&
+                userOptions.showRecommandedStatsCom && (
+                  <div className="text-orange2 font-bold text-center mt-2 text-[15px]">
+                    {characterReview && lang === "en"
+                      ? characterEN[(uidData as any).characters[index].id]
+                        ? translateBBCode(
+                            characterEN[(uidData as any).characters[index].id][
+                              buildIndex
+                            ].comment
+                          )
+                        : ""
+                      : translateBBCode(
+                          characterReview?.recommended_comment ?? "",
+                          true
+                        )}
+                  </div>
+                )}
+            </div>
+          )}
 
           <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-4">
             <CharacterRelicsSet
@@ -184,6 +204,8 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
               lang={lang}
               relicsSetTranslate={relicsSetTranslate}
               review={characterReview?.relics_set}
+              showRedstats={userOptions.showRedstats}
+              showInformations={userOptions.showInformations}
             />
           </div>
         </div>
@@ -202,6 +224,9 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                       characterReview?.recommended_stats as RecommendedStats[]
                     }
                     reviewMainStat={characterReview?.main_stats}
+                    showNotation={userOptions.showNotation}
+                    showRelicProc={userOptions.showRelicProc}
+                    showRedstats={userOptions.showRedstats}
                   />
                 </div>
               );

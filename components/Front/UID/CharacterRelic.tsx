@@ -15,6 +15,9 @@ interface CharacterRelicProps {
   statsTranslate: Array<any>;
   totalCoef: number;
   lang: keyof TranslateSection | undefined;
+  showNotation: boolean;
+  showRelicProc: boolean;
+  showRedstats: boolean;
 }
 
 const CharacterRelic: React.FC<CharacterRelicProps> = ({
@@ -24,6 +27,9 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
   equipmentIndex,
   statsTranslate,
   lang,
+  showNotation,
+  showRelicProc,
+  showRedstats,
 }) => {
   const { rarity, level, icon, main_affix, sub_affix } = stats;
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
@@ -112,7 +118,6 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
     }
 
     verifMainStat();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
 
   useEffect(() => {
@@ -143,7 +148,7 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
         onMouseEnter={() => setIsTooltipVisible(true)}
         onMouseLeave={() => setIsTooltipVisible(false)}
         className={`text-sm text-center relative my-auto${
-          equipmentIndex >= 2 && !isGood ? " text-red" : ""
+          equipmentIndex >= 2 && !isGood && showRedstats ? " text-red" : ""
         }`}
       >
         {isTooltipVisible &&
@@ -175,22 +180,26 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
         <p>{main_affix.display}</p>
         <p
           className={`absolute top-0 right-5 py-1 px-2 rounded-full text-xs ${
-            level < 15 ? "text-red bg-background" : "text-white bg-gray"
+            level < 15 && showRedstats
+              ? "text-red bg-background"
+              : "text-white bg-gray"
           }`}
         >{`+${level}`}</p>
       </div>
       <div className="flex flex-col relative w-full h-full justify-center text-white">
-        <div className="absolute flex right-20 min-w-[87px] text-gray/50 text-[62px] -mt-3">
-          {goodRelic.includes(relicNotation) && (
-            <span className="text-darkGreen/50">{relicNotation}</span>
-          )}
-          {okRelic.includes(relicNotation) && (
-            <span className="text-blue/50">{relicNotation}</span>
-          )}
-          {badRelic.includes(relicNotation) && (
-            <span className="text-red/35">{relicNotation}</span>
-          )}
-        </div>
+        {showNotation && (
+          <div className="absolute flex right-20 min-w-[87px] text-gray/50 text-[62px] -mt-3">
+            {goodRelic.includes(relicNotation) && (
+              <span className="text-darkGreen/50">{relicNotation}</span>
+            )}
+            {okRelic.includes(relicNotation) && (
+              <span className="text-blue/50">{relicNotation}</span>
+            )}
+            {badRelic.includes(relicNotation) && (
+              <span className="text-red/35">{relicNotation}</span>
+            )}
+          </div>
+        )}
         {sub_affix.map((affix, i) => {
           let subDisplayValue;
           if (lang === "fr" || lang === undefined)
@@ -210,9 +219,11 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
               />
               <span>{subDisplayValue}</span>
               <span className="text-right mr-2">{affix.display}</span>
-              <span className="bg-green rounded-full text-center text-black">
-                {affix.count - 1 > 0 && affix.count - 1}
-              </span>
+              {showRelicProc && (
+                <span className="bg-green rounded-full text-center text-black">
+                  {affix.count - 1 > 0 && affix.count - 1}
+                </span>
+              )}
             </div>
           );
         })}

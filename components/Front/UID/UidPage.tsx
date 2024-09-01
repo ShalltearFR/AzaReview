@@ -20,7 +20,9 @@ import type { CharacterBuild as CharacterBuildType } from "@/types/charactersEN"
 import type { TranslateSection } from "@/types/homepageDictionnary";
 import type { jsonUID } from "@/types/jsonUid";
 import type { CharacterType } from "@/types/CharacterModel";
+import { UserOptionsProps, DefaultUserOptions } from "@/types/UserOptions";
 import CharacterButtons from "./CharacterButtons";
+import Options from "./Options";
 
 interface Option {
   value: string;
@@ -73,6 +75,9 @@ const UidPage: React.FC<UidPageProps> = ({
 
   const [review, setReview] = useState<any>();
   const [isloading, setIsLoading] = useState<Boolean>(true);
+
+  const [userOptions, setUserOptions] =
+    useState<UserOptionsProps>(DefaultUserOptions);
 
   useEffect(() => {
     Aos.init({ disable: window.innerWidth <= 1450 });
@@ -269,9 +274,15 @@ const UidPage: React.FC<UidPageProps> = ({
                   lightconesTranslate={lightconesTranslate}
                   eidolonsList={eidolonsList}
                   lang={lang}
+                  userOptions={userOptions}
                 />
               </div>
             </div>
+            <Options
+              setUserOptions={setUserOptions}
+              userOptions={userOptions}
+              lang={lang}
+            />
 
             <CharacterButtons
               disableDownloadButton={disableDownloadButton}

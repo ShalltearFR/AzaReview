@@ -12,6 +12,7 @@ interface CharacterStatProps {
   field: string;
   review: RecommendedStats[];
   lang: keyof TranslateSection | undefined;
+  showRedstats: boolean;
 }
 
 const CharacterStat: React.FC<CharacterStatProps> = ({
@@ -20,6 +21,7 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
   field,
   review,
   lang,
+  showRedstats,
 }) => {
   // Memorise les noms des valeurs FR/EN
   const defaultValues = useMemo(() => {
@@ -111,7 +113,11 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
         alt={displayName}
       />
       <span className="ml-1">{displayName}</span>
-      <span className={`ml-auto text-right ${!isGoodValue ? "text-red" : ""}`}>
+      <span
+        className={`ml-auto text-right ${
+          !isGoodValue && showRedstats ? "text-red" : ""
+        }`}
+      >
         {`${calculatedValue.toLocaleString("fr")}${isPercent ? "%" : ""}`}
       </span>
     </div>
