@@ -266,18 +266,23 @@ const UidPage: React.FC<UidPageProps> = ({
                   <div
                     className={`flex translate-y-1/2 rounded-xl transform transition-transform duration-500 ease-in-out absolute ${
                       showOptionsMenu
-                        ? "-translate-x-[420px]"
+                        ? "-translate-x-[415px]"
                         : "-translate-x-16"
                     }`}
                     onMouseEnter={() => setShowOptionsMenu(true)}
                     onMouseLeave={() => setShowOptionsMenu(false)}
                   >
                     <div
-                      className={`flex gap-7 justify-center items-center p-5 text-center tracking-tight font-bold text-orange text-2xl [writing-mode:vertical-rl] [text-orientation:upright] bg-[#4E4A82] rounded-l-xl`}
+                      className={`flex flex-col gap-7 justify-center items-center p-5 bg-[#4E4A82] rounded-l-xl`}
                     >
-                      <Cog6ToothIcon className="w-7 h-7 text-white" />
-                      OPTIONS
-                      <Cog6ToothIcon className="w-7 h-7 text-white" />
+                      <Cog6ToothIcon className="w-8 h-8 text-white" />
+                      <img
+                        src={`${CDN}/img/uid/Options.webp`}
+                        alt="Options"
+                        width={32}
+                        height={224}
+                      />
+                      <Cog6ToothIcon className="w-8 h-8 text-white" />
                     </div>
 
                     <div className={``}>
