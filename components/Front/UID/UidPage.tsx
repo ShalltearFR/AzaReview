@@ -277,7 +277,7 @@ const UidPage: React.FC<UidPageProps> = ({
                     >
                       <Cog6ToothIcon className="w-8 h-8 text-white" />
                       <img
-                        src={`${CDN}/img/uid/Options.webp`}
+                        src={`${CDN2}/img/uid/Options.webp`}
                         alt="Options"
                         width={32}
                         height={224}
