@@ -15,6 +15,7 @@ import CharacterDetails from "./CharacterDetails";
 import { convertImage } from "@/utils/imageConversion";
 import ReviewHeader from "./ReviewHeader";
 import { sortRelics, sortReviewDataByUidData } from "@/utils/sorts&Filter";
+import { Cog6ToothIcon } from "@heroicons/react/24/outline";
 
 import type { CharacterBuild as CharacterBuildType } from "@/types/charactersEN";
 import type { TranslateSection } from "@/types/homepageDictionnary";
@@ -78,6 +79,8 @@ const UidPage: React.FC<UidPageProps> = ({
 
   const [userOptions, setUserOptions] =
     useState<UserOptionsProps>(DefaultUserOptions);
+
+  const [showOptionsMenu, setShowOptionsMenu] = useState<boolean>(false);
 
   useEffect(() => {
     Aos.init({ disable: window.innerWidth <= 1450 });
@@ -218,7 +221,7 @@ const UidPage: React.FC<UidPageProps> = ({
 
   if (!isloading && uidData.status === 200 && review) {
     return (
-      <div className="overflow-hidden min-h-[calc(100vh-270px)]">
+      <div className="overflow-hidden min-h-[calc(100vh-270px)] relative">
         <StarBGAnimation />
         <NavBar setData={setUidData} />
 
@@ -230,71 +233,102 @@ const UidPage: React.FC<UidPageProps> = ({
           </div>
         )}
         <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}>
-          <section data-aos="fade-down">
-            <CharacterList
-              uidData={uidData as jsonUID}
-              setIndex={setCharacterIndex}
-              index={characterIndex}
-              lang={lang}
-            />
-            <div
-              className={
-                "grid xl:grid-cols-[390px_1fr] justify-center items-center text-white font-bold xl:rounded-t-xl bg-light-blue/75 w-full max-w-[1450px] mx-auto xl:gap-x-5 py-5"
-              }
-            >
-              <CharacterBuild
-                characterBuild={characterBuild}
-                characterOptions={characterOptions}
-                setCharacterBuild={setCharacterBuild}
+          <div className="relative">
+            <section data-aos="fade-down">
+              <CharacterList
+                uidData={uidData as jsonUID}
+                setIndex={setCharacterIndex}
+                index={characterIndex}
+                lang={lang}
               />
-              <div className="px-5 mt-2 text-center xl:px-0 xl:ml-0 xl:mt-0 xl:text-left">
-                {(characterOptions[characterBuild] &&
-                  characterOptions[characterBuild].desc &&
-                  translateBBCode(
-                    characterOptions[characterBuild].desc ?? ""
-                  )) ||
-                  UIDtitles[lang ?? "fr"].AvailableSoon}
-              </div>
-            </div>
-            <div className="flex justify-center w-full">
               <div
-                ref={characterDetailsRef}
-                className="w-full max-w-[1450px] h-full"
+                className={
+                  "grid xl:grid-cols-[390px_1fr] justify-center items-center text-white font-bold xl:rounded-t-xl bg-light-blue/75 w-full max-w-[1450px] mx-auto xl:gap-x-5 py-5"
+                }
               >
-                {disableDownloadButton || disableShareButton
-                  ? reviewHeaderRef.current
-                  : null}
-                <CharacterDetails
-                  uidData={uidData as jsonUID}
-                  buildIndex={characterBuild}
-                  reviewData={review}
-                  index={characterIndex}
-                  statsTranslate={statsTranslate}
-                  relicsSetTranslate={relicsSetTranslate}
-                  lightconesTranslate={lightconesTranslate}
-                  eidolonsList={eidolonsList}
-                  lang={lang}
+                <CharacterBuild
+                  characterBuild={characterBuild}
+                  characterOptions={characterOptions}
+                  setCharacterBuild={setCharacterBuild}
+                />
+                <div className="px-5 mt-2 text-center xl:px-0 xl:ml-0 xl:mt-0 xl:text-left">
+                  {(characterOptions[characterBuild] &&
+                    characterOptions[characterBuild].desc &&
+                    translateBBCode(
+                      characterOptions[characterBuild].desc ?? ""
+                    )) ||
+                    UIDtitles[lang ?? "fr"].AvailableSoon}
+                </div>
+              </div>
+              <div className="flex justify-center w-full relative">
+                {/* MENU OPTIONS POUR LES RESOLUTIONS DESKTOP */}
+                <aside className="hidden xl2:block absolute right-0 z-30">
+                  <div
+                    className={`flex translate-y-1/2 rounded-xl transform transition-transform duration-500 ease-in-out absolute ${
+                      showOptionsMenu
+                        ? "-translate-x-[420px]"
+                        : "-translate-x-16"
+                    }`}
+                    onMouseEnter={() => setShowOptionsMenu(true)}
+                    onMouseLeave={() => setShowOptionsMenu(false)}
+                  >
+                    <div
+                      className={`flex gap-7 justify-center items-center p-5 text-center tracking-tight font-bold text-orange text-2xl [writing-mode:vertical-rl] [text-orientation:upright] bg-[#4E4A82] rounded-l-xl`}
+                    >
+                      <Cog6ToothIcon className="w-7 h-7 text-white" />
+                      OPTIONS
+                      <Cog6ToothIcon className="w-7 h-7 text-white" />
+                    </div>
+
+                    <div className={``}>
+                      <Options
+                        setUserOptions={setUserOptions}
+                        userOptions={userOptions}
+                        lang={lang}
+                      />
+                    </div>
+                  </div>
+                </aside>
+                <div
+                  ref={characterDetailsRef}
+                  className="w-full max-w-[1450px] h-full"
+                >
+                  {disableDownloadButton || disableShareButton
+                    ? reviewHeaderRef.current
+                    : null}
+                  <CharacterDetails
+                    uidData={uidData as jsonUID}
+                    buildIndex={characterBuild}
+                    reviewData={review}
+                    index={characterIndex}
+                    statsTranslate={statsTranslate}
+                    relicsSetTranslate={relicsSetTranslate}
+                    lightconesTranslate={lightconesTranslate}
+                    eidolonsList={eidolonsList}
+                    lang={lang}
+                    userOptions={userOptions}
+                  />
+                </div>
+              </div>
+              <div className="xl2:hidden">
+                <Options
+                  setUserOptions={setUserOptions}
                   userOptions={userOptions}
+                  lang={lang}
                 />
               </div>
-            </div>
-            <Options
-              setUserOptions={setUserOptions}
-              userOptions={userOptions}
-              lang={lang}
-            />
-
-            <CharacterButtons
-              disableDownloadButton={disableDownloadButton}
-              disableShareButton={disableShareButton}
-              lang={lang}
-              handleConvertImage={handleConvertImage}
-              setDisableDownloadButton={setDisableDownloadButton}
-              setDisableShareButton={setDisableShareButton}
-              shareButtonText={shareButtonText}
-              UIDtitles={UIDtitles}
-            />
-          </section>
+            </section>
+          </div>
+          <CharacterButtons
+            disableDownloadButton={disableDownloadButton}
+            disableShareButton={disableShareButton}
+            lang={lang}
+            handleConvertImage={handleConvertImage}
+            setDisableDownloadButton={setDisableDownloadButton}
+            setDisableShareButton={setDisableShareButton}
+            shareButtonText={shareButtonText}
+            UIDtitles={UIDtitles}
+          />
         </Suspense>
       </div>
     );

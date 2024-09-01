@@ -31,13 +31,13 @@ const Options: React.FC<OptionsProps> = ({
   }, []);
 
   return (
-    <div className="rounded-xl bg-[#4E4A82] w-fit p-5 mx-auto mt-10">
+    <div className="rounded-xl xl2:rounded-none bg-[#4E4A82] w-fit p-5 mx-auto mt-10 xl2:mt-0 xl2:w-[350px]">
       <div className="text-center">
-        <p className="text-orange text-xl font-bold">
+        <p className="text-orange text-xl font-bold xl2:hidden">
           {userOptionsLanguage[lang ?? "fr"].displayOptions}
         </p>
       </div>
-      <div className="flex flex-col mmd:flex-row justify-center gap-5 mt-3">
+      <div className="flex flex-col mmd:flex-row justify-center gap-5 mt-3 xl2:flex-col">
         <div className="p-3 rounded-xl border border-gray">
           <p className="text-white text-lg font-bold mb-1">
             {userOptionsLanguage[lang ?? "fr"].reliquesOrnaments}
