@@ -1,5 +1,6 @@
 import Footer from "@/components/Front/UID/Footer";
 import UidPage from "@/components/Front/UID/UidPage";
+import { ChangelogType } from "@/types/Changelog";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import { jsonUID } from "@/types/jsonUid";
 import { CDN } from "@/utils/cdn";
@@ -96,6 +97,7 @@ export default async function Page({ params }: { params: { slug: number } }) {
     lightconesTranslate,
     relicsList,
     eidolonsList,
+    changelog,
   ] = await Promise.all([
     getData(`${process.env.WWW}/api/characters/all`, 5, false),
     getData(`${CDN}/index_min/${lang || "fr"}/properties.json`, 86400, true),
@@ -107,6 +109,7 @@ export default async function Page({ params }: { params: { slug: number } }) {
       18000,
       true
     ),
+    getData(`${process.env.WWW}/api/changelog/all`, 18000, false),
   ]);
 
   if (!jsonUid || !resReview) {
@@ -125,6 +128,7 @@ export default async function Page({ params }: { params: { slug: number } }) {
           RelicsList={relicsList}
           eidolonsList={eidolonsList}
           lang={lang}
+          changelog={changelog}
           error504
         />
         <Footer lang={lang} />
@@ -142,6 +146,7 @@ export default async function Page({ params }: { params: { slug: number } }) {
         lightconesTranslate={lightconesTranslate}
         RelicsList={relicsList}
         eidolonsList={eidolonsList}
+        changelog={changelog}
         lang={lang}
       />
       <Footer lang={lang} />

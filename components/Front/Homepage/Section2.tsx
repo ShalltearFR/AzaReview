@@ -173,7 +173,7 @@ const Section2: React.FC<Section2Props> = ({
                   </h3>
                   <div>
                     <span className="font-bold">
-                      Version {changeLog[patchPage].version}
+                      Version {changeLog[patchPage].version.toFixed(2)}
                     </span>
                     <span className="ml-2 italic">- {patchDate}</span>
                   </div>

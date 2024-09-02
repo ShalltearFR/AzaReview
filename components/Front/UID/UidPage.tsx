@@ -1,6 +1,7 @@
 "use client";
 import NavBar from "@/components/Front/NavBar";
 import { useState, useEffect, useRef, Suspense, useCallback } from "react";
+import Modal from "react-modal";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Aos from "aos";
 import { notFound } from "next/navigation";
@@ -16,14 +17,16 @@ import { convertImage } from "@/utils/imageConversion";
 import ReviewHeader from "./ReviewHeader";
 import { sortRelics, sortReviewDataByUidData } from "@/utils/sorts&Filter";
 import { Cog6ToothIcon } from "@heroicons/react/24/outline";
+import { UserOptionsProps, DefaultUserOptions } from "@/types/UserOptions";
+import CharacterButtons from "./CharacterButtons";
+import Options from "./Options";
 
 import type { CharacterBuild as CharacterBuildType } from "@/types/charactersEN";
 import type { TranslateSection } from "@/types/homepageDictionnary";
 import type { jsonUID } from "@/types/jsonUid";
 import type { CharacterType } from "@/types/CharacterModel";
-import { UserOptionsProps, DefaultUserOptions } from "@/types/UserOptions";
-import CharacterButtons from "./CharacterButtons";
-import Options from "./Options";
+import type { ChangelogType } from "@/types/Changelog";
+import Changelog from "./Changelog";
 
 interface Option {
   value: string;
@@ -45,6 +48,7 @@ interface UidPageProps {
   eidolonsList: Array<any>;
   lang: keyof TranslateSection | undefined;
   error504?: boolean;
+  changelog: ChangelogType;
 }
 
 const UidPage: React.FC<UidPageProps> = ({
@@ -57,6 +61,7 @@ const UidPage: React.FC<UidPageProps> = ({
   eidolonsList,
   lang,
   error504,
+  changelog,
 }) => {
   const [uidData, setUidData] = useState<{ status: number } | jsonUID>({
     status: 206,
@@ -82,8 +87,27 @@ const UidPage: React.FC<UidPageProps> = ({
 
   const [showOptionsMenu, setShowOptionsMenu] = useState<boolean>(false);
 
+  const [showChangelog, setShowChangelog] = useState<boolean>(false);
+
   useEffect(() => {
     Aos.init({ disable: window.innerWidth <= 1450 });
+
+    // Affiche le changelog si la version est différente de la dernière version
+    if (window.innerWidth >= 1450) {
+      const changelogStorage = localStorage.getItem("changelog");
+      if (changelogStorage) {
+        if (changelogStorage !== changelog.data[0].version.toString()) {
+          setShowChangelog(true);
+          localStorage.setItem(
+            "changelog",
+            changelog.data[0].version.toString()
+          );
+        }
+      } else {
+        setShowChangelog(true);
+        localStorage.setItem("changelog", changelog.data[0].version.toString());
+      }
+    }
   }, []);
 
   const handleConvertImage = useCallback(
@@ -219,9 +243,36 @@ const UidPage: React.FC<UidPageProps> = ({
     );
   }
 
-  if (!isloading && uidData.status === 200 && review) {
+  if (!isloading && uidData.status === 200 && review && changelog) {
     return (
       <div className="overflow-hidden min-h-[calc(100vh-270px)] relative">
+        {/* MODAL CHANGELOG */}
+        <Modal
+          isOpen={showChangelog}
+          onRequestClose={() => setShowChangelog(false)}
+          ariaHideApp={false}
+          style={{
+            overlay: {
+              zIndex: "50",
+              backgroundColor: "#000000CC",
+            },
+            content: {
+              top: "50%",
+              left: "50%",
+              right: "auto",
+              bottom: "auto",
+              marginRight: "-50%",
+              transform: "translate(-50%, -50%)",
+              backgroundColor: "#000000",
+              borderColor: "#828282",
+              borderRadius: "2rem",
+              borderWidth: "2px",
+            },
+          }}
+        >
+          <Changelog changelog={changelog} />
+        </Modal>
+
         <StarBGAnimation />
         <NavBar setData={setUidData} />
 
