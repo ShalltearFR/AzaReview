@@ -145,7 +145,11 @@ const relicsSetList: objectProps[] = [
     isOrnamant: true,
   },
   {
-    id: "316", // Kalpagni
+    id: "317", // Lushaka
+    isOrnamant: true,
+  },
+  {
+    id: "318", // Bananattractions
     isOrnamant: true,
   },
 ];
