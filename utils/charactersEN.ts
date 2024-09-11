@@ -556,6 +556,15 @@ const characterEN: CharacterENProps = {
         "Ornaments [u]Interstellar Business Enterprise[/u] only if [u]Eff. Rate[/u] < 130%.\nIncrease [u]Speed[/u] as much as possible once the rest is achieved.",
     },
   ],
+  1220: [
+    // Feixiao
+    {
+      name: "Hyper Sonic",
+      desc: "Feixiao deals single-target [color=lightgreen]Wind[/color] damage and performs multiple [u]Follow-up Attacks[/u].\nHis [u]Ultimate[/u] is triggered only through his stacking mechanic and does not require energy.",
+      comment:
+        "The 2-piece [u]Relic[/u] options are much weaker than the two 4-piece sets presented here (by ~6%).\nThe [u]Izumo[/u] and [u]Salsotto[/u] Ornaments are much weaker (~6%) compared to [u]Duran[/u] (use the better of the two if you're not using [u]Duran[/u]).",
+    },
+  ],
 };
 
 export default characterEN;
