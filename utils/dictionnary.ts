@@ -193,7 +193,7 @@ const UIDtitles: TitlesByLanguage = {
     levelMin: "Niv. ",
     RecommendedF2P: "F2P recommandé :",
     RecommendedsF2P: "Recommandés F2P/Accessibles",
-    RelicsOrnaments: "Sets de reliques + Ornements",
+    RelicsOrnaments: "Sets de Reliques + Ornements",
     OtherChoices: "Autres bons choix",
     RecommendedStats: "Statistiques recommandées",
     SortBy: "Trier par :",
