@@ -174,7 +174,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
       {/* Sets de reliques */}
       <div className="mt-14">
         <p className="font-bold text-xl underline text-orange">
-          {UIDtitles[lang ?? "fr"].RecommendedsF2P}
+          {UIDtitles[lang ?? "fr"].RelicsOrnaments}
         </p>
 
         <div className="mt-2 flex flex-col lg:flex-row gap-10 justify-center">
