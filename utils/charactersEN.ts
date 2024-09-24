@@ -342,9 +342,9 @@ const characterEN: CharacterENProps = {
     // Gallagher
     {
       name: "It's my round.",
-      desc: "Gallagher heals his teammates regularly when they attack targets inflicted by his [u]Ultimate[/u]’s [u]Debuff[/u].\nHe can also deal decent [u]Rupture Dmg[/u] [color=#FF4747]Feu[/color].",
+      desc: "Gallagher heals his teammates regularly when they attack targets inflicted by his [u]Ultimate[/u]'s [u]Debuff[/u].\nHe can also deal decent [u]Break Dmg[/u] [color=#FF4747]Feu[/color].",
       comment:
-        " If equipped with Ornaments [u]Talia[/u] ➜ Set [u]Rupture[/u] at 130%.\nWith E6, lower minimum requirement for [u]Rupture[/u] by 20%.\nIncrease [u]Speed[/u] when minimum requirements achieved on other stats.",
+        " If equipped with Ornaments [u]Talia[/u] ➜ Set [u]Break Effect[/u] at 130%.\nWith E6, lower minimum requirement for [u]Break Effect[/u] by 20%.\nIncrease [u]Speed[/u] when minimum requirements achieved on other stats.",
     },
   ],
   1215: [
@@ -369,7 +369,7 @@ const characterEN: CharacterENProps = {
     // Asta
     {
       name: "Asta, la vice-T.A.",
-      desc: "Asta increases [u]Speed[/u] and [u]Attk[/u] of all allies.\nShe can also deal decent [u]Rupture Dmg[/u] [color=#FF4747]Fire[/color].",
+      desc: "Asta increases [u]Speed[/u] and [u]Attk[/u] of all allies.\nShe can also deal decent [u]Break Dmg[/u] [color=#FF4747]Fire[/color].",
       comment:
         "You should keep [u]Break effect[/u] stats as bonus.\nRequirements for [u]Effect RES[/u] only when equipped with Ornaments [u]Broken Keel[/u].",
     },
@@ -482,7 +482,7 @@ const characterEN: CharacterENProps = {
   8005: [
     // MC Harmonie
     {
-      name: "Rupture waits for no one.",
+      name: "Break waits for no one.",
       desc: "MC Harmony enables the team to perform [u]Extreme Breaks[/u] and increases the team's [u]Break[/u].\nOften requires [u]Ruan Mei[/u] on the team to be truly effective.",
       comment:
         "If [u]HP% Chest[/u] ➜ [u]Defense% Sphere[/u] (or vice versa).\nIf the [u]Clockmaker[/u] set is present on another character ➜ [u]Meteorite Thief[/u] set on Caelus.\nOnce everything is achieved, maximize [u]Break[/u] and [u]Speed[/u].",
@@ -501,18 +501,18 @@ const characterEN: CharacterENProps = {
     // Boothill
     {
       name: "Fudge",
-      desc: "Boothill deals [color=gray]Physical[/color] damage and specializes in [u]Rupture[/u] damage.\nHe creates a [color=gray]Physical[/color] Weakness with his [u]Ultimate[/u].",
+      desc: "Boothill deals [color=gray]Physical[/color] damage and specializes in [u]Break[/u] damage.\nHe creates a [color=gray]Physical[/color] Weakness with his [u]Ultimate[/u].",
       comment:
-        "Boothill should focus his stats on [u]Rupture[/u] and [u]Speed[/u].\n[u]Crit[/u] and [u]Attack[/u] are entirely optional, so you can instead allocate stats to [u]HP[/u] and [u]Defense[/u] while aiming for as much [u]Rupture[/u] and [u]Speed[/u] as possible in the substats.",
+        "Boothill should focus his stats on [u]Break[/u] and [u]Speed[/u].\n[u]Crit[/u] and [u]Attack[/u] are entirely optional, so you can instead allocate stats to [u]HP[/u] and [u]Defense[/u] while aiming for as much [u]Break[/u] and [u]Speed[/u] as possible in the substats.",
     },
   ],
   1310: [
     // Firefly
     {
       name: "Eva AR-26710",
-      desc: "Firefly deals [color=#FF4747]Fire[/color] damage and specializes in [u]Rupture[/u] and [u]Extreme Rupture[/u] damage.\nShe creates a [color=#FF4747]Fire[/color] Weakness with her [u]Skill[/u] under [u]Combustion[/u].",
+      desc: "Firefly deals [color=#FF4747]Fire[/color] damage and specializes in [u]Break[/u] and [u]Extreme Break[/u] damage.\nShe creates a [color=#FF4747]Fire[/color] Weakness with her [u]Skill[/u] under [u]Combustion[/u].",
       comment:
-        "If cone [u]Where Dreams Rest[/u] ➜ [u]Rupture[/u] at 270.\nIf cone [u]Indelible Promise[/u] ➜ [u]Rupture[/u] at (S1) 238 / (S5) 266.\nFor each [u]Rupture[/u] bonus provided by other team members, reduce the required [u]Rupture[/u] accordingly ➜ Goal 360 in combat.",
+        "If cone [u]Where Dreams Rest[/u] ➜ [u]Break effect[/u] at 270.\nIf cone [u]Indelible Promise[/u] ➜ [u]Break effect[/u] at (S1) 238 / (S5) 266.\nFor each [u]Break effect[/u] bonus provided by other team members, reduce the required [u]Break effect[/u] accordingly ➜ Goal 360 in combat.",
     },
   ],
   1314: [
@@ -533,9 +533,9 @@ const characterEN: CharacterENProps = {
     },
     {
       name: "Yunli Sensei",
-      desc: "[color=Yellowgreen]『 RUPTURE BUILD 』[/color]\nMarch 7th specializes in [color=yellow]Imaginary Rupture[/color] by taking as [u]Master[/u] a character from the [u]Harmony[/u], [u]Nihility[/u], [u]Preservation[/u], or [u]Abundance[/u] path.",
+      desc: "[color=Yellowgreen]『 BREAK BUILD 』[/color]\nMarch 7th specializes in [color=yellow]Imaginary Break[/color] by taking as [u]Master[/u] a character from the [u]Harmony[/u], [u]Nihility[/u], [u]Preservation[/u], or [u]Abundance[/u] path.",
       comment:
-        "Si cône [u]Le début d'une seconde vie[/u] ➜ [u]Rupture[/u] à 210.\nSi [u]Torse PV%[/u] ➜ [u]Sphère Déf%[/u] (ou inversement).\nPossibilité de mettre du [u]Critique[/u] sur le [u]Torse[/u] et [u]Dégâts Imaginaire[/u] ou [u]Attaque%[/u] sur [u]Sphère[/u], mais priorité à la [u]Rupture[/u] et [u]Vitesse[/u] en Sub Stats.",
+        "If cone [u]The Beginning of a Second Life[/u] ➜ [u]Break Effect[/u] at 210.\nIf [u]Chest HP%[/u] ➜ [u]Sphere DEF%[/u] (or vice versa).\nIt's possible to put [u]Crit[/u] on the [u]Chest[/u] and [u]Imaginary Damage[/u] or [u]ATK%[/u] on the [u]Sphere[/u], but priority should be given to [u]Break Effect[/u] and [u]Speed[/u] in sub stats.",
     },
   ],
   1221: [
