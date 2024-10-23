@@ -76,6 +76,8 @@ type CharacterType = {
   preview: string;
   portrait: string;
   path: string;
+  element: number;
+  rarity: number;
   data: Data[];
   pionner?: boolean;
 };

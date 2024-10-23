@@ -3,6 +3,7 @@ import { TranslateSection } from "@/types/homepageDictionnary";
 import { PioneerToADD } from "@/utils/PioneerType";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Link from "next/link";
+import { Star } from "./Star";
 
 interface GuidesProps {
   list: CharacterType[];
@@ -10,6 +11,7 @@ interface GuidesProps {
 }
 
 const CharactersList: React.FC<GuidesProps> = ({ list }) => {
+  console.log("list", list);
   return (
     <div className="flex flex-wrap gap-5 justify-center my-10">
       {list &&
@@ -22,6 +24,9 @@ const CharactersList: React.FC<GuidesProps> = ({ list }) => {
             <p className="absolute bottom-0 text-center text-white font-bold bg-black w-full h-10 flex items-center justify-center">
               {character.name}
             </p>
+            <div className="absolute flex top-0">
+              <Star number={character.rarity} />
+            </div>
             <img
               width={208}
               height={257}
