@@ -14,6 +14,8 @@ type Character = {
   name: string;
   portrait: string;
   path: string;
+  rarity: string;
+  element: string;
 };
 
 interface Option {
@@ -23,6 +25,8 @@ interface Option {
   name: string;
   portrait: string;
   path: string;
+  rarity: string;
+  element: string;
 }
 
 const CharacterList: React.FC = () => {
@@ -69,6 +73,8 @@ const CharacterList: React.FC = () => {
           portrait: el.portrait,
           name: el.name,
           path: el.path,
+          rarity: el.rarity,
+          element: el.element,
         }));
 
         selectOptionsRef.current = options;
@@ -81,6 +87,8 @@ const CharacterList: React.FC = () => {
   const init = async () => {
     const allCharactersData = await getAllCharacters();
     const dataBaseCharactersData = await getDataBaseCharacters();
+
+    console.log("allCharactersData", allCharactersData);
 
     allCharactersRef.current = allCharactersData;
     setCharactersSearch(dataBaseCharactersData);
@@ -110,6 +118,8 @@ const CharacterList: React.FC = () => {
         portrait: character.portrait,
         name: character.name,
         path: character.path,
+        rarity: character.rarity,
+        element: character.element,
       },
     };
 

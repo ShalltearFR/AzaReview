@@ -122,6 +122,8 @@ const dataSchema = new Schema(
     preview: String,
     portrait: String,
     path: String,
+    rarity: String,
+    element: String,
     data: [characterSchema],
   },
   { timestamps: true }
