@@ -32,6 +32,9 @@ export async function PUT(req: any) {
     const json = await req.json();
     await dbConnect();
 
+    // Supprime le cache
+    cacheData.flushAll();
+
     const updatedData = await Character.findOneAndUpdate(
       { id: json.characterId },
       { data: json.data }
@@ -39,9 +42,6 @@ export async function PUT(req: any) {
 
     if (!updatedData)
       return NextResponse.json({ error: true }, { status: 204 });
-
-    // Supprime le cache
-    cacheData.del([`character${json.characterId}`, "characters"]);
 
     return NextResponse.json({ message: "ok" }, { status: 200 });
   } catch (error) {
