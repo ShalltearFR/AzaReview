@@ -3,7 +3,9 @@ import { TranslateSection } from "@/types/homepageDictionnary";
 import { PioneerToADD } from "@/utils/PioneerType";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Link from "next/link";
-import { Star } from "./Star";
+import { Star } from "./StarIcon";
+import { PathIcon } from "./PathIcon";
+import { PathType } from "@/types/path";
 
 interface GuidesProps {
   list: CharacterType[];
@@ -21,12 +23,15 @@ const CharactersList: React.FC<GuidesProps> = ({ list }) => {
             key={character.id}
             className="w-36 sm:w-52 bg-black/75 rounded-3xl relative hover:bg-black/50"
           >
+            <div className="absolute top-0 left-0">
+              <PathIcon type={character.path as PathType["type"]} />
+            </div>
+            <div className="absolute top-5 right-0">
+              <Star number={character.rarity} />
+            </div>
             <p className="absolute bottom-0 text-center text-white font-bold bg-black w-full h-10 flex items-center justify-center">
               {character.name}
             </p>
-            <div className="absolute flex top-0">
-              <Star number={character.rarity} />
-            </div>
             <img
               width={208}
               height={257}

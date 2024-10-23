@@ -1,3 +1,5 @@
+import { CDN2 } from "@/utils/cdn";
+
 interface StarProps {
   number: number;
 }
@@ -5,7 +7,12 @@ export const Star: React.FC<StarProps> = ({ number }) => {
   return (
     <>
       {Array.from({ length: number }, (_: any, i: number) => (
-        <div key={i}>S</div>
+        <img
+          key={i}
+          src={`${CDN2}/img/guides/icon/star.webp`}
+          width={24}
+          alt="star"
+        />
       ))}
     </>
   );
