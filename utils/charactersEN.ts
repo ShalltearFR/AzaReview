@@ -565,6 +565,37 @@ const characterEN: CharacterENProps = {
         "The 2-piece [u]Relic[/u] options are much weaker than the two 4-piece sets presented here (by ~6%).\nThe [u]Izumo[/u] and [u]Salsotto[/u] Ornaments are much weaker (~6%) compared to [u]Duran[/u] (use the better of the two if you're not using [u]Duran[/u]).",
     },
   ],
+  1223: [
+    // Moze
+    {
+      name: "Shadow Hunter",
+      desc: "Moze deals [color=#DB76ED]Lightning[/color] damage to a single target and usually goes into [u]Retreat[/u].\nIn [u]Retreat[/u], he becomes untouchable and regularly performs [u]Follow-up Attacks[/u].",
+      comment:
+        "If the [u]Izumo[/u] Relics set ➜ Have a 2nd [u]Hunter[/u] character in the team.",
+    },
+  ],
+  1222: [
+    // Lingsha
+    {
+      name: "Sweet incense",
+      desc: "[color=Orchid]『 SUPPORT ONLY BUILD 』[/color]\nLingsha keeps her team alive and triggers numerous [u]Follow-up Attacks[/u].\nShe regularly removes [u]Debuffs[/u] from allies.",
+      comment:
+        "Ideally, 2P [u]Messenger of the Hackerspace[/u] with another 2P that provides [u]Healing[/u] or [u]Break[/u].\nPrerequisite [u]Resistance to Effects[/u] only if the [u]Broken Keel[/u] set is equipped.",
+    },
+    {
+      name: "Intoxicating Break",
+      desc: "[color=Yellowgreen]『 EXTREME BREAK BUILD 』[/color]\nLingsha specializes in [u]Break[/u] and [u]Extreme Break[/u] to deal [color=#FF4747]Fire[/color] damage while keeping the team alive.\nShe usually complements the team with [u]Imaginary Pioneer[/u] & [u]Firefly[/u].",
+      comment: "",
+    },
+  ],
+  1317: [
+    // Rappa
+    {
+      name: "Rappa no Jutsu",
+      desc: "Rappa deals [color=yellow]Imaginary[/color] damage and specializes in [u]Break[/u] and [u]Extreme Break[/u] damage.\nShe hits many enemies throughout the battle.",
+      comment: "",
+    },
+  ],
 };
 
 export default characterEN;
