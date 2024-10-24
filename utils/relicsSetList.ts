@@ -152,6 +152,14 @@ const relicsSetList: objectProps[] = [
     id: "318", // Bananattractions
     isOrnamant: true,
   },
+  {
+    id: "121", // Sacerdos
+    isOrnamant: false,
+  },
+  {
+    id: "122", // Monocle à monture argentée d'érudit
+    isOrnamant: false,
+  },
 ];
 
 export default relicsSetList;
