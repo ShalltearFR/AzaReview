@@ -19,3 +19,19 @@
   left: -50%;
   animation: animate-stars linear 240s infinite;
 }
+
+.bg-radial-5Star {
+  background: radial-gradient(
+    circle,
+    rgb(162, 160, 12) 0%,
+    rgba(242, 238, 0, 0) 60%
+  );
+}
+
+.bg-radial-4Star {
+  background: radial-gradient(
+    circle,
+    rgb(135, 12, 222) 0%,
+    rgba(242, 238, 0, 0) 60%
+  );
+}

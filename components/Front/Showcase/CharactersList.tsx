@@ -5,7 +5,8 @@ import { CDN, CDN2 } from "@/utils/cdn";
 import Link from "next/link";
 import { Star } from "./StarIcon";
 import { PathIcon } from "./PathIcon";
-import { PathType } from "@/types/path";
+import { Icon } from "@/types/Icon";
+import { ElementIcon } from "./ElementIcon";
 
 interface GuidesProps {
   list: CharacterType[];
@@ -21,18 +22,22 @@ const CharactersList: React.FC<GuidesProps> = ({ list }) => {
           <Link
             href={`/guides/${character.id}`}
             key={character.id}
-            className="w-36 sm:w-52 bg-black/75 rounded-3xl relative hover:bg-black/50"
+            className={`w-36 sm:w-52 bg-black/75 rounded-t-3xl relative hover:bg-black/50`}
           >
-            <div className="absolute top-0 left-0">
-              <PathIcon type={character.path as PathType["type"]} />
+            <div className="absolute top-2 left-2 z-20">
+              <ElementIcon type={character.element as Icon["Element"]} />
             </div>
-            <div className="absolute top-5 right-0">
+            <div className="absolute top-2 right-2 z-20">
+              <PathIcon type={character.path as Icon["Path"]} />
+            </div>
+            <div className="absolute flex bottom-10 w-full justify-center z-20">
               <Star number={character.rarity} />
             </div>
-            <p className="absolute bottom-0 text-center text-white font-bold bg-black w-full h-10 flex items-center justify-center">
+            <p className="absolute bottom-0 text-center text-white font-bold bg-black z-20 w-full h-10 flex items-center justify-center">
               {character.name}
             </p>
             <img
+              className="absolute z-10"
               width={208}
               height={257}
               alt={character.name}
@@ -42,6 +47,12 @@ const CharactersList: React.FC<GuidesProps> = ({ list }) => {
                   : `${CDN}/${character.preview}`
               }
             />
+            <div
+              className={`absolute w-full h-full rounded-t-3xl ${
+                character.rarity === "5" ? "bg-radial-5Star" : "bg-radial-4Star"
+              }`}
+            />
+            <div className="w-[208px] h-[257px]" />
           </Link>
         ))}
     </div>
