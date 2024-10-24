@@ -119,7 +119,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
         );
       }
 
-      // Filtrer par chemin
+      // Filtrer par voie
       const activePaths = Object.entries(filterList.path)
         .filter(([_, isActive]) => isActive)
         .map(([path]) => path);
