@@ -1,5 +1,5 @@
 interface Icon {
-  Path?:
+  Path:
     | "Warlock"
     | "Warrior"
     | "Shaman"
@@ -7,7 +7,7 @@ interface Icon {
     | "Mage"
     | "Knight"
     | "Priest";
-  Element?:
+  Element:
     | "Ice"
     | "Fire"
     | "Quantum"

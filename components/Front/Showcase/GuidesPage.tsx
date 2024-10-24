@@ -10,9 +10,9 @@ import StarBGAnimation from "../StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import { UIDtitles } from "@/utils/dictionnary";
-import { useCookies } from "next-client-cookies";
-
-import type { guidePref } from "@/types/userPref";
+import Filter from "./Filter";
+import { FilterListProps } from "@/types/Filter";
+import { Star } from "./StarIcon";
 
 interface GuidesPageProps {
   character: CharacterType[];
@@ -28,6 +28,30 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
   const [searchInput, setSearchInput] = useState<string>("");
   const [descentOrder, setDescentOrder] = useState<boolean>(false);
   const [sortArrival, setSortArrival] = useState<boolean>(false);
+  const [filterList, setFilterList] = useState<FilterListProps>({
+    rarity: {
+      star4: false,
+      star5: false,
+    },
+    element: {
+      Fire: false,
+      Ice: false,
+      Imaginary: false,
+      Physical: false,
+      Quantum: false,
+      Thunder: false,
+      Wind: false,
+    },
+    path: {
+      Knight: false,
+      Mage: false,
+      Priest: false,
+      Rogue: false,
+      Shaman: false,
+      Warlock: false,
+      Warrior: false,
+    },
+  });
 
   function hasStatus(value: any): value is { status: number } {
     return typeof value === "object" && "status" in value;
@@ -65,9 +89,48 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
   useEffect(() => {
     if (Array.isArray(charactersSearch) && characterList.current) {
       characterList.current = [...character];
-      const charactersSearchCopy = [...character].filter((text) =>
+
+      // Filtrer par nom
+      let charactersSearchCopy = [...character].filter((text) =>
         text.name.toLowerCase().includes(searchInput.toLowerCase())
       );
+
+      // Filtrer par rareté
+      if (filterList.rarity.star4 || filterList.rarity.star5) {
+        charactersSearchCopy = charactersSearchCopy.filter((char) => {
+          if (filterList.rarity.star4 && char.rarity === "4") {
+            return true;
+          }
+          if (filterList.rarity.star5 && char.rarity === "5") {
+            return true;
+          }
+          return false; // Exclure ceux qui ne correspondent pas
+        });
+      }
+
+      // Filtrer par élément
+      const activeElements = Object.entries(filterList.element)
+        .filter(([_, isActive]) => isActive)
+        .map(([element]) => element);
+
+      if (activeElements.length > 0) {
+        charactersSearchCopy = charactersSearchCopy.filter((char) =>
+          activeElements.includes(char.element)
+        );
+      }
+
+      // Filtrer par chemin
+      const activePaths = Object.entries(filterList.path)
+        .filter(([_, isActive]) => isActive)
+        .map(([path]) => path);
+
+      if (activePaths.length > 0) {
+        charactersSearchCopy = charactersSearchCopy.filter((char) =>
+          activePaths.includes(char.path)
+        );
+      }
+
+      // Appliquer le tri
       if (!sortArrival) {
         // Trie par ordre alphabetique
         charactersSearchCopy.sort((a, b) => {
@@ -83,9 +146,21 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
         });
       }
       if (descentOrder) charactersSearchCopy.reverse();
+
       setCharactersSearch(charactersSearchCopy);
     }
-  }, [descentOrder, searchInput, sortArrival, lang]);
+  }, [descentOrder, searchInput, sortArrival, lang, filterList]);
+
+  const handleRarity = (rarity: "star4" | "star5") => {
+    const newData = {
+      ...filterList,
+      rarity: {
+        ...filterList.rarity,
+        [rarity]: !filterList.rarity[rarity],
+      },
+    };
+    setFilterList(newData);
+  };
 
   if (charactersSearch) {
     return (
@@ -94,9 +169,6 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
         <StarBGAnimation />
         <div className="min-h-[calc(100vh-295px)]">
           <div className="mx-auto p-5 bg-gray/45 w-full smd:w-[670px] smd:rounded-3xl mt-10">
-            <p className="text-center text-white font-bold text-xl mb-2">
-              {UIDtitles[lang ?? "fr"].SortBy}
-            </p>
             <div className="flex flex-col items-center smd:flex-row gap-2 justify-around">
               <AddToggleButton
                 className={lang === "en" ? "w-60" : "w-[320px]"}
@@ -119,12 +191,41 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
                 }
               />
             </div>
-            <input
-              className="flex mx-auto rounded-full pl-5 text-lg h-10 w-64 mt-5"
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-              placeholder={UIDtitles[lang ?? "fr"].CharacterSearch}
-            />
+
+            <div className="smd:grid smd:grid-cols-2 mt-5 items-center">
+              <input
+                className="flex rounded-full pl-5 text-lg h-10 w-64 mx-auto"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                placeholder={UIDtitles[lang ?? "fr"].CharacterSearch}
+              />
+              <div className="flex gap-5 mx-auto justify-center mt-5 smd:mt-0 text-white text-lg font-semibold">
+                <button
+                  className={`flex bg-black/60 rounded-lg items-center p-1 ${
+                    filterList.rarity.star4
+                      ? "bg-darkGreen2/75 outline-dashed outline-1 outline-red-500"
+                      : "bg-black/50"
+                  }`}
+                  onClick={() => handleRarity("star4")}
+                >
+                  <Star number={"4"} className="w-7 star4" />
+                </button>
+                <button
+                  className={`flex bg-black/60 rounded-lg items-center p-1 ${
+                    filterList.rarity.star5
+                      ? "bg-darkGreen2/75 outline-dashed outline-1 outline-red-500"
+                      : "bg-black/50"
+                  }`}
+                  onClick={() => handleRarity("star5")}
+                >
+                  <Star number={"5"} className="w-7 star5" />
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <Filter setData={setFilterList} data={filterList} />
+            </div>
           </div>
           <CharactersList
             list={charactersSearch as CharacterType[]}

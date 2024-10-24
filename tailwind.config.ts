@@ -36,6 +36,7 @@ const config: Config = {
       red: "#FF4B4B",
       green: "#00ff00",
       darkGreen: "#108f10",
+      darkGreen2: "#0c2d0c",
       purple: "#76617b",
       darkPurple: "#42368d",
       darkRed: "#420d02",

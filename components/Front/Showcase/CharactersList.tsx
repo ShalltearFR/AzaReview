@@ -31,7 +31,7 @@ const CharactersList: React.FC<GuidesProps> = ({ list }) => {
               <PathIcon type={character.path as Icon["Path"]} />
             </div>
             <div className="absolute flex bottom-10 w-full justify-center z-20">
-              <Star number={character.rarity} />
+              <Star number={character.rarity} className="w-6" />
             </div>
             <p className="absolute bottom-0 text-center text-white font-bold bg-black z-20 w-full h-10 flex items-center justify-center">
               {character.name}

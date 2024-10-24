@@ -35,3 +35,13 @@
     rgba(242, 238, 0, 0) 60%
   );
 }
+
+.star5 {
+  filter: brightness(0) saturate(100%) invert(64%) sepia(42%) saturate(4154%)
+    hue-rotate(27deg) brightness(96%) contrast(91%);
+}
+
+.star4 {
+  filter: brightness(0) saturate(100%) invert(21%) sepia(67%) saturate(7005%)
+    hue-rotate(273deg) brightness(83%) contrast(115%);
+}
