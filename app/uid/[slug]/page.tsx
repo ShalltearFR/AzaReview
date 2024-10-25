@@ -100,9 +100,9 @@ export default async function Page({
   const resUid = await getDataUid(slug, lang);
   const jsonUid: jsonUID = await resUid.json();
   // Partage les stats des personnages
-  jsonUid.characters.map((character: Character) =>
-    shareCharactersStats(character, jsonUid.player.uid)
-  );
+  // jsonUid.characters.map((character: Character) =>
+  //   shareCharactersStats(character, jsonUid.player.uid)
+  // );
 
   const [
     resReview,
