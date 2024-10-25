@@ -190,8 +190,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                           )
                         : ""
                       : translateBBCode(
-                          characterReview?.recommended_comment ?? "",
-                          true
+                          characterReview?.recommended_comment ?? ""
                         )}
                   </div>
                 )}
@@ -237,10 +236,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                 {UIDtitles[lang ?? "fr"].NoCompletlyRelics1}
               </p>
               <p>
-                {translateBBCode(
-                  UIDtitles[lang ?? "fr"].NoCompletlyRelics2,
-                  true
-                )}
+                {translateBBCode(UIDtitles[lang ?? "fr"].NoCompletlyRelics2)}
               </p>
               {characterReview?.main_stats && (
                 <div className="[&_div]:mt-5 mt-10 text-left [&_div]:text-orange">

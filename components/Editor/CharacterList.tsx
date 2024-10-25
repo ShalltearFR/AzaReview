@@ -30,14 +30,14 @@ interface Option {
 }
 
 const CharacterList: React.FC = () => {
-  const allCharactersRef = useRef<Character[] | undefined>();
+  const allCharactersRef = useRef<Character[] | undefined>(undefined);
 
   const dataBaseCharactersRef = useRef<any>(undefined);
   const [charactersSearch, setCharactersSearch] = useState<any>(undefined);
   const [charactersSearchInput, setCharactersSearchInput] =
     useState<string>("");
 
-  const selectOptionsRef = useRef<Option[] | undefined>();
+  const selectOptionsRef = useRef<Option[] | undefined>(undefined);
 
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
   const [enableDeleteModal, setEnableDeleteModal] = useState<boolean>(false);
@@ -259,21 +259,21 @@ const CharacterList: React.FC = () => {
                   <ReactSelect
                     options={selectOptionsRef.current}
                     value={selectedOption}
-                    onChange={(option) => setSelectedOption(option)}
+                    onChange={(option: any) => setSelectedOption(option)}
                     hideSelectedOptions
                     styles={{
-                      control: (base) => ({
+                      control: (base: any) => ({
                         ...base,
                         border: "0",
                         borderRadius: "0",
                         backgroundColor: "black",
                       }),
-                      input: (base) => ({
+                      input: (base: any) => ({
                         ...base,
                         paddingLeft: "40px",
                         color: "white",
                       }),
-                      menu: (base) => ({
+                      menu: (base: any) => ({
                         ...base,
                         backgroundColor: "black",
                       }),

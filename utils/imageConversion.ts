@@ -8,14 +8,13 @@ export const convertImage = (
   exportType: string,
   disableButton: (value: boolean) => void,
   setShareButtonText: (value: string) => void,
-  characterDetailsRef: RefObject<HTMLDivElement>,
+  characterDetailsRef: HTMLDivElement | null,
   lang: keyof TranslateSection | undefined,
   characterIndex: number,
   uidData: jsonUID
 ) => {
-  if (characterDetailsRef.current === null) {
-    return;
-  }
+  if (characterDetailsRef === null) return;
+
   disableButton(true);
 
   if (exportType === "share")
@@ -26,15 +25,12 @@ export const convertImage = (
 
     if (window.innerWidth >= 650) {
       // Tablette/Desktop
-      conversionPromise = toPng(characterDetailsRef.current as HTMLDivElement);
+      conversionPromise = toPng(characterDetailsRef as HTMLDivElement);
     } else {
       // Mobile
-      conversionPromise = toJpeg(
-        characterDetailsRef.current as HTMLDivElement,
-        {
-          quality: 0.5,
-        }
-      );
+      conversionPromise = toJpeg(characterDetailsRef as HTMLDivElement, {
+        quality: 0.5,
+      });
     }
 
     conversionPromise
@@ -47,21 +43,19 @@ export const convertImage = (
           link.click();
           disableButton(false);
         } else if (exportType === "share") {
-          toBlob(characterDetailsRef.current as HTMLDivElement).then(
-            (blob: any) => {
-              navigator.clipboard
-                .write([
-                  new ClipboardItem({
-                    "image/png": blob,
-                  }),
-                ])
-                .then(() => {
-                  setShareButtonText(UIDtitles[lang ?? "fr"].ImageCopied);
-                  setTimeout(() => disableButton(false), 1000);
-                })
-                .catch((err) => console.log("Erreur presse papier :", err));
-            }
-          );
+          toBlob(characterDetailsRef as HTMLDivElement).then((blob: any) => {
+            navigator.clipboard
+              .write([
+                new ClipboardItem({
+                  "image/png": blob,
+                }),
+              ])
+              .then(() => {
+                setShareButtonText(UIDtitles[lang ?? "fr"].ImageCopied);
+                setTimeout(() => disableButton(false), 1000);
+              })
+              .catch((err) => console.log("Erreur presse papier :", err));
+          });
         }
       })
       .catch((err) => {

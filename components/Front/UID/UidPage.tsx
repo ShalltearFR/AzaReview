@@ -72,7 +72,7 @@ const UidPage: React.FC<UidPageProps> = ({
     { value: "0", label: "" },
   ]);
 
-  const characterDetailsRef = useRef<HTMLDivElement>(null);
+  const characterDetailsRef = useRef<HTMLDivElement | null>(null);
   const reviewHeaderRef = useRef<any>(null);
   const [disableDownloadButton, setDisableDownloadButton] =
     useState<boolean>(false);
@@ -112,15 +112,17 @@ const UidPage: React.FC<UidPageProps> = ({
 
   const handleConvertImage = useCallback(
     (exportType: string, disableButton: (value: boolean) => void) => {
-      convertImage(
-        exportType,
-        disableButton,
-        setShareButtonText,
-        characterDetailsRef,
-        lang,
-        characterIndex,
-        uidData as jsonUID
-      );
+      if (characterDetailsRef.current) {
+        convertImage(
+          exportType,
+          disableButton,
+          setShareButtonText,
+          characterDetailsRef.current, // Passe l'élément DOM directement
+          lang,
+          characterIndex,
+          uidData as jsonUID
+        );
+      }
     },
     [characterIndex]
   );

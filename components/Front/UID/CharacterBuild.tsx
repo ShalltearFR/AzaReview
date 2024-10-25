@@ -23,12 +23,12 @@ const CharacterBuild: React.FC<CharacterBuildProps> = ({
         options={characterOptions}
         isSearchable={false}
         styles={{
-          menu: (base) => ({
+          menu: (base: any) => ({
             ...base,
             color: "black",
           }),
         }}
-        onChange={(e) => setCharacterBuild(Number(e?.value))}
+        onChange={(e: any) => setCharacterBuild(Number(e?.value))}
         value={characterOptions[characterBuild]}
         className="w-full xl:w-72 z-30"
       />

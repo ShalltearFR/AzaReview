@@ -171,12 +171,12 @@ const NavBarEditor: React.FC = () => {
               options={patchOptions}
               isSearchable={false}
               styles={{
-                menu: (base) => ({
+                menu: (base: any) => ({
                   ...base,
                   color: "black",
                 }),
               }}
-              onChange={(e) =>
+              onChange={(e: any) =>
                 setPatchType({
                   value: e?.value,
                   label: e?.label,

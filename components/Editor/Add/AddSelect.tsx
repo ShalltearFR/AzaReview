@@ -37,18 +37,18 @@ const AddSelect: React.FC<AddSelectProps> = ({
         options={options}
         value={value}
         styles={{
-          control: (base) => ({
+          control: (base: any) => ({
             ...base,
             border: "0",
             borderRadius: "0",
             backgroundColor: "white",
           }),
-          menu: (base) => ({
+          menu: (base: any) => ({
             ...base,
             backgroundColor: "white",
             color: "black",
           }),
-          singleValue: (base) => ({
+          singleValue: (base: any) => ({
             ...base,
             color: "black",
           }),
