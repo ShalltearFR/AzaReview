@@ -1,7 +1,7 @@
 "use client";
 import { CharacterType, Data } from "@/types/CharacterModel";
 import { CDN } from "@/utils/cdn";
-import { useEffect, useRef, useState, use } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LightCone as LightConeType } from "@/types/LightCone";
 import {
   mainStatOptions,
@@ -20,8 +20,7 @@ import GlobalBuild from "@/components/Editor/Global/GlobalBuild";
 import { toast } from "react-toastify";
 import LoadingSpin from "@/components/LoadingSpin";
 
-function Page(props: { params: Promise<{ id: number }> }) {
-  const params = use(props.params);
+function Page({ params }: { params: { id: number } }) {
   const [characterData, setCharacterData] = useState<
     CharacterType | "Loading" | { error: true }
   >("Loading");

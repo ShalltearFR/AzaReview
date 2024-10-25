@@ -19,8 +19,8 @@ function Homepage() {
   const [codes, setCodes] = useState<Array<string>>(["Chargement des codes"]);
   const [isCodeAnimation, setIsCodeAnimation] = useState<Boolean>(true);
   const isCodes = useRef(false);
-  const windowWidth = useRef<number>(0);
-  const windowPixelRatio = useRef<number>(0);
+  const windowWidth = useRef<number>();
+  const windowPixelRatio = useRef<number>();
   const cookies = useCookies();
   const lang = cookies.get("lang") as keyof TranslateSection;
   const [isLoading, setIsloading] = useState<boolean>(true);

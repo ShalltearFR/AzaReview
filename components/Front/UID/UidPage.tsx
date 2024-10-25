@@ -1,13 +1,6 @@
 "use client";
 import NavBar from "@/components/Front/NavBar";
-import {
-  useState,
-  useEffect,
-  useRef,
-  Suspense,
-  useCallback,
-  RefObject,
-} from "react";
+import { useState, useEffect, useRef, Suspense, useCallback } from "react";
 import Modal from "react-modal";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Aos from "aos";
@@ -79,7 +72,7 @@ const UidPage: React.FC<UidPageProps> = ({
     { value: "0", label: "" },
   ]);
 
-  const characterDetailsRef = useRef<HTMLDivElement | null>(null);
+  const characterDetailsRef = useRef<HTMLDivElement>(null);
   const reviewHeaderRef = useRef<any>(null);
   const [disableDownloadButton, setDisableDownloadButton] =
     useState<boolean>(false);
@@ -123,7 +116,7 @@ const UidPage: React.FC<UidPageProps> = ({
         exportType,
         disableButton,
         setShareButtonText,
-        characterDetailsRef as RefObject<HTMLDivElement>,
+        characterDetailsRef,
         lang,
         characterIndex,
         uidData as jsonUID
