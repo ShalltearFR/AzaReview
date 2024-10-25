@@ -336,27 +336,48 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
           </div>
         </label>
       </div>
-      <animated.div
+      {/* <animated.div
         style={{
           transform,
           height: showBuild ? "auto" : "0",
         }}
-      >
-        {/* CONES DE LUMIERE */}
-        <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
-          <div className="flex">
-            <span className="text-2xl mx-auto font-bold mb-5">
-              Cones de lumière
-            </span>
-          </div>
+      > */}
+      {/* CONES DE LUMIERE */}
+      <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
+        <div className="flex">
+          <span className="text-2xl mx-auto font-bold mb-5">
+            Cones de lumière
+          </span>
+        </div>
 
-          {/* SEPARATION CONE ET RECOMMANDÉ */}
-          <div className="grid grid-cols-[1fr_1fr]">
+        {/* SEPARATION CONE ET RECOMMANDÉ */}
+        <div className="grid grid-cols-[1fr_1fr]">
+          <GlobalLightCone
+            lightConeOptions={lightConeOptions}
+            lightConesSetup={lightConesSetup || data.lightCones}
+            handleChange={(
+              option: any,
+              index: number,
+              isRecommended: boolean
+            ) => {
+              handleLightConeChange(option, index, isRecommended);
+              debounced();
+            }}
+            addLightCone={addLightCone}
+            deleteLightCone={(index: number) => {
+              deleteLightCone(index);
+              debounced();
+            }}
+            addButtonText={"Ajouter un cone"}
+            isRecommended={false}
+          />
+
+          <div className="col-span-1 border-l">
             <GlobalLightCone
               lightConeOptions={lightConeOptions}
               lightConesSetup={lightConesSetup || data.lightCones}
               handleChange={(
-                option: any,
+                option: SingleValue<Option>,
                 index: number,
                 isRecommended: boolean
               ) => {
@@ -368,42 +389,46 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
                 deleteLightCone(index);
                 debounced();
               }}
-              addButtonText={"Ajouter un cone"}
-              isRecommended={false}
+              addButtonText={"Ajouter un cone recommandé"}
+              isRecommended={true}
             />
-
-            <div className="col-span-1 border-l">
-              <GlobalLightCone
-                lightConeOptions={lightConeOptions}
-                lightConesSetup={lightConesSetup || data.lightCones}
-                handleChange={(
-                  option: SingleValue<Option>,
-                  index: number,
-                  isRecommended: boolean
-                ) => {
-                  handleLightConeChange(option, index, isRecommended);
-                  debounced();
-                }}
-                addLightCone={addLightCone}
-                deleteLightCone={(index: number) => {
-                  deleteLightCone(index);
-                  debounced();
-                }}
-                addButtonText={"Ajouter un cone recommandé"}
-                isRecommended={true}
-              />
-            </div>
           </div>
         </div>
-        {/* SET DE RELIQUES ET ORNEMENTS */}
-        <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
-          <div className="flex">
-            <span className="text-2xl mx-auto font-bold mb-5">
-              Sets de reliques/Ornements
-            </span>
-          </div>
-          {/* SEPARATION RELIQUES/ORNEMENTS RECOMMANDÉ */}
-          <div className="grid grid-cols-2">
+      </div>
+      {/* SET DE RELIQUES ET ORNEMENTS */}
+      <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
+        <div className="flex">
+          <span className="text-2xl mx-auto font-bold mb-5">
+            Sets de reliques/Ornements
+          </span>
+        </div>
+        {/* SEPARATION RELIQUES/ORNEMENTS RECOMMANDÉ */}
+        <div className="grid grid-cols-2">
+          <GlobalRelicsSet
+            relicsSetOptions={relicsSetOptions}
+            relicsSetSetup={relicsSetSetup || data.relic_sets}
+            handleRelicsSetChange={(
+              option: SingleValue<Option>,
+              index: number,
+              isRecommended: boolean
+            ) => {
+              handleRelicsSetChange(option, index, isRecommended);
+              debounced();
+            }}
+            handleRelicsNumChange={(value: number, index: number) => {
+              handleRelicsNumChange(value, index);
+              debounced();
+            }}
+            addRelicSet={addRelicsSet}
+            deleteRelicsSet={(index: number) => {
+              deleteRelicsSet(index);
+              debounced();
+            }}
+            addButtonText={"Ajouter un set"}
+            isrecommended={false}
+          />
+
+          <div className="border-l">
             <GlobalRelicsSet
               relicsSetOptions={relicsSetOptions}
               relicsSetSetup={relicsSetSetup || data.relic_sets}
@@ -424,133 +449,108 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
                 deleteRelicsSet(index);
                 debounced();
               }}
-              addButtonText={"Ajouter un set"}
-              isrecommended={false}
+              addButtonText={"Ajouter un set recommandé"}
+              isrecommended={true}
             />
+          </div>
+        </div>
+      </div>
+      {/* MAIN STATS */}
+      <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
+        <div className="flex">
+          <span className="text-2xl mx-auto font-bold mb-5">Main Stats</span>
+        </div>
+        <GlobalMainStats
+          mainStatsSetup={mainStatsSetup || data.main_stats}
+          handleEquipmentChange={(
+            option: SingleValue<Option>,
+            index: number
+          ) => {
+            handleEquipmentChange(option, index);
+            debounced();
+          }}
+          handleTypeStatChange={(
+            option: SingleValue<Option>,
+            index: number
+          ) => {
+            handleTypeStatChange(option, index);
+            debounced();
+          }}
+          deleteMainStats={(index: number) => {
+            deleteMainStats(index);
+            debounced();
+          }}
+          addMainStats={addMainStats}
+        />
+      </div>
+      {/* STATS RECOMMANDÉS */}
+      <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
+        <div className="flex">
+          <span className="text-2xl mx-auto font-bold mb-5">
+            Statistiques recommandées
+          </span>
+        </div>
+        <GlobalRecommendedStats
+          recommendedStatsSetup={
+            recommendedStatsSetup || data.recommended_stats
+          }
+          handleImportanceChange={(value: string, index: number) => {
+            handleRecommendedImportanceChange(value, index);
+            debounced();
+          }}
+          handleTypeStatChange={(
+            option: SingleValue<Option>,
+            index: number
+          ) => {
+            handleRecommendedTypeStatChange(option, index);
+            debounced();
+          }}
+          handleValueChange={(value: string, index: number) => {
+            handleRecommendedValueChange(value, index);
+            debounced();
+          }}
+          addRecommendedStats={addRecommendedStat}
+          deleteRecommendedStat={(index: number) => {
+            deleteRecommendedStat(index);
+            debounced();
+          }}
+        />
+        <div className="flex w-full items-center relative">
+          <label className="flex items-center mt-5 w-full">
+            <span className="text-xl ml-5 h-9 mr-2 w-40">Commentaire :</span>
+            <AddTextArea
+              value={recommendedCommentInput}
+              className="px-2 text-black rounded-2xl h-10 mt-auto self-center w-full"
+              onChange={(value) => {
+                setRecommendedCommentInput(value);
+                debounced();
+              }}
+            />
+          </label>
+          <div
+            onMouseOver={() => setShowRecommendedBuildDescPrev(true)}
+            onMouseLeave={() => setShowRecommendedBuildDescPrev(false)}
+          >
+            <span className="underline text-light-blue2 ml-5">Aperçu</span>
 
-            <div className="border-l">
-              <GlobalRelicsSet
-                relicsSetOptions={relicsSetOptions}
-                relicsSetSetup={relicsSetSetup || data.relic_sets}
-                handleRelicsSetChange={(
-                  option: SingleValue<Option>,
-                  index: number,
-                  isRecommended: boolean
-                ) => {
-                  handleRelicsSetChange(option, index, isRecommended);
-                  debounced();
-                }}
-                handleRelicsNumChange={(value: number, index: number) => {
-                  handleRelicsNumChange(value, index);
-                  debounced();
-                }}
-                addRelicSet={addRelicsSet}
-                deleteRelicsSet={(index: number) => {
-                  deleteRelicsSet(index);
-                  debounced();
-                }}
-                addButtonText={"Ajouter un set recommandé"}
-                isrecommended={true}
-              />
-            </div>
-          </div>
-        </div>
-        {/* MAIN STATS */}
-        <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
-          <div className="flex">
-            <span className="text-2xl mx-auto font-bold mb-5">Main Stats</span>
-          </div>
-          <GlobalMainStats
-            mainStatsSetup={mainStatsSetup || data.main_stats}
-            handleEquipmentChange={(
-              option: SingleValue<Option>,
-              index: number
-            ) => {
-              handleEquipmentChange(option, index);
-              debounced();
-            }}
-            handleTypeStatChange={(
-              option: SingleValue<Option>,
-              index: number
-            ) => {
-              handleTypeStatChange(option, index);
-              debounced();
-            }}
-            deleteMainStats={(index: number) => {
-              deleteMainStats(index);
-              debounced();
-            }}
-            addMainStats={addMainStats}
-          />
-        </div>
-        {/* STATS RECOMMANDÉS */}
-        <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
-          <div className="flex">
-            <span className="text-2xl mx-auto font-bold mb-5">
-              Statistiques recommandées
-            </span>
-          </div>
-          <GlobalRecommendedStats
-            recommendedStatsSetup={
-              recommendedStatsSetup || data.recommended_stats
-            }
-            handleImportanceChange={(value: string, index: number) => {
-              handleRecommendedImportanceChange(value, index);
-              debounced();
-            }}
-            handleTypeStatChange={(
-              option: SingleValue<Option>,
-              index: number
-            ) => {
-              handleRecommendedTypeStatChange(option, index);
-              debounced();
-            }}
-            handleValueChange={(value: string, index: number) => {
-              handleRecommendedValueChange(value, index);
-              debounced();
-            }}
-            addRecommendedStats={addRecommendedStat}
-            deleteRecommendedStat={(index: number) => {
-              deleteRecommendedStat(index);
-              debounced();
-            }}
-          />
-          <div className="flex w-full items-center relative">
-            <label className="flex items-center mt-5 w-full">
-              <span className="text-xl ml-5 h-9 mr-2 w-40">Commentaire :</span>
-              <AddTextArea
-                value={recommendedCommentInput}
-                className="px-2 text-black rounded-2xl h-10 mt-auto self-center w-full"
-                onChange={(value) => {
-                  setRecommendedCommentInput(value);
-                  debounced();
-                }}
-              />
-            </label>
             <div
-              onMouseOver={() => setShowRecommendedBuildDescPrev(true)}
-              onMouseLeave={() => setShowRecommendedBuildDescPrev(false)}
+              className={`absolute bg-black p-2 border border-white rounded-2xl z-20 right-16 top-0 font-bold ${
+                showRecommendedBuildDescPrev ? "" : "hidden"
+              }`}
             >
-              <span className="underline text-light-blue2 ml-5">Aperçu</span>
-
-              <div
-                className={`absolute bg-black p-2 border border-white rounded-2xl z-20 right-16 top-0 font-bold ${
-                  showRecommendedBuildDescPrev ? "" : "hidden"
-                }`}
-              >
-                <p className="text">Desktop :</p>
-                <div className="w-[445px] bg-light-blue text-orange2 text-center">
-                  {translateBBCode(recommendedCommentInput)}
-                </div>
-                <p className="mt-5 text-">Mobile :</p>
-                <div className="w-[400px] bg-light-blue text-orange2 text-center">
-                  {translateBBCode(recommendedCommentInput)}
-                </div>
+              <p className="text">Desktop :</p>
+              <div className="w-[445px] bg-light-blue text-orange2 text-center">
+                {translateBBCode(recommendedCommentInput)}
+              </div>
+              <p className="mt-5 text-">Mobile :</p>
+              <div className="w-[400px] bg-light-blue text-orange2 text-center">
+                {translateBBCode(recommendedCommentInput)}
               </div>
             </div>
           </div>
         </div>
-      </animated.div>
+      </div>
+      {/* </animated.div> */}
     </div>
   );
 };
