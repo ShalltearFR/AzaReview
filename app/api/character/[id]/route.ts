@@ -5,9 +5,9 @@ import cacheData from "@/utils/cacheData";
 
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const id = params.id;
+  const id = (await params).id;
   try {
     const cachedData = cacheData.get(`character${id}`);
     if (cachedData) {
