@@ -12,7 +12,6 @@ interface Properties {
 }
 
 interface CharacterMerged {
-  uid: string;
   ranks: string;
   lightCones: string;
   relics_sets: string[];
