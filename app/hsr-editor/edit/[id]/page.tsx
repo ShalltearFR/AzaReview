@@ -20,7 +20,8 @@ import GlobalBuild from "@/components/Editor/Global/GlobalBuild";
 import { toast } from "react-toastify";
 import LoadingSpin from "@/components/LoadingSpin";
 
-function Page({ params }: { params: { id: number } }) {
+async function Page({ params }: { params: Promise<{ id: number }> }) {
+  const { id } = await params;
   const [characterData, setCharacterData] = useState<
     CharacterType | "Loading" | { error: true }
   >("Loading");
@@ -35,7 +36,7 @@ function Page({ params }: { params: { id: number } }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/character/${params.id}`, {
+        const response = await fetch(`/api/character/${id}`, {
           cache: "no-cache",
           next: { revalidate: 0 },
         });
@@ -48,7 +49,7 @@ function Page({ params }: { params: { id: number } }) {
     };
 
     fetchData();
-  }, [params.id]);
+  }, [id]);
 
   useEffect(() => {
     if (
