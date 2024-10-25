@@ -35,25 +35,37 @@ const Section0: React.FC<Section0Props> = ({ sectionPrevIndex, lang }) => {
         </div>
         <div className="mt-5">{translateBBCode(translateSection[3])}</div>
         <ul className="list-decimal [&_li]:ml-5 marker:text-purple marker:text-xl marker:font-extrabold mb-5">
-          {translateBBCode(translateSection[4])}
+          <li key={`list-1-item-1${lang}`}>
+            {translateBBCode(translateSection[4])}
+          </li>
+          <li key={`list-1-item-2${lang}`}>
+            {translateBBCode(translateSection[5])}
+          </li>
+          <li key={`list-1-item-3${lang}`}>
+            {translateBBCode(translateSection[6])}
+          </li>
         </ul>
         <div className="my-5">
-          {translateSection[5]}
-          <span className="text-red font-bold">{translateSection[6]}</span>
           {translateSection[7]}
+          <span className="text-red font-bold">{translateSection[8]}</span>
+          {translateSection[9]}
         </div>
-        <div className="font-semibold">{translateSection[8]}</div>
+        <div className="font-semibold">{translateSection[10]}</div>
         <ul className="list-disc [&_*]:ml-3 mb-5 font-semibold italic">
-          {translateBBCode(translateSection[9])}
+          {/* <li key={"list-2-item-1"}>{translateBBCode(translateSection[11])}</li>
+          <li key={"list-2-item-2"}>{translateBBCode(translateSection[12])}</li>
+          <li key={"list-2-item-3"}>{translateBBCode(translateSection[13])}</li>
+          <li key={"list-2-item-4"}>{translateBBCode(translateSection[14])}</li>
+          <li key={"list-2-item-5"}>{translateBBCode(translateSection[15])}</li> */}
         </ul>
         <div>
-          {translateSection[10]}
-          <span className="text-red font-bold">{translateSection[6]}</span>
-          {translateSection[11]}
+          {translateSection[16]}
+          <span className="text-red font-bold">{translateSection[8]}</span>
+          {translateSection[17]}
         </div>
         <div className="mt-5">
-          <span className="font-semibold">{translateSection[12]}</span>
-          {translateSection[13]}
+          <span className="font-semibold">{translateSection[18]}</span>
+          {translateSection[19]}
         </div>
       </div>
       <div
@@ -61,7 +73,7 @@ const Section0: React.FC<Section0Props> = ({ sectionPrevIndex, lang }) => {
         className="bg-black p-5 w-full mmd:w-auto mmd:rounded-3xl z-10 h-full flex flex-col justify-center"
       >
         <div className="text-3xl font-bold text-center mb-5">
-          {translateSection[14]}
+          {translateSection[20]}
         </div>
         <video
           width={596}

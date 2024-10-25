@@ -5,9 +5,9 @@ import React from "react";
 import { cookies } from "next/headers";
 import { TranslateSection } from "@/types/homepageDictionnary";
 
-const notFound = () => {
+const notFound = async () => {
   const cookieStore = cookies();
-  const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
+  const lang = (await cookieStore).get("lang")?.value as keyof TranslateSection;
 
   return (
     <>

@@ -57,8 +57,13 @@ async function getDataUid(uid: number, lang: string | undefined) {
   return Response.json({ status: 200, ...jsonData });
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const res = await getDataUid(params.slug, undefined);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: number }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const res = await getDataUid(slug, undefined);
   const json = await res.json();
 
   if (json.player) {
@@ -82,12 +87,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function Page({ params }: { params: { slug: number } }) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: number }>;
+}) {
   const cookieStore = cookies();
-  const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
+  const lang = (await cookieStore).get("lang")?.value as keyof TranslateSection;
+  const { slug } = await params;
 
   //Recupère les infos du joueur
-  const resUid = await getDataUid(params.slug, lang);
+  const resUid = await getDataUid(slug, lang);
   const jsonUid: jsonUID = await resUid.json();
   // Partage les stats des personnages
   jsonUid.characters.map((character: Character) =>

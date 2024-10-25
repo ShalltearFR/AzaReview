@@ -6,8 +6,6 @@ import { CDN2 } from "@/utils/cdn";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 
-import type { guidePref } from "@/types/userPref";
-
 interface charactersListJSON {
   status: number;
   data?: CharacterType[];
@@ -38,7 +36,7 @@ const getData = async (
 };
 
 const Guides: React.FC = async () => {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
 
   const character: charactersListJSON = await getData(

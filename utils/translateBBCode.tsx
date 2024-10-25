@@ -1,14 +1,8 @@
 import parser from "bbcode-to-react";
 
-const translateBBCode = (text: string, oneLine?: boolean) => {
+const translateBBCode = (text: string) => {
   if (!text) return "";
-  if (oneLine) return parser.toReact(text);
-
-  const textArray = text.split("\n");
-  const result = textArray.map((el) => (
-    <div key={crypto.randomUUID()}>{parser.toReact(el)}</div>
-  ));
-  return result;
+  return parser.toReact(text);
 };
 
 export default translateBBCode;

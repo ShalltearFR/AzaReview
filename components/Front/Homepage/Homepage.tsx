@@ -137,11 +137,7 @@ function Homepage() {
           <div className="text-white mt-10 xl2:mt-0 xl2:overflow-hidden xl2:h-[calc(100vh-64px)] flex flex-col justify-center items-center">
             {/* 1ere section */}
             {showSection0 && (
-              <Section0
-                key={"section0"}
-                sectionPrevIndex={sectionPrevIndex}
-                lang={lang}
-              />
+              <Section0 sectionPrevIndex={sectionPrevIndex} lang={lang} />
             )}
 
             {/* 2eme section */}

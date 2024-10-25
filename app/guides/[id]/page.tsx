@@ -29,9 +29,14 @@ const getData = async (
   return jsonData;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: number }>;
+}): Promise<Metadata> {
+  const { id } = await params;
   const res = await getData(
-    `${process.env.WWW}/api/character/${params.id}`,
+    `${process.env.WWW}/api/character/${id}`,
     18000,
     false,
     true
@@ -59,8 +64,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const GuideID = async ({ params }: { params: { id: string } }) => {
-  const cookieStore = cookies();
+const GuideID = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params;
+  const cookieStore = await cookies();
   const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
 
   try {
@@ -86,7 +92,7 @@ const GuideID = async ({ params }: { params: { id: string } }) => {
           18000,
           true
         ),
-        getData(`${process.env.WWW}/api/character/${params.id}`, 5, false),
+        getData(`${process.env.WWW}/api/character/${id}`, 5, false),
       ]);
 
     if (lightcones && relicsSet && properties && lightconesRanks) {

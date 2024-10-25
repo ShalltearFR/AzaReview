@@ -6,25 +6,18 @@ const TranslateSection0: TranslateSection = {
     "C'est quoi Review HSR ?",
     "Un site d'aide pour améliorer facilement vos personnages.",
     "Des conseils clairs et adaptés pour une utilisation en toute simplicité.",
-    `[list]
-    [*] Mettez vos personnages du jeu en vitrine. [b](cf. vidéo de la page)[/b]
-    [*] Entrez votre UID sur le site et cliquez sur "Rechercher".[b] Si vous venez de modifier votre vitrine en jeu, patientez 10 minutes [/b]pour que la synchronisation soit bien effectuée.
-    [*] Si un personnage possède plusieurs façons d'être équipé / joué, il faudra sélectionner le build correspondant à votre utilisation.
-    [/list]
-    `,
+    `Mettez vos personnages du jeu en vitrine. [b](cf. vidéo de la page)[/b]`,
+    `Entrez votre UID sur le site et cliquez sur "Rechercher".[b] Si vous venez de modifier votre vitrine en jeu, patientez 10 minutes [/b]pour que la synchronisation soit bien effectuée.`,
+    `Si un personnage possède plusieurs façons d'être équipé / joué, il faudra sélectionner le build correspondant à votre utilisation.`,
     "Le moindre élément qui ne convient pas sera noté en ",
     "rouge",
     " et des recommandations seront faites pour vous aider.",
     "Les éléments suivants sont analysés :",
-    `
-    [list]
-    [*] Le cône.
-    [*] Les ensembles de reliques et ornements.
-    [*] Les statistiques principales de vos pièces.
-    [*] Vos statistiques finales.
-    [*] La pertinence de vos pièces avec un système de notation (de D à SSS).
-    [list]
-    `,
+    `Le cône.`,
+    `Les ensembles de reliques et ornements.`,
+    `Les statistiques principales de vos pièces.`,
+    `Vos statistiques finales.`,
+    `La pertinence de vos pièces avec un système de notation (de D à SSS).`,
     "Sélectionnez ou survolez les éléments en ",
     " pour voir une recommandation accessible pour tous.",
     "Si votre personnage n'a aucun élément en rouge alors il est bien équipé",
@@ -36,23 +29,18 @@ const TranslateSection0: TranslateSection = {
     "What is HSR review?",
     "A website to help your build for characters easily",
     "Some clear and relevant advices for a simple use.",
-    `[list]
-    [*] Put your characters for show. [b](see video)[/b]
-    [*] Type your UID on the site and click on "Search". [b]If you just modified your showing panel, please wait about 10 minutes[/b] so the synchronizing could be complete.
-    [*] If one of your characters can have 2 builds or more, you will have to select the one who shall meet your use.
-    [/list]
-    `,
+    `Put your characters for show. [b](see video)[/b]`,
+    `Type your UID on the site and click on "Search". [b]If you just modified your showing panel, please wait about 10 minutes[/b] so the synchronizing could be complete.`,
+    `If one of your characters can have 2 builds or more, you will have to select the one who shall meet your use.`,
     "Every element who shall not meet expectations will be shown in",
     " red ",
     "and recommandations are done to help you.",
     "Those elements are analysed :",
-    `[list]
-    [*] Lightcone
-    [*] Relics and ornaments sets
-    [*] Main stats of all of your pieces
-    [*] Your final stats. 
-    [*] The efficiency of your relics rated from D to SSS
-    [/list]`,
+    `Lightcone`,
+    `Relics and ornaments sets`,
+    `Main stats of all of your pieces`,
+    `Your final stats.`,
+    `The efficiency of your relics rated from D to SSS`,
     "Select or go over the elements to",
     "to see an easy-to-get recommandation for all players.",
     "If your character doesnt have a red element then he's well-equiped,",
