@@ -230,7 +230,7 @@ const Section2: React.FC<Section2Props> = ({
                 >
                   {translateSection[5]}
                 </a>
-                {translateBBCode(translateSection[6], true)}
+                {translateBBCode(translateSection[6])}
               </div>
             </div>
             <div className="sm:px-6">
