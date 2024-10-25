@@ -1,9 +1,9 @@
 import Footer from "@/components/Front/UID/Footer";
 import UidPage from "@/components/Front/UID/UidPage";
-import { ChangelogType } from "@/types/Changelog";
 import { TranslateSection } from "@/types/homepageDictionnary";
-import { jsonUID } from "@/types/jsonUid";
+import { Character, jsonUID } from "@/types/jsonUid";
 import { CDN } from "@/utils/cdn";
+import shareCharactersStats from "@/utils/shareCharactersStats";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 
@@ -89,6 +89,10 @@ export default async function Page({ params }: { params: { slug: number } }) {
   //Recupère les infos du joueur
   const resUid = await getDataUid(params.slug, lang);
   const jsonUid: jsonUID = await resUid.json();
+  // Partage les stats des personnages
+  jsonUid.characters.map((character: Character) =>
+    shareCharactersStats(character, jsonUid.player.uid)
+  );
 
   const [
     resReview,
