@@ -38,7 +38,7 @@ const getData = async (
 };
 
 const Guides: React.FC = async () => {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
 
   const character: charactersListJSON = await getData(

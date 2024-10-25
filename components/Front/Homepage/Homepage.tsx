@@ -1,3 +1,4 @@
+// components/Homepage.tsx
 "use client";
 import NavBar from "@/components/Front/NavBar";
 import { useEffect, useRef, useState } from "react";
@@ -8,12 +9,12 @@ import Section0 from "@/components/Front/Homepage/Section0";
 import Section1 from "@/components/Front/Homepage/Section1";
 import Section2 from "@/components/Front/Homepage/Section2";
 import HomepageFooter from "@/components/Front/Homepage/HomepageFooter";
-import { useCookies } from "next-client-cookies";
+import { useCookies } from "next-client-cookies"; // Assurez-vous que ceci est importé
 import StarBGAnimation from "@/components/Front/StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
 import { TranslateSection } from "@/types/homepageDictionnary";
 
-function Homepage() {
+function Homepage({ lang }: { lang: keyof TranslateSection }) {
   const [sectionIndex, setSectionIndex] = useState<number>(999);
   const [sectionPrevIndex, setSectionPrevIndex] = useState<number>(0);
   const [codes, setCodes] = useState<Array<string>>(["Chargement des codes"]);
@@ -21,11 +22,14 @@ function Homepage() {
   const isCodes = useRef(false);
   const windowWidth = useRef<number>(0);
   const windowPixelRatio = useRef<number>(0);
-  const cookies = useCookies();
-  const lang = cookies.get("lang") as keyof TranslateSection;
-  const [isLoading, setIsloading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const searchParams = useSearchParams();
+
+  // // Appel de useCookies ici
+  // const cookies = useCookies(); // Récupérer les cookies ici
+  // const langFromCookies =
+  //   (cookies.get("lang") as keyof TranslateSection) || lang; // Utiliser la langue récupérée
 
   useEffect(() => {
     const codesParams = searchParams.get("codes");
@@ -34,30 +38,28 @@ function Homepage() {
     if (window.innerWidth >= 1700) {
       AOS.init({ mirror: true });
       setSectionIndex(0);
-    } else AOS.init();
+    } else {
+      AOS.init();
+    }
 
     fetch("/api/other/all", { next: { revalidate: 300 } })
       .then((res) => res.json())
       .then((json: any) => {
         const { codes } = json.data;
         const codesArray = codes.split("\n");
-        if (codesArray[0] === "") {
-          setCodes(["Pas de code pour le moment"]);
-        } else {
-          setCodes(codesArray);
-        }
+        setCodes(
+          codesArray[0] === "" ? ["Pas de code pour le moment"] : codesArray
+        );
       });
 
-    // Si l'url possède ?codes
     if (codesParams !== null) {
       isCodes.current = true;
       if (window.innerWidth >= 1700) {
-        // Version desktop
         setSectionPrevIndex(1);
         setSectionIndex(2);
       }
     }
-    setIsloading(false);
+    setIsLoading(false);
     windowWidth.current = window.innerWidth;
     windowPixelRatio.current = window.devicePixelRatio;
   }, []);
@@ -72,16 +74,14 @@ function Homepage() {
     }
   }, [isLoading]);
 
-  // falsy isCodes.current pour donner accès à sectionIndex[0]
   useEffect(() => {
     if (isCodes.current && sectionIndex === 1) isCodes.current = false;
   }, [sectionIndex]);
 
   const userResizing = () => {
-    // Detecte uniquement le resize en X, permet d'eviter le saut de page debut de page si scroll trop rapide sur mobile
     if (
-      windowWidth.current !== window.innerWidth || // Detecte le resize width
-      windowPixelRatio.current !== window.devicePixelRatio // Detecte le resize en zoomant
+      windowWidth.current !== window.innerWidth ||
+      windowPixelRatio.current !== window.devicePixelRatio
     ) {
       windowWidth.current = window.innerWidth;
       const startPage: any = document.querySelector("body");
@@ -135,16 +135,12 @@ function Homepage() {
         <StarBGAnimation zIndex={0} />
         <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}>
           <div className="text-white mt-10 xl2:mt-0 xl2:overflow-hidden xl2:h-[calc(100vh-64px)] flex flex-col justify-center items-center">
-            {/* 1ere section */}
             {showSection0 && (
               <Section0 sectionPrevIndex={sectionPrevIndex} lang={lang} />
             )}
-
-            {/* 2eme section */}
             {showSection1 && (
               <Section1 sectionPrevIndex={sectionPrevIndex} lang={lang} />
             )}
-            {/* 3eme section */}
             {showSection2 && (
               <Section2
                 codes={codes}
@@ -159,10 +155,4 @@ function Homepage() {
   );
 }
 
-export default function App() {
-  return (
-    <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}>
-      <Homepage />
-    </Suspense>
-  );
-}
+export default Homepage;

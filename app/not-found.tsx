@@ -2,11 +2,11 @@ import Footer from "@/components/Front/UID/Footer";
 import NavBar from "@/components/Front/NavBar";
 import { CDN2 } from "@/utils/cdn";
 import React from "react";
-import { cookies } from "next/headers";
+import { cookies, type UnsafeUnwrappedCookies } from "next/headers";
 import { TranslateSection } from "@/types/homepageDictionnary";
 
 const notFound = () => {
-  const cookieStore = cookies();
+  const cookieStore = (cookies() as unknown as UnsafeUnwrappedCookies);
   const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
 
   return (

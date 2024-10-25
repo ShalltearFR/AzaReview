@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 
 type Props = {
-  params: { slug: number };
+  params: Promise<{ slug: number }>;
 };
 
 async function getData(
@@ -57,7 +57,8 @@ async function getDataUid(uid: number, lang: string | undefined) {
   return Response.json({ status: 200, ...jsonData });
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const res = await getDataUid(params.slug, undefined);
   const json = await res.json();
 
@@ -82,8 +83,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function Page({ params }: { params: { slug: number } }) {
-  const cookieStore = cookies();
+export default async function Page(props: { params: Promise<{ slug: number }> }) {
+  const params = await props.params;
+  const cookieStore = await cookies();
   const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
 
   //Recupère les infos du joueur

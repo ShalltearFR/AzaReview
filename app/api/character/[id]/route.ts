@@ -3,10 +3,8 @@ import Character from "@/models/Character.model";
 import { NextResponse } from "next/server";
 import cacheData from "@/utils/cacheData";
 
-export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET(req: Request, props: { params: { id: string } }) {
+  const params = props.params;
   const id = params.id;
   try {
     const cachedData = cacheData.get(`character${id}`);

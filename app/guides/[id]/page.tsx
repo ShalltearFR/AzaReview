@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 
 type Props = {
-  params: { id: number };
+  params: Promise<{ id: number }>;
 };
 
 const getData = async (
@@ -29,7 +29,8 @@ const getData = async (
   return jsonData;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const res = await getData(
     `${process.env.WWW}/api/character/${params.id}`,
     18000,
@@ -59,8 +60,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const GuideID = async ({ params }: { params: { id: string } }) => {
-  const cookieStore = cookies();
+const GuideID = async (props: { params: Promise<{ id: string }> }) => {
+  const params = await props.params;
+  const cookieStore = await cookies();
   const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
 
   try {
