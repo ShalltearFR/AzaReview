@@ -17,6 +17,9 @@ export default async function StatsID({
 
   const { id } = await params;
   const dataStats = await getData(`${process.env.WWW}/api/stats/${id}`, 300);
+
+  if (dataStats.error) return notFound();
+
   const characterList = await getData(
     `${CDN}/index_min/${lang || "fr"}/characters.json`,
     18000,
@@ -34,8 +37,6 @@ export default async function StatsID({
   const effect_hit = getStatof(dataStats.properties.effect_hit);
   const effect_res = getStatof(dataStats.properties.effect_res);
   const energy = getStatof(dataStats.properties.energy);
-
-  if (dataStats.error) return notFound();
 
   return (
     <>
