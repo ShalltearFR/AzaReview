@@ -13,8 +13,8 @@ interface charactersListJSON {
 
 export const metadata: Metadata = {
   metadataBase: new URL(CDN2),
-  title: `Review HSR - Guides`,
-  description: `Guides des personnages Honkai: Star Rail`,
+  title: `Review HSR - Liste des personnages`,
+  description: `Liste des personnages Honkai: Star Rail`,
   openGraph: {
     images: [`/img/homepage/logo_SRE.webp`],
   },
