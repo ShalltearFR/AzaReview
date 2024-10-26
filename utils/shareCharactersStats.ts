@@ -98,7 +98,6 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
 
     addNewData(dataToPush, newData, uid);
     await CharacterStats.findOneAndUpdate({ id: dataCopy.id }, dataToPush);
-    cacheData.set(`share${dataCopy.id}`, JSON.stringify(dataToPush));
     console.log("Personnage ajouté");
   } catch (error) {
     console.error("Erreur de récupération d'infos de personnages :", error);
