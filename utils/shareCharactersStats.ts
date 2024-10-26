@@ -1,3 +1,4 @@
+"use server";
 import dbConnect from "@/lib/dbConnect";
 import CharacterStats from "@/models/CharacterStats.model";
 import { CharacterMerged, Properties } from "@/types/CharacterMerged";
