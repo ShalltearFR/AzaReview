@@ -46,7 +46,7 @@ export default async function StatsID({
   const spd = getStatof(dataStats.properties.spd, true);
   const crit_rate = getStatof(dataStats.properties.crit_rate);
   const crit_dmg = getStatof(dataStats.properties.crit_dmg);
-  const break_effect = getStatof(dataStats.properties.break_effect);
+  const break_dmg = getStatof(dataStats.properties.break_effect);
   const effect_hit = getStatof(dataStats.properties.effect_hit);
   const effect_res = getStatof(dataStats.properties.effect_res);
   const energy = getStatof(dataStats.properties.energy);
@@ -59,9 +59,8 @@ export default async function StatsID({
     spd: (spd.avg / spd.max) * 100,
     crit_rate: (crit_rate.avg / crit_rate.max) * 100,
     crit_dmg: (crit_dmg.avg / crit_dmg.max) * 100,
-    break_effect:
-      (break_effect.avg / (break_effect.max === 0 ? 1 : break_effect.max)) *
-      100,
+    break_dmg:
+      (break_dmg.avg / (break_dmg.max === 0 ? 1 : break_dmg.max)) * 100,
     effect_hit:
       (effect_hit.avg / (effect_hit.max === 0 ? 1 : effect_hit.max)) * 100,
     effect_res:
@@ -216,9 +215,9 @@ export default async function StatsID({
                   </tr>
                   <tr>
                     <td>{StatsTranslate[lang ?? "fr"][12]}</td>
-                    <td className="!text-red">{break_effect.min}%</td>
-                    <td className="!text-blue">{break_effect.avg}%</td>
-                    <td className="!text-green">{break_effect.max}%</td>
+                    <td className="!text-red">{break_dmg.min}%</td>
+                    <td className="!text-blue">{break_dmg.avg}%</td>
+                    <td className="!text-green">{break_dmg.max}%</td>
                   </tr>
                   <tr>
                     <td>{StatsTranslate[lang ?? "fr"][13]}</td>
