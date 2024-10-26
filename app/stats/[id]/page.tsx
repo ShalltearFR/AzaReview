@@ -1,4 +1,3 @@
-import HomepageFooter from "@/components/Front/Homepage/HomepageFooter";
 import NavBar from "@/components/Front/NavBar";
 import StarBGAnimation from "@/components/Front/StarBGAnimation";
 import { notFound } from "next/navigation";
@@ -8,6 +7,7 @@ import { CDN } from "@/utils/cdn";
 import type { Metadata } from "next";
 import RadarChart from "@/components/Front/Stats/RadarChart";
 import { StatsTranslate } from "@/utils/statsDictionnary";
+import Footer from "@/components/Front/UID/Footer";
 
 export default async function StatsID({
   params,
@@ -16,6 +16,17 @@ export default async function StatsID({
 }) {
   const cookieStore = await cookies();
   const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
+
+  return (
+    <>
+      <NavBar />
+      <StarBGAnimation />
+      <div className="min-h-[calc(100vh-205px)] relative text-white mt-5 mb-5">
+        <p className="text-6xl text-center mt-10">Page en refonte</p>
+      </div>
+      <Footer lang={lang} />
+    </>
+  );
 
   const { id } = await params;
   const dataStats = await getData(`${process.env.WWW}/api/stats/${id}`, 300);
@@ -332,7 +343,7 @@ export default async function StatsID({
           </div>
         </div>
       </div>
-      <HomepageFooter lang={lang} />
+      <Footer lang={lang} />
     </>
   );
 }
