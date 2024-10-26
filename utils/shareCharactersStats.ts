@@ -74,7 +74,7 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
         spd: Number(mergedValues.spd),
         crit_rate: Number(mergedValues.crit_rate) * 100,
         crit_dmg: Number(mergedValues.crit_dmg) * 100,
-        break_effect: Number(mergedValues.effect_hit ?? 0) * 100,
+        break_effect: Number(mergedValues.break_effect ?? 0) * 100,
         effect_hit: Number(mergedValues.effect_hit ?? 0) * 100,
         effect_res: Number(mergedValues.effect_res ?? 0) * 100,
         energy:
