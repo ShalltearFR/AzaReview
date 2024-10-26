@@ -172,10 +172,10 @@ const NavBar: React.FC<NavBarProps> = ({
                 )}
             </div>
             <Link
-              href={"/guides"}
+              href={"/characters"}
               className="hidden xl:block xl:py-2 xl:px-3 bg-orange font-bold rounded-3xl xl:ml-32"
             >
-              {lang === "en" ? "Showcase" : "Guides"}
+              {lang === "en" ? "Characters" : "Personnages"}
             </Link>
           </div>
 
