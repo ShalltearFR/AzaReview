@@ -5,7 +5,7 @@ interface Properties {
   spd: number;
   crit_rate: number;
   crit_dmg: number;
-  break_effect: number;
+  break_dmg: number;
   effect_hit: number;
   effect_res: number;
   energy: number;

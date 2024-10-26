@@ -50,6 +50,8 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
       dataCopy.additions
     );
 
+    console.log(mergedValues);
+
     const relicSetsMerged = dataCopy.relic_sets
       .filter((relic, index, self) => {
         const hasDuplicate = self.some(
@@ -74,7 +76,7 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
         spd: Number(mergedValues.spd),
         crit_rate: Number(mergedValues.crit_rate) * 100,
         crit_dmg: Number(mergedValues.crit_dmg) * 100,
-        break_effect: Number(mergedValues.break_effect ?? 0) * 100,
+        break_dmg: Number(mergedValues.break_dmg ?? 0) * 100,
         effect_hit: Number(mergedValues.effect_hit ?? 0) * 100,
         effect_res: Number(mergedValues.effect_res ?? 0) * 100,
         energy:
@@ -117,7 +119,7 @@ const updateProperties = (
   dataToPush.properties.spd[index] = newData.properties.spd;
   dataToPush.properties.crit_rate[index] = newData.properties.crit_rate;
   dataToPush.properties.crit_dmg[index] = newData.properties.crit_dmg;
-  dataToPush.properties.break_effect[index] = newData.properties.break_effect;
+  dataToPush.properties.break_effect[index] = newData.properties.break_dmg;
   dataToPush.properties.effect_hit[index] = newData.properties.effect_hit;
   dataToPush.properties.effect_res[index] = newData.properties.effect_res;
   dataToPush.properties.energy[index] = newData.properties.energy;
@@ -138,7 +140,7 @@ const addNewData = (
   dataToPush.properties.spd.push(newData.properties.spd);
   dataToPush.properties.crit_rate.push(newData.properties.crit_rate);
   dataToPush.properties.crit_dmg.push(newData.properties.crit_dmg);
-  dataToPush.properties.break_effect.push(newData.properties.break_effect);
+  dataToPush.properties.break_effect.push(newData.properties.break_dmg);
   dataToPush.properties.effect_hit.push(newData.properties.effect_hit);
   dataToPush.properties.effect_res.push(newData.properties.effect_res);
   dataToPush.properties.energy.push(newData.properties.energy);
