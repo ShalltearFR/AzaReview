@@ -52,22 +52,32 @@
 }
 .tg td {
   border-color: white;
+  text-align: center;
   border-style: solid;
   border-width: 1px;
   font-family: Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: bolder;
   overflow: hidden;
-  padding: 10px 5px;
+  padding: 10px 10px;
   word-break: normal;
 }
+
 .tg th {
   border-color: white;
   border-style: solid;
   border-width: 1px;
   font-family: Arial, sans-serif;
-  font-size: 14px;
-  font-weight: normal;
+  font-size: 16px;
+  font-weight: bolder;
   overflow: hidden;
-  padding: 10px 5px;
+  padding: 10px 10px;
   word-break: normal;
+}
+
+.tg td:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.tg th:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
