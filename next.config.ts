@@ -1,5 +1,6 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
@@ -9,10 +10,6 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
-  },
-  eslint: {
-    // Fix temporairement l'erreur le temps d'une future maj de esLint
-    ignoreDuringBuilds: true,
   },
 };
 
