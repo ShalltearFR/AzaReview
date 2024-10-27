@@ -53,6 +53,8 @@ interface CharacterStats extends Document {
   id: string;
   data: IData[];
   error?: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 // Interface pour le schéma de caractère

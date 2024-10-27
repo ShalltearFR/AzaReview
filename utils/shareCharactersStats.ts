@@ -139,7 +139,10 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
         JSON.stringify(dataDB.data[index].properties)
       ) {
         console.log("Mise à jour du personnage");
-        await CharacterStats.findOneAndUpdate({ id: dataCopy.id }, updatedData);
+        await CharacterStats.findOneAndUpdate(
+          { id: dataCopy.id },
+          { data: updatedData.data }
+        );
       }
 
       return;
@@ -160,8 +163,9 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
     addNewData(dataToPush, newData, uid);
     await CharacterStats.findOneAndUpdate(
       { id: dataCopy.id },
-      { id: dataToPush }
+      { data: dataToPush.data }
     );
+
     console.log("Personnage ajouté");
   } catch (error) {
     console.error("Erreur de récupération d'infos de personnages :", error);

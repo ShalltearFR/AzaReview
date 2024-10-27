@@ -20,13 +20,30 @@ export async function GET(
       .lean()
       .select("-__v -_id");
 
-    if (data) {
-      cacheData.set(`share${id}`, JSON.stringify(data));
-      return NextResponse.json(data, { status: 200 });
+    const cleanedData = removeIdsFromArrays(data);
+    console.log(cleanedData);
+    if (cleanedData) {
+      cacheData.set(`share${id}`, JSON.stringify(cleanedData));
+      return NextResponse.json(cleanedData, { status: 200 });
     }
+
     return NextResponse.json({ error: true });
   } catch (error) {
     console.error("Error:", error);
     return NextResponse.json({ error: true });
   }
+}
+
+// Fonction pour supprimer les _id des objets
+function removeIdsFromArrays(data: any): any {
+  if (Array.isArray(data)) {
+    return data.map(removeIdsFromArrays);
+  } else if (data && typeof data === "object") {
+    const { _id, ...rest } = data;
+    for (const key in rest) {
+      rest[key] = removeIdsFromArrays(rest[key]);
+    }
+    return rest;
+  }
+  return data;
 }
