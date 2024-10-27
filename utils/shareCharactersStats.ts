@@ -48,7 +48,7 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
     const dataDB = DB !== null ? removeIdsFromArrays(DB) : null;
 
     if (!dataDB) {
-      await CharacterStats.create({ id: dataCopy.id, updated: Date.now() });
+      await CharacterStats.create({ id: dataCopy.id });
       console.log(`CharacterStats créée : ${dataCopy.name}`);
       return;
     }
@@ -150,7 +150,7 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
         console.log("Mise à jour du personnage");
         await CharacterStats.findOneAndUpdate(
           { id: dataCopy.id },
-          { data: updatedData.data, updated: Date.now() }
+          { data: updatedData.data }
         );
       }
 
@@ -172,7 +172,7 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
     addNewData(dataToPush, newData, uid);
     await CharacterStats.findOneAndUpdate(
       { id: dataCopy.id },
-      { data: dataToPush.data, updated: Date.now() }
+      { data: dataToPush.data }
     );
 
     console.log("Personnage ajouté");

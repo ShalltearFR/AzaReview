@@ -88,7 +88,7 @@ const CharacterList: React.FC = () => {
     const allCharactersData = await getAllCharacters();
     const dataBaseCharactersData = await getDataBaseCharacters();
 
-    console.log("allCharactersData", allCharactersData);
+    //console.log("allCharactersData", allCharactersData);
 
     allCharactersRef.current = allCharactersData;
     setCharactersSearch(dataBaseCharactersData);
