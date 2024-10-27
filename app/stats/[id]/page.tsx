@@ -53,18 +53,18 @@ export default async function StatsID({
     true
   );
 
-  const character = characterList.find((character: any) => character.id === id);
-  const date = new Date(dataStats.updatedAt);
-  const hp = getStatof(dataStats.data, "hp", true);
-  const atk = getStatof(dataStats.data, "atk", true);
-  const def = getStatof(dataStats.data, "def", true);
-  const spd = getStatof(dataStats.data, "spd", true);
-  const crit_rate = getStatof(dataStats.data, "crit_rate");
-  const crit_dmg = getStatof(dataStats.data, "crit_dmg");
-  const break_dmg = getStatof(dataStats.data, "break_effect");
-  const effect_hit = getStatof(dataStats.data, "effect_hit");
-  const effect_res = getStatof(dataStats.data, "effect_res");
-  const energy = getStatof(dataStats.data, "energy");
+  // const character = characterList.find((character: any) => character.id === id);
+  // const date = new Date(dataStats.updatedAt);
+  // const hp = getStatof(dataStats.data, "hp", true);
+  // const atk = getStatof(dataStats.data, "atk", true);
+  // const def = getStatof(dataStats.data, "def", true);
+  // const spd = getStatof(dataStats.data, "spd", true);
+  // const crit_rate = getStatof(dataStats.data, "crit_rate");
+  // const crit_dmg = getStatof(dataStats.data, "crit_dmg");
+  // const break_dmg = getStatof(dataStats.data, "break_effect");
+  // const effect_hit = getStatof(dataStats.data, "effect_hit");
+  // const effect_res = getStatof(dataStats.data, "effect_res");
+  // const energy = getStatof(dataStats.data, "energy");
 
   // //Partie calcul Attributes (pour le graph)
   // const PercentObject = {
