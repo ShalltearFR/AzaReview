@@ -74,10 +74,13 @@ const DataSchema = new Schema({
   properties: PropertiesSchema, // Stats finales du personnage
 });
 
-const characterStatsSchema = new Schema({
-  id: { type: String, required: true }, // ID du personnage
-  data: [DataSchema], // Tableau de données
-});
+const characterStatsSchema = new Schema(
+  {
+    id: { type: String, required: true }, // ID du personnage
+    data: [DataSchema], // Tableau de données
+  },
+  { timestamps: true }
+);
 
 const CharacterStats =
   models.CharacterStats || model("CharacterStats", characterStatsSchema);
