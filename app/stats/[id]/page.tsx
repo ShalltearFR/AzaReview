@@ -356,12 +356,14 @@ export default async function StatsID({
                     </tr>
                     <tr>
                       <td>{StatsTranslate[lang ?? "fr"][15]}</td>
-                      <td className="!text-red">{energy?.min ?? "-" + 100}%</td>
+                      <td className="!text-red">
+                        {energy ? energy.min + 100 : "-"}%
+                      </td>
                       <td className="!text-blue">
-                        {energy?.avg ?? "-" + 100}%
+                        {energy ? energy.avg + 100 : "-"}%
                       </td>
                       <td className="!text-green">
-                        {energy?.max ?? "-" + 100}%
+                        {energy ? energy.max + 100 : "-"}%
                       </td>
                     </tr>
                   </tbody>
