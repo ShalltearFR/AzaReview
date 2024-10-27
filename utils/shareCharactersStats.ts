@@ -65,8 +65,16 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
         );
         return !(hasDuplicate && relic.num === 2);
       })
-      .map((relic) => `${relic.id}_${relic.num}`);
+      .map((relic) => {
+        // Vérifie si l'ID de la relique est supérieur à 300
+        if (Number(relic.id) > 300) {
+          return relic.id; // Retourne simplement l'ID
+        }
+        // Sinon, retourne l'ID et le nombre au format `${relic.id}_${relic.num}`
+        return `${relic.id}_${relic.num}`;
+      });
 
+    // Récupère l'énergie additionnelle
     const energyMerged = dataCopy.additions.find(
       (add) => add.field === "sp_rate"
     );

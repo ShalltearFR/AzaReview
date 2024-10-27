@@ -21,6 +21,7 @@ const StatsTranslate: TranslateSection = {
     "Statistiques priorisées par les joueurs",
     "Top 5 Reliques + Ornements",
     "Top 5 Cones de lumière",
+    "Aucune statistiques pour ce personnage T_T",
   ],
   en: [
     "Updated at",
@@ -42,6 +43,7 @@ const StatsTranslate: TranslateSection = {
     "Player Prioritized Stats",
     "Top 5 Relics + Ornaments",
     "Top 5 Light Cones",
+    "No stats for this character T_T",
   ],
 };
 
