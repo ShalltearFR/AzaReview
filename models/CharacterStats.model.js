@@ -36,6 +36,7 @@ const RelicProcSchema = new Schema({
   SPRatioBase: { type: Number, required: false },
   StatusProbabilityBase: { type: Number, required: false },
   CriticalChanceBase: { type: Number, required: false },
+  CriticalDamageBase: { type: Number, required: false },
   StatusResistanceBase: { type: Number, required: false },
   BreakDamageAddedRatioBase: { type: Number, required: false },
   break_dmg: { type: Number, required: false },

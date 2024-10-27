@@ -21,7 +21,6 @@ export async function GET(
       .select("-__v -_id");
 
     const cleanedData = removeIdsFromArrays(data);
-    console.log(cleanedData);
     if (cleanedData) {
       cacheData.set(`share${id}`, JSON.stringify(cleanedData));
       return NextResponse.json(cleanedData, { status: 200 });

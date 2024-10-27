@@ -10,6 +10,7 @@ interface RelicProc {
   SPRatioBase?: number;
   StatusProbabilityBase?: number;
   CriticalChanceBase?: number;
+  CriticalDamageBase?: number;
   StatusResistanceBase?: number;
   BreakDamageAddedRatioBase?: number;
   SpeedDelta?: number;

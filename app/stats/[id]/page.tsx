@@ -29,29 +29,29 @@ export default async function StatsID({
     </>
   );
 
-  const { id } = await params;
-  const dataStats: CharacterStatsType = await getData(
-    `${process.env.WWW}/api/stats/${id}`,
-    300
-  );
+  // const { id } = await params;
+  // const dataStats: CharacterStatsType = await getData(
+  //   `${process.env.WWW}/api/stats/${id}`,
+  //   300
+  // );
 
-  if (dataStats.error) return notFound();
+  // if (dataStats.error) return notFound();
 
-  const characterList = await getData(
-    `${CDN}/index_min/${lang || "fr"}/characters.json`,
-    18000,
-    true
-  );
-  const relicsList = await getData(
-    `${CDN}/index_min/${lang || "fr"}/relic_sets.json`,
-    18000,
-    true
-  );
-  const lightConesList = await getData(
-    `${CDN}/index_min/${lang || "fr"}/light_cones.json`,
-    18000,
-    true
-  );
+  // const characterList = await getData(
+  //   `${CDN}/index_min/${lang || "fr"}/characters.json`,
+  //   18000,
+  //   true
+  // );
+  // const relicsList = await getData(
+  //   `${CDN}/index_min/${lang || "fr"}/relic_sets.json`,
+  //   18000,
+  //   true
+  // );
+  // const lightConesList = await getData(
+  //   `${CDN}/index_min/${lang || "fr"}/light_cones.json`,
+  //   18000,
+  //   true
+  // );
 
   // const character = characterList.find((character: any) => character.id === id);
   // const date = new Date(dataStats.updatedAt);
@@ -65,6 +65,8 @@ export default async function StatsID({
   // const effect_hit = getStatof(dataStats.data, "effect_hit");
   // const effect_res = getStatof(dataStats.data, "effect_res");
   // const energy = getStatof(dataStats.data, "energy");
+
+  // console.log(dataStats);
 
   // //Partie calcul Attributes (pour le graph)
   // const PercentObject = {
@@ -147,7 +149,7 @@ export default async function StatsID({
   //   ],
   // };
 
-  console.log(dataStats);
+  // console.log(dataStats);
 
   return <div></div>;
 
@@ -356,60 +358,60 @@ export default async function StatsID({
   // );
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ id: number }>;
-}): Promise<Metadata> {
-  const { id } = await params;
-  const characterList = await getData(
-    `${CDN}/index_min/fr/characters.json`,
-    18000,
-    true
-  );
-  const character = characterList.find((character: any) => character.id === id);
+// export async function generateMetadata({
+//   params,
+// }: {
+//   params: Promise<{ id: number }>;
+// }): Promise<Metadata> {
+//   const { id } = await params;
+//   const characterList = await getData(
+//     `${CDN}/index_min/fr/characters.json`,
+//     18000,
+//     true
+//   );
+//   const character = characterList.find((character: any) => character.id === id);
 
-  if (character && character.name) {
-    return {
-      metadataBase: new URL(CDN),
-      title: `Review HSR - Statistiques`,
-      description: `Statistiques sur ${character.name}`,
-      openGraph: {
-        images: [`/${character.preview}`],
-      },
-    };
-  }
+//   if (character && character.name) {
+//     return {
+//       metadataBase: new URL(CDN),
+//       title: `Review HSR - Statistiques`,
+//       description: `Statistiques sur ${character.name}`,
+//       openGraph: {
+//         images: [`/${character.preview}`],
+//       },
+//     };
+//   }
 
-  return {
-    metadataBase: new URL(CDN),
-    title: `Review HSR - Statistiques`,
-    description: `Le personnage n'existe pas`,
-    openGraph: {
-      images: [`/icon/avatar/202002.png`],
-    },
-  };
-}
+//   return {
+//     metadataBase: new URL(CDN),
+//     title: `Review HSR - Statistiques`,
+//     description: `Le personnage n'existe pas`,
+//     openGraph: {
+//       images: [`/icon/avatar/202002.png`],
+//     },
+//   };
+// }
 
-const getData = async (
-  url: string,
-  revalidate: number,
-  convertToObject?: boolean,
-  isMetadata?: boolean
-) => {
-  const data = await fetch(url, {
-    next: { revalidate: revalidate },
-  });
-  const jsonData = await data.json();
+// const getData = async (
+//   url: string,
+//   revalidate: number,
+//   convertToObject?: boolean,
+//   isMetadata?: boolean
+// ) => {
+//   const data = await fetch(url, {
+//     next: { revalidate: revalidate },
+//   });
+//   const jsonData = await data.json();
 
-  if (convertToObject) {
-    const toArray = Object.values(jsonData).map((item) => item);
-    return toArray;
-  }
+//   if (convertToObject) {
+//     const toArray = Object.values(jsonData).map((item) => item);
+//     return toArray;
+//   }
 
-  if (isMetadata) return Response.json(jsonData);
+//   if (isMetadata) return Response.json(jsonData);
 
-  return jsonData;
-};
+//   return jsonData;
+// };
 
 // const getStatof = (
 //   data: CharacterStatsType["data"],
@@ -430,27 +432,27 @@ const getData = async (
 //   return { min, avg, max };
 // };
 
-const sortItems = (items: Record<string, number>, dataStats: any) => {
-  const top5Items = Object.entries(items)
-    .sort(([, a], [, b]) => b - a) // Trier par nombre d'occurrences (décroissant)
-    .slice(0, 5); // Prendre les cinq premiers
+// const sortItems = (items: Record<string, number>, dataStats: any) => {
+//   const top5Items = Object.entries(items)
+//     .sort(([, a], [, b]) => b - a) // Trier par nombre d'occurrences (décroissant)
+//     .slice(0, 5); // Prendre les cinq premiers
 
-  // Format des résultats
-  const objet = top5Items.map(([key, value]) => ({
-    value: key,
-    count: value,
-  }));
+//   // Format des résultats
+//   const objet = top5Items.map(([key, value]) => ({
+//     value: key,
+//     count: value,
+//   }));
 
-  // Nombre total d'items
-  const total = objet.reduce((sum: any, relic: any) => sum + relic.count, 0);
-  return { objet, total };
-};
+//   // Nombre total d'items
+//   const total = objet.reduce((sum: any, relic: any) => sum + relic.count, 0);
+//   return { objet, total };
+// };
 
-const countItems = (dataStats: any) => {
-  const counts = dataStats.reduce((acc: any, value: string) => {
-    acc[value] = (acc[value] || 0) + 1;
-    return acc;
-  }, {});
+// const countItems = (dataStats: any) => {
+//   const counts = dataStats.reduce((acc: any, value: string) => {
+//     acc[value] = (acc[value] || 0) + 1;
+//     return acc;
+//   }, {});
 
-  return counts;
-};
+//   return counts;
+// };
