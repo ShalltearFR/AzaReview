@@ -54,7 +54,9 @@ export default async function StatsID({
   );
 
   const character = characterList.find((character: any) => character.id === id);
-  const date = new Date(dataStats.updatedAt);
+  const date = new Date(dataStats.updated);
+
+  console.log("date", dataStats);
   const hp = getStatsAttributes(dataStats.data, "hp", true);
   const atk = getStatsAttributes(dataStats.data, "atk", true);
   const def = getStatsAttributes(dataStats.data, "def", true);
@@ -89,56 +91,76 @@ export default async function StatsID({
   }
 
   function getTop5Relics(data: CharacterStatsType["data"]) {
-    // Map sur data et récupère les valeurs aplaties de relics_sets
-    const arrayData = data
-      .map((dataArray) => Object.values(dataArray.relics_sets))
-      .flat();
+    interface RelicType {
+      id: string;
+      num: number;
+      piece: number;
+    }
 
-    const relicsMap: { [key: string]: { num: number; piece: number } } = {};
-    const ornamentsMap: { [key: string]: number } = {};
+    interface OrnamentType {
+      id: string;
+      num: number;
+    }
 
-    let totalRelicsCount = 0; // Compteur pour les reliques
-    let totalOrnamentsCount = 0; // Compteur pour les ornements
+    interface TotalsType {
+      relics: RelicType[];
+      ornaments: OrnamentType[];
+      totalRelicsCount: number;
+      totalOrnamentsCount: number;
+    }
 
-    arrayData.forEach((id) => {
-      const [baseId, piece] = id.split("_"); // Sépare id et piece
-
-      if (parseInt(id) > 300) {
-        // Comptabilise les ornements
-        totalOrnamentsCount += 1;
-        ornamentsMap[baseId] = (ornamentsMap[baseId] || 0) + 1;
-      } else {
-        // Comptabilise les reliques
-        totalRelicsCount += 1; // Incrémente le compteur de reliques
-        if (!relicsMap[baseId]) {
-          relicsMap[baseId] = { num: 0, piece: parseInt(piece) };
-        }
-        relicsMap[baseId].num += 1;
-      }
-    });
-
-    // Formate les résultats pour correspondre à la structure demandée
-    const relics = Object.entries(relicsMap).map(([id, { num, piece }]) => ({
-      id,
-      num,
-      piece,
-    }));
-
-    const ornaments = Object.entries(ornamentsMap).map(([id, num]) => ({
-      id,
-      num,
-    }));
-
-    // Crée une variable regroupant la totalité des reliques et ornements
-    const allItems = {
-      totalRelicsCount,
-      totalOrnamentsCount,
-      relics,
-      ornaments,
+    const totals: TotalsType = {
+      relics: [],
+      ornaments: [],
+      totalRelicsCount: 0,
+      totalOrnamentsCount: 0,
     };
 
-    console.log("Total items counted:", allItems);
-    return allItems;
+    // Comptage des reliques et des ornements
+    data.forEach((item) => {
+      item.relics_sets.forEach((set: string) => {
+        const [id, piece] = set.split("_");
+
+        // Traitement des reliques
+        if (piece) {
+          const parsedPiece = parseInt(piece);
+          const relicEntry = totals.relics.find(
+            (r) => r.id === id && r.piece === parsedPiece
+          );
+          if (relicEntry) {
+            relicEntry.num += 1; // Incrémenter le nombre pour cette pièce
+          } else {
+            totals.relics.push({ id, num: 1, piece: parsedPiece }); // Ajouter une nouvelle entrée
+          }
+        } else {
+          // Traitement des ornements (pas de `piece` associé)
+          const ornamentEntry = totals.ornaments.find((o) => o.id === id);
+          if (ornamentEntry) {
+            ornamentEntry.num += 1; // Incrémenter le nombre pour cet ornement
+          } else {
+            totals.ornaments.push({ id, num: 1 }); // Ajouter une nouvelle entrée
+          }
+        }
+      });
+    });
+
+    // Calcul des totaux
+    totals.totalRelicsCount = totals.relics.reduce((acc, r) => acc + r.num, 0);
+    totals.totalOrnamentsCount = totals.ornaments.reduce(
+      (acc, o) => acc + o.num,
+      0
+    );
+
+    // Limitation à 5 éléments
+    totals.relics = totals.relics
+      .sort((a, b) => b.num - a.num) // Trier en fonction de `num` en ordre décroissant
+      .slice(0, 5); // Garder les 5 premiers éléments
+
+    totals.ornaments = totals.ornaments
+      .sort((a, b) => b.num - a.num) // Trier en fonction de `num` en ordre décroissant
+      .slice(0, 5); // Garder les 5 premiers éléments
+
+    return totals;
   }
 
   const top5_LightCones = getTop5LightCones(dataStats.data);
@@ -359,49 +381,92 @@ export default async function StatsID({
               />
             </div> */}
             </div>
-            <div className="flex flex-col mt-10 justify-center">
-              <h2 className="font-bold text-2xl underline text-orange text-center">
-                {StatsTranslate[lang ?? "fr"][17]}
-              </h2>
-              <div className="flex flex-wrap justify-center items-center gap-5 mt-5">
-                {/* {top5_Relics.map((relic: any) => {
-                const relicArray = relic.value.split("_");
-                const relicInfo = relicsList.find(
-                  (relic: any) => relic.id === relicArray[0]
-                );
-                const percentage = (
-                  (relic.count / totalCountRelics) *
-                  100
-                ).toFixed(1);
-                return (
-                  <div
-                    key={`relic${relic.value}`}
-                    className="relative flex bg-black/75 rounded-tr-3xl py-2 h-36 w-36 hover:bg-white/5"
-                  >
-                    <p className="absolute text-sm -top-2 -left-2 bg-black p-2 rounded-full border border-gray font-bold">
-                      {percentage}%
-                    </p>
-                    <p className="absolute text-sm -top-2 -right-2 bg-black p-2 rounded-full border border-gray">
-                      {relicArray[1]}P
-                    </p>
-                    <img
-                      src={`${CDN}/${relicInfo.icon}`}
-                      alt={relicInfo.name}
-                      width={112}
-                      height={112}
-                      className="w-28 m-auto"
-                    />
-                    <p className="absolute bottom-0 text-center text-sm bg-black w-full">
-                      {relicInfo.name}
-                    </p>
-                  </div>
-                );
-              })} */}
+            <div className="flex flex-wrap justify-center gap-x-20">
+              <div className="flex flex-col mt-10 justify-center p-5 bg-white/15 rounded-3xl w-full lg:w-auto">
+                <h2 className="font-bold text-2xl underline text-orange text-center">
+                  {StatsTranslate[lang ?? "fr"][17]}
+                </h2>
+                <div className="flex flex-wrap justify-center items-center gap-5 mt-5">
+                  {top_Relics.relics.map((relic) => {
+                    // const relicArray = relic.value.split("_");
+                    const relicInfo = relicsList.find(
+                      (info: any) => info.id === relic.id
+                    );
+                    const percentage = (
+                      (relic.num / top_Relics.totalRelicsCount) *
+                      100
+                    ).toFixed(1);
+                    return (
+                      <div
+                        key={`relic${relic.id}+${relic.piece}`}
+                        className="relative flex bg-black/75 rounded-tr-3xl py-2 h-36 w-36 hover:bg-white/5"
+                      >
+                        <p className="absolute text-sm -top-2 -left-2 bg-black p-2 rounded-full border border-gray font-bold">
+                          {percentage}%
+                        </p>
+                        <p className="absolute text-sm -top-2 -right-2 bg-black p-2 rounded-full border border-gray font-bold">
+                          {relic.piece}P
+                        </p>
+                        <img
+                          src={`${CDN}/${relicInfo.icon}`}
+                          alt={relicInfo.name}
+                          width={112}
+                          height={112}
+                          className="w-28 m-auto"
+                        />
+                        <p className="absolute bottom-0 text-center text-sm bg-black w-full">
+                          {relicInfo.name}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="flex flex-col mt-10 justify-center p-5 bg-white/15 rounded-3xl w-full lg:w-auto">
+                <h2 className="font-bold text-2xl underline text-orange text-center">
+                  {StatsTranslate[lang ?? "fr"][18]}
+                </h2>
+
+                <div className="flex flex-wrap justify-center items-center gap-5 mt-5">
+                  {top_Relics.ornaments.map((ornament) => {
+                    // const relicArray = relic.value.split("_");
+                    const ornamentInfo = relicsList.find(
+                      (info: any) => info.id === ornament.id
+                    );
+                    const percentage = (
+                      (ornament.num / top_Relics.totalRelicsCount) *
+                      100
+                    ).toFixed(1);
+                    return (
+                      <div
+                        key={`relic${ornament.id}`}
+                        className="relative flex bg-black/75 rounded-tr-3xl py-2 h-36 w-36 hover:bg-white/5"
+                      >
+                        <p className="absolute text-sm -top-2 -left-2 bg-black p-2 rounded-full border border-gray font-bold">
+                          {percentage}%
+                        </p>
+                        {/* <p className="absolute text-sm -top-2 -right-2 bg-black p-2 rounded-full border border-gray">
+                        {relic.piece}P
+                      </p> */}
+                        <img
+                          src={`${CDN}/${ornamentInfo.icon}`}
+                          alt={ornamentInfo.name}
+                          width={112}
+                          height={112}
+                          className="w-28 m-auto"
+                        />
+                        <p className="absolute bottom-0 text-center text-sm bg-black w-full">
+                          {ornamentInfo.name}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
-            <div className="flex flex-col mt-10 justify-center">
-              <h2 className="font-bold text-2xl underline text-orange text-center">
-                {StatsTranslate[lang ?? "fr"][18]}
+            <div className="flex flex-col mt-10 justify-center mx-auto p-5 bg-white/15 rounded-3xl lg:w-1/2">
+              <h2 className="font-bold text-2xl underline text-orange text-center w-auto">
+                {StatsTranslate[lang ?? "fr"][19]}
               </h2>
               <div className="flex flex-wrap justify-center items-center gap-5 mt-5">
                 {top5_LightCones.data.map((cone) => {
@@ -543,7 +608,7 @@ function getStatsAttributes(
     };
   }
 
-  console.log("stats", min, avg, max);
+  // console.log("stats", min, avg, max);
   return { min, avg, max };
 }
 

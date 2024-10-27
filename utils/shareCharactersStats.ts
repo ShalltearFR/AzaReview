@@ -48,7 +48,7 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
     const dataDB = DB !== null ? removeIdsFromArrays(DB) : null;
 
     if (!dataDB) {
-      await CharacterStats.create({ id: dataCopy.id });
+      await CharacterStats.create({ id: dataCopy.id, updated: Date.now() });
       console.log(`CharacterStats créée : ${dataCopy.name}`);
       return;
     }
@@ -58,21 +58,22 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
       dataCopy.additions
     );
 
-    const relicSetsMerged = dataCopy.relic_sets
-      .filter((relic, index, self) => {
-        const hasDuplicate = self.some(
-          (r) => r.id === relic.id && r.num !== relic.num
-        );
-        return !(hasDuplicate && relic.num === 2);
-      })
-      .map((relic) => {
-        // Vérifie si l'ID de la relique est supérieur à 300
-        if (Number(relic.id) > 300) {
-          return relic.id; // Retourne simplement l'ID
-        }
-        // Sinon, retourne l'ID et le nombre au format `${relic.id}_${relic.num}`
-        return `${relic.id}_${relic.num}`;
-      });
+    const relicSetsMerged =
+      dataCopy.relic_sets
+        .filter((relic, index, self) => {
+          const hasDuplicate = self.some(
+            (r) => r.id === relic.id && r.num !== relic.num
+          );
+          return !(hasDuplicate && relic.num === 2);
+        })
+        .map((relic) => {
+          // Vérifie si l'ID de la relique est supérieur à 300
+          if (Number(relic.id) > 300) {
+            return relic.id; // Retourne simplement l'ID
+          }
+          // Sinon, retourne l'ID et le nombre au format `${relic.id}_${relic.num}`
+          return `${relic.id}_${relic.num}`;
+        }) ?? [];
 
     // Récupère l'énergie additionnelle
     const energyMerged = dataCopy.additions.find(
@@ -105,10 +106,10 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
     const newData: CharacterMerged = {
       uid: uid,
       ranks: dataCopy.rank,
-      lightCones: dataCopy.light_cone.id,
-      relics_sets: relicSetsMerged,
-      totalProcs: totalProcs,
-      relicsProcs: relicsProcsArray,
+      lightCones: dataCopy.light_cone.id ?? "",
+      relics_sets: relicSetsMerged ?? [],
+      totalProcs: totalProcs ?? 0,
+      relicsProcs: relicsProcsArray ?? [],
       properties: {
         hp: Number(Number(mergedValues.hp).toFixed(0)),
         atk: Number(Number(mergedValues.atk).toFixed(0)),
@@ -149,7 +150,7 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
         console.log("Mise à jour du personnage");
         await CharacterStats.findOneAndUpdate(
           { id: dataCopy.id },
-          { data: updatedData.data }
+          { data: updatedData.data, updated: Date.now() }
         );
       }
 
@@ -171,7 +172,7 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
     addNewData(dataToPush, newData, uid);
     await CharacterStats.findOneAndUpdate(
       { id: dataCopy.id },
-      { data: dataToPush.data }
+      { data: dataToPush.data, updated: Date.now() }
     );
 
     console.log("Personnage ajouté");
