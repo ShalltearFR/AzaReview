@@ -1,3 +1,5 @@
+import { RelicProc } from "./CharacterStats";
+
 interface Properties {
   hp: number;
   atk: number;
@@ -12,9 +14,12 @@ interface Properties {
 }
 
 interface CharacterMerged {
-  ranks: string;
+  uid: string;
+  ranks: number;
   lightCones: string;
   relics_sets: string[];
+  totalProcs: number;
+  relicsProcs: RelicProc[];
   properties: Properties;
 }
 

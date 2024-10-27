@@ -26,23 +26,32 @@ import { Schema, model, models } from "mongoose";
 //   }
 // );
 
-const RelicProcSchema = new mongoose.Schema({
-  hp: { type: Number, required: false },
-  hpPercent: { type: Number, required: false },
-  atk: { type: Number, required: false },
-  atkPercent: { type: Number, required: false },
-  def: { type: Number, required: false },
-  defPercent: { type: Number, required: false },
-  spd: { type: Number, required: false },
-  crit_rate: { type: Number, required: false },
-  crit_dmg: { type: Number, required: false },
+const RelicProcSchema = new Schema({
+  HPAddedRatio: { type: Number, required: false },
+  HPDelta: { type: Number, required: false },
+  AttackDelta: { type: Number, required: false },
+  AttackAddedRatio: { type: Number, required: false },
+  DefenceDelta: { type: Number, required: false },
+  DefenceAddedRatio: { type: Number, required: false },
+  SPRatioBase: { type: Number, required: false },
+  StatusProbabilityBase: { type: Number, required: false },
+  CriticalChanceBase: { type: Number, required: false },
+  StatusResistanceBase: { type: Number, required: false },
+  BreakDamageAddedRatioBase: { type: Number, required: false },
   break_dmg: { type: Number, required: false },
-  effect_hit: { type: Number, required: false },
-  effect_res: { type: Number, required: false },
+  HealRatioBase: { type: Number, required: false },
+  SpeedDelta: { type: Number, required: false },
   energy: { type: Number, required: false },
+  PhysicalAddedRatio: { type: Number, required: false },
+  QuantumAddedRatio: { type: Number, required: false },
+  ImaginaryAddedRatio: { type: Number, required: false },
+  WindAddedRatio: { type: Number, required: false },
+  ThunderAddedRatio: { type: Number, required: false },
+  IceAddedRatio: { type: Number, required: false },
+  FireAddedRatio: { type: Number, required: false },
 });
 
-const PropertiesSchema = new mongoose.Schema({
+const PropertiesSchema = new Schema({
   hp: { type: Number, required: true },
   atk: { type: Number, required: true },
   def: { type: Number, required: true },
@@ -55,7 +64,7 @@ const PropertiesSchema = new mongoose.Schema({
   energy: { type: Number, required: true },
 });
 
-const DataSchema = new mongoose.Schema({
+const DataSchema = new Schema({
   uid: { type: String, required: true },
   ranks: { type: Number, required: true },
   lightCones: { type: String, required: true },
@@ -65,7 +74,7 @@ const DataSchema = new mongoose.Schema({
   properties: PropertiesSchema, // Stats finales du personnage
 });
 
-const characterStatsSchema = new mongoose.Schema({
+const characterStatsSchema = new Schema({
   id: { type: String, required: true }, // ID du personnage
   data: [DataSchema], // Tableau de données
 });
