@@ -54,14 +54,14 @@ interface CharacterStats extends Document {
   id: string;
   data: IData[];
   error?: boolean;
-  updated: Date;
+  updatedAt: Date;
 }
 
 // Interface pour le schéma de caractère
 interface CharacterStatWithoutDoc {
   id: string;
   data: IData[];
-  updated: Date;
+  updatedAt: Date;
 }
 
 export type { CharacterStats, CharacterStatWithoutDoc, RelicProc };

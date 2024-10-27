@@ -54,9 +54,8 @@ export default async function StatsID({
   );
 
   const character = characterList.find((character: any) => character.id === id);
-  const date = new Date(dataStats.updated);
+  const date = new Date(dataStats.updatedAt);
 
-  // console.log("date", dataStats.updated);
   const hp = getStatsAttributes(dataStats.data, "hp", true);
   const atk = getStatsAttributes(dataStats.data, "atk", true);
   const def = getStatsAttributes(dataStats.data, "def", true);

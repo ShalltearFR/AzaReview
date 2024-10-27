@@ -157,19 +157,6 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
 
       return;
     }
-
-    // if (dataDB.data.uid.includes(uid)) {
-    //   console.log("Personnage déjà partagé");
-    //   const index = dataDB.uid.indexOf(uid);
-    //   updateProperties(dataToPush, newData, index);
-
-    //   if (JSON.stringify(dataToPush) !== JSON.stringify(dataDB.toObject())) {
-    //     console.log("Mise à jour du personnage");
-    //     await CharacterStats.findOneAndUpdate({ id: dataCopy.id }, dataToPush);
-    //   }
-    //   return;
-    // }
-
     addNewData(dataToPush, newData, uid);
     await CharacterStats.findOneAndUpdate(
       { id: dataCopy.id },
@@ -229,24 +216,6 @@ function addNewData(
     },
   };
   dataToPush.data.push(data);
-
-  //return dataToPush;
-
-  // }
-  // dataToPush.uid = uid
-  // dataToPush.ranks.push(newData.ranks);
-  // dataToPush.lightCones.push(newData.lightCones);
-  // dataToPush.relics_sets.push(...newData.relics_sets);
-  // dataToPush.properties.hp. = newData.properties.hp
-  // dataToPush.properties.atk = newData.properties.atk
-  // dataToPush.properties.def = newData.properties.def
-  // dataToPush.properties.spd = newData.properties.spd
-  // dataToPush.properties.crit_rate = newData.properties.crit_rate
-  // dataToPush.properties.crit_dmg = newData.properties.crit_dmg
-  // dataToPush.properties.break_effect = newData.properties.break_dmg
-  // dataToPush.properties.effect_hit = newData.properties.effect_hit
-  // dataToPush.properties.effect_res = newData.properties.effect_res
-  // dataToPush.properties.energy = newData.properties.energy
 }
 
 const mergeAttributesAndAdditions = (attributes: any[], additions: any[]) => {
