@@ -116,32 +116,34 @@ export default async function StatsID({
     };
 
     // Comptage des reliques et des ornements
-    data.forEach((item) => {
-      item.relics_sets.forEach((set: string) => {
-        const [id, piece] = set.split("_");
+    if (data) {
+      data.forEach((item) => {
+        item.relics_sets.forEach((set: string) => {
+          const [id, piece] = set.split("_");
 
-        // Traitement des reliques
-        if (piece) {
-          const parsedPiece = parseInt(piece);
-          const relicEntry = totals.relics.find(
-            (r) => r.id === id && r.piece === parsedPiece
-          );
-          if (relicEntry) {
-            relicEntry.num += 1; // Incrémenter le nombre pour cette pièce
+          // Traitement des reliques
+          if (piece) {
+            const parsedPiece = parseInt(piece);
+            const relicEntry = totals.relics.find(
+              (r) => r.id === id && r.piece === parsedPiece
+            );
+            if (relicEntry) {
+              relicEntry.num += 1; // Incrémenter le nombre pour cette pièce
+            } else {
+              totals.relics.push({ id, num: 1, piece: parsedPiece }); // Ajouter une nouvelle entrée
+            }
           } else {
-            totals.relics.push({ id, num: 1, piece: parsedPiece }); // Ajouter une nouvelle entrée
+            // Traitement des ornements (pas de `piece` associé)
+            const ornamentEntry = totals.ornaments.find((o) => o.id === id);
+            if (ornamentEntry) {
+              ornamentEntry.num += 1; // Incrémenter le nombre pour cet ornement
+            } else {
+              totals.ornaments.push({ id, num: 1 }); // Ajouter une nouvelle entrée
+            }
           }
-        } else {
-          // Traitement des ornements (pas de `piece` associé)
-          const ornamentEntry = totals.ornaments.find((o) => o.id === id);
-          if (ornamentEntry) {
-            ornamentEntry.num += 1; // Incrémenter le nombre pour cet ornement
-          } else {
-            totals.ornaments.push({ id, num: 1 }); // Ajouter une nouvelle entrée
-          }
-        }
+        });
       });
-    });
+    }
 
     // Calcul des totaux
     totals.totalRelicsCount = totals.relics.reduce((acc, r) => acc + r.num, 0);
