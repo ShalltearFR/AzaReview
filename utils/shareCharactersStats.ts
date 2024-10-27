@@ -150,7 +150,8 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
         console.log("Mise à jour du personnage");
         await CharacterStats.findOneAndUpdate(
           { id: dataCopy.id },
-          { data: updatedData.data }
+          { data: updatedData.data },
+          { new: true }
         );
       }
 
@@ -172,7 +173,8 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
     addNewData(dataToPush, newData, uid);
     await CharacterStats.findOneAndUpdate(
       { id: dataCopy.id },
-      { data: dataToPush.data }
+      { data: dataToPush.data },
+      { new: true }
     );
 
     console.log("Personnage ajouté");

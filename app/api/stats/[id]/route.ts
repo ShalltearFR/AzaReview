@@ -33,16 +33,16 @@ export async function GET(
   }
 }
 
-// Fonction pour supprimer les _id des objets
+// Fonction pour supprimer les _id des objets, mais conserver createdAt et updatedAt
 function removeIdsFromArrays(data: any): any {
   if (Array.isArray(data)) {
     return data.map(removeIdsFromArrays);
   } else if (data && typeof data === "object") {
-    const { _id, ...rest } = data;
+    const { _id, createdAt, updatedAt, ...rest } = data; // Ne pas supprimer createdAt et updatedAt
     for (const key in rest) {
       rest[key] = removeIdsFromArrays(rest[key]);
     }
-    return rest;
+    return { createdAt, updatedAt, ...rest }; // Retourner également createdAt et updatedAt
   }
   return data;
 }
