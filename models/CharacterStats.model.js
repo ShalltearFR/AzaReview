@@ -7,22 +7,12 @@ const RelicProcSchema = new Schema({
   AttackAddedRatio: { type: Number, required: false },
   DefenceDelta: { type: Number, required: false },
   DefenceAddedRatio: { type: Number, required: false },
-  SPRatioBase: { type: Number, required: false },
-  StatusProbabilityBase: { type: Number, required: false },
   CriticalChanceBase: { type: Number, required: false },
   CriticalDamageBase: { type: Number, required: false },
+  StatusProbabilityBase: { type: Number, required: false },
   StatusResistanceBase: { type: Number, required: false },
   BreakDamageAddedRatioBase: { type: Number, required: false },
-  HealRatioBase: { type: Number, required: false },
   SpeedDelta: { type: Number, required: false },
-  energy: { type: Number, required: false },
-  PhysicalAddedRatio: { type: Number, required: false },
-  QuantumAddedRatio: { type: Number, required: false },
-  ImaginaryAddedRatio: { type: Number, required: false },
-  WindAddedRatio: { type: Number, required: false },
-  ThunderAddedRatio: { type: Number, required: false },
-  IceAddedRatio: { type: Number, required: false },
-  FireAddedRatio: { type: Number, required: false },
 });
 
 const PropertiesSchema = new Schema({
