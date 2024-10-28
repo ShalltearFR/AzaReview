@@ -10,6 +10,9 @@ import { CharacterStats as CharacterStatsType } from "@/types/CharacterStats";
 import StatsPage from "@/components/Front/Stats/StatsPage";
 import Footer from "@/components/Front/UID/Footer";
 
+export const dynamic = "force-static";
+export const revalidate = 3600; // refresh toutes les heures
+
 export default async function StatsID({
   params,
 }: {
@@ -21,7 +24,7 @@ export default async function StatsID({
   const { id } = await params;
   const dataStats: CharacterStatsType = await getData(
     `${process.env.WWW}/api/stats/${id}`,
-    300
+    3600
   );
 
   const [characterList, relicsList, lightConesList] = await Promise.all([

@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = "force-static";
+export const revalidate = 3600; // refresh toutes les heures
+
 const getData = async (
   url: string,
   revalidate: number,
@@ -41,7 +44,7 @@ const Guides: React.FC = async () => {
 
   const character: charactersListJSON = await getData(
     `${process.env.WWW}/api/characters/all`,
-    5
+    3600
   );
 
   if (character?.data) {

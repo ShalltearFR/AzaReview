@@ -4,9 +4,8 @@ import { CDN } from "@/utils/cdn";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 
-type Props = {
-  params: { id: number };
-};
+export const dynamic = "force-static";
+export const revalidate = 3600; // refresh toutes les heures
 
 const getData = async (
   url: string,
@@ -37,7 +36,7 @@ export async function generateMetadata({
   const { id } = await params;
   const res = await getData(
     `${process.env.WWW}/api/character/${id}`,
-    18000,
+    3600,
     false,
     true
   );
