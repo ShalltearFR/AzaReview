@@ -174,15 +174,12 @@ export default async function StatsID({
     | "AttackAddedRatio"
     | "DefenceDelta"
     | "DefenceAddedRatio"
-    | "SPRatioBase"
     | "StatusProbabilityBase"
     | "CriticalChanceBase"
     | "CriticalDamageBase"
     | "StatusResistanceBase"
     | "BreakDamageAddedRatioBase"
-    | "HealRatioBase"
-    | "SpeedDelta"
-    | "sp_ratio";
+    | "SpeedDelta";
 
   // Type pour l'objet result
   interface Result {
@@ -198,15 +195,12 @@ export default async function StatsID({
     "AttackAddedRatio",
     "DefenceDelta",
     "DefenceAddedRatio",
-    "SPRatioBase",
     "StatusProbabilityBase",
     "CriticalChanceBase",
     "CriticalDamageBase",
     "StatusResistanceBase",
     "BreakDamageAddedRatioBase",
-    "HealRatioBase",
     "SpeedDelta",
-    "sp_ratio",
   ];
 
   const result: Result = {
