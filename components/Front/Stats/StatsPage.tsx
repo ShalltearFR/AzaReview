@@ -39,9 +39,7 @@ const StatsPage: React.FC<StatsPageProps> = ({
         ? "Pioneer"
         : "Pionnier"
       : character.name;
-  const formattedDate = `${date.toLocaleDateString()} ${date
-    .toLocaleTimeString()
-    .replaceAll("/", "-")}`;
+  const formattedDate = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
   const statsLength = dataStats.data.length;
 
   return (
@@ -58,7 +56,7 @@ const StatsPage: React.FC<StatsPageProps> = ({
           <header className="flex flex-col relative items-center mmd:items-center italic">
             <h1 className="mx-auto text-4xl font-bold">{characterName}</h1>
             <div className="mmd:absolute right-0 text-right pr-2 xl:pr-0 mt-2 mmd:mt-0">
-              <p>{`${StatsTranslate[lang][0]} ${formattedDate} ${StatsTranslate[lang][1]}`}</p>
+              <p>{`${StatsTranslate[lang][0]} ${formattedDate} `}</p>
               <p>{`${StatsTranslate[lang][2]} ${statsLength} ${StatsTranslate[lang][3]}`}</p>
             </div>
           </header>
