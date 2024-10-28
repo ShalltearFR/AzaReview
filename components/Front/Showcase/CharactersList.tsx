@@ -58,6 +58,7 @@ const CharactersList: React.FC<GuidesProps> = ({ list }) => {
               width={208}
               height={257}
               alt={character.name}
+              loading="lazy"
               src={
                 PioneerToADD.includes(character.id)
                   ? `${CDN2}/${character.preview}`
