@@ -197,6 +197,7 @@ const NavBar: React.FC<NavBarProps> = ({
                 height={30}
                 className="w-10"
                 alt="French Flag"
+                fetchPriority="high"
               />
             </button>
             <button
@@ -211,6 +212,7 @@ const NavBar: React.FC<NavBarProps> = ({
                 height={27}
                 className="w-10"
                 alt="English Flag"
+                fetchPriority="high"
               />
             </button>
           </div>
