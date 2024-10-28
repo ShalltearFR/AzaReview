@@ -23,8 +23,6 @@ export default async function StatsID({
     300
   );
 
-  if (dataStats.error) return notFound();
-
   const [characterList, relicsList, lightConesList] = await Promise.all([
     getData(`${CDN}/index_min/${lang || "fr"}/characters.json`, 18000, true),
     getData(`${CDN}/index_min/${lang || "fr"}/relic_sets.json`, 18000, true),
@@ -33,6 +31,8 @@ export default async function StatsID({
 
   const character = characterList.find((character: any) => character.id === id);
   const date = new Date(dataStats.updatedAt);
+
+  if (dataStats.error || dataStats.data.length === 0) return notFound();
 
   return (
     <StatsPage
