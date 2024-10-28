@@ -9,6 +9,8 @@ import StatsTable from "./StatsTable";
 import ChartVisu from "./ChartVisu";
 import TopRelics from "./TopRelics";
 import TopLightCones from "./TopLightCones";
+import { Suspense } from "react";
+import LoadingSpin from "@/components/LoadingSpin";
 
 interface StatsPageProps {
   lang: keyof TranslateSection;
@@ -48,6 +50,7 @@ const StatsPage: React.FC<StatsPageProps> = ({
           src={`${CDN}/${character.portrait}`}
           alt={`${characterName} portrait`}
           className="fixed -right-1/2 -left-1/2 grayscale opacity-50 object-cover h-full translate-y-5 -z-10 mx-auto"
+          fetchPriority="low"
         />
         <div className="bg-black/75 p-3 md:p-5 xl:w-[1350px] xl:mx-auto xl:rounded-3xl">
           <header className="flex flex-col relative items-center mmd:items-center italic">
@@ -57,36 +60,36 @@ const StatsPage: React.FC<StatsPageProps> = ({
               <p>{`${StatsTranslate[lang][2]} ${statsLength} ${StatsTranslate[lang][3]}`}</p>
             </div>
           </header>
-          {/* <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}> */}
-          <main className="flex justify-center items-center mt-10 flex-wrap h-[540px]">
-            <section className="mx-auto">
-              <h2 className="font-bold text-2xl underline text-orange text-center mb-3">
-                {StatsTranslate[lang][4]}
-              </h2>
-              <div className="h-[500px]">
-                <StatsTable dataStats={dataStats} lang={lang} />
-              </div>
-            </section>
-            <section className="mx-auto mt-5 lg:mt-0">
-              <h2 className="font-bold text-2xl underline text-orange text-center mb-2">
-                {StatsTranslate[lang][16]}
-              </h2>
-              <div className="h-[500px]">
-                <ChartVisu dataStats={dataStats} lang={lang} />
-              </div>
-            </section>
-          </main>
-          <TopRelics
-            dataStats={dataStats}
-            lang={lang}
-            relicsList={relicsList}
-          />
-          <TopLightCones
-            dataStats={dataStats}
-            lang={lang}
-            lightConesList={lightConesList}
-          />
-          {/* </Suspense> */}
+          <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}>
+            <main className="flex justify-center items-center mt-10 flex-wrap h-[540px]">
+              <section className="mx-auto">
+                <h2 className="font-bold text-2xl underline text-orange text-center mb-3">
+                  {StatsTranslate[lang][4]}
+                </h2>
+                <div className="h-[500px]">
+                  <StatsTable dataStats={dataStats} lang={lang} />
+                </div>
+              </section>
+              <section className="mx-auto mt-5 lg:mt-0">
+                <h2 className="font-bold text-2xl underline text-orange text-center mb-2">
+                  {StatsTranslate[lang][16]}
+                </h2>
+                <div className="h-[500px]">
+                  <ChartVisu dataStats={dataStats} lang={lang} />
+                </div>
+              </section>
+            </main>
+            <TopRelics
+              dataStats={dataStats}
+              lang={lang}
+              relicsList={relicsList}
+            />
+            <TopLightCones
+              dataStats={dataStats}
+              lang={lang}
+              lightConesList={lightConesList}
+            />
+          </Suspense>
         </div>
       </div>
       <Footer lang={lang} />

@@ -72,6 +72,7 @@ const TopRelics: React.FC<TopRelicsProps> = ({
                     width={112}
                     height={112}
                     className="w-28 m-auto"
+                    fetchPriority="high"
                   />
                   <p className="absolute bottom-0 text-center text-sm bg-black w-full">
                     {relicInfo.name}
