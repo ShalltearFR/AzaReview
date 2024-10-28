@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 import { StatsTranslate } from "@/utils/statsDictionnary";
 import { CharacterStats as CharacterStatsType } from "@/types/CharacterStats";
 import StatsPage from "@/components/Front/Stats/StatsPage";
+import Footer from "@/components/Front/UID/Footer";
 
 export default async function StatsID({
   params,
@@ -30,9 +31,24 @@ export default async function StatsID({
   ]);
 
   const character = characterList.find((character: any) => character.id === id);
-  const date = new Date(dataStats.updatedAt);
 
-  if (dataStats.error || dataStats.data.length === 0) return notFound();
+  if (character && (dataStats.error || dataStats.data.length === 0))
+    return (
+      <>
+        <NavBar />
+        <StarBGAnimation />
+        <div className="flex min-h-[calc(100vh-335px)] relative text-white mt-10 justify-center text-3xl">
+          <p>
+            {StatsTranslate[lang ?? "fr"][20]}
+            {character.name} T_T
+          </p>
+        </div>
+        <Footer lang={lang} />
+      </>
+    );
+
+  if (dataStats.error) return notFound();
+  const date = new Date(dataStats.updatedAt);
 
   return (
     <StatsPage
@@ -43,16 +59,6 @@ export default async function StatsID({
       relicsList={relicsList}
       lightConesList={lightConesList}
     />
-  );
-
-  return (
-    <>
-      <NavBar />
-      <StarBGAnimation />
-      <div className="flex min-h-[calc(100vh-205px)] relative text-white mt-10 justify-center text-3xl">
-        <p>{StatsTranslate[lang ?? "fr"][19]}</p>
-      </div>
-    </>
   );
 }
 

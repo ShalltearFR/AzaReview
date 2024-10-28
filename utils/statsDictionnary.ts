@@ -22,7 +22,7 @@ const StatsTranslate: TranslateSection = {
     "Top Reliques",
     "Top Ornements",
     "Top Cones de lumière",
-    "Aucune statistiques pour ce personnage T_T",
+    "Aucune statistique pour ",
   ],
   en: [
     "Updated at",
@@ -45,7 +45,7 @@ const StatsTranslate: TranslateSection = {
     "Top Relics",
     "Top Ornaments",
     "Top Light Cones",
-    "No stats for this character T_T",
+    "No stat for ",
   ],
 };
 
