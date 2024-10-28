@@ -1,4 +1,5 @@
 "use client";
+import LoadingSpin from "@/components/LoadingSpin";
 import { CharacterStats as CharacterStatsType } from "@/types/CharacterStats";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import { StatsTranslate } from "@/utils/statsDictionnary";
@@ -152,11 +153,18 @@ const StatsTable: React.FC<StatsTableProps> = ({ dataStats, lang }) => {
       </table>
     );
 
+  if (attributes?.hp.min === 0)
+    return (
+      <div className="text-center">
+        {lang === "en"
+          ? "There is not enough data"
+          : "Il n'y a pas assez de données"}
+      </div>
+    );
+
   return (
-    <div className="text-center">
-      {lang === "en"
-        ? "There is not enough data"
-        : "Il n'y a pas assez de données"}
+    <div className="flex justify-center mt-10">
+      <LoadingSpin width="w-10" height="h-10" />
     </div>
   );
 };

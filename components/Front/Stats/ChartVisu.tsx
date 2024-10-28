@@ -2,8 +2,9 @@
 import { CharacterStats as CharacterStatsType } from "@/types/CharacterStats";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import { StatsTranslate } from "@/utils/statsDictionnary";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import RadarChart from "./RadarChart";
+import LoadingSpin from "@/components/LoadingSpin";
 
 type DefaultKeys =
   | "HPAddedRatio"
@@ -21,9 +22,7 @@ type DefaultKeys =
 
 interface Result {
   totalProcs: number;
-  data: {
-    [key in DefaultKeys]: number;
-  };
+  data: Record<DefaultKeys, number>;
 }
 
 interface ChartVisuProps {
@@ -31,25 +30,18 @@ interface ChartVisuProps {
   lang: keyof TranslateSection | undefined;
 }
 
-const ChartVisu: React.FC<ChartVisuProps> = ({ dataStats, lang }) => {
-  const [maxValue, setMaxValue] = React.useState<number>(0);
-  const [dataRadarChart, setDataRadarChart] = React.useState<any>();
+const ChartVisu: React.FC<ChartVisuProps> = ({ dataStats, lang = "fr" }) => {
+  const [chartData, setChartData] = useState<any>();
 
   useEffect(() => {
     const { procsResult, maxValue } = getProcsArray(dataStats.data);
+    const labels = Array.from(
+      { length: 9 },
+      (_, i) => StatsTranslate[lang][i + 6]
+    );
 
-    const chart = {
-      labels: [
-        StatsTranslate[lang ?? "fr"][6],
-        StatsTranslate[lang ?? "fr"][7],
-        StatsTranslate[lang ?? "fr"][8],
-        StatsTranslate[lang ?? "fr"][9],
-        StatsTranslate[lang ?? "fr"][10],
-        StatsTranslate[lang ?? "fr"][11],
-        StatsTranslate[lang ?? "fr"][12],
-        StatsTranslate[lang ?? "fr"][13],
-        StatsTranslate[lang ?? "fr"][14],
-      ],
+    setChartData({
+      labels,
       datasets: [
         {
           data: [
@@ -63,98 +55,91 @@ const ChartVisu: React.FC<ChartVisuProps> = ({ dataStats, lang }) => {
             procsResult.effect_hit,
             procsResult.effect_res,
           ],
-
           backgroundColor: "rgba(255, 99, 132, 0.3)",
           borderColor: "rgba(255, 99, 132, 0.5)",
           borderWidth: 1,
         },
       ],
-    };
+      maxPercent: maxValue,
+    });
+  }, [lang, dataStats.data]);
 
-    setMaxValue(maxValue ?? 0);
-    setDataRadarChart(chart);
-  }, [lang]);
-
-  if (dataRadarChart)
+  if (!chartData)
     return (
-      <RadarChart
-        data={dataRadarChart}
-        width={500}
-        height={350}
-        maxPercent={maxValue}
-      />
+      <div className="flex justify-center mt-10">
+        <LoadingSpin width="w-10" height="h-10" />
+      </div>
     );
 
   return (
-    <div className="text-white">
-      {lang === "en" ? "Loading..." : "Chargement..."}
-    </div>
+    <RadarChart
+      data={chartData}
+      width={500}
+      height={350}
+      maxPercent={chartData.maxPercent}
+    />
   );
 };
 
 function getProcsArray(data: CharacterStatsType["data"]) {
-  const defaultKeys: DefaultKeys[] = [
-    "HPAddedRatio",
-    "HPDelta",
-    "AttackDelta",
-    "AttackAddedRatio",
-    "DefenceDelta",
-    "DefenceAddedRatio",
-    "StatusProbabilityBase",
-    "CriticalChanceBase",
-    "CriticalDamageBase",
-    "StatusResistanceBase",
-    "BreakDamageAddedRatioBase",
-    "SpeedDelta",
-  ];
-
-  const result: Result = {
+  const initialResult: Result = {
     totalProcs: 0,
-    data: defaultKeys.reduce((acc, key) => {
-      acc[key] = 0;
-      return acc;
-    }, {} as Result["data"]),
+    data: {
+      HPAddedRatio: 0,
+      HPDelta: 0,
+      AttackDelta: 0,
+      AttackAddedRatio: 0,
+      DefenceDelta: 0,
+      DefenceAddedRatio: 0,
+      StatusProbabilityBase: 0,
+      CriticalChanceBase: 0,
+      CriticalDamageBase: 0,
+      StatusResistanceBase: 0,
+      BreakDamageAddedRatioBase: 0,
+      SpeedDelta: 0,
+    },
   };
 
   data.forEach((character) => {
     character.relicsProcs.forEach((proc) => {
-      for (const key in proc as any) {
-        if (key in result.data) {
-          const value = proc[key as keyof typeof proc];
-
+      Object.keys(proc).forEach((key) => {
+        if (key in initialResult.data) {
+          const value = proc[key as DefaultKeys];
           if (value !== undefined) {
-            if (
-              key === "HPDelta" ||
-              key === "AttackDelta" ||
-              key === "DefenceDelta"
-            ) {
-              result.totalProcs += 0.33; // Ajouter 0.33 si la clé est HPDelta, AttackDelta ou DefenceDelta
-              result.data[key as DefaultKeys] += value / 3;
+            if (["HPDelta", "AttackDelta", "DefenceDelta"].includes(key)) {
+              initialResult.totalProcs += 0.33;
+              initialResult.data[key as DefaultKeys] += value / 3;
             } else {
-              result.data[key as DefaultKeys] += value;
-              result.totalProcs += 1; // Ajouter 1 pour les autres clés
+              initialResult.totalProcs += 1;
+              initialResult.data[key as DefaultKeys] += value;
             }
           }
         }
-      }
+      });
     });
   });
 
   const procsResult = {
-    totalProcs: Number(result.totalProcs.toFixed(4)),
-    hp: Number((result.data.HPDelta + result.data.HPAddedRatio).toFixed(4)),
+    totalProcs: Number(initialResult.totalProcs.toFixed(4)),
+    hp: Number(
+      (initialResult.data.HPDelta + initialResult.data.HPAddedRatio).toFixed(4)
+    ),
     atk: Number(
-      (result.data.AttackDelta + result.data.AttackAddedRatio).toFixed(4)
+      (
+        initialResult.data.AttackDelta + initialResult.data.AttackAddedRatio
+      ).toFixed(4)
     ),
     def: Number(
-      (result.data.DefenceDelta + result.data.DefenceAddedRatio).toFixed(4)
+      (
+        initialResult.data.DefenceDelta + initialResult.data.DefenceAddedRatio
+      ).toFixed(4)
     ),
-    spd: result.data.SpeedDelta,
-    crit_rate: result.data.CriticalChanceBase,
-    crit_dmg: result.data.CriticalDamageBase,
-    break_dmg: result.data.BreakDamageAddedRatioBase,
-    effect_hit: result.data.StatusProbabilityBase,
-    effect_res: result.data.StatusResistanceBase,
+    spd: initialResult.data.SpeedDelta,
+    crit_rate: initialResult.data.CriticalChanceBase,
+    crit_dmg: initialResult.data.CriticalDamageBase,
+    break_dmg: initialResult.data.BreakDamageAddedRatioBase,
+    effect_hit: initialResult.data.StatusProbabilityBase,
+    effect_res: initialResult.data.StatusResistanceBase,
   };
 
   const maxValue = Math.max(

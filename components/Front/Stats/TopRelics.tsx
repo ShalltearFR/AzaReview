@@ -1,4 +1,5 @@
 "use client";
+import LoadingSpin from "@/components/LoadingSpin";
 import { CharacterStats as CharacterStatsType } from "@/types/CharacterStats";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import { CDN } from "@/utils/cdn";
@@ -38,7 +39,6 @@ const TopRelics: React.FC<TopRelicsProps> = ({
 }) => {
   const [top_Relics, setTop_Relics] = useState<TotalsType>();
   useEffect(() => {
-    // const top_Relics = getTop5Relics(dataStats.data);
     setTop_Relics(getTop5Relics(dataStats.data));
   }, []);
 
@@ -118,8 +118,8 @@ const TopRelics: React.FC<TopRelicsProps> = ({
     );
 
   return (
-    <div className="text-white">
-      {lang === "en" ? "Loading..." : "Chargement..."}
+    <div className="flex justify-center mt-10">
+      <LoadingSpin width="w-10" height="h-10" />
     </div>
   );
 };
