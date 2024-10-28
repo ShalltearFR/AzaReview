@@ -182,7 +182,7 @@ export default async function StatsID({
     | "BreakDamageAddedRatioBase"
     | "HealRatioBase"
     | "SpeedDelta"
-    | "energy";
+    | "sp_ratio";
 
   // Type pour l'objet result
   interface Result {
@@ -206,7 +206,7 @@ export default async function StatsID({
     "BreakDamageAddedRatioBase",
     "HealRatioBase",
     "SpeedDelta",
-    "energy",
+    "sp_ratio",
   ];
 
   const result: Result = {
@@ -260,7 +260,6 @@ export default async function StatsID({
     break_dmg: result.data.BreakDamageAddedRatioBase,
     effect_hit: result.data.StatusProbabilityBase,
     effect_res: result.data.StatusResistanceBase,
-    energy: result.data.energy,
   };
 
   console.log("result", result);
@@ -338,7 +337,6 @@ export default async function StatsID({
       StatsTranslate[lang ?? "fr"][12],
       StatsTranslate[lang ?? "fr"][13],
       StatsTranslate[lang ?? "fr"][14],
-      StatsTranslate[lang ?? "fr"][15],
     ],
     datasets: [
       {
@@ -352,7 +350,6 @@ export default async function StatsID({
           procsResult.break_dmg,
           procsResult.effect_hit,
           procsResult.effect_res,
-          procsResult.energy,
         ],
 
         backgroundColor: "rgba(255, 99, 132, 0.3)",
