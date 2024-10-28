@@ -11,6 +11,8 @@ import { Chart } from "chart.js";
 import ChartVisu from "./ChartVisu";
 import TopRelics from "./TopRelics";
 import TopLightCones from "./TopLightCones";
+import { Suspense } from "react";
+import LoadingSpin from "@/components/LoadingSpin";
 
 interface StatsPageProps {
   lang: keyof TranslateSection;
@@ -59,31 +61,35 @@ const StatsPage: React.FC<StatsPageProps> = ({
               </p>
             </div>
           </div>
-          <div className="flex justify-center items-center mt-10 flex-wrap">
-            <div className="mx-auto">
-              <h2 className="text-2xl text-center font-bold text-yellow mb-3">
-                {StatsTranslate[lang ?? "fr"][4]}
-              </h2>
-              <StatsTable dataStats={dataStats} lang={lang} />
-            </div>
+          <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}>
+            <>
+              <div className="flex justify-center items-center mt-10 flex-wrap">
+                <div className="mx-auto">
+                  <h2 className="text-2xl text-center font-bold text-yellow mb-3">
+                    {StatsTranslate[lang ?? "fr"][4]}
+                  </h2>
+                  <StatsTable dataStats={dataStats} lang={lang} />
+                </div>
 
-            <div className="mx-auto mt-5 lg:mt-0">
-              <h2 className="font-bold text-2xl underline text-orange text-center mb-2">
-                {StatsTranslate[lang ?? "fr"][16]}
-              </h2>
-              <ChartVisu dataStats={dataStats} lang={lang} />
-            </div>
-          </div>
-          <TopRelics
-            dataStats={dataStats}
-            lang={lang}
-            relicsList={relicsList}
-          />
-          <TopLightCones
-            dataStats={dataStats}
-            lang={lang}
-            lightConesList={lightConesList}
-          />
+                <div className="mx-auto mt-5 lg:mt-0">
+                  <h2 className="font-bold text-2xl underline text-orange text-center mb-2">
+                    {StatsTranslate[lang ?? "fr"][16]}
+                  </h2>
+                  <ChartVisu dataStats={dataStats} lang={lang} />
+                </div>
+              </div>
+              <TopRelics
+                dataStats={dataStats}
+                lang={lang}
+                relicsList={relicsList}
+              />
+              <TopLightCones
+                dataStats={dataStats}
+                lang={lang}
+                lightConesList={lightConesList}
+              />
+            </>
+          </Suspense>
         </div>
       </div>
       <Footer lang={lang} />
