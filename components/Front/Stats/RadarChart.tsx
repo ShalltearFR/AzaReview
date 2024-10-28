@@ -46,7 +46,7 @@ const RadarChart: React.FC<RadarChartProps> = ({
         display: false,
       },
       tooltip: {
-        enabled: true,
+        enabled: false,
       },
     },
     scales: {
