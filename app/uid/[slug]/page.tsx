@@ -29,9 +29,7 @@ async function getData(
 
 async function getDataUid(uid: number, lang: string | undefined) {
   const data = await fetch(
-    `https://api.mihomo.me/sr_info_parsed/${uid}?lang=${
-      lang ?? "fr"
-    }&is_force_update=true`,
+    `https://api.mihomo.me/sr_info_parsed/${uid}?lang=${lang ?? "fr"}`,
     {
       next: { revalidate: 300 },
     }
@@ -100,9 +98,10 @@ export default async function Page({
   const resUid = await getDataUid(slug, lang);
   const jsonUid: jsonUID = await resUid.json();
   // Partage les stats des personnages
-  jsonUid.characters.map((character: Character) =>
-    shareCharactersStats(character, jsonUid.player.uid)
-  );
+  if (jsonUid.characters)
+    jsonUid.characters.map((character: Character) =>
+      shareCharactersStats(character, jsonUid.player.uid)
+    );
 
   const [
     resReview,
