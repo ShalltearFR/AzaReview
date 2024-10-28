@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /uid/*
+Allow: /characters/*
+Allow: /stats/*
 Allow: /guides/*
 
 # Sitemaps
