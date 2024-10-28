@@ -73,7 +73,7 @@ const ChartVisu: React.FC<ChartVisuProps> = ({ dataStats, lang }) => {
 
     setMaxValue(maxValue ?? 0);
     setDataRadarChart(chart);
-  }, []);
+  }, [lang]);
 
   if (dataRadarChart)
     return (
