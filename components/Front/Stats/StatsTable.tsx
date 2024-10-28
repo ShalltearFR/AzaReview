@@ -65,7 +65,7 @@ const StatsTable: React.FC<StatsTableProps> = ({ dataStats, lang }) => {
       effect_res,
       energy,
     });
-  }, [dataStats]);
+  }, [dataStats, lang]);
 
   if (attributes && Number.isFinite(attributes.hp.min) && attributes.hp.min > 0)
     return (
