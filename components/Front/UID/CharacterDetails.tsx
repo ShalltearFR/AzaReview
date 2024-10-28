@@ -14,6 +14,7 @@ import { traces, UIDtitles } from "@/utils/dictionnary";
 import characterEN from "@/utils/charactersEN";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import { UserOptionsProps } from "@/types/UserOptions";
+import LoadingSpin from "@/components/LoadingSpin";
 
 interface ReviewData {
   data: CharacterType[];
@@ -83,7 +84,11 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   };
 
   if (!reviewData) {
-    return <div>Chargement...</div>;
+    return (
+      <div className="flex justify-center mt-10">
+        <LoadingSpin width="w-10" height="h-10" />
+      </div>
+    );
   }
 
   if (reviewData) {

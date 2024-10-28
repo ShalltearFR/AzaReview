@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { typeValueMap, typeValueMapEN } from "@/utils/typeValueMap";
 import { UIDtitles } from "@/utils/dictionnary";
 import { TranslateSection } from "@/types/homepageDictionnary";
+import LoadingSpin from "@/components/LoadingSpin";
 
 interface CharacterRelicProps {
   stats: Relic;
@@ -129,7 +130,11 @@ const CharacterRelic: React.FC<CharacterRelicProps> = ({
   }, [lang, main_affix.name, main_affix.type]);
 
   if (displayValue === "") {
-    return <div>Chargement...</div>;
+    return (
+      <div className="flex justify-center mt-10">
+        <LoadingSpin width="w-10" height="h-10" />
+      </div>
+    );
   }
 
   return (
