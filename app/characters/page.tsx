@@ -20,9 +20,6 @@ export const metadata: Metadata = {
   },
 };
 
-export const dynamic = "force-static";
-export const revalidate = 3600; // refresh toutes les heures
-
 const getData = async (
   url: string,
   revalidate: number,

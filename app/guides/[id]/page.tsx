@@ -4,9 +4,6 @@ import { CDN } from "@/utils/cdn";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 
-export const dynamic = "force-static";
-export const revalidate = 3600; // refresh toutes les heures
-
 const getData = async (
   url: string,
   revalidate: number,

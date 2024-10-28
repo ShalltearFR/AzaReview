@@ -13,8 +13,6 @@ import StarBGAnimation from "@/components/Front/StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
 import { TranslateSection } from "@/types/homepageDictionnary";
 
-export const dynamic = "force-static";
-
 function Homepage() {
   const [sectionIndex, setSectionIndex] = useState<number>(999);
   const [sectionPrevIndex, setSectionPrevIndex] = useState<number>(0);
