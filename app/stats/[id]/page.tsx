@@ -18,17 +18,6 @@ export default async function StatsID({
   const cookieStore = await cookies();
   const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
 
-  // return (
-  //   <>
-  //     <NavBar />
-  //     <StarBGAnimation />
-  //     <div className="min-h-[calc(100vh-205px)] relative text-white mt-5 mb-5">
-  //       <p className="text-6xl text-center mt-10">Page en refonte</p>
-  //     </div>
-  //     <Footer lang={lang} />
-  //   </>
-  // );
-
   const { id } = await params;
   const dataStats: CharacterStatsType = await getData(
     `${process.env.WWW}/api/stats/${id}`,
@@ -79,13 +68,24 @@ export default async function StatsID({
     // Convertit l'objet en tableau de { id, count }
     const resultArray = Object.keys(countMap).map((id) => ({
       id: id,
-      count: countMap[id].toString(),
+      count: countMap[id],
     }));
 
-    // Trie les éléments par count en ordre décroissant et retourne les 5 premiers
+    // Calcule le pourcentage et filtre les éléments avec percent > 5%
+    const totalCount = arrayData.length;
+    const filteredResult = resultArray
+      .map((item) => ({
+        ...item,
+        percent: ((item.count / totalCount) * 100).toFixed(2), // Calcule le pourcentage
+      }))
+      .filter((item) => Number(item.percent) > 5) // Filtre les pourcentages > 5%
+      .sort((a, b) => b.count - a.count) // Trie par count en ordre décroissant
+      .slice(0, 5); // Prend les 5 premiers
+
+    console.log("filteredResult", filteredResult);
     return {
-      data: resultArray.sort((a, b) => b.count - a.count).slice(0, 5),
-      length: arrayData.length,
+      data: filteredResult,
+      length: totalCount,
     };
   }
 
@@ -94,11 +94,13 @@ export default async function StatsID({
       id: string;
       num: number;
       piece: number;
+      percent?: number;
     }
 
     interface OrnamentType {
       id: string;
       num: number;
+      percent?: number;
     }
 
     interface TotalsType {
@@ -152,15 +154,33 @@ export default async function StatsID({
       0
     );
 
-    // Limitation à 5 éléments
+    // Calcul des pourcentages et filtrage des reliques avec pourcentage > 5
     totals.relics = totals.relics
+      .map((relic) => ({
+        ...relic,
+        percentage: totals.totalRelicsCount
+          ? parseFloat(((relic.num / totals.totalRelicsCount) * 100).toFixed(2))
+          : 0,
+      }))
+      .filter((relic) => relic.percentage && relic.percentage > 5) // Filtrer les reliques avec un pourcentage > 5
       .sort((a, b) => b.num - a.num) // Trier en fonction de `num` en ordre décroissant
       .slice(0, 5); // Garder les 5 premiers éléments
 
+    // Calcul des pourcentages et filtrage des ornements avec pourcentage > 5
     totals.ornaments = totals.ornaments
+      .map((ornament) => ({
+        ...ornament,
+        percentage: totals.totalOrnamentsCount
+          ? parseFloat(
+              ((ornament.num / totals.totalOrnamentsCount) * 100).toFixed(2)
+            )
+          : 0,
+      }))
+      .filter((ornament) => ornament.percentage && ornament.percentage > 5) // Filtrer les ornements avec un pourcentage > 5
       .sort((a, b) => b.num - a.num) // Trier en fonction de `num` en ordre décroissant
       .slice(0, 5); // Garder les 5 premiers éléments
 
+    console.log("totals", totals);
     return totals;
   }
 
@@ -218,10 +238,6 @@ export default async function StatsID({
           const value = proc[key as keyof typeof proc];
 
           if (value !== undefined) {
-            // Vérification si la valeur existe
-            // Addition de la valeur de la clé dans result.data
-
-            // Vérification des clés spécifiques pour le comptage de totalProcs
             if (
               key === "HPDelta" ||
               key === "AttackDelta" ||
@@ -256,69 +272,11 @@ export default async function StatsID({
     effect_res: result.data.StatusResistanceBase,
   };
 
-  console.log("result", result);
-  console.log("procsResult", procsResult);
-
   const maxValue = Math.max(
     ...Object.entries(procsResult)
       .filter(([key]) => key !== "totalProcs") // Ignorer `totalProcs`
       .map(([, value]) => value)
   );
-
-  // Ajouter 10 à cette valeur maximale
-  // const maxValueWithMargin = maxValue + 10;
-
-  // console.log("Max Value with Margin:", maxValueWithMargin);
-
-  // console.log(top5LightCones);
-  // const top5_Lightcones =
-  // console.log(dataStats);
-
-  // //Partie calcul Attributes (pour le graph)
-  // const PercentObject = {
-  //   hp: (hp.avg / hp.max) * 100,
-  //   atq: (atk.avg / atk.max) * 100,
-  //   def: (def.avg / def.max) * 100,
-  //   spd: (spd.avg / spd.max) * 100,
-  //   crit_rate: (crit_rate.avg / crit_rate.max) * 100,
-  //   crit_dmg: (crit_dmg.avg / crit_dmg.max) * 100,
-  //   break_dmg:
-  //     (break_dmg.avg / (break_dmg.max === 0 ? 1 : break_dmg.max)) * 100,
-  //   effect_hit:
-  //     (effect_hit.avg / (effect_hit.max === 0 ? 1 : effect_hit.max)) * 100,
-  //   effect_res:
-  //     (effect_res.avg / (effect_res.max === 0 ? 1 : effect_res.max)) * 100,
-  //   energy: (energy.avg / (energy.max === 0 ? 1 : energy.max)) * 100,
-  // };
-
-  // // Calculez la somme totale des valeurs
-  // const totalAttributes = Object.values(PercentObject).reduce(
-  //   (acc, value) => acc + value,
-  //   0
-  // );
-
-  // // Calculez le pourcentage pour chaque valeur
-  // const percentages = Object.fromEntries(
-  //   Object.entries(PercentObject).map(([key, value]) => [
-  //     key,
-  //     (value / totalAttributes) * 100,
-  //   ])
-  // );
-
-  // const maxPercentage = Math.max(...Object.values(percentages));
-
-  // const countsLightcones = countItems(dataStats.lightCones);
-  // const countsRelics = countItems(dataStats.relics_sets);
-
-  // // Convertir l'objet de comptage en tableau et trier par occurrences
-  // const { objet: top5_Relics, total: totalCountRelics } = sortItems(
-  //   countsRelics,
-  //   dataStats.relics_sets
-  // );
-  // const { objet: top5_Lightcones, total: totalCountLightcones } = sortItems(
-  //   countsLightcones,
-  //   dataStats.lightCones
-  // );
 
   const dataRadarChart = {
     labels: [
@@ -353,10 +311,6 @@ export default async function StatsID({
     ],
   };
 
-  // console.log(dataStats);
-
-  // return <div></div>;
-
   if (top5_LightCones)
     return (
       <>
@@ -367,6 +321,9 @@ export default async function StatsID({
             src={`${CDN}/${character.portrait}`}
             className="fixed -right-1/2 -left-1/2 grayscale opacity-50 object-cover h-full translate-y-5 -z-10 mx-auto"
           />
+          <h1 className="text-center text-4xl font-bold">
+            Page en cours de construction
+          </h1>
           <div className="bg-black/75 p-3 md:p-5 xl:w-[1350px] xl:mx-auto xl:rounded-3xl">
             <div className="flex flex-col relative items-right mmd:items-center italic">
               <h1 className="mx-auto text-4xl font-bold">
@@ -488,25 +445,20 @@ export default async function StatsID({
             <div className="flex flex-wrap justify-center gap-x-20">
               <div className="flex flex-col mt-10 justify-center p-5 bg-white/15 rounded-3xl w-full lg:w-auto">
                 <h2 className="font-bold text-2xl underline text-orange text-center">
-                  {StatsTranslate[lang ?? "fr"][17]}
+                  {StatsTranslate[lang ?? "fr"][16]}
                 </h2>
                 <div className="flex flex-wrap justify-center items-center gap-5 mt-5">
                   {top_Relics.relics.map((relic) => {
-                    // const relicArray = relic.value.split("_");
                     const relicInfo = relicsList.find(
                       (info: any) => info.id === relic.id
                     );
-                    const percentage = (
-                      (relic.num / top_Relics.totalRelicsCount) *
-                      100
-                    ).toFixed(1);
                     return (
                       <div
                         key={`relic${relic.id}+${relic.piece}`}
                         className="relative flex bg-black/75 rounded-tr-3xl py-2 h-36 w-36 hover:bg-white/5"
                       >
                         <p className="absolute text-sm -top-2 -left-2 bg-black p-2 rounded-full border border-gray font-bold">
-                          {percentage}%
+                          {relic.percent}%
                         </p>
                         <p className="absolute text-sm -top-2 -right-2 bg-black p-2 rounded-full border border-gray font-bold">
                           {relic.piece}P
@@ -528,26 +480,21 @@ export default async function StatsID({
               </div>
               <div className="flex flex-col mt-10 justify-center p-5 bg-white/15 rounded-3xl w-full lg:w-auto">
                 <h2 className="font-bold text-2xl underline text-orange text-center">
-                  {StatsTranslate[lang ?? "fr"][18]}
+                  {StatsTranslate[lang ?? "fr"][17]}
                 </h2>
 
                 <div className="flex flex-wrap justify-center items-center gap-5 mt-5">
                   {top_Relics.ornaments.map((ornament) => {
-                    // const relicArray = relic.value.split("_");
                     const ornamentInfo = relicsList.find(
                       (info: any) => info.id === ornament.id
                     );
-                    const percentage = (
-                      (ornament.num / top_Relics.totalRelicsCount) *
-                      100
-                    ).toFixed(1);
                     return (
                       <div
                         key={`relic${ornament.id}`}
                         className="relative flex bg-black/75 rounded-tr-3xl py-2 h-36 w-36 hover:bg-white/5"
                       >
                         <p className="absolute text-sm -top-2 -left-2 bg-black p-2 rounded-full border border-gray font-bold">
-                          {percentage}%
+                          {ornament.percent}%
                         </p>
                         <img
                           src={`${CDN}/${ornamentInfo.icon}`}
@@ -567,24 +514,20 @@ export default async function StatsID({
             </div>
             <div className="flex flex-col mt-10 justify-center mx-auto p-5 bg-white/15 rounded-3xl lg:w-1/2">
               <h2 className="font-bold text-2xl underline text-orange text-center w-auto">
-                {StatsTranslate[lang ?? "fr"][19]}
+                {StatsTranslate[lang ?? "fr"][18]}
               </h2>
               <div className="flex flex-wrap justify-center items-center gap-5 mt-5">
                 {top5_LightCones.data.map((cone) => {
                   const lightconesInfo = lightConesList.find(
-                    (relic: any) => relic.id === cone.id
+                    (info: any) => info.id === cone.id
                   );
-                  const percentage = (
-                    (cone.count / top5_LightCones.length) *
-                    100
-                  ).toFixed(1);
                   return (
                     <div
                       key={`lightcone${cone.id}`}
                       className="relative flex bg-black/75 rounded-tr-3xl py-2 h-36 w-36 hover:bg-white/5"
                     >
                       <p className="absolute text-sm -top-2 -left-2 bg-black p-2 rounded-full border border-gray font-bold">
-                        {percentage}%
+                        {cone.percent}%
                       </p>
 
                       <img
@@ -619,39 +562,39 @@ export default async function StatsID({
   );
 }
 
-// export async function generateMetadata({
-//   params,
-// }: {
-//   params: Promise<{ id: number }>;
-// }): Promise<Metadata> {
-//   const { id } = await params;
-//   const characterList = await getData(
-//     `${CDN}/index_min/fr/characters.json`,
-//     18000,
-//     true
-//   );
-//   const character = characterList.find((character: any) => character.id === id);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: number }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const characterList = await getData(
+    `${CDN}/index_min/fr/characters.json`,
+    18000,
+    true
+  );
+  const character = characterList.find((character: any) => character.id === id);
 
-//   if (character && character.name) {
-//     return {
-//       metadataBase: new URL(CDN),
-//       title: `Review HSR - Statistiques`,
-//       description: `Statistiques sur ${character.name}`,
-//       openGraph: {
-//         images: [`/${character.preview}`],
-//       },
-//     };
-//   }
+  if (character && character.name) {
+    return {
+      metadataBase: new URL(CDN),
+      title: `Review HSR - Statistiques`,
+      description: `Statistiques sur ${character.name}`,
+      openGraph: {
+        images: [`/${character.preview}`],
+      },
+    };
+  }
 
-//   return {
-//     metadataBase: new URL(CDN),
-//     title: `Review HSR - Statistiques`,
-//     description: `Le personnage n'existe pas`,
-//     openGraph: {
-//       images: [`/icon/avatar/202002.png`],
-//     },
-//   };
-// }
+  return {
+    metadataBase: new URL(CDN),
+    title: `Review HSR - Statistiques`,
+    description: `Le personnage n'existe pas`,
+    openGraph: {
+      images: [`/icon/avatar/202002.png`],
+    },
+  };
+}
 
 async function getData(
   url: string,
@@ -690,7 +633,7 @@ function getStatsAttributes(
   // Trier et retirer les valeurs les plus basses
   const filteredArray = propertiesArray
     .sort((a, b) => a - b)
-    .slice(removeCount);
+    .slice(removeCount, propertiesArray.length - removeCount); // Retire les 1% les plus bas et les 1% les plus hauts
 
   const min = Math.round(Math.min(...filteredArray) * 10) / 10;
   const avg =
@@ -709,31 +652,5 @@ function getStatsAttributes(
     };
   }
 
-  // console.log("stats", min, avg, max);
   return { min, avg, max };
 }
-
-// const sortItems = (items: Record<string, number>, dataStats: any) => {
-//   const top5Items = Object.entries(items)
-//     .sort(([, a], [, b]) => b - a) // Trier par nombre d'occurrences (décroissant)
-//     .slice(0, 5); // Prendre les cinq premiers
-
-//   // Format des résultats
-//   const objet = top5Items.map(([key, value]) => ({
-//     value: key,
-//     count: value,
-//   }));
-
-//   // Nombre total d'items
-//   const total = objet.reduce((sum: any, relic: any) => sum + relic.count, 0);
-//   return { objet, total };
-// };
-
-// const countItems = (dataStats: any) => {
-//   const counts = dataStats.reduce((acc: any, value: string) => {
-//     acc[value] = (acc[value] || 0) + 1;
-//     return acc;
-//   }, {});
-
-//   return counts;
-// };
