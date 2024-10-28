@@ -1,31 +1,5 @@
 import { Schema, model, models } from "mongoose";
 
-// const characterStatsSchema = new Schema(
-//   {
-//     id: { type: String },
-//     uid: { type: [String] },
-//     ranks: { type: [String] },
-//     lightCones: { type: [String] },
-//     relics_sets: { type: [String] },
-//     properties: {
-//       hp: { type: [Number] },
-//       atk: { type: [Number] },
-//       def: { type: [Number] },
-//       spd: { type: [Number] },
-//       crit_rate: { type: [Number] },
-//       crit_dmg: { type: [Number] },
-//       break_effect: { type: [Number] },
-//       effect_hit: { type: [Number] },
-//       effect_res: { type: [Number] },
-//       energy: { type: [Number] },
-//     },
-//   },
-//   {
-//     // this second object adds extra properties: `createdAt` and `updatedAt`
-//     timestamps: true,
-//   }
-// );
-
 const RelicProcSchema = new Schema({
   HPAddedRatio: { type: Number, required: false },
   HPDelta: { type: Number, required: false },
@@ -39,7 +13,6 @@ const RelicProcSchema = new Schema({
   CriticalDamageBase: { type: Number, required: false },
   StatusResistanceBase: { type: Number, required: false },
   BreakDamageAddedRatioBase: { type: Number, required: false },
-  break_dmg: { type: Number, required: false },
   HealRatioBase: { type: Number, required: false },
   SpeedDelta: { type: Number, required: false },
   energy: { type: Number, required: false },

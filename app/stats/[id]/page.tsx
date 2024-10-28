@@ -167,6 +167,116 @@ export default async function StatsID({
   const top5_LightCones = getTop5LightCones(dataStats.data);
   const top_Relics = getTop5Relics(dataStats.data);
 
+  type DefaultKeys =
+    | "HPAddedRatio"
+    | "HPDelta"
+    | "AttackDelta"
+    | "AttackAddedRatio"
+    | "DefenceDelta"
+    | "DefenceAddedRatio"
+    | "SPRatioBase"
+    | "StatusProbabilityBase"
+    | "CriticalChanceBase"
+    | "CriticalDamageBase"
+    | "StatusResistanceBase"
+    | "BreakDamageAddedRatioBase"
+    | "HealRatioBase"
+    | "SpeedDelta"
+    | "energy";
+
+  // Type pour l'objet result
+  interface Result {
+    totalProcs: number;
+    data: {
+      [key in DefaultKeys]: number;
+    };
+  }
+  const defaultKeys: DefaultKeys[] = [
+    "HPAddedRatio",
+    "HPDelta",
+    "AttackDelta",
+    "AttackAddedRatio",
+    "DefenceDelta",
+    "DefenceAddedRatio",
+    "SPRatioBase",
+    "StatusProbabilityBase",
+    "CriticalChanceBase",
+    "CriticalDamageBase",
+    "StatusResistanceBase",
+    "BreakDamageAddedRatioBase",
+    "HealRatioBase",
+    "SpeedDelta",
+    "energy",
+  ];
+
+  const result: Result = {
+    totalProcs: 0,
+    data: defaultKeys.reduce((acc, key) => {
+      acc[key] = 0;
+      return acc;
+    }, {} as Result["data"]),
+  };
+
+  dataStats.data.forEach((character) => {
+    character.relicsProcs.forEach((proc) => {
+      for (const key in proc as any) {
+        if (key in result.data) {
+          const value = proc[key as keyof typeof proc];
+
+          if (value !== undefined) {
+            // Vérification si la valeur existe
+            // Addition de la valeur de la clé dans result.data
+
+            // Vérification des clés spécifiques pour le comptage de totalProcs
+            if (
+              key === "HPDelta" ||
+              key === "AttackDelta" ||
+              key === "DefenceDelta"
+            ) {
+              result.totalProcs += 0.33; // Ajouter 0.33 si la clé est HPDelta, AttackDelta ou DefenceDelta
+              result.data[key as DefaultKeys] += value / 3;
+            } else {
+              result.data[key as DefaultKeys] += value;
+              result.totalProcs += 1; // Ajouter 1 pour les autres clés
+            }
+          }
+        }
+      }
+    });
+  });
+
+  const procsResult = {
+    totalProcs: Number(result.totalProcs.toFixed(4)),
+    hp: Number((result.data.HPDelta + result.data.HPAddedRatio).toFixed(4)),
+    atk: Number(
+      (result.data.AttackDelta + result.data.AttackAddedRatio).toFixed(4)
+    ),
+    def: Number(
+      (result.data.DefenceDelta + result.data.DefenceAddedRatio).toFixed(4)
+    ),
+    spd: result.data.SpeedDelta,
+    crit_rate: result.data.CriticalChanceBase,
+    crit_dmg: result.data.CriticalDamageBase,
+    break_dmg: result.data.BreakDamageAddedRatioBase,
+    effect_hit: result.data.StatusProbabilityBase,
+    effect_res: result.data.StatusResistanceBase,
+    energy: result.data.energy,
+  };
+
+  console.log("result", result);
+  console.log("procsResult", procsResult);
+
+  const maxValue = Math.max(
+    ...Object.entries(procsResult)
+      .filter(([key]) => key !== "totalProcs") // Ignorer `totalProcs`
+      .map(([, value]) => value)
+  );
+
+  // Ajouter 10 à cette valeur maximale
+  // const maxValueWithMargin = maxValue + 10;
+
+  // console.log("Max Value with Margin:", maxValueWithMargin);
+
   // console.log(top5LightCones);
   // const top5_Lightcones =
   // console.log(dataStats);
@@ -217,40 +327,40 @@ export default async function StatsID({
   //   dataStats.lightCones
   // );
 
-  // const dataRadarChart = {
-  //   labels: [
-  //     StatsTranslate[lang ?? "fr"][6],
-  //     StatsTranslate[lang ?? "fr"][7],
-  //     StatsTranslate[lang ?? "fr"][8],
-  //     StatsTranslate[lang ?? "fr"][9],
-  //     StatsTranslate[lang ?? "fr"][10],
-  //     StatsTranslate[lang ?? "fr"][11],
-  //     StatsTranslate[lang ?? "fr"][12],
-  //     StatsTranslate[lang ?? "fr"][13],
-  //     StatsTranslate[lang ?? "fr"][14],
-  //     StatsTranslate[lang ?? "fr"][15],
-  //   ],
-  //   datasets: [
-  //     {
-  //       data: [
-  //         percentages.hp,
-  //         percentages.atq,
-  //         percentages.def,
-  //         percentages.spd,
-  //         percentages.crit_rate,
-  //         percentages.crit_dmg,
-  //         percentages.break_effect,
-  //         percentages.effect_hit,
-  //         percentages.effect_res,
-  //         percentages.energy,
-  //       ],
+  const dataRadarChart = {
+    labels: [
+      StatsTranslate[lang ?? "fr"][6],
+      StatsTranslate[lang ?? "fr"][7],
+      StatsTranslate[lang ?? "fr"][8],
+      StatsTranslate[lang ?? "fr"][9],
+      StatsTranslate[lang ?? "fr"][10],
+      StatsTranslate[lang ?? "fr"][11],
+      StatsTranslate[lang ?? "fr"][12],
+      StatsTranslate[lang ?? "fr"][13],
+      StatsTranslate[lang ?? "fr"][14],
+      StatsTranslate[lang ?? "fr"][15],
+    ],
+    datasets: [
+      {
+        data: [
+          procsResult.hp,
+          procsResult.atk,
+          procsResult.def,
+          procsResult.spd,
+          procsResult.crit_rate,
+          procsResult.crit_dmg,
+          procsResult.break_dmg,
+          procsResult.effect_hit,
+          procsResult.effect_res,
+          procsResult.energy,
+        ],
 
-  //       backgroundColor: "rgba(255, 99, 132, 0.3)",
-  //       borderColor: "rgba(255, 99, 132, 0.5)",
-  //       borderWidth: 1,
-  //     },
-  //   ],
-  // };
+        backgroundColor: "rgba(255, 99, 132, 0.3)",
+        borderColor: "rgba(255, 99, 132, 0.5)",
+        borderWidth: 1,
+      },
+    ],
+  };
 
   // console.log(dataStats);
 
@@ -372,17 +482,17 @@ export default async function StatsID({
                 </table>
               </div>
 
-              {/* <div className="mx-auto mt-5 lg:mt-0">
-              <h2 className="font-bold text-2xl underline text-orange text-center mb-2">
-                {StatsTranslate[lang ?? "fr"][16]}
-              </h2>
-              <RadarChart
-                data={dataRadarChart}
-                width={500}
-                height={350}
-                maxPercent={maxPercentage}
-              />
-            </div> */}
+              <div className="mx-auto mt-5 lg:mt-0">
+                <h2 className="font-bold text-2xl underline text-orange text-center mb-2">
+                  {StatsTranslate[lang ?? "fr"][16]}
+                </h2>
+                <RadarChart
+                  data={dataRadarChart}
+                  width={500}
+                  height={350}
+                  maxPercent={maxValue}
+                />
+              </div>
             </div>
             <div className="flex flex-wrap justify-center gap-x-20">
               <div className="flex flex-col mt-10 justify-center p-5 bg-white/15 rounded-3xl w-full lg:w-auto">
@@ -448,9 +558,6 @@ export default async function StatsID({
                         <p className="absolute text-sm -top-2 -left-2 bg-black p-2 rounded-full border border-gray font-bold">
                           {percentage}%
                         </p>
-                        {/* <p className="absolute text-sm -top-2 -right-2 bg-black p-2 rounded-full border border-gray">
-                        {relic.piece}P
-                      </p> */}
                         <img
                           src={`${CDN}/${ornamentInfo.icon}`}
                           alt={ornamentInfo.name}
