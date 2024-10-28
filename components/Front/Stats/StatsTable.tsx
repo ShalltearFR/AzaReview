@@ -153,7 +153,7 @@ const StatsTable: React.FC<StatsTableProps> = ({ dataStats, lang }) => {
       </table>
     );
 
-  if (attributes?.hp.min === 0)
+  if (attributes?.hp.min === 0 || attributes?.hp?.min === Infinity)
     return (
       <div className="text-center">
         {lang === "en"
