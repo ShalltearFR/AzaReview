@@ -4,7 +4,7 @@ const axios = require("axios");
 const sharp = require("sharp");
 
 // Configuration
-const outputDir = "imgTemp"; // Dossier pour les images téléchargées
+const outputDir = "downloads"; // Dossier pour les images téléchargées
 const convertedDir = "public/img/portraits"; // Dossier pour les images converties
 const apiURL =
   "https://api.github.com/repos/Mar-7th/StarRailRes/contents/image/character_portrait"; // URL de l'API pour lister les fichiers

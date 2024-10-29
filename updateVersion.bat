@@ -1,0 +1,2 @@
+node prebuild.js
+pause
