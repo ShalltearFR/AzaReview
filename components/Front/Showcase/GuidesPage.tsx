@@ -21,7 +21,6 @@ interface GuidesPageProps {
 
 const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
   const characterList = useRef<CharacterType[] | undefined>(undefined);
-  const isLoading = useRef<boolean>(false);
 
   const [charactersSearch, setCharactersSearch] = useState<
     CharacterType[] | { status: number } | undefined
