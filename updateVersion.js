@@ -85,6 +85,7 @@ async function convertImages() {
         // Redimensionner et convertir en .webp
         await sharp(filePath)
           .resize({ height: 470 }) // Ajuster la hauteur selon vos besoins
+          .webp() // Convertir en .webp
           .toFile(outputFilePath); // Enregistrer le fichier converti
 
         console.log(`Converted ${file} to ${outputFilePath}`);
