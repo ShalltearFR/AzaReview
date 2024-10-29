@@ -1,6 +1,6 @@
 "use client";
 import NavBar from "@/components/Front/NavBar";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { CharacterType } from "@/types/CharacterModel";
 import CharactersList from "@/components/Front/Showcase/CharactersList";
 import Footer from "@/components/Front/UID/Footer";
@@ -21,6 +21,7 @@ interface GuidesPageProps {
 
 const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
   const characterList = useRef<CharacterType[] | undefined>(undefined);
+  const isLoading = useRef<boolean>(false);
 
   const [charactersSearch, setCharactersSearch] = useState<
     CharacterType[] | { status: number } | undefined
@@ -60,14 +61,14 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
   useEffect(() => {
     Aos.init({ disable: window.innerWidth <= 1450 });
 
-    if ("status" in character && character.status === 404)
+    if ("status" in character && character.status === 404) {
       setCharactersSearch({ status: 404 });
-    else {
+    } else {
       characterList.current = character;
-      setCharactersSearch(character);
+      // Appel du tri lors du chargement initial
+      setCharactersSearch(sortCharacters(character));
     }
 
-    // Set les prefs utilisateurs sinon les valeurs par defaut
     const item = localStorage.getItem("guidePref");
     const guidePref = item ? JSON.parse(item) : undefined;
     setDescentOrder(guidePref?.sortDescent ?? false);
@@ -86,77 +87,74 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
   }, [sortArrival, descentOrder]);
 
   // Trie les personnages
-  useEffect(() => {
-    if (Array.isArray(charactersSearch) && characterList.current) {
-      characterList.current = [...character];
+  const sortCharacters = (characters: CharacterType[]) => {
+    let charactersSearchCopy = [...characters];
 
-      // Filtrer par nom
-      let charactersSearchCopy = [...character].filter((text) =>
-        text.name.toLowerCase().includes(searchInput.toLowerCase())
-      );
+    // Filtrer par nom
+    charactersSearchCopy = charactersSearchCopy.filter((text) =>
+      text.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
 
-      // Filtrer par rareté
-      if (filterList.rarity.star4 || filterList.rarity.star5) {
-        charactersSearchCopy = charactersSearchCopy.filter((char) => {
-          if (filterList.rarity.star4 && char.rarity === "4") {
-            return true;
-          }
-          if (filterList.rarity.star5 && char.rarity === "5") {
-            return true;
-          }
-          return false; // Exclure ceux qui ne correspondent pas
-        });
-      }
-
-      // Filtrer par élément
-      const activeElements = Object.entries(filterList.element)
-        .filter(([_, isActive]) => isActive)
-        .map(([element]) => element);
-
-      if (activeElements.length > 0) {
-        charactersSearchCopy = charactersSearchCopy.filter((char) =>
-          activeElements.includes(char.element)
-        );
-      }
-
-      // Filtrer par voie
-      const activePaths = Object.entries(filterList.path)
-        .filter(([_, isActive]) => isActive)
-        .map(([path]) => path);
-
-      if (activePaths.length > 0) {
-        charactersSearchCopy = charactersSearchCopy.filter((char) =>
-          activePaths.includes(char.path)
-        );
-      }
-
-      // Appliquer le tri
-      if (!sortArrival) {
-        // Trie par ordre alphabetique
-        charactersSearchCopy.sort((a, b) => {
-          const nameA = a.name.toLowerCase();
-          const nameB = b.name.toLowerCase();
-          if (nameA < nameB) {
-            return -1;
-          }
-          if (nameA > nameB) {
-            return 1;
-          }
-          return 0;
-        });
-      }
-      if (descentOrder) charactersSearchCopy.reverse();
-
-      setCharactersSearch(charactersSearchCopy);
+    // Filtrer par rareté
+    if (filterList.rarity.star4 || filterList.rarity.star5) {
+      charactersSearchCopy = charactersSearchCopy.filter((char) => {
+        if (filterList.rarity.star4 && char.rarity === "4") {
+          return true;
+        }
+        if (filterList.rarity.star5 && char.rarity === "5") {
+          return true;
+        }
+        return false; // Exclure ceux qui ne correspondent pas
+      });
     }
-  }, [
-    descentOrder,
-    searchInput,
-    sortArrival,
-    lang,
-    filterList,
-    characterList.current,
-  ]);
+
+    // Filtrer par élément
+    const activeElements = Object.entries(filterList.element)
+      .filter(([_, isActive]) => isActive)
+      .map(([element]) => element);
+
+    if (activeElements.length > 0) {
+      charactersSearchCopy = charactersSearchCopy.filter((char) =>
+        activeElements.includes(char.element)
+      );
+    }
+
+    // Filtrer par voie
+    const activePaths = Object.entries(filterList.path)
+      .filter(([_, isActive]) => isActive)
+      .map(([path]) => path);
+
+    if (activePaths.length > 0) {
+      charactersSearchCopy = charactersSearchCopy.filter((char) =>
+        activePaths.includes(char.path)
+      );
+    }
+
+    // Appliquer le tri
+    if (!sortArrival) {
+      // Trie par ordre alphabetique
+      charactersSearchCopy.sort((a, b) => {
+        const nameA = a.name.toLowerCase();
+        const nameB = b.name.toLowerCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+    if (descentOrder) charactersSearchCopy.reverse();
+
+    return charactersSearchCopy;
+  };
+
+  useEffect(() => {
+    if (characterList.current) {
+      setCharactersSearch(sortCharacters(characterList.current));
+    }
+  }, [descentOrder, searchInput, sortArrival, lang, filterList]);
 
   const handleRarity = (rarity: "star4" | "star5") => {
     const newData = {
