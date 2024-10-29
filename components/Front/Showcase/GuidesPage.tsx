@@ -149,7 +149,14 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
 
       setCharactersSearch(charactersSearchCopy);
     }
-  }, [descentOrder, searchInput, sortArrival, lang, filterList]);
+  }, [
+    descentOrder,
+    searchInput,
+    sortArrival,
+    lang,
+    filterList,
+    characterList.current,
+  ]);
 
   const handleRarity = (rarity: "star4" | "star5") => {
     const newData = {
