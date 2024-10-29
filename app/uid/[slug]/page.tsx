@@ -95,11 +95,13 @@ export async function generateMetadata({
   };
 }
 
+const toArray = (object: Object) => Object.values(object).map((item) => item);
+
 const sharedUID: string[] = [];
-function isAllreadyShared(uid: string) {
+const isAllreadyShared = (uid: string) => {
   if (sharedUID.includes(uid)) return true;
   return false;
-}
+};
 
 // Remise à zéro de la liste des UID partagés toutes les 30 minutes
 setInterval(() => {
@@ -132,7 +134,6 @@ export default async function Page({
     getData(`${process.env.WWW}/api/changelog/all`, 18000, false),
   ]);
 
-  const toArray = (object: Object) => Object.values(object).map((item) => item);
   const statsTranslate =
     lang === "en" ? toArray(propertiesEN) : toArray(propertiesFR);
   const relicsSetTranslate =
@@ -147,7 +148,44 @@ export default async function Page({
     return <div className="text-center mt-10">Chargement en cours ...</div>;
   }
 
-  if (jsonUid.status === 504) {
+  try {
+    if (jsonUid.status === 504) {
+      return (
+        <>
+          <UidPage
+            jsonUid={{ status: 200 }}
+            jsonReview={resReview}
+            statsTranslate={statsTranslate}
+            relicsSetTranslate={relicsSetTranslate}
+            lightconesTranslate={lightconesTranslate}
+            RelicsList={relicsList}
+            eidolonsList={eidolonsList}
+            lang={lang}
+            changelog={changelog}
+            error504
+          />
+          <Footer lang={lang} />
+        </>
+      );
+    }
+
+    return (
+      <>
+        <UidPage
+          jsonUid={jsonUid}
+          jsonReview={resReview}
+          statsTranslate={statsTranslate}
+          relicsSetTranslate={relicsSetTranslate}
+          lightconesTranslate={lightconesTranslate}
+          RelicsList={relicsList}
+          eidolonsList={eidolonsList}
+          changelog={changelog}
+          lang={lang}
+        />
+        <Footer lang={lang} />
+      </>
+    );
+  } catch (err) {
     return (
       <>
         <UidPage
@@ -166,21 +204,4 @@ export default async function Page({
       </>
     );
   }
-
-  return (
-    <>
-      <UidPage
-        jsonUid={jsonUid}
-        jsonReview={resReview}
-        statsTranslate={statsTranslate}
-        relicsSetTranslate={relicsSetTranslate}
-        lightconesTranslate={lightconesTranslate}
-        RelicsList={relicsList}
-        eidolonsList={eidolonsList}
-        changelog={changelog}
-        lang={lang}
-      />
-      <Footer lang={lang} />
-    </>
-  );
 }
