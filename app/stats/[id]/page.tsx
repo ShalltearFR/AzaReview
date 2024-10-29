@@ -77,11 +77,7 @@ export async function generateMetadata({
   params: Promise<{ id: number }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const characterList = await getData(
-    `${CDN}/index_min/fr/characters.json`,
-    18000,
-    true
-  );
+  const characterList = toArray(charactersFR);
   const character = characterList.find((character: any) => character.id === id);
 
   if (character && character.name) {
