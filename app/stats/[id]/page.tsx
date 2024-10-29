@@ -9,6 +9,14 @@ import { StatsTranslate } from "@/utils/statsDictionnary";
 import { CharacterStats as CharacterStatsType } from "@/types/CharacterStats";
 import StatsPage from "@/components/Front/Stats/StatsPage";
 import Footer from "@/components/Front/UID/Footer";
+import charactersFR from "@/static/charactersFR.json";
+import charactersEN from "@/static/charactersEN.json";
+import relic_setsFR from "@/static/relic_setsFR.json";
+import relic_setsEN from "@/static/relic_setsEN.json";
+import light_conesFR from "@/static/light_conesFR.json";
+import light_conesEN from "@/static/light_conesEN.json";
+
+const toArray = (object: Object) => Object.values(object).map((item) => item);
 
 export default async function StatsID({
   params,
@@ -24,11 +32,12 @@ export default async function StatsID({
     3600
   );
 
-  const [characterList, relicsList, lightConesList] = await Promise.all([
-    getData(`${CDN}/index_min/${lang || "fr"}/characters.json`, 18000, true),
-    getData(`${CDN}/index_min/${lang || "fr"}/relic_sets.json`, 18000, true),
-    getData(`${CDN}/index_min/${lang || "fr"}/light_cones.json`, 18000, true),
-  ]);
+  const characterList =
+    lang === "en" ? toArray(charactersEN) : toArray(charactersFR);
+  const relicsList =
+    lang === "en" ? toArray(relic_setsEN) : toArray(relic_setsFR);
+  const lightConesList =
+    lang === "en" ? toArray(light_conesEN) : toArray(light_conesFR);
 
   const character = characterList.find((character: any) => character.id === id);
 

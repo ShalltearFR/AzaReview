@@ -3,6 +3,14 @@ import { TranslateSection } from "@/types/homepageDictionnary";
 import { CDN } from "@/utils/cdn";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
+import relic_setsFR from "@/static/relic_setsFR.json";
+import relic_setsEN from "@/static/relic_setsEN.json";
+import light_conesFR from "@/static/light_conesFR.json";
+import light_conesEN from "@/static/light_conesEN.json";
+import light_cone_ranksFR from "@/static/light_cone_ranksFR.json";
+import light_cone_ranksEN from "@/static/light_cone_ranksEN.json";
+import propertiesEN from "@/static/propertiesEN.json";
+import propertiesFR from "@/static/propertiesFR.json";
 
 const getData = async (
   url: string,
@@ -60,36 +68,28 @@ export async function generateMetadata({
   };
 }
 
+const toArray = (object: Object) => Object.values(object).map((item) => item);
+
 const GuideID = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   const cookieStore = await cookies();
   const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
 
   try {
-    const [lightcones, lightconesRanks, relicsSet, properties, character] =
-      await Promise.all([
-        getData(
-          `${CDN}/index_min/${lang || "fr"}/light_cones.json`,
-          18000,
-          true
-        ),
-        getData(
-          `${CDN}/index_min/${lang || "fr"}/light_cone_ranks.json`,
-          18000,
-          true
-        ),
-        getData(
-          `${CDN}/index_min/${lang || "fr"}/relic_sets.json`,
-          18000,
-          true
-        ),
-        getData(
-          `${CDN}/index_min/${lang || "fr"}/properties.json`,
-          18000,
-          true
-        ),
-        getData(`${process.env.WWW}/api/character/${id}`, 5, false),
-      ]);
+    const character = await getData(
+      `${process.env.WWW}/api/character/${id}`,
+      300,
+      false
+    );
+
+    const lightcones =
+      lang === "en" ? toArray(light_conesEN) : toArray(light_conesFR);
+    const relicsSet =
+      lang === "en" ? toArray(relic_setsEN) : toArray(relic_setsFR);
+    const properties =
+      lang === "en" ? toArray(propertiesEN) : toArray(propertiesFR);
+    const lightconesRanks =
+      lang === "en" ? toArray(light_cone_ranksEN) : toArray(light_cone_ranksFR);
 
     if (lightcones && relicsSet && properties && lightconesRanks) {
       return (
