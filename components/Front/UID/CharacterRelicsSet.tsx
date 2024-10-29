@@ -2,7 +2,6 @@ import { CDN } from "@/utils/cdn";
 import { RelicSet } from "@/types/jsonUid";
 import { RelicsSet } from "@/types/CharacterModel";
 import { useEffect, useState } from "react";
-import relicsSetList from "@/utils/relicsSetList";
 import { UIDtitles } from "@/utils/dictionnary";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
@@ -14,12 +13,6 @@ interface CharacterRelicsSetProps {
   lang: keyof TranslateSection | undefined;
   showRedstats: boolean;
   showInformations: boolean;
-}
-
-interface AsOrnamentState {
-  isGood: boolean;
-  asAnOrnamant: boolean;
-  relicsNumber?: Array<any>;
 }
 
 const processRelicSets = (relics: RelicSet[]) => {
@@ -50,10 +43,6 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
   const [colorExclamation, setColorExclamation] = useState<boolean>();
   const [colorRelics, setColorRelics] = useState<string[]>([]);
   const [relics2pAlt, setRelics2pAlt] = useState<any[]>([]);
-  const [asOrnament, setAsOrnament] = useState<AsOrnamentState>({
-    isGood: true,
-    asAnOrnamant: true,
-  });
 
   useEffect(() => {
     const verifyRelicSet = () => {
@@ -72,42 +61,6 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
           }
         );
         setColorRelics(setColors);
-
-        const ornamentsList = relicsSetList.filter(
-          (relicCondition) => relicCondition.isOrnamant === true
-        );
-
-        const asGoodOrnament = finalPossessedRelicSets
-          .map((relicPossessed) => {
-            const corresponding = ornamentsList.some(
-              (ornamant) =>
-                ornamant.id === relicPossessed.id &&
-                review.find(
-                  (reviewRelic) => reviewRelic.id === relicPossessed.id
-                )
-            );
-            return corresponding;
-          })
-          .some((el) => el === true);
-
-        const asAnOrnamant = finalPossessedRelicSets
-          .map((relicPossessed) => {
-            const corresponding = ornamentsList.some(
-              (ornamant) => ornamant.id === relicPossessed.id
-            );
-            return corresponding;
-          })
-          .some((el) => el === true);
-
-        const numberOfRelicsEquiped = finalPossessedRelicSets.map(
-          (equipedRelic) => equipedRelic.num
-        );
-
-        setAsOrnament({
-          isGood: asGoodOrnament,
-          asAnOrnamant: asAnOrnamant,
-          relicsNumber: numberOfRelicsEquiped,
-        });
 
         const reviewRecommended = review.filter(
           (reviewEl) => reviewEl.recommended
@@ -173,6 +126,10 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
       return text;
     }
   };
+
+  const ornamantsAltList = relics2pAlt.filter(
+    (relicAlt: any) => Number(relicAlt.id) > 300
+  );
 
   return (
     <div>
@@ -244,66 +201,6 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
               if (i === 0) array = [true, false, false];
               if (i === 1) array = [false, true, false];
               if (i === 2) array = [false, false, true];
-
-              let relicsMap: any[] = [];
-              let description = "";
-
-              if (relics2pAlt.length > 0) {
-                const ornamantsList = relicsSetList
-                  .filter((el) => el.isOrnamant === true)
-                  .map((el) => el.id);
-                const relicsList = relicsSetList
-                  .filter((el) => el.isOrnamant === false)
-                  .map((el) => el.id);
-
-                const ornamantsAltList = relics2pAlt.filter((relicAlt: any) =>
-                  ornamantsList.includes(relicAlt.id)
-                );
-
-                const relicsAltList = relics2pAlt.filter((relicAlt: any) =>
-                  relicsList.includes(relicAlt.id)
-                );
-
-                if (i === 2) {
-                  relicsMap = ornamantsAltList;
-                  description = UIDtitles[lang ?? "fr"].PossibleOrnaments;
-                } else if (
-                  i === 1 &&
-                  asOrnament.relicsNumber &&
-                  asOrnament.relicsNumber[0] === 4 &&
-                  asOrnament.isGood
-                ) {
-                  relicsMap = ornamantsAltList;
-                  description = UIDtitles[lang ?? "fr"].PossibleOrnaments;
-                } else if (
-                  i === 1 &&
-                  asOrnament.relicsNumber &&
-                  asOrnament.relicsNumber[0] === 4
-                ) {
-                  relicsMap = ornamantsAltList;
-                  description = UIDtitles[lang ?? "fr"].PossibleOrnaments;
-                } else if (
-                  i === 0 &&
-                  asOrnament.relicsNumber &&
-                  asOrnament.relicsNumber[0] === 2 &&
-                  asOrnament.asAnOrnamant === true &&
-                  finalPossessedRelicSets.length === 2
-                ) {
-                  relicsMap = ornamantsAltList;
-                  description = UIDtitles[lang ?? "fr"].PossibleOrnaments;
-                } else if (
-                  i === 1 &&
-                  asOrnament.asAnOrnamant === true &&
-                  finalPossessedRelicSets.length === 2
-                ) {
-                  relicsMap = ornamantsAltList;
-                  description = UIDtitles[lang ?? "fr"].PossibleOrnaments;
-                } else {
-                  relicsMap = relicsAltList;
-                  description = UIDtitles[lang ?? "fr"].PossibleRelics;
-                }
-              }
-
               return (
                 <div
                   key={`RelicSet${colorRelics[i]}+${i}`}
@@ -311,20 +208,31 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                   onMouseEnter={() => setIsTooltipSet(array)}
                   onMouseLeave={() => setIsTooltipSet([false, false, false])}
                 >
-                  {relicsMap.length > 0 && colorRelics[i] === "text-red" && (
+                  {colorRelics[i] === "text-red" && (
                     <div
                       className={`absolute z-10 p-2 -left-14 top-5 bg-background rounded-xl w-60 text-white flex flex-col ${
                         isTooltipSet[i] ? "block" : "hidden"
                       }`}
                     >
-                      <p className="text-left">{description}</p>
+                      <p className="text-left">
+                        {Number(relic.id) > 300
+                          ? UIDtitles[lang ?? "fr"].PossibleOrnaments
+                          : UIDtitles[lang ?? "fr"].PossibleRelics}
+                      </p>
                       <ul className="text-left list-outside font-normal">
-                        {relicsMap.map((relicAlt: any) => (
-                          <li key={relicAlt.id}>
-                            <strong>2P -</strong>{" "}
-                            <span className="italic">{relicAlt.name}</span>
-                          </li>
-                        ))}
+                        {Number(relic.id) > 300
+                          ? ornamantsAltList.map((relicAlt: any) => (
+                              <li key={relicAlt.id}>
+                                <strong>2P -</strong>{" "}
+                                <span className="italic">{relicAlt.name}</span>
+                              </li>
+                            ))
+                          : relics2pAlt.map((relicAlt: any) => (
+                              <li key={relicAlt.id}>
+                                <strong>2P -</strong>{" "}
+                                <span className="italic">{relicAlt.name}</span>
+                              </li>
+                            ))}
                       </ul>
                     </div>
                   )}
