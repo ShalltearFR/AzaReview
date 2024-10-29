@@ -1,2 +1,2 @@
-node prebuild.js
-pause
+@echo off
+node updateVersion.js
