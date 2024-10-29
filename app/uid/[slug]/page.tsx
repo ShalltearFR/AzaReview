@@ -31,9 +31,15 @@ async function getDataUid(uid: number, lang: string | undefined) {
   const data = await fetch(
     `https://api.mihomo.me/sr_info_parsed/${uid}?lang=${lang ?? "fr"}`,
     {
+      headers: {
+        "User-Agent": "https://review-hsr.vercel.app",
+        Host: "api.mihomo.me",
+      },
       next: { revalidate: 300 },
     }
   );
+
+  console.log(data);
 
   const jsonData = await data.json();
   // const status = 504; // Simule une erreur 504 pour les tests
