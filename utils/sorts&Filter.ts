@@ -1,5 +1,4 @@
 import { jsonUID } from "@/types/jsonUid";
-import relicsSetList from "@/utils/relicsSetList";
 
 interface itemsProps {
   id: string;
@@ -73,14 +72,14 @@ const filterLightconeID = (items: itemsProps[]) => {
 };
 
 // Sépare les reliques et ornements
-const separateRelics = (items: itemsProps[], isOrnament: boolean) => {
-  const filteredItems = [...items].filter((item) =>
-    relicsSetList.find(
-      (relic) => relic.isOrnamant === isOrnament && item.id === relic.id
-    )
-  );
-  return filteredItems;
-};
+// const separateRelics = (items: itemsProps[], isOrnament: boolean) => {
+//   const filteredItems = [...items].filter((item) =>
+//     relicsSetList.find(
+//       (relic) => relic.isOrnamant === isOrnament && item.id === relic.id
+//     )
+//   );
+//   return filteredItems;
+// };
 
 // Evite les doublon d'id sur les relics
 // Si 2P et 4P sur meme ID, renomage de num à 2.4 pour indiquer 2P et 4P
@@ -105,6 +104,5 @@ export {
   sortReviewDataByUidData,
   sortRelics,
   filterLightconeID,
-  separateRelics,
   filterRelicID,
 };

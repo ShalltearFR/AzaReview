@@ -5,11 +5,7 @@ import ItemShow from "./ItemShow";
 import MainStats from "./MainStats";
 import { findLabel, findLabelEN } from "@/utils/statsOption";
 import { TranslateSection } from "@/types/homepageDictionnary";
-import {
-  filterLightconeID,
-  filterRelicID,
-  separateRelics,
-} from "@/utils/sorts&Filter";
+import { filterLightconeID, filterRelicID } from "@/utils/sorts&Filter";
 import { UIDtitles } from "@/utils/dictionnary";
 
 interface BuildShowProps {
@@ -48,8 +44,8 @@ const BuildShow: React.FC<BuildShowProps> = ({
   const lightConeFilter = filterLightconeID(build.lightCones);
   const relicsSetFilter = filterRelicID(build.relics_set);
 
-  const relicsFilter = separateRelics(relicsSetFilter, false);
-  const ornamentsFilter = separateRelics(relicsSetFilter, true);
+  // const relicsFilter = separateRelics(relicsSetFilter, false);
+  // const ornamentsFilter = separateRelics(relicsSetFilter, true);
 
   const getMainStats = (piece: string) => {
     const result = build?.main_stats
@@ -204,31 +200,37 @@ const BuildShow: React.FC<BuildShowProps> = ({
             </p>
             <div className="flex flex-col gap-5">
               <div className="flex flex-wrap gap-5 justify-center">
-                {relicsFilter.map((relic) => {
-                  return (
-                    <div key={crypto.randomUUID()}>
-                      <ItemShow
-                        type={relicsSet}
-                        id={relic.id}
-                        className="h-36 w-36"
-                        relicSet={relic}
-                      />
-                    </div>
-                  );
+                {relicsSetFilter.map((relic) => {
+                  if (Number(relic.id) < 300) {
+                    return (
+                      <div key={crypto.randomUUID()}>
+                        <ItemShow
+                          type={relicsSet}
+                          id={relic.id}
+                          className="h-36 w-36"
+                          relicSet={relic}
+                        />
+                      </div>
+                    );
+                  }
+                  return null;
                 })}
               </div>
               <div className="flex flex-wrap gap-5 justify-center">
-                {ornamentsFilter.map((relic) => {
-                  return (
-                    <div key={crypto.randomUUID()}>
-                      <ItemShow
-                        type={relicsSet}
-                        id={relic.id}
-                        className="h-36 w-36"
-                        relicSet={relic}
-                      />
-                    </div>
-                  );
+                {relicsSetFilter.map((relic) => {
+                  if (Number(relic.id) > 300) {
+                    return (
+                      <div key={crypto.randomUUID()}>
+                        <ItemShow
+                          type={relicsSet}
+                          id={relic.id}
+                          className="h-36 w-36"
+                          relicSet={relic}
+                        />
+                      </div>
+                    );
+                  }
+                  return null;
                 })}
               </div>
             </div>
