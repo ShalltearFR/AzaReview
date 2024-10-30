@@ -10,10 +10,7 @@ export async function GET(
   const id = (await params).id;
   try {
     const cachedData = cacheData.get(`character${id}`);
-    if (cachedData) {
-      console.log("Cached data found");
-      return NextResponse.json(cachedData, { status: 200 });
-    }
+    if (cachedData) return NextResponse.json(cachedData, { status: 200 });
 
     await dbConnect();
     const data = await Character.findOne({ id }).lean().select("-__v -_id");

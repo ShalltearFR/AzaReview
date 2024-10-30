@@ -9,10 +9,8 @@ export async function GET(
 ) {
   const id = (await params).id;
   const cachedData: string | undefined = cacheData.get(`share${id}`);
-  if (cachedData) {
-    console.log("Cached data found");
+  if (cachedData)
     return NextResponse.json(JSON.parse(cachedData), { status: 200 });
-  }
 
   try {
     await dbConnect();

@@ -51,7 +51,6 @@ const TopRelics: React.FC<TopRelicsProps> = ({
           </h2>
           <div className="flex flex-wrap justify-center items-center gap-5 mt-5">
             {top_Relics.relics.map((relic) => {
-              console.log("relic", relic);
               const relicInfo = relicsList.find(
                 (info: any) => info.id === relic.id
               );

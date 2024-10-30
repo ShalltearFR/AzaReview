@@ -21,7 +21,6 @@ export async function PUT(req: Request) {
     return Other.findByIdAndUpdate("65f75a148f887c7586670036", {
       ...json.data,
     }).then((data: any) => {
-      console.log("mis a jour other", data);
       return NextResponse.json({ message: "ok" }, { status: 200 });
     });
   } catch (error) {

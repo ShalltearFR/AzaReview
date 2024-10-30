@@ -49,7 +49,6 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
 
     if (!dataDB) {
       await CharacterStats.create({ id: dataCopy.id });
-      console.log(`CharacterStats créée : ${dataCopy.name}`);
       return;
     }
 
@@ -139,7 +138,6 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
 
     const uidExists = dataToPush.data.some((item: any) => item.uid === uid);
     if (uidExists) {
-      console.log("Personnage déjà partagé");
       const index = dataToPush.data.findIndex((item) => item.uid === uid);
       const updatedData = updateProperties(dataToPush, newData, index);
 
@@ -147,7 +145,6 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
         JSON.stringify(updatedData.data[index].properties) !==
         JSON.stringify(dataDB.data[index].properties)
       ) {
-        console.log("Mise à jour du personnage");
         await CharacterStats.findOneAndUpdate(
           { id: dataCopy.id },
           { data: updatedData.data },
@@ -163,8 +160,6 @@ const shareCharacterStats = async (data: CharacterType, uid: string) => {
       { data: dataToPush.data },
       { new: true }
     );
-
-    console.log("Personnage ajouté");
   } catch (error) {
     console.error("Erreur de récupération d'infos de personnages :", error);
   }

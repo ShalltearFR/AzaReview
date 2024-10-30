@@ -88,8 +88,6 @@ const CharacterList: React.FC = () => {
     const allCharactersData = await getAllCharacters();
     const dataBaseCharactersData = await getDataBaseCharacters();
 
-    //console.log("allCharactersData", allCharactersData);
-
     allCharactersRef.current = allCharactersData;
     setCharactersSearch(dataBaseCharactersData);
     dataBaseCharactersRef.current = dataBaseCharactersData;
@@ -98,12 +96,10 @@ const CharacterList: React.FC = () => {
 
   useEffect(() => {
     init();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     getCharactersOptions();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allCharactersRef.current, dataBaseCharactersRef.current]);
 
   const addCharacterToDB = (
