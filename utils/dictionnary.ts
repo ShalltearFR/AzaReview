@@ -201,8 +201,8 @@ const UIDtitles: TitlesByLanguage = {
     Recommended: "Recommandé :",
     emptyCone: "Aucun cône equipé",
     emptyRelicSet: "Pas de set équipé",
-    PossibleOrnaments: "Ornements possibles :",
-    PossibleRelics: "Reliques possibles :",
+    PossibleOrnaments: "Ornements possibles",
+    PossibleRelics: "Reliques possibles",
     NoCompletlyRelics1: "Relique(s) ou Ornement(s) manquant(s)",
     NoCompletlyRelics2:
       "Veuillez équiper [color=#FFCD6C]6 pièces[/color] pour aligner les Astres",
@@ -245,8 +245,8 @@ const UIDtitles: TitlesByLanguage = {
     Recommended: "Recommended :",
     emptyCone: "No cone equipped",
     emptyRelicSet: "No set equipped",
-    PossibleOrnaments: "Possible ornaments :",
-    PossibleRelics: "Possible relics :",
+    PossibleOrnaments: "Possible ornaments",
+    PossibleRelics: "Possible relics",
     NoCompletlyRelics1: "Missing relic(s) or ornament(s)",
     NoCompletlyRelics2:
       "Please equip [color=#FFCD6C]6 pieces[/color] to align the Stars",

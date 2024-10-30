@@ -74,7 +74,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
         return (
           <li
             className="ml-7"
-            key={`${characterReview?.buildName}+${i}+${piece}`}
+            key={`${characterReview?.buildName}+${i}+${piece}+${character.id}`}
           >
             {translated.name}
           </li>
@@ -110,8 +110,11 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           <div className="flex gap-x-3 justify-center">
             {tracesNames.map((type, i) => {
               return (
-                <div key={`CharacterTraces${i}+${index}+${buildIndex}+${lang}`}>
+                <div
+                  key={`CharacterTraces${i}+${index}+${buildIndex}+${lang}+${character.id}`}
+                >
                   <CharacterTrace
+                    characterID={character.id}
                     id={character.skills[i].id}
                     type={type}
                     img={`/${character.skills[i].icon}`}
@@ -155,7 +158,9 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
               "sp_rate",
             ].map((field, i) => {
               return (
-                <div key={`CharacterStat${i}+${index}+${buildIndex}`}>
+                <div
+                  key={`CharacterStat${i}+${index}+${buildIndex}+${character.id}`}
+                >
                   <CharacterStat
                     attributes={character.attributes}
                     additions={character.additions}
@@ -204,6 +209,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
 
           <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-4">
             <CharacterRelicsSet
+              characterid={character.id}
               relics={character.relic_sets || "none"}
               lang={lang}
               relicsSetTranslate={relicsSetTranslate}
@@ -217,7 +223,10 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           {characterRelics.length === 6 ? (
             characterRelics.map((relic, i) => {
               return (
-                <div key={crypto.randomUUID()} className="flex items-center">
+                <div
+                  key={`${relic.id}+${i}+${character.id}`}
+                  className="flex items-center"
+                >
                   <CharacterRelic
                     stats={relic}
                     equipmentIndex={i}

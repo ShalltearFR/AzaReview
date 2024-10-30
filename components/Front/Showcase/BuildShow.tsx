@@ -55,7 +55,10 @@ const BuildShow: React.FC<BuildShowProps> = ({
           (stat: any) => stat.type === el.type
         );
         return (
-          <li className="ml-7" key={`${build.buildName}+${i}+${piece}`}>
+          <li
+            className="ml-7"
+            key={`li${build.buildName}+${i}+${piece}+${characterID}`}
+          >
             {translated.name}
           </li>
         );
@@ -90,7 +93,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
               {lightConeFilter.map((lightcone) => {
                 if (!lightcone.recommended)
                   return (
-                    <div key={crypto.randomUUID()}>
+                    <div key={`recommendedCone+${lightcone.id}+${characterID}`}>
                       <ItemShow
                         type={lightCones}
                         id={lightcone.id}
@@ -112,7 +115,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
               {lightConeFilter.map((lightcone) => {
                 if (lightcone.recommended)
                   return (
-                    <div key={crypto.randomUUID()}>
+                    <div key={`recommendeF2P+${lightcone.id}+${characterID}`}>
                       <ItemShow
                         type={lightCones}
                         id={lightcone.id}
@@ -180,7 +183,9 @@ const BuildShow: React.FC<BuildShowProps> = ({
               {build.relics_set.map((relic) => {
                 if (relic.recommended)
                   return (
-                    <div key={crypto.randomUUID()}>
+                    <div
+                      key={`recommendedOrnaments+${relic.id}+${characterID}`}
+                    >
                       <ItemShow
                         type={relicsSet}
                         id={relic.id}
@@ -203,7 +208,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
                 {relicsSetFilter.map((relic) => {
                   if (Number(relic.id) < 300) {
                     return (
-                      <div key={crypto.randomUUID()}>
+                      <div key={`relicsSet+${relic.id}+${characterID}`}>
                         <ItemShow
                           type={relicsSet}
                           id={relic.id}
@@ -220,7 +225,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
                 {relicsSetFilter.map((relic) => {
                   if (Number(relic.id) > 300) {
                     return (
-                      <div key={crypto.randomUUID()}>
+                      <div key={`ornaments+${relic.id}+${characterID}`}>
                         <ItemShow
                           type={relicsSet}
                           id={relic.id}
@@ -246,7 +251,10 @@ const BuildShow: React.FC<BuildShowProps> = ({
         <div className="flex flex-col justify-center text-start">
           <ul className="list-disc mx-auto">
             {recommendedStatsFilter.map((stat) => (
-              <li className="ml-5" key={crypto.randomUUID()}>
+              <li
+                className="ml-5"
+                key={`recommendedStat${build.buildName}+${stat.type}+${characterID}`}
+              >
                 <span>
                   {lang === "en"
                     ? findLabelEN(stat.type)

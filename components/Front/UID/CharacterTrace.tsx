@@ -4,6 +4,7 @@ import { splitAndKeepDelimiters } from "@/utils/format";
 import { useEffect, useState } from "react";
 
 interface CharacterTraceProps {
+  characterID: string;
   id: string;
   type: string;
   level: number;
@@ -13,6 +14,7 @@ interface CharacterTraceProps {
 }
 
 const CharacterTrace: React.FC<CharacterTraceProps> = ({
+  characterID,
   id,
   level,
   img,
@@ -41,7 +43,7 @@ const CharacterTrace: React.FC<CharacterTraceProps> = ({
       >
         <p className="font-bold">{name}</p>
         {descArray.map((desc: string) => (
-          <p key={crypto.randomUUID()}>{desc}</p>
+          <p key={`traceDesc+${id}+${desc}+${characterID}`}>{desc}</p>
         ))}
       </div>
 
