@@ -51,8 +51,6 @@ const AddSelect: React.FC<AddSelectProps> = ({
   const [image, setImage] = useState<string>("");
   const [options, setOptions] = useState<Option[]>();
 
-  // const [defaultValue, setDefaultValue] = useState<Option>();
-
   useEffect(() => {
     if (type === "lightCone") {
       const cone = light_conesFR.find((cone) => cone.id === value?.id);
@@ -62,7 +60,7 @@ const AddSelect: React.FC<AddSelectProps> = ({
       const relic = relic_setsFR.find((relic) => relic.id === value?.id);
       setImage(relic?.icon ?? "");
     }
-  }, [value, options]);
+  }, [value]);
 
   useEffect(() => {
     if (type === "lightCone") {

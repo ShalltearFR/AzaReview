@@ -10,6 +10,7 @@ interface LightConeOption {
   recommended: boolean;
   label: string;
   id: string;
+  uid?: string;
 }
 
 interface RelicSetOption {
@@ -18,6 +19,7 @@ interface RelicSetOption {
   label: string;
   num: number;
   id: string;
+  uid?: string;
 }
 
 interface MainStatsOption {

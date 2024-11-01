@@ -122,7 +122,6 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
                     "mainStat"
                   );
 
-                  console.log("labelType", labelType);
                   return {
                     typeStat: {
                       label: labelType,
