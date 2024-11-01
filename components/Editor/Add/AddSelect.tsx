@@ -4,7 +4,11 @@ import Select, { SingleValue } from "react-select";
 import { CDN } from "@/utils/cdn";
 import light_conesFR from "@/static/light_conesFR.json";
 import relic_setsFR from "@/static/relic_setsFR.json";
-import { mainStatOptions, equipments } from "@/utils/statsOption";
+import {
+  mainStatOptions,
+  equipments,
+  recommendedStatsOptions,
+} from "@/utils/statsOption";
 
 interface Option {
   value: string;
@@ -19,7 +23,8 @@ interface AddSelectProps {
     | "num"
     | "typeStat"
     | "equipments"
-    | "ormanentSet";
+    | "ormanentSet"
+    | "recommendedStats";
   value: Option | null;
   index: number;
   recommended?: boolean;
@@ -118,9 +123,6 @@ const AddSelect: React.FC<AddSelectProps> = ({
         label: el.label,
       }));
       setOptions(options);
-
-      // console.log(`options`, options);
-      // console.log(`value ${type}`, value);
     }
     if (type === "equipments") {
       const options = equipments.map((el) => ({
@@ -129,13 +131,14 @@ const AddSelect: React.FC<AddSelectProps> = ({
       }));
       setOptions(options);
     }
+    if (type === "recommendedStats") {
+      const options = recommendedStatsOptions.map((el) => ({
+        value: el.value,
+        label: el.label,
+      }));
+      setOptions(options);
+    }
   }, []);
-
-  // useEffect(() => {
-  //   setDefaultValue(
-  //     value ?? { value: "dzdz", label: "dzdzdzzzzz", id: "uuyuyuy" }
-  //   );
-  // }, [value]);
 
   return (
     <label
