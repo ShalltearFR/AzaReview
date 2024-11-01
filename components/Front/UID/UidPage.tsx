@@ -289,11 +289,16 @@ const UidPage: React.FC<UidPageProps> = ({
           <div className="relative">
             <section data-aos="fade-down">
               <CharacterList
+                charactersReview={review}
+                characterID={
+                  (uidData as jsonUID).characters[characterIndex]?.id
+                }
                 uidData={uidData as jsonUID}
                 setIndex={setCharacterIndex}
                 index={characterIndex}
                 lang={lang}
               />
+
               <div
                 className={
                   "grid xl:grid-cols-[390px_1fr] justify-center items-center text-white font-bold xl:rounded-t-xl bg-light-blue/75 w-full max-w-[1450px] mx-auto xl:gap-x-5 py-5"

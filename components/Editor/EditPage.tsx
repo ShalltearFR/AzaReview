@@ -341,6 +341,8 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
     );
   }
 
+  const date = new Date(characterData.updatedAt);
+
   return (
     <>
       <div className="fixed flex -z-10 justify-center w-screen">
@@ -350,19 +352,22 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
         />
       </div>
       <div className="relative">
+        <p className="flex gap-2 absolute right-5 top-3 items-center text-xl text-light-gray italic">
+          Dernière modification : {date.toLocaleDateString()}
+        </p>
+        <div className="text-center text-5xl font-bold my-5 text-white">
+          {characterData.name}
+        </div>
         <button
-          className="flex gap-2 font-bold absolute p-2 rounded-full right-5 bg-green"
+          className="flex gap-2 font-bold absolute p-2 rounded-full right-5 bg-green "
           onClick={addBuild}
         >
           Ajouter un build
           <PlusIcon className="h-6" />
         </button>
-        <div className="text-white text-center text-5xl font-bold my-5">
-          {characterData.name}
-        </div>
       </div>
 
-      <div className="flex flex-col gap-y-28">
+      <div className="flex flex-col gap-y-28 mt-20">
         {dataAfterLoading &&
           dataAfterLoading.map((singleData: Data, index: number) => (
             <div key={`globalBuild${index}`}>

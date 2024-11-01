@@ -177,6 +177,7 @@ interface Titles {
   HoyoCopyright: string;
   ENtranslate: string;
   CharacterSearch: string;
+  lastUpdate: string;
 }
 
 const UIDtitles: TitlesByLanguage = {
@@ -223,6 +224,7 @@ const UIDtitles: TitlesByLanguage = {
       "Ce site n'est pas affilié à Hoyoverse et tous les contenus et actifs du jeu sont des marques déposées et des droits d'auteur de Hoyoverse.",
     ENtranslate: `Traduction anglaise par `,
     CharacterSearch: "Rechercher un personnage",
+    lastUpdate: "Dernière mise à jour : ",
   },
   en: {
     stat: "Recommended Statistics",
@@ -267,6 +269,7 @@ const UIDtitles: TitlesByLanguage = {
       "This site is not affiliated with Hoyoverse and all game content and assets are trademarks and copyrights of Hoyoverse.",
     ENtranslate: "English translation by ",
     CharacterSearch: "Character search",
+    lastUpdate: "Last update : ",
   },
 };
 

@@ -44,9 +44,6 @@ const BuildShow: React.FC<BuildShowProps> = ({
   const lightConeFilter = filterLightconeID(build.lightCones);
   const relicsSetFilter = filterRelicID(build.relics_set);
 
-  // const relicsFilter = separateRelics(relicsSetFilter, false);
-  // const ornamentsFilter = separateRelics(relicsSetFilter, true);
-
   const getMainStats = (piece: string) => {
     const result = build?.main_stats
       .filter((el: any) => el.piece === piece)

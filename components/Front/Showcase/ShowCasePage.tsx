@@ -11,6 +11,7 @@ import { replaceCharacterName } from "@/utils/PioneerType";
 import StarBGAnimation from "../StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
 import { TranslateSection } from "@/types/homepageDictionnary";
+import { UIDtitles } from "@/utils/dictionnary";
 
 interface ShowCasePageProps {
   character: CharacterType | undefined | { error: true };
@@ -57,7 +58,8 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
     lightCones &&
     relicsSet &&
     properties
-  )
+  ) {
+    const date = new Date(character.updatedAt);
     return (
       <>
         <NavBar />
@@ -72,6 +74,9 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
           <p className="font-bold text-4xl text-center mt-10">
             {/* Adapte le nom du personnage, */}
             {characterName}
+          </p>
+          <p className="text-right mr-3 mmd:absolute mmd:right-3 mmd:top-3 mmd:mr-0">
+            {UIDtitles[lang ?? "fr"].lastUpdate} {date.toLocaleDateString()}
           </p>
           <section className="flex flex-col gap-y-10 mt-10">
             {character.data.map((build: Data, i: number) => (
@@ -96,6 +101,7 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
         <Footer lang={lang} />
       </>
     );
+  }
 
   return (
     <>

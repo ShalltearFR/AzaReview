@@ -81,6 +81,7 @@ type CharacterType = {
   rarity: string;
   data: Data[];
   pionner?: boolean;
+  updatedAt: Date;
 };
 
 export type {
