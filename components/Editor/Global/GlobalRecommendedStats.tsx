@@ -49,8 +49,7 @@ const GlobalrecommendedStats: React.FC<GlobalrecommendedStatsProps> = ({
                 className="flex gap-3 items-center"
               >
                 <AddSelect
-                  // options={recommendedStatsOptions}
-                  type="typeStat"
+                  type="recommendedStats"
                   value={mainStat.type}
                   onChange={(option) => handleTypeStatChange(option, index)}
                   index={index}

@@ -503,7 +503,6 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
             {/* SEPARATION RELIQUES/ORNEMENTS RECOMMANDÉ */}
             <div className="grid grid-cols-2">
               <GlobalOrnamentsSet
-                // relicsSetOptions={relicsSetOptions}
                 ornamentsSetSetup={ornamentsSetSetup || data.ornaments_set}
                 handleOrnamentsSetChange={(
                   option: SingleValue<Option>,
@@ -513,10 +512,6 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
                   handleOrnamentsSetChange(option, index, isRecommended);
                   debounced();
                 }}
-                // handleRelicsNumChange={(value: number, index: number) => {
-                //   handleRelicsNumChange(value, index);
-                //   debounced();
-                // }}
                 addOrnamentsSet={addOrnamentsSet}
                 deleteOrnamentsSet={(index: number) => {
                   deleteOrnamentsSet(index);
@@ -528,7 +523,6 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
 
               <div className="border-l">
                 <GlobalOrnamentsSet
-                  // relicsSetOptions={relicsSetOptions}
                   ornamentsSetSetup={ornamentsSetSetup || data.ornaments_set}
                   handleOrnamentsSetChange={(
                     option: SingleValue<Option>,
@@ -538,10 +532,6 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
                     handleOrnamentsSetChange(option, index, isRecommended);
                     debounced();
                   }}
-                  // handleRelicsNumChange={(value: number, index: number) => {
-                  //   handleRelicsNumChange(value, index);
-                  //   debounced();
-                  // }}
                   addOrnamentsSet={addOrnamentsSet}
                   deleteOrnamentsSet={(index: number) => {
                     deleteOrnamentsSet(index);
