@@ -71,32 +71,35 @@ const filterLightconeID = (items: itemsProps[]) => {
   return itemsFilter;
 };
 
-// Sépare les reliques et ornements
-// const separateRelics = (items: itemsProps[], isOrnament: boolean) => {
-//   const filteredItems = [...items].filter((item) =>
-//     relicsSetList.find(
-//       (relic) => relic.isOrnamant === isOrnament && item.id === relic.id
-//     )
-//   );
-//   return filteredItems;
-// };
-
 // Evite les doublon d'id sur les relics
 // Si 2P et 4P sur meme ID, renomage de num à 2.4 pour indiquer 2P et 4P
 const filterRelicID = (items: itemsProps[]) => {
+  // Étape 1 : Repérer les id avec à la fois `num` égal à 2 et 4
+  const idsWithBoth = new Set();
+  items.forEach((item) => {
+    if (item.num === 4 || item.num === 2) {
+      const otherNum = item.num === 4 ? 2 : 4;
+      if (items.some((i) => i.id === item.id && i.num === otherNum)) {
+        idsWithBoth.add(item.id);
+      }
+    }
+  });
+
+  // Étape 2 : Filtrer les items tout en évitant les doublons
   const uniqueIDs = new Set();
-  const result = [...items]
+  const result = items
     .filter((relic) => relic.recommended === false)
     .filter((item) => {
-      if (uniqueIDs.has(item.id)) {
-        return false;
-      }
+      if (uniqueIDs.has(item.id)) return false;
+
       uniqueIDs.add(item.id);
-      if (item.num === 4) {
+      // Si l'id est dans idsWithBoth et que `num` vaut 4, on le change en 2.4
+      if (idsWithBoth.has(item.id) && item.num === 4) {
         item.num = 2.4;
       }
       return true;
     });
+
   return result;
 };
 
