@@ -2,6 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import { NextResponse } from "next/server";
 import cacheData from "@/utils/cacheData";
 import CharacterStats from "@/models/CharacterStats.model";
+import { removeIdsFromArrays } from "@/utils/format";
 
 export async function GET(
   req: Request,
@@ -29,18 +30,4 @@ export async function GET(
     console.error("Error:", error);
     return NextResponse.json({ error: true });
   }
-}
-
-// Fonction pour supprimer les _id des objets, mais conserver createdAt et updatedAt
-function removeIdsFromArrays(data: any): any {
-  if (Array.isArray(data)) {
-    return data.map(removeIdsFromArrays);
-  } else if (data && typeof data === "object") {
-    const { _id, createdAt, updatedAt, ...rest } = data; // Ne pas supprimer createdAt et updatedAt
-    for (const key in rest) {
-      rest[key] = removeIdsFromArrays(rest[key]);
-    }
-    return { createdAt, updatedAt, ...rest }; // Retourner également createdAt et updatedAt
-  }
-  return data;
 }

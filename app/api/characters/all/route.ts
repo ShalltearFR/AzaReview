@@ -2,6 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import Character from "@/models/Character.model";
 import { NextResponse } from "next/server";
 import cacheData from "@/utils/cacheData";
+import { removeIdsFromArrays } from "@/utils/format";
 
 export const dynamic = "force-dynamic";
 
@@ -30,18 +31,4 @@ export async function GET() {
     console.error("Error:", error);
     return NextResponse.json({ error: true }, { status: 500 });
   }
-}
-
-// Fonction pour supprimer les _id des objets
-function removeIdsFromArrays(data: any): any {
-  if (Array.isArray(data)) {
-    return data.map(removeIdsFromArrays);
-  } else if (data && typeof data === "object") {
-    const { _id, createdAt, updatedAt, ...rest } = data; // Ne pas supprimer createdAt et updatedAt
-    for (const key in rest) {
-      rest[key] = removeIdsFromArrays(rest[key]);
-    }
-    return { createdAt, updatedAt, ...rest }; // Retourner également createdAt et updatedAt
-  }
-  return data;
 }
