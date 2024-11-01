@@ -68,8 +68,6 @@ export async function generateMetadata({
   };
 }
 
-const toArray = (object: Object) => Object.values(object).map((item) => item);
-
 const GuideID = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   const cookieStore = await cookies();
@@ -82,14 +80,11 @@ const GuideID = async ({ params }: { params: Promise<{ id: string }> }) => {
       false
     );
 
-    const lightcones =
-      lang === "en" ? toArray(light_conesEN) : toArray(light_conesFR);
-    const relicsSet =
-      lang === "en" ? toArray(relic_setsEN) : toArray(relic_setsFR);
-    const properties =
-      lang === "en" ? toArray(propertiesEN) : toArray(propertiesFR);
+    const lightcones = lang === "en" ? light_conesEN : light_conesFR;
+    const relicsSet = lang === "en" ? relic_setsEN : relic_setsFR;
+    const properties = lang === "en" ? propertiesEN : propertiesFR;
     const lightconesRanks =
-      lang === "en" ? toArray(light_cone_ranksEN) : toArray(light_cone_ranksFR);
+      lang === "en" ? light_cone_ranksEN : light_cone_ranksFR;
 
     if (lightcones && relicsSet && properties && lightconesRanks) {
       return (

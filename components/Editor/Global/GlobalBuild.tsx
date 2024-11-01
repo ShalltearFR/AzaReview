@@ -17,12 +17,11 @@ import { useSpring, animated } from "react-spring";
 import AddInput from "../Add/AddInput";
 import AddTextArea from "../Add/AddTextArea";
 import translateBBCode from "@/utils/translateBBCode";
+import GlobalOrnamentsSet from "./GlobalOrnamentsSet";
 
 interface GlobalBuildProps {
   data: any;
   index: number;
-  lightConeOptions: LightConeOption;
-  relicsSetOptions: RelicSetOption;
   onChange: (value: any, index: number) => void;
   onDelete: (index: number) => void;
 }
@@ -30,8 +29,6 @@ interface GlobalBuildProps {
 const GlobalBuild: React.FC<GlobalBuildProps> = ({
   data,
   index,
-  lightConeOptions,
-  relicsSetOptions,
   onChange,
   onDelete,
 }) => {
@@ -42,6 +39,9 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
     useState<string>("");
   const [lightConesSetup, setLightConesSetup] = useState<LightConeOption[]>([]);
   const [relicsSetSetup, setRelicsSetSetup] = useState<RelicSetOption[]>([]);
+  const [ornamentsSetSetup, setOrnamentsSetSetup] = useState<RelicSetOption[]>(
+    []
+  );
   const [mainStatsSetup, setMainStatsSetup] = useState<MainStatsOption[]>([]);
   const [recommendedStatsSetup, setRecommendedStatsSetup] = useState<
     recommendedStatsOption[]
@@ -63,16 +63,15 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
     setBuildDescriptionInput(data.buildDesc);
     setLightConesSetup(data.lightCones);
     setRelicsSetSetup(data.relics_set);
+    setOrnamentsSetSetup(data.ornaments_set);
     setMainStatsSetup(data.main_stats);
     setRecommendedStatsSetup(data.recommended_stats);
     setRecommendedCommentInput(data.recommended_comment);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // SUPPRESSION DU BUILD
   const deleteBuild = useCallback(() => {
     onDelete(index);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // FONCTIONS LIGHTCONES
@@ -103,7 +102,12 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
   const addLightCone = useCallback((isrecommended: boolean) => {
     setLightConesSetup((prevLightConesSetup) => [
       ...prevLightConesSetup,
-      { id: "", recommended: isrecommended, value: "", label: "" },
+      {
+        id: "0",
+        recommended: isrecommended,
+        value: "",
+        label: "",
+      },
     ]);
   }, []);
 
@@ -111,6 +115,20 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
   const handleRelicsSetChange = useCallback(
     (option: SingleValue<Option>, index: number, isrecommended: boolean) => {
       setRelicsSetSetup((prevLightConesSetup) => {
+        const newSetup = [...prevLightConesSetup];
+        newSetup[index].recommended = isrecommended;
+        newSetup[index].id = option?.value || "";
+        newSetup[index].value = option?.value || "";
+        newSetup[index].label = option?.label || "";
+        return newSetup;
+      });
+    },
+    []
+  );
+
+  const handleOrnamentsSetChange = useCallback(
+    (option: SingleValue<Option>, index: number, isrecommended: boolean) => {
+      setOrnamentsSetSetup((prevLightConesSetup) => {
         const newSetup = [...prevLightConesSetup];
         newSetup[index].recommended = isrecommended;
         newSetup[index].id = option?.value || "";
@@ -137,12 +155,32 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
       return newSetup;
     });
   }, []);
+  const deleteOrnamentsSet = useCallback((index: number) => {
+    setOrnamentsSetSetup((prevRelicsSetSetup) => {
+      const newSetup = [...prevRelicsSetSetup];
+      newSetup.splice(index, 1);
+      return newSetup;
+    });
+  }, []);
 
   const addRelicsSet = useCallback((isrecommended: boolean) => {
     setRelicsSetSetup((prevRelicsSetSetup) => [
       ...prevRelicsSetSetup,
       {
-        id: "",
+        id: isrecommended ? "999" : "0",
+        recommended: isrecommended,
+        value: "",
+        label: "",
+        num: 2,
+        ornament: false,
+      },
+    ]);
+  }, []);
+  const addOrnamentsSet = useCallback((isrecommended: boolean) => {
+    setOrnamentsSetSetup((prevRelicsSetSetup) => [
+      ...prevRelicsSetSetup,
+      {
+        id: isrecommended ? "999" : "0",
         recommended: isrecommended,
         value: "",
         label: "",
@@ -159,6 +197,7 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
         const newSetup = [...prevLightConesSetup];
         newSetup[index].equipment.value = option?.value || "";
         newSetup[index].equipment.label = option?.label || "";
+        newSetup[index].equipment.id = option?.id || "";
         return newSetup;
       });
     },
@@ -256,6 +295,7 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
       buildDesc: buildDescriptionInput,
       lightCones: lightConesSetup,
       relics_set: relicsSetSetup,
+      ornaments_set: ornamentsSetSetup,
       main_stats: mainStatsSetup,
       recommended_stats: recommendedStatsSetup,
       recommended_comment: recommendedCommentInput,
@@ -355,7 +395,6 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
             {/* SEPARATION CONE ET RECOMMANDÉ */}
             <div className="grid grid-cols-[1fr_1fr]">
               <GlobalLightCone
-                lightConeOptions={lightConeOptions}
                 lightConesSetup={lightConesSetup || data.lightCones}
                 handleChange={(
                   option: any,
@@ -376,7 +415,6 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
 
               <div className="col-span-1 border-l">
                 <GlobalLightCone
-                  lightConeOptions={lightConeOptions}
                   lightConesSetup={lightConesSetup || data.lightCones}
                   handleChange={(
                     option: SingleValue<Option>,
@@ -401,13 +439,13 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
           <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
             <div className="flex">
               <span className="text-2xl mx-auto font-bold mb-5">
-                Sets de reliques/Ornements
+                Sets de reliques
               </span>
             </div>
             {/* SEPARATION RELIQUES/ORNEMENTS RECOMMANDÉ */}
             <div className="grid grid-cols-2">
               <GlobalRelicsSet
-                relicsSetOptions={relicsSetOptions}
+                // relicsSetOptions={relicsSetOptions}
                 relicsSetSetup={relicsSetSetup || data.relic_sets}
                 handleRelicsSetChange={(
                   option: SingleValue<Option>,
@@ -432,7 +470,6 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
 
               <div className="border-l">
                 <GlobalRelicsSet
-                  relicsSetOptions={relicsSetOptions}
                   relicsSetSetup={relicsSetSetup || data.relic_sets}
                   handleRelicsSetChange={(
                     option: SingleValue<Option>,
@@ -452,6 +489,65 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
                     debounced();
                   }}
                   addButtonText={"Ajouter un set recommandé"}
+                  isrecommended={true}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="border border-white p-5 mx-5 mt-10 bg-black/75 shadow-gray rounded-xl shadow-lg">
+            <div className="flex">
+              <span className="text-2xl mx-auto font-bold mb-5">
+                Sets d'Ornements
+              </span>
+            </div>
+            {/* SEPARATION RELIQUES/ORNEMENTS RECOMMANDÉ */}
+            <div className="grid grid-cols-2">
+              <GlobalOrnamentsSet
+                // relicsSetOptions={relicsSetOptions}
+                ornamentsSetSetup={ornamentsSetSetup || data.ornaments_set}
+                handleOrnamentsSetChange={(
+                  option: SingleValue<Option>,
+                  index: number,
+                  isRecommended: boolean
+                ) => {
+                  handleOrnamentsSetChange(option, index, isRecommended);
+                  debounced();
+                }}
+                // handleRelicsNumChange={(value: number, index: number) => {
+                //   handleRelicsNumChange(value, index);
+                //   debounced();
+                // }}
+                addOrnamentsSet={addOrnamentsSet}
+                deleteOrnamentsSet={(index: number) => {
+                  deleteOrnamentsSet(index);
+                  debounced();
+                }}
+                addButtonText={"Ajouter un set"}
+                isrecommended={false}
+              />
+
+              <div className="border-l">
+                <GlobalOrnamentsSet
+                  // relicsSetOptions={relicsSetOptions}
+                  ornamentsSetSetup={ornamentsSetSetup || data.ornaments_set}
+                  handleOrnamentsSetChange={(
+                    option: SingleValue<Option>,
+                    index: number,
+                    isRecommended: boolean
+                  ) => {
+                    handleOrnamentsSetChange(option, index, isRecommended);
+                    debounced();
+                  }}
+                  // handleRelicsNumChange={(value: number, index: number) => {
+                  //   handleRelicsNumChange(value, index);
+                  //   debounced();
+                  // }}
+                  addOrnamentsSet={addOrnamentsSet}
+                  deleteOrnamentsSet={(index: number) => {
+                    deleteOrnamentsSet(index);
+                    debounced();
+                  }}
+                  addButtonText={"Ajouter un set"}
                   isrecommended={true}
                 />
               </div>

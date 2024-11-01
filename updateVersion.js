@@ -112,10 +112,28 @@ async function downloadJSONFiles() {
       const outputPath = path.join(staticDir, outputName); // Chemin complet du fichier de sortie
 
       const jsonResponse = await axios.get(url);
-      await fs.writeFile(
-        outputPath,
-        JSON.stringify(jsonResponse.data, null, 2)
-      );
+      const jsonData = Object.values(jsonResponse.data);
+
+      // Ajout des deux objets si le fichier est relic_sets.json
+      if (
+        (fileName === "relic_sets" || fileName === "light_cones") &&
+        language === "FR"
+      ) {
+        jsonData.push(
+          {
+            id: "999",
+            name: "",
+            icon: "icon/path/None.png",
+          },
+          {
+            id: "0",
+            name: "",
+            icon: "icon/path/None.png",
+          }
+        );
+      }
+
+      await fs.writeFile(outputPath, JSON.stringify(jsonData, null, 2));
 
       console.log(`Downloaded and renamed to ${outputName} in ${staticDir}`);
     }

@@ -1,5 +1,5 @@
-{
-  "101": {
+[
+  {
     "id": "101",
     "name": "Passerby of Wandering Cloud",
     "desc": [
@@ -18,7 +18,7 @@
     "icon": "icon/relic/101.png",
     "guide_overview": []
   },
-  "102": {
+  {
     "id": "102",
     "name": "Musketeer of Wild Wheat",
     "desc": [
@@ -42,7 +42,7 @@
     "icon": "icon/relic/102.png",
     "guide_overview": []
   },
-  "103": {
+  {
     "id": "103",
     "name": "Knight of Purity Palace",
     "desc": [
@@ -61,7 +61,7 @@
     "icon": "icon/relic/103.png",
     "guide_overview": []
   },
-  "104": {
+  {
     "id": "104",
     "name": "Hunter of Glacial Forest",
     "desc": [
@@ -80,7 +80,7 @@
     "icon": "icon/relic/104.png",
     "guide_overview": []
   },
-  "105": {
+  {
     "id": "105",
     "name": "Champion of Streetwise Boxing",
     "desc": [
@@ -99,7 +99,7 @@
     "icon": "icon/relic/105.png",
     "guide_overview": []
   },
-  "106": {
+  {
     "id": "106",
     "name": "Guard of Wuthering Snow",
     "desc": [
@@ -113,7 +113,7 @@
     "icon": "icon/relic/106.png",
     "guide_overview": []
   },
-  "107": {
+  {
     "id": "107",
     "name": "Firesmith of Lava-Forging",
     "desc": [
@@ -132,7 +132,7 @@
     "icon": "icon/relic/107.png",
     "guide_overview": []
   },
-  "108": {
+  {
     "id": "108",
     "name": "Genius of Brilliant Stars",
     "desc": [
@@ -151,7 +151,7 @@
     "icon": "icon/relic/108.png",
     "guide_overview": []
   },
-  "109": {
+  {
     "id": "109",
     "name": "Band of Sizzling Thunder",
     "desc": [
@@ -170,7 +170,7 @@
     "icon": "icon/relic/109.png",
     "guide_overview": []
   },
-  "110": {
+  {
     "id": "110",
     "name": "Eagle of Twilight Line",
     "desc": [
@@ -189,7 +189,7 @@
     "icon": "icon/relic/110.png",
     "guide_overview": []
   },
-  "111": {
+  {
     "id": "111",
     "name": "Thief of Shooting Meteor",
     "desc": [
@@ -213,7 +213,7 @@
     "icon": "icon/relic/111.png",
     "guide_overview": []
   },
-  "112": {
+  {
     "id": "112",
     "name": "Wastelander of Banditry Desert",
     "desc": [
@@ -232,7 +232,7 @@
     "icon": "icon/relic/112.png",
     "guide_overview": []
   },
-  "113": {
+  {
     "id": "113",
     "name": "Longevous Disciple",
     "desc": [
@@ -251,7 +251,7 @@
     "icon": "icon/relic/113.png",
     "guide_overview": []
   },
-  "114": {
+  {
     "id": "114",
     "name": "Messenger Traversing Hackerspace",
     "desc": [
@@ -270,7 +270,7 @@
     "icon": "icon/relic/114.png",
     "guide_overview": []
   },
-  "115": {
+  {
     "id": "115",
     "name": "The Ashblazing Grand Duke",
     "desc": [
@@ -284,7 +284,7 @@
     "icon": "icon/relic/115.png",
     "guide_overview": []
   },
-  "116": {
+  {
     "id": "116",
     "name": "Prisoner in Deep Confinement",
     "desc": [
@@ -303,7 +303,7 @@
     "icon": "icon/relic/116.png",
     "guide_overview": []
   },
-  "117": {
+  {
     "id": "117",
     "name": "Pioneer Diver of Dead Waters",
     "desc": [
@@ -322,7 +322,7 @@
     "icon": "icon/relic/117.png",
     "guide_overview": []
   },
-  "118": {
+  {
     "id": "118",
     "name": "Watchmaker, Master of Dream Machinations",
     "desc": [
@@ -341,7 +341,7 @@
     "icon": "icon/relic/118.png",
     "guide_overview": []
   },
-  "119": {
+  {
     "id": "119",
     "name": "Iron Cavalry Against the Scourge",
     "desc": [
@@ -360,7 +360,7 @@
     "icon": "icon/relic/119.png",
     "guide_overview": []
   },
-  "120": {
+  {
     "id": "120",
     "name": "The Wind-Soaring Valorous",
     "desc": [
@@ -384,7 +384,7 @@
     "icon": "icon/relic/120.png",
     "guide_overview": []
   },
-  "121": {
+  {
     "id": "121",
     "name": "Sacerdos' Relived Ordeal",
     "desc": [
@@ -403,7 +403,7 @@
     "icon": "icon/relic/121.png",
     "guide_overview": []
   },
-  "122": {
+  {
     "id": "122",
     "name": "Scholar Lost in Erudition",
     "desc": [
@@ -422,7 +422,7 @@
     "icon": "icon/relic/122.png",
     "guide_overview": []
   },
-  "301": {
+  {
     "id": "301",
     "name": "Space Sealing Station",
     "desc": [
@@ -439,7 +439,7 @@
     "icon": "icon/relic/301.png",
     "guide_overview": []
   },
-  "302": {
+  {
     "id": "302",
     "name": "Fleet of the Ageless",
     "desc": [
@@ -456,7 +456,7 @@
     "icon": "icon/relic/302.png",
     "guide_overview": []
   },
-  "303": {
+  {
     "id": "303",
     "name": "Pan-Cosmic Commercial Enterprise",
     "desc": [
@@ -473,7 +473,7 @@
     "icon": "icon/relic/303.png",
     "guide_overview": []
   },
-  "304": {
+  {
     "id": "304",
     "name": "Belobog of the Architects",
     "desc": [
@@ -490,7 +490,7 @@
     "icon": "icon/relic/304.png",
     "guide_overview": []
   },
-  "305": {
+  {
     "id": "305",
     "name": "Celestial Differentiator",
     "desc": [
@@ -507,7 +507,7 @@
     "icon": "icon/relic/305.png",
     "guide_overview": []
   },
-  "306": {
+  {
     "id": "306",
     "name": "Inert Salsotto",
     "desc": [
@@ -524,7 +524,7 @@
     "icon": "icon/relic/306.png",
     "guide_overview": []
   },
-  "307": {
+  {
     "id": "307",
     "name": "Talia: Kingdom of Banditry",
     "desc": [
@@ -541,7 +541,7 @@
     "icon": "icon/relic/307.png",
     "guide_overview": []
   },
-  "308": {
+  {
     "id": "308",
     "name": "Sprightly Vonwacq",
     "desc": [
@@ -558,7 +558,7 @@
     "icon": "icon/relic/308.png",
     "guide_overview": []
   },
-  "309": {
+  {
     "id": "309",
     "name": "Rutilant Arena",
     "desc": [
@@ -575,7 +575,7 @@
     "icon": "icon/relic/309.png",
     "guide_overview": []
   },
-  "310": {
+  {
     "id": "310",
     "name": "Broken Keel",
     "desc": [
@@ -592,7 +592,7 @@
     "icon": "icon/relic/310.png",
     "guide_overview": []
   },
-  "311": {
+  {
     "id": "311",
     "name": "Firmament Frontline: Glamoth",
     "desc": [
@@ -609,7 +609,7 @@
     "icon": "icon/relic/311.png",
     "guide_overview": []
   },
-  "312": {
+  {
     "id": "312",
     "name": "Penacony, Land of the Dreams",
     "desc": [
@@ -626,7 +626,7 @@
     "icon": "icon/relic/312.png",
     "guide_overview": []
   },
-  "313": {
+  {
     "id": "313",
     "name": "Sigonia, the Unclaimed Desolation",
     "desc": [
@@ -643,7 +643,7 @@
     "icon": "icon/relic/313.png",
     "guide_overview": []
   },
-  "314": {
+  {
     "id": "314",
     "name": "Izumo Gensei and Takama Divine Realm",
     "desc": [
@@ -660,7 +660,7 @@
     "icon": "icon/relic/314.png",
     "guide_overview": []
   },
-  "315": {
+  {
     "id": "315",
     "name": "Duran, Dynasty of Running Wolves",
     "desc": [
@@ -672,7 +672,7 @@
     "icon": "icon/relic/315.png",
     "guide_overview": []
   },
-  "316": {
+  {
     "id": "316",
     "name": "Forge of the Kalpagni Lantern",
     "desc": [
@@ -689,7 +689,7 @@
     "icon": "icon/relic/316.png",
     "guide_overview": []
   },
-  "317": {
+  {
     "id": "317",
     "name": "Lushaka, the Sunken Seas",
     "desc": [
@@ -706,7 +706,7 @@
     "icon": "icon/relic/317.png",
     "guide_overview": []
   },
-  "318": {
+  {
     "id": "318",
     "name": "The Wondrous BananAmusement Park",
     "desc": [
@@ -723,4 +723,4 @@
     "icon": "icon/relic/318.png",
     "guide_overview": []
   }
-}
+]

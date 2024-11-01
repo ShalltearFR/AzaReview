@@ -2,7 +2,6 @@
 import { CharacterType, Data } from "@/types/CharacterModel";
 import { CDN } from "@/utils/cdn";
 import { useEffect, useRef, useState } from "react";
-import { LightCone as LightConeType } from "@/types/LightCone";
 import {
   mainStatOptions,
   recommendedStatsOptions,
@@ -10,7 +9,6 @@ import {
 } from "@/utils/statsOption";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import type {
-  Option,
   LightConeOption,
   RelicSetOption,
   MainStatsOption,
@@ -19,6 +17,8 @@ import type {
 import GlobalBuild from "@/components/Editor/Global/GlobalBuild";
 import { toast } from "react-toastify";
 import LoadingSpin from "@/components/LoadingSpin";
+import light_conesFR from "@/static/light_conesFR.json";
+import relic_setsFR from "@/static/relic_setsFR.json";
 
 interface EditPageProps {
   id: number;
@@ -29,212 +29,173 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
     CharacterType | "Loading" | { error: true }
   >("Loading");
 
-  const [lightConeOptions, setLightConeOptions] = useState<Option[]>([]);
-  const [relicsSetOptions, setRelicsSetOptions] = useState<Option[]>([]);
-
   const [dataAfterLoading, setDataAfterLoading] = useState<Data[]>([]);
   const memorizedData = useRef<Data[] | []>([]);
   const [disableSaveButton, setDisableSaveButton] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchData = async () => {
+    // RECUPERE L'ID DE L'ELEMENT ET RETOURNE SON NOM
+    const findLabel = (id: string, array: Array<any>, type?: string) => {
+      if (type === "mainStat") {
+        const foundElement = array.find((el) => el.value === id);
+        return foundElement.label;
+      }
+
+      const foundElement = array.find((el) => el.id === id);
+      if (foundElement) return foundElement.name;
+      return "";
+    };
+
+    //FETCH DONNEES STOCKEES DANS LA DB
+    const fetchDataFromDB = async () => {
       try {
         const response = await fetch(`/api/character/${id}`, {
           cache: "no-cache",
           next: { revalidate: 0 },
         });
-        const data: CharacterType = await response.json();
-        setCharacterData(data);
-        console.log("characterID:", data.id); // Ne pas supprimer
-      } catch (error) {
-        setCharacterData({ error: true });
-      }
-    };
+        const json: CharacterType | "Loading" | { error: true } =
+          await response.json();
 
-    fetchData();
-  }, [id]);
+        setCharacterData(json);
+        if (
+          json &&
+          "data" in (json as CharacterType) &&
+          (json as CharacterType).data
+        ) {
+          console.log("oui");
+          const dataArray: any = (json as CharacterType).data.map(
+            (singleData) => {
+              // TRANSMETS DONNEES DES CONES
+              const lightcones: LightConeOption[] = singleData.lightCones.map(
+                (lightcone) => {
+                  const label: string = findLabel(lightcone.id, light_conesFR);
+                  // console.log("label", label);
+                  return {
+                    id: lightcone.id,
+                    value: lightcone.id,
+                    recommended: lightcone.recommended,
+                    label: label,
+                  };
+                }
+              );
 
-  useEffect(() => {
-    if (
-      characterData !== "Loading" &&
-      typeof characterData === "object" &&
-      (!("error" in characterData) || characterData.error !== true)
-    ) {
-      // FETCH CONES DE LUMIERES
-      const fetchLightCones = async () => {
-        try {
-          const response = await fetch(`${CDN}/index_min/fr/light_cones.json`, {
-            cache: "no-cache",
-            next: { revalidate: 0 },
-          });
-          const data: any = await response.json();
-          const toArray = Object.values(data).map((item) => item);
-          const character = characterData as CharacterType;
+              // TRANSMETS DONNEES DES SETS DE RELIQUES
+              const relics: RelicSetOption[] = singleData.relics_set
+                .map((relic) => {
+                  if (Number(relic.id) > 300) return null;
+                  const label = findLabel(relic.id, relic_setsFR);
+                  return {
+                    id: relic.id,
+                    value: relic.id,
+                    num: relic.num,
+                    recommended: relic.recommended,
+                    label: label,
+                  };
+                })
+                .filter((el) => el !== null);
 
-          const filtered: LightConeType[] = toArray.filter(
-            (obj): obj is LightConeType => {
-              if (obj instanceof Object && "path" in obj) {
-                return obj.path === character.path;
-              }
-              return false;
+              const ornamants: RelicSetOption[] = singleData.relics_set
+                .map((relic) => {
+                  if (Number(relic.id) < 300) return null;
+                  const label = findLabel(relic.id, relic_setsFR);
+                  return {
+                    id: relic.id,
+                    value: relic.id,
+                    num: relic.num,
+                    recommended: relic.recommended,
+                    label: label,
+                  };
+                })
+                .filter((el) => el !== null);
+
+              // TRANSMETS DONNEES DES MAINS STATS
+              const mainStats: MainStatsOption[] = singleData.main_stats.map(
+                (mainStat) => {
+                  const labelType = findLabel(
+                    mainStat.type,
+                    mainStatOptions,
+                    "mainStat"
+                  );
+                  const labelPiece = findLabel(
+                    mainStat.piece,
+                    equipments,
+                    "mainStat"
+                  );
+
+                  console.log("labelType", labelType);
+                  return {
+                    typeStat: {
+                      label: labelType,
+                      value: mainStat.type,
+                    },
+                    equipment: {
+                      label: labelPiece,
+                      value: mainStat.piece,
+                    },
+                  };
+                }
+              );
+
+              // TRANSMETS DONNEES DES STATS RECOMMANDES
+              const recommendedStats: recommendedStatsOption[] =
+                singleData.recommended_stats.map((recommendedStat: any) => {
+                  const labelType = findLabel(
+                    recommendedStat.type,
+                    recommendedStatsOptions,
+                    "mainStat"
+                  );
+
+                  // Converti ratio vers %
+                  const statType = recommendedStat.type;
+                  const value = [
+                    "CriticalChanceBase",
+                    "CriticalDamageBase",
+                    "BreakDamageAddedRatioBase",
+                    "StatusProbabilityBase",
+                    "StatusResistanceBase",
+                    "SPRatioBase",
+                  ].includes(statType)
+                    ? Math.floor(recommendedStat.value * 1000) / 10
+                    : recommendedStat.value;
+
+                  return {
+                    type: {
+                      label: labelType,
+                      value: recommendedStat.type,
+                    },
+                    value: value || "",
+                    importance: recommendedStat.importance,
+                  };
+                });
+
+              return {
+                buildName: singleData.buildName || "",
+                buildDesc: singleData.buildDesc || "",
+                lightCones: lightcones || [],
+                relics_set: relics || [],
+                ornaments_set: ornamants || [],
+                main_stats: mainStats || [],
+                recommended_stats: recommendedStats || [],
+                recommended_comment: singleData.recommended_comment || "",
+              };
             }
           );
-
-          const options = filtered.map((el) => ({
-            value: el.id,
-            label: el.name,
-          }));
-          setLightConeOptions(options);
-        } catch (error) {
-          console.error("Erreur de recuperation des cones de lumière", error);
-        }
-      };
-      fetchLightCones();
-
-      // FETCH SETS DE RELIQUES
-      const fetchRelicsSet = async () => {
-        try {
-          const response = await fetch(`${CDN}/index_min/fr/relic_sets.json`, {
-            cache: "no-cache",
-            next: { revalidate: 0 },
-          });
-          const data: any = await response.json();
-          const toArray: any = Object.values(data).map((item) => item);
-
-          const options = toArray.map((el: { id: string; name: string }) => ({
-            value: el.id,
-            label: el.name,
-          }));
-
-          setRelicsSetOptions(options);
-        } catch (error) {
-          console.error("Erreur de recuperation des reliques", error);
-        }
-      };
-      fetchRelicsSet();
-    }
-  }, [characterData]);
-
-  useEffect(() => {
-    if (lightConeOptions.length > 0 && relicsSetOptions.length > 0) {
-      // RECUPERE L'ID DE L'ELEMENT ET RETOURNE SON NOM
-      const findLabel = (id: string, array: Array<any>, type?: string) => {
-        const foundElement = array.find((el) => el.value === id);
-        if (foundElement) return foundElement.label;
-        return "";
-      };
-
-      //FETCH DONNEES STOCKEES DANS LA DB
-      const fetchDataFromDB = async () => {
-        try {
-          const character = characterData as CharacterType;
-          const response = await fetch(`/api/character/${character.id}`, {
-            cache: "no-cache",
-            next: { revalidate: 0 },
-          });
-          const json: CharacterType = await response.json();
-
-          const dataArray: any = json.data.map((singleData) => {
-            // TRANSMETS DONNEES DES CONES
-            const lightcones: LightConeOption[] = singleData.lightCones.map(
-              (lightcone) => {
-                const label: string = findLabel(lightcone.id, lightConeOptions);
-                return {
-                  id: lightcone.id,
-                  value: lightcone.id,
-                  recommended: lightcone.recommended,
-                  label: label,
-                };
-              }
-            );
-
-            // TRANSMETS DONNEES DES SETS DE RELIQUES
-            const relics: RelicSetOption[] = singleData.relics_set.map(
-              (relic) => {
-                const label = findLabel(relic.id, relicsSetOptions);
-                return {
-                  id: relic.id,
-                  value: relic.id,
-                  num: relic.num,
-                  recommended: relic.recommended,
-                  label: label,
-                };
-              }
-            );
-
-            // TRANSMETS DONNEES DES MAINS STATS
-            const mainStats: MainStatsOption[] = singleData.main_stats.map(
-              (mainStat) => {
-                const labelType = findLabel(mainStat.type, mainStatOptions);
-                const labelPiece = findLabel(mainStat.piece, equipments);
-                return {
-                  typeStat: {
-                    label: labelType,
-                    value: mainStat.type,
-                  },
-                  equipment: {
-                    label: labelPiece,
-                    value: mainStat.piece,
-                  },
-                };
-              }
-            );
-
-            // TRANSMETS DONNEES DES STATS RECOMMANDES
-            const recommendedStats: recommendedStatsOption[] =
-              singleData.recommended_stats.map((recommendedStat: any) => {
-                const labelType = findLabel(
-                  recommendedStat.type,
-                  recommendedStatsOptions
-                );
-
-                // Converti ratio vers %
-                const statType = recommendedStat.type;
-                const value = [
-                  "CriticalChanceBase",
-                  "CriticalDamageBase",
-                  "BreakDamageAddedRatioBase",
-                  "StatusProbabilityBase",
-                  "StatusResistanceBase",
-                  "SPRatioBase",
-                ].includes(statType)
-                  ? Math.floor(recommendedStat.value * 1000) / 10
-                  : recommendedStat.value;
-
-                return {
-                  type: {
-                    label: labelType,
-                    value: recommendedStat.type,
-                  },
-                  value: value || "",
-                  importance: recommendedStat.importance,
-                };
-              });
-
-            return {
-              buildName: singleData.buildName || "",
-              buildDesc: singleData.buildDesc || "",
-              lightCones: lightcones || [],
-              relics_set: relics || [],
-              main_stats: mainStats || [],
-              recommended_stats: recommendedStats || [],
-              recommended_comment: singleData.recommended_comment || "",
-            };
-          });
 
           if (dataArray.length === 0) {
             return null;
           }
+
+          console.log("dataArray", dataArray);
           memorizedData.current = dataArray;
           setDataAfterLoading(dataArray);
-        } catch (error) {
-          console.error("Erreur de recuperation sur la base de donnée", error);
         }
-      };
-      fetchDataFromDB();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lightConeOptions, relicsSetOptions]);
+      } catch (error) {
+        console.error("Erreur de recuperation sur la base de donnée", error);
+        setCharacterData({ error: true });
+      }
+    };
+    fetchDataFromDB();
+  }, []);
 
   const updateAllData = (data: any, index: number) => {
     if (!memorizedData.current) {
@@ -254,6 +215,7 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
         buildDesc: "",
         lightCones: [],
         relics_set: [],
+        ornaments_set: [],
         main_stats: [],
         recommended_stats: [],
         recommended_comment: "",
@@ -283,6 +245,14 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
         num: relic.num,
         recommended: relic.recommended,
       }));
+
+      const ornamentsSetArray = data.ornaments_set.map((relic) => ({
+        id: relic.id,
+        num: 2,
+        recommended: relic.recommended,
+      }));
+
+      // const mergedArray = arrays.reduce((acc, curr) => acc.concat(curr), []);
 
       const mainStatsSetupArray = data.main_stats.map((mainStat: any) => ({
         piece: mainStat.equipment.value,
@@ -317,11 +287,11 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
         0
       );
 
-      const dataSaved: Data = {
+      const dataSaved: any = {
         buildName: data.buildName,
         buildDesc: data.buildDesc,
         lightCones: lightConesArray,
-        relics_set: relicsSetArray,
+        relics_set: [...relicsSetArray, ...ornamentsSetArray],
         main_stats: mainStatsSetupArray,
         recommended_stats: recommendedStatsSetupArray,
         recommended_comment: data.recommended_comment,
@@ -397,11 +367,8 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
           dataAfterLoading.map((singleData: Data, index: number) => (
             <div key={`globalBuild${index}`}>
               <GlobalBuild
-                key={index}
                 data={singleData}
                 index={index}
-                lightConeOptions={lightConeOptions as any}
-                relicsSetOptions={relicsSetOptions as any}
                 onChange={updateAllData}
                 onDelete={deleteBuild}
               />

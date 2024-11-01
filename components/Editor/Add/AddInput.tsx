@@ -22,6 +22,7 @@ const AddInput: React.FC<AddInputProps> = ({
 
   return (
     <input
+      className={`${className} flex items-center gap-3 h-12`}
       value={textInput || value}
       onChange={(e) => {
         setTextInput(e.target.value);
@@ -31,7 +32,6 @@ const AddInput: React.FC<AddInputProps> = ({
           debounced(e.target.value);
         }
       }}
-      className={className}
       placeholder={placeholder}
     />
   );

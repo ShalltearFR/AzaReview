@@ -64,6 +64,7 @@ type Data = {
   buildDesc: string;
   lightCones: LightCone[];
   relics_set: RelicsSet[];
+  ornaments_set: RelicsSet[];
   main_stats: MainStats[];
   recommended_stats: RecommendedStats[];
   recommended_comment: string;

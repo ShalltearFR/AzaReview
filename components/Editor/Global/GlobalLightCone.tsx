@@ -1,4 +1,3 @@
-import React from "react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import AddSelect from "../Add/AddSelect";
 
@@ -12,7 +11,6 @@ interface LightConeOption {
 interface GlobalLightConeProps {
   addLightCone: any;
   lightConesSetup: any;
-  lightConeOptions: any;
   handleChange: any;
   deleteLightCone: any;
   isRecommended: boolean;
@@ -22,7 +20,6 @@ interface GlobalLightConeProps {
 const GlobalLightCone: React.FC<GlobalLightConeProps> = ({
   addLightCone,
   lightConesSetup,
-  lightConeOptions,
   handleChange,
   deleteLightCone,
   isRecommended,
@@ -41,9 +38,12 @@ const GlobalLightCone: React.FC<GlobalLightConeProps> = ({
         {lightConesSetup.map((cone: LightConeOption, index: number) => {
           return (
             cone.recommended === isRecommended && (
-              <div key={`lightConesSetup${index}`} className="flex gap-3">
+              <div
+                key={crypto.randomUUID()}
+                className="flex gap-3 border border-gray px-3 rounded-lg"
+              >
                 <AddSelect
-                  options={lightConeOptions}
+                  type="lightCone"
                   value={lightConesSetup[index]}
                   onChange={(option) =>
                     handleChange(option, index, isRecommended)

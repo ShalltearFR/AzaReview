@@ -1,5 +1,5 @@
-{
-  "101": {
+[
+  {
     "id": "101",
     "name": "Vagabond foulenuage",
     "desc": [
@@ -18,7 +18,7 @@
     "icon": "icon/relic/101.png",
     "guide_overview": []
   },
-  "102": {
+  {
     "id": "102",
     "name": "Mousquetaire du blé sauvage",
     "desc": [
@@ -42,7 +42,7 @@
     "icon": "icon/relic/102.png",
     "guide_overview": []
   },
-  "103": {
+  {
     "id": "103",
     "name": "Chevalier du palais de la pureté",
     "desc": [
@@ -61,7 +61,7 @@
     "icon": "icon/relic/103.png",
     "guide_overview": []
   },
-  "104": {
+  {
     "id": "104",
     "name": "Chasseur de la forêt glaciaire",
     "desc": [
@@ -80,7 +80,7 @@
     "icon": "icon/relic/104.png",
     "guide_overview": []
   },
-  "105": {
+  {
     "id": "105",
     "name": "Championne de boxe de rue",
     "desc": [
@@ -99,7 +99,7 @@
     "icon": "icon/relic/105.png",
     "guide_overview": []
   },
-  "106": {
+  {
     "id": "106",
     "name": "Garde des neiges hurlantes",
     "desc": [
@@ -113,7 +113,7 @@
     "icon": "icon/relic/106.png",
     "guide_overview": []
   },
-  "107": {
+  {
     "id": "107",
     "name": "Lave de Forgefeu",
     "desc": [
@@ -132,7 +132,7 @@
     "icon": "icon/relic/107.png",
     "guide_overview": []
   },
-  "108": {
+  {
     "id": "108",
     "name": "Génies des étoiles",
     "desc": [
@@ -151,7 +151,7 @@
     "icon": "icon/relic/108.png",
     "guide_overview": []
   },
-  "109": {
+  {
     "id": "109",
     "name": "Tonnerre grésillant",
     "desc": [
@@ -170,7 +170,7 @@
     "icon": "icon/relic/109.png",
     "guide_overview": []
   },
-  "110": {
+  {
     "id": "110",
     "name": "Aigle de la frontière du crépuscule",
     "desc": [
@@ -189,7 +189,7 @@
     "icon": "icon/relic/110.png",
     "guide_overview": []
   },
-  "111": {
+  {
     "id": "111",
     "name": "Voleur de météorite filante",
     "desc": [
@@ -213,7 +213,7 @@
     "icon": "icon/relic/111.png",
     "guide_overview": []
   },
-  "112": {
+  {
     "id": "112",
     "name": "Ferrailleur du désert des bandits",
     "desc": [
@@ -232,7 +232,7 @@
     "icon": "icon/relic/112.png",
     "guide_overview": []
   },
-  "113": {
+  {
     "id": "113",
     "name": "Disciple longévive",
     "desc": [
@@ -251,7 +251,7 @@
     "icon": "icon/relic/113.png",
     "guide_overview": []
   },
-  "114": {
+  {
     "id": "114",
     "name": "Messager du hackerspace",
     "desc": [
@@ -270,7 +270,7 @@
     "icon": "icon/relic/114.png",
     "guide_overview": []
   },
-  "115": {
+  {
     "id": "115",
     "name": "Grand duc incandescendre",
     "desc": [
@@ -284,7 +284,7 @@
     "icon": "icon/relic/115.png",
     "guide_overview": []
   },
-  "116": {
+  {
     "id": "116",
     "name": "Prisonnier enchaîné",
     "desc": [
@@ -303,7 +303,7 @@
     "icon": "icon/relic/116.png",
     "guide_overview": []
   },
-  "117": {
+  {
     "id": "117",
     "name": "Exploratrice des abîmes",
     "desc": [
@@ -322,7 +322,7 @@
     "icon": "icon/relic/117.png",
     "guide_overview": []
   },
-  "118": {
+  {
     "id": "118",
     "name": "Horloger, maître des machinations oniriques",
     "desc": [
@@ -341,7 +341,7 @@
     "icon": "icon/relic/118.png",
     "guide_overview": []
   },
-  "119": {
+  {
     "id": "119",
     "name": "Brigade de fer à l'assaut du fléau",
     "desc": [
@@ -360,7 +360,7 @@
     "icon": "icon/relic/119.png",
     "guide_overview": []
   },
-  "120": {
+  {
     "id": "120",
     "name": "Vaillance du guerrier du vent",
     "desc": [
@@ -384,7 +384,7 @@
     "icon": "icon/relic/120.png",
     "guide_overview": []
   },
-  "121": {
+  {
     "id": "121",
     "name": "Supplice du prêtre",
     "desc": [
@@ -403,7 +403,7 @@
     "icon": "icon/relic/121.png",
     "guide_overview": []
   },
-  "122": {
+  {
     "id": "122",
     "name": "Perdition dans l'Érudition",
     "desc": [
@@ -422,7 +422,7 @@
     "icon": "icon/relic/122.png",
     "guide_overview": []
   },
-  "301": {
+  {
     "id": "301",
     "name": "Station de scellement spatial",
     "desc": [
@@ -439,7 +439,7 @@
     "icon": "icon/relic/301.png",
     "guide_overview": []
   },
-  "302": {
+  {
     "id": "302",
     "name": "Flotte de l'éternel",
     "desc": [
@@ -456,7 +456,7 @@
     "icon": "icon/relic/302.png",
     "guide_overview": []
   },
-  "303": {
+  {
     "id": "303",
     "name": "Entreprise commerciale intersidérale",
     "desc": [
@@ -473,7 +473,7 @@
     "icon": "icon/relic/303.png",
     "guide_overview": []
   },
-  "304": {
+  {
     "id": "304",
     "name": "Belobog des Architectes",
     "desc": [
@@ -490,7 +490,7 @@
     "icon": "icon/relic/304.png",
     "guide_overview": []
   },
-  "305": {
+  {
     "id": "305",
     "name": "Différenciateur céleste",
     "desc": [
@@ -507,7 +507,7 @@
     "icon": "icon/relic/305.png",
     "guide_overview": []
   },
-  "306": {
+  {
     "id": "306",
     "name": "Salsotto inerte",
     "desc": [
@@ -524,7 +524,7 @@
     "icon": "icon/relic/306.png",
     "guide_overview": []
   },
-  "307": {
+  {
     "id": "307",
     "name": "Talia, royaume du banditisme",
     "desc": [
@@ -541,7 +541,7 @@
     "icon": "icon/relic/307.png",
     "guide_overview": []
   },
-  "308": {
+  {
     "id": "308",
     "name": "La vie sur Vonwacq",
     "desc": [
@@ -558,7 +558,7 @@
     "icon": "icon/relic/308.png",
     "guide_overview": []
   },
-  "309": {
+  {
     "id": "309",
     "name": "Arène rutilante",
     "desc": [
@@ -575,7 +575,7 @@
     "icon": "icon/relic/309.png",
     "guide_overview": []
   },
-  "310": {
+  {
     "id": "310",
     "name": "Quille brisée",
     "desc": [
@@ -592,7 +592,7 @@
     "icon": "icon/relic/310.png",
     "guide_overview": []
   },
-  "311": {
+  {
     "id": "311",
     "name": "Glamoth, ligne de front du firmament",
     "desc": [
@@ -609,7 +609,7 @@
     "icon": "icon/relic/311.png",
     "guide_overview": []
   },
-  "312": {
+  {
     "id": "312",
     "name": "Penacony, terre des rêves",
     "desc": [
@@ -626,7 +626,7 @@
     "icon": "icon/relic/312.png",
     "guide_overview": []
   },
-  "313": {
+  {
     "id": "313",
     "name": "Sigonia, terre vierge désolée",
     "desc": [
@@ -643,7 +643,7 @@
     "icon": "icon/relic/313.png",
     "guide_overview": []
   },
-  "314": {
+  {
     "id": "314",
     "name": "Vie présente d'Izumo et royaume divin de Takama",
     "desc": [
@@ -660,7 +660,7 @@
     "icon": "icon/relic/314.png",
     "guide_overview": []
   },
-  "315": {
+  {
     "id": "315",
     "name": "Duran, dynastie des loups",
     "desc": [
@@ -672,7 +672,7 @@
     "icon": "icon/relic/315.png",
     "guide_overview": []
   },
-  "316": {
+  {
     "id": "316",
     "name": "Forge de la lanterne Kalpagni",
     "desc": [
@@ -689,7 +689,7 @@
     "icon": "icon/relic/316.png",
     "guide_overview": []
   },
-  "317": {
+  {
     "id": "317",
     "name": "Lushaka, les mers englouties",
     "desc": [
@@ -706,7 +706,7 @@
     "icon": "icon/relic/317.png",
     "guide_overview": []
   },
-  "318": {
+  {
     "id": "318",
     "name": "Parc de bananattractions",
     "desc": [
@@ -722,5 +722,15 @@
     ],
     "icon": "icon/relic/318.png",
     "guide_overview": []
+  },
+  {
+    "id": "999",
+    "name": "",
+    "icon": "icon/path/None.png"
+  },
+  {
+    "id": "0",
+    "name": "",
+    "icon": "icon/path/None.png"
   }
-}
+]

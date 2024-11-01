@@ -16,8 +16,6 @@ import relic_setsEN from "@/static/relic_setsEN.json";
 import light_conesFR from "@/static/light_conesFR.json";
 import light_conesEN from "@/static/light_conesEN.json";
 
-const toArray = (object: Object) => Object.values(object).map((item) => item);
-
 export default async function StatsID({
   params,
 }: {
@@ -32,12 +30,9 @@ export default async function StatsID({
     3600
   );
 
-  const characterList =
-    lang === "en" ? toArray(charactersEN) : toArray(charactersFR);
-  const relicsList =
-    lang === "en" ? toArray(relic_setsEN) : toArray(relic_setsFR);
-  const lightConesList =
-    lang === "en" ? toArray(light_conesEN) : toArray(light_conesFR);
+  const characterList = lang === "en" ? charactersEN : charactersFR;
+  const relicsList = lang === "en" ? relic_setsEN : relic_setsFR;
+  const lightConesList = lang === "en" ? light_conesEN : light_conesFR;
 
   const character = characterList.find((character: any) => character.id === id);
 
@@ -56,7 +51,7 @@ export default async function StatsID({
       </>
     );
 
-  if (dataStats.error) return notFound();
+  if (dataStats.error || !character) return notFound();
   const date = new Date(dataStats.updatedAt);
 
   return (
@@ -77,7 +72,7 @@ export async function generateMetadata({
   params: Promise<{ id: number }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const characterList = toArray(charactersFR);
+  const characterList = charactersFR;
   const character = characterList.find((character: any) => character.id === id);
 
   if (character && character.name) {

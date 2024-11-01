@@ -1,7 +1,6 @@
 import React from "react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import AddSelect from "../Add/AddSelect";
-import { equipments, mainStatOptions } from "@/utils/statsOption";
 
 interface Option {
   value: string;
@@ -41,16 +40,16 @@ const GlobalMainStats: React.FC<GlobalMainStatsProps> = ({
       <div className="flex flex-wrap justify-center gap-y-5 gap-x-16 mt-5">
         {mainStatsSetup.map((mainStat: MainStatsOption, index: number) => {
           return (
-            <div key={`mainStatsSetup${index}`} className="flex gap-3">
+            <div key={crypto.randomUUID()} className="flex gap-3">
               <AddSelect
-                options={equipments}
+                type="equipments"
                 value={mainStat.equipment}
                 onChange={(option) => handleEquipmentChange(option, index)}
                 index={index}
                 className="w-32"
               />
               <AddSelect
-                options={mainStatOptions}
+                type="typeStat"
                 value={mainStat.typeStat}
                 onChange={(option) => handleTypeStatChange(option, index)}
                 index={index}

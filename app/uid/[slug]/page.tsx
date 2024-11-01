@@ -95,8 +95,6 @@ export async function generateMetadata({
   };
 }
 
-const toArray = (object: Object) => Object.values(object).map((item) => item);
-
 const sharedUID: string[] = [];
 const isAllreadyShared = (uid: string) => {
   if (sharedUID.includes(uid)) return true;
@@ -134,15 +132,11 @@ export default async function Page({
     getData(`${process.env.WWW}/api/changelog/all`, 18000, false),
   ]);
 
-  const statsTranslate =
-    lang === "en" ? toArray(propertiesEN) : toArray(propertiesFR);
-  const relicsSetTranslate =
-    lang === "en" ? toArray(relic_setsEN) : toArray(relic_setsFR);
-  const lightconesTranslate =
-    lang === "en" ? toArray(light_conesEN) : toArray(light_conesFR);
-  const relicsList = lang === "en" ? toArray(relicsEN) : toArray(relicsFR);
-  const eidolonsList =
-    lang === "en" ? toArray(character_ranksEN) : toArray(character_ranksFR);
+  const statsTranslate = lang === "en" ? propertiesEN : propertiesFR;
+  const relicsSetTranslate = lang === "en" ? relic_setsEN : relic_setsFR;
+  const lightconesTranslate = lang === "en" ? light_conesEN : light_conesFR;
+  const relicsList = lang === "en" ? relicsEN : relicsFR;
+  const eidolonsList = lang === "en" ? character_ranksEN : character_ranksFR;
 
   if (!jsonUid || !resReview) {
     return <div className="text-center mt-10">Chargement en cours ...</div>;

@@ -1,10 +1,10 @@
 const equipments = [
   {
-    label: "Corps",
+    label: "Torse",
     value: "body",
   },
   {
-    label: "Pieds",
+    label: "Bottes",
     value: "feet",
   },
   {

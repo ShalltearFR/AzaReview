@@ -2,6 +2,7 @@ interface Option {
   value: string;
   label: string;
   num?: number;
+  id?: string;
 }
 
 interface LightConeOption {

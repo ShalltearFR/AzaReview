@@ -1,5 +1,5 @@
-{
-  "20000": {
+[
+  {
     "id": "20000",
     "skill": "Crise",
     "desc": "Les chances de coup critique du porteur augmentent de #1[i]% pendant #2[i] tours en début de combat.",
@@ -33,7 +33,7 @@
       []
     ]
   },
-  "20001": {
+  {
     "id": "20001",
     "skill": "Prospérité",
     "desc": "Les soins prodigués par le porteur augmentent de #1[i]% lorsqu'il utilise sa compétence ou son ultime.",
@@ -62,7 +62,7 @@
       []
     ]
   },
-  "20002": {
+  {
     "id": "20002",
     "skill": "Ravage",
     "desc": "Augmente les DGT infligés par l'ATQ normale et la compétence du porteur de #1[i]%.",
@@ -91,7 +91,7 @@
       []
     ]
   },
-  "20003": {
+  {
     "id": "20003",
     "skill": "Stase",
     "desc": "Augmente la DÉF du porteur de #1[i]%. Lorsque ses PV sont inférieurs à #2[i]%, sa DÉF augmente de #3[i]% supplémentaires.",
@@ -155,7 +155,7 @@
       ]
     ]
   },
-  "20004": {
+  {
     "id": "20004",
     "skill": "Déchu",
     "desc": "Les chances d'appliquer des effets du porteur augmentent de #1[i]% pendant #2[i] tours en début de combat.",
@@ -189,7 +189,7 @@
       []
     ]
   },
-  "20005": {
+  {
     "id": "20005",
     "skill": "De concert",
     "desc": "Augmente l'ATQ de tous les alliés de #1[i]% après être entré en combat. Les capacités du même type ne peuvent pas être cumulées.",
@@ -218,7 +218,7 @@
       []
     ]
   },
-  "20006": {
+  {
     "id": "20006",
     "skill": "Leçon apprise",
     "desc": "Augmente les DGT infligés par l'ultime du porteur de #1[i]%.",
@@ -247,7 +247,7 @@
       []
     ]
   },
-  "20007": {
+  {
     "id": "20007",
     "skill": "Cri de guerre",
     "desc": "L'ATQ du porteur augmente de #1[i]% pendant #2[i] tours lorsqu'il élimine un ennemi.",
@@ -281,7 +281,7 @@
       []
     ]
   },
-  "20008": {
+  {
     "id": "20008",
     "skill": "Saveur",
     "desc": "Tous les alliés régénèrent immédiatement #1[i] points d'énergie en début de combat.",
@@ -310,7 +310,7 @@
       []
     ]
   },
-  "20009": {
+  {
     "id": "20009",
     "skill": "Éradication",
     "desc": "Le porteur inflige #2[i]% de DGT supplémentaires aux cibles ennemies dont le pourcentage de PV est supérieur à #1[i]%.",
@@ -344,7 +344,7 @@
       []
     ]
   },
-  "20010": {
+  {
     "id": "20010",
     "skill": "Revitalisation",
     "desc": "Restaure #1[i]% des PV max du porteur quand il lance son ultime.",
@@ -373,7 +373,7 @@
       []
     ]
   },
-  "20011": {
+  {
     "id": "20011",
     "skill": "Poursuite",
     "desc": "Augmente les DGT infligés par le porteur aux ennemis ralentis de #1[i]%.",
@@ -402,7 +402,7 @@
       []
     ]
   },
-  "20012": {
+  {
     "id": "20012",
     "skill": "Triomphe de la fluidité",
     "desc": "Régénère #1[i] points d'énergie supplémentaires lorsque le porteur attaque ou qu'il est touché. Cet effet ne peut pas être déclenché plus d'une fois par tour.",
@@ -431,7 +431,7 @@
       []
     ]
   },
-  "20013": {
+  {
     "id": "20013",
     "skill": "Épiphanie",
     "desc": "Régénère #1[i] points d'énergie supplémentaires lorsque le porteur utilise sa compétence. Cet effet ne peut pas être déclenché plus d'une fois par tour.",
@@ -460,7 +460,7 @@
       []
     ]
   },
-  "20014": {
+  {
     "id": "20014",
     "skill": "Alliance",
     "desc": "La VIT du porteur augmente de #1[i]% pendant #2[i] tours lorsqu'il élimine un ennemi.",
@@ -494,7 +494,7 @@
       []
     ]
   },
-  "20015": {
+  {
     "id": "20015",
     "skill": "Peuples de l'Abondance",
     "desc": "La prochaine action du porteur est avancée de #1[i]% lorsqu'il utilise son ATQ normale.",
@@ -523,7 +523,7 @@
       []
     ]
   },
-  "20016": {
+  {
     "id": "20016",
     "skill": "Légion",
     "desc": "Les chances de coup critique du porteur augmentent de #2[i]% lorsque ses PV sont inférieurs à #1[i]%.",
@@ -557,7 +557,7 @@
       []
     ]
   },
-  "20017": {
+  {
     "id": "20017",
     "skill": "CPI",
     "desc": "Restaure #1[i]% des PV max du porteur lorsqu'il inflige une Rupture de faiblesse à un ennemi.",
@@ -586,7 +586,7 @@
       []
     ]
   },
-  "20018": {
+  {
     "id": "20018",
     "skill": "Mécanisme",
     "desc": "Après avoir utilisé sa compétence, la prochaine ATQ normale du porteur inflige des DGT additionnels équivalents à #1[i]% de son ATQ à la cible ennemie.",
@@ -615,7 +615,7 @@
       []
     ]
   },
-  "20019": {
+  {
     "id": "20019",
     "skill": "Famille",
     "desc": "Augmente la VIT de tous les alliés de #1[i] points pendant #2[i] tour en entrant en combat.",
@@ -649,7 +649,7 @@
       []
     ]
   },
-  "20020": {
+  {
     "id": "20020",
     "skill": "Génie",
     "desc": "Augmente l'ATQ du porteur de #1[i]% pendant #2[i] tours lorsqu'il utilise son ultime.",
@@ -683,7 +683,7 @@
       []
     ]
   },
-  "21000": {
+  {
     "id": "21000",
     "skill": "Guérison mutuelle",
     "desc": "Augmente le taux de régénération d'énergie du porteur de #1[i]% et augmente les soins prodigués de #2[i]% lors de l'utilisation de son ultime.",
@@ -742,7 +742,7 @@
       ]
     ]
   },
-  "21001": {
+  {
     "id": "21001",
     "skill": "Bête de somme",
     "desc": "Les DGT infligés par le porteur augmentent de #1[i]% pour chaque malus subi par la cible ennemie. Cumulable jusqu'à #2[i] fois. Cet effet s'applique aussi aux dégâts sur la durée.",
@@ -776,7 +776,7 @@
       []
     ]
   },
-  "21002": {
+  {
     "id": "21002",
     "skill": "À cet instant précis",
     "desc": "Augmente la DÉF du porteur de #1[i]%. Toutes les RÉS de type de tous les alliés augmentent de #2[i]% après être entré en combat. Les capacités du même type ne peuvent pas être cumulés.",
@@ -835,7 +835,7 @@
       ]
     ]
   },
-  "21003": {
+  {
     "id": "21003",
     "skill": "Archives",
     "desc": "Augmente l'ATQ du porteur de #1[i]%. Augmente les chances de coup critique de #2[i]% s'il y a 2 ennemis ou moins sur le champ de bataille.",
@@ -894,7 +894,7 @@
       ]
     ]
   },
-  "21004": {
+  {
     "id": "21004",
     "skill": "Vieille photo",
     "desc": "Augmente l'effet de Rupture du porteur de #1[i]%. Le porteur régénère #2[i] points d'énergie supplémentaires lorsqu'il attaque. Cet effet ne peut pas être déclenché plus d'une fois par tour.",
@@ -953,7 +953,7 @@
       ]
     ]
   },
-  "21005": {
+  {
     "id": "21005",
     "skill": "Aventure fantastique",
     "desc": "Lorsque le porteur utilise son ATQ normale, sa compétence ou son ultime pour attaquer des ennemis, il gagne un cumul d'Espièglerie. Chaque cumul augmente l'ATQ du porteur de #1[i]%.",
@@ -982,7 +982,7 @@
       []
     ]
   },
-  "21006": {
+  {
     "id": "21006",
     "skill": "La fille dans le tableau",
     "desc": "Augmente les DGT infligés par l'attaque de suivi du porteur de #1[i]%. Si les PV de la cible ennemie sont inférieurs ou égaux à #2[i]%, les DGT infligés par l'attaque de suivi augmentent de #3[i]% supplémentaires.",
@@ -1021,7 +1021,7 @@
       []
     ]
   },
-  "21007": {
+  {
     "id": "21007",
     "skill": "Guérison et réparation",
     "desc": "Augmente les soins prodigués par le porteur de #1[i]%. Tous les alliés régénèrent #2[f1] points d'énergie lors de l'utilisation de la compétence.",
@@ -1080,7 +1080,7 @@
       ]
     ]
   },
-  "21008": {
+  {
     "id": "21008",
     "skill": "Confiance en soi",
     "desc": "Augmente les chances d'appliquer des effets du porteur de #1[i]% et les dégâts sur la durée de #2[i]%.",
@@ -1139,7 +1139,7 @@
       ]
     ]
   },
-  "21009": {
+  {
     "id": "21009",
     "skill": "Comme le temps passe",
     "desc": "Le porteur a plus de chances d'être attaqué, mais les DGT qu'il subit sont réduits de #2[i]%.",
@@ -1173,7 +1173,7 @@
       []
     ]
   },
-  "21010": {
+  {
     "id": "21010",
     "skill": "Autodidacte",
     "desc": "À chaque fois que le porteur touche la même cible, les DGT infligés augmentent de #1[i]%. Cumulable jusqu'à #2[i] fois. Cet effet est dissipé lorsque le porteur change de cible.",
@@ -1207,7 +1207,7 @@
       []
     ]
   },
-  "21011": {
+  {
     "id": "21011",
     "skill": "Grand départ",
     "desc": "Si un allié inflige le même type de DGT que le porteur lorsqu'il entre en combat, les DGT infligés augmentent de #1[i]%.",
@@ -1236,7 +1236,7 @@
       []
     ]
   },
-  "21012": {
+  {
     "id": "21012",
     "skill": "Faire de son mieux",
     "desc": "Les DGT infligés par le porteur augmentent de #1[i]% et sont majorés de #2[i]% supplémentaires contre les ennemis dont le pourcentage de PV actuel est supérieur ou égal à celui du porteur.",
@@ -1295,7 +1295,7 @@
       ]
     ]
   },
-  "21013": {
+  {
     "id": "21013",
     "skill": "Le pouvoir du son",
     "desc": "Le porteur régénère #2[i] points d'énergie dès son entrée en combat, et les DGT infligés par son ultime augmentent de #1[i]%.",
@@ -1329,7 +1329,7 @@
       []
     ]
   },
-  "21014": {
+  {
     "id": "21014",
     "skill": "Vue réfractée",
     "desc": "Augmente la RÉS aux effets du porteur de #1[i]% et augmente les soins prodigués d'un montant équivalent à #2[i]% de la RÉS aux effets. Les soins prodigués peuvent être augmentés de cette façon jusqu'à #3[i]%.",
@@ -1393,7 +1393,7 @@
       ]
     ]
   },
-  "21015": {
+  {
     "id": "21015",
     "skill": "Regard en arrière",
     "desc": "Lorsque le porteur touche un ennemi qui n'est pas déjà piégé, il y a #1[i]% de chances de base de piéger l'ennemi touché. La DÉF des ennemis piégés diminue de #2[i]% pendant #3[i] tour.",
@@ -1432,7 +1432,7 @@
       []
     ]
   },
-  "21016": {
+  {
     "id": "21016",
     "skill": "Redistribution des cartes",
     "desc": "Augmente la DÉF du porteur de #1[i]%. Il y a #2[i]% de chances de base de brûler l'ennemi lorsque le porteur est attaqué. À chaque tour, le porteur inflige des dégâts sur la durée équivalents à #3[i]% de sa DÉF pendant #4[i] tours.",
@@ -1501,7 +1501,7 @@
       ]
     ]
   },
-  "21017": {
+  {
     "id": "21017",
     "skill": "Donnez-moi un like !",
     "desc": "Augmente les DGT infligés par l'ATQ normale et la compétence du porteur de #1[i]%. Cet effet augmente de #2[i]% supplémentaires lorsque l'énergie du porteur atteint son niveau maximal.",
@@ -1535,7 +1535,7 @@
       []
     ]
   },
-  "21018": {
+  {
     "id": "21018",
     "skill": "Ça ne s'arrête jamais !",
     "desc": "L'action de tous les alliés est avancée de #1[i]% lorsque le porteur utilise son ultime.",
@@ -1564,7 +1564,7 @@
       []
     ]
   },
-  "21019": {
+  {
     "id": "21019",
     "skill": "Seigle au soleil",
     "desc": "Augmente l'ATQ du porteur de #1[i]%. Lorsqu'il élimine un ennemi, les chances de coup critique du porteur augmentent de #2[i]% pendant #3[i] tours.",
@@ -1628,7 +1628,7 @@
       ]
     ]
   },
-  "21020": {
+  {
     "id": "21020",
     "skill": "Chacun son rôle",
     "desc": "Augmente l'ATQ du porteur de #1[i]%. Lorsqu'il élimine un ennemi, les DGT critiques du porteur augmentent de #2[i]% pendant #3[i] tours.",
@@ -1692,7 +1692,7 @@
       ]
     ]
   },
-  "21021": {
+  {
     "id": "21021",
     "skill": "Profiter copieusement",
     "desc": "Au début du tour du porteur, régénère #2[i] points d'énergie à un de ses alliés aléatoires dont l'énergie est inférieure à #1[i]%.",
@@ -1726,7 +1726,7 @@
       []
     ]
   },
-  "21022": {
+  {
     "id": "21022",
     "skill": "Une mesure de pause",
     "desc": "Augmente l'effet de Rupture du porteur de #1[i]%, et augmente les DGT qu'il inflige aux ennemis affectés par Stupéfaction ou Faille du vent de #2[i]%. Cet effet s'applique également aux dégâts sur la durée.",
@@ -1785,7 +1785,7 @@
       ]
     ]
   },
-  "21023": {
+  {
     "id": "21023",
     "skill": "Les larmes aux yeux",
     "desc": "Les DGT infligés à tous les alliés diminuent de #2[i]% pendant #3[i] tours en début de combat. D'autre part, restaure immédiatement #1[i]% de leurs PV perdus respectifs.",
@@ -1824,7 +1824,7 @@
       []
     ]
   },
-  "21024": {
+  {
     "id": "21024",
     "skill": "Repousser le froid",
     "desc": "Augmente la VIT du porteur de #1[i]% et ses DGT de #2[i]% après être entré en combat. Cet effet disparaît lorsque le porteur subit des DGT. Il est rétabli à la fin du prochain tour du porteur.",
@@ -1858,7 +1858,7 @@
       []
     ]
   },
-  "21025": {
+  {
     "id": "21025",
     "skill": "Cerfs-volants du passé",
     "desc": "Lorsque le porteur utilise sa compétence, les DGT infligés par le prochain allié à agir (à l'exception du porteur) augmentent de #1[i]% pendant #2[i] tour.",
@@ -1892,7 +1892,7 @@
       []
     ]
   },
-  "21026": {
+  {
     "id": "21026",
     "skill": "Cours !",
     "desc": "Augmente l'ATQ du porteur de #1[i]%, ainsi que les DGT qu'il inflige aux ennemis affectés par Brûlure ou Saignement de #2[i]%. Cet effet s'applique également aux dégâts sur la durée.",
@@ -1951,7 +1951,7 @@
       ]
     ]
   },
-  "21027": {
+  {
     "id": "21027",
     "skill": "On se prépare !",
     "desc": "Augmente les DGT du porteur de #1[i]%. À chaque ennemi vaincu par le porteur, l'ATQ du porteur augmente de #2[i]%. Cumulable jusqu'à #3[i] fois.",
@@ -2015,7 +2015,7 @@
       ]
     ]
   },
-  "21028": {
+  {
     "id": "21028",
     "skill": "Petite lumière",
     "desc": "Augmente les PV max du porteur de #1[i]%. Lorsque le porteur utilise l'ATQ normale ou sa compétence, restaure des PV pour tous les alliés à hauteur de #2[f1]% de leurs PV max respectifs.",
@@ -2074,7 +2074,7 @@
       ]
     ]
   },
-  "21029": {
+  {
     "id": "21029",
     "skill": "Passe d'armes",
     "desc": "Après utilisation de son ATQ normale ou de sa compétence, le porteur inflige des DGT additionnels équivalents à #1[i]% de son ATQ à un ennemi aléatoire qui a été attaqué.",
@@ -2103,7 +2103,7 @@
       []
     ]
   },
-  "21030": {
+  {
     "id": "21030",
     "skill": "Nouveau chapitre",
     "desc": "Augmente la DÉF du porteur de #1[i]%. Augmente les DGT du porteur à hauteur de #2[i]% de sa DÉF lorsqu'il utilise son ultime. Cet effet ne peut s'appliquer qu'1 fois par cible ennemie pour chaque utilisation de l'ultime du porteur.",
@@ -2162,7 +2162,7 @@
       ]
     ]
   },
-  "21031": {
+  {
     "id": "21031",
     "skill": "Vagues déchaînées",
     "desc": "Augmente les chances de coup critique du porteur de #1[i]%. Après un coup critique, il y a #2[i]% de chances fixes de dissiper 1 bonus de la cible ennemie. Cet effet ne peut être déclenché qu'1 fois par attaque.",
@@ -2221,7 +2221,7 @@
       ]
     ]
   },
-  "21032": {
+  {
     "id": "21032",
     "skill": "Secret",
     "desc": "L'un des effets suivants s'applique aléatoirement en début de combat et à chaque fois que le tour du porteur commence : l'ATQ de tous les alliés augmente de #1[i]%, les DGT critiques de tous les alliés augmentent de #2[i]% ou le taux de régénération d'énergie de tous les alliés augmente de #3[i]%. L'effet appliqué ne peut pas être identique au précédent et le remplace. L'effet appliqué est supprimé lorsque le porteur est à terre. Les capacités du même type ne se cumulent pas.",
@@ -2260,7 +2260,7 @@
       []
     ]
   },
-  "21033": {
+  {
     "id": "21033",
     "skill": "Désespérance",
     "desc": "Augmente l'ATQ du porteur de #1[i]%. Chaque fois que le porteur élimine un ennemi, il restaure un montant de PV équivalent à #2[i]% de son ATQ.",
@@ -2319,7 +2319,7 @@
       ]
     ]
   },
-  "21034": {
+  {
     "id": "21034",
     "skill": "Tempête à l'horizon",
     "desc": "Les DGT du porteur augmentent en fonction de son énergie max après être entré en combat. Chaque point d'énergie augmente les DGT de #1[f2]%. Un maximum de #2[i] points d'énergie peuvent être pris en compte.",
@@ -2353,7 +2353,7 @@
       []
     ]
   },
-  "21035": {
+  {
     "id": "21035",
     "skill": "Hypothèse",
     "desc": "Augmente l'effet de Rupture du porteur de #1[i]%. Les ATQ normales du porteur lui rendent un montant de PV équivalent à #2[f1]% de ses PV max + #3[i].",
@@ -2417,7 +2417,7 @@
       ]
     ]
   },
-  "21036": {
+  {
     "id": "21036",
     "skill": "Solidarité",
     "desc": "Après que le porteur a utilisé son ATQ normale, sa compétence ou son ultime, tous les alliés gagnent Enfantillages, ce qui augmente de #1[i]% les DGT infligés par le même type de capacité. Enfantillages n'a d'effet que sur la capacité la plus récente utilisée par le porteur et n'est pas cumulable.",
@@ -2446,7 +2446,7 @@
       []
     ]
   },
-  "21037": {
+  {
     "id": "21037",
     "skill": "Tapis",
     "desc": "Augmente l'ATQ du porteur de #1[i]%. Lorsque le porteur inflige un coup critique à un ennemi, il gagne 1 cumul de Bonne fortune. Cet effet est cumulable jusqu'à #3[i] fois. Les DGT critiques du porteur augmentent de #2[i]% pour chaque cumul de Bonne fortune. L'effet Bonne fortune est supprimé à la fin du tour.",
@@ -2510,7 +2510,7 @@
       ]
     ]
   },
-  "21038": {
+  {
     "id": "21038",
     "skill": "Déflagration",
     "desc": "Lorsque le porteur perd un montant de PV supérieur à #1[i]% de ses PV max en une attaque, ou qu'il consomme un montant de PV supérieur à #1[i]% de ses PV max, soigne immédiatement un montant de PV équivalent à #3[i]% de ses PV max en plus d'augmenter de #2[i]% les DGT qu'il inflige pendant #4[i] tours. Cet effet ne peut être activé qu'une seule fois tous les #5[i] tours.",
@@ -2559,7 +2559,7 @@
       []
     ]
   },
-  "21039": {
+  {
     "id": "21039",
     "skill": "Prescience",
     "desc": "Augmente la RÉS aux effets du porteur de #1[i]%. Augmente les DGT infligés par le porteur de #3[f1]% pour chaque tranche de #2[i] points de DÉF jusqu'à une augmentation maximale de DGT de #4[i]%.",
@@ -2628,7 +2628,7 @@
       ]
     ]
   },
-  "21040": {
+  {
     "id": "21040",
     "skill": "Stratagème",
     "desc": "Augmente l'ATQ du porteur de #1[i]%. Lorsque le porteur utilise une attaque et qu'au moins 2 ennemis attaqués ont la Faiblesse correspondante, les DGT critiques du porteur augmentent de #2[i]%. Dure #3[i] tours.",
@@ -2692,7 +2692,7 @@
       ]
     ]
   },
-  "21041": {
+  {
     "id": "21041",
     "skill": "Divertissement",
     "desc": "Le porteur gagne un cumul de Mascarade lorsqu'il inflige un malus à un ennemi. Chaque cumul de Mascarade augmente de #1[i]% les DGT infligés par le porteur pour un maximum de #2[i] cumuls. Cet effet dure #3[i] tour. Augmente l'ATQ du porteur de #5[i]% lorsque ses chances d'appliquer des effets sont supérieures ou égales à #4[i]%.",
@@ -2741,7 +2741,7 @@
       []
     ]
   },
-  "21042": {
+  {
     "id": "21042",
     "skill": "Héritage",
     "desc": "Augmente l'effet de Rupture du porteur de #1[i]%. Lorsque le porteur utilise son ultime, ses chances de coup critique augmentent de #2[i]% pendant #3[i] tours.",
@@ -2805,7 +2805,7 @@
       ]
     ]
   },
-  "21043": {
+  {
     "id": "21043",
     "skill": "Inspiration",
     "desc": "Augmente la DÉF du porteur de #1[i]%. Les DGT infligés par le porteur augmentent de #2[i]% pour chaque personnage qui bénéficie d'un bouclier sur le champ de bataille.",
@@ -2864,7 +2864,7 @@
       ]
     ]
   },
-  "21044": {
+  {
     "id": "21044",
     "skill": "Perception",
     "desc": "Augmente les chances de coup critique du porteur de #1[i]%. Le porteur inflige #2[i]% de DGT critiques supplémentaires aux ennemis ralentis ou dont la DÉF est réduite.",
@@ -2923,7 +2923,7 @@
       ]
     ]
   },
-  "21045": {
+  {
     "id": "21045",
     "skill": "Quiétude",
     "desc": "Augmente l'effet de Rupture du porteur de #1[i]%. Augmente la VIT de #2[i]% pendant #3[i] tours lorsque le porteur utilise son ultime.",
@@ -2987,7 +2987,7 @@
       ]
     ]
   },
-  "21046": {
+  {
     "id": "21046",
     "skill": "Souvenir et dévouement",
     "desc": "Augmente l'ATQ du porteur de #1[i]%. Si au moins deux personnages suivent la même Voie une fois le combat engagé, les DGT critiques de ces personnages augmentent de #2[i]%. Les effets du même type ne peuvent pas se cumuler.",
@@ -3046,7 +3046,7 @@
       ]
     ]
   },
-  "21047": {
+  {
     "id": "21047",
     "skill": "Dissimulation",
     "desc": "Augmente l'effet de Rupture du porteur de #1[i]%. Augmente sa VIT de #2[i]% pendant #3[i] tours lorsqu'il entre en combat ou qu'il inflige des DGT de rupture. Cet effet ne peut être déclenché qu'1 seule fois par tour.",
@@ -3110,7 +3110,7 @@
       ]
     ]
   },
-  "21048": {
+  {
     "id": "21048",
     "skill": "Montage de style académique",
     "desc": "Augmente la VIT du porteur de #1[i]%. Après avoir attaqué des cibles ennemies en état de Rupture de faiblesse, régénère #2[f1] points d'énergie. Cet effet peut s'activer #3[i] fois par tour.",
@@ -3174,7 +3174,7 @@
       ]
     ]
   },
-  "22000": {
+  {
     "id": "22000",
     "skill": "Pioche éclair",
     "desc": "Augmente les chances d'appliquer des effets du porteur de #1[i]%. Lorsque le porteur attaque des ennemis dont la DÉF est réduite, il régénère #2[i] points d'énergie.",
@@ -3233,7 +3233,7 @@
       ]
     ]
   },
-  "22001": {
+  {
     "id": "22001",
     "skill": "Je n'ai pas peur !",
     "desc": "Augmente les PV max du porteur de #1[i]%. Augmente les soins prodigués de #2[i]% quand le porteur utilise sa compétence, et ce pendant #3[i] tours.",
@@ -3297,7 +3297,7 @@
       ]
     ]
   },
-  "22002": {
+  {
     "id": "22002",
     "skill": "Liens",
     "desc": "Augmente l'ATQ du porteur de #1[i]%. Augmente les DGT infligés de #2[i]% pendant #3[i] tour lorsque le porteur utilise son ultime.",
@@ -3361,7 +3361,7 @@
       ]
     ]
   },
-  "22003": {
+  {
     "id": "22003",
     "skill": "Lever de rideau",
     "desc": "Augmente les PV max du porteur de #1[i]%. Lorsque le porteur perd ou récupère des PV, augmente les DGT critiques de #2[i]% pendant #3[i] tours. Cet effet ne peut se déclencher qu'une fois par tour.",
@@ -3425,7 +3425,7 @@
       ]
     ]
   },
-  "23000": {
+  {
     "id": "23000",
     "skill": "Essaim de météores",
     "desc": "Pour chaque ennemi sur le champ de bataille, augmente l'ATQ du porteur de #2[f1]% jusqu'à 5 cumuls. Lorsqu'un ennemi est affecté par Rupture de faiblesse, augmente les DGT infligés par le porteur de #1[i]% pendant 1 tour.",
@@ -3459,7 +3459,7 @@
       []
     ]
   },
-  "23001": {
+  {
     "id": "23001",
     "skill": "Fleurs et papillons",
     "desc": "Augmente les chances de coup critique du porteur de #1[i]%. En combat, à chaque tranche de #2[i] points de VIT au-delà de 100, les DGT infligés par son ATQ normale et sa compétence augmentent de #3[i]% et les DGT critiques de son ultime de #4[i]%. Cet effet est cumulable jusqu'à #5[i] fois.",
@@ -3533,7 +3533,7 @@
       ]
     ]
   },
-  "23002": {
+  {
     "id": "23002",
     "skill": "Liens familiaux",
     "desc": "Augmente l'ATQ du porteur de #1[i]%. Lorsque le porteur élimine un ennemi ou est touché par une attaque, il restaure immédiatement des PV équivalents à #2[i]% de son ATQ. D'autre part, ses DGT augmentent de #3[i]% jusqu'à la fin de son prochain tour. Cet effet n'est pas cumulable et ne peut se déclencher qu'1 fois par tour.",
@@ -3597,7 +3597,7 @@
       ]
     ]
   },
-  "23003": {
+  {
     "id": "23003",
     "skill": "Héritière",
     "desc": "Augmente le taux de régénération d'énergie du porteur de #1[i]% et restaure 1 point de compétence lorsqu'il utilise son ultime sur un allié. Cet effet peut être déclenché une fois toutes les 2 utilisations de l'ultime du porteur. Lorsque le porteur utilise sa compétence, le prochain allié à agir (à l'exception du porteur) inflige #2[i]% de DGT supplémentaires pendant #3[i] tour.",
@@ -3661,7 +3661,7 @@
       ]
     ]
   },
-  "23004": {
+  {
     "id": "23004",
     "skill": "Successeur",
     "desc": "Les DGT du porteur sur les ennemis souffrant de malus augmentent de #1[i]%. Lorsqu'il utilise sa compétence, les chances d'appliquer des effets du porteur pour cette attaque augmentent de #2[i]%, et son ATQ de #3[i]%.",
@@ -3700,7 +3700,7 @@
       []
     ]
   },
-  "23005": {
+  {
     "id": "23005",
     "skill": "Verdict",
     "desc": "Augmente la DÉF du porteur de #2[i]% et les chances d'appliquer des effets de #4[i]%. Augmente la probabilité pour le porteur d'être attaqué par des ennemis. Lorsque le porteur est attaqué, sa DÉF augmente de #3[i]% supplémentaires jusqu'à la fin de son tour.",
@@ -3789,7 +3789,7 @@
       ]
     ]
   },
-  "23006": {
+  {
     "id": "23006",
     "skill": "Toile d'araignée",
     "desc": "Les DGT infligés par le porteur augmentent de #2[i]%. Après chaque attaque du porteur, sa VIT augmente de #3[f1]%, effet cumulable #4[i] fois.\nLorsque le porteur attaque un ennemi, il y a 100 % de chances de base de lui infliger l'effet Érosion, lorsque l'ennemi n'est pas déjà affecté par cet effet. Les ennemis affectés par Érosion sont considérés comme Stupéfiés et subissent des DGT de foudre sur la durée équivalents à #1[i]% de l'ATQ du porteur pendant #5[i] tours.",
@@ -3863,7 +3863,7 @@
       ]
     ]
   },
-  "23007": {
+  {
     "id": "23007",
     "skill": "Mirage de la réalité",
     "desc": "Augmente les chances d'appliquer des effets du porteur de #1[i]%. Lorsque le porteur inflige des DGT à un ennemi qui a #4[i] malus ou plus, les chances de coup critique du porteur augmentent de #5[i]%. Lorsque le porteur utilise son ATQ normale, sa compétence ou son ultime, il a #2[i]% de chances de base d'implanter Code éthéré à une cible aléatoire touchée par la capacité qui ne subit pas déjà cet effet. Les cibles sous l'effet de Code éthéré subissent #3[i]% de DGT supplémentaires pendant 1 tour.",
@@ -3937,7 +3937,7 @@
       ]
     ]
   },
-  "23008": {
+  {
     "id": "23008",
     "skill": "Épines",
     "desc": "Augmente l'ATQ du porteur de #1[i]%. Lorsque le porteur utilise une attaque, régénère #3[f1] points d'énergie pour chaque cible touchée. Chaque attaque peut régénérer de l'énergie jusqu'à #4[i] fois de cette façon. Lorsque le porteur utilise son ultime, la VIT de tous les alliés augmente de #2[i] pendant 1 tour.",
@@ -4006,7 +4006,7 @@
       ]
     ]
   },
-  "23009": {
+  {
     "id": "23009",
     "skill": "Envie inassouvie",
     "desc": "Augmente les chances de coup critique du porteur de #1[i]% et ses PV max de #2[i]%. Ses DGT augmentent de #3[i]% lorsqu'il est attaqué ou qu'il consomme ses propres PV. Cet effet est supprimé lorsque le porteur lance une attaque.",
@@ -4090,7 +4090,7 @@
       ]
     ]
   },
-  "23010": {
+  {
     "id": "23010",
     "skill": "Longue nuit",
     "desc": "Augmente les DGT critiques du porteur de #1[i]%. Augmente les DGT infligés par la compétence et l'ultime du porteur de #2[i]%. Après utilisation de sa compétence ou de son ultime, le porteur bénéficie de Somnus Corpus. Lors du déclenchement d'une attaque de suivi, Somnus Corpus se dissipe et les DGT infligés par l'attaque de suivi augmentent de #3[i]%.",
@@ -4154,7 +4154,7 @@
       ]
     ]
   },
-  "23011": {
+  {
     "id": "23011",
     "skill": "Vision",
     "desc": "Augmente les PV max du porteur de #1[i]% et le taux de régénération d'énergie de #4[i]%. Lorsque les PV du porteur sont réduits, les DGT infligés par tous les alliés augmentent de #2[f1]% pendant #5[i] tours.\nAu début de chaque vague, chaque allié récupère un montant de PV équivalent à #3[i]% de ses PV perdus.",
@@ -4248,7 +4248,7 @@
       ]
     ]
   },
-  "23012": {
+  {
     "id": "23012",
     "skill": "Beaux rêves",
     "desc": "Augmente les DGT critiques du porteur de #1[i]%. Lorsque les DGT de son ATQ normale ou sa compétence ne résultent pas en un coup critique, ses chances de coup critique augmentent de #2[i]% pendant #3[i] tour. Cet effet ne peut se déclencher qu'une fois tous les #4[i] tours.",
@@ -4317,7 +4317,7 @@
       ]
     ]
   },
-  "23013": {
+  {
     "id": "23013",
     "skill": "Matin, midi, crépuscule et nuit",
     "desc": "Augmente les PV max du porteur de #1[i]% et les soins qu'il prodigue de #2[i]%. Lorsque le porteur soigne un allié, la quantité de soins prodigués est enregistrée. Lorsqu'un allié lance une attaque, un ennemi aléatoire parmi ceux attaqués subit des DGT additionnels équivalents à #3[i]% des soins prodigués enregistrés. Le type des DGT additionnels est le même que celui du porteur. Ces DGT additionnels ne sont pas affectés par d'autres bonus et ne peuvent être infligés qu'1 fois par tour.",
@@ -4401,7 +4401,7 @@
       ]
     ]
   },
-  "23014": {
+  {
     "id": "23014",
     "skill": "Avec ce jade du soir",
     "desc": "Augmente les DGT critiques du porteur de #1[i]%. Le porteur gagne 1 cumul d'Éclipse chaque fois qu'un coéquipier est attaqué ou perd des PV, jusqu'à un maximum de #2[i] cumuls. Chaque cumul d'Éclipse augmente les DGT de la prochaine attaque du porteur de #3[f1]%. À #2[i] cumuls, l'attaque ignore également #4[i]% de la DÉF de l'ennemi. L'effet disparaît chaque fois que le porteur utilise une attaque.",
@@ -4470,7 +4470,7 @@
       ]
     ]
   },
-  "23015": {
+  {
     "id": "23015",
     "skill": "Jusqu'à la mort",
     "desc": "Augmente les chances de coup critique du porteur de #1[i]%. Lorsque le porteur utilise son ATQ normale, il gagne 1 cumul d'Appel du dragon, qui dure #2[i] tours. Chaque cumul d'Appel du dragon augmente l'ATQ du porteur de #4[i]% et le taux de régénération d'énergie de #5[f1]%. Appel du dragon est cumulable jusqu'à #3[i] fois.",
@@ -4544,7 +4544,7 @@
       ]
     ]
   },
-  "23016": {
+  {
     "id": "23016",
     "skill": "Un à la fois",
     "desc": "Augmente les chances de coup critique du porteur de #1[i]% et les DGT infligés par ses attaques de suivi de #2[i]%. Lorsque le porteur déclenche une attaque de suivi, applique l'état Apprivoisement à la cible, cumulable jusqu'à #4[i] fois. Lorsque des alliés touchent des cibles ennemies affectées par Apprivoisement, chaque cumul d'Apprivoisement augmente les DGT critiques infligés de #3[i]%.",
@@ -4613,7 +4613,7 @@
       ]
     ]
   },
-  "23017": {
+  {
     "id": "23017",
     "skill": "On respire profondément",
     "desc": "Augmente le taux de régénération d'énergie du porteur de #1[i]%. Lorsqu'un allié utilise son ultime, le porteur restaure #2[i]% des PV max de l'allié qui a le moins de PV en pourcentage. Quand le porteur prodigue des soins à l'allié, augmente l'ATQ de l'allié soigné de #3[f1]%. Cet effet peut être cumulé jusqu'à #4[i] fois et dure #5[i] tours.",
@@ -4687,7 +4687,7 @@
       ]
     ]
   },
-  "23018": {
+  {
     "id": "23018",
     "skill": "Un chevalier en pèlerinage",
     "desc": "Augmente les DGT critiques du porteur de #1[i]%. Lorsque le porteur lance son ultime, augmente les DGT infligés par son ultime en fonction de son énergie max. Chaque point d'énergie augmente les DGT infligés par son ultime de #2[f2]%, jusqu'à un maximum de #3[i] points d'énergie.",
@@ -4751,7 +4751,7 @@
       ]
     ]
   },
-  "23019": {
+  {
     "id": "23019",
     "skill": "La fragrance prune de mes os",
     "desc": "Augmente l'effet de Rupture du porteur de #1[i]%. Augmente les DGT de tous les alliés de #2[i]% pendant #3[i] tours lorsque le porteur utilise son ultime. Si l'effet de Rupture du porteur est supérieur ou égal à #4[i]%, il récupère 1 point de compétence.\nTous les alliés régénèrent immédiatement #5[f1] points d'énergie au début de chaque vague. Les capacités du même type ne peuvent pas être cumulés.",
@@ -4825,7 +4825,7 @@
       ]
     ]
   },
-  "23020": {
+  {
     "id": "23020",
     "skill": "Entraînement mental",
     "desc": "Augmente les DGT critiques du porteur de #1[i]%. Pour chaque malus subi par une cible ennemie, les DGT critiques du porteur augmentent de #2[i]% supplémentaires sur cette cible, jusqu'à un maximum de #3[i] cumuls. Lorsque le porteur attaque une cible avec son ultime, il bénéficie de l'effet Débat, ce qui augmente de #4[i]% les DGT qu'il inflige et permet à ses attaques de suivi d'ignorer #5[i]% de la DÉF de la cible. Cet effet dure #6[i] tours.",
@@ -4904,7 +4904,7 @@
       ]
     ]
   },
-  "23021": {
+  {
     "id": "23021",
     "skill": "Caprices",
     "desc": "Augmente les DGT critiques du porteur de #1[i]%. Le porteur obtient l'effet Masque pendant #6[i] tours en début de combat. Tant que le porteur bénéficie de Masque, ses coéquipiers voient leurs chances de coup critique augmenter de #5[i]% et leurs DGT critiques de #2[i]%. Chaque fois que le porteur régénère 1 point de compétence (y compris des points de compétence au-delà de la limite), il gagne 1 cumul de Flamme radieuse. À #4[i] cumuls de Flamme radieuse, il perd tous les cumuls et gagne Masque. Dure #3[i] tours.",
@@ -4983,7 +4983,7 @@
       ]
     ]
   },
-  "23022": {
+  {
     "id": "23022",
     "skill": "Cristallisation",
     "desc": "Augmente les chances d'appliquer des effets du porteur de #1[i]%. Lorsque le porteur inflige des DGT à un ennemi affecté par Faille du vent, Saignement, Brûlure ou Stupéfaction, chaque effet lui accorde 1 cumul de Prophétie, cumulable jusqu'à #4[i] fois. Chaque type de dégâts sur la durée ne peut générer qu'1 seul cumul de Prophétie par combat. Chaque cumul de Prophétie augmente de #2[i]% l'ATQ du porteur et permet aux dégâts sur la durée infligés d'ignorer #3[f1]% de la DÉF de la cible.",
@@ -5052,7 +5052,7 @@
       ]
     ]
   },
-  "23023": {
+  {
     "id": "23023",
     "skill": "Le tout pour le tout",
     "desc": "Augmente la DÉF du porteur de #1[i]%. Les DGT critiques du porteur augmentent de #2[i]% pendant #3[i] tours à chaque fois qu'il accorde un bouclier à un allié. Lorsque le porteur utilise une attaque de suivi pour attaquer un ennemi, il y a #4[i]% de chances de base d'augmenter les DGT subis par l'ennemi attaqué de #5[f1]% pendant #6[i] tours.",
@@ -5131,7 +5131,7 @@
       ]
     ]
   },
-  "23024": {
+  {
     "id": "23024",
     "skill": "Passeur",
     "desc": "Augmente les DGT critiques du porteur de #1[i]%. Lorsque le porteur touche une cible ennemie, applique l'effet Bulle du vide pendant 1 tour à l'ennemi. Cet effet peut être déclenché 1 fois sur chaque cible pour chaque attaque lancée par le porteur. Le porteur inflige #2[i]% de DGT supplémentaires aux cibles affectées par Bulle du vide et les DGT infligés par son ultime augmentent de #3[i]%.",
@@ -5195,7 +5195,7 @@
       ]
     ]
   },
-  "23025": {
+  {
     "id": "23025",
     "skill": "Métamorphose",
     "desc": "Augmente l'effet de Rupture du porteur de #1[i]%. Lorsque le porteur inflige des DGT de rupture à une cible ennemie, il lui applique l'effet Perdu pendant #4[i] tours. Les cibles affectées par l'effet Perdu subissent #2[f1]% de DGT de rupture supplémentaires de la part du porteur et voient leur VIT réduite de #3[i]%. Les effets du même type ne se cumulent pas.",
@@ -5264,7 +5264,7 @@
       ]
     ]
   },
-  "23026": {
+  {
     "id": "23026",
     "skill": "Apaisement",
     "desc": "Le porteur gagne 1 cumul de Cantique à chaque fois qu'un allié attaque. Chaque cumul de Cantique augmente de #1[f1]% le taux de régénération d'énergie du porteur, jusqu'à #2[i] cumuls. Supprime l'effet Cantique et gagne Cadence à la place lorsque le porteur utilise son ultime. Cadence augmente l'ATQ du porteur de #4[i]% et les DGT infligés par l'équipe de #3[i]%. Dure #5[i] tour.",
@@ -5313,7 +5313,7 @@
       []
     ]
   },
-  "23027": {
+  {
     "id": "23027",
     "skill": "Navigation en eaux troubles",
     "desc": "Augmente l'effet de Rupture du porteur de #1[i]% et les DGT de rupture qu'il inflige ignorent #3[i]% de la DÉF de la cible. Lorsque l'effet de Rupture du porteur est supérieur ou égal à #2[i]%, sa VIT augmente de #4[i]%.",
@@ -5382,7 +5382,7 @@
       ]
     ]
   },
-  "23028": {
+  {
     "id": "23028",
     "skill": "Promesse",
     "desc": "Augmente les chances de coup critique du porteur de #1[i]%. Lorsque les DGT critiques du porteur sont supérieurs à #2[i]% en combat, pour chaque tranche de #3[i]% de DGT critiques supérieurs, les DGT infligés par ses attaques de suivi augmentent de #4[i]%. Cet effet peut être cumulé jusqu'à #5[i] fois. En début de combat ou après que le porteur a utilisé son ATQ normale, les DGT infligés par l'ultime et l'attaque de suivi ignorent #6[i]% de la DÉF de la cible, pour une durée de #7[i] tours.",
@@ -5466,7 +5466,7 @@
       ]
     ]
   },
-  "23029": {
+  {
     "id": "23029",
     "skill": "Passage sans laisser de trace",
     "desc": "Augmente les chances d'appliquer des effets du porteur de #1[i]%. Lorsque le porteur utilise son ATQ normale, sa compétence, ou son ultime pour attaquer une cible ennemie, il a #2[i]% de chances de base de lui infliger l'état Sans défense. Dans l'état Sans défense, augmente les DGT subis par la cible ennemie de #3[i]% pendant #4[i] tours. Lorsque la cible subit des dégâts sur la durée infligés par le porteur, il y a #5[i]% de chances de base de transformer son état Sans défense en Cerné, ce qui augmente les DGT subis par la cible de #6[i]% pendant #4[i] tours. Pendant cette période, le porteur ne peut pas appliquer Sans défense à la cible.",
@@ -5545,7 +5545,7 @@
       ]
     ]
   },
-  "23030": {
+  {
     "id": "23030",
     "skill": "Fascination",
     "desc": "Augmente considérablement les chances du porteur d'être attaqué ainsi que ses DGT critiques de #1[i]%. Le porteur obtient 1 cumul de Danse du feu après avoir utilisé son ultime. Danse du feu dure 2 tours et peut se cumuler jusqu'à #2[i] fois. Chaque cumul de Danse du feu augmente les DGT infligés par l'attaque de suivi du porteur de #3[i]%.",
@@ -5614,7 +5614,7 @@
       ]
     ]
   },
-  "23031": {
+  {
     "id": "23031",
     "skill": "Intimidation",
     "desc": "Augmente les chances de coup critique du porteur de #1[f1]%. Lorsque le porteur lance une attaque de suivi, il gagne 1 cumul de Lumière vive jusqu'à un maximum de #3[i] fois. Chaque cumul de Lumière vive permet aux DGT d'ultime infligés par le porteur d'ignorer #2[i]% de la DÉF de la cible. Lorsque le tour du porteur se termine, supprime 1 cumul de Lumière vive.",
@@ -5678,7 +5678,7 @@
       ]
     ]
   },
-  "23032": {
+  {
     "id": "23032",
     "skill": "Satisfaction",
     "desc": "Augmente l'effet de Rupture du porteur de #1[i]%. Lorsque le porteur attaque des cibles ennemies avec son ultime, leur applique l'effet Sans souci pendant #5[i] tours. Les cibles ennemies avec l'effet Sans souci subissent #2[i]% de DGT supplémentaires. L'effet d'augmentation des DGT subis est renforcé de #4[i]% supplémentaires si l'effet de Rupture actuel du porteur est supérieur ou égal à #3[i]%.",
@@ -5752,7 +5752,7 @@
       ]
     ]
   },
-  "23033": {
+  {
     "id": "23033",
     "skill": "Exorcisme",
     "desc": "Augmente l'effet de Rupture du porteur de #1[i]%. Régénère immédiatement #2[f1] points d'énergie en entrant en combat. Le porteur obtient l'effet Raijin après avoir utilisé son ultime. Après avoir utilisé 2 ATQ normales, avance l'action du porteur de #3[i]% et supprime l'effet Raijin. Réinitialise Raijin après utilisation de l'ultime.",
@@ -5816,7 +5816,7 @@
       ]
     ]
   },
-  "24000": {
+  {
     "id": "24000",
     "skill": "Comme un aimant",
     "desc": "Pendant ce combat, chaque fois que le porteur attaque, son ATQ augmente de #1[i]%, cumulable jusqu'à #2[i] fois. Après que le porteur a infligé une Rupture de faiblesse à un ennemi, ses DGT augmentent de #3[i]% pendant #4[i] tours.",
@@ -5860,7 +5860,7 @@
       []
     ]
   },
-  "24001": {
+  {
     "id": "24001",
     "skill": "Pourchasser",
     "desc": "Augmente les chances de coup critique du porteur de #1[i]%, et de #3[i]% supplémentaires contre les ennemis dont les PV sont inférieurs ou égaux à #2[i]%. Lorsque le porteur élimine un ennemi, son ATQ augmente de #4[i]% pendant #5[i] tours.",
@@ -5934,7 +5934,7 @@
       ]
     ]
   },
-  "24002": {
+  {
     "id": "24002",
     "skill": "Trésor",
     "desc": "Augmente la RÉS aux effets du porteur de #1[i]%. Lorsque le porteur est attaqué et n'a pas de bouclier, il obtient un bouclier équivalent à #2[i]% de ses PV max pendant #3[i] tours. Cet effet ne peut être déclenché qu'1 fois tous les #4[i] tours. Si le porteur a déjà un bouclier lorsqu'il est attaqué, les DGT subis sont réduits de #5[i]%.",
@@ -6008,7 +6008,7 @@
       ]
     ]
   },
-  "24003": {
+  {
     "id": "24003",
     "skill": "Élixir de chaos",
     "desc": "Augmente l'effet de Rupture du porteur de #1[i]%. Lorsque le porteur utilise son ultime, il inflige #2[i]% de dégâts sur la durée supplémentaires pendant #3[i] tours. Lorsqu'une cible ennemie victime des dégâts sur la durée infligés par le porteur est vaincue, ce dernier récupère #4[f1] points d'énergie.",
@@ -6077,7 +6077,7 @@
       ]
     ]
   },
-  "24004": {
+  {
     "id": "24004",
     "skill": "Pensée sans limite",
     "desc": "Augmente l'ATQ du porteur de #1[i]%. Après avoir utilisé une attaque, pour chaque cible ennemie touchée, augmente l'ATQ de #2[i]% supplémentaires. Cet effet peut être cumulé jusqu'à 5 fois et dure jusqu'à la prochaine attaque. La VIT du personnage augmente de #4[i]% s'il y a au moins #3[i] cibles ennemies touchées. Dure #5[i] tour.",
@@ -6151,4 +6151,4 @@
       ]
     ]
   }
-}
+]
