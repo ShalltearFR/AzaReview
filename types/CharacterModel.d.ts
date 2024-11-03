@@ -6,7 +6,7 @@ type LightCone = {
 
 type RelicsSet = {
   id: string;
-  num: 2 | 4;
+  num: number;
   recommended: boolean;
 };
 

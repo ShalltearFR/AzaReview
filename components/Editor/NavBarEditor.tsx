@@ -219,7 +219,14 @@ const NavBarEditor: React.FC = () => {
           >
             Ajout de patch
           </button>
+          <Link
+            className="px-3 py-2 rounded-full bg-green text-black disabled:bg-gray ml-auto"
+            href={"/hsr-editor/multi_edit"}
+          >
+            Multi edition
+          </Link>
         </div>
+
         <span className="ml-auto font-medium">
           <Link href={"/hsr-editor/logout"}>Deconnexion</Link>
         </span>

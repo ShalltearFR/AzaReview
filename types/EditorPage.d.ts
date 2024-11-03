@@ -1,3 +1,4 @@
+// Partie Edit
 interface Option {
   value: string;
   label: string;
@@ -33,10 +34,29 @@ interface recommendedStatsOption {
   importance: string;
 }
 
+// Partie Multi Edit
+
+interface CharacterMultiEdit {
+  id: string;
+  preview: string;
+  buildsChecked: boolean[];
+  buildsName: string[];
+}
+
+interface MultiEditData {
+  action: "add" | "delete";
+  Characters: CharacterMultiEdit[];
+  lightCones: LightConeOption[];
+  relics_set: RelicSetOption[];
+  ornaments_set: RelicSetOption[];
+}
+
 export type {
   Option,
   LightConeOption,
   RelicSetOption,
   MainStatsOption,
   recommendedStatsOption,
+  MultiEditData,
+  CharacterMultiEdit,
 };
