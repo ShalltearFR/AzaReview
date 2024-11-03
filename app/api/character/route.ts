@@ -19,8 +19,10 @@ export async function DELETE(req: Request) {
   try {
     const { id } = await req.json();
     await dbConnect();
+
     // Supprime le cache
     cacheData.flushAll();
+
     await Character.deleteOne({ id: id });
     return NextResponse.json({ message: "ok" }, { status: 202 });
   } catch (error) {
