@@ -80,14 +80,12 @@ const Page: React.FC = ({}) => {
   const handleSave = () => {
     fetchData();
     const relic_set = [...relics, ...ornaments];
-    // lightCones
     if (
       characters.length === 0 ||
       (relic_set.length === 0 && lightCones.length === 0)
     )
       return;
 
-    console.log("relic_set", relic_set);
     setDisableSaveButton(true);
     let doNotSave: boolean = false;
 
@@ -193,10 +191,6 @@ const Page: React.FC = ({}) => {
     if (doNotSave) setDisableSaveButton(false);
 
     if (!doNotSave) {
-      // console.log("save processing");
-      // console.log("lightCones", lightCones);
-      // console.log("relic_set", relic_set);
-
       characters.map((character) => {
         const characterReview = [...data].find(
           (el) => el.id === character.id
@@ -256,8 +250,6 @@ const Page: React.FC = ({}) => {
             };
           })
           .filter((el) => el !== null);
-
-        console.log("newData", newData);
 
         fetch("/api/character", {
           method: "PUT",
