@@ -284,9 +284,11 @@ const Page: React.FC = ({}) => {
                 </div>
               );
             else toast.error("Erreur de sauvegarde");
+          })
+          .finally(() => {
+            setDisableSaveButton(false);
+            fetchData();
           });
-        setDisableSaveButton(false);
-        fetchData();
       });
     }
   };
