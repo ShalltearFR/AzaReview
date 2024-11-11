@@ -11,7 +11,7 @@ const StarBGAnimation: React.FC<StarBGAnimationProps> = ({ zIndex = -10 }) => {
         backgroundImage: `url("${CDN2}/img/homepage/stars.svg")`,
         zIndex: zIndex,
       }}
-      data-aos="animate-stars"
+      className="animate-stars"
     />
   );
 };

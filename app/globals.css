@@ -11,7 +11,7 @@
   }
 }
 
-[data-aos="animate-stars"] {
+.animate-stars {
   position: fixed;
   width: 200%;
   height: 200%;
