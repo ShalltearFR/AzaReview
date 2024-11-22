@@ -66,6 +66,14 @@ const ItemShow: React.FC<ItemShowProps> = ({
           onMouseEnter={() => setShowTooltipName(true)}
           onMouseLeave={() => setShowTooltipName(false)}
         >
+          {itemName.rarity && (
+            <div
+              className={`absolute w-full h-full rounded-t-3xl z-10 right-0 -top-2 ${
+                itemName.rarity === 5 ? "bg-radial-5Star" : "bg-radial-4Star"
+              }`}
+            />
+          )}
+
           {showTooltipName && (
             <p className="absolute bottom-0 bg-black z-20 w-full px-1 text-center">
               {itemName.name}
@@ -74,9 +82,9 @@ const ItemShow: React.FC<ItemShowProps> = ({
           <img
             src={`${CDN}/${itemName.icon}`}
             alt={itemName.name}
-            className="m-auto"
-            width={128}
-            height={128}
+            className="m-auto absolute z-10 right-0 left-0"
+            width={112}
+            height={112}
           />
           <p className="absolute bottom-0 px-1 text-center w-full bg-black/75">
             {itemName.name.length > 14
@@ -94,13 +102,15 @@ const ItemShow: React.FC<ItemShowProps> = ({
               className="hidden xl:block"
             />
           </button>
+          <div className="w-32 h-32" />
         </div>
         {/* Affiche la description de l'item */}
         {showTooltipDesc && (
           <div className="absolute bg-background -left-32 border border-orange rounded-xl z-20 p-2 hidden xl:flex xl:flex-col xl:w-[400px] xl:gap-3">
-            {itemDesc.map((desc: string) => (
-              <p key={`desc${id}`}>{desc}</p>
-            ))}
+            {itemDesc.map((desc: string) => {
+              if (desc === "undefined") return null;
+              return <p key={`desc${id}`}>{desc}</p>;
+            })}
           </div>
         )}
       </div>
