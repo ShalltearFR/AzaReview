@@ -92,7 +92,7 @@ const ItemShow: React.FC<ItemShowProps> = ({
               : itemName.name}
           </p>
           <button
-            className="absolute top-0 right-0 size-10"
+            className="absolute top-0 right-0 size-10 z-20"
             onMouseEnter={() => setShowTooltipDesc(true)}
             onMouseLeave={() => setShowTooltipDesc(false)}
           >
@@ -106,7 +106,7 @@ const ItemShow: React.FC<ItemShowProps> = ({
         </div>
         {/* Affiche la description de l'item */}
         {showTooltipDesc && (
-          <div className="absolute bg-background -left-32 border border-orange rounded-xl z-20 p-2 hidden xl:flex xl:flex-col xl:w-[400px] xl:gap-3">
+          <div className="absolute bg-background -left-32 border border-orange rounded-xl z-30 p-2 hidden xl:flex xl:flex-col xl:w-[400px] xl:gap-3">
             {itemDesc.map((desc: string) => {
               if (desc === "undefined") return null;
               return <p key={`desc${id}`}>{desc}</p>;
