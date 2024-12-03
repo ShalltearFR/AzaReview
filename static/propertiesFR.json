@@ -551,7 +551,7 @@
   },
   {
     "type": "AllDamageTypeAddedRatio",
-    "name": "Augm. de DGT",
+    "name": "DGT ↑",
     "field": "all_dmg",
     "affix": true,
     "ratio": false,
