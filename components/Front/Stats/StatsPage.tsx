@@ -61,12 +61,12 @@ const StatsPage: React.FC<StatsPageProps> = ({
             </div>
           </header>
           <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}>
-            <main className="flex justify-center items-center mt-10 flex-wrap h-[540px]">
+            <div className="flex justify-center items-center mt-10 flex-wrap lg:h-[540px]">
               <section className="mx-auto">
                 <h2 className="font-bold text-2xl underline text-orange text-center mb-3">
                   {StatsTranslate[lang][4]}
                 </h2>
-                <div className="h-[500px]">
+                <div className="lg:h-[500px]">
                   <StatsTable dataStats={dataStats} lang={lang} />
                 </div>
               </section>
@@ -74,11 +74,11 @@ const StatsPage: React.FC<StatsPageProps> = ({
                 <h2 className="font-bold text-2xl underline text-orange text-center mb-2">
                   {StatsTranslate[lang][16]}
                 </h2>
-                <div className="h-[500px]">
+                <div className="lg:h-[500px]">
                   <ChartVisu dataStats={dataStats} lang={lang} />
                 </div>
               </section>
-            </main>
+            </div>
             <TopRelics
               dataStats={dataStats}
               lang={lang}
