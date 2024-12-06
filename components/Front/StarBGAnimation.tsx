@@ -8,7 +8,7 @@ interface StarBGAnimationProps {
 
 const StarBGAnimation: React.FC<StarBGAnimationProps> = ({ zIndex = -10 }) => {
   return (
-    <div className="absolute w-full min-h-[calc(100vh-295px)]">
+    <div className="absolute w-full h-[calc(100%-205px)]">
       {/* EFFET NEIGE */}
       <Snowfall
         snowflakeCount={75}
