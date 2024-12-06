@@ -50,6 +50,15 @@ const TopLightCones: React.FC<TopLightConesProps> = ({
                 key={`lightcone${cone.id}`}
                 className="relative flex bg-black/75 rounded-tr-3xl py-2 h-36 w-36 hover:bg-white/5"
               >
+                {lightconesInfo.rarity && (
+                  <div
+                    className={`absolute w-full h-full rounded-t-3xl z-10 right-0 -top-2 ${
+                      lightconesInfo.rarity === 5
+                        ? "bg-radial-5Star"
+                        : "bg-radial-4Star"
+                    }`}
+                  />
+                )}
                 <p className="absolute text-sm -top-2 -left-2 bg-black p-2 rounded-full border border-gray font-bold">
                   {cone.percent}%
                 </p>
@@ -59,7 +68,7 @@ const TopLightCones: React.FC<TopLightConesProps> = ({
                   alt={lightconesInfo.name}
                   width={112}
                   height={112}
-                  className="w-28 m-auto"
+                  className="w-28 m-auto z-10"
                   fetchPriority="high"
                 />
                 <p className="absolute bottom-0 text-center text-sm bg-black w-full">
