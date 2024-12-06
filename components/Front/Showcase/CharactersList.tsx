@@ -70,7 +70,7 @@ const CharactersList: React.FC<GuidesProps> = ({ list }) => {
                 character.rarity === "5" ? "bg-radial-5Star" : "bg-radial-4Star"
               }`}
             />
-            <p className="absolute bottom-0 text-center text-white font-bold bg-black z-50 w-full h-10 flex items-center justify-center">
+            <p className="absolute bottom-0 text-center text-white font-bold bg-black z-[48] w-full h-10 flex items-center justify-center">
               {character.name}
             </p>
             <div className="w-[208px] h-[257px]" />
