@@ -153,6 +153,22 @@ const Options: React.FC<OptionsProps> = ({
             </span>
           </label>
         </div>
+        {/* <label className="select-none">
+          <p className="text-white">
+            {userOptionsLanguage[lang ?? "fr"].imageBG}
+          </p>
+          <input
+            type="text"
+            className="w-3/4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 mt-[1px]"
+            value={userOptions.imageBG}
+            onChange={(e) =>
+              setUserOptions({
+                ...userOptions,
+                imageBG: e.target.value,
+              })
+            }
+          />
+        </label> */}
       </div>
     </div>
   );

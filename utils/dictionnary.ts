@@ -101,6 +101,7 @@ interface UserOptionsLanguageType {
   others: string;
   redStats: string;
   informations: string;
+  imageBG: string;
 }
 
 interface LanguageOptions {
@@ -120,6 +121,7 @@ const userOptionsLanguage: LanguageOptions = {
     others: "Autres",
     redStats: "Elements mauvais en rouge",
     informations: "Afficher les icones d'informations",
+    imageBG: "URL image de fond (1450 * 870 pixels)",
   },
   en: {
     displayOptions: "Display Options",
@@ -132,6 +134,7 @@ const userOptionsLanguage: LanguageOptions = {
     others: "Others",
     redStats: "Bad elements in red",
     informations: "Display information icons",
+    imageBG: "Image background URL(1450 * 870 pixels)",
   },
 };
 

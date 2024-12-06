@@ -8,6 +8,8 @@ interface UserOptionsProps {
   // Autres
   showRedstats: boolean;
   showInformations: boolean;
+  // Image BG
+  imageBG: string;
 }
 
 const DefaultUserOptions: UserOptionsProps = {
@@ -17,6 +19,7 @@ const DefaultUserOptions: UserOptionsProps = {
   showRecommandedStatsCom: true,
   showRedstats: true,
   showInformations: true,
+  imageBG: "",
 };
 
 export { DefaultUserOptions };

@@ -1,3 +1,4 @@
+"use client";
 import { Relic, jsonUID } from "@/types/jsonUid";
 import CharacterSplash from "./CharacterSplash";
 import CharacterTrace from "./CharacterTrace";
@@ -33,6 +34,15 @@ interface CharacterDetailsProps {
   userOptions: UserOptionsProps;
 }
 
+const isValidImage = (url: string) => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true); // L'image est valide
+    img.onerror = () => resolve(false); // L'image n'est pas valide
+    img.src = url; // Déclenche le chargement de l'image
+  });
+};
+
 const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   uidData,
   index,
@@ -47,12 +57,21 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
 }) => {
   const [tracesNames, setTracesNames] = useState<Array<string>>([]);
   const [characterRelics, setCharacterRelics] = useState<Relic[] | []>([]);
+  const [imageBG, setImageBG] = useState<string>("");
 
   const character = uidData.characters[index];
   const characterReview: Data =
     (reviewData[index]?.data &&
       (reviewData[index]?.data[buildIndex] as unknown as Data)) ||
     [];
+
+  useEffect(() => {
+    const url = userOptions.imageBG;
+    isValidImage(url).then((isValid) => {
+      if (isValid) setImageBG(url);
+      if (!isValid) setImageBG(`${CDN2}/img/character_bg.avif`);
+    });
+  }, [userOptions.imageBG]);
 
   useEffect(() => setTracesNames(traces[lang ?? "fr"]), [lang]);
 
@@ -96,7 +115,8 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
       <article
         className="grid xl:h-[870px] xl:gap-x-5 py-4 xl:grid-cols-3"
         style={{
-          backgroundImage: `url('${CDN2}/img/character_bg.avif')`,
+          backgroundImage: `url('${imageBG}')`,
+          // : `url('${CDN2}/img/character_bg.avif')`,
           backgroundSize: "100% auto",
           backgroundRepeat: "repeat-y",
         }}

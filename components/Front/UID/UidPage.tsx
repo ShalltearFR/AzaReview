@@ -84,7 +84,6 @@ const UidPage: React.FC<UidPageProps> = ({
 
   const [userOptions, setUserOptions] =
     useState<UserOptionsProps>(DefaultUserOptions);
-
   const [showOptionsMenu, setShowOptionsMenu] = useState<boolean>(false);
 
   const [showChangelog, setShowChangelog] = useState<boolean>(false);
@@ -110,22 +109,22 @@ const UidPage: React.FC<UidPageProps> = ({
     }
   }, []);
 
-  const handleConvertImage = useCallback(
-    (exportType: string, disableButton: (value: boolean) => void) => {
-      if (characterDetailsRef.current) {
-        convertImage(
-          exportType,
-          disableButton,
-          setShareButtonText,
-          characterDetailsRef.current, // Passe l'élément DOM directement
-          lang,
-          characterIndex,
-          uidData as jsonUID
-        );
-      }
-    },
-    [characterIndex]
-  );
+  const handleConvertImage = (
+    exportType: string,
+    disableButton: (value: boolean) => void
+  ) => {
+    if (characterDetailsRef.current) {
+      convertImage(
+        exportType,
+        disableButton,
+        setShareButtonText,
+        characterDetailsRef.current, // Passe l'élément DOM directement
+        lang,
+        characterIndex,
+        uidData as jsonUID
+      );
+    }
+  };
 
   useEffect(() => {
     const uidDataCopy = { ...uidData } as jsonUID;
