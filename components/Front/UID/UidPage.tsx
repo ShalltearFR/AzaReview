@@ -27,6 +27,7 @@ import type { jsonUID } from "@/types/jsonUid";
 import type { CharacterType } from "@/types/CharacterModel";
 import type { ChangelogType } from "@/types/Changelog";
 import Changelog from "./Changelog";
+import Snowfall from "react-snowfall";
 
 interface Option {
   value: string;

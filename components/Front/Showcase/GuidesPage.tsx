@@ -13,6 +13,7 @@ import { UIDtitles } from "@/utils/dictionnary";
 import Filter from "./Filter";
 import { FilterListProps } from "@/types/Filter";
 import { Star } from "./StarIcon";
+import Snowfall from "react-snowfall";
 
 interface GuidesPageProps {
   character: CharacterType[];
@@ -168,7 +169,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
 
   if (charactersSearch) {
     return (
-      <>
+      <div className="relative">
         <NavBar />
         <StarBGAnimation />
         <div className="min-h-[calc(100vh-295px)]">
@@ -237,7 +238,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
           />
         </div>
         <Footer lang={lang} />
-      </>
+      </div>
     );
   }
 

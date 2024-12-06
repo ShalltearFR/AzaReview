@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { CDN2 } from "@/utils/cdn";
 import "aos/dist/aos.css";
 import { CookiesProvider } from "next-client-cookies/server";
+import Snowfall from "react-snowfall";
 
 export const metadata: Metadata = {
   metadataBase: new URL(CDN2),
