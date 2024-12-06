@@ -71,7 +71,7 @@ const TopLightCones: React.FC<TopLightConesProps> = ({
                   className="w-28 m-auto z-10"
                   fetchPriority="high"
                 />
-                <p className="absolute bottom-0 text-center text-sm bg-black w-full">
+                <p className="absolute bottom-0 text-center text-sm bg-black w-full z-20">
                   {lightconesInfo.name}
                 </p>
               </div>
