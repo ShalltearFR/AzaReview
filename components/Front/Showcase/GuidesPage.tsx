@@ -199,7 +199,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
 
             <div className="smd:grid smd:grid-cols-2 mt-5 items-center">
               <input
-                className="flex rounded-full pl-5 text-lg h-10 w-64 mx-auto"
+                className="flex rounded-full pl-5 text-lg h-10 w-64 mx-auto z-[49]"
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 placeholder={UIDtitles[lang ?? "fr"].CharacterSearch}

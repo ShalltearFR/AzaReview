@@ -15,7 +15,7 @@ const StarBGAnimation: React.FC<StarBGAnimationProps> = ({ zIndex = -10 }) => {
         speed={[0, 1.5]}
         wind={[-1, 1]}
         radius={[0.5, 3.5]}
-        style={{ position: "absolute", zIndex: "49" }}
+        style={{ position: "absolute", zIndex: "48", pointerEvents: "none" }}
       />
       <div
         style={{
