@@ -46,7 +46,7 @@ const Filter: React.FC<FilterProps> = ({ setData, data }) => {
         ].map((element: string) => (
           <button
             key={`filter${element}`}
-            className={`bg-black/50 p-1 rounded-full ${
+            className={`bg-black/50 p-1 rounded-full z-[49] ${
               data.element[element as Icon["Element"]]
                 ? "bg-darkGreen2/75 outline-dashed outline-1 outline-red-500"
                 : "bg-black/50"
@@ -72,7 +72,7 @@ const Filter: React.FC<FilterProps> = ({ setData, data }) => {
         ].map((path: string) => (
           <button
             key={`filter${path}`}
-            className={`p-1 rounded-full ${
+            className={`p-1 rounded-full z-[49] ${
               data.path[path as Icon["Path"]]
                 ? "bg-darkGreen2/75 outline-dashed outline-1 outline-red-500"
                 : "bg-black/50"
