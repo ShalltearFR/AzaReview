@@ -66,15 +66,29 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
     if (relics === "none") return [];
 
     if (bypass) {
-      return relics.map((relicSet) => {
-        return {
-          icon: relicSet.icon,
-          name: reduceText(relicSet.name),
-          num: relicSet.num,
-          id: Number(relicSet.id),
-          goodRelic: true,
-        };
-      });
+      return relics
+        .map((relicSet) => {
+          return {
+            icon: relicSet.icon,
+            name: reduceText(relicSet.name),
+            num: relicSet.num,
+            id: Number(relicSet.id),
+            goodRelic: true,
+          };
+        })
+        .reduce((acc: RelicInfos[], relic: RelicInfos) => {
+          // Retire le doublon 2P si le 4P existe
+          const existingRelic = acc.find((r) => r.id === relic.id);
+
+          if (!existingRelic) {
+            acc.push(relic);
+          } else if (relic.num === 4 && existingRelic.num === 2) {
+            const index = acc.indexOf(existingRelic);
+            acc[index] = relic;
+          }
+
+          return acc;
+        }, []);
     }
     if (review) {
       const filteredRelics: RelicInfos[] = relics
@@ -92,6 +106,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
           };
         })
         .reduce((acc: RelicInfos[], relic: RelicInfos) => {
+          // Retire le doublon 2P si le 4P existe
           const existingRelic = acc.find((r) => r.id === relic.id);
 
           if (!existingRelic) {
