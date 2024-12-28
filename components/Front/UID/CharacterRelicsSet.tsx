@@ -218,11 +218,13 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
           >
             {showInformations && (
               <>
-                <InformationCircleIcon
-                  className={`size-9 absolute top-0 right-0 rounded-full ${
-                    recommendedExclamation ? "fill-red" : "fill-gray"
-                  }`}
-                />
+                {review && (
+                  <InformationCircleIcon
+                    className={`size-9 absolute top-0 right-0 rounded-full ${
+                      recommendedExclamation ? "fill-red" : "fill-gray"
+                    }`}
+                  />
+                )}
                 {isTooltipRecommended && (
                   <div
                     className={`absolute z-20 p-2 bg-background border border-orange rounded-xl xl:-top-44 xl:h-44 right-8 w-60 text-white text-sm ${
