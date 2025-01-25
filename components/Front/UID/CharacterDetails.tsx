@@ -207,7 +207,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                   data={characterReview?.recommended_stats}
                 />
               )}
-              {/* Commentaire des stats mini */}
+              {/* Commentaire des stats mini
               {characterReview?.recommended_comment &&
                 userOptions.showRecommandedStatsCom && (
                   <div className="text-orange2 font-bold text-center mt-2 text-[15px]">
@@ -223,7 +223,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                           characterReview?.recommended_comment ?? ""
                         )}
                   </div>
-                )}
+                )} */}
             </div>
           )}
 

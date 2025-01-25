@@ -24,10 +24,9 @@ import Options from "./Options";
 import type { CharacterBuild as CharacterBuildType } from "@/types/charactersEN";
 import type { TranslateSection } from "@/types/homepageDictionnary";
 import type { jsonUID } from "@/types/jsonUid";
-import type { CharacterType } from "@/types/CharacterModel";
+import type { CharacterType, Data } from "@/types/CharacterModel";
 import type { ChangelogType } from "@/types/Changelog";
 import Changelog from "./Changelog";
-import Snowfall from "react-snowfall";
 
 interface Option {
   value: string;
@@ -88,6 +87,21 @@ const UidPage: React.FC<UidPageProps> = ({
   const [showOptionsMenu, setShowOptionsMenu] = useState<boolean>(false);
 
   const [showChangelog, setShowChangelog] = useState<boolean>(false);
+
+  const [characterReview, setCharacterReview] = useState<Data>([] as any);
+
+  useEffect(() => {
+    if (review) {
+      const characterReview: Data =
+        (review[characterIndex]?.data &&
+          (review[characterIndex]?.data[characterBuild] as Data)) ||
+        ([] as unknown as Data);
+
+      setCharacterReview(characterReview);
+    } else {
+      setCharacterReview([] as any);
+    }
+  }, [review, characterIndex, characterBuild]);
 
   useEffect(() => {
     Aos.init({ disable: window.innerWidth <= 1450 });
@@ -299,24 +313,46 @@ const UidPage: React.FC<UidPageProps> = ({
                 lang={lang}
               />
 
-              <div
-                className={
-                  "grid xl:grid-cols-[390px_1fr] justify-center items-center text-white font-bold xl:rounded-t-xl bg-light-blue/75 w-full max-w-[1450px] mx-auto xl:gap-x-5 py-5"
-                }
-              >
-                <CharacterBuild
-                  characterBuild={characterBuild}
-                  characterOptions={characterOptions}
-                  setCharacterBuild={setCharacterBuild}
-                />
-                <div className="px-5 mt-2 text-center xl:px-0 xl:ml-0 xl:mt-0 xl:text-left">
-                  {(characterOptions[characterBuild] &&
-                    characterOptions[characterBuild].desc &&
-                    translateBBCode(
-                      characterOptions[characterBuild].desc ?? ""
-                    )) ||
-                    UIDtitles[lang ?? "fr"].AvailableSoon}
+              <div className="bg-light-blue/75 w-full max-w-[1450px] mx-auto xl:gap-x-5 py-5">
+                <div
+                  className={
+                    "grid xl:grid-cols-[390px_1fr] justify-center items-center text-white font-bold xl:rounded-t-xl "
+                  }
+                >
+                  <CharacterBuild
+                    characterOptions={characterOptions}
+                    characterBuild={characterBuild}
+                    setCharacterBuild={setCharacterBuild}
+                  />
+                  <div className="px-5 mt-2 text-center xl:px-0 xl:ml-0 xl:mt-0 xl:text-left">
+                    {(characterOptions[characterBuild] &&
+                      characterOptions[characterBuild].desc &&
+                      translateBBCode(
+                        characterOptions[characterBuild].desc ?? ""
+                      )) ||
+                      UIDtitles[lang ?? "fr"].AvailableSoon}
+                  </div>
                 </div>
+
+                {/* Commentaire des stats mini */}
+                {characterReview?.recommended_comment &&
+                  userOptions.showRecommandedStatsCom && (
+                    <div className="text-orange2 font-bold ml-5 mt-3">
+                      {characterReview && lang === "en"
+                        ? characterEN[
+                            (uidData as any).characters[characterIndex].id
+                          ]
+                          ? translateBBCode(
+                              characterEN[
+                                (uidData as any).characters[characterIndex].id
+                              ][characterBuild].comment
+                            )
+                          : ""
+                        : translateBBCode(
+                            characterReview?.recommended_comment ?? ""
+                          )}
+                    </div>
+                  )}
               </div>
               <div className="flex justify-center w-full relative">
                 {/* MENU OPTIONS POUR LES RESOLUTIONS DESKTOP */}
