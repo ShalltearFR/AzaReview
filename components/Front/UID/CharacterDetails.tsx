@@ -157,12 +157,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
         </div>
 
         <div
-          className={`flex flex-col gap-y-5 xl:gap-y-0 w-screen xl:w-full mt-5 xl:mt-0 py-[1px] ${
-            userOptions.showRecommandedStats &&
-            userOptions.showRecommandedStatsCom
-              ? "justify-between"
-              : "justify-evenly"
-          }`}
+          className={`flex flex-col gap-y-5 xl:gap-y-0 w-screen xl:w-full mt-5 xl:mt-0 py-[1px] justify-evenly`}
         >
           <div className="bg-black/75 w-full rounded-3xl p-5 ">
             {[
@@ -193,37 +188,16 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
               );
             })}
           </div>
-          {((userOptions.showRecommandedStatsCom &&
-            characterReview?.recommended_comment) ||
-            userOptions.showRecommandedStats) && (
+          {userOptions.showRecommandedStats && (
             <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-3">
               <p className="text-yellow text-lg font-bold text-center">
                 {UIDtitles[lang ?? "fr"].stat}
               </p>
 
-              {userOptions.showRecommandedStats && (
-                <RecommendedStat
-                  lang={lang}
-                  data={characterReview?.recommended_stats}
-                />
-              )}
-              {/* Commentaire des stats mini
-              {characterReview?.recommended_comment &&
-                userOptions.showRecommandedStatsCom && (
-                  <div className="text-orange2 font-bold text-center mt-2 text-[15px]">
-                    {characterReview && lang === "en"
-                      ? characterEN[(uidData as any).characters[index].id]
-                        ? translateBBCode(
-                            characterEN[(uidData as any).characters[index].id][
-                              buildIndex
-                            ].comment
-                          )
-                        : ""
-                      : translateBBCode(
-                          characterReview?.recommended_comment ?? ""
-                        )}
-                  </div>
-                )} */}
+              <RecommendedStat
+                lang={lang}
+                data={characterReview?.recommended_stats}
+              />
             </div>
           )}
 
