@@ -13,7 +13,6 @@ import { UIDtitles } from "@/utils/dictionnary";
 import Filter from "./Filter";
 import { FilterListProps } from "@/types/Filter";
 import { Star } from "./StarIcon";
-import Snowfall from "react-snowfall";
 
 interface GuidesPageProps {
   character: CharacterType[];
