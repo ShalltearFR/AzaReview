@@ -17,7 +17,8 @@ export async function middleware(request: NextRequest) {
       const { payload } = await jwtVerify(token, tokenSecretUint8Array, {
         algorithms: ["HS256"],
       });
-      isSecuredToken = payload.id === process.env.SECURED_ID;
+      isSecuredToken =
+        payload.id === process.env.ADMIN_ID || process.env.KUJAUNE_ID;
     }
 
     if (isPublicPath && isSecuredToken) {
@@ -41,5 +42,6 @@ export const config = {
     "/api/characters",
     "/api/other",
     "/api/changelog",
+    "/api/editorChange",
   ],
 };

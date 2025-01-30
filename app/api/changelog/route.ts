@@ -2,6 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import PatchNote from "@/models/PatchNote.model";
 import cacheData from "@/utils/cacheData";
 import { NextResponse } from "next/server";
+import EditorChange from "@/models/EditorChange.model";
 
 export async function POST(req: Request) {
   try {
@@ -13,6 +14,12 @@ export async function POST(req: Request) {
         { status: 200 }
       );
     }
+
+    EditorChange.create({
+      author: data.user,
+      comment: `Ajout de patch - ${data.version}`,
+      edit: null,
+    });
 
     PatchNote.create({ ...data });
     // Supprime le cache

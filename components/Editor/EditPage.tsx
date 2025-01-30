@@ -301,24 +301,44 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
     });
 
     const characterDataMemo = characterData as CharacterType;
-    const dataToDB = {
-      characterId: characterDataMemo.id,
-      data: dataArraySaved,
-    };
 
-    fetch("/api/character", {
-      method: "PUT",
-      cache: "no-cache",
-      next: { revalidate: 0 },
-      body: JSON.stringify(dataToDB),
-    }).then((data: any) => {
-      if (data.status === 200) {
-        toast.success("Sauvegarde terminé");
-      } else {
-        toast.error("Erreur de sauvegarde");
-      }
-      setDisableSaveButton(false);
-    });
+    fetch(`/api/me`)
+      .then((res) => res.json())
+      .then((res) => {
+        const user = res.data.username;
+
+        console.log("characterDataMemo", characterDataMemo);
+
+        const dataToDB = {
+          characterId: characterDataMemo.id,
+          characterName: characterDataMemo.name,
+          data: dataArraySaved,
+          user,
+        };
+
+        return fetch("/api/character", {
+          method: "PUT",
+          cache: "no-cache",
+          next: { revalidate: 0 },
+          body: JSON.stringify(dataToDB),
+        });
+      })
+      .then((data) => {
+        if (data.status === 200) {
+          toast.success("Sauvegarde terminée");
+        } else {
+          toast.error("Erreur de sauvegarde");
+        }
+        setDisableSaveButton(false);
+      })
+      .catch((error) => {
+        console.error(
+          "Erreur lors de la récupération des données utilisateur :",
+          error
+        );
+        toast.error("Erreur lors de la récupération des données utilisateur");
+        setDisableSaveButton(false);
+      });
   };
 
   const isLoading = characterData === "Loading";

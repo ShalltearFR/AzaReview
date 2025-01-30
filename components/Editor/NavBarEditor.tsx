@@ -73,28 +73,53 @@ const NavBarEditor: React.FC = () => {
         ? Math.round((lastUpdate + 0.01) * 100) / 100 // Defini une valeur mineur
         : 99;
 
-    fetch("/api/changelog", {
-      method: "POST",
-      cache: "no-cache",
-      next: { revalidate: 0 },
-      body: JSON.stringify({
-        data: {
-          version: newVersion,
-          desc: patchDescInput,
-        },
-      }),
-    })
+    fetch("/api/me") // Récupération de l'utilisateur
       .then((res) => res.json())
-      .then((data: any) => {
-        if (data.status && data.status === 201) {
-          toast.success("Sauvegarde terminé");
-          setLastUpdate(newVersion);
-          setPatchDescInput("");
-          setModalPatch(false);
-        } else if (data.status && data.status === 204)
-          toast.error("Merci de remplir la description");
-        else toast.error("Erreur de sauvegarde");
+      .then((res) => {
+        const user = res.data.username;
 
+        fetch("/api/changelog", {
+          method: "POST",
+          cache: "no-cache",
+          next: { revalidate: 0 },
+          body: JSON.stringify({
+            data: {
+              version: newVersion,
+              desc: patchDescInput,
+            },
+            user,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data: any) => {
+            if (data.status && data.status === 201) {
+              toast.success("Sauvegarde terminé");
+              setLastUpdate(newVersion);
+              setPatchDescInput("");
+              setModalPatch(false);
+            } else if (data.status && data.status === 204)
+              toast.error("Merci de remplir la description");
+            else toast.error("Erreur de sauvegarde");
+
+            setDisablePatchButton(false);
+          })
+          .catch((error) => {
+            console.error(
+              "Erreur lors de la récupération des données utilisateur :",
+              error
+            );
+            toast.error(
+              "Erreur lors de la récupération des données utilisateur"
+            );
+            setDisablePatchButton(false);
+          });
+      })
+      .catch((error) => {
+        console.error(
+          "Erreur lors de la récupération des données utilisateur :",
+          error
+        );
+        toast.error("Erreur lors de la récupération des données utilisateur");
         setDisablePatchButton(false);
       });
   };

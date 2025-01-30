@@ -146,18 +146,42 @@ const CharacterList: React.FC = () => {
   };
 
   const deleteConfirmCharacterFromDB = () => {
-    fetch("/api/character", {
-      method: "DELETE",
-      cache: "no-cache",
-      next: { revalidate: 0 },
-      body: JSON.stringify({ id: cardCharacterID }),
-    })
+    fetch(`/api/me`)
       .then((res) => res.json())
-      .then((data: any) => {
-        if (data && data.message === "ok")
-          toast.success("Suppression de personnage réussi");
-        else toast.error("Erreur de suppression de personnage");
-        init();
+      .then((res) => {
+        const user = res.data.username;
+
+        fetch("/api/character", {
+          method: "DELETE",
+          cache: "no-cache",
+          next: { revalidate: 0 },
+          body: JSON.stringify({ id: cardCharacterID, user }),
+        })
+          .then((res) => res.json())
+          .then((data: any) => {
+            if (data && data.message === "ok")
+              toast.success("Suppression de personnage réussi");
+            else toast.error("Erreur de suppression de personnage");
+            init();
+            setEnableDeleteModal(false);
+          })
+          .catch((error) => {
+            console.error(
+              "Erreur lors de la récupération des données utilisateur :",
+              error
+            );
+            toast.error(
+              "Erreur lors de la récupération des données utilisateur"
+            );
+            setEnableDeleteModal(false);
+          });
+      })
+      .catch((error) => {
+        console.error(
+          "Erreur lors de la récupération des données utilisateur :",
+          error
+        );
+        toast.error("Erreur lors de la récupération des données utilisateur");
         setEnableDeleteModal(false);
       });
   };
