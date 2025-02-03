@@ -30,7 +30,7 @@ const page = async () => {
               </span>
             </div>
             <p className="text-lg">{data.comment}</p>
-            <DetailsShow data={data.edit} />
+            {data.edit.length > 0 && <DetailsShow data={data.edit} />}
           </div>
         ))}
       </div>
