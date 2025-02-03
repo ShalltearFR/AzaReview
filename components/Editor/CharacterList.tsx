@@ -122,17 +122,23 @@ const CharacterList: React.FC = () => {
       },
     };
 
-    fetch("/api/character", {
-      method: "POST",
-      cache: "no-cache",
-      next: { revalidate: 0 },
-      body: JSON.stringify(data),
-    })
+    fetch(`/api/me`)
       .then((res) => res.json())
-      .then((data) => {
-        if (data.id) toast.success("Ajout de personnage réussi");
-        else toast.error("Erreur d'ajout de personnage");
-        init();
+      .then((res) => {
+        const user = res.data.username;
+
+        fetch("/api/character", {
+          method: "POST",
+          cache: "no-cache",
+          next: { revalidate: 0 },
+          body: JSON.stringify({ data: data.data, user }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.id) toast.success("Ajout de personnage réussi");
+            else toast.error("Erreur d'ajout de personnage");
+            init();
+          });
       });
   };
 

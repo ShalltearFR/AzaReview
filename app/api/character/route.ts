@@ -6,28 +6,17 @@ import cacheData from "@/utils/cacheData";
 
 export async function POST(req: Request) {
   try {
-    const { data } = await req.json();
+    const { data, user } = await req.json();
+
     await dbConnect();
-    fetch(`/api/me`)
-      .then((res) => res.json())
-      .then((res) => {
-        const user = res.data.username;
+    await EditorChange.create({
+      author: user,
+      comment: `Ajout de personnage - ${data.name}`,
+      edit: [],
+    });
 
-        EditorChange.create({
-          author: user,
-          comment: `Ajout de personnage - ${data.name}`,
-          edit: null,
-        });
-
-        return Character.create({ ...data });
-      })
-      .then((data) => {
-        return NextResponse.json({ ...data }, { status: 201 });
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        return NextResponse.json({ error: true }, { status: 204 });
-      });
+    await Character.create({ ...data });
+    return NextResponse.json({ ...data }, { status: 201 });
   } catch (error) {
     console.error("Error:", error);
     return NextResponse.json({ error: true }, { status: 204 });
@@ -42,10 +31,10 @@ export async function DELETE(req: Request) {
     // Supprime le cache
     cacheData.flushAll();
 
-    EditorChange.create({
+    await EditorChange.create({
       author: user,
       comment: `Suppression du personnage - ID : ${id}`,
-      edit: null,
+      edit: [],
     });
 
     await Character.deleteOne({ id: id });
