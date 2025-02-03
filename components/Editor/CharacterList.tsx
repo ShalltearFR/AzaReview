@@ -92,7 +92,7 @@ const CharacterList: React.FC = () => {
     const dataBaseCharactersData = await getDataBaseCharacters();
 
     allCharactersRef.current = allCharactersData;
-    setCharactersSearch(dataBaseCharactersData);
+    setCharactersSearch(dataBaseCharactersData.reverse());
     dataBaseCharactersRef.current = dataBaseCharactersData;
     getCharactersOptions();
   };
