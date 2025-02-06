@@ -50,6 +50,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
       Shaman: false,
       Warlock: false,
       Warrior: false,
+      Memory: false,
     },
   });
 
@@ -172,7 +173,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
         <NavBar />
         <StarBGAnimation />
         <div className="min-h-[calc(100vh-295px)]">
-          <div className="mx-auto p-5 bg-gray/45 w-full smd:w-[670px] smd:rounded-3xl mt-10">
+          <div className="mx-auto p-5 bg-gray/45 w-full smd:w-[710px] smd:rounded-3xl mt-10">
             <div className="flex flex-col items-center smd:flex-row gap-2 justify-around">
               <AddToggleButton
                 className={lang === "en" ? "w-60" : "w-[320px]"}

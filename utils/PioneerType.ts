@@ -34,10 +34,16 @@ const PioneerType: PioneerTypeProps[] = [
     nameEN: "MC Harmony",
     preview: "img/guides/preview/8005.png",
   },
+  {
+    id: "8007",
+    nameFR: "MC Souvenir",
+    nameEN: "MC Remembrance",
+    preview: "img/guides/preview/8007.png",
+  },
 ];
 
-const PioneerToADD: string[] = ["8001", "8003", "8005"];
-const PioneerToRemove: string[] = ["8002", "8004", "8006"];
+const PioneerToADD: string[] = ["8001", "8003", "8005", "8007"];
+const PioneerToRemove: string[] = ["8002", "8004", "8006", "8008"];
 
 const findPioneer = (id: string, lang: string): string | undefined => {
   const pioneer = PioneerType.find((item) => item.id === id);

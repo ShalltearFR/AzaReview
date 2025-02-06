@@ -6,7 +6,8 @@ interface Icon {
     | "Rogue"
     | "Mage"
     | "Knight"
-    | "Priest";
+    | "Priest"
+    | "Memory";
   Element:
     | "Ice"
     | "Fire"

@@ -21,6 +21,7 @@ interface PathProps {
   Shaman: boolean;
   Warlock: boolean;
   Warrior: boolean;
+  Memory: boolean;
 }
 
 interface FilterListProps {

@@ -62,13 +62,14 @@ const Filter: React.FC<FilterProps> = ({ setData, data }) => {
 
       <div className="flex gap-1">
         {[
-          "Knight",
-          "Mage",
-          "Priest",
-          "Rogue",
-          "Shaman",
           "Warlock",
           "Warrior",
+          "Shaman",
+          "Rogue",
+          "Mage",
+          "Knight",
+          "Priest",
+          "Memory",
         ].map((path: string) => (
           <button
             key={`filter${path}`}
