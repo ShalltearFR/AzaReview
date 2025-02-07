@@ -230,7 +230,6 @@ const Page: React.FC = ({}) => {
                   el.recommended === relic.recommended &&
                   Number(el.num) === Number(relic.num)
               );
-              console.log("indextoDelete", indextoDelete);
               if (action === "delete" && indextoDelete !== -1)
                 newsRelicsSet.splice(indextoDelete, 1);
 

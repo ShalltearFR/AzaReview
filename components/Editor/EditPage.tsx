@@ -62,14 +62,12 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
           "data" in (json as CharacterType) &&
           (json as CharacterType).data
         ) {
-          console.log("oui");
           const dataArray: any = (json as CharacterType).data.map(
             (singleData) => {
               // TRANSMETS DONNEES DES CONES
               const lightcones: LightConeOption[] = singleData.lightCones.map(
                 (lightcone) => {
                   const label: string = findLabel(lightcone.id, light_conesFR);
-                  // console.log("label", label);
                   return {
                     id: lightcone.id,
                     value: lightcone.id,
