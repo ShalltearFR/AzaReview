@@ -85,3 +85,7 @@ body {
 .tg th:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
+
+.remembranceIcon {
+  filter: invert(50%) sepia(50%) saturate(400%) hue-rotate(220deg);
+}
