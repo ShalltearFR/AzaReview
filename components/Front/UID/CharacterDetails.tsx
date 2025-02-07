@@ -12,7 +12,6 @@ import { CharacterType, Data, RecommendedStats } from "@/types/CharacterModel";
 import translateBBCode from "@/utils/translateBBCode";
 import { useEffect, useState } from "react";
 import { traces, UIDtitles } from "@/utils/dictionnary";
-import characterEN from "@/utils/charactersEN";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import { UserOptionsProps } from "@/types/UserOptions";
 import LoadingSpin from "@/components/LoadingSpin";
@@ -183,6 +182,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                     lang={lang}
                     review={characterReview?.recommended_stats}
                     showRedstats={userOptions.showRedstats}
+                    properties={character.properties}
                   />
                 </div>
               );

@@ -176,6 +176,7 @@ interface Character {
   light_cone: LightCone;
   attributes: Attribute[];
   additions: Addition[];
+  properties: Property[];
   relic_sets: RelicSet[];
   relics: Relic[];
 }
@@ -326,6 +327,7 @@ export type {
   LightCone,
   Attribute,
   Addition,
+  Property,
   RelicSet,
   Relic,
   RelicSubAffix,

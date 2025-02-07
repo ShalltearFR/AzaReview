@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { CDN } from "@/utils/cdn";
-import { Addition, Attribute } from "@/types/jsonUid";
+import { Addition, Attribute, Property } from "@/types/jsonUid";
 import { RecommendedStats } from "@/types/CharacterModel";
 import { fieldToType } from "@/utils/calculateStat";
 import { getENDefaultValue, getFRDefaultValue } from "@/utils/dictionnary";
@@ -9,6 +9,7 @@ import { TranslateSection } from "@/types/homepageDictionnary";
 interface CharacterStatProps {
   attributes: Attribute[];
   additions: Addition[];
+  properties: Property[];
   field: string;
   review: RecommendedStats[];
   lang: keyof TranslateSection | undefined;
@@ -22,6 +23,7 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
   review,
   lang,
   showRedstats,
+  properties,
 }) => {
   // Memorise les noms des valeurs FR/EN
   const defaultValues = useMemo(() => {
@@ -41,6 +43,13 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
     // Calculate total value based on attributes and additions
     const attribute = attributes.find((attr) => attr.field === field);
     const addition = additions.find((add) => add.field === field);
+
+    console.log(addition);
+
+    if (addition?.name === "VIT") {
+      const detectBaseSpeed = properties.find((el) => el.type === "BaseSpeed"); // Detecte une vitesse supplémentaire par rapport au cone
+      if (detectBaseSpeed) totalValue += detectBaseSpeed.value;
+    }
 
     if (attribute) totalValue += attribute.value;
 
