@@ -1,5 +1,6 @@
 import { CDN } from "@/utils/cdn";
 import { useState } from "react";
+import { LockClosedIcon } from "@heroicons/react/24/solid";
 
 interface eidolon {
   desc: string;
@@ -34,6 +35,13 @@ const CharacterEidolon: React.FC<CharacterEidolonProps> = ({
             <p key={`${eidolon.id}+${i}`}>{el}</p>
           ))}
         </div>
+      )}
+      {!isActive && (
+        <LockClosedIcon
+          className="absolute text-gray z-10 top-[10px] left-[10px]"
+          width={26}
+          height={26}
+        />
       )}
       <img
         src={`${CDN}/${img}`}

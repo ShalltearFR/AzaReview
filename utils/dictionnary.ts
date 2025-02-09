@@ -88,6 +88,11 @@ const traces: Record<string, string[]> = {
   fr: ["Attaque", "Compétence", "Ultime", "Talent"],
   en: ["Attack", "Skill", "Ultimate", "Talent"],
 };
+// PARTIE TRACES Souvenir
+const RemembranceTraces: Record<string, string[]> = {
+  fr: ["Compétence", "Talent"],
+  en: ["Skill", "Talent"],
+};
 
 // PARTIE OPTIONS DE L'UTILISATEUR UID
 interface UserOptionsLanguageType {
@@ -280,6 +285,7 @@ export {
   getFRDefaultValue,
   getENDefaultValue,
   traces,
+  RemembranceTraces,
   UIDtitles,
   userOptionsLanguage,
 };

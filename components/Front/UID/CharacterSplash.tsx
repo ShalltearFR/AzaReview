@@ -17,7 +17,7 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
   lang,
 }) => {
   return (
-    <div className="flex flex-col h-[470px] relative items-center">
+    <div className="flex flex-col h-[550px] relative items-center">
       <img
         key={character.portrait}
         src={`${CDN2}/img/portraits/${character.id}.webp`}
@@ -25,7 +25,7 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
         width={470}
         fetchPriority="high"
         alt={`${character.name} portrait`}
-        className="absolute xl:top-10 xl:w-[470px] object-contain xl:object-cover h-[470px] mx-auto"
+        className="absolute xl:w-[470px] object-contain xl:object-cover h-[470px] mx-auto"
         style={{
           maskImage: `url(${CDN2}/img/characterMask.png)`,
           maskSize: "100% 480px",
@@ -57,23 +57,6 @@ const CharacterSplash: React.FC<CharacterSplashProps> = ({
             className="w-8 z-10"
           />
         </div>
-      </div>
-      <div className="flex mt-auto w-full h-20 items-center justify-center gap-2">
-        {character.rank_icons.map((eidolon, i) => {
-          const eidolonId = eidolonsList.find(
-            (el) => el.id === `${character.id}0${i + 1}`
-          );
-
-          return (
-            <div key={`${character.id}+${i}`}>
-              <CharacterEidolon
-                img={eidolon}
-                isActive={character.rank > i ? true : false}
-                eidolon={eidolonId}
-              />
-            </div>
-          );
-        })}
       </div>
     </div>
   );

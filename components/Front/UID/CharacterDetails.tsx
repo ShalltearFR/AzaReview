@@ -11,10 +11,11 @@ import { CDN2 } from "@/utils/cdn";
 import { CharacterType, Data, RecommendedStats } from "@/types/CharacterModel";
 import translateBBCode from "@/utils/translateBBCode";
 import { useEffect, useState } from "react";
-import { traces, UIDtitles } from "@/utils/dictionnary";
+import { traces, RemembranceTraces, UIDtitles } from "@/utils/dictionnary";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import { UserOptionsProps } from "@/types/UserOptions";
 import LoadingSpin from "@/components/LoadingSpin";
+import CharacterEidolon from "./CharacterEidolon";
 
 interface ReviewData {
   data: CharacterType[];
@@ -55,6 +56,9 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   userOptions,
 }) => {
   const [tracesNames, setTracesNames] = useState<Array<string>>([]);
+  const [remembranceTracesNames, setRemembranceTracesNames] = useState<
+    Array<string>
+  >([]);
   const [characterRelics, setCharacterRelics] = useState<Relic[] | []>([]);
   const [imageBG, setImageBG] = useState<string>("");
 
@@ -72,7 +76,10 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
     });
   }, [userOptions.imageBG]);
 
-  useEffect(() => setTracesNames(traces[lang ?? "fr"]), [lang]);
+  useEffect(() => {
+    setTracesNames(traces[lang ?? "fr"]);
+    setRemembranceTracesNames(RemembranceTraces[lang ?? "fr"]);
+  }, [lang]);
 
   useEffect(() => {
     if (character.relics) {
@@ -121,29 +128,77 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
         }}
       >
         <div className="flex flex-col xl:ml-5 w-screen xl:w-full">
-          <CharacterSplash
-            character={character}
-            eidolonsList={eidolonsList}
-            lang={lang}
-          />
-          <div className="flex gap-x-3 justify-center">
-            {tracesNames.map((type, i) => {
-              return (
-                <div
-                  key={`CharacterTraces${i}+${index}+${buildIndex}+${lang}+${character.id}`}
-                >
-                  <CharacterTrace
-                    characterID={character.id}
-                    id={character.skills[i].id}
-                    type={type}
-                    img={`/${character.skills[i].icon}`}
-                    level={character.skills[i].level}
-                    name={character.skills[i].name}
-                    desc={character.skills[i].desc}
-                  />
-                </div>
-              );
-            })}
+          <div className="relative">
+            <CharacterSplash
+              character={character}
+              eidolonsList={eidolonsList}
+              lang={lang}
+            />
+            <div className=" absolute bottom-0 w-full">
+              {/* <div className=""> */}
+              <div className="flex mt-auto w-full h-20 items-center justify-center gap-2">
+                {character.rank_icons.map((eidolon, i) => {
+                  const eidolonId = eidolonsList.find(
+                    (el) => el.id === `${character.id}0${i + 1}`
+                  );
+
+                  return (
+                    <div key={`${character.id}+${i}`}>
+                      <CharacterEidolon
+                        img={eidolon}
+                        isActive={character.rank > i ? true : false}
+                        eidolon={eidolonId}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="flex gap-x-3 justify-center">
+                {tracesNames.map((type, i) => {
+                  return (
+                    <div
+                      key={`CharacterTraces${i}+${index}+${buildIndex}+${lang}+${character.id}`}
+                    >
+                      <CharacterTrace
+                        characterID={character.id}
+                        id={character.skills[i].id}
+                        type={type}
+                        img={`/${character.skills[i].icon}`}
+                        level={character.skills[i].level}
+                        name={character.skills[i].name}
+                        desc={character.skills[i].desc}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+              {/* <div className="flex gap-x-3 mt-5 justify-center">
+                {character.path.id === "Memory" &&
+                  (() => {
+                    // AJOUTE LES 2 TRACES LIÉES À LA VOIE DU SOUVENIR
+                    const remembranceTraces = character.skills.slice(-2);
+                    // console.log("souvenirTraces", souvenirTraces);
+
+                    return remembranceTraces.map((skill, i) => (
+                      <div
+                        key={`CharacterTracesRemembrance${i}+${index}+${buildIndex}+${lang}+${character.id}`}
+                      >
+                        <CharacterTrace
+                          characterID={character.id}
+                          id={skill.id}
+                          type={remembranceTracesNames[i]} // Assure-toi que `tracesNames` a au moins 2 éléments
+                          img={`/${skill.icon}`}
+                          level={skill.level}
+                          name={skill.name}
+                          desc={skill.desc}
+                          remembrance
+                        />
+                      </div>
+                    ));
+                  })()}
+              </div> */}
+            </div>
+            {/* </div> */}
           </div>
           <CharacterLightCone
             lightCone={character.light_cone}
