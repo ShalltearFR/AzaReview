@@ -107,9 +107,9 @@ const ItemShow: React.FC<ItemShowProps> = ({
         {/* Affiche la description de l'item */}
         {showTooltipDesc && (
           <div className="absolute bg-background -left-32 border border-orange rounded-xl z-30 p-2 hidden xl:flex xl:flex-col xl:w-[400px] xl:gap-3">
-            {itemDesc.map((desc: string) => {
+            {itemDesc.map((desc: string, i) => {
               if (desc === "undefined") return null;
-              return <p key={`desc${id}`}>{desc}</p>;
+              return <p key={`desc${id}+${i}`}>{desc}</p>;
             })}
           </div>
         )}

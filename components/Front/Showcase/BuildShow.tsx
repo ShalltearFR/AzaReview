@@ -7,6 +7,7 @@ import { findLabel, findLabelEN } from "@/utils/statsOption";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import { filterLightconeID, filterRelicID } from "@/utils/sorts&Filter";
 import { UIDtitles } from "@/utils/dictionnary";
+import { useMemo } from "react";
 
 interface BuildShowProps {
   build: Data;
@@ -41,26 +42,35 @@ const BuildShow: React.FC<BuildShowProps> = ({
   const recommendedStatsFilter = build.recommended_stats.filter(
     (relic) => relic.value !== null && relic.value !== 0
   );
-  const lightConeFilter = filterLightconeID(build.lightCones);
-  const relicsSetFilter = filterRelicID(build.relics_set);
+  const lightConeFilter = useMemo(
+    () => filterLightconeID(build.lightCones),
+    [build.lightCones]
+  );
+  const relicsSetFilter = useMemo(
+    () => filterRelicID(build.relics_set),
+    [build.relics_set]
+  );
 
   const getMainStats = (piece: string) => {
-    const result = build?.main_stats
-      .filter((el: any) => el.piece === piece)
-      .map((el: any, i: number) => {
-        const translated = properties.find(
-          (stat: any) => stat.type === el.type
-        );
-        return (
-          <li
-            className="ml-7"
-            key={`li${build.buildName}+${i}+${piece}+${characterID}`}
-          >
-            {translated.name}
-          </li>
-        );
-      });
-    return <ul className="list-disc">{result}</ul>;
+    return (
+      <ul className="list-disc">
+        {build?.main_stats
+          .filter((el) => el.piece === piece)
+          .map((el, i) => {
+            const translated = properties.find(
+              (stat: any) => stat.type === el.type
+            );
+            return (
+              <li
+                key={`mainStat-${piece}+${i}+${characterID}+${lang}`}
+                className="ml-7"
+              >
+                {translated?.name || el.type}
+              </li>
+            );
+          })}
+      </ul>
+    );
   };
 
   return (
@@ -82,49 +92,57 @@ const BuildShow: React.FC<BuildShowProps> = ({
         </p>
 
         <div className="mt-2 flex flex-col lg:flex-row gap-10 justify-center">
-          <div className="p-5 bg-white/15 rounded-3xl">
-            <p className="text-lg font-bold mb-2">
-              {UIDtitles[lang ?? "fr"].Recommendeds}
-            </p>
-            <div className="flex flex-wrap gap-5 justify-center">
-              {lightConeFilter.map((lightcone) => {
-                if (!lightcone.recommended)
-                  return (
-                    <div key={`recommendedCone+${lightcone.id}+${characterID}`}>
-                      <ItemShow
-                        type={lightCones}
-                        id={lightcone.id}
-                        className="h-36 w-36"
-                        lightconesRanks={lightconesRanks}
-                      />
-                    </div>
-                  );
-                return null;
-              })}
+          {lightConeFilter.find((el) => !el.recommended) && (
+            <div className="p-5 bg-white/15 rounded-3xl">
+              <p className="text-lg font-bold mb-2">
+                {UIDtitles[lang ?? "fr"].Recommendeds}
+              </p>
+              <div className="flex flex-wrap gap-5 justify-center">
+                {lightConeFilter.map((lightcone, i) => {
+                  if (!lightcone.recommended)
+                    return (
+                      <div
+                        key={`recommendedCone+${lightcone.id}+${characterID}+${lang}+${i}`}
+                      >
+                        <ItemShow
+                          type={lightCones}
+                          id={lightcone.id}
+                          className="h-36 w-36"
+                          lightconesRanks={lightconesRanks}
+                        />
+                      </div>
+                    );
+                  return null;
+                })}
+              </div>
             </div>
-          </div>
+          )}
 
-          <div className="p-5 bg-white/15 rounded-3xl">
-            <p className="text-lg font-bold mb-2">
-              {UIDtitles[lang ?? "fr"].RecommendedsF2P}
-            </p>
-            <div className="flex flex-wrap gap-5 justify-center">
-              {lightConeFilter.map((lightcone) => {
-                if (lightcone.recommended)
-                  return (
-                    <div key={`recommendeF2P+${lightcone.id}+${characterID}`}>
-                      <ItemShow
-                        type={lightCones}
-                        id={lightcone.id}
-                        className="h-36 w-36"
-                        lightconesRanks={lightconesRanks}
-                      />
-                    </div>
-                  );
-                return null;
-              })}
+          {lightConeFilter.find((el) => el.recommended) && (
+            <div className="p-5 bg-white/15 rounded-3xl">
+              <p className="text-lg font-bold mb-2">
+                {UIDtitles[lang ?? "fr"].RecommendedsF2P}
+              </p>
+              <div className="flex flex-wrap gap-5 justify-center">
+                {lightConeFilter.map((lightcone, i) => {
+                  if (lightcone.recommended)
+                    return (
+                      <div
+                        key={`recommendeF2P+${lightcone.id}+${characterID}+${lang}+${i}`}
+                      >
+                        <ItemShow
+                          type={lightCones}
+                          id={lightcone.id}
+                          className="h-36 w-36"
+                          lightconesRanks={lightconesRanks}
+                        />
+                      </div>
+                    );
+                  return null;
+                })}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 
@@ -177,11 +195,11 @@ const BuildShow: React.FC<BuildShowProps> = ({
           <div className="p-5 bg-white/15 rounded-3xl">
             <p className="text-lg font-bold mb-2">Top</p>
             <div className="flex flex-wrap gap-5 justify-center">
-              {build.relics_set.map((relic) => {
+              {build.relics_set.map((relic, i) => {
                 if (relic.recommended)
                   return (
                     <div
-                      key={`recommendedOrnaments+${relic.id}+${characterID}`}
+                      key={`recommendedOrnaments+${relic.id}+${characterID}+${lang}+${i}`}
                     >
                       <ItemShow
                         type={relicsSet}
@@ -202,10 +220,12 @@ const BuildShow: React.FC<BuildShowProps> = ({
             </p>
             <div className="flex flex-col gap-5">
               <div className="flex flex-wrap gap-5 justify-center">
-                {relicsSetFilter.map((relic) => {
+                {relicsSetFilter.map((relic, i) => {
                   if (Number(relic.id) < 300) {
                     return (
-                      <div key={`relicsSet+${relic.id}+${characterID}`}>
+                      <div
+                        key={`relicsSet+${relic.id}+${characterID}+${lang}+${i}`}
+                      >
                         <ItemShow
                           type={relicsSet}
                           id={relic.id}
@@ -219,10 +239,12 @@ const BuildShow: React.FC<BuildShowProps> = ({
                 })}
               </div>
               <div className="flex flex-wrap gap-5 justify-center">
-                {relicsSetFilter.map((relic) => {
+                {relicsSetFilter.map((relic, i) => {
                   if (Number(relic.id) > 300) {
                     return (
-                      <div key={`ornaments+${relic.id}+${characterID}`}>
+                      <div
+                        key={`ornaments+${relic.id}+${characterID}+${lang}+${i}`}
+                      >
                         <ItemShow
                           type={relicsSet}
                           id={relic.id}
@@ -247,10 +269,10 @@ const BuildShow: React.FC<BuildShowProps> = ({
         </p>
         <div className="flex flex-col justify-center text-start">
           <ul className="list-disc mx-auto">
-            {recommendedStatsFilter.map((stat) => (
+            {recommendedStatsFilter.map((stat, i) => (
               <li
                 className="ml-5"
-                key={`recommendedStat${build.buildName}+${stat.type}+${characterID}`}
+                key={`recommendedStat${build.buildName}+${stat.type}+${characterID}+${lang}+${i}`}
               >
                 <span>
                   {lang === "en"
