@@ -206,20 +206,20 @@ const characterEN: CharacterENProps = {
         "If equipped with Ornaments [u]Glamoth[/u] ➜ Set [u]Speed[/u] at 135.",
     },
   ],
-  8004: [
-    // Pionnier feu F
-    {
-      name: "Adblock Plus Plus",
-      desc: "MC Preservation protects the team by [u]Taunting[/u] enemies to take damage herself.\nThe [u]Shiedls[/u] she provides can't take all damages received by allies as they are thin.",
-      comment:
-        "Increase [u]Effect RES[/u] when minimum requirements achieved on other stats.",
-    },
-  ],
   8003: [
     // Pionnier feu M
     {
       name: "Adblock Plus Plus",
       desc: "MC Preservation protects the team by [u]Taunting[/u] enemies to take damage herself.\nThe [u]Shiedls[/u] he provides can't take all damages received by allies as they are thin.",
+      comment:
+        "Increase [u]Effect RES[/u] when minimum requirements achieved on other stats.",
+    },
+  ],
+  8004: [
+    // Pionnier feu F
+    {
+      name: "Adblock Plus Plus",
+      desc: "MC Preservation protects the team by [u]Taunting[/u] enemies to take damage herself.\nThe [u]Shiedls[/u] she provides can't take all damages received by allies as they are thin.",
       comment:
         "Increase [u]Effect RES[/u] when minimum requirements achieved on other stats.",
     },
@@ -480,7 +480,16 @@ const characterEN: CharacterENProps = {
     },
   ],
   8005: [
-    // MC Harmonie
+    // MC Harmonie M
+    {
+      name: "Break waits for no one.",
+      desc: "MC Harmony enables the team to perform [u]Extreme Breaks[/u] and increases the team's [u]Break[/u].\nOften requires [u]Ruan Mei[/u] on the team to be truly effective.",
+      comment:
+        "If [u]HP% Chest[/u] ➜ [u]Defense% Sphere[/u] (or vice versa).\nIf the [u]Clockmaker[/u] set is present on another character ➜ [u]Meteorite Thief[/u] set on Caelus.\nOnce everything is achieved, maximize [u]Break[/u] and [u]Speed[/u].",
+    },
+  ],
+  8006: [
+    // MC Harmonie F
     {
       name: "Break waits for no one.",
       desc: "MC Harmony enables the team to perform [u]Extreme Breaks[/u] and increases the team's [u]Break[/u].\nOften requires [u]Ruan Mei[/u] on the team to be truly effective.",
@@ -594,6 +603,70 @@ const characterEN: CharacterENProps = {
       name: "Rappa no Jutsu",
       desc: "Rappa deals [color=yellow]Imaginary[/color] damage and specializes in [u]Break[/u] and [u]Extreme Break[/u] damage.\nShe hits many enemies throughout the battle.",
       comment: "",
+    },
+  ],
+  1313: [
+    // Sunday
+    {
+      name: "1- Me first",
+      desc: "Sunday aims for a high [u]Speed[/u]: at least 1.3 times that of the ally he boosts (the latter can thus be slow).",
+      comment: "If Defense% Sphere ➜ HP Requirement: 3300 & Defense: 1700.",
+    },
+    {
+      name: "2- After you",
+      desc: "Sunday adjusts his [u]Speed[/u] to be right after the fast character he boosts.\n• Ideally, a [u]Speed[/u] of 135/136 (Targeted character) and 134 (Sunday).",
+      comment: "If Defense% Sphere ➜ HP Requirement: 3300 & Defense: 1700.",
+    },
+  ],
+  1225: [
+    // Fugue
+    {
+      name: "Back to break",
+      desc: "Peregrine helps her team perform [u]Extreme Breaks[/u] and reduces the [u]Defense[/u] of enemies.\nThanks to her [u]Talent[/u], she can trigger up to 2 [u]Weakness Breaks[/u] on enemies.",
+      comment:
+        "If [u]HP% Chest[/u] ➜ [u]Defense% Sphere[/u] (or vice versa).\nFor each [u]Break[/u] bonus provided by the team, reduce the requirement accordingly.\nIt is possible to mix the 2P of [u]Break[/u] and/or [u]Speed[/u] as preferred to reach the recommended stats.",
+    },
+  ],
+  1401: [
+    // Grande Herta
+    {
+      name: "This is Herta",
+      desc: "The Herta deals [color=#6CACD4]Ice[/color] multi-target damage and has a [u]Ultimate[/u] that allows her to take her next turn immediately.\nShe requires another [u]Erudition[/u] character in the team to reach her full potential.",
+      comment:
+        "If [u]Glamoth[/u] Ornaments ➜ [u]Speed[/u] at 135.\nOtherwise, [u]Speed[/u] is not necessarily required depending on the team.\n(Not mandatory) There are the 134 and 160 [u]Speed[/u] thresholds (with combat bonuses) if no one provides [u]Action[/u] gain to Herta.",
+    },
+  ],
+  1402: [
+    // Aglaé
+    {
+      name: "Lightning Sunday",
+      desc: "In this build, Aglaea is played with [u]Sunday[/u] and will aim to maintain her [u]Supremacy Stance[/u] by playing [u]3 times[/u] between each of Sunday's turns.\nWith her cone [u]Golden is the Thread of Time[/u], she will aim for the recommended [u]Speed[/u] values below, and Sunday will target 134 [u]Speed[/u].\nWithout the cone, do not put any [u]Speed[/u] on Aglaea and aim for 160+ on Sunday. Aglaea will play [u]2 times[/u] between each of Sunday's turns.",
+      comment:
+        "With the [u]Time Woven Into Gold[/u] cone:\n1- With the [u]Heroes of the Triumphant Song[/u] 4-piece set: aim for 161 [u]Speed[/u] on Aglaea outside of combat (as indicated by the site).\n2- Without the 4-piece: aim for 168 [u]Speed[/u] outside of combat (for example, with a 2-piece that provides [u]Speed[/u]).\n3- For each 1 [u]Speed[/u] above 134 on Sunday, add 2 [u]Speed[/u] to the values given for Aglaea.",
+    },
+    {
+      name: "Solitary Dance",
+      desc: "In this build, Aglaea is played without Sunday (or Bronya) and will need [u]Speed[/u] to be independent and attack as often as possible.\nIt is therefore important to always prioritize this stat (while respecting the requirements of the others).",
+      comment:
+        "The recommended [u]Speed[/u] is with her cone [u]Time Woven Into Gold[/u]. If you don't have it, the required [u]Speed[/u] will be 147.\nBut the more [u]Speed[/u] you have, the better (passive [u]Attack[/u] gain + playing before the enemies).",
+    },
+  ],
+  8007: [
+    // MC Souvenir M
+    {
+      name: "Meeem !",
+      desc: "Mem mem meeeem mem, mem [u]mmemm[/u] meeeeeem.\n- Mem : mem, memem meem.\n- Meeem : mem [u]mem[/u] meeeem.",
+      comment:
+        "Required [u]Effect Resistance[/u] only if using the [u]Broken Keel[/u] set.\nIf using the [u]Heroes of the Triumphant Song[/u] set ➜ Required [u]Speed[/u] is 154.",
+    },
+  ],
+  8008: [
+    // MC Souvenir F
+    {
+      name: "Meeem !",
+      desc: "Mem mem meeeem mem, mem [u]mmemm[/u] meeeeeem.\n- Mem : mem, memem meem.\n- Meeem : mem [u]mem[/u] meeeem.",
+      comment:
+        "Required [u]Effect Resistance[/u] only if using the [u]Broken Keel[/u] set.\nIf using the [u]Heroes of the Triumphant Song[/u] set ➜ Required [u]Speed[/u] is 154.",
     },
   ],
 };
