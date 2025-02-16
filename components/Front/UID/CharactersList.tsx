@@ -35,7 +35,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
 
   return (
     <div className="py-5 xl:py-0 mb-[27px]">
-      <div className="flex flex-col mt-7 xl:flex-row xl:h-36 w-11/12 xl:w-[1350px] bg-[#4E4A82] rounded-3xl lg:rounded-full items-center mx-auto shadow-2xl pb-3 xl:pb-0">
+      <div className="flex flex-col mt-7 xl:flex-row xl:h-36 w-11/12 xl:w-[1350px] z-10 bg-[#4E4A82] rounded-3xl lg:rounded-full items-center mx-auto shadow-md shadow-black pb-3 xl:pb-0">
         <img
           className="w-24 h-24 xl:ml-8"
           width={96}
@@ -51,7 +51,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
           </p>
           <p className="text-sm italic">UID : {uidData?.player?.uid}</p>
         </div>
-        <div className="flex flex-wrap ml-20 gap-5 w-full mr-16 mt-5 justify-center px-5">
+        <div className="flex flex-wrap ml-20 gap-5 w- mr-16 mt-5 justify-center px-5">
           {uidData.characters.map((character, i) => {
             return (
               <button
@@ -68,7 +68,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
         </div>
       </div>
       {date && (
-        <p className="text-center bg-[#4E4A82] rounded-b-3xl w-64 mx-auto text-sm font-semibold text-white pb-1">
+        <p className="text-center bg-[#4E4A82] rounded-b-3xl w-64 mx-auto text-sm font-semibold text-white -mt-[1px] pb-1 shadow-[0px_4px_4px_rgba(0,0,0,0.5)] shadow-black">
           {UIDtitles[lang ?? "fr"].lastUpdate} {date.toLocaleDateString()}
         </p>
       )}
