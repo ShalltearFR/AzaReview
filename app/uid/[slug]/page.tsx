@@ -33,9 +33,13 @@ async function getData(
   return dataJson;
 }
 
-async function getDataUid(uid: number, lang: string | undefined) {
+async function getDataUid(
+  endpoint: string,
+  uid: number,
+  lang: string | undefined
+) {
   const data = await fetch(
-    `https://api.mihomo.me/sr_info_parsed/${uid}?lang=${lang ?? "fr"}`,
+    `https://api.mihomo.me/${endpoint}/${uid}?lang=${lang ?? "fr"}`,
     {
       headers: {
         "User-Agent": "https://review-hsr.vercel.app",
@@ -71,7 +75,7 @@ export async function generateMetadata({
   params: Promise<{ slug: number }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const res = await getDataUid(slug, undefined);
+  const res = await getDataUid("sr_info_parsed", slug, undefined);
   const json = await res.json();
 
   if (json.player) {
@@ -116,7 +120,7 @@ export default async function Page({
   const { slug } = await params;
 
   //Recupère les infos du joueur
-  const resUid = await getDataUid(slug, lang);
+  const resUid = await getDataUid("sr_info_parsed", slug, lang);
   const jsonUid: jsonUID = await resUid.json();
 
   // Partage les stats des personnages
