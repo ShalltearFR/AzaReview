@@ -182,7 +182,6 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
             return null;
           }
 
-          console.log("dataArray", dataArray);
           memorizedData.current = dataArray;
           setDataAfterLoading(dataArray);
         }
@@ -304,8 +303,6 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
       .then((res) => res.json())
       .then((res) => {
         const user = res.data.username;
-
-        console.log("characterDataMemo", characterDataMemo);
 
         const dataToDB = {
           characterId: characterDataMemo.id,
