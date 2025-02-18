@@ -172,12 +172,15 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                   );
                 })}
               </div>
-              {/* <div className="flex gap-x-3 mt-5 justify-center">
+              <div className="flex gap-x-3 mt-5 justify-center">
                 {character.path.id === "Memory" &&
                   (() => {
                     // AJOUTE LES 2 TRACES LIÉES À LA VOIE DU SOUVENIR
-                    const remembranceTraces = character.skills.slice(-2);
-                    // console.log("souvenirTraces", souvenirTraces);
+                    const skills = character.skills;
+                    const remembranceTraces = [
+                      skills[skills.length - 4],
+                      skills[skills.length - 3],
+                    ];
 
                     return remembranceTraces.map((skill, i) => (
                       <div
@@ -186,7 +189,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                         <CharacterTrace
                           characterID={character.id}
                           id={skill.id}
-                          type={remembranceTracesNames[i]} // Assure-toi que `tracesNames` a au moins 2 éléments
+                          type={remembranceTracesNames[i]}
                           img={`/${skill.icon}`}
                           level={skill.level}
                           name={skill.name}
@@ -196,7 +199,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                       </div>
                     ));
                   })()}
-              </div> */}
+              </div>
             </div>
             {/* </div> */}
           </div>
