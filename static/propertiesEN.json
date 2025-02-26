@@ -551,7 +551,7 @@
   },
   {
     "type": "AllDamageTypeAddedRatio",
-    "name": "DMG Boost",
+    "name": "",
     "field": "all_dmg",
     "affix": true,
     "ratio": false,
