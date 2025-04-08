@@ -48,7 +48,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1001_skill.png"
+    "icon": "icon/skill/1001_ultimate.png"
   },
   {
     "id": "100104",
@@ -85,7 +85,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1001_ultimate.png"
+    "icon": "icon/skill/1001_skill.png"
   },
   {
     "id": "100106",
@@ -966,7 +966,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1101_skill.png"
+    "icon": "icon/skill/1101_ultimate.png"
   },
   {
     "id": "110104",
@@ -1003,7 +1003,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1101_ultimate.png"
+    "icon": "icon/skill/1101_skill.png"
   },
   {
     "id": "110106",
@@ -1272,7 +1272,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1104_skill.png"
+    "icon": "icon/skill/1104_ultimate.png"
   },
   {
     "id": "110404",
@@ -1309,7 +1309,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1104_ultimate.png"
+    "icon": "icon/skill/1104_skill.png"
   },
   {
     "id": "110406",
@@ -2198,7 +2198,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1201_skill.png"
+    "icon": "icon/skill/1201_ultimate.png"
   },
   {
     "id": "120104",
@@ -2239,7 +2239,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1201_ultimate.png"
+    "icon": "icon/skill/1201_skill.png"
   },
   {
     "id": "120106",
@@ -2304,7 +2304,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1202_skill.png"
+    "icon": "icon/skill/1202_ultimate.png"
   },
   {
     "id": "120204",
@@ -2341,7 +2341,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1202_ultimate.png"
+    "icon": "icon/skill/1202_skill.png"
   },
   {
     "id": "120206",
@@ -2508,7 +2508,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1204_skill.png"
+    "icon": "icon/skill/1204_ultimate.png"
   },
   {
     "id": "120404",
@@ -2545,7 +2545,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1204_ultimate.png"
+    "icon": "icon/skill/1204_skill.png"
   },
   {
     "id": "120406",
@@ -2610,7 +2610,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1205_skill.png"
+    "icon": "icon/skill/1205_ultimate.png"
   },
   {
     "id": "120504",
@@ -2651,7 +2651,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1205_ultimate.png"
+    "icon": "icon/skill/1205_skill.png"
   },
   {
     "id": "120506",
@@ -2716,7 +2716,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1206_skill.png"
+    "icon": "icon/skill/1206_ultimate.png"
   },
   {
     "id": "120604",
@@ -2753,7 +2753,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1206_ultimate.png"
+    "icon": "icon/skill/1206_skill.png"
   },
   {
     "id": "120606",
@@ -3328,7 +3328,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1212_skill.png"
+    "icon": "icon/skill/1212_ultimate.png"
   },
   {
     "id": "121204",
@@ -3369,7 +3369,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1212_ultimate.png"
+    "icon": "icon/skill/1212_skill.png"
   },
   {
     "id": "121206",
@@ -3752,7 +3752,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1217_skill.png"
+    "icon": "icon/skill/1217_ultimate.png"
   },
   {
     "id": "121704",
@@ -3789,7 +3789,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1217_ultimate.png"
+    "icon": "icon/skill/1217_skill.png"
   },
   {
     "id": "121706",
@@ -3968,7 +3968,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1220_skill.png"
+    "icon": "icon/skill/1220_ultimate.png"
   },
   {
     "id": "122004",
@@ -4005,7 +4005,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1220_ultimate.png"
+    "icon": "icon/skill/1220_skill.png"
   },
   {
     "id": "122006",
@@ -4070,7 +4070,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1221_skill.png"
+    "icon": "icon/skill/1221_ultimate.png"
   },
   {
     "id": "122104",
@@ -4107,7 +4107,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1221_ultimate.png"
+    "icon": "icon/skill/1221_skill.png"
   },
   {
     "id": "122106",
@@ -4172,7 +4172,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1222_skill.png"
+    "icon": "icon/skill/1222_ultimate.png"
   },
   {
     "id": "122204",
@@ -4209,7 +4209,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1222_ultimate.png"
+    "icon": "icon/skill/1222_skill.png"
   },
   {
     "id": "122206",
@@ -4274,7 +4274,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1223_skill.png"
+    "icon": "icon/skill/1223_ultimate.png"
   },
   {
     "id": "122304",
@@ -4311,7 +4311,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1223_ultimate.png"
+    "icon": "icon/skill/1223_skill.png"
   },
   {
     "id": "122306",
@@ -4800,7 +4800,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1303_skill.png"
+    "icon": "icon/skill/1303_ultimate.png"
   },
   {
     "id": "130304",
@@ -4837,7 +4837,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1303_ultimate.png"
+    "icon": "icon/skill/1303_skill.png"
   },
   {
     "id": "130306",
@@ -4902,7 +4902,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1304_skill.png"
+    "icon": "icon/skill/1304_ultimate.png"
   },
   {
     "id": "130404",
@@ -4939,7 +4939,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1304_ultimate.png"
+    "icon": "icon/skill/1304_skill.png"
   },
   {
     "id": "130406",
@@ -5004,7 +5004,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1305_skill.png"
+    "icon": "icon/skill/1305_ultimate.png"
   },
   {
     "id": "130504",
@@ -5041,7 +5041,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1305_ultimate.png"
+    "icon": "icon/skill/1305_skill.png"
   },
   {
     "id": "130506",
@@ -5293,7 +5293,7 @@
     "id": "130803",
     "name": "Morsure du froid éternel",
     "rank": 3,
-    "desc": "Niv. de l'ultime +2, jusqu'au niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au niv. 10 maximum.",
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.",
     "materials": [
       {
         "id": "11308",
@@ -5326,7 +5326,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1308_skill.png"
+    "icon": "icon/skill/1308_ultimate.png"
   },
   {
     "id": "130804",
@@ -5363,7 +5363,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1308_ultimate.png"
+    "icon": "icon/skill/1308_skill.png"
   },
   {
     "id": "130806",
@@ -5465,7 +5465,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1309_ultimate.png"
+    "icon": "icon/skill/1309_rank5.png"
   },
   {
     "id": "130906",
@@ -5640,7 +5640,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1312_skill.png"
+    "icon": "icon/skill/1312_ultimate.png"
   },
   {
     "id": "131204",
@@ -5677,7 +5677,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1312_ultimate.png"
+    "icon": "icon/skill/1312_skill.png"
   },
   {
     "id": "131206",
@@ -5742,7 +5742,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1313_skill.png"
+    "icon": "icon/skill/1313_ultimate.png"
   },
   {
     "id": "131304",
@@ -5779,7 +5779,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1313_ultimate.png"
+    "icon": "icon/skill/1313_skill.png"
   },
   {
     "id": "131306",
@@ -5864,7 +5864,7 @@
     "id": "131405",
     "name": "Abolition de l'espoir",
     "rank": 5,
-    "desc": "Niv. de l'ultime +2, jusqu'au niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au niv. 10 maximum.",
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.",
     "materials": [
       {
         "id": "11314",
@@ -5950,7 +5950,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1315_skill.png"
+    "icon": "icon/skill/1315_ultimate.png"
   },
   {
     "id": "131504",
@@ -5987,7 +5987,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1315_ultimate.png"
+    "icon": "icon/skill/1315_skill.png"
   },
   {
     "id": "131506",
@@ -6072,7 +6072,7 @@
     "id": "131705",
     "name": "Volonté inébranlable et flèches infaillibles",
     "rank": 5,
-    "desc": "Niv. de l'ultime +2, jusqu'au niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au niv. 10 maximum.",
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.",
     "materials": [
       {
         "id": "11317",
@@ -6357,7 +6357,7 @@
     "id": "140301",
     "name": "Fête de la cuillère à sucre",
     "rank": 1,
-    "desc": "Lorsque la zone est active et après que des cibles alliées ont attaqué des ennemis, inflige des DGT réels supplémentaires équivalents à 24% du total des DGT de cette attaque aux cibles qui ont subi des DGT additionnels de la part de la zone.",
+    "desc": "Lorsque la zone est active et après qu'une cible alliée a attaqué un ennemi, inflige des DGT réels supplémentaires équivalents à 24% du total des DGT de cette attaque aux cibles qui ont subi des DGT additionnels de la part de la zone.",
     "materials": [
       {
         "id": "11403",
@@ -6402,7 +6402,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1403_skill.png"
+    "icon": "icon/skill/1403_ultimate.png"
   },
   {
     "id": "140304",
@@ -6439,7 +6439,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1403_ultimate.png"
+    "icon": "icon/skill/1403_skill.png"
   },
   {
     "id": "140306",
@@ -6459,7 +6459,7 @@
     "id": "140401",
     "name": "Droiture née de l'adversité",
     "rank": 1,
-    "desc": "Augmente le multiplicateur de DGT de Dieu déicide à la cible principale de 30%. Cette capacité inflige désormais à tous les ennemis des DGT imaginaires équivalents au multiplicateur de DGT appliqué à la cible principale.",
+    "desc": "Augmente le multiplicateur de DGT de Dieu déicide sur la cible principale de 30%. Cette capacité inflige désormais à tous les ennemis des DGT imaginaires équivalents au multiplicateur de DGT appliqué à la cible principale.",
     "materials": [
       {
         "id": "11404",
@@ -6564,6 +6564,238 @@
     ],
     "level_up_skills": [],
     "icon": "icon/skill/1404_rank6.png"
+  },
+  {
+    "id": "140501",
+    "name": "Magicien isolé par les étoiles",
+    "rank": 1,
+    "desc": "Récupère 1 point de compétence après avoir utilisé sa compétence pour la première fois. Lorsque la compétence touche une cible ennemie, réduit la DÉF de la cible de 16% pendant 2 tours.",
+    "materials": [
+      {
+        "id": "11405",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1405_rank1.png"
+  },
+  {
+    "id": "140502",
+    "name": "Personnage historique authentique",
+    "rank": 2,
+    "desc": "Lorsqu'une cible ennemie entre sur le champ de bataille, déclenche l'effet du talent Implant de Faiblesse 1 fois, et réduit toutes les RÉS de type de cette cible de 20%.",
+    "materials": [
+      {
+        "id": "11405",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1405_rank2.png"
+  },
+  {
+    "id": "140503",
+    "name": "Iris incrusté du vide",
+    "rank": 3,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.",
+    "materials": [
+      {
+        "id": "11405",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "140503",
+        "num": 2
+      },
+      {
+        "id": "140501",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1405_ultimate.png"
+  },
+  {
+    "id": "140504",
+    "name": "Feu éteint de la vallée",
+    "rank": 4,
+    "desc": "Augmente l'ATQ de 30% pendant 2 tours lors de l'utilisation de la compétence. Cet effet peut être cumulé jusqu'à 2 fois.",
+    "materials": [
+      {
+        "id": "11405",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1405_rank4.png"
+  },
+  {
+    "id": "140505",
+    "name": "Embryon au-delà du vortex centrifuge",
+    "rank": 5,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "11405",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "140502",
+        "num": 2
+      },
+      {
+        "id": "140504",
+        "num": 2
+      }
+    ],
+    "icon": "icon/skill/1405_skill.png"
+  },
+  {
+    "id": "140506",
+    "name": "Tout est dans le tout",
+    "rank": 6,
+    "desc": "Les DGT infligés par Anaxa sont équivalents à 130% des DGT initiaux. Les 2 effets de la Trace Vide nécessaire se déclenchent immédiatement et ne dépendent plus du nombre de personnages de l'Érudition présents dans l'équipe.",
+    "materials": [
+      {
+        "id": "11405",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1405_rank6.png"
+  },
+  {
+    "id": "140701",
+    "name": "Demoiselle des terres glacées",
+    "rank": 1,
+    "desc": "Lorsque les PV actuels de la cible ennemie sont inférieurs ou égaux à 80%/50% des PV max de cette unité, les DGT infligés par Étreinte du dragon funeste, Griffe lacérante de ténèbres, Souffle des ombres et Ailes ravageuses de ruines sont équivalents à 120%/140% des DGT initiaux.",
+    "materials": [
+      {
+        "id": "11407",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1407_rank1.png"
+  },
+  {
+    "id": "140702",
+    "name": "Couronne des ailes battantes",
+    "rank": 2,
+    "desc": "Après avoir invoqué le mnémesprit Aile du néant, Castorice obtient 2 cumuls d'Ardeur des flammes. Castorice peut bénéficier d'un maximum de 2 cumuls d'Ardeur des flammes, et ces cumuls peuvent être utilisés pour compenser la consommation de PV d'Aile du néant lors de l'utilisation de la compétence du mnémesprit Souffle des ombres tout en avançant l'action de Castorice de 100 %. Lors de la prochaine utilisation de la compétence renforcée, Castorice obtient un nombre de points de Nouvelle pousse équivalent à 30% des points de Nouvelle pousse maximum.",
+    "materials": [
+      {
+        "id": "11407",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1407_rank2.png"
+  },
+  {
+    "id": "140703",
+    "name": "Pèlerinage au royaume des morts",
+    "rank": 3,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.\nNiv. de talent du mnémesprit +1, jusqu'au Niv. 10 maximum.",
+    "materials": [
+      {
+        "id": "11407",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "140703",
+        "num": 2
+      },
+      {
+        "id": "140701",
+        "num": 1
+      },
+      {
+        "id": "1140703",
+        "num": 1
+      },
+      {
+        "id": "1140712",
+        "num": 1
+      },
+      {
+        "id": "1140705",
+        "num": 1
+      },
+      {
+        "id": "1140706",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1407_ultimate.png"
+  },
+  {
+    "id": "140704",
+    "name": "Repos de l'élégie",
+    "rank": 4,
+    "desc": "Lorsque Castorice est sur le champ de bataille, les soins reçus par tous les alliés augmentent de 20% lors de la restauration de PV.",
+    "materials": [
+      {
+        "id": "11407",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1407_rank4.png"
+  },
+  {
+    "id": "140705",
+    "name": "Nouveau chapitre de la prophétie",
+    "rank": 5,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.\nNiv. de compétence du mnémesprit +1, jusqu'au Niv. 10 maximum.",
+    "materials": [
+      {
+        "id": "11407",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "140702",
+        "num": 2
+      },
+      {
+        "id": "140704",
+        "num": 2
+      },
+      {
+        "id": "1140701",
+        "num": 1
+      },
+      {
+        "id": "140709",
+        "num": 2
+      },
+      {
+        "id": "1140702",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1407_skill.png"
+  },
+  {
+    "id": "140706",
+    "name": "Déferlement du temps",
+    "rank": 6,
+    "desc": "Lorsque Castorice ou Aile du néant infligent des DGT, la PÉN de RÉS quantique augmente de 20%. Lorsqu'Aile du néant attaque, il peut ignorer le type de faiblesse et réduire la robustesse des ennemis. Lorsqu'il déclenche une Rupture de faiblesse, l'effet de Rupture de faiblesse quantique s'active, et le nombre de rebonds de son talent Ailes ravageuses de ruines augmente de 3.",
+    "materials": [
+      {
+        "id": "11407",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1407_rank6.png"
   },
   {
     "id": "800101",

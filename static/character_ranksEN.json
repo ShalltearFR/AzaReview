@@ -48,7 +48,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1001_skill.png"
+    "icon": "icon/skill/1001_ultimate.png"
   },
   {
     "id": "100104",
@@ -85,7 +85,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1001_ultimate.png"
+    "icon": "icon/skill/1001_skill.png"
   },
   {
     "id": "100106",
@@ -966,7 +966,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1101_skill.png"
+    "icon": "icon/skill/1101_ultimate.png"
   },
   {
     "id": "110104",
@@ -1003,7 +1003,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1101_ultimate.png"
+    "icon": "icon/skill/1101_skill.png"
   },
   {
     "id": "110106",
@@ -1272,7 +1272,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1104_skill.png"
+    "icon": "icon/skill/1104_ultimate.png"
   },
   {
     "id": "110404",
@@ -1309,7 +1309,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1104_ultimate.png"
+    "icon": "icon/skill/1104_skill.png"
   },
   {
     "id": "110406",
@@ -2198,7 +2198,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1201_skill.png"
+    "icon": "icon/skill/1201_ultimate.png"
   },
   {
     "id": "120104",
@@ -2239,7 +2239,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1201_ultimate.png"
+    "icon": "icon/skill/1201_skill.png"
   },
   {
     "id": "120106",
@@ -2304,7 +2304,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1202_skill.png"
+    "icon": "icon/skill/1202_ultimate.png"
   },
   {
     "id": "120204",
@@ -2341,7 +2341,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1202_ultimate.png"
+    "icon": "icon/skill/1202_skill.png"
   },
   {
     "id": "120206",
@@ -2508,7 +2508,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1204_skill.png"
+    "icon": "icon/skill/1204_ultimate.png"
   },
   {
     "id": "120404",
@@ -2545,7 +2545,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1204_ultimate.png"
+    "icon": "icon/skill/1204_skill.png"
   },
   {
     "id": "120406",
@@ -2610,7 +2610,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1205_skill.png"
+    "icon": "icon/skill/1205_ultimate.png"
   },
   {
     "id": "120504",
@@ -2651,7 +2651,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1205_ultimate.png"
+    "icon": "icon/skill/1205_skill.png"
   },
   {
     "id": "120506",
@@ -2716,7 +2716,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1206_skill.png"
+    "icon": "icon/skill/1206_ultimate.png"
   },
   {
     "id": "120604",
@@ -2753,7 +2753,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1206_ultimate.png"
+    "icon": "icon/skill/1206_skill.png"
   },
   {
     "id": "120606",
@@ -3328,7 +3328,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1212_skill.png"
+    "icon": "icon/skill/1212_ultimate.png"
   },
   {
     "id": "121204",
@@ -3369,7 +3369,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1212_ultimate.png"
+    "icon": "icon/skill/1212_skill.png"
   },
   {
     "id": "121206",
@@ -3752,7 +3752,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1217_skill.png"
+    "icon": "icon/skill/1217_ultimate.png"
   },
   {
     "id": "121704",
@@ -3789,7 +3789,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1217_ultimate.png"
+    "icon": "icon/skill/1217_skill.png"
   },
   {
     "id": "121706",
@@ -3968,7 +3968,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1220_skill.png"
+    "icon": "icon/skill/1220_ultimate.png"
   },
   {
     "id": "122004",
@@ -4005,7 +4005,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1220_ultimate.png"
+    "icon": "icon/skill/1220_skill.png"
   },
   {
     "id": "122006",
@@ -4070,7 +4070,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1221_skill.png"
+    "icon": "icon/skill/1221_ultimate.png"
   },
   {
     "id": "122104",
@@ -4107,7 +4107,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1221_ultimate.png"
+    "icon": "icon/skill/1221_skill.png"
   },
   {
     "id": "122106",
@@ -4172,7 +4172,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1222_skill.png"
+    "icon": "icon/skill/1222_ultimate.png"
   },
   {
     "id": "122204",
@@ -4209,7 +4209,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1222_ultimate.png"
+    "icon": "icon/skill/1222_skill.png"
   },
   {
     "id": "122206",
@@ -4274,7 +4274,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1223_skill.png"
+    "icon": "icon/skill/1223_ultimate.png"
   },
   {
     "id": "122304",
@@ -4311,7 +4311,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1223_ultimate.png"
+    "icon": "icon/skill/1223_skill.png"
   },
   {
     "id": "122306",
@@ -4800,7 +4800,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1303_skill.png"
+    "icon": "icon/skill/1303_ultimate.png"
   },
   {
     "id": "130304",
@@ -4837,7 +4837,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1303_ultimate.png"
+    "icon": "icon/skill/1303_skill.png"
   },
   {
     "id": "130306",
@@ -4902,7 +4902,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1304_skill.png"
+    "icon": "icon/skill/1304_ultimate.png"
   },
   {
     "id": "130404",
@@ -4939,7 +4939,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1304_ultimate.png"
+    "icon": "icon/skill/1304_skill.png"
   },
   {
     "id": "130406",
@@ -5004,7 +5004,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1305_skill.png"
+    "icon": "icon/skill/1305_ultimate.png"
   },
   {
     "id": "130504",
@@ -5041,7 +5041,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1305_ultimate.png"
+    "icon": "icon/skill/1305_skill.png"
   },
   {
     "id": "130506",
@@ -5326,7 +5326,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1308_skill.png"
+    "icon": "icon/skill/1308_ultimate.png"
   },
   {
     "id": "130804",
@@ -5363,7 +5363,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1308_ultimate.png"
+    "icon": "icon/skill/1308_skill.png"
   },
   {
     "id": "130806",
@@ -5465,7 +5465,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1309_ultimate.png"
+    "icon": "icon/skill/1309_rank5.png"
   },
   {
     "id": "130906",
@@ -5640,7 +5640,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1312_skill.png"
+    "icon": "icon/skill/1312_ultimate.png"
   },
   {
     "id": "131204",
@@ -5677,7 +5677,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1312_ultimate.png"
+    "icon": "icon/skill/1312_skill.png"
   },
   {
     "id": "131206",
@@ -5742,7 +5742,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1313_skill.png"
+    "icon": "icon/skill/1313_ultimate.png"
   },
   {
     "id": "131304",
@@ -5779,7 +5779,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1313_ultimate.png"
+    "icon": "icon/skill/1313_skill.png"
   },
   {
     "id": "131306",
@@ -5950,7 +5950,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1315_skill.png"
+    "icon": "icon/skill/1315_ultimate.png"
   },
   {
     "id": "131504",
@@ -5987,7 +5987,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1315_ultimate.png"
+    "icon": "icon/skill/1315_skill.png"
   },
   {
     "id": "131506",
@@ -6402,7 +6402,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1403_skill.png"
+    "icon": "icon/skill/1403_ultimate.png"
   },
   {
     "id": "140304",
@@ -6439,7 +6439,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1403_ultimate.png"
+    "icon": "icon/skill/1403_skill.png"
   },
   {
     "id": "140306",
@@ -6564,6 +6564,238 @@
     ],
     "level_up_skills": [],
     "icon": "icon/skill/1404_rank6.png"
+  },
+  {
+    "id": "140501",
+    "name": "Magician, Isolated by Stars",
+    "rank": 1,
+    "desc": "After using Skill for the first time, recovers 1 Skill Point(s). When using Skill to hit enemy targets, decreases the targets' DEF by 16%, lasting for 2 turn(s).",
+    "materials": [
+      {
+        "id": "11405",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1405_rank1.png"
+  },
+  {
+    "id": "140502",
+    "name": "Soul, True to History",
+    "rank": 2,
+    "desc": "When enemy targets enter the battlefield, triggers 1 instance of the Talent's Weakness Implant effect, and reduces their All-Type RES by 20%.",
+    "materials": [
+      {
+        "id": "11405",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1405_rank2.png"
+  },
+  {
+    "id": "140503",
+    "name": "Pupil, Etched into Cosmos",
+    "rank": 3,
+    "desc": "Ultimate Lv. +2, up to a maximum of Lv. 15.\nBasic ATK Lv. +1, up to a maximum of Lv. 10.",
+    "materials": [
+      {
+        "id": "11405",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "140503",
+        "num": 2
+      },
+      {
+        "id": "140501",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1405_ultimate.png"
+  },
+  {
+    "id": "140504",
+    "name": "Blaze, Plunged to Canyon",
+    "rank": 4,
+    "desc": "When using Skill, increases ATK by 30%, lasting for 2 turn(s). This effect can stack up to 2 time(s).",
+    "materials": [
+      {
+        "id": "11405",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1405_rank4.png"
+  },
+  {
+    "id": "140505",
+    "name": "Embryo, Set Beyond Vortex",
+    "rank": 5,
+    "desc": "Skill Lv. +2, up to a maximum of Lv. 15.\nTalent Lv. +2, up to a maximum of Lv. 15.",
+    "materials": [
+      {
+        "id": "11405",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "140502",
+        "num": 2
+      },
+      {
+        "id": "140504",
+        "num": 2
+      }
+    ],
+    "icon": "icon/skill/1405_skill.png"
+  },
+  {
+    "id": "140506",
+    "name": "Everything Is in Everything",
+    "rank": 6,
+    "desc": "The DMG dealt by Anaxa is 130% of the original DMG. The 2 effects in the Trace \"Imperative Hiatus\" will be triggered directly and will no longer depend on the number of \"Erudition\" characters in the team.",
+    "materials": [
+      {
+        "id": "11405",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1405_rank6.png"
+  },
+  {
+    "id": "140701",
+    "name": "Snowbound Maiden, Memory to Tomb",
+    "rank": 1,
+    "desc": "When the enemy target's current HP is 80%/50% of Max HP or lower, the DMG dealt to it by \"Boneclaw, Doomdrake's Embrace,\" \"Claw Splits the Veil,\" \"Breath Scorches the Shadow,\" and \"Wings Sweep the Ruins\" is 120%/140% of the original DMG respectively.",
+    "materials": [
+      {
+        "id": "11407",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1407_rank1.png"
+  },
+  {
+    "id": "140702",
+    "name": "Crown on Wings of Bloom",
+    "rank": 2,
+    "desc": "After summoning the memosprite Netherwing, Castorice gains 2 stack(s) of \"Ardent Will.\" \"Ardent Will\" can stack up to 2 time(s) and can be used to offset the HP cost of Netherwing's Memosprite Skill, \"Breath Scorches the Shadow\" and advance Castorice's action by 100%. When using the next Enhanced Skill, Castorice gains \"Newbud\" by an amount equal to30% of max \"Newbud.\"",
+    "materials": [
+      {
+        "id": "11407",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1407_rank2.png"
+  },
+  {
+    "id": "140703",
+    "name": "Pious Pilgrim, Dance in Doom",
+    "rank": 3,
+    "desc": "Ultimate Lv. +2, up to a maximum of Lv. 15.\nBasic ATK Lv. +1, up to a maximum of Lv. 10.\nMemosprite Talent Lv. +1, up to a maximum of Lv. 10.",
+    "materials": [
+      {
+        "id": "11407",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "140703",
+        "num": 2
+      },
+      {
+        "id": "140701",
+        "num": 1
+      },
+      {
+        "id": "1140703",
+        "num": 1
+      },
+      {
+        "id": "1140712",
+        "num": 1
+      },
+      {
+        "id": "1140705",
+        "num": 1
+      },
+      {
+        "id": "1140706",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1407_ultimate.png"
+  },
+  {
+    "id": "140704",
+    "name": "Rest in Songs of Gloom",
+    "rank": 4,
+    "desc": "While Castorice is on the field, all allies' Incoming Healing during HP restoration increases by 20%.",
+    "materials": [
+      {
+        "id": "11407",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1407_rank4.png"
+  },
+  {
+    "id": "140705",
+    "name": "Pristine Pages, Prophecy as Plume",
+    "rank": 5,
+    "desc": "Skill Lv. +2, up to a maximum of Lv. 15.\nTalent Lv. +2, up to a maximum of Lv. 15.\nMemosprite Skill Lv. +1, up to a maximum of Lv. 10.",
+    "materials": [
+      {
+        "id": "11407",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "140702",
+        "num": 2
+      },
+      {
+        "id": "140704",
+        "num": 2
+      },
+      {
+        "id": "1140701",
+        "num": 1
+      },
+      {
+        "id": "140709",
+        "num": 2
+      },
+      {
+        "id": "1140702",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1407_skill.png"
+  },
+  {
+    "id": "140706",
+    "name": "Await for Years to Loom",
+    "rank": 6,
+    "desc": "When Castorice or Netherwing deals DMG, increases Quantum RES PEN by 20%. During Netherwing's attacks, can reduce enemy Toughness regardless of Weakness Types. When breaking Weaknesses, triggers the Quantum Weakness Break effect. And the number of Bounces for Netherwing's Talent \"Wings Sweep the Ruins\" additionally increases by 3.",
+    "materials": [
+      {
+        "id": "11407",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1407_rank6.png"
   },
   {
     "id": "800101",
