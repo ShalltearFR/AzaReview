@@ -39,7 +39,9 @@ async function getDataUid(
   lang: string | undefined
 ) {
   const data = await fetch(
-    `https://api.mihomo.me/${endpoint}/${uid}?lang=${lang ?? "fr"}`,
+    `https://api.mihomo.me/${endpoint}/${uid}?lang=${
+      lang ?? "fr"
+    }&is_force_update=true`,
     {
       headers: {
         "User-Agent": "https://review-hsr.vercel.app",
