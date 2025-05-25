@@ -12,6 +12,8 @@ import StarBGAnimation from "@/components/Front/StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import NavBar from "@/components/Front/Homepage/NavBar";
+import { CDN, CDN2 } from "@/utils/cdn";
+import { VideoSection } from "@/components/Front/Homepage/VideoSection";
 
 function Homepage() {
   const [codes, setCodes] = useState<Array<string>>(["Chargement des codes"]);
@@ -42,17 +44,7 @@ function Homepage() {
         <NavBar />
         <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}>
           <div className="text-white flex flex-col justify-center items-center">
-            <div className="flex w-full h-[calc(100vh-96px)] justify-center items-center relative">
-              <video
-                className="w-full h-full object-cover absolute"
-                autoPlay
-                muted
-                loop
-                src={`https://res.cloudinary.com/shalltear/video/upload/f_auto:video,q_auto/v1/review%20HSR/mdx0mxnzi31cma79gbok`}
-                poster="https://res.cloudinary.com/shalltear/image/upload/v1710719830/review%20HSR/hsr_homepage_poster.webp"
-              />
-              <div>fefefe</div>
-            </div>
+            <VideoSection />
             <Section0 lang={lang} />
             <Section1 lang={lang} />
             <Section2
