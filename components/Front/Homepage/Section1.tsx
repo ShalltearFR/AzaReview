@@ -10,11 +10,10 @@ import translateBBCode from "@/utils/translateBBCode";
 import { TranslateSection } from "@/types/homepageDictionnary";
 
 interface Section1Props {
-  sectionPrevIndex: number;
   lang: keyof TranslateSection | undefined;
 }
 
-const Section1: React.FC<Section1Props> = ({ sectionPrevIndex, lang }) => {
+const Section1: React.FC<Section1Props> = ({ lang }) => {
   const [translateSection, setTranslateSection] = useState<Array<string>>([""]);
   const [translateSectionArray, setTranslateSectionArray] = useState<
     Array<string>
@@ -29,11 +28,7 @@ const Section1: React.FC<Section1Props> = ({ sectionPrevIndex, lang }) => {
       className={`bg-brown2 mt-10 xl2:mt-0 xl:min-h-screen flex flex-col justify-center items-center`}
     >
       <div className=" mx-auto flex flex-col items-center justify-center [&_article]:lg:!w-11/12 [&_article]:!xxl:w-1/2 [&_article]:w-full [&_article]:p-5 [&_article]:bg-black [&_article]:mmd:w-3/4 [&_article]:mmd:rounded-3xl">
-        <div
-          data-aos="fade-up"
-          data-aos-delay="250"
-          className="mx-auto w-full mmd:w-1/2 lg:!w-11/12 xxl:w-1/2 z-10"
-        >
+        <div className="mx-auto w-full mmd:w-1/2 lg:!w-11/12 xxl:w-1/2 z-10">
           <img
             src={`${CDN2}/img/homepage/pela.webp`}
             alt="Pela"
@@ -42,10 +37,7 @@ const Section1: React.FC<Section1Props> = ({ sectionPrevIndex, lang }) => {
             className="h-36 ml-auto translate-y-5 "
           />
         </div>
-        <div
-          data-aos={`${sectionPrevIndex === 0 ? "fade-right" : "fade-left"}`}
-          className="flex flex-col gap-y-5 justify-center items-center my-auto mb-10 z-10"
-        >
+        <div className="flex flex-col gap-y-5 justify-center items-center my-auto mb-10 z-10">
           <article>
             <h2 className="text-xl xl:text-2xl font-bold text-center mb-5">
               {translateSection[0]}

@@ -60,11 +60,7 @@ const Section2: React.FC<Section2Props> = ({
         <div className="flex flex-col gap-5 relative mt-32 w-full mmd:mx-auto">
           {/* PARTIE CODES */}
           <div>
-            <div
-              data-aos="zoom-out-left"
-              data-aos-delay="250"
-              className="absolute mx-auto my-auto w-full z-20"
-            >
+            <div className="absolute mx-auto my-auto w-full z-20">
               <video
                 width={125}
                 height={160}
@@ -80,10 +76,7 @@ const Section2: React.FC<Section2Props> = ({
                 />
               </video>
             </div>
-            <div
-              data-aos={isCodeAnimation ? "fade-right" : ""}
-              className="relative bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-10 mmd:mx-auto my-auto"
-            >
+            <div className="relative bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-10 mmd:mx-auto my-auto">
               <div className="relative z-10">
                 <h2
                   id="codes"
@@ -143,10 +136,7 @@ const Section2: React.FC<Section2Props> = ({
           {changeLog.length > 0 && (
             <div>
               {/* PARTIE CHANGELOG */}
-              <div
-                data-aos={isCodeAnimation ? "fade-right" : ""}
-                className="relative bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-10 mmd:mx-auto my-auto items-center"
-              >
+              <div className="relative bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-10 mmd:mx-auto my-auto items-center">
                 {/* FLECHE GAUCHE */}
                 <div className="absolute left-2">
                   {patchPage > 0 && (
@@ -189,11 +179,7 @@ const Section2: React.FC<Section2Props> = ({
         </div>
         {/* PARTIE LOOTBAR */}
         <div className="mt-auto mb-10 xl2:mb-0 z-10">
-          <div
-            data-aos="fade-up"
-            data-aos-delay="250"
-            className="mx-auto w-full mmd:w-[747px] z-10 flex"
-          >
+          <div className="mx-auto w-full mmd:w-[747px] z-10 flex">
             <img
               src={`${CDN2}/img/homepage/guinaifen.webp`}
               alt="Guinaifen"
@@ -213,10 +199,7 @@ const Section2: React.FC<Section2Props> = ({
               </a>
             </div>
           </div>
-          <div
-            data-aos="fade-left"
-            className="bg-black mmd:rounded-2xl w-full mmd:w-[747px] py-6 z-20 relative"
-          >
+          <div className="bg-black mmd:rounded-2xl w-full mmd:w-[747px] py-6 z-20 relative">
             <div className="px-6 ">
               <h2 className="text-center font-bold text-xl mb-5">
                 {translateSection[2]}

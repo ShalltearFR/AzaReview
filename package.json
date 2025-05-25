@@ -37,6 +37,7 @@
     "next-client-cookies": "^2.0.0",
     "node-cache": "^5.1.2",
     "path": "^0.12.7",
+    "prettier": "^3.5.3",
     "react": "19.0.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "19.0.0",
