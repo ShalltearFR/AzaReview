@@ -25,8 +25,8 @@ const Homepage = () => {
       scrollIntoView(el, {
         behavior: "smooth",
         scrollMode: "always",
-        block: "start",
-        inline: "nearest",
+        block: "center",
+        inline: "center",
       });
     }
   };

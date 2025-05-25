@@ -19,7 +19,7 @@ const Section0: React.FC<Section0Props> = ({ lang }) => {
   return (
     <section
       id="section0"
-      className={`flex flex-col w-full xl:flex-row justify-center items-center gap-y-10 lg:gap-x-10 pb-10 xl:pb-0 xl:px-5 mt-10`}
+      className={`flex flex-col w-full xl:flex-row justify-center items-center gap-y-10 lg:gap-x-10 pb-10 xl:pb-0 xl:px-5`}
     >
       <div className=" bg-black p-5 w-full mmd:w-[750px] mmd:rounded-3xl xl2:w-[900px] pt-10 z-10">
         <h1 className="text-3xl xl:text-4xl font-bold text-center">
