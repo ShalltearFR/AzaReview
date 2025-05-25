@@ -1,27 +1,60 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import AOS from "aos";
-import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Section0 from "@/components/Front/Homepage/Section0";
 import Section1 from "@/components/Front/Homepage/Section1";
 import Section2 from "@/components/Front/Homepage/Section2";
-import HomepageFooter from "@/components/Front/Homepage/HomepageFooter";
-import { useCookies } from "next-client-cookies";
 import StarBGAnimation from "@/components/Front/StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import NavBar from "@/components/Front/Homepage/NavBar";
-import { CDN, CDN2 } from "@/utils/cdn";
 import { VideoSection } from "@/components/Front/Homepage/VideoSection";
+import { useCookies } from "next-client-cookies";
+import scrollIntoView from "scroll-into-view-if-needed";
 
-function Homepage() {
-  const [codes, setCodes] = useState<Array<string>>(["Chargement des codes"]);
-  const [isCodeAnimation, setIsCodeAnimation] = useState<Boolean>(true);
+const sections = ["home", "section0", "section1", "section2"];
+
+const Homepage = () => {
   const cookies = useCookies();
   const lang = cookies.get("lang") as keyof TranslateSection;
+  const [activeId, setActiveId] = useState<string | null>("home");
+
+  const handleScrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    setActiveId(id);
+    if (el) {
+      scrollIntoView(el, {
+        behavior: "smooth",
+        scrollMode: "always",
+        block: "start",
+        inline: "nearest",
+      });
+    }
+  };
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-50% 0px -50% 0px",
+        threshold: 0.1,
+      }
+    );
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  /*   useEffect(() => {
     AOS.init();
 
     fetch("/api/other/all", { next: { revalidate: 300 } })
@@ -35,34 +68,25 @@ function Homepage() {
           setCodes(codesArray);
         }
       });
-  }, []);
+  }, []); */
 
   return (
     <>
-      <div>
-        <StarBGAnimation zIndex={0} />
-        <NavBar />
+      <div id="home" />
+      <StarBGAnimation zIndex={0} />
+      <NavBar handleScrollTo={handleScrollTo} activeId={activeId ?? "home"} />
+      <div className="text-white flex flex-col justify-center items-center">
+        <VideoSection />
         <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}>
-          <div className="text-white flex flex-col justify-center items-center">
-            <VideoSection />
-            <Section0 lang={lang} />
-            <Section1 lang={lang} />
-            <Section2
-              codes={codes}
-              isCodeAnimation={isCodeAnimation}
-              lang={lang}
-            />
-          </div>
+          <Section0 lang={lang} />
+          <Section1 lang={lang} />
+          <Section2 codes={[]} isCodeAnimation={false} lang={lang} />
         </Suspense>
       </div>
     </>
   );
-}
+};
 
 export default function App() {
-  return (
-    <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}>
-      <Homepage />
-    </Suspense>
-  );
+  return <Homepage />;
 }

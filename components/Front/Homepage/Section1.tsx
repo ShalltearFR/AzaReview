@@ -1,3 +1,4 @@
+"use client";
 import { CDN2 } from "@/utils/cdn";
 import VerticalNotationArray from "./VerticalNotationArray";
 import HorizontalNotationArray from "./HorizontalNotationArray";
@@ -25,6 +26,7 @@ const Section1: React.FC<Section1Props> = ({ lang }) => {
   }, [lang]);
   return (
     <section
+      id="section1"
       className={`bg-brown2 mt-10 xl2:mt-0 xl:min-h-screen flex flex-col justify-center items-center`}
     >
       <div className=" mx-auto flex flex-col items-center justify-center [&_article]:lg:!w-11/12 [&_article]:!xxl:w-1/2 [&_article]:w-full [&_article]:p-5 [&_article]:bg-black [&_article]:mmd:w-3/4 [&_article]:mmd:rounded-3xl">
