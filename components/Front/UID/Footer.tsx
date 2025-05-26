@@ -27,21 +27,6 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
             alt="logo twitch"
           />
         </a>
-        {" ~ "} {UIDtitles[lang ?? "fr"].ENtranslate}
-        <a
-          href="https://twitter.com/orelsan01"
-          target="_blank"
-          className="underline hover:no-underline font-bold"
-        >
-          Orelsan
-        </a>
-        <img
-          src={`${CDN2}/img/twitter-logo.webp`}
-          width={24}
-          height={24}
-          className="h-6 ml-1 inline"
-          alt="logo twitter"
-        />
       </p>
       <p className="text-lg">
         {UIDtitles[lang ?? "fr"].PayLess}
@@ -59,10 +44,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
       <p>_</p>
       <p className="italic">{UIDtitles[lang ?? "fr"].HoyoCopyright}</p>
       <p className="mt-2 underline hover:no-underline">
-        <a
-          href="https://march7th.xiaohei.moe/en/resource/mihomo_api.html"
-          target="_blank"
-        >
+        <a href="https://github.com/Mar-7th/StarRailRes" target="_blank">
           API : mihomo.me
         </a>
       </p>

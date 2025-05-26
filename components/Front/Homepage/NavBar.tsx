@@ -1,7 +1,6 @@
 "use client";
 import { CDN2 } from "@/utils/cdn";
 import Link from "next/link";
-import { useState } from "react";
 
 interface NavBarProps {
   handleScrollTo: (id: string) => void;

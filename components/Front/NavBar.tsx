@@ -178,44 +178,6 @@ const NavBar: React.FC<NavBarProps> = ({
               {lang === "en" ? "Characters" : "Personnages"}
             </Link>
           </div>
-
-          {/* Partie langue */}
-          <div
-            className={`${
-              openMenu ? "hidden smd:flex" : "flex"
-            } items-center  flex-grow-0 flex-shrink-0 mr-5`}
-          >
-            <button
-              className={`p-2 rounded-full z-50 ${
-                lang === "fr" || lang === undefined ? "bg-white/80" : ""
-              }`}
-              onClick={() => handleChangeLang("fr")}
-            >
-              <img
-                src={`${CDN2}/img/lang/FR.webp`}
-                width={40}
-                height={30}
-                className="w-10"
-                alt="French Flag"
-                fetchPriority="high"
-              />
-            </button>
-            <button
-              className={`p-2 rounded-full z-50 ${
-                lang === "en" ? "bg-white/80" : ""
-              }`}
-              onClick={() => handleChangeLang("en")}
-            >
-              <img
-                src={`${CDN2}/img/lang/EN.webp`}
-                width={40}
-                height={27}
-                className="w-10"
-                alt="English Flag"
-                fetchPriority="high"
-              />
-            </button>
-          </div>
           <button
             onClick={() => setOpenMenu(!openMenu)}
             className={`z-50 text-white flex flex-col mr-2 h-10 w-10 justify-center items-center group smd:hidden`}

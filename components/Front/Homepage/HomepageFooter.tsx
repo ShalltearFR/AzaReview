@@ -27,21 +27,6 @@ const HomepageFooter: React.FC<FooterProps> = ({ lang }) => {
             alt="logo twitch"
           />
         </a>
-        {" ~ "} {UIDtitles[lang ?? "fr"].ENtranslate}
-        <a
-          href="http://twitch.tv/fred_night0wl"
-          target="_blank"
-          className="underline hover:no-underline font-bold"
-        >
-          Fred_NightOwl
-        </a>
-        <img
-          src={`${CDN2}/img/twitch-logo.svg`}
-          width={22}
-          height={24}
-          className="h-6 ml-1 inline"
-          alt="logo twitch"
-        />
       </div>
       <div>
         {UIDtitles[lang ?? "fr"].HomepageDesign}

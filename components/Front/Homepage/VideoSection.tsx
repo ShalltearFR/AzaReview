@@ -53,28 +53,21 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
         >
           <a href="https://www.twitch.tv/azano__" target="_blank">
             <img
-              src={`img/twitch-logo2.svg`}
-              className="h-8 ml-3"
-              alt="logo twitch"
-            />
-          </a>
-          <a href="https://x.com/azano__" target="_blank">
-            <img
-              src={`/img/twitter-logo2.svg`}
+              src={`${CDN2}/img/twitch-logo2.svg`}
               className="h-8 ml-3"
               alt="logo twitch"
             />
           </a>
           <a href="https://www.youtube.com/@azano" target="_blank">
             <img
-              src={`/img/youtube.svg`}
+              src={`${CDN2}/img/youtube.svg`}
               className="h-8 ml-3"
               alt="logo twitch"
             />
           </a>
           <a href="https://discord.gg/vFJgRZhNCh" target="_blank">
             <img
-              src={`/img/discord.svg`}
+              src={`${CDN2}/img/discord.svg`}
               className="h-8 ml-3"
               alt="logo twitch"
             />

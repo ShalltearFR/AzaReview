@@ -1,5 +1,5 @@
 "use client";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import Section0 from "@/components/Front/Homepage/Section0";
 import Section1 from "@/components/Front/Homepage/Section1";
 import Section2 from "@/components/Front/Homepage/Section2";
@@ -64,30 +64,13 @@ const Homepage = () => {
         inline: "center",
       });
 
-      // On bloque les changements d’activeId pendant ~600ms
+      // Bloque les changements d’activeId pendant ~600ms
       setTimeout(() => {
         isScrollingRef.current = false;
         setActiveId(id); // force le bon id une fois scroll terminé
-      }, 600); // durée à ajuster si nécessaire
+      }, 600);
     }
   };
-
-  /*   useEffect(() => {
-    AOS.init();
-
-    fetch("/api/other/all", { next: { revalidate: 300 } })
-      .then((res) => res.json())
-      .then((json: any) => {
-        const { codes } = json.data;
-        const codesArray = codes.split("\n");
-        if (codesArray[0] === "") {
-          setCodes(["Pas de code pour le moment"]);
-        } else {
-          setCodes(codesArray);
-        }
-      });
-  }, []); */
-
   return (
     <>
       <div id="home" />
