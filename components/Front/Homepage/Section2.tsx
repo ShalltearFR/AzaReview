@@ -13,16 +13,10 @@ import translateBBCode from "@/utils/translateBBCode";
 import { TranslateSection } from "@/types/homepageDictionnary";
 
 interface Section2Props {
-  isCodeAnimation: Boolean;
-  codes: Array<string>;
   lang: keyof TranslateSection | undefined;
 }
 
-const Section2: React.FC<Section2Props> = ({
-  isCodeAnimation,
-  codes,
-  lang,
-}) => {
+const Section2: React.FC<Section2Props> = ({ lang }) => {
   const [isShareCodes, setIsShareCodes] = useState<boolean>(false);
   const [changeLog, setChangelog] = useState<Array<any>>([]);
   const [patchPage, setPatchPage] = useState<number>(0);
@@ -30,15 +24,28 @@ const Section2: React.FC<Section2Props> = ({
   const [patchDesc, setPatchDesc] = useState<Array<string>>([""]);
 
   const [translateSection, setTranslateSection] = useState<Array<string>>([""]);
+  const [codes, setCodes] = useState<Array<string>>([]);
 
   useEffect(() => {
     setTranslateSection(TranslateSection2[lang ?? "fr"]);
   }, [lang]);
 
   useEffect(() => {
-    fetch("/api/changelog/all", { next: { revalidate: 300 } })
+    fetch("/api/changelog/all", { next: { revalidate: 3000 } })
       .then((res) => res.json())
       .then((json) => setChangelog(json.data));
+
+    fetch("/api/other/all", { next: { revalidate: 300 } })
+      .then((res) => res.json())
+      .then((json: any) => {
+        const { codes } = json.data;
+        const codesArray = codes.split("\n");
+        if (codesArray[0] === "") {
+          setCodes(["Pas de code pour le moment"]);
+        } else {
+          setCodes(codesArray);
+        }
+      });
   }, []);
 
   useEffect(() => {
@@ -56,9 +63,9 @@ const Section2: React.FC<Section2Props> = ({
   return (
     <section
       id="section2"
-      className={`flex flex-col justify-center items-center bg-darkPurple w-full xl2:min-h-[calc(100vh-64px)] pt-5 xl2:pt-0 mmd:mx-auto my-auto overflow-x-hidden`}
+      className={`flex flex-col justify-center items-center w-full mt-10 xl2:pt-0 mmd:mx-auto my-auto overflow-x-hidden xl:h-screen font-Helvetica`}
     >
-      <div className="flex flex-col-reverse mb-16 xl2:mb-0 xl2:flex-row gap-20 justify-center items-center my-auto mx-auto w-full xl2:w-auto mmd:mx-auto">
+      <div className="flex flex-col-reverse mb-16 xl2:mb-0 xl2:flex-row gap-20 justify-center items-center mx-auto w-full xl2:w-auto mmd:mx-auto">
         <div className="flex flex-col gap-5 relative mt-32 w-full mmd:mx-auto">
           {/* PARTIE CODES */}
           <div>
@@ -82,13 +89,13 @@ const Section2: React.FC<Section2Props> = ({
               <div className="relative z-10">
                 <h2
                   id="codes"
-                  className="text-3xl font-bold text-center mb-5 mx-auto"
+                  className="text-3xl extraXl:text-4xl font-bold text-center mb-5 mx-auto"
                 >
                   {translateSection[0]}
                 </h2>
 
                 <p
-                  className={`absolute p-2 bg-gray right-0 top-0 z-10 rounded-xl ${
+                  className={`absolute p-2 bg-gray right-0 top-0 z-10 rounded-xl extraXl:text-2xl ${
                     isShareCodes ? "animate-fade-in" : "hidden"
                   }`}
                 >
@@ -108,7 +115,7 @@ const Section2: React.FC<Section2Props> = ({
                 />
               </div>
               {codes.length > 1 ? (
-                <div className="grid sm:grid-cols-2 text-center font-bold text-xl">
+                <div className="grid sm:grid-cols-2 text-center font-bold text-xl extraXl:text-2xl">
                   {codes.map((code, i) => {
                     const codeWithoutSpace = code.split(" ");
                     return (
@@ -160,16 +167,18 @@ const Section2: React.FC<Section2Props> = ({
                 </div>
                 {/* PARTIE CENTRALE */}
                 <div className="px-2">
-                  <h3 className="text-3xl font-bold text-center mb-5">
+                  <h3 className="text-3xl extraXl:text-4xl font-bold text-center mb-5">
                     ChangeLog
                   </h3>
                   <div>
-                    <span className="font-bold">
+                    <span className="font-bold extraXl:text-3xl">
                       Version {changeLog[patchPage].version.toFixed(2)}
                     </span>
-                    <span className="ml-2 italic">- {patchDate}</span>
+                    <span className="ml-2 italic extraXl:text-2xl">
+                      - {patchDate}
+                    </span>
                   </div>
-                  <ul className="mt-2 ml-5 list-disc">
+                  <ul className="mt-2 ml-5 list-disc extraXl:text-2xl">
                     {patchDesc.map((el, i) => (
                       <li key={`${el.substring(0, 10)}+${i}`}>{el}</li>
                     ))}
@@ -180,7 +189,7 @@ const Section2: React.FC<Section2Props> = ({
           )}
         </div>
         {/* PARTIE LOOTBAR */}
-        <div className="mt-auto mb-10 xl2:mb-0 z-10">
+        <div className="mb-10 xl2:mb-0 z-10">
           <div className="mx-auto w-full mmd:w-[747px] z-10 flex">
             <img
               src={`${CDN2}/img/homepage/guinaifen.webp`}
@@ -203,11 +212,11 @@ const Section2: React.FC<Section2Props> = ({
           </div>
           <div className="bg-black mmd:rounded-2xl w-full mmd:w-[747px] py-6 z-20 relative">
             <div className="px-6 ">
-              <h2 className="text-center font-bold text-xl mb-5">
+              <h2 className="text-center font-bold text-xl extraXl:text-4xl mb-5 text-orange">
                 {translateSection[2]}
               </h2>
-              <div>{translateSection[3]}</div>
-              <div>
+              <div className="extraXl:text-2xl">{translateSection[3]}</div>
+              <div className="extraXl:text-2xl">
                 <a
                   href={translateSection[4]}
                   target="_blank"
@@ -268,8 +277,6 @@ const Section2: React.FC<Section2Props> = ({
           </div>
         </div>
       </div>
-
-      <HomepageFooter lang={lang} />
     </section>
   );
 };

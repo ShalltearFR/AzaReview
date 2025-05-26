@@ -27,7 +27,7 @@ const Section1: React.FC<Section1Props> = ({ lang }) => {
   return (
     <section
       id="section1"
-      className={`bg-brown2 mt-10 xl2:mt-0 xl:min-h-screen flex flex-col justify-center items-center`}
+      className={`xl2:mt-0 flex flex-col justify-center items-center pt-[96px] xl:h-screen font-Helvetica`}
     >
       <div className=" mx-auto flex flex-col items-center justify-center [&_article]:lg:!w-11/12 [&_article]:!xxl:w-1/2 [&_article]:w-full [&_article]:p-5 [&_article]:bg-black [&_article]:mmd:w-3/4 [&_article]:mmd:rounded-3xl">
         <div className="mx-auto w-full mmd:w-1/2 lg:!w-11/12 xxl:w-1/2 z-10">
@@ -41,11 +41,11 @@ const Section1: React.FC<Section1Props> = ({ lang }) => {
         </div>
         <div className="flex flex-col gap-y-5 justify-center items-center my-auto mb-10 z-10">
           <article>
-            <h2 className="text-xl xl:text-2xl font-bold text-center mb-5">
+            <h2 className="text-xl xl:text-2xl extraXl:text-5xl font-bold text-center mb-5 extraXl:mb-10 text-orange">
               {translateSection[0]}
             </h2>
-            <div>{translateSection[1]}</div>
-            <ul className="list-decimal [&_li]:ml-5 marker:text-purple marker:text-xl marker:font-extrabold mt-5">
+            <div className="extraXl:text-2xl">{translateSection[1]}</div>
+            <ul className="list-decimal [&_li]:ml-5 marker:text-purple marker:text-xl marker:font-extrabold mt-5 extraXl:text-2xl">
               <li>
                 <strong>{translateSection[2]}</strong>
                 {translateSection[3]}
@@ -56,17 +56,19 @@ const Section1: React.FC<Section1Props> = ({ lang }) => {
           </article>
 
           <article>
-            <h2 className="text-xl xl:text-2xl font-bold text-center mb-5">
+            <h2 className="text-xl xl:text-2xl extraXl:text-5xl font-bold text-center mb-5 extraXl:mb-10 text-orange">
               {translateSection[6]}
             </h2>
-            <div>{translateBBCode(translateSection[7])}</div>
-            <ul className="list-disc mt-5 [&_li]:ml-5 italic">
+            <div className="extraXl:text-2xl">
+              {translateBBCode(translateSection[7])}
+            </div>
+            <ul className="list-disc mt-5 [&_li]:ml-5 italic extraXl:text-2xl">
               <li>{translateBBCode(translateSection[8])}</li>
               <li>{translateBBCode(translateSection[9])}</li>
               <li>{translateBBCode(translateSection[10])}</li>
             </ul>
           </article>
-          <div className="bg-black mmd:bg-transparent w-full px-10 mmd:w-auto mmd:px-0">
+          <div className="bg-black mmd:bg-transparent w-full px-10 mmd:w-auto mmd:px-0 extraXl:text-2xl">
             <VerticalNotationArray translate={translateSectionArray} />
 
             <HorizontalNotationArray translate={translateSectionArray} />

@@ -8,7 +8,7 @@ interface FooterProps {
 
 const HomepageFooter: React.FC<FooterProps> = ({ lang }) => {
   return (
-    <footer className="bg-black text-white text-center py-5 w-full mt-auto z-10">
+    <footer className="bg-black text-white text-center py-5 w-full mt-10 z-10">
       <div className="justify-center z-10">
         {"Copyright © 2024 - "}
         {UIDtitles[lang ?? "fr"].CreatedBy} <strong>ShalltearFR</strong> {" ~ "}

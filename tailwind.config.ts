@@ -16,8 +16,9 @@ const config: Config = {
       xl: "1350px",
       xl2: "1700px",
       xxl: "1920px",
+      extraXl: "2560px",
     },
-    fontFamily: {},
+    fontFamily: { "Helvetica": ["Helvetica", "Arial", "sans-serif"], },
     colors: {
       transparent: "transparent",
       background: "#1F2937", //Bleu foncé

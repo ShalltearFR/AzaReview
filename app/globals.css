@@ -14,6 +14,11 @@ body {
   cursor: url("/img/cursor.cur"), auto;
 }
 
+@font-face {
+  font-family: "Helvetica";
+  src: url("../static/fonts/Helvetica.woff") format("woff")
+}
+
 .animate-stars {
   position: fixed;
   width: 200%;
@@ -88,4 +93,14 @@ body {
 
 .remembranceIcon {
   filter: invert(50%) sepia(50%) saturate(400%) hue-rotate(220deg);
+}
+
+@layer components {
+  .underlineAnimation {
+    @apply relative 
+  }
+
+  .underlineAnimation::after {
+    @apply absolute content-[''] w-full h-1 bg-orange left-0 bottom-[-4px] scale-x-0 hover:scale-x-100 transition-transform duration-300 origin-bottom-right hover:origin-bottom-left
+  }
 }
