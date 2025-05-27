@@ -9,11 +9,11 @@ interface NavBarProps {
 
 const NavBar: React.FC<NavBarProps> = ({ handleScrollTo, activeId }) => {
   return (
-    <div className="flex w-full h-24 bg-[#030303] fixed z-50 shadow-[0_10px_20px_rgba(0,0,0,0.7)]">
+    <div className="flex w-full h-16 bg-[#030303] fixed z-50 shadow-[0_10px_20px_rgba(0,0,0,0.7)]">
       <Link href={"/"}>
         <img
           src={`${CDN2}/img/homepage/logo_min.png`}
-          className="absolute h-24 smd:h-24 left-2 top-2 z-50 smd:mt-2 xl:mt-0"
+          className="absolute h-20 left-2 top-2 z-50 smd:mt-2 xl:mt-0"
           alt="Logo"
         />
       </Link>
