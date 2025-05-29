@@ -18,7 +18,6 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
   handleScrollTo,
 }) => {
   const [uidInput, setUidInput] = useState<string>("");
-  const [uidPathName, setUidPathName] = useState<string>("");
   const [disableSearchButton, setDisableSearchButton] =
     useState<boolean>(false);
   const { push, refresh } = useRouter();
@@ -89,7 +88,7 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
               onChange={(e) => setUidInput(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  if (uidInput !== "" && uidInput !== uidPathName) {
+                  if (uidInput !== "" && uidInput) {
                     setDisableSearchButton(true);
                     if (isNaN(Number(uidInput)) && !isHomepage) {
                       setDisableSearchButton(false);
@@ -104,7 +103,7 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
               disabled={disableSearchButton}
               className="bg-[#3E7032] flex gap-2 items-center h-10 px-4 rounded-full text-white z-50 disabled:bg-gray text-xl"
               onClick={() => {
-                if (uidInput !== "" && uidInput !== uidPathName) {
+                if (uidInput !== "" && uidInput) {
                   setDisableSearchButton(true);
                   if (isNaN(Number(uidInput)) && !isHomepage) {
                     setDisableSearchButton(false);
@@ -114,11 +113,7 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
                 }
               }}
             >
-              <span>
-                {disableSearchButton
-                  ? UIDtitles[lang ?? "fr"].searching
-                  : UIDtitles[lang ?? "fr"].search}
-              </span>
+              <span>{disableSearchButton ? "Rechercher" : "Recherche"}</span>
               {disableSearchButton && (
                 <span>
                   <LoadingSpin width="w-4" height="h-4" />

@@ -73,7 +73,7 @@ const Section2: React.FC = () => {
                 />
               </video>
             </div>
-            <div className="relative bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-10 mmd:mx-auto my-auto">
+            <div className="relative bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-10 mmd:mx-auto my-auto smd:shadow-md smd:shadow-black">
               <div className="relative z-10">
                 <h2
                   id="codes"
@@ -133,7 +133,7 @@ const Section2: React.FC = () => {
           {changeLog.length > 0 && (
             <div>
               {/* PARTIE CHANGELOG */}
-              <div className="relative bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-10 mmd:mx-auto my-auto items-center">
+              <div className="relative bg-black mmd:rounded-2xl w-full mmd:w-[600px] p-6 z-10 mmd:mx-auto my-auto items-center smd:shadow-md smd:shadow-black">
                 {/* FLECHE GAUCHE */}
                 <div className="absolute left-2">
                   {patchPage > 0 && (
@@ -186,7 +186,7 @@ const Section2: React.FC = () => {
               height={144}
               className="h-36 translate-y-1"
             />
-            <div className="ml-auto mt-auto mr-5 px-4 py-2 bg-background rounded-t-2xl translate-y-[1px] xl2:flex xl2:gap-2">
+            <div className="ml-auto mt-auto mr-5 px-4 py-2 rounded-t-2xl translate-y-[1px] xl2:flex xl2:gap-2">
               <a
                 href="https://lootbar.gg/fr/top-up/honkai-star-rail?utm_source=Azano"
                 target="_blank"
@@ -201,7 +201,7 @@ const Section2: React.FC = () => {
               </a>
             </div>
           </div>
-          <div className="bg-black mmd:rounded-2xl w-full mmd:w-[747px] py-6 z-20 relative">
+          <div className="bg-black mmd:rounded-2xl w-full mmd:w-[747px] py-6 z-20 relative smd:shadow-md smd:shadow-black">
             <div className="px-6 ">
               <h2 className="text-center font-bold text-xl extraXl:text-4xl mb-5 text-orange">
                 Dépenser moins sur HSR tout en soutenant le site !

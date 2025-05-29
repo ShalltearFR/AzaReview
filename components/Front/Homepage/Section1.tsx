@@ -8,7 +8,7 @@ const Section1: React.FC = () => {
       id="section1"
       className={`xl2:mt-0 flex flex-col justify-center items-center pt-[96px] xl:h-screen font-Helvetica`}
     >
-      <div className=" mx-auto flex flex-col items-center justify-center [&_article]:lg:!w-11/12 [&_article]:!xxl:w-1/2 [&_article]:w-full [&_article]:p-5 [&_article]:bg-black [&_article]:mmd:w-3/4 [&_article]:mmd:rounded-3xl">
+      <div className=" mx-auto flex flex-col items-center justify-center [&_article]:lg:!w-11/12 [&_article]:!xxl:w-1/2 [&_article]:w-full [&_article]:p-5 [&_article]:bg-black [&_article]:smd:shadow-md [&_article]:smd:shadow-black [&_article]:mmd:w-3/4 [&_article]:mmd:rounded-3xl">
         <div className="mx-auto w-full mmd:w-1/2 lg:!w-11/12 xxl:w-1/2 z-10">
           <img
             src={`${CDN2}/img/homepage/pela.webp`}

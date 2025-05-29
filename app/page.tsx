@@ -13,8 +13,6 @@ import HomepageFooter from "@/components/Front/Homepage/HomepageFooter";
 
 const sections = ["home", "section0", "section1", "section2"];
 
-export const dynamic = "force-static";
-
 const Homepage = () => {
   const [activeId, setActiveId] = useDebouncedActiveId("", 250);
   const isScrollingRef = useRef(false);

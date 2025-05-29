@@ -6,7 +6,7 @@ const Section0: React.FC = () => {
       id="section0"
       className={`flex flex-col w-full xl:flex-row justify-center items-center gap-y-10 lg:gap-x-10 xl:px-5 xl:h-screen xl:pt-[96px] font-Helvetica`}
     >
-      <div className=" bg-black p-5 w-full mmd:w-[750px] mmd:rounded-3xl xl2:w-[900px] extraXl:w-[1200px] py-10 z-10">
+      <div className=" bg-black p-5 w-full mmd:w-[750px] mmd:rounded-3xl xl2:w-[900px] extraXl:w-[1200px] py-10 z-10 smd:shadow-md smd:shadow-black">
         <h1 className="text-3xl xl:text-4xl extraXl:text-6xl font-bold text-center text-orange">
           Votre review Honkai : Star Rail
         </h1>
@@ -71,7 +71,7 @@ const Section0: React.FC = () => {
           faible ou de passer au personnage suivant !
         </div>
       </div>
-      <div className="bg-black p-5 w-full mmd:w-auto mmd:rounded-3xl z-10 flex flex-col justify-center">
+      <div className="bg-black p-5 w-full mmd:w-auto mmd:rounded-3xl z-10 flex flex-col justify-center smd:shadow-md smd:shadow-black">
         <div className="text-3xl font-bold text-center mb-5">
           Sélectionnez vos personnages en vitrine
         </div>
