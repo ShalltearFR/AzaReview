@@ -1,6 +1,5 @@
 "use client";
 import { CDN2 } from "@/utils/cdn";
-import HomepageFooter from "./HomepageFooter";
 import {
   LinkIcon,
   ChevronLeftIcon,
@@ -8,27 +7,16 @@ import {
 } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { FR_Month } from "@/utils/month";
-import { TranslateSection2 } from "@/utils/homepageDictionnary";
 import translateBBCode from "@/utils/translateBBCode";
-import { TranslateSection } from "@/types/homepageDictionnary";
 
-interface Section2Props {
-  lang: keyof TranslateSection | undefined;
-}
-
-const Section2: React.FC<Section2Props> = ({ lang }) => {
+const Section2: React.FC = () => {
   const [isShareCodes, setIsShareCodes] = useState<boolean>(false);
   const [changeLog, setChangelog] = useState<Array<any>>([]);
   const [patchPage, setPatchPage] = useState<number>(0);
   const [patchDate, setPatchDate] = useState<string>("");
   const [patchDesc, setPatchDesc] = useState<Array<string>>([""]);
 
-  const [translateSection, setTranslateSection] = useState<Array<string>>([""]);
   const [codes, setCodes] = useState<Array<string>>([]);
-
-  useEffect(() => {
-    setTranslateSection(TranslateSection2[lang ?? "fr"]);
-  }, [lang]);
 
   useEffect(() => {
     fetch("/api/changelog/all", { next: { revalidate: 3000 } })
@@ -91,7 +79,7 @@ const Section2: React.FC<Section2Props> = ({ lang }) => {
                   id="codes"
                   className="text-3xl extraXl:text-4xl font-bold text-center mb-5 mx-auto"
                 >
-                  {translateSection[0]}
+                  Codes actifs
                 </h2>
 
                 <p
@@ -99,7 +87,7 @@ const Section2: React.FC<Section2Props> = ({ lang }) => {
                     isShareCodes ? "animate-fade-in" : "hidden"
                   }`}
                 >
-                  {translateSection[1]}
+                  Lien copié
                 </p>
                 <LinkIcon
                   className="absolute right-0 top-2 h-6 hover:cursor-pointer"
@@ -199,7 +187,10 @@ const Section2: React.FC<Section2Props> = ({ lang }) => {
               className="h-36 translate-y-1"
             />
             <div className="ml-auto mt-auto mr-5 px-4 py-2 bg-background rounded-t-2xl translate-y-[1px] xl2:flex xl2:gap-2">
-              <a href={translateSection[4]} target="_blank">
+              <a
+                href="https://lootbar.gg/fr/top-up/honkai-star-rail?utm_source=Azano"
+                target="_blank"
+              >
                 <img
                   src={`${CDN2}/img/LootbarLogo.webp`}
                   alt="Logo Lootbar"
@@ -213,26 +204,32 @@ const Section2: React.FC<Section2Props> = ({ lang }) => {
           <div className="bg-black mmd:rounded-2xl w-full mmd:w-[747px] py-6 z-20 relative">
             <div className="px-6 ">
               <h2 className="text-center font-bold text-xl extraXl:text-4xl mb-5 text-orange">
-                {translateSection[2]}
+                Dépenser moins sur HSR tout en soutenant le site !
               </h2>
-              <div className="extraXl:text-2xl">{translateSection[3]}</div>
+              <div className="extraXl:text-2xl">
+                En utilisant ce lien Lootbar pour vos achats, vous soutiendrez
+                énormément !
+              </div>
               <div className="extraXl:text-2xl">
                 <a
-                  href={translateSection[4]}
+                  href="https://lootbar.gg/fr/top-up/honkai-star-rail?utm_source=Azano"
                   target="_blank"
                   className="text-light-blue2 font-bold"
                 >
-                  {translateSection[5]}
+                  Achetez sur le site
                 </a>
-                {translateBBCode(translateSection[6])}
+                pour obtenir de{" "}
+                <span className="bold text-light-blue2">10%</span> à{" "}
+                <span className="bold text-light-blue2">20%</span> de réduction
+                sur le pack à 100€.
               </div>
             </div>
             <div className="sm:px-6">
               <div className="mt-5 relative">
                 <div className="absolute text-xs sm:text-sm smd:text-lg px-3 text-center w-1/2 right-0 top-1/2 -translate-y-1/2">
-                  <div>{translateSection[7]}</div>
-                  <div>{translateSection[8]}</div>
-                  <div>{translateSection[9]}</div>
+                  <div>Rapide et sécurisé avec Razer Gold</div>
+                  <div>Réception instantanée en jeu !</div>
+                  <div>(partenaire Hoyoverse)</div>
                 </div>
                 <img
                   src={`${CDN2}/img/homepage/banderole_razergold.webp`}
@@ -243,7 +240,9 @@ const Section2: React.FC<Section2Props> = ({ lang }) => {
               </div>
               <div className="mt-3 relative">
                 <div className="absolute text-xs sm:text-sm smd:text-[20px] px-2 text-center w-3/5 left-0 top-1/2 -translate-y-1/2">
-                  <div className="sm:mt-2">{translateSection[10]}</div>
+                  <div className="sm:mt-2">
+                    Votre UID suffit, pas besoin de vos identifiants personnels.
+                  </div>
                 </div>
                 <img
                   src={`${CDN2}/img/homepage/banderole_lootbar.webp`}
@@ -255,15 +254,15 @@ const Section2: React.FC<Section2Props> = ({ lang }) => {
               <div className="mt-3 relative">
                 <div className="absolute text-xs sm:text-base smd:text-lg px-2 smd:px-10 text-center w-3/5 right-0 top-1/2 -translate-y-1/2 font-semibold">
                   <div>
-                    {translateSection[11]}
+                    Au besoin, passez sur le live Twitch d'{" "}
                     <a
                       href="https://www.twitch.tv/azano__"
                       target="_blank"
                       className="underline hover:no-underline"
                     >
                       Azano
-                    </a>
-                    {translateSection[12]}
+                    </a>{" "}
+                    pour plus d'informations.
                   </div>
                 </div>
                 <img

@@ -5,20 +5,18 @@ import Section1 from "@/components/Front/Homepage/Section1";
 import Section2 from "@/components/Front/Homepage/Section2";
 import StarBGAnimation from "@/components/Front/StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
-import { TranslateSection } from "@/types/homepageDictionnary";
 import NavBar from "@/components/Front/Homepage/NavBar";
 import { VideoSection } from "@/components/Front/Homepage/VideoSection";
-import { useCookies } from "next-client-cookies";
 import scrollIntoView from "scroll-into-view-if-needed";
 import useDebouncedActiveId from "@/components/Front/Homepage/useDebouncedActiveId";
 import HomepageFooter from "@/components/Front/Homepage/HomepageFooter";
 
 const sections = ["home", "section0", "section1", "section2"];
 
+export const dynamic = "force-static";
+
 const Homepage = () => {
-  const cookies = useCookies();
-  const lang = cookies.get("lang") as keyof TranslateSection;
-  const [activeId, setActiveId] = useDebouncedActiveId("", 100);
+  const [activeId, setActiveId] = useDebouncedActiveId("", 250);
   const isScrollingRef = useRef(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -60,14 +58,14 @@ const Homepage = () => {
       scrollIntoView(el, {
         behavior: "smooth",
         scrollMode: "if-needed",
-        block: "center",
-        inline: "center",
+        block: window.innerWidth < 1350 ? "start" : "center", // Readapte le scroll pour la version mobile/tablette
+        inline: window.innerWidth < 1350 ? "start" : "center",
       });
 
       // Bloque les changements d’activeId pendant ~600ms
       setTimeout(() => {
         isScrollingRef.current = false;
-        setActiveId(id); // force le bon id une fois scroll terminé
+        setActiveId(id); // force le bon id une fois le scroll terminé
       }, 600);
     }
   };
@@ -79,10 +77,10 @@ const Homepage = () => {
       <div className="text-white flex flex-col justify-center items-center">
         <VideoSection handleScrollTo={handleScrollTo} />
         <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}>
-          <Section0 lang={lang} />
-          <Section1 lang={lang} />
-          <Section2 lang={lang} />
-          <HomepageFooter lang={lang} />
+          <Section0 />
+          <Section1 />
+          <Section2 />
+          <HomepageFooter />
         </Suspense>
       </div>
     </>

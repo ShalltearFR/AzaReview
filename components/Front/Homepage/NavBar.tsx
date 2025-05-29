@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { CDN2 } from "@/utils/cdn";
 import Link from "next/link";
 
@@ -8,60 +9,112 @@ interface NavBarProps {
 }
 
 const NavBar: React.FC<NavBarProps> = ({ handleScrollTo, activeId }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const links = [
+    { id: "home", label: "Accueil" },
+    { id: "section0", label: "Explications" },
+    { id: "section1", label: "Analyses/Notes" },
+    { id: "section2", label: "Codes" },
+  ];
+
+  const handleClick = (id: string) => {
+    handleScrollTo(id);
+    setIsOpen(false);
+  };
+
+  const renderLinks = (isMobile: boolean = false) => (
+    <>
+      {links.map(({ id, label }) => (
+        <button
+          key={id}
+          onClick={() => handleClick(id)}
+          className={`underlineAnimation ${
+            activeId === id
+              ? "font-extrabold underline underline-offset-8 decoration-orange"
+              : ""
+          } ${isMobile ? "text-left w-full" : "text-center"}`}
+        >
+          {label}
+        </button>
+      ))}
+    </>
+  );
+
   return (
-    <div className="flex w-full h-16 bg-[#030303] fixed z-50 shadow-[0_10px_20px_rgba(0,0,0,0.7)]">
-      <Link href={"/"}>
-        <img
-          src={`${CDN2}/img/homepage/logo_min.png`}
-          className="absolute h-20 left-2 top-2 z-50 smd:mt-2 xl:mt-0"
-          alt="Logo"
-        />
-      </Link>
-      <div className="grid grid-cols-4 ml-52 w-full text-center items-center text-white text-xl font-medium extraXl:text-2xl font-Helvetica">
-        <div>
-          <button
-            onClick={() => handleScrollTo("home")}
-            className={`underlineAnimation ${activeId === "home" ? "font-extrabold underline underline-offset-8 decoration-orange" : "no-underline"}`}
+    <div className="flex flex-col w-screen bg-[#030303] fixed z-50 shadow-[0_10px_20px_rgba(0,0,0,0.7)]">
+      {/* Mobile Header */}
+      <div className="flex items-center justify-between h-16 px-4 smd:hidden">
+        <Link href="/">
+          <img
+            src={`${CDN2}/img/homepage/logo_min.png`}
+            className="h-12"
+            alt="Logo"
+          />
+        </Link>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="text-white focus:outline-none"
+        >
+          <svg
+            className="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            viewBox="0 0 24 24"
           >
-            Accueil
-          </button>
+            {isOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="flex flex-col items-start px-6 gap-4 pb-4 smd:hidden text-white text-lg font-medium font-Helvetica">
+          {renderLinks(true)}
         </div>
-        <div>
-          <button
-            onClick={() => handleScrollTo("section0")}
-            className={`underlineAnimation ${
-              activeId === "section0"
-                ? "font-extrabold underline underline-offset-8 decoration-orange"
-                : ""
-            }`}
-          >
-            Explications
-          </button>
+      )}
+
+      {/* Desktop / Tablet Menu */}
+      <div className="hidden smd:grid grid-cols-5 w-full text-white text-xl font-medium extraXl:text-2xl font-Helvetica h-20 items-center px-4">
+        {/* Logo intégré à la grille */}
+        <div className="flex justify-start">
+          <Link href="/">
+            <img
+              src={`${CDN2}/img/homepage/logo_min.png`}
+              className="h-16"
+              alt="Logo"
+            />
+          </Link>
         </div>
-        <div>
-          <button
-            onClick={() => handleScrollTo("section1")}
-            className={`underlineAnimation ${
-              activeId === "section1"
-                ? "font-extrabold underline underline-offset-8 decoration-orange"
-                : ""
-            }`}
-          >
-            Analyses/Notes
-          </button>
-        </div>
-        <div>
-          <button
-            onClick={() => handleScrollTo("section2")}
-            className={`underlineAnimation ${
-              activeId === "section2"
-                ? "font-extrabold underline underline-offset-8 decoration-orange"
-                : ""
-            }`}
-          >
-            Codes
-          </button>
-        </div>
+
+        {/* Liens de navigation */}
+        {links.map(({ id, label }) => (
+          <div key={id} className="text-center">
+            <button
+              onClick={() => handleScrollTo(id)}
+              className={`underlineAnimation ${
+                activeId === id
+                  ? "font-extrabold underline underline-offset-8 decoration-orange"
+                  : ""
+              }`}
+            >
+              {label}
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );

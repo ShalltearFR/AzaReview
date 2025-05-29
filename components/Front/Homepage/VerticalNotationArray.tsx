@@ -1,10 +1,4 @@
-interface VerticalNotationArrayProps {
-  translate: Array<string>;
-}
-
-const VerticalNotationArray: React.FC<VerticalNotationArrayProps> = ({
-  translate,
-}) => {
+const VerticalNotationArray: React.FC = () => {
   return (
     <div className="my-5 mmd:hidden rounded-xl overflow-hidden border border-white">
       <table className="w-full [&_td]:p-3">
@@ -17,15 +11,15 @@ const VerticalNotationArray: React.FC<VerticalNotationArrayProps> = ({
         <tbody>
           <tr className="border-white">
             <td className="border-r border-white"> &gt;A+</td>
-            <td>{translate[1] ?? ""}</td>
+            <td>Génial</td>
           </tr>
           <tr className="bg-blue">
-            <td className="border-r border-white">{translate[0] ?? ""}</td>
+            <td className="border-r border-white">A ou A+</td>
             <td>OK</td>
           </tr>
           <tr>
             <td className="border-r border-white"> &lt;A</td>
-            <td>{translate[2] ?? ""}</td>
+            <td>A améliorer</td>
           </tr>
         </tbody>
       </table>

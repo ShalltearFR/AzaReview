@@ -45,7 +45,7 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
           />
         </video>
         <div
-          className="w-32 h-full absolute right-0 z-30 flex flex-col justify-center items-center gap-5"
+          className="hidden smd:flex w-32 h-full absolute right-0 z-30 flex-col justify-center items-center gap-5"
           style={{
             background:
               "linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.1) 5%)",
@@ -73,16 +73,16 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
             />
           </a>
         </div>
-        <div className="flex flex-col justify-center items-center bg-black rounded-full py-10 px-10 z-30 gap-x-5 shadow-md shadow-black extraXl:text-2xl">
+        <div className="flex flex-col justify-center items-center bg-black rounded-full py-5 px-5 smd:py-10 smd:px-10 z-30 gap-x-5 shadow-md shadow-black extraXl:text-2xl">
           <Link
             href={"/characters"}
-            className="hidden xl:block xl:py-2 xl:px-3 bg-orange font-bold rounded-3xl"
+            className="py-2 px-3 bg-orange font-bold rounded-3xl"
           >
-            {lang === "en" ? "Characters / Builds" : "Personnages / Builds"}
+            Personnages / Builds
           </Link>
           <div className="flex items-center gap-2 mt-5">
             <input
-              className="rounded-full w-40 sm:w-40 h-10 pl-5 text-lg z-50 text-black"
+              className="rounded-full w-40 h-10 pl-5 text-lg z-50 text-black"
               maxLength={9}
               placeholder="UID"
               value={uidInput}
