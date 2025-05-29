@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
+export const runtime = "edge"
+
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const isPublicPath = path === "/hsr-editor/login";
