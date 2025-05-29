@@ -88,18 +88,18 @@ const NavBar: React.FC<NavBarProps> = ({ handleScrollTo, activeId }) => {
       )}
 
       {/* Desktop / Tablet Menu */}
-      <div className="hidden smd:grid grid-cols-5 w-full text-white text-xl font-medium extraXl:text-2xl font-Helvetica h-20 items-center px-4">
+      <div className="hidden relative smd:grid grid-cols-6 w-full text-white text-xl font-medium extraXl:text-2xl font-Helvetica h-16 items-center px-4">
         {/* Logo intégré à la grille */}
-        <div className="flex justify-start">
+        <div className="flex justify-start absolute top-2 left-2">
           <Link href="/">
             <img
               src={`${CDN2}/img/homepage/logo_min.png`}
-              className="h-16"
+              className="h-20 "
               alt="Logo"
             />
           </Link>
         </div>
-
+        <div className="mx-auto" /> {/* Permet de Centrer les accès rapide */}
         {/* Liens de navigation */}
         {links.map(({ id, label }) => (
           <div key={id} className="text-center">
