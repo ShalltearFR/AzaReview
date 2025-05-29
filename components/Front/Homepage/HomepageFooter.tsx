@@ -24,8 +24,7 @@ const HomepageFooter: React.FC = () => {
         </a>
       </div>
       <div>
-        Design page d'accueil par
-        <b>Amane</b> et <b>Shalltear</b>
+        Design page d'accueil par <b>Amane</b> et <b>Shalltear</b>
       </div>
       <div>_</div>
       <div className="italic">
