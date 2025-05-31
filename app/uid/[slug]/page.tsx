@@ -17,13 +17,16 @@ import relicsEN from "@/static/relicsEN.json";
 import propertiesEN from "@/static/propertiesEN.json";
 import propertiesFR from "@/static/propertiesFR.json";
 
+export const dynamic = "force-dynamic";
+
 async function getData(
   url: string,
   revalidationValue: number,
   convertToObject?: boolean
 ) {
   const data = await fetch(url, {
-    next: { revalidate: revalidationValue },
+    /* next: { revalidate: revalidationValue }, */
+    cache: "no-store",
   });
   const dataJson = await data.json();
   if (convertToObject) {
@@ -108,9 +111,12 @@ const isAllreadyShared = (uid: string) => {
 };
 
 // Remise à zéro de la liste des UID partagés toutes les 30 minutes
-setInterval(() => {
-  sharedUID.length = 0;
-}, 1000 * 60 * 30);
+setInterval(
+  () => {
+    sharedUID.length = 0;
+  },
+  1000 * 60 * 30
+);
 
 export default async function Page({
   params,
