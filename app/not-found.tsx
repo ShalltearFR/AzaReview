@@ -1,14 +1,8 @@
 import Footer from "@/components/Front/UID/Footer";
 import NavBar from "@/components/Front/NavBar";
 import { CDN2 } from "@/utils/cdn";
-import React from "react";
-import { cookies } from "next/headers";
-import { TranslateSection } from "@/types/homepageDictionnary";
 
 const notFound = async () => {
-  const cookieStore = cookies();
-  const lang = (await cookieStore).get("lang")?.value as keyof TranslateSection;
-
   return (
     <>
       <NavBar />
@@ -37,7 +31,7 @@ const notFound = async () => {
           </h3>
         </div>
       </section>
-      <Footer lang={lang} />
+      <Footer />
     </>
   );
 };
