@@ -30,7 +30,7 @@ export default function RootLayout({
     url: "https://review-hsr.vercel.app",
     potentialAction: {
       "@type": "SearchAction",
-      name: "Rechercher via l'UID Honaki : Star Rail",
+      name: "Rechercher via l'UID honkai : Star Rail",
       target: "https://review-hsr.vercel.app/uid/{search_term_string}",
       "query-input": "required name=search_term_string",
     },
