@@ -10,12 +10,9 @@ import Aos from "aos";
 import { replaceCharacterName } from "@/utils/PioneerType";
 import StarBGAnimation from "../StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
-import { TranslateSection } from "@/types/homepageDictionnary";
-import { UIDtitles } from "@/utils/dictionnary";
 
 interface ShowCasePageProps {
   character: CharacterType | undefined | { error: true };
-  lang: keyof TranslateSection | undefined;
   lightCones: any;
   relicsSet: any;
   properties: any;
@@ -24,15 +21,14 @@ interface ShowCasePageProps {
 
 const ShowCasePage: React.FC<ShowCasePageProps> = ({
   character,
-  lang,
   lightCones,
   relicsSet,
   properties,
   lightconesRanks,
 }) => {
   const initCharacter = () => {
-    return replaceCharacterName(lang, character as CharacterType).then(
-      (character) => setCharacterName(character as string)
+    return replaceCharacterName(character as CharacterType).then((character) =>
+      setCharacterName(character as string)
     );
   };
 
@@ -42,10 +38,6 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
   }, []);
 
   const [characterName, setCharacterName] = useState<string>("");
-
-  useEffect(() => {
-    if (character) initCharacter();
-  }, [lang]);
 
   const hasStatus = (value: any): value is { status: number } => {
     return typeof value === "object" && "error" in value;
@@ -76,7 +68,7 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
             {characterName}
           </p>
           <p className="text-right mr-3 mmd:absolute mmd:right-3 mmd:top-3 mmd:mr-0">
-            {UIDtitles[lang ?? "fr"].lastUpdate} {date.toLocaleDateString()}
+            {"Dernière mise à jour : "} {date.toLocaleDateString()}
           </p>
           <section className="flex flex-col gap-y-10 mt-10">
             {character.data.map((build: Data, i: number) => (
@@ -92,13 +84,12 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
                   lightconesRanks={lightconesRanks}
                   properties={properties}
                   relicsSet={relicsSet}
-                  lang={lang}
                 />
               </article>
             ))}
           </section>
         </div>
-        <Footer lang={lang} />
+        <Footer />
       </>
     );
   }
@@ -110,7 +101,7 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
       <div className="flex w-screen h-[calc(100vh-295px)] justify-center items-center">
         <LoadingSpin />
       </div>
-      <Footer lang={lang} />
+      <Footer />
     </>
   );
 };

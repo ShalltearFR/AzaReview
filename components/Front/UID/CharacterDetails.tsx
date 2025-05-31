@@ -9,10 +9,7 @@ import CharacterRelicsSet from "./CharacterRelicsSet";
 import CharacterRelic from "./CharacterRelic";
 import { CDN2 } from "@/utils/cdn";
 import { CharacterType, Data, RecommendedStats } from "@/types/CharacterModel";
-import translateBBCode from "@/utils/translateBBCode";
 import { useEffect, useState } from "react";
-import { traces, RemembranceTraces, UIDtitles } from "@/utils/dictionnary";
-import { TranslateSection } from "@/types/homepageDictionnary";
 import { UserOptionsProps } from "@/types/UserOptions";
 import LoadingSpin from "@/components/LoadingSpin";
 import CharacterEidolon from "./CharacterEidolon";
@@ -30,7 +27,6 @@ interface CharacterDetailsProps {
   relicsSetTranslate: Array<any>;
   lightconesTranslate: Array<any>;
   eidolonsList: Array<any>;
-  lang: keyof TranslateSection | undefined;
   userOptions: UserOptionsProps;
 }
 
@@ -52,13 +48,8 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   relicsSetTranslate,
   lightconesTranslate,
   eidolonsList,
-  lang,
   userOptions,
 }) => {
-  const [tracesNames, setTracesNames] = useState<Array<string>>([]);
-  const [remembranceTracesNames, setRemembranceTracesNames] = useState<
-    Array<string>
-  >([]);
   const [characterRelics, setCharacterRelics] = useState<Relic[] | []>([]);
   const [imageBG, setImageBG] = useState<string>("");
 
@@ -77,11 +68,6 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   }, [userOptions.imageBG]);
 
   useEffect(() => {
-    setTracesNames(traces[lang ?? "fr"]);
-    setRemembranceTracesNames(RemembranceTraces[lang ?? "fr"]);
-  }, [lang]);
-
-  useEffect(() => {
     if (character.relics) {
       const characterRelicsFilter: Relic[] = { ...character }.relics.sort(
         (a, b) => a.type - b.type
@@ -94,7 +80,6 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
     const result = characterReview?.main_stats
       .filter((el) => el.piece === piece)
       .map((el, i) => {
-        // statsTranslate
         const translated = statsTranslate.find((stat) => stat.type === el.type);
         return (
           <li
@@ -122,20 +107,14 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
         className="grid xl:h-[870px] xl:gap-x-5 py-4 xl:grid-cols-3"
         style={{
           backgroundImage: `url('${imageBG}')`,
-          // : `url('${CDN2}/img/character_bg.avif')`,
           backgroundSize: "100% auto",
           backgroundRepeat: "repeat-y",
         }}
       >
         <div className="flex flex-col xl:ml-5 w-screen xl:w-full">
           <div className="relative">
-            <CharacterSplash
-              character={character}
-              eidolonsList={eidolonsList}
-              lang={lang}
-            />
+            <CharacterSplash character={character} />
             <div className=" absolute bottom-0 w-full">
-              {/* <div className=""> */}
               <div className="flex mt-auto w-full h-20 items-center justify-center gap-2">
                 {character.rank_icons.map((eidolon, i) => {
                   const eidolonId = eidolonsList.find(
@@ -154,23 +133,25 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                 })}
               </div>
               <div className="flex gap-x-3 justify-center">
-                {tracesNames.map((type, i) => {
-                  return (
-                    <div
-                      key={`CharacterTraces${i}+${index}+${buildIndex}+${lang}+${character.id}`}
-                    >
-                      <CharacterTrace
-                        characterID={character.id}
-                        id={character.skills[i].id}
-                        type={type}
-                        img={`/${character.skills[i].icon}`}
-                        level={character.skills[i].level}
-                        name={character.skills[i].name}
-                        desc={character.skills[i].desc}
-                      />
-                    </div>
-                  );
-                })}
+                {["Attaque", "Compétence", "Ultime", "Talent"].map(
+                  (type, i) => {
+                    return (
+                      <div
+                        key={`CharacterTraces${i}+${index}+${buildIndex}+${character.id}`}
+                      >
+                        <CharacterTrace
+                          characterID={character.id}
+                          id={character.skills[i].id}
+                          type={type}
+                          img={`/${character.skills[i].icon}`}
+                          level={character.skills[i].level}
+                          name={character.skills[i].name}
+                          desc={character.skills[i].desc}
+                        />
+                      </div>
+                    );
+                  }
+                )}
               </div>
               <div className="flex gap-x-3 mt-5 justify-center">
                 {character.path.id === "Memory" &&
@@ -181,15 +162,17 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                       skills[skills.length - 4],
                       skills[skills.length - 3],
                     ];
+                    remembranceTraces[0].type_text = "Compétence";
+                    remembranceTraces[1].type_text = "Talent";
 
                     return remembranceTraces.map((skill, i) => (
                       <div
-                        key={`CharacterTracesRemembrance${i}+${index}+${buildIndex}+${lang}+${character.id}`}
+                        key={`CharacterTracesRemembrance${i}+${index}+${buildIndex}+${character.id}`}
                       >
                         <CharacterTrace
                           characterID={character.id}
                           id={skill.id}
-                          type={remembranceTracesNames[i]}
+                          type={remembranceTraces[i].type_text}
                           img={`/${skill.icon}`}
                           level={skill.level}
                           name={skill.name}
@@ -206,7 +189,6 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           <CharacterLightCone
             lightCone={character.light_cone}
             lightconeTranslate={lightconesTranslate}
-            lang={lang}
             review={characterReview?.lightCones}
             showRedstats={userOptions.showRedstats}
             showInformations={userOptions.showInformations}
@@ -237,7 +219,6 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                     attributes={character.attributes}
                     additions={character.additions}
                     field={field}
-                    lang={lang}
                     review={characterReview?.recommended_stats}
                     showRedstats={userOptions.showRedstats}
                     properties={character.properties}
@@ -249,13 +230,10 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
           {userOptions.showRecommandedStats && (
             <div className="w-full rounded-t-3xl bg-light-blue/75 mx-auto p-3">
               <p className="text-yellow text-lg font-bold text-center">
-                {UIDtitles[lang ?? "fr"].stat}
+                Statistiques recommandées
               </p>
 
-              <RecommendedStat
-                lang={lang}
-                data={characterReview?.recommended_stats}
-              />
+              <RecommendedStat data={characterReview?.recommended_stats} />
             </div>
           )}
 
@@ -263,7 +241,6 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
             <CharacterRelicsSet
               characterid={character.id}
               relics={character.relic_sets || "none"}
-              lang={lang}
               relicsSetTranslate={relicsSetTranslate}
               review={characterReview?.relics_set}
               showRedstats={userOptions.showRedstats}
@@ -280,7 +257,6 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                     stats={relic}
                     equipmentIndex={i}
                     statsTranslate={statsTranslate}
-                    lang={lang}
                     totalCoef={characterReview?.total_coef}
                     reviewRecommanded={
                       characterReview?.recommended_stats as RecommendedStats[]
@@ -295,26 +271,23 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
             })
           ) : (
             <div className="mx-auto text-center bg-light-blue/75 p-5 rounded-t-3xl text-white font-bold">
-              <p className="italic">
-                {UIDtitles[lang ?? "fr"].NoCompletlyRelics1}
-              </p>
+              <p className="italic">Relique(s) ou Ornement(s) manquant(s)</p>
               <p>
-                {translateBBCode(UIDtitles[lang ?? "fr"].NoCompletlyRelics2)}
+                Veuillez équiper <span className="text-orange">6 pièces</span>{" "}
+                pour aligner les Astres
               </p>
               {characterReview?.main_stats && (
                 <div className="[&_div]:mt-5 mt-10 text-left [&_div]:text-orange">
-                  <div>{UIDtitles[lang ?? "fr"].RecommendedChests}</div>
+                  <div>Torse recommandés :</div>
                   {getMainStats("body")}
 
-                  <div className="mt-5">
-                    {UIDtitles[lang ?? "fr"].RecommendedBoots}
-                  </div>
+                  <div className="mt-5">Bottes recommandées :</div>
                   {getMainStats("feet")}
 
-                  <div>{UIDtitles[lang ?? "fr"].RecommendedOrbs}</div>
+                  <div>Orbe recommandées :</div>
                   {getMainStats("planar_sphere")}
 
-                  <div>{UIDtitles[lang ?? "fr"].RecommendedLinkRopes}</div>
+                  <div>Corde recommandées :</div>
                   {getMainStats("link_rope")}
                 </div>
               )}

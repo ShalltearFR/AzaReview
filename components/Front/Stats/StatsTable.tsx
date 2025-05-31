@@ -1,13 +1,10 @@
 "use client";
 import LoadingSpin from "@/components/LoadingSpin";
 import { CharacterStats as CharacterStatsType } from "@/types/CharacterStats";
-import { TranslateSection } from "@/types/homepageDictionnary";
-import { StatsTranslate } from "@/utils/statsDictionnary";
 import { useEffect, useState } from "react";
 
 interface StatsTableProps {
   dataStats: CharacterStatsType;
-  lang: keyof TranslateSection | undefined;
 }
 
 interface attributeObject {
@@ -29,7 +26,7 @@ interface attributesProps {
   energy: attributeObject;
 }
 
-const StatsTable: React.FC<StatsTableProps> = ({ dataStats, lang }) => {
+const StatsTable: React.FC<StatsTableProps> = ({ dataStats }) => {
   const [attributes, setAttributes] = useState<attributesProps | undefined>(
     undefined
   );
@@ -65,7 +62,7 @@ const StatsTable: React.FC<StatsTableProps> = ({ dataStats, lang }) => {
       effect_res,
       energy,
     });
-  }, [dataStats, lang]);
+  }, [dataStats]);
 
   if (attributes && Number.isFinite(attributes.hp.min) && attributes.hp.min > 0)
     return (
@@ -74,55 +71,55 @@ const StatsTable: React.FC<StatsTableProps> = ({ dataStats, lang }) => {
           <tr>
             <th className="!border-0"></th>
             <th>Minimum</th>
-            <th>{StatsTranslate[lang ?? "fr"][5]}</th>
+            <th>Moyenne</th>
             <th>Maximum</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>{StatsTranslate[lang ?? "fr"][6]}</td>
+            <td>PV</td>
             <td className="!text-red">{attributes.hp?.min ?? "-"}</td>
             <td className="!text-blue">{attributes.hp?.avg ?? "-"}</td>
             <td className="!text-green">{attributes.hp?.max ?? "-"}</td>
           </tr>
           <tr>
-            <td>{StatsTranslate[lang ?? "fr"][7]}</td>
+            <td>ATQ</td>
             <td className="!text-red">{attributes.atk?.min ?? "-"}</td>
             <td className="!text-blue">{attributes.atk?.avg ?? "-"}</td>
             <td className="!text-green">{attributes.atk?.max ?? "-"}</td>
           </tr>
           <tr>
-            <td>{StatsTranslate[lang ?? "fr"][8]}</td>
+            <td>DEF</td>
             <td className="!text-red">{attributes.def?.min ?? "-"}</td>
             <td className="!text-blue">{attributes.def?.avg ?? "-"}</td>
             <td className="!text-green">{attributes.def?.max ?? "-"}</td>
           </tr>
           <tr>
-            <td>{StatsTranslate[lang ?? "fr"][9]}</td>
+            <td>VIT</td>
             <td className="!text-red">{attributes.spd?.min ?? "-"}</td>
             <td className="!text-blue">{attributes.spd?.avg ?? "-"}</td>
             <td className="!text-green">{attributes.spd?.max ?? "-"}</td>
           </tr>
           <tr>
-            <td>{StatsTranslate[lang ?? "fr"][10]}</td>
+            <td>Chances Crit.</td>
             <td className="!text-red">{attributes.crit_rate?.min ?? "-"}%</td>
             <td className="!text-blue">{attributes.crit_rate?.avg ?? "-"}%</td>
             <td className="!text-green">{attributes.crit_rate?.max ?? "-"}%</td>
           </tr>
           <tr>
-            <td>{StatsTranslate[lang ?? "fr"][11]}</td>
+            <td>DGT Crit.</td>
             <td className="!text-red">{attributes.crit_dmg?.min ?? "-"}%</td>
             <td className="!text-blue">{attributes.crit_dmg?.avg ?? "-"}%</td>
             <td className="!text-green">{attributes.crit_dmg?.max ?? "-"}%</td>
           </tr>
           <tr>
-            <td>{StatsTranslate[lang ?? "fr"][12]}</td>
+            <td>Effet de rupture</td>
             <td className="!text-red">{attributes.break_dmg?.min ?? "-"}%</td>
             <td className="!text-blue">{attributes.break_dmg?.avg ?? "-"}%</td>
             <td className="!text-green">{attributes.break_dmg?.max ?? "-"}%</td>
           </tr>
           <tr>
-            <td>{StatsTranslate[lang ?? "fr"][13]}</td>
+            <td>App. des effets</td>
             <td className="!text-red">{attributes.effect_hit?.min ?? "-"}%</td>
             <td className="!text-blue">{attributes.effect_hit?.avg ?? "-"}%</td>
             <td className="!text-green">
@@ -130,7 +127,7 @@ const StatsTable: React.FC<StatsTableProps> = ({ dataStats, lang }) => {
             </td>
           </tr>
           <tr>
-            <td>{StatsTranslate[lang ?? "fr"][14]}</td>
+            <td>RÉS des effets</td>
             <td className="!text-red">{attributes.effect_res?.min ?? "-"}%</td>
             <td className="!text-blue">{attributes.effect_res?.avg ?? "-"}%</td>
             <td className="!text-green">
@@ -138,7 +135,7 @@ const StatsTable: React.FC<StatsTableProps> = ({ dataStats, lang }) => {
             </td>
           </tr>
           <tr>
-            <td>{StatsTranslate[lang ?? "fr"][15]}</td>
+            <td>Régén. d'énergie</td>
             <td className="!text-red">
               {attributes.energy ? attributes.energy.min + 100 : "-"}%
             </td>
@@ -154,13 +151,7 @@ const StatsTable: React.FC<StatsTableProps> = ({ dataStats, lang }) => {
     );
 
   if (attributes?.hp.min === 0 || attributes?.hp?.min === Infinity)
-    return (
-      <div className="text-center">
-        {lang === "en"
-          ? "There is not enough data"
-          : "Il n'y a pas assez de données"}
-      </div>
-    );
+    return <div className="text-center">Il n'y a pas assez de données</div>;
 
   return (
     <div className="flex justify-center mt-10">

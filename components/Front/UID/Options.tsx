@@ -1,19 +1,12 @@
-import { TranslateSection } from "@/types/homepageDictionnary";
 import { DefaultUserOptions, UserOptionsProps } from "@/types/UserOptions";
-import { userOptionsLanguage } from "@/utils/dictionnary";
 import { useEffect } from "react";
 
 interface OptionsProps {
   setUserOptions: (value: UserOptionsProps) => void;
   userOptions: UserOptionsProps;
-  lang: keyof TranslateSection | undefined;
 }
 
-const Options: React.FC<OptionsProps> = ({
-  setUserOptions,
-  userOptions,
-  lang,
-}) => {
+const Options: React.FC<OptionsProps> = ({ setUserOptions, userOptions }) => {
   useEffect(() => {
     if (userOptions !== DefaultUserOptions) {
       //setUserOptions(DefaultUserOptions);
@@ -34,13 +27,13 @@ const Options: React.FC<OptionsProps> = ({
     <div className="rounded-xl xl2:rounded-none bg-[#4E4A82] w-fit p-5 mx-auto mt-10 xl2:mt-0 xl2:w-[350px]">
       <div className="text-center">
         <p className="text-orange text-xl font-bold xl2:hidden">
-          {userOptionsLanguage[lang ?? "fr"].displayOptions}
+          Options d'affichage
         </p>
       </div>
       <div className="flex flex-col mmd:flex-row justify-center gap-5 mt-3 xl2:flex-col">
         <div className="p-3 rounded-xl border border-gray">
           <p className="text-white text-lg font-bold mb-1">
-            {userOptionsLanguage[lang ?? "fr"].reliquesOrnaments}
+            Reliques/Ornements
           </p>
           <label className="flex items-center gap-x-2 select-none">
             <input
@@ -54,9 +47,7 @@ const Options: React.FC<OptionsProps> = ({
                 })
               }
             />
-            <span className="text-white">
-              {userOptionsLanguage[lang ?? "fr"].notations}
-            </span>
+            <span className="text-white">Notations</span>
           </label>
           <label className="flex items-center gap-x-2 select-none">
             <input
@@ -70,15 +61,13 @@ const Options: React.FC<OptionsProps> = ({
                 })
               }
             />
-            <span className="text-white">
-              {userOptionsLanguage[lang ?? "fr"].procs}
-            </span>
+            <span className="text-white">Procs</span>
           </label>
         </div>
 
         <div className="p-3 rounded-xl border border-gray">
           <p className="text-white text-lg font-bold mb-1">
-            {userOptionsLanguage[lang ?? "fr"].recommandedStatistics}
+            Statistiques recommandées
           </p>
 
           <label className="flex items-center gap-x-2 select-none">
@@ -93,9 +82,7 @@ const Options: React.FC<OptionsProps> = ({
                 })
               }
             />
-            <span className="text-white">
-              {userOptionsLanguage[lang ?? "fr"].statistics}
-            </span>
+            <span className="text-white">Statistiques</span>
           </label>
           <label className="flex items-center gap-x-2 select-none">
             <input
@@ -109,16 +96,12 @@ const Options: React.FC<OptionsProps> = ({
                 })
               }
             />
-            <span className="text-white">
-              {userOptionsLanguage[lang ?? "fr"].commentary}
-            </span>
+            <span className="text-white">Commentaires</span>
           </label>
         </div>
 
         <div className="p-3 rounded-xl border border-gray">
-          <p className="text-white text-lg font-bold mb-1">
-            {userOptionsLanguage[lang ?? "fr"].others}
-          </p>
+          <p className="text-white text-lg font-bold mb-1">Autres</p>
 
           <label className="flex items-center gap-x-2 select-none">
             <input
@@ -132,9 +115,7 @@ const Options: React.FC<OptionsProps> = ({
                 })
               }
             />
-            <span className="text-white">
-              {userOptionsLanguage[lang ?? "fr"].redStats}
-            </span>
+            <span className="text-white">Elements mauvais en rouge</span>
           </label>
           <label className="flex items-center gap-x-2 select-none">
             <input
@@ -149,13 +130,13 @@ const Options: React.FC<OptionsProps> = ({
               }
             />
             <span className="text-white">
-              {userOptionsLanguage[lang ?? "fr"].informations}
+              Afficher les icones d'informations
             </span>
           </label>
         </div>
         {/* <label className="select-none">
           <p className="text-white">
-            {userOptionsLanguage[lang ?? "fr"].imageBG}
+            URL image de fond (1450 * 870 pixels)
           </p>
           <input
             type="text"

@@ -1,5 +1,4 @@
 import { CharacterType } from "@/types/CharacterModel";
-import { TranslateSection } from "@/types/homepageDictionnary";
 import { PioneerToADD } from "@/utils/PioneerType";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Link from "next/link";
@@ -11,7 +10,6 @@ import { useState } from "react";
 
 interface GuidesProps {
   list: CharacterType[];
-  lang: keyof TranslateSection | undefined;
 }
 
 const CharactersList: React.FC<GuidesProps> = ({ list }) => {
@@ -23,7 +21,6 @@ const CharactersList: React.FC<GuidesProps> = ({ list }) => {
         list.map((character) => (
           <div
             key={character.id}
-            // href={`/guides/${character.id}`}
             className={`w-36 sm:w-52 bg-black/75 rounded-t-3xl relative hover:bg-black/50`}
             onMouseEnter={() => setHoveredCharacter(character.id)}
             onMouseLeave={() => setHoveredCharacter("")}

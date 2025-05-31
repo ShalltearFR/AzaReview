@@ -1,15 +1,12 @@
 "use client";
 import { CDN } from "@/utils/cdn";
 import type { jsonUID } from "@/types/jsonUid";
-import { UIDtitles } from "@/utils/dictionnary";
-import { TranslateSection } from "@/types/homepageDictionnary";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface CharacterListProps {
   uidData: jsonUID;
   setIndex: any;
   index: number;
-  lang: keyof TranslateSection | undefined;
   charactersReview: any;
   characterID: string;
 }
@@ -18,7 +15,6 @@ const CharacterList: React.FC<CharacterListProps> = ({
   uidData,
   setIndex,
   index = 0,
-  lang,
   charactersReview,
   characterID,
 }) => {
@@ -45,10 +41,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
         />
         <div className="text-center w-48 text-white">
           <p className="text-lg font-medium">{uidData?.player?.nickname}</p>
-          <p className="text-sm">
-            {UIDtitles[lang ?? "fr"].pioneer}
-            {uidData?.player?.level}
-          </p>
+          <p className="text-sm">Pionnier {uidData?.player?.level}</p>
           <p className="text-sm italic">UID : {uidData?.player?.uid}</p>
         </div>
         <div className="flex flex-wrap ml-20 gap-5 w- mr-16 mt-5 justify-center px-5">
@@ -69,7 +62,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
       </div>
       {date && (
         <p className="text-center bg-[#4E4A82] rounded-b-3xl w-64 mx-auto text-sm font-semibold text-white -mt-[1px] pb-1 shadow-[0px_4px_4px_rgba(0,0,0,0.5)] shadow-black">
-          {UIDtitles[lang ?? "fr"].lastUpdate} {date.toLocaleDateString()}
+          Dernière mise à jour : {date.toLocaleDateString()}
         </p>
       )}
     </div>

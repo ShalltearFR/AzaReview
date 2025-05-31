@@ -1,13 +1,11 @@
 "use client";
 import NavBar from "@/components/Front/NavBar";
-import { useState, useEffect, useRef, Suspense, useCallback } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import Modal from "react-modal";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Aos from "aos";
 import { notFound } from "next/navigation";
 import translateBBCode from "@/utils/translateBBCode";
-import { UIDtitles } from "@/utils/dictionnary";
-import characterEN from "@/utils/charactersEN";
 import StarBGAnimation from "../StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
 import CharacterList from "./CharactersList";
@@ -20,9 +18,6 @@ import { Cog6ToothIcon } from "@heroicons/react/24/outline";
 import { UserOptionsProps, DefaultUserOptions } from "@/types/UserOptions";
 import CharacterButtons from "./CharacterButtons";
 import Options from "./Options";
-
-import type { CharacterBuild as CharacterBuildType } from "@/types/charactersEN";
-import type { TranslateSection } from "@/types/homepageDictionnary";
 import type { jsonUID } from "@/types/jsonUid";
 import type { CharacterType, Data } from "@/types/CharacterModel";
 import type { ChangelogType } from "@/types/Changelog";
@@ -46,7 +41,6 @@ interface UidPageProps {
   lightconesTranslate: Array<any>;
   RelicsList: Array<any>;
   eidolonsList: Array<any>;
-  lang: keyof TranslateSection | undefined;
   error504?: boolean;
   changelog: ChangelogType;
 }
@@ -59,7 +53,6 @@ const UidPage: React.FC<UidPageProps> = ({
   lightconesTranslate,
   RelicsList,
   eidolonsList,
-  lang,
   error504,
   changelog,
 }) => {
@@ -134,7 +127,6 @@ const UidPage: React.FC<UidPageProps> = ({
         disableButton,
         setShareButtonText,
         characterDetailsRef.current, // Passe l'élément DOM directement
-        lang,
         characterIndex,
         uidData as jsonUID
       );
@@ -179,28 +171,14 @@ const UidPage: React.FC<UidPageProps> = ({
       review[characterIndex] &&
       review[characterIndex].data
     ) {
-      if (
-        lang === "en" &&
-        characterEN[(uidData as any).characters[characterIndex].id]
-      ) {
-        const options: Option[] = characterEN[
-          (uidData as any).characters[characterIndex].id
-        ].map((build: CharacterBuildType, i: number) => ({
-          label: build.name,
+      const options: Option[] = review[characterIndex].data.map(
+        (el: any, i: any) => ({
+          label: el.buildName,
           value: `${i}`,
-          desc: build.desc,
-        }));
-        setCharacterOptions(options);
-      } else {
-        const options: Option[] = review[characterIndex].data.map(
-          (el: any, i: any) => ({
-            label: el.buildName,
-            value: `${i}`,
-            desc: el.buildDesc,
-          })
-        );
-        setCharacterOptions(options);
-      }
+          desc: el.buildDesc,
+        })
+      );
+      setCharacterOptions(options);
     } else {
       setCharacterOptions([
         {
@@ -210,7 +188,7 @@ const UidPage: React.FC<UidPageProps> = ({
       ]);
     }
     setCharacterBuild(0);
-  }, [uidData.status, review, characterIndex, lang]);
+  }, [uidData.status, review, characterIndex]);
 
   useEffect(() => {
     if (!error504) {
@@ -223,7 +201,7 @@ const UidPage: React.FC<UidPageProps> = ({
       if (dataStorage) setUidData(JSON.parse(dataStorage));
       else setUidData({ status: 504 });
     }
-  }, [lang]);
+  }, []);
 
   if (isloading)
     return (
@@ -250,9 +228,7 @@ const UidPage: React.FC<UidPageProps> = ({
         <NavBar setData={setUidData} />
         {error504 && (
           <div className="text-3xl text-white font-bold mt-10 text-center">
-            {lang === "en"
-              ? "The API is receiving too many requests, please restart later"
-              : "L'API reçoit trop de requetes, veuillez relancer plus tard"}
+            L'API reçoit trop de requetes, veuillez relancer plus tard
           </div>
         )}
       </div>
@@ -294,9 +270,7 @@ const UidPage: React.FC<UidPageProps> = ({
 
         {error504 && (
           <div className="text-3xl text-white font-bold mt-10 text-center">
-            {lang === "en"
-              ? "The API receives too many requests, the update could not be done"
-              : "L'API reçoit trop de requetes, l'actualisation n'a pas pu se faire"}
+            L'API reçoit trop de requetes, l'actualisation n'a pas pu se faire
           </div>
         )}
         <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}>
@@ -310,7 +284,6 @@ const UidPage: React.FC<UidPageProps> = ({
                 uidData={uidData as jsonUID}
                 setIndex={setCharacterIndex}
                 index={characterIndex}
-                lang={lang}
               />
 
               <div className="bg-light-blue/75 w-full max-w-[1450px] mx-auto xl:gap-x-5 py-5">
@@ -330,7 +303,7 @@ const UidPage: React.FC<UidPageProps> = ({
                       translateBBCode(
                         characterOptions[characterBuild].desc ?? ""
                       )) ||
-                      UIDtitles[lang ?? "fr"].AvailableSoon}
+                      "Disponible prochainement"}
                   </div>
                 </div>
 
@@ -338,19 +311,9 @@ const UidPage: React.FC<UidPageProps> = ({
                 {characterReview?.recommended_comment &&
                   userOptions.showRecommandedStatsCom && (
                     <div className="text-orange2 font-bold ml-5 mt-3">
-                      {characterReview && lang === "en"
-                        ? characterEN[
-                            (uidData as any).characters[characterIndex].id
-                          ]
-                          ? translateBBCode(
-                              characterEN[
-                                (uidData as any).characters[characterIndex].id
-                              ][characterBuild].comment
-                            )
-                          : ""
-                        : translateBBCode(
-                            characterReview?.recommended_comment ?? ""
-                          )}
+                      {translateBBCode(
+                        characterReview?.recommended_comment ?? ""
+                      )}
                     </div>
                   )}
               </div>
@@ -383,7 +346,6 @@ const UidPage: React.FC<UidPageProps> = ({
                       <Options
                         setUserOptions={setUserOptions}
                         userOptions={userOptions}
-                        lang={lang}
                       />
                     </div>
                   </div>
@@ -404,7 +366,6 @@ const UidPage: React.FC<UidPageProps> = ({
                     relicsSetTranslate={relicsSetTranslate}
                     lightconesTranslate={lightconesTranslate}
                     eidolonsList={eidolonsList}
-                    lang={lang}
                     userOptions={userOptions}
                   />
                 </div>
@@ -413,7 +374,6 @@ const UidPage: React.FC<UidPageProps> = ({
                 <Options
                   setUserOptions={setUserOptions}
                   userOptions={userOptions}
-                  lang={lang}
                 />
               </div>
             </section>
@@ -421,12 +381,10 @@ const UidPage: React.FC<UidPageProps> = ({
           <CharacterButtons
             disableDownloadButton={disableDownloadButton}
             disableShareButton={disableShareButton}
-            lang={lang}
             handleConvertImage={handleConvertImage}
             setDisableDownloadButton={setDisableDownloadButton}
             setDisableShareButton={setDisableShareButton}
             shareButtonText={shareButtonText}
-            UIDtitles={UIDtitles}
           />
         </Suspense>
       </div>

@@ -1,18 +1,11 @@
-import { TranslateSection } from "@/types/homepageDictionnary";
 import { CDN2 } from "@/utils/cdn";
-import { UIDtitles } from "@/utils/dictionnary";
 
-interface FooterProps {
-  lang: keyof TranslateSection | undefined;
-}
-
-const Footer: React.FC<FooterProps> = ({ lang }) => {
+const Footer: React.FC = () => {
   return (
     <div className="bg-black text-white text-center py-5 xl:mt-14 z-10">
       <p className="justify-center">
-        {"Copyright © 2024 - "}
-        {UIDtitles[lang ?? "fr"].CreatedBy}
-        <strong>ShalltearFR</strong> {" ~ "} {UIDtitles[lang ?? "fr"].ReviewBy}
+        {"Copyright © 2024 - Création par "}
+        <strong>ShalltearFR</strong> {" ~ "} {"Review par "}
         <a
           href="https://www.twitch.tv/azano__"
           target="_blank"
@@ -29,20 +22,21 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
         </a>
       </p>
       <p className="text-lg">
-        {UIDtitles[lang ?? "fr"].PayLess}
+        {"Payez moins cher avec "}
         <a
           className="font-bold underline hover:no-underline"
           href={
-            lang === "en"
-              ? "https://lootbar.gg/top-up/honkai-star-rail?utm_source=Azano"
-              : "https://lootbar.gg/fr/top-up/honkai-star-rail?utm_source=Azano"
+            "https://lootbar.gg/fr/top-up/honkai-star-rail?utm_source=Azano"
           }
         >
           Lootbar
         </a>
       </p>
       <p>_</p>
-      <p className="italic">{UIDtitles[lang ?? "fr"].HoyoCopyright}</p>
+      <p className="italic">
+        Ce site n'est pas affilié à Hoyoverse et tous les contenus et actifs du
+        jeu sont des marques déposées et des droits d'auteur de Hoyoverse.
+      </p>
       <p className="mt-2 underline hover:no-underline">
         <a href="https://github.com/Mar-7th/StarRailRes" target="_blank">
           API : mihomo.me

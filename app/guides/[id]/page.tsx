@@ -1,15 +1,9 @@
 import ShowCasePage from "@/components/Front/Showcase/ShowCasePage";
-import { TranslateSection } from "@/types/homepageDictionnary";
 import { CDN } from "@/utils/cdn";
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import relic_setsFR from "@/static/relic_setsFR.json";
-import relic_setsEN from "@/static/relic_setsEN.json";
 import light_conesFR from "@/static/light_conesFR.json";
-import light_conesEN from "@/static/light_conesEN.json";
 import light_cone_ranksFR from "@/static/light_cone_ranksFR.json";
-import light_cone_ranksEN from "@/static/light_cone_ranksEN.json";
-import propertiesEN from "@/static/propertiesEN.json";
 import propertiesFR from "@/static/propertiesFR.json";
 
 const getData = async (
@@ -70,8 +64,6 @@ export async function generateMetadata({
 
 const GuideID = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
-  const cookieStore = await cookies();
-  const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
 
   try {
     const character = await getData(
@@ -80,21 +72,14 @@ const GuideID = async ({ params }: { params: Promise<{ id: string }> }) => {
       false
     );
 
-    const lightcones = lang === "en" ? light_conesEN : light_conesFR;
-    const relicsSet = lang === "en" ? relic_setsEN : relic_setsFR;
-    const properties = lang === "en" ? propertiesEN : propertiesFR;
-    const lightconesRanks =
-      lang === "en" ? light_cone_ranksEN : light_cone_ranksFR;
-
-    if (lightcones && relicsSet && properties && lightconesRanks) {
+    if (light_conesFR && relic_setsFR && propertiesFR && light_cone_ranksFR) {
       return (
         <ShowCasePage
           character={character}
-          lang={lang}
-          lightCones={lightcones}
-          lightconesRanks={lightconesRanks}
-          relicsSet={relicsSet}
-          properties={properties}
+          lightCones={light_conesFR}
+          lightconesRanks={light_cone_ranksFR}
+          relicsSet={relic_setsFR}
+          properties={propertiesFR}
         />
       );
     }

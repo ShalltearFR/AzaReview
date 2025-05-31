@@ -28,17 +28,5 @@ const typeValueMap: TypeValueMap | any = {
   HealRatioBase: "Augm. des soins",
 };
 
-const typeValueMapEN: TypeValueMap | any = {
-  PhysicalAddedRatio: "Physical DMG",
-  QuantumAddedRatio: "Quantum DMG",
-  ImaginaryAddedRatio: "Imaginary DMG",
-  WindAddedRatio: "Wind DMG",
-  ThunderAddedRatio: "Lightning DMG",
-  FireAddedRatio: "Fire DMG",
-  IceAddedRatio: "Ice DMG",
-  SPRatioBase: "Energy Regen.",
-  HealRatioBase: "Healing Boost",
-};
-
-export { typeValueMap, typeValueMapEN };
+export { typeValueMap };
 export type { TypeValueMap };

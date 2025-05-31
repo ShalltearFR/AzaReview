@@ -1,10 +1,8 @@
 import GuidesPage from "@/components/Front/Showcase/GuidesPage";
 import { CharacterType } from "@/types/CharacterModel";
-import type { TranslateSection } from "@/types/homepageDictionnary";
 import { PioneerToRemove, replacePioneersName } from "@/utils/PioneerType";
 import { CDN2 } from "@/utils/cdn";
 import { Metadata } from "next";
-import { cookies } from "next/headers";
 
 interface charactersListJSON {
   status: number;
@@ -36,9 +34,6 @@ const getData = async (
 };
 
 const Guides: React.FC = async () => {
-  const cookieStore = await cookies();
-  const lang = cookieStore.get("lang")?.value as keyof TranslateSection;
-
   const character: charactersListJSON = await getData(
     `${process.env.WWW}/api/characters/all`,
     3600
@@ -49,12 +44,9 @@ const Guides: React.FC = async () => {
     const filteredCharacters = Data.filter(
       (objet) => !PioneerToRemove.includes(objet.id)
     );
-    const remplacedCharacters = await replacePioneersName(
-      lang,
-      filteredCharacters
-    );
+    const remplacedCharacters = await replacePioneersName(filteredCharacters);
 
-    return <GuidesPage character={remplacedCharacters} lang={lang} />;
+    return <GuidesPage character={remplacedCharacters} />;
   }
 
   return (

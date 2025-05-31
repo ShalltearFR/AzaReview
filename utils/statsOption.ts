@@ -179,93 +179,6 @@ const recommendedStatsOptions = [
   },
 ];
 
-const recommendedStatsOptionsEN = [
-  {
-    label: "ATK",
-    value: "AttackDelta",
-  },
-  {
-    label: "ATK%",
-    value: "AttackAddedRatio",
-  },
-  {
-    label: "DEF",
-    value: "DefenceDelta",
-  },
-  {
-    label: "DEF%",
-    value: "DefenceAddedRatio",
-  },
-  {
-    label: "HP",
-    value: "HPDelta",
-  },
-  {
-    label: "HP%",
-    value: "HPAddedRatio",
-  },
-  {
-    label: "Energy Regen.",
-    value: "SPRatioBase",
-  },
-  {
-    label: "Effect Hit Rate",
-    value: "StatusProbabilityBase",
-  },
-  {
-    label: "CRIT Rate",
-    value: "CriticalChanceBase",
-  },
-  {
-    label: "CRIT DMG",
-    value: "CriticalDamageBase",
-  },
-  {
-    label: "Effect RES",
-    value: "StatusResistanceBase",
-  },
-  {
-    label: "Break Effect",
-    value: "BreakDamageAddedRatioBase",
-  },
-  {
-    label: "Healing Boost",
-    value: "HealRatioBase",
-  },
-  {
-    label: "Speed",
-    value: "SpeedDelta",
-  },
-  {
-    label: "Physical DMG",
-    value: "PhysicalAddedRatio",
-  },
-  {
-    label: "Quantum DMG",
-    value: "QuantumAddedRatio",
-  },
-  {
-    label: "Imaginary DMG",
-    value: "ImaginaryAddedRatio",
-  },
-  {
-    label: "Wind DMG",
-    value: "WindAddedRatio",
-  },
-  {
-    label: "Lightning DMG",
-    value: "ThunderAddedRatio",
-  },
-  {
-    label: "Ice DMG",
-    value: "IceAddedRatio",
-  },
-  {
-    label: "Fire DMG",
-    value: "FireAddedRatio",
-  },
-];
-
 const findLabel = (id: string) => {
   let foundElement;
   foundElement = recommendedStatsOptions.find((el) => el.value === id);
@@ -273,16 +186,9 @@ const findLabel = (id: string) => {
   return "";
 };
 
-const findLabelEN = (id: string) => {
-  let foundElement;
-  foundElement = recommendedStatsOptionsEN.find((el) => el.value === id);
-  if (foundElement) return foundElement.label;
-  return "";
-};
 export {
   equipments,
   mainStatOptions,
   recommendedStatsOptions,
   findLabel,
-  findLabelEN,
 };

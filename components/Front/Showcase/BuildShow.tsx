@@ -1,18 +1,14 @@
 import { Data } from "@/types/CharacterModel";
-import characterEN from "@/utils/charactersEN";
 import translateBBCode from "@/utils/translateBBCode";
 import ItemShow from "./ItemShow";
 import MainStats from "./MainStats";
-import { findLabel, findLabelEN } from "@/utils/statsOption";
-import { TranslateSection } from "@/types/homepageDictionnary";
+import { findLabel } from "@/utils/statsOption";
 import { filterLightconeID, filterRelicID } from "@/utils/sorts&Filter";
-import { UIDtitles } from "@/utils/dictionnary";
 import { useMemo } from "react";
 
 interface BuildShowProps {
   build: Data;
   i: number;
-  lang: keyof TranslateSection | undefined;
   characterID: string;
   lightCones: any;
   lightconesRanks: any;
@@ -33,7 +29,6 @@ const BuildShow: React.FC<BuildShowProps> = ({
   build,
   i,
   characterID,
-  lang,
   lightCones,
   lightconesRanks,
   properties,
@@ -62,7 +57,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
             );
             return (
               <li
-                key={`mainStat-${piece}+${i}+${characterID}+${lang}`}
+                key={`mainStat-${piece}+${i}+${characterID}`}
                 className="ml-7"
               >
                 {translated?.name || el.type}
@@ -76,33 +71,25 @@ const BuildShow: React.FC<BuildShowProps> = ({
   return (
     <div className="px-2 xl:px-5 text-center">
       <div className="font-bold text-2xl">
-        {lang === "en" && characterEN[characterID as any]
-          ? translateBBCode(characterEN[characterID as any][i]?.name ?? "")
-          : translateBBCode(build.buildName)}
+        {translateBBCode(build.buildName)}
       </div>
-      <div>
-        {lang === "en" && characterEN[characterID as any]
-          ? translateBBCode(characterEN[characterID as any][i]?.desc ?? "")
-          : translateBBCode(build.buildDesc)}
-      </div>
+      <div>{translateBBCode(build.buildDesc)}</div>
       {/* Cone de lumière */}
       <div className="mt-14">
         <p className="font-bold text-xl underline text-orange">
-          {UIDtitles[lang ?? "fr"].lightCones}
+          Cône de lumière
         </p>
 
         <div className="mt-2 flex flex-col lg:flex-row gap-10 justify-center">
           {lightConeFilter.find((el) => !el.recommended) && (
             <div className="p-5 bg-white/15 rounded-3xl">
-              <p className="text-lg font-bold mb-2">
-                {UIDtitles[lang ?? "fr"].Recommendeds}
-              </p>
+              <p className="text-lg font-bold mb-2">Recommandés</p>
               <div className="flex flex-wrap gap-5 justify-center">
                 {lightConeFilter.map((lightcone, i) => {
                   if (!lightcone.recommended)
                     return (
                       <div
-                        key={`recommendedCone+${lightcone.id}+${characterID}+${lang}+${i}`}
+                        key={`recommendedCone+${lightcone.id}+${characterID}`}
                       >
                         <ItemShow
                           type={lightCones}
@@ -121,15 +108,13 @@ const BuildShow: React.FC<BuildShowProps> = ({
           {lightConeFilter.find((el) => el.recommended) && (
             <div className="p-5 bg-white/15 rounded-3xl">
               <p className="text-lg font-bold mb-2">
-                {UIDtitles[lang ?? "fr"].RecommendedsF2P}
+                Recommandés F2P/Accessibles
               </p>
               <div className="flex flex-wrap gap-5 justify-center">
                 {lightConeFilter.map((lightcone, i) => {
                   if (lightcone.recommended)
                     return (
-                      <div
-                        key={`recommendeF2P+${lightcone.id}+${characterID}+${lang}+${i}`}
-                      >
+                      <div key={`recommendeF2P+${lightcone.id}+${characterID}`}>
                         <ItemShow
                           type={lightCones}
                           id={lightcone.id}
@@ -150,45 +135,20 @@ const BuildShow: React.FC<BuildShowProps> = ({
       <div className="mt-14">
         <p className="font-bold text-xl underline text-orange">Main stats</p>
         <div className="flex flex-wrap gap-5 p-5 justify-center text-start bg-white/15 rounded-3xl mt-2">
+          <MainStats type={getMainStats("body")} name={"Torse"} />
+          <MainStats type={getMainStats("feet")} name={"Bottes"} />
           <MainStats
-            lang={lang}
-            type={getMainStats("body")}
-            name={{
-              en: "Body",
-              fr: "Torse",
-            }}
-          />
-          <MainStats
-            lang={lang}
-            type={getMainStats("feet")}
-            name={{
-              en: "Feet",
-              fr: "Bottes",
-            }}
-          />
-          <MainStats
-            lang={lang}
             type={getMainStats("planar_sphere")}
-            name={{
-              en: "Planar sphere",
-              fr: "Spheres planaires",
-            }}
+            name={"Spheres planaires"}
           />
-          <MainStats
-            lang={lang}
-            type={getMainStats("link_rope")}
-            name={{
-              en: "Link rope",
-              fr: "Cordes",
-            }}
-          />
+          <MainStats type={getMainStats("link_rope")} name={"Cordes"} />
         </div>
       </div>
 
       {/* Sets de reliques */}
       <div className="mt-14">
         <p className="font-bold text-xl underline text-orange">
-          {UIDtitles[lang ?? "fr"].RelicsOrnaments}
+          Sets de Reliques + Ornements
         </p>
 
         <div className="mt-2 flex flex-col lg:flex-row gap-10 justify-center">
@@ -199,7 +159,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
                 if (relic.recommended)
                   return (
                     <div
-                      key={`recommendedOrnaments+${relic.id}+${characterID}+${lang}+${i}`}
+                      key={`recommendedOrnaments+${relic.id}+${characterID}+${i}`}
                     >
                       <ItemShow
                         type={relicsSet}
@@ -215,17 +175,13 @@ const BuildShow: React.FC<BuildShowProps> = ({
           </div>
 
           <div className="p-5 bg-white/15 rounded-3xl">
-            <p className="text-lg font-bold mb-2">
-              {UIDtitles[lang ?? "fr"].OtherChoices}
-            </p>
+            <p className="text-lg font-bold mb-2">Autres bons choix</p>
             <div className="flex flex-col gap-5">
               <div className="flex flex-wrap gap-5 justify-center">
                 {relicsSetFilter.map((relic, i) => {
                   if (Number(relic.id) < 300) {
                     return (
-                      <div
-                        key={`relicsSet+${relic.id}+${characterID}+${lang}+${i}`}
-                      >
+                      <div key={`relicsSet+${relic.id}+${characterID}+${i}`}>
                         <ItemShow
                           type={relicsSet}
                           id={relic.id}
@@ -242,9 +198,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
                 {relicsSetFilter.map((relic, i) => {
                   if (Number(relic.id) > 300) {
                     return (
-                      <div
-                        key={`ornaments+${relic.id}+${characterID}+${lang}+${i}`}
-                      >
+                      <div key={`ornaments+${relic.id}+${characterID}+${i}`}>
                         <ItemShow
                           type={relicsSet}
                           id={relic.id}
@@ -265,20 +219,16 @@ const BuildShow: React.FC<BuildShowProps> = ({
       {/* Statistiques recommandées */}
       <div className="my-10 xl:mb-0">
         <p className="font-bold text-xl underline text-orange">
-          {UIDtitles[lang ?? "fr"].RecommendedStats}
+          Statistiques recommandées
         </p>
         <div className="flex flex-col justify-center text-start">
           <ul className="list-disc mx-auto">
             {recommendedStatsFilter.map((stat, i) => (
               <li
                 className="ml-5"
-                key={`recommendedStat${build.buildName}+${stat.type}+${characterID}+${lang}+${i}`}
+                key={`recommendedStat${build.buildName}+${stat.type}+${characterID}+${i}`}
               >
-                <span>
-                  {lang === "en"
-                    ? findLabelEN(stat.type)
-                    : findLabel(stat.type)}
-                </span>{" "}
+                <span>{findLabel(stat.type)}</span>{" "}
                 <span>
                   {percentStats.includes(stat.type)
                     ? `${parseFloat((stat.value * 100).toFixed(1))}%`
@@ -288,11 +238,7 @@ const BuildShow: React.FC<BuildShowProps> = ({
             ))}
           </ul>
           <div className="mt-5 mx-auto">
-            {lang === "en" && characterEN[characterID as any]
-              ? translateBBCode(
-                  characterEN[characterID as any][i]?.comment ?? ""
-                )
-              : translateBBCode(build.recommended_comment)}
+            {translateBBCode(build.recommended_comment)}
           </div>
         </div>
       </div>

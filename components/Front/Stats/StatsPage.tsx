@@ -1,6 +1,4 @@
-import { TranslateSection } from "@/types/homepageDictionnary";
 import { CharacterStats as CharacterStatsType } from "@/types/CharacterStats";
-import { StatsTranslate } from "@/utils/statsDictionnary";
 import NavBar from "../NavBar";
 import StarBGAnimation from "../StarBGAnimation";
 import { CDN } from "@/utils/cdn";
@@ -13,7 +11,6 @@ import { Suspense } from "react";
 import LoadingSpin from "@/components/LoadingSpin";
 
 interface StatsPageProps {
-  lang: keyof TranslateSection;
   date: Date;
   dataStats: CharacterStatsType;
   character: {
@@ -25,7 +22,6 @@ interface StatsPageProps {
 }
 
 const StatsPage: React.FC<StatsPageProps> = ({
-  lang = "fr",
   date,
   dataStats,
   character,
@@ -33,11 +29,7 @@ const StatsPage: React.FC<StatsPageProps> = ({
   lightConesList,
 }) => {
   const characterName =
-    character.name === "{NICKNAME}"
-      ? lang === "en"
-        ? "Pioneer"
-        : "Pionnier"
-      : character.name;
+    character.name === "{NICKNAME}" ? "Pionnier" : character.name;
   const formattedDate = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
   const statsLength = dataStats.data.length;
 
@@ -56,43 +48,38 @@ const StatsPage: React.FC<StatsPageProps> = ({
           <header className="flex flex-col relative items-center mmd:items-center italic">
             <h1 className="mx-auto text-4xl font-bold">{characterName}</h1>
             <div className="mmd:absolute right-0 text-right pr-2 xl:pr-0 mt-2 mmd:mt-0">
-              <p>{`${StatsTranslate[lang][0]} ${formattedDate} `}</p>
-              <p>{`${StatsTranslate[lang][2]} ${statsLength} ${StatsTranslate[lang][3]}`}</p>
+              <p>{`Mis à jour le ${formattedDate} `}</p>
+              <p>{`Stats sur ${statsLength} comptes`}</p>
             </div>
           </header>
           <Suspense fallback={<LoadingSpin width="w-10" height="h-10" />}>
             <div className="flex justify-center items-center mt-10 flex-wrap lg:h-[540px]">
               <section className="mx-auto">
                 <h2 className="font-bold text-2xl underline text-orange text-center mb-3">
-                  {StatsTranslate[lang][4]}
+                  Moyenne
                 </h2>
                 <div className="lg:h-[500px]">
-                  <StatsTable dataStats={dataStats} lang={lang} />
+                  <StatsTable dataStats={dataStats} />
                 </div>
               </section>
               <section className="mx-auto mt-5 lg:mt-0">
                 <h2 className="font-bold text-2xl underline text-orange text-center mb-2">
-                  {StatsTranslate[lang][16]}
+                  Statistiques priorisées par les joueurs
                 </h2>
                 <div className="lg:h-[500px]">
-                  <ChartVisu dataStats={dataStats} lang={lang} />
+                  <ChartVisu dataStats={dataStats} />
                 </div>
               </section>
             </div>
-            <TopRelics
-              dataStats={dataStats}
-              lang={lang}
-              relicsList={relicsList}
-            />
+            <TopRelics dataStats={dataStats} relicsList={relicsList} />
             <TopLightCones
               dataStats={dataStats}
-              lang={lang}
               lightConesList={lightConesList}
             />
           </Suspense>
         </div>
       </div>
-      <Footer lang={lang} />
+      <Footer />
     </>
   );
 };

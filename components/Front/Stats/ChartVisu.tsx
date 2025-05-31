@@ -1,7 +1,5 @@
 "use client";
 import { CharacterStats as CharacterStatsType } from "@/types/CharacterStats";
-import { TranslateSection } from "@/types/homepageDictionnary";
-import { StatsTranslate } from "@/utils/statsDictionnary";
 import React, { useEffect, useState } from "react";
 import RadarChart from "./RadarChart";
 import LoadingSpin from "@/components/LoadingSpin";
@@ -27,18 +25,24 @@ interface Result {
 
 interface ChartVisuProps {
   dataStats: CharacterStatsType;
-  lang: keyof TranslateSection | undefined;
 }
 
-const ChartVisu: React.FC<ChartVisuProps> = ({ dataStats, lang = "fr" }) => {
+const ChartVisu: React.FC<ChartVisuProps> = ({ dataStats }) => {
   const [chartData, setChartData] = useState<any>();
 
   useEffect(() => {
     const { procsResult, maxValue } = getProcsArray(dataStats.data);
-    const labels = Array.from(
-      { length: 9 },
-      (_, i) => StatsTranslate[lang][i + 6]
-    );
+    const labels = [
+      "PV",
+      "ATK",
+      "DEF",
+      "VIT",
+      "Taux Crit.",
+      "DGT Crit.",
+      "Effet de Rupture",
+      "App. des effets",
+      "RÉS des Effets",
+    ];
 
     setChartData({
       labels,
@@ -62,7 +66,7 @@ const ChartVisu: React.FC<ChartVisuProps> = ({ dataStats, lang = "fr" }) => {
       ],
       maxPercent: maxValue,
     });
-  }, [lang, dataStats.data]);
+  }, [dataStats.data]);
 
   if (!chartData)
     return (

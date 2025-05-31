@@ -1,13 +1,12 @@
-import { TranslateSection } from "@/types/homepageDictionnary";
+"use client";
 import { ReactElement, useState } from "react";
 
 interface MainStatsProps {
-  lang: keyof TranslateSection | undefined;
   type: ReactElement<any, any>;
-  name: { en: string; fr: string };
+  name: string;
 }
 
-const MainStats: React.FC<MainStatsProps> = ({ lang, type, name }) => {
+const MainStats: React.FC<MainStatsProps> = ({ type, name }) => {
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
 
   return (
@@ -18,9 +17,7 @@ const MainStats: React.FC<MainStatsProps> = ({ lang, type, name }) => {
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
     >
-      <p className="text-center font-bold text-xl ">
-        {lang === "en" ? name.en : name.fr}
-      </p>
+      <p className="text-center font-bold text-xl ">{name}</p>
       <ul className="mt-2">{type}</ul>
     </div>
   );

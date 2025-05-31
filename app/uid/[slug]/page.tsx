@@ -1,31 +1,19 @@
 import Footer from "@/components/Front/UID/Footer";
 import UidPage from "@/components/Front/UID/UidPage";
-import { TranslateSection } from "@/types/homepageDictionnary";
 import { Character, jsonUID } from "@/types/jsonUid";
 import { CDN } from "@/utils/cdn";
 import shareCharactersStats from "@/utils/shareCharactersStats";
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import relic_setsFR from "@/static/relic_setsFR.json";
-import relic_setsEN from "@/static/relic_setsEN.json";
 import light_conesFR from "@/static/light_conesFR.json";
-import light_conesEN from "@/static/light_conesEN.json";
 import character_ranksFR from "@/static/character_ranksFR.json";
-import character_ranksEN from "@/static/character_ranksEN.json";
 import relicsFR from "@/static/relicsFR.json";
-import relicsEN from "@/static/relicsEN.json";
-import propertiesEN from "@/static/propertiesEN.json";
 import propertiesFR from "@/static/propertiesFR.json";
 
 export const dynamic = "force-dynamic";
 
-async function getData(
-  url: string,
-  revalidationValue: number,
-  convertToObject?: boolean
-) {
+async function getData(url: string, convertToObject?: boolean) {
   const data = await fetch(url, {
-    /* next: { revalidate: revalidationValue }, */
     cache: "no-store",
   });
   const dataJson = await data.json();
@@ -36,15 +24,9 @@ async function getData(
   return dataJson;
 }
 
-async function getDataUid(
-  endpoint: string,
-  uid: number,
-  lang: string | undefined
-) {
+async function getDataUid(endpoint: string, uid: number) {
   const data = await fetch(
-    `https://api.mihomo.me/${endpoint}/${uid}?lang=${
-      lang ?? "fr"
-    }&is_force_update=true`,
+    `https://api.mihomo.me/${endpoint}/${uid}?lang=fr&is_force_update=true`,
     {
       headers: {
         "User-Agent": "https://review-hsr.vercel.app",
@@ -80,7 +62,7 @@ export async function generateMetadata({
   params: Promise<{ slug: number }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const res = await getDataUid("sr_info_parsed", slug, undefined);
+  const res = await getDataUid("sr_info_parsed", slug);
   const json = await res.json();
 
   if (json.player) {
@@ -123,12 +105,10 @@ export default async function Page({
 }: {
   params: Promise<{ slug: number }>;
 }) {
-  const cookieStore = cookies();
-  const lang = (await cookieStore).get("lang")?.value as keyof TranslateSection;
   const { slug } = await params;
 
   //Recupère les infos du joueur
-  const resUid = await getDataUid("sr_info_parsed", slug, lang);
+  const resUid = await getDataUid("sr_info_parsed", slug);
   const jsonUid: jsonUID = await resUid.json();
 
   // Partage les stats des personnages
@@ -140,15 +120,9 @@ export default async function Page({
   }
 
   const [resReview, changelog] = await Promise.all([
-    getData(`${process.env.WWW}/api/characters/all`, 5, false),
-    getData(`${process.env.WWW}/api/changelog/all`, 18000, false),
+    getData(`${process.env.WWW}/api/characters/all`, false),
+    getData(`${process.env.WWW}/api/changelog/all`, false),
   ]);
-
-  const statsTranslate = lang === "en" ? propertiesEN : propertiesFR;
-  const relicsSetTranslate = lang === "en" ? relic_setsEN : relic_setsFR;
-  const lightconesTranslate = lang === "en" ? light_conesEN : light_conesFR;
-  const relicsList = lang === "en" ? relicsEN : relicsFR;
-  const eidolonsList = lang === "en" ? character_ranksEN : character_ranksFR;
 
   if (!jsonUid || !resReview) {
     return <div className="text-center mt-10">Chargement en cours ...</div>;
@@ -161,16 +135,15 @@ export default async function Page({
           <UidPage
             jsonUid={{ status: 200 }}
             jsonReview={resReview}
-            statsTranslate={statsTranslate}
-            relicsSetTranslate={relicsSetTranslate}
-            lightconesTranslate={lightconesTranslate}
-            RelicsList={relicsList}
-            eidolonsList={eidolonsList}
-            lang={lang}
+            statsTranslate={propertiesFR}
+            relicsSetTranslate={relic_setsFR}
+            lightconesTranslate={light_conesFR}
+            RelicsList={relicsFR}
+            eidolonsList={character_ranksFR}
             changelog={changelog}
             error504
           />
-          <Footer lang={lang} />
+          <Footer />
         </>
       );
     }
@@ -180,15 +153,14 @@ export default async function Page({
         <UidPage
           jsonUid={jsonUid}
           jsonReview={resReview}
-          statsTranslate={statsTranslate}
-          relicsSetTranslate={relicsSetTranslate}
-          lightconesTranslate={lightconesTranslate}
-          RelicsList={relicsList}
-          eidolonsList={eidolonsList}
+          statsTranslate={propertiesFR}
+          relicsSetTranslate={relic_setsFR}
+          lightconesTranslate={light_conesFR}
+          RelicsList={relicsFR}
+          eidolonsList={character_ranksFR}
           changelog={changelog}
-          lang={lang}
         />
-        <Footer lang={lang} />
+        <Footer />
       </>
     );
   } catch (err) {
@@ -197,16 +169,15 @@ export default async function Page({
         <UidPage
           jsonUid={{ status: 200 }}
           jsonReview={resReview}
-          statsTranslate={statsTranslate}
-          relicsSetTranslate={relicsSetTranslate}
-          lightconesTranslate={lightconesTranslate}
-          RelicsList={relicsList}
-          eidolonsList={eidolonsList}
-          lang={lang}
+          statsTranslate={propertiesFR}
+          relicsSetTranslate={relic_setsFR}
+          lightconesTranslate={light_conesFR}
+          RelicsList={relicsFR}
+          eidolonsList={character_ranksFR}
           changelog={changelog}
           error504
         />
-        <Footer lang={lang} />
+        <Footer />
       </>
     );
   }

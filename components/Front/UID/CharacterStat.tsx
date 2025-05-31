@@ -3,8 +3,7 @@ import { CDN } from "@/utils/cdn";
 import { Addition, Attribute, Property } from "@/types/jsonUid";
 import { RecommendedStats } from "@/types/CharacterModel";
 import { fieldToType } from "@/utils/calculateStat";
-import { getENDefaultValue, getFRDefaultValue } from "@/utils/dictionnary";
-import { TranslateSection } from "@/types/homepageDictionnary";
+import { getFRDefaultValue } from "@/utils/getFRDefaultValue";
 
 interface CharacterStatProps {
   attributes: Attribute[];
@@ -12,7 +11,6 @@ interface CharacterStatProps {
   properties: Property[];
   field: string;
   review: RecommendedStats[];
-  lang: keyof TranslateSection | undefined;
   showRedstats: boolean;
 }
 
@@ -21,16 +19,13 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
   additions,
   field,
   review,
-  lang,
   showRedstats,
   properties,
 }) => {
   // Memorise les noms des valeurs FR/EN
   const defaultValues = useMemo(() => {
-    return lang === "fr" || lang === undefined
-      ? getFRDefaultValue(field)
-      : getENDefaultValue(field);
-  }, [field, lang]);
+    return getFRDefaultValue(field);
+  }, [field]);
 
   const { name, img, isPercent: defaultIsPercent } = defaultValues;
 

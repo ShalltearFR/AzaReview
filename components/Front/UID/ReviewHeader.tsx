@@ -1,9 +1,7 @@
-import React from "react";
-
 interface ReviewHeaderProps {
-  CDN: string; // Assurez-vous de définir correctement le type de CDN
-  CDN2: string; // Assurez-vous de définir correctement le type de CDN2
-  uidDataCopy: any; // Assurez-vous de définir correctement le type de uidDataCopy
+  CDN: string;
+  CDN2: string;
+  uidDataCopy: any;
 }
 
 const ReviewHeader: React.FC<ReviewHeaderProps> = ({

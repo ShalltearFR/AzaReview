@@ -1,6 +1,6 @@
 "use client";
 import NavBar from "@/components/Front/NavBar";
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CharacterType } from "@/types/CharacterModel";
 import CharactersList from "@/components/Front/Showcase/CharactersList";
 import Footer from "@/components/Front/UID/Footer";
@@ -8,18 +8,15 @@ import Aos from "aos";
 import AddToggleButton from "@/components/Editor/Add/AddToggleButton";
 import StarBGAnimation from "../StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
-import { TranslateSection } from "@/types/homepageDictionnary";
-import { UIDtitles } from "@/utils/dictionnary";
 import Filter from "./Filter";
 import { FilterListProps } from "@/types/Filter";
 import { Star } from "./StarIcon";
 
 interface GuidesPageProps {
   character: CharacterType[];
-  lang: keyof TranslateSection | undefined;
 }
 
-const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
+const GuidesPage: React.FC<GuidesPageProps> = ({ character }) => {
   const characterList = useRef<CharacterType[] | undefined>(undefined);
 
   const [charactersSearch, setCharactersSearch] = useState<
@@ -154,7 +151,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
     if (characterList.current) {
       setCharactersSearch(sortCharacters(characterList.current));
     }
-  }, [descentOrder, searchInput, sortArrival, lang, filterList]);
+  }, [descentOrder, searchInput, sortArrival, filterList]);
 
   const handleRarity = (rarity: "star4" | "star5") => {
     const newData = {
@@ -176,24 +173,16 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
           <div className="mx-auto p-5 bg-gray/45 w-full smd:w-[710px] smd:rounded-3xl mt-10">
             <div className="flex flex-col items-center smd:flex-row gap-2 justify-around">
               <AddToggleButton
-                className={lang === "en" ? "w-60" : "w-[320px]"}
+                className={"w-[320px]"}
                 onChange={() => setDescentOrder(!descentOrder)}
                 value={descentOrder}
-                name={
-                  lang === "en"
-                    ? ["Asc. order", "Desc. order"]
-                    : ["Ordre croissant", "Ordre décroissant"]
-                }
+                name={["Ordre croissant", "Ordre décroissant"]}
               />
               <AddToggleButton
-                className={lang === "en" ? "w-72" : "w-[300px]"}
+                className={"w-[300px]"}
                 onChange={() => setSortArrival(!sortArrival)}
                 value={sortArrival}
-                name={
-                  lang === "en"
-                    ? ["Alphabetic", "Guide arrivals"]
-                    : ["Alphabetique", "Sorties de guide"]
-                }
+                name={["Alphabetique", "Sorties de guide"]}
               />
             </div>
 
@@ -202,7 +191,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
                 className="flex rounded-full pl-5 text-lg h-10 w-64 mx-auto z-[49]"
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
-                placeholder={UIDtitles[lang ?? "fr"].CharacterSearch}
+                placeholder={"Rechercher un personnage"}
               />
               <div className="flex gap-5 mx-auto justify-center mt-5 smd:mt-0 text-white text-lg font-semibold">
                 <button
@@ -232,12 +221,9 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
               <Filter setData={setFilterList} data={filterList} />
             </div>
           </div>
-          <CharactersList
-            list={charactersSearch as CharacterType[]}
-            lang={lang}
-          />
+          <CharactersList list={charactersSearch as CharacterType[]} />
         </div>
-        <Footer lang={lang} />
+        <Footer />
       </div>
     );
   }
@@ -252,7 +238,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
             {"Erreur de requete serveur 001, contactez l'administrateur"}
           </p>
         </div>
-        <Footer lang={lang} />
+        <Footer />
       </>
     );
   }
@@ -264,7 +250,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character, lang }) => {
       <div className="flex w-screen h-[calc(100vh-295px)] justify-center items-center">
         <LoadingSpin />
       </div>
-      <Footer lang={lang} />
+      <Footer />
     </>
   );
 };

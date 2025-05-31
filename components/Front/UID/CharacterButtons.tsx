@@ -1,11 +1,7 @@
-import React, { useState } from "react";
-import LoadingSpin from "@/components/LoadingSpin"; // Assurez-vous d'importer correctement le composant LoadingSpin
-import { UIDtitles } from "@/utils/dictionnary"; // Assurez-vous d'importer correctement UIDtitles
-
+import LoadingSpin from "@/components/LoadingSpin";
 interface CharacterButtonsProps {
   disableDownloadButton: boolean;
   disableShareButton: boolean;
-  lang?: string;
   handleConvertImage: (
     type: string,
     disableButton: (value: boolean) => void
@@ -13,18 +9,15 @@ interface CharacterButtonsProps {
   setDisableDownloadButton: React.Dispatch<React.SetStateAction<boolean>>;
   setDisableShareButton: React.Dispatch<React.SetStateAction<boolean>>;
   shareButtonText: string;
-  UIDtitles: any;
 }
 
 const CharacterButtons: React.FC<CharacterButtonsProps> = ({
   disableDownloadButton,
   disableShareButton,
-  lang,
   handleConvertImage,
   setDisableDownloadButton,
   setDisableShareButton,
   shareButtonText,
-  UIDtitles,
 }) => {
   return (
     <div className="flex justify-center gap-10">
@@ -35,11 +28,11 @@ const CharacterButtons: React.FC<CharacterButtonsProps> = ({
       >
         {disableDownloadButton ? (
           <div className="flex gap-2">
-            <span>{UIDtitles[lang ?? "fr"].Downloading}</span>
+            <span>Telechargement en cours...</span>
             <LoadingSpin width="w-6" height="h-6" />
           </div>
         ) : (
-          UIDtitles[lang ?? "fr"].DownloadImage
+          "Telecharger l'image"
         )}
       </button>
 
@@ -54,7 +47,7 @@ const CharacterButtons: React.FC<CharacterButtonsProps> = ({
             <LoadingSpin width="w-6" height="h-6" />
           </div>
         ) : (
-          UIDtitles[lang ?? "fr"].shareImage
+          "Partager"
         )}
       </button>
     </div>

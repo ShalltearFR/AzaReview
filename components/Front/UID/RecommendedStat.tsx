@@ -1,14 +1,11 @@
 import { RecommendedStats } from "@/types/CharacterModel";
-import { TranslateSection } from "@/types/homepageDictionnary";
-import { UIDtitles } from "@/utils/dictionnary";
-import { findLabel, findLabelEN } from "@/utils/statsOption";
+import { findLabel } from "@/utils/statsOption";
 
 interface recommendedStatProps {
   data: RecommendedStats[];
-  lang: keyof TranslateSection | undefined;
 }
 
-const recommendedStat: React.FC<recommendedStatProps> = ({ data, lang }) => {
+const recommendedStat: React.FC<recommendedStatProps> = ({ data }) => {
   if (data && data.length === 0) {
     return (
       <div className="mt-5 text-lg font-bold text-red text-center">
@@ -40,18 +37,14 @@ const recommendedStat: React.FC<recommendedStatProps> = ({ data, lang }) => {
 
               return (
                 <p className="flex" key={`stat${index}`}>
-                  <span>
-                    {lang === "en"
-                      ? findLabelEN(stat.type)
-                      : findLabel(stat.type)}
-                  </span>
+                  <span>{findLabel(stat.type)}</span>
                   <span className="ml-auto">{value}</span>
                 </p>
               );
             })}
           </div>
         ) : (
-          <p className="text-center">{UIDtitles[lang ?? "fr"].AvailableSoon}</p>
+          <p className="text-center">Disponible prochainement</p>
         )}
       </div>
     </div>

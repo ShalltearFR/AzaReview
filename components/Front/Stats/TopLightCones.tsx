@@ -1,13 +1,10 @@
 "use client";
 import { CharacterStats as CharacterStatsType } from "@/types/CharacterStats";
-import { TranslateSection } from "@/types/homepageDictionnary";
 import { CDN } from "@/utils/cdn";
-import { StatsTranslate } from "@/utils/statsDictionnary";
 import { useEffect, useState } from "react";
 
 interface TopLightConesProps {
   dataStats: CharacterStatsType;
-  lang: keyof TranslateSection | undefined;
   lightConesList: any;
 }
 
@@ -24,7 +21,6 @@ interface TopLightConesData {
 
 const TopLightCones: React.FC<TopLightConesProps> = ({
   dataStats,
-  lang,
   lightConesList,
 }) => {
   const [top5_LightCones, setTop5_LightCones] = useState<TopLightConesType>();
@@ -38,7 +34,7 @@ const TopLightCones: React.FC<TopLightConesProps> = ({
     return (
       <div className="flex flex-col mt-10 justify-center mx-auto p-5 bg-white/15 rounded-3xl lg:w-1/2">
         <h2 className="font-bold text-2xl underline text-orange text-center w-auto">
-          {StatsTranslate[lang ?? "fr"][19]}
+          Top Cones de lumière
         </h2>
         <div className="flex flex-wrap justify-center items-center gap-5 mt-5">
           {top5_LightCones.data.map((cone) => {

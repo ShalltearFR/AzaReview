@@ -1,9 +1,7 @@
 "use client";
 import LoadingSpin from "@/components/LoadingSpin";
 import { CharacterStats as CharacterStatsType } from "@/types/CharacterStats";
-import { TranslateSection } from "@/types/homepageDictionnary";
 import { CDN } from "@/utils/cdn";
-import { StatsTranslate } from "@/utils/statsDictionnary";
 import { useEffect, useState } from "react";
 
 interface RelicType {
@@ -28,15 +26,10 @@ interface TotalsType {
 
 interface TopRelicsProps {
   dataStats: CharacterStatsType;
-  lang: keyof TranslateSection | undefined;
   relicsList: any;
 }
 
-const TopRelics: React.FC<TopRelicsProps> = ({
-  dataStats,
-  lang,
-  relicsList,
-}) => {
+const TopRelics: React.FC<TopRelicsProps> = ({ dataStats, relicsList }) => {
   const [top_Relics, setTop_Relics] = useState<TotalsType>();
   useEffect(() => {
     setTop_Relics(getTop5Relics(dataStats.data));
@@ -47,7 +40,7 @@ const TopRelics: React.FC<TopRelicsProps> = ({
       <div className="flex flex-wrap justify-center gap-x-20">
         <div className="flex flex-col mt-10 justify-center p-5 bg-white/15 rounded-3xl w-full lg:w-auto">
           <h2 className="font-bold text-2xl underline text-orange text-center">
-            {StatsTranslate[lang ?? "fr"][17]}
+            Top Reliques
           </h2>
           <div className="flex flex-wrap justify-center items-center gap-5 mt-5">
             {top_Relics.relics.map((relic) => {
@@ -83,7 +76,7 @@ const TopRelics: React.FC<TopRelicsProps> = ({
         </div>
         <div className="flex flex-col mt-10 justify-center p-5 bg-white/15 rounded-3xl w-full lg:w-auto">
           <h2 className="font-bold text-2xl underline text-orange text-center">
-            {StatsTranslate[lang ?? "fr"][18]}
+            Top Ornements
           </h2>
 
           <div className="flex flex-wrap justify-center items-center gap-5 mt-5">

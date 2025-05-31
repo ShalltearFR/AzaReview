@@ -2,8 +2,6 @@ import { CDN } from "@/utils/cdn";
 import { RelicSet } from "@/types/jsonUid";
 import { RelicsSet } from "@/types/CharacterModel";
 import { useEffect, useState } from "react";
-import { UIDtitles } from "@/utils/dictionnary";
-import { TranslateSection } from "@/types/homepageDictionnary";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
 interface CharacterRelicsSetProps {
@@ -11,7 +9,6 @@ interface CharacterRelicsSetProps {
   relics: RelicSet[] | "none";
   review: RelicsSet[] | undefined;
   relicsSetTranslate: Array<any>;
-  lang: keyof TranslateSection | undefined;
   showRedstats: boolean;
   showInformations: boolean;
 }
@@ -34,7 +31,6 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
   relics,
   review,
   relicsSetTranslate,
-  lang,
   showRedstats,
   showInformations,
 }) => {
@@ -233,9 +229,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                         : "xl:w-80 xl:-left-44 -top-32"
                     }`}
                   >
-                    <div className="font-bold z-10 flex">
-                      {UIDtitles[lang ?? "fr"].Recommendeds}
-                    </div>
+                    <div className="font-bold z-10 flex">Recommandés</div>
                     <div className="xl:flex gap-2 w-full xl:h-[140px]">
                       {relicsRecomended.map((el) => (
                         <div
@@ -264,7 +258,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
         )}
 
         <p className="text-yellow text-lg font-bold text-center leading-4 ml-auto">
-          {UIDtitles[lang ?? "fr"].relicsSet}
+          Sets équipés
         </p>
       </div>
       <div className="flex w-full text-white text-sm font-bold text-center justify-center gap-[15px] relative">
@@ -287,8 +281,8 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
                   >
                     <p className="text-left text-lg">
                       {Number(relic.id) > 300
-                        ? UIDtitles[lang ?? "fr"].PossibleOrnaments
-                        : UIDtitles[lang ?? "fr"].PossibleRelics}
+                        ? "Ornements possibles"
+                        : "Reliques possibles"}
                     </p>
                     <ul className="text-left list-outside font-normal">
                       {(Number(relic.id) > 300
@@ -331,7 +325,7 @@ const CharacterRelicsSet: React.FC<CharacterRelicsSetProps> = ({
             );
           })
         ) : (
-          <p className="mt-5">{UIDtitles[lang ?? "fr"].emptyRelicSet}</p>
+          <p className="mt-5">Pas de set équipé</p>
         )}
       </div>
     </div>

@@ -1,4 +1,3 @@
-import { TranslateSection } from "@/types/homepageDictionnary";
 import { CDN } from "@/utils/cdn";
 import { splitAndKeepDelimiters } from "@/utils/format";
 import { useEffect, useState } from "react";

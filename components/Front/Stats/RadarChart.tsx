@@ -8,12 +8,8 @@ import {
   Filler,
   Tooltip,
   Legend,
-  plugins,
   Decimation,
-  Interaction,
-  SubTitle,
 } from "chart.js";
-import { plugin } from "mongoose";
 
 ChartJS.register(
   RadialLinearScale,

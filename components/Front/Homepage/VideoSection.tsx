@@ -2,7 +2,7 @@
 import LoadingSpin from "@/components/LoadingSpin";
 import { TranslateSection } from "@/types/homepageDictionnary";
 import { CDN2 } from "@/utils/cdn";
-import { UIDtitles } from "@/utils/dictionnary";
+import { UIDtitles } from "@/utils/getFRDefaultValue";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useCookies } from "next-client-cookies";
 import Link from "next/link";

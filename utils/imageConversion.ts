@@ -1,15 +1,11 @@
 import { toPng, toJpeg, toBlob } from "html-to-image";
-import { UIDtitles } from "./dictionnary";
 import { jsonUID } from "@/types/jsonUid";
-import { RefObject } from "react";
-import { TranslateSection } from "@/types/homepageDictionnary";
 
 export const convertImage = (
   exportType: string,
   disableButton: (value: boolean) => void,
   setShareButtonText: (value: string) => void,
   characterDetailsRef: HTMLDivElement | null,
-  lang: keyof TranslateSection | undefined,
   characterIndex: number,
   uidData: jsonUID
 ) => {
@@ -18,7 +14,7 @@ export const convertImage = (
   disableButton(true);
 
   if (exportType === "share")
-    setShareButtonText(UIDtitles[lang ?? "fr"].Saving);
+    setShareButtonText("Sauvegarde en cours...");
 
   setTimeout(() => {
     let conversionPromise;
@@ -51,7 +47,7 @@ export const convertImage = (
                 }),
               ])
               .then(() => {
-                setShareButtonText(UIDtitles[lang ?? "fr"].ImageCopied);
+                setShareButtonText("Image copiée avec succès");
                 setTimeout(() => disableButton(false), 1000);
               })
               .catch((err) => console.log("Erreur presse papier :", err));
