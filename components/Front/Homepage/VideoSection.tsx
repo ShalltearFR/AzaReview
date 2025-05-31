@@ -1,14 +1,10 @@
 "use client";
 import LoadingSpin from "@/components/LoadingSpin";
-import { TranslateSection } from "@/types/homepageDictionnary";
 import { CDN2 } from "@/utils/cdn";
-import { UIDtitles } from "@/utils/getFRDefaultValue";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import { useCookies } from "next-client-cookies";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import twitchLogo from "@/public/img/twitch-logo.svg";
+import { useState } from "react";
 
 interface VideoSectionProps {
   handleScrollTo: (id: string) => void;
@@ -22,8 +18,6 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
     useState<boolean>(false);
   const { push, refresh } = useRouter();
   const pathname = usePathname();
-  const cookies = useCookies();
-  const lang = cookies.get("lang") as keyof TranslateSection;
   const isHomepage = pathname === "/";
 
   return (
