@@ -23,6 +23,7 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
   return (
     <>
       <div className="flex w-full h-[calc(100vh-64px)] justify-center items-center relative mt-16">
+        <div className="absolute w-full h-full bg-black/25 z-10" />
         <video
           className="w-full h-full object-cover absolute"
           preload="auto"
