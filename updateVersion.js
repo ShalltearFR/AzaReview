@@ -15,19 +15,12 @@ const CDN =
 // Liens des fichiers JSON
 const jsonUrls = [
   `${CDN}index_min/fr/characters.json`,
-  `${CDN}index_min/en/characters.json`,
   `${CDN}index_min/fr/properties.json`,
-  `${CDN}index_min/en/properties.json`,
   `${CDN}index_min/fr/relic_sets.json`,
-  `${CDN}index_min/en/relic_sets.json`,
   `${CDN}index_min/fr/light_cones.json`,
-  `${CDN}index_min/en/light_cones.json`,
   `${CDN}index_min/fr/relics.json`,
-  `${CDN}index_min/en/relics.json`,
   `${CDN}index_min/fr/character_ranks.json`,
-  `${CDN}index_min/en/character_ranks.json`,
   `${CDN}index_min/fr/light_cone_ranks.json`,
-  `${CDN}index_min/en/light_cone_ranks.json`,
 ];
 
 // Fonction pour télécharger les images
