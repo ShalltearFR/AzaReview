@@ -38,6 +38,7 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
     const findLabel = (id: string, array: Array<any>, type?: string) => {
       if (type === "mainStat") {
         const foundElement = array.find((el) => el.value === id);
+        if (!foundElement) return "";
         return foundElement.label;
       }
 
