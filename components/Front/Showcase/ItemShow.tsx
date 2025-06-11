@@ -29,10 +29,8 @@ const ItemShow: React.FC<ItemShowProps> = ({
     // Gère le texte si cone
     if (lightconesRanks) {
       const object = lightconesRanks.find((item: any) => item.id === id);
-      const values = object.params.map((innerArray: any) =>
-        innerArray.map((value: any) => value)
-      );
-      const descriptions = generateText(object.desc, values);
+
+      const descriptions = generateText(object.desc, object.params);
       const descriptionsArray = splitAndKeepDelimiters(descriptions, ". ");
       setItemDesc(descriptionsArray);
     } else {
@@ -87,8 +85,8 @@ const ItemShow: React.FC<ItemShowProps> = ({
             height={112}
           />
           <p className="absolute bottom-0 px-1 text-center w-full bg-black/75">
-            {itemName.name.length > 14
-              ? `${itemName.name.substring(0, 14)}...`
+            {itemName.name.length > 13
+              ? `${itemName.name.substring(0, 13)}...`
               : itemName.name}
           </p>
           <button
