@@ -1584,6 +1584,50 @@
     "icon": "icon/relic/320_1.png"
   },
   {
+    "id": "33215",
+    "set_id": "321",
+    "name": "Cabane tranquille du Labyrinthe de la mémoire",
+    "rarity": 2,
+    "type": "NECK",
+    "max_level": 6,
+    "main_affix_id": "25",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/321_0.png"
+  },
+  {
+    "id": "33216",
+    "set_id": "321",
+    "name": "Sifflet à vœux du Labyrinthe de la mémoire",
+    "rarity": 2,
+    "type": "OBJECT",
+    "max_level": 6,
+    "main_affix_id": "26",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/321_1.png"
+  },
+  {
+    "id": "33225",
+    "set_id": "322",
+    "name": "Phare flamboyant des rivages chantants",
+    "rarity": 2,
+    "type": "NECK",
+    "max_level": 6,
+    "main_affix_id": "25",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/322_0.png"
+  },
+  {
+    "id": "33226",
+    "set_id": "322",
+    "name": "Sentier des cantiques des rivages chantants",
+    "rarity": 2,
+    "type": "OBJECT",
+    "max_level": 6,
+    "main_affix_id": "26",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/322_1.png"
+  },
+  {
     "id": "41011",
     "set_id": "101",
     "name": "Épingle à cheveux en bois rajeuni du vagabond",
@@ -3168,6 +3212,50 @@
     "icon": "icon/relic/320_1.png"
   },
   {
+    "id": "43215",
+    "set_id": "321",
+    "name": "Cabane tranquille du Labyrinthe de la mémoire",
+    "rarity": 3,
+    "type": "NECK",
+    "max_level": 9,
+    "main_affix_id": "35",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/321_0.png"
+  },
+  {
+    "id": "43216",
+    "set_id": "321",
+    "name": "Sifflet à vœux du Labyrinthe de la mémoire",
+    "rarity": 3,
+    "type": "OBJECT",
+    "max_level": 9,
+    "main_affix_id": "36",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/321_1.png"
+  },
+  {
+    "id": "43225",
+    "set_id": "322",
+    "name": "Phare flamboyant des rivages chantants",
+    "rarity": 3,
+    "type": "NECK",
+    "max_level": 9,
+    "main_affix_id": "35",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/322_0.png"
+  },
+  {
+    "id": "43226",
+    "set_id": "322",
+    "name": "Sentier des cantiques des rivages chantants",
+    "rarity": 3,
+    "type": "OBJECT",
+    "max_level": 9,
+    "main_affix_id": "36",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/322_1.png"
+  },
+  {
     "id": "51011",
     "set_id": "101",
     "name": "Épingle à cheveux en bois rajeuni du vagabond",
@@ -4750,6 +4838,50 @@
     "main_affix_id": "46",
     "sub_affix_id": "4",
     "icon": "icon/relic/320_1.png"
+  },
+  {
+    "id": "53215",
+    "set_id": "321",
+    "name": "Cabane tranquille du Labyrinthe de la mémoire",
+    "rarity": 4,
+    "type": "NECK",
+    "max_level": 12,
+    "main_affix_id": "45",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/321_0.png"
+  },
+  {
+    "id": "53216",
+    "set_id": "321",
+    "name": "Sifflet à vœux du Labyrinthe de la mémoire",
+    "rarity": 4,
+    "type": "OBJECT",
+    "max_level": 12,
+    "main_affix_id": "46",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/321_1.png"
+  },
+  {
+    "id": "53225",
+    "set_id": "322",
+    "name": "Phare flamboyant des rivages chantants",
+    "rarity": 4,
+    "type": "NECK",
+    "max_level": 12,
+    "main_affix_id": "45",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/322_0.png"
+  },
+  {
+    "id": "53226",
+    "set_id": "322",
+    "name": "Sentier des cantiques des rivages chantants",
+    "rarity": 4,
+    "type": "OBJECT",
+    "max_level": 12,
+    "main_affix_id": "46",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/322_1.png"
   },
   {
     "id": "55001",
@@ -6400,5 +6532,49 @@
     "main_affix_id": "56",
     "sub_affix_id": "5",
     "icon": "icon/relic/320_1.png"
+  },
+  {
+    "id": "63215",
+    "set_id": "321",
+    "name": "Cabane tranquille du Labyrinthe de la mémoire",
+    "rarity": 5,
+    "type": "NECK",
+    "max_level": 15,
+    "main_affix_id": "55",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/321_0.png"
+  },
+  {
+    "id": "63216",
+    "set_id": "321",
+    "name": "Sifflet à vœux du Labyrinthe de la mémoire",
+    "rarity": 5,
+    "type": "OBJECT",
+    "max_level": 15,
+    "main_affix_id": "56",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/321_1.png"
+  },
+  {
+    "id": "63225",
+    "set_id": "322",
+    "name": "Phare flamboyant des rivages chantants",
+    "rarity": 5,
+    "type": "NECK",
+    "max_level": 15,
+    "main_affix_id": "55",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/322_0.png"
+  },
+  {
+    "id": "63226",
+    "set_id": "322",
+    "name": "Sentier des cantiques des rivages chantants",
+    "rarity": 5,
+    "type": "OBJECT",
+    "max_level": 15,
+    "main_affix_id": "56",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/322_1.png"
   }
 ]
