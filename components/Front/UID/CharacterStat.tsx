@@ -39,10 +39,10 @@ const CharacterStat: React.FC<CharacterStatProps> = ({
     const attribute = attributes.find((attr) => attr.field === field);
     const addition = additions.find((add) => add.field === field);
 
-    if (addition?.name === "VIT") {
+    /* if (addition?.name === "VIT") {
       const detectBaseSpeed = properties.find((el) => el.type === "BaseSpeed"); // Detecte une vitesse supplémentaire par rapport au cone
       if (detectBaseSpeed) totalValue += detectBaseSpeed.value;
-    }
+    } */
 
     if (attribute) totalValue += attribute.value;
 
