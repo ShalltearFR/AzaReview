@@ -25,11 +25,9 @@ const Footer: React.FC = () => {
         {"Payez moins cher avec "}
         <a
           className="font-bold underline hover:no-underline"
-          href={
-            "https://lootbar.gg/fr/top-up/honkai-star-rail?utm_source=Azano"
-          }
+          href={"https://ene.ba/Azano-HSR"}
         >
-          Lootbar
+          Eneba
         </a>
       </p>
       <p>_</p>

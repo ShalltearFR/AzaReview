@@ -192,11 +192,11 @@ const Section2: React.FC = () => {
                 target="_blank"
               >
                 <img
-                  src={`${CDN2}/img/LootbarLogo.webp`}
-                  alt="Logo Lootbar"
-                  width={211}
-                  height={30}
-                  className="h-10 mx-auto"
+                  src={`${CDN2}/img/eneba.svg`}
+                  alt="Logo Eneba"
+                  width={206}
+                  height={64}
+                  className="h-16 mx-auto"
                 />
               </a>
             </div>
@@ -207,25 +207,25 @@ const Section2: React.FC = () => {
                 Dépenser moins sur HSR tout en soutenant le site !
               </h2>
               <div className="extraXl:text-2xl">
-                En utilisant ce lien Lootbar pour vos achats, vous soutiendrez
+                En utilisant ce lien Eneba pour vos achats, vous soutiendrez
                 énormément !
               </div>
               <div className="extraXl:text-2xl">
                 <a
-                  href="https://lootbar.gg/fr/top-up/honkai-star-rail?utm_source=Azano"
+                  href="https://ene.ba/Azano-HSR"
                   target="_blank"
                   className="text-light-blue2 font-bold"
                 >
                   Achetez sur le site
-                </a>
+                </a>{" "}
                 pour obtenir de{" "}
                 <span className="bold text-light-blue2">10%</span> à{" "}
-                <span className="bold text-light-blue2">20%</span> de réduction
+                <span className="bold text-light-blue2">30%</span> de réduction
                 sur le pack à 100€.
               </div>
             </div>
             <div className="sm:px-6">
-              <div className="mt-5 relative">
+              {/* <div className="mt-5 relative">
                 <div className="absolute text-xs sm:text-sm smd:text-lg px-3 text-center w-1/2 right-0 top-1/2 -translate-y-1/2">
                   <div>Rapide et sécurisé avec Razer Gold</div>
                   <div>Réception instantanée en jeu !</div>
@@ -237,7 +237,7 @@ const Section2: React.FC = () => {
                   width={700}
                   height={99}
                 />
-              </div>
+              </div> */}
               <div className="mt-3 relative">
                 <div className="absolute text-xs sm:text-sm smd:text-[20px] px-2 text-center w-3/5 left-0 top-1/2 -translate-y-1/2">
                   <div className="sm:mt-2">
