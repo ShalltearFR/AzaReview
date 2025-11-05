@@ -1716,6 +1716,50 @@
     "icon": "icon/relic/322_1.png"
   },
   {
+    "id": "33235",
+    "set_id": "323",
+    "name": "Dernier vent d'ouest d'Amphoreus",
+    "rarity": 2,
+    "type": "NECK",
+    "max_level": 6,
+    "main_affix_id": "25",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/323_0.png"
+  },
+  {
+    "id": "33236",
+    "set_id": "323",
+    "name": "Vers éternels d'Amphoreus",
+    "rarity": 2,
+    "type": "OBJECT",
+    "max_level": 6,
+    "main_affix_id": "26",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/323_1.png"
+  },
+  {
+    "id": "33245",
+    "set_id": "324",
+    "name": "Fenêtre sur streams",
+    "rarity": 2,
+    "type": "NECK",
+    "max_level": 6,
+    "main_affix_id": "25",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/324_0.png"
+  },
+  {
+    "id": "33246",
+    "set_id": "324",
+    "name": "Chat en feu",
+    "rarity": 2,
+    "type": "OBJECT",
+    "max_level": 6,
+    "main_affix_id": "26",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/324_1.png"
+  },
+  {
     "id": "41011",
     "set_id": "101",
     "name": "Épingle à cheveux en bois rajeuni du vagabond",
@@ -3432,6 +3476,50 @@
     "icon": "icon/relic/322_1.png"
   },
   {
+    "id": "43235",
+    "set_id": "323",
+    "name": "Dernier vent d'ouest d'Amphoreus",
+    "rarity": 3,
+    "type": "NECK",
+    "max_level": 9,
+    "main_affix_id": "35",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/323_0.png"
+  },
+  {
+    "id": "43236",
+    "set_id": "323",
+    "name": "Vers éternels d'Amphoreus",
+    "rarity": 3,
+    "type": "OBJECT",
+    "max_level": 9,
+    "main_affix_id": "36",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/323_1.png"
+  },
+  {
+    "id": "43245",
+    "set_id": "324",
+    "name": "Fenêtre sur streams",
+    "rarity": 3,
+    "type": "NECK",
+    "max_level": 9,
+    "main_affix_id": "35",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/324_0.png"
+  },
+  {
+    "id": "43246",
+    "set_id": "324",
+    "name": "Chat en feu",
+    "rarity": 3,
+    "type": "OBJECT",
+    "max_level": 9,
+    "main_affix_id": "36",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/324_1.png"
+  },
+  {
     "id": "51011",
     "set_id": "101",
     "name": "Épingle à cheveux en bois rajeuni du vagabond",
@@ -5146,6 +5234,50 @@
     "main_affix_id": "46",
     "sub_affix_id": "4",
     "icon": "icon/relic/322_1.png"
+  },
+  {
+    "id": "53235",
+    "set_id": "323",
+    "name": "Dernier vent d'ouest d'Amphoreus",
+    "rarity": 4,
+    "type": "NECK",
+    "max_level": 12,
+    "main_affix_id": "45",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/323_0.png"
+  },
+  {
+    "id": "53236",
+    "set_id": "323",
+    "name": "Vers éternels d'Amphoreus",
+    "rarity": 4,
+    "type": "OBJECT",
+    "max_level": 12,
+    "main_affix_id": "46",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/323_1.png"
+  },
+  {
+    "id": "53245",
+    "set_id": "324",
+    "name": "Fenêtre sur streams",
+    "rarity": 4,
+    "type": "NECK",
+    "max_level": 12,
+    "main_affix_id": "45",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/324_0.png"
+  },
+  {
+    "id": "53246",
+    "set_id": "324",
+    "name": "Chat en feu",
+    "rarity": 4,
+    "type": "OBJECT",
+    "max_level": 12,
+    "main_affix_id": "46",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/324_1.png"
   },
   {
     "id": "55001",
@@ -6928,5 +7060,49 @@
     "main_affix_id": "56",
     "sub_affix_id": "5",
     "icon": "icon/relic/322_1.png"
+  },
+  {
+    "id": "63235",
+    "set_id": "323",
+    "name": "Dernier vent d'ouest d'Amphoreus",
+    "rarity": 5,
+    "type": "NECK",
+    "max_level": 15,
+    "main_affix_id": "55",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/323_0.png"
+  },
+  {
+    "id": "63236",
+    "set_id": "323",
+    "name": "Vers éternels d'Amphoreus",
+    "rarity": 5,
+    "type": "OBJECT",
+    "max_level": 15,
+    "main_affix_id": "56",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/323_1.png"
+  },
+  {
+    "id": "63245",
+    "set_id": "324",
+    "name": "Fenêtre sur streams",
+    "rarity": 5,
+    "type": "NECK",
+    "max_level": 15,
+    "main_affix_id": "55",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/324_0.png"
+  },
+  {
+    "id": "63246",
+    "set_id": "324",
+    "name": "Chat en feu",
+    "rarity": 5,
+    "type": "OBJECT",
+    "max_level": 15,
+    "main_affix_id": "56",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/324_1.png"
   }
 ]
