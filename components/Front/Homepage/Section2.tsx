@@ -187,10 +187,7 @@ const Section2: React.FC = () => {
               className="h-36 translate-y-1"
             />
             <div className="ml-auto mt-auto mr-5 px-4 py-2 rounded-t-2xl translate-y-[1px] xl2:flex xl2:gap-2">
-              <a
-                href="https://lootbar.gg/fr/top-up/honkai-star-rail?utm_source=Azano"
-                target="_blank"
-              >
+              <a href="https://ene.ba/Azano-HSR" target="_blank">
                 <img
                   src={`${CDN2}/img/eneba.svg`}
                   alt="Logo Eneba"
@@ -245,8 +242,8 @@ const Section2: React.FC = () => {
                   </div>
                 </div>
                 <img
-                  src={`${CDN2}/img/homepage/banderole_lootbar.webp`}
-                  alt="Lootbar"
+                  src={`${CDN2}/img/homepage/banderole_uid.webp`}
+                  alt=""
                   width={700}
                   height={99}
                 />
