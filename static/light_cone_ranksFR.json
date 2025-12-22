@@ -7924,6 +7924,65 @@
     ]
   },
   {
+    "id": "23050",
+    "skill": "Immolation",
+    "desc": "Augmente l'effet de Rupture du porteur de #1[i]%. Au début du combat, augmente les DGT de rupture infligés par le porteur et le coéquipier ayant déclenché le combat de #2[i]%. Si le combat n'est déclenché par aucun coéquipier, applique cet effet au porteur et au coéquipier avec l'effet de Rupture le plus élevé. Les effets du même type ne peuvent pas être cumulés. Lorsque le porteur applique une Faiblesse à une cible ennemie, récupère 1 point de compétence. Cet effet ne peut être déclenché qu'une seule fois et ce compteur se réinitialise lors de l'utilisation de l'ultime.",
+    "params": [
+      [
+        0.6,
+        0.32
+      ],
+      [
+        0.75,
+        0.42
+      ],
+      [
+        0.9,
+        0.52
+      ],
+      [
+        1.05,
+        0.62
+      ],
+      [
+        1.2,
+        0.72
+      ]
+    ],
+    "properties": [
+      [
+        {
+          "type": "BreakDamageAddedRatioBase",
+          "value": 0.6
+        }
+      ],
+      [
+        {
+          "type": "BreakDamageAddedRatioBase",
+          "value": 0.75
+        }
+      ],
+      [
+        {
+          "type": "BreakDamageAddedRatioBase",
+          "value": 0.9
+        }
+      ],
+      [
+        {
+          "type": "BreakDamageAddedRatioBase",
+          "value": 1.05
+        }
+      ],
+      [
+        {
+          "type": "BreakDamageAddedRatioBase",
+          "value": 1.2
+        }
+      ]
+    ]
+  },
+  {
     "id": "23051",
     "skill": "Nouvelle écaille",
     "desc": "Augmente l'ATQ du porteur de #1[i]%. Lorsque le porteur utilise son ultime, restaure des PV équivalents à #5[i]% de l'ATQ du porteur à tous les alliés et le personnage allié ayant le moins de PV actuels restaure des PV supplémentaires équivalents à #6[i]% de l'ATQ du porteur. D'autre part, accorde Bastion à tous les alliés pour une durée de #4[i] tours. Augmente les DGT infligés par les cibles avec Bastion de #2[i]%. Si une cible avec Bastion possède une invocation, augmente les DGT infligés de #3[i]% supplémentaires.",

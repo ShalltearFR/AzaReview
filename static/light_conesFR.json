@@ -1410,6 +1410,16 @@
     "portrait": "image/light_cone_portrait/23049.png"
   },
   {
+    "id": "23050",
+    "name": "Une flamme à graver",
+    "rarity": 5,
+    "path": "Warlock",
+    "desc": "« Viens, viens à moi... »\nGuidé par les flammes, un souvenir précis enveloppe son corps et son âme.\nLes jours d'antan sont-ils vraiment tombés dans l'oubli ?\n« Chut, ne pleure pas, ne résiste pas... »\nElle prend domicile dans leur cœur, tandis que les regards impénétrables s'adoucissent.\n« Tu te souviens maintenant ? »\nAlors que les braises de vieux souvenirs se dispersent, son visage porte un parfum enivrant de fleurs...\n« Je suis ta mémoire. »",
+    "icon": "icon/light_cone/23050.png",
+    "preview": "image/light_cone_preview/23050.png",
+    "portrait": "image/light_cone_portrait/23050.png"
+  },
+  {
     "id": "23051",
     "name": "Par-delà les paysages infinis",
     "rarity": 5,

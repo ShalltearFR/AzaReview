@@ -2259,7 +2259,7 @@
     "id": "111201",
     "name": "Marché à terme",
     "rank": 1,
-    "desc": "Lorsque des ennemis affectés par Reconnaissance de dette subissent des ATQ de suivi, ils entrent dans l'état Débiteur. Cet effet ne peut s'activer qu'une fois par attaque.\nDébiteur augmente les DGT critiques des ATQ de suivi infligées aux cibles ennemies de 25%, cumulables jusqu'à 2 fois. Débiteur se dissipe en même temps que Reconnaissance de dette.",
+    "desc": "Lorsque des ennemis affectés par Reconnaissance de dette subissent des ATQ de suivi, ils entrent dans l'état Débiteur. Cet effet ne peut s'activer qu'une fois par attaque.\nDébiteur augmente les DGT critiques des ATQ de suivi infligées à la cible ennemie de 25%, cumulables jusqu'à 2 fois. Débiteur se dissipe en même temps que Reconnaissance de dette.",
     "materials": [
       {
         "id": "11112",
@@ -2865,7 +2865,7 @@
     "id": "120506",
     "name": "Revenu dans une coquille vide",
     "rank": 6,
-    "desc": "Le nombre de cumuls maximum de charge est réduit à 4. Les DGT infligés par les ATQ de suivi déclenchées par le talent de Blade augmentent d'un montant équivalent à 50% de ses PV max.",
+    "desc": "Le nombre de cumuls maximum de charge est réduit à 4. Les DGT infligés par l'ATQ de suivi du talent de Blade augmentent d'un montant équivalent à 50% de ses PV max.",
     "materials": [
       {
         "id": "11205",
@@ -4963,7 +4963,7 @@
     "id": "130301",
     "name": "Schéma neuronal",
     "rank": 1,
-    "desc": "Lorsque que la zone générée par l'ultime est déployée, les DGT infligés par tous les alliés ignorent 20% de la DÉF des cibles.",
+    "desc": "Lorsque la zone générée par l'ultime est déployée, les DGT infligés par tous les alliés ignorent 20% de la DÉF des cibles.",
     "materials": [
       {
         "id": "11303",
@@ -6007,7 +6007,7 @@
     "id": "131401",
     "name": "Altruisme négociable",
     "rank": 1,
-    "desc": "Les DGT d'ATQ de suivi du talent de Jade augmentent de 32%. Lorsque le personnage qui bénéficie de l'effet Agent de recouvrement de dettes attaque et touche 1 ou 2 cible(s) ennemie(s), Jade obtient respectivement 1 ou 2 points de charge supplémentaires.",
+    "desc": "Les DGT d'ATQ de suivi du talent de Jade augmentent de 32%. Lorsque le personnage qui bénéficie de l'effet Agent de recouvrement de dettes attaque et touche 1 ou 2 cibles ennemies, Jade obtient respectivement 1 ou 2 points de charge supplémentaires.",
     "materials": [
       {
         "id": "11314",
@@ -6328,6 +6328,108 @@
     ],
     "level_up_skills": [],
     "icon": "icon/skill/1317_rank6.png"
+  },
+  {
+    "id": "132101",
+    "name": "Floraison d'un bourgeon",
+    "rank": 1,
+    "desc": "Applique le multiplicateur de DGT de rupture extrême du talent à tous les alliés en plus du Partenaire de danse, lequel bénéficie d'un multiplicateur supplémentaire de 40%. Après qu'un Partenaire de danse a lancé une attaque, inflige une réduction de robustesse supplémentaire d'un montant fixe équivalent à 25% de la robustesse max de la cible ennemie (10 points minimum/300 points maximum). Cet effet ne peut être déclenché qu'une fois par cible ennemie, et le compteur est réinitialisé pour chaque cible dès que la cible ennemie subit un coup fatal.",
+    "materials": [
+      {
+        "id": "11321",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1321_rank1.png"
+  },
+  {
+    "id": "132102",
+    "name": "Fraîche, éthérée et bien-aimée",
+    "rank": 2,
+    "desc": "Lorsque Le Dahlia est sur le champ de bataille, réduit toutes les RÉS de type de tous les ennemis de 20%. Lorsqu'une cible ennemie entre en combat, lui applique immédiatement Flétrissement pour une durée de 3 tours.",
+    "materials": [
+      {
+        "id": "11321",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1321_rank2.png"
+  },
+  {
+    "id": "132103",
+    "name": "Pauvres pétales délicats",
+    "rank": 3,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.",
+    "materials": [
+      {
+        "id": "11321",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "132103",
+        "num": 2
+      },
+      {
+        "id": "132101",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1321_ultimate.png"
+  },
+  {
+    "id": "132104",
+    "name": "Pauvre cœur rongé par les vers",
+    "rank": 4,
+    "desc": "L'ATQ de suivi du talent inflige 5 instances de DGT supplémentaires. Après utilisation, les DGT subis par toutes les cibles ennemies augmentent de 12% pour une durée de 2 tours.",
+    "materials": [
+      {
+        "id": "11321",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1321_rank4.png"
+  },
+  {
+    "id": "132105",
+    "name": "Déchue, décomposée, détestée",
+    "rank": 5,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "11321",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "132102",
+        "num": 2
+      },
+      {
+        "id": "132104",
+        "num": 2
+      }
+    ],
+    "icon": "icon/skill/1321_skill.png"
+  },
+  {
+    "id": "132106",
+    "name": "Pourtant toujours d'une beauté fatale",
+    "rank": 6,
+    "desc": "Augmente l'effet de Rupture des Partenaires de danse de 150%. Lorsque l'ATQ de suivi du talent est activée, avance la prochaine action de tous les Partenaires de danse de 20%.",
+    "materials": [
+      {
+        "id": "11321",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1321_rank6.png"
   },
   {
     "id": "140101",
