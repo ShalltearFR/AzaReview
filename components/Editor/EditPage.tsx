@@ -385,7 +385,7 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
       <div className="flex flex-col gap-y-28 mt-20">
         {dataAfterLoading &&
           dataAfterLoading.map((singleData: Data, index: number) => (
-            <div key={`globalBuild${index}`}>
+            <div key={`globalBuild${index}+${singleData.buildName}`}>
               <GlobalBuild
                 data={singleData}
                 index={index}

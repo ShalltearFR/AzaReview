@@ -64,6 +64,8 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
     config: { tension: 300, friction: 26 },
   });
 
+  console.log(index);
+
   // INIT DES VALEURS
   useEffect(() => {
     setBuildNameInput(data.buildName);
