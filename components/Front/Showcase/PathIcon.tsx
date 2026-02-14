@@ -4,5 +4,5 @@ interface PathIconProps {
   type: Icon["Path"];
 }
 export const PathIcon: React.FC<PathIconProps> = ({ type }) => {
-  return <img src={`${CDN2}/img/guides/icon/path/${type}.webp`} width={32} />;
+  return <img src={`/img/guides/icon/path/${type}.webp`} width={32} />;
 };

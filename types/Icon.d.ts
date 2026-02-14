@@ -7,8 +7,9 @@ interface Icon {
     | "Mage"
     | "Knight"
     | "Priest"
-    | "Memory";
-  Element:
+    | "Memory"
+    | "Elation";
+    Element:
     | "Ice"
     | "Fire"
     | "Quantum"

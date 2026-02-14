@@ -48,6 +48,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character }) => {
       Warlock: false,
       Warrior: false,
       Memory: false,
+      Elation: false
     },
   });
 
@@ -170,7 +171,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character }) => {
         <NavBar />
         <StarBGAnimation />
         <div className="min-h-[calc(100vh-295px)]">
-          <div className="mx-auto p-5 bg-gray/45 w-full smd:w-[710px] smd:rounded-3xl mt-10">
+          <div className="mx-auto p-5 bg-gray/45 w-full smd:w-[770px] smd:rounded-3xl mt-10">
             <div className="flex flex-col items-center smd:flex-row gap-2 justify-around">
               <AddToggleButton
                 className={"w-[320px]"}

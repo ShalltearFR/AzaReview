@@ -70,6 +70,7 @@ const Filter: React.FC<FilterProps> = ({ setData, data }) => {
           "Knight",
           "Priest",
           "Memory",
+          "Elation",
         ].map((path: string) => (
           <button
             key={`filter${path}`}
