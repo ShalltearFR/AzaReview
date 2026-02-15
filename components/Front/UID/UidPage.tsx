@@ -301,7 +301,7 @@ const UidPage: React.FC<UidPageProps> = ({
                     {(characterOptions[characterBuild] &&
                       characterOptions[characterBuild].desc &&
                       translateBBCode(
-                        characterOptions[characterBuild].desc ?? ""
+                        characterOptions[characterBuild].desc ?? "", true
                       )) ||
                       "Disponible prochainement"}
                   </div>
