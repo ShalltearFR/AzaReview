@@ -1,5 +1,5 @@
 import { Data } from "@/types/CharacterModel";
-import translateBBCode from "@/utils/translateBBCode";
+import {translateBBCode} from "@/utils/translateBBCode";
 import ItemShow from "./ItemShow";
 import MainStats from "./MainStats";
 import { findLabel } from "@/utils/statsOption";

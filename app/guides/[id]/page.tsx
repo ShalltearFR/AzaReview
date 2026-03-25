@@ -5,7 +5,6 @@ import relic_setsFR from "@/static/relic_setsFR.json";
 import light_conesFR from "@/static/light_conesFR.json";
 import light_cone_ranksFR from "@/static/light_cone_ranksFR.json";
 import propertiesFR from "@/static/propertiesFR.json";
-import translateBBCode from "@/utils/translateBBCode";
 
 const getData = async (
   url: string,
@@ -42,11 +41,11 @@ export async function generateMetadata({
   );
   const json = await res.json();
 
-  if (json.data[0] && json.name) {
+  if (json.name) {
     return {
       metadataBase: new URL(CDN),
-      title: `Review HSR - Guide ${json.name}`,
-      description: `${translateBBCode(json.data[0].buildDesc)}`,
+      title: `Review HSR - Guide`,
+      description: `Guide sur ${json.name}`,
       openGraph: {
         images: [`/${json.preview}`],
       },
@@ -72,8 +71,6 @@ const GuideID = async ({ params }: { params: Promise<{ id: string }> }) => {
       300,
       false
     );
-
-    console.log(character.data[0].buildDesc)
 
     if (light_conesFR && relic_setsFR && propertiesFR && light_cone_ranksFR) {
       return (

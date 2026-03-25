@@ -16,7 +16,7 @@ import { SingleValue } from "react-select";
 import { useSpring, animated } from "react-spring";
 import AddInput from "../Add/AddInput";
 import AddTextArea from "../Add/AddTextArea";
-import translateBBCode from "@/utils/translateBBCode";
+import {translateBBCode} from "@/utils/translateBBCode";
 import GlobalOrnamentsSet from "./GlobalOrnamentsSet";
 
 interface GlobalBuildProps {

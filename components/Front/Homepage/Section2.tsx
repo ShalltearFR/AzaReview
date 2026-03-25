@@ -7,7 +7,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { FR_Month } from "@/utils/month";
-import translateBBCode from "@/utils/translateBBCode";
+import {translateBBCode} from "@/utils/translateBBCode";
 
 const Section2: React.FC = () => {
   const [isShareCodes, setIsShareCodes] = useState<boolean>(false);

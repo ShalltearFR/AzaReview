@@ -13,4 +13,4 @@ const translateBBCode = (text: string, isUIDPage? : boolean) => {
   return parser.toReact(text);
 };
 
-export default translateBBCode;
+export { translateBBCode };

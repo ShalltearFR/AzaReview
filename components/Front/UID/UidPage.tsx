@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Aos from "aos";
 import { notFound } from "next/navigation";
-import translateBBCode from "@/utils/translateBBCode";
+import {translateBBCode} from "@/utils/translateBBCode";
 import StarBGAnimation from "../StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
 import CharacterList from "./CharactersList";

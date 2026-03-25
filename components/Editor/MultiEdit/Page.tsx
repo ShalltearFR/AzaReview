@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 import { CDN } from "@/utils/cdn";
 import light_conesFR from "@/static/light_conesFR.json";
 import relic_setsFR from "@/static/relic_setsFR.json";
-import translateBBCode from "@/utils/translateBBCode";
+import {translateBBCode} from "@/utils/translateBBCode";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import LoadingSpin from "@/components/LoadingSpin";
 
