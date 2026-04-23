@@ -36,7 +36,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
           className="w-24 h-24 xl:ml-8"
           width={96}
           height={96}
-          alt="UID logo"
+          alt="Avatar non existant"
           src={`${CDN}/${uidData?.player?.avatar?.icon}`}
         />
         <div className="text-center w-48 text-white">
