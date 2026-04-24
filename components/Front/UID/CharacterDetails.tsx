@@ -182,6 +182,34 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                       </div>
                     ));
                   })()}
+
+                {character.path.id === "Elation" &&
+                  (() => {
+                    // AJOUTE LES 2 TRACES LIÉES À LA VOIE DU SOUVENIR
+                    const skills = character.skills
+                      .slice(4)
+                      .filter(
+                        (v) => v.level > 0 && v.type_text !== "Technique"
+                      );
+
+                    return skills.map((skill, i) => (
+                      <div
+                        key={`CharacterTracesElation${i}+${index}+${buildIndex}+${character.id}`}
+                      >
+                        <CharacterTrace
+                          index={i}
+                          characterID={character.id}
+                          id={skill.id}
+                          type={skills[i].type_text}
+                          img={`/${skill.icon}`}
+                          level={skill.level}
+                          name={skill.name}
+                          desc={skill.desc}
+                          type_text={skill.type_text}
+                        />
+                      </div>
+                    ));
+                  })()}
               </div>
             </div>
             {/* </div> */}
