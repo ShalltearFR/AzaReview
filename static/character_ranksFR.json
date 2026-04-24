@@ -6527,7 +6527,7 @@
     "id": "140106",
     "name": "Appât de la réponse",
     "rank": 6,
-    "desc": "La PÉN de RÉS à la glace de la Grande Herta augmente de 20%. Lorsque le nombre de cibles ennemies sur le champ de bataille est de 3 (ou plus)/2/1, le multiplicateur de DGT de l'ultime augmente de 140%/250%/400% respectivement.",
+    "desc": "La PÉN de RÉS à la glace de la Grande Herta augmente de 20%. Lorsque le nombre de cibles ennemies sur le champ de bataille est de 3+/2/1, le multiplicateur de DGT de l'ultime augmente de 140%/250%/400% respectivement.",
     "materials": [
       {
         "id": "11401",
@@ -8390,6 +8390,250 @@
     "icon": "icon/skill/1504_rank6.png"
   },
   {
+    "id": "150501",
+    "name": "Terre natale : Une prière dansée",
+    "rank": 1,
+    "desc": "Augmente la PÉN de RÉS à tous les types de 20%. Après une attaque de Maître renard, déclenche la comicompétence 1 fois supplémentaire. La comicompétence accorde 10 points de Banger absolu supplémentaires à cette unité.",
+    "materials": [
+      {
+        "id": "11505",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1505_rank1.png"
+  },
+  {
+    "id": "150502",
+    "name": "Voyage : Vœu d'une route fleurie",
+    "rank": 2,
+    "desc": "Les DGT critiques augmentent de 36%. Lorsque s'active l'effet d'obtention de Banger absolu des Traces Exultation partagée/Meilleures floraisons, accorde également des points de Banger absolu équivalents à 50%/100% des points de Banger absolu obtenus cette fois-ci.",
+    "materials": [
+      {
+        "id": "11505",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1505_rank2.png"
+  },
+  {
+    "id": "150503",
+    "name": "Lame : Dévoration des démons",
+    "rank": 3,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.\nNiv. de la comicompétence +1, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "11505",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "150503",
+        "num": 2
+      },
+      {
+        "id": "150501",
+        "num": 1
+      },
+      {
+        "id": "150520",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1505_ultimate.png"
+  },
+  {
+    "id": "150504",
+    "name": "Prairie : Ravage par le mal",
+    "rank": 4,
+    "desc": "Les DGT infligés par Evanescia ignorent 15% de la DÉF des cibles ennemies.",
+    "materials": [
+      {
+        "id": "11505",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1505_rank4.png"
+  },
+  {
+    "id": "150505",
+    "name": "Arcadia : Un aperçu des destins",
+    "rank": 5,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.\nNiv. de la comicompétence +1, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "11505",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "150502",
+        "num": 2
+      },
+      {
+        "id": "150504",
+        "num": 2
+      },
+      {
+        "id": "150520",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1505_skill.png"
+  },
+  {
+    "id": "150506",
+    "name": "Demoiselle : Un pas dans les rêves",
+    "rank": 6,
+    "desc": "La durée de Banger absolu d'Evanescia augmente de 1 tour. Les comidégâts infligés par Evanescia s'égayent de 15%. Pour chaque tranche de 100 points de Banger absolu en possession, les DGT s'égayent de 2.0% supplémentaires, jusqu'à 1 000 points de Banger absolu comptabilisés. Après avoir utilisé son ultime pour la première fois après l'entrée en combat, Evanescia régénère un montant fixe de 120 points d'énergie. Cet effet peut se déclencher 1 fois tous les 4 ultimes utilisés.",
+    "materials": [
+      {
+        "id": "11505",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1505_rank6.png"
+  },
+  {
+    "id": "150601",
+    "name": "Édition d'éther : Eidolon +1",
+    "rank": 1,
+    "desc": "Les cibles ennemies dans la zone subissent 20% de DGT supplémentaires.\nLorsque l'état MVP incontestée prend fin, le Score caché n'est pas réinitialisé, mais 20% du Score caché est conservé.",
+    "materials": [
+      {
+        "id": "11506",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1506_rank1.png"
+  },
+  {
+    "id": "150602",
+    "name": "C'est une fonctionnalité, pas un bug",
+    "rank": 2,
+    "desc": "Entrer dans l'état MVP incontestée prolonge tous les bonus de cette unité de 1 tour. Dans l'état MVP incontestée actuel, pour chaque tranche de 120 points de Score caché obtenus (y compris le Score caché initial), Louve d'argent Niv. 999 obtient 1 tour supplémentaire et récupère 1 utilisation d'ATQ normale renforcée.",
+    "materials": [
+      {
+        "id": "11506",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1506_rank2.png"
+  },
+  {
+    "id": "150603",
+    "name": "Max Niv. 15 ? Selon qui ?",
+    "rank": 3,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.\nNiv. de la comicompétence +1, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "11506",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "150602",
+        "num": 2
+      },
+      {
+        "id": "150601",
+        "num": 1
+      },
+      {
+        "id": "150620",
+        "num": 1
+      },
+      {
+        "id": "150608",
+        "num": 1
+      },
+      {
+        "id": "150610",
+        "num": 1
+      },
+      {
+        "id": "150612",
+        "num": 1
+      },
+      {
+        "id": "150618",
+        "num": 1
+      },
+      {
+        "id": "150621",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1506_skill.png"
+  },
+  {
+    "id": "150604",
+    "name": "Veni, vidi, one-shot",
+    "rank": 4,
+    "desc": "Multiplie par 5 la quantité de points de Panache comptabilisés par les comidégâts infligés par Honkai Impact.",
+    "materials": [
+      {
+        "id": "11506",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1506_rank4.png"
+  },
+  {
+    "id": "150605",
+    "name": "L'ATQ normale est le nouvel ultime",
+    "rank": 5,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.\nNiv. de la comicompétence +1, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "11506",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "150603",
+        "num": 2
+      },
+      {
+        "id": "150604",
+        "num": 2
+      },
+      {
+        "id": "150620",
+        "num": 1
+      },
+      {
+        "id": "150621",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1506_ultimate.png"
+  },
+  {
+    "id": "150606",
+    "name": "Solo maxxing !",
+    "rank": 6,
+    "desc": "Les comidégâts infligés lors de l'ATQ normale renforcée s'égayent de 50%.\nLorsqu'une cible ennemie entre en combat, lui applique Faiblesse absolue, ce qui lui implante une Faiblesse à tous les types, et réduit sa RÉS de base à tous les types à 0 (si la RÉS de base est déjà à 0, la RÉS du type correspondant diminue de 20%).",
+    "materials": [
+      {
+        "id": "11506",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1506_rank6.png"
+  },
+  {
     "id": "800101",
     "name": "Étoile tombée du ciel",
     "rank": 1,
@@ -9286,6 +9530,328 @@
     "icon": "icon/skill/8008_rank6.png"
   },
   {
+    "id": "800901",
+    "name": "Brûle ton cosmos",
+    "rank": 1,
+    "desc": "Après avoir utilisé la compétence, le prochain ultime augmente le Banger absolu obtenu par les cibles alliées de 2 points. Cet effet peut être cumulé jusqu'à 3 fois.",
+    "materials": [
+      {
+        "id": "18009",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/8009_rank1.png"
+  },
+  {
+    "id": "800902",
+    "name": "Moment incroyable en préparation...",
+    "rank": 2,
+    "desc": "L'ultime augmente l'Allégresse d'un allié désigné de 12% supplémentaires pendant 2 tours.",
+    "materials": [
+      {
+        "id": "18009",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/8009_rank2.png"
+  },
+  {
+    "id": "800903",
+    "name": "Sous les projecteurs",
+    "rank": 3,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.\nNiv. de la comicompétence +1, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "18009",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "800902",
+        "num": 2
+      },
+      {
+        "id": "800904",
+        "num": 2
+      },
+      {
+        "id": "800920",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/8009_skill.png"
+  },
+  {
+    "id": "800904",
+    "name": "Pas besoin d'une raison pour sauver le monde",
+    "rank": 4,
+    "desc": "Utiliser la comicompétence augmente les DGT subis par les cibles ennemies de 10% pendant 2 tours.",
+    "materials": [
+      {
+        "id": "18009",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/8009_rank4.png"
+  },
+  {
+    "id": "800905",
+    "name": "Amour et courage, toujours indémodables",
+    "rank": 5,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.\nNiv. de la comicompétence +1, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "18009",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "800903",
+        "num": 2
+      },
+      {
+        "id": "800901",
+        "num": 1
+      },
+      {
+        "id": "800920",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/8009_ultimate.png"
+  },
+  {
+    "id": "800906",
+    "name": "La légende cosmique arrive !",
+    "rank": 6,
+    "desc": "Utiliser la comicompétence augmente les DGT critiques de cette unité de 100% pendant 3 tours.",
+    "materials": [
+      {
+        "id": "18009",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/8009_rank6.png"
+  },
+  {
+    "id": "801001",
+    "name": "Brûle ton cosmos",
+    "rank": 1,
+    "desc": "Après avoir utilisé la compétence, le prochain ultime augmente le Banger absolu obtenu par les cibles alliées de 2 points. Cet effet peut être cumulé jusqu'à 3 fois.",
+    "materials": [
+      {
+        "id": "18009",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/8010_rank1.png"
+  },
+  {
+    "id": "801002",
+    "name": "Moment incroyable en préparation...",
+    "rank": 2,
+    "desc": "L'ultime augmente l'Allégresse d'un allié désigné de 12% supplémentaires pendant 2 tours.",
+    "materials": [
+      {
+        "id": "18009",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/8010_rank2.png"
+  },
+  {
+    "id": "801003",
+    "name": "Sous les projecteurs",
+    "rank": 3,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.\nNiv. de la comicompétence +1, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "18009",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "801002",
+        "num": 2
+      },
+      {
+        "id": "801004",
+        "num": 2
+      },
+      {
+        "id": "801020",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/8010_skill.png"
+  },
+  {
+    "id": "801004",
+    "name": "Pas besoin d'une raison pour sauver le monde",
+    "rank": 4,
+    "desc": "Utiliser la comicompétence augmente les DGT subis par les cibles ennemies de 10% pendant 2 tours.",
+    "materials": [
+      {
+        "id": "18009",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/8010_rank4.png"
+  },
+  {
+    "id": "801005",
+    "name": "Amour et courage, toujours indémodables",
+    "rank": 5,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.\nNiv. de la comicompétence +1, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "18009",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "801003",
+        "num": 2
+      },
+      {
+        "id": "801001",
+        "num": 1
+      },
+      {
+        "id": "801020",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/8010_ultimate.png"
+  },
+  {
+    "id": "801006",
+    "name": "La légende cosmique arrive !",
+    "rank": 6,
+    "desc": "Utiliser la comicompétence augmente les DGT critiques de cette unité de 100% pendant 3 tours.",
+    "materials": [
+      {
+        "id": "18009",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/8010_rank6.png"
+  },
+  {
+    "id": "1100401",
+    "name": "Héritage d'honneur",
+    "rank": 1,
+    "desc": "Après qu'une cible dans l'état Apesanteur a subi une compétence ou un ultime, inflige 1 instance supplémentaire de DGT imaginaires additionnels équivalents à 40% du multiplicateur de DGT de l'ultime. Cet effet ne peut être déclenché qu'une seule fois par cible et par attaque.",
+    "materials": [
+      {
+        "id": "11004",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1100_rank1.png"
+  },
+  {
+    "id": "1100402",
+    "name": "Confluence des étoiles",
+    "rank": 2,
+    "desc": "Lorsque son talent est déclenché, Welt régénère 3 points d'énergie.",
+    "materials": [
+      {
+        "id": "11004",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1100_rank2.png"
+  },
+  {
+    "id": "1100403",
+    "name": "Prière de paix",
+    "rank": 3,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.",
+    "materials": [
+      {
+        "id": "11004",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "1100402",
+        "num": 2
+      },
+      {
+        "id": "1100401",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1100_skill.png"
+  },
+  {
+    "id": "1100404",
+    "name": "Au nom de la justice",
+    "rank": 4,
+    "desc": "Les cibles ennemies dans l'état Apesanteur voient toutes leurs RÉS de type réduites de 30%.",
+    "materials": [
+      {
+        "id": "11004",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1100_rank4.png"
+  },
+  {
+    "id": "1100405",
+    "name": "Pouvoir de la bonté",
+    "rank": 5,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "11004",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "1100403",
+        "num": 2
+      },
+      {
+        "id": "1100404",
+        "num": 2
+      }
+    ],
+    "icon": "icon/skill/1100_ultimate.png"
+  },
+  {
+    "id": "1100406",
+    "name": "Perspective de gloire",
+    "rank": 6,
+    "desc": "Lors de l'utilisation de la compétence ou de l'ultime pour attaquer une cible affectée par Ralenti, augmente les chances de coup critique des DGT infligés de 30% et les DGT critiques de 60%.",
+    "materials": [
+      {
+        "id": "11004",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1100_rank6.png"
+  },
+  {
     "id": "1100501",
     "name": "Da capo",
     "rank": 1,
@@ -9488,6 +10054,108 @@
     ],
     "level_up_skills": [],
     "icon": "icon/skill/1100_rank6.png"
+  },
+  {
+    "id": "1110201",
+    "name": "Coup tranchant",
+    "rank": 1,
+    "desc": "Lorsque le personnage inflige des DGT à un ennemi dont le pourcentage de PV est inférieur ou égal à 80%, augmente les chances de coup critique de 15%, et ignore 20% de la DÉF de la cible.",
+    "materials": [
+      {
+        "id": "11102",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1110_rank1.png"
+  },
+  {
+    "id": "1110202",
+    "name": "Papillon dansant",
+    "rank": 2,
+    "desc": "L'augmentation de VIT conférée par la compétence de Seele peut être cumulée jusqu'à 2 fois.",
+    "materials": [
+      {
+        "id": "11102",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1110_rank2.png"
+  },
+  {
+    "id": "1110203",
+    "name": "Tumulte éblouissant",
+    "rank": 3,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "11102",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "1110202",
+        "num": 2
+      },
+      {
+        "id": "1110204",
+        "num": 2
+      }
+    ],
+    "icon": "icon/skill/1110_skill.png"
+  },
+  {
+    "id": "1110204",
+    "name": "Phantasme d'un instant",
+    "rank": 4,
+    "desc": "Seele régénère 15 points d'énergie lorsqu'elle élimine un ennemi.",
+    "materials": [
+      {
+        "id": "11102",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1110_rank4.png"
+  },
+  {
+    "id": "1110205",
+    "name": "Éclats perçants",
+    "rank": 5,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.",
+    "materials": [
+      {
+        "id": "11102",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "1110203",
+        "num": 2
+      },
+      {
+        "id": "1110201",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1110_ultimate.png"
+  },
+  {
+    "id": "1110206",
+    "name": "Ébranlements éclatants",
+    "rank": 6,
+    "desc": "Après avoir attaqué avec son ultime, Seele applique l'effet Volée de papillons à la cible pour une durée de 3 tours. Lorsqu'une cible ennemie dans l'état Volée de papillons subit une attaque, elle subit également 1 instance de DGT réels équivalents à 30% des DGT de l'ultime de Seele. Lorsque la cible affectée par Volée de papillons est éliminée par n'importe quelle cible, le talent de Seele se déclenche également.\nLorsque Seele est à terre, dissipe l'effet Volée de papillons appliqué aux ennemis.",
+    "materials": [
+      {
+        "id": "11102",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1110_rank6.png"
   },
   {
     "id": "1120501",
@@ -9702,6 +10370,108 @@
     "icon": "icon/skill/1121_rank6.png"
   },
   {
+    "id": "1121701",
+    "name": "Abri maudit possédé",
+    "rank": 1,
+    "desc": "Augmente de 1 tour la durée de l'effet Intervention divine du talent. Lorsque Huohuo bénéficie d'Intervention divine, ses soins prodigués augmentent de 20% et la VIT de tous les alliés augmente de 12%.",
+    "materials": [
+      {
+        "id": "11217",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1121_rank1.png"
+  },
+  {
+    "id": "1121702",
+    "name": "Queue de l'esprit scellée",
+    "rank": 2,
+    "desc": "Si Huohuo bénéficie d'Intervention divine pendant qu'une cible alliée subit un coup fatal, l'allié ne tombe pas à terre, et restaure immédiatement des PV à hauteur de 50% de ses PV max, ce qui réduit la durée d'Intervention divine de 1 tour. Cet effet ne peut être déclenché que 2 fois par combat.",
+    "materials": [
+      {
+        "id": "11217",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1121_rank2.png"
+  },
+  {
+    "id": "1121703",
+    "name": "Malédiction à laquelle les papillons ont cédé",
+    "rank": 3,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "11217",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "1121703",
+        "num": 2
+      },
+      {
+        "id": "1121704",
+        "num": 2
+      }
+    ],
+    "icon": "icon/skill/1121_ultimate.png"
+  },
+  {
+    "id": "1121704",
+    "name": "Cœurs qui s'emballent mais pourtant liés",
+    "rank": 4,
+    "desc": "Les soins prodigués à une cible alliée par la compétence ou le talent de Huohuo gagnent en efficacité plus les PV de la cible sont bas. L'augmentation maximale de l'efficacité des soins prodigués par Huohuo est de 80%.",
+    "materials": [
+      {
+        "id": "11217",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1121_rank4.png"
+  },
+  {
+    "id": "1121705",
+    "name": "Mandatée par décret, maux évincés",
+    "rank": 5,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.",
+    "materials": [
+      {
+        "id": "11217",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "1121702",
+        "num": 2
+      },
+      {
+        "id": "1121701",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1121_skill.png"
+  },
+  {
+    "id": "1121706",
+    "name": "Destins en osmose à jamais",
+    "rank": 6,
+    "desc": "Lorsque Huohuo soigne une cible alliée, les DGT de la cible alliée augmentent de 50% pendant 2 tours.",
+    "materials": [
+      {
+        "id": "11217",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1121_rank6.png"
+  },
+  {
     "id": "1130601",
     "name": "Suspens suspicieux",
     "rank": 1,
@@ -9904,5 +10674,115 @@
     ],
     "level_up_skills": [],
     "icon": "icon/skill/1130_rank6.png"
+  },
+  {
+    "id": "1131001",
+    "name": "Repos de la chrysalide écarlate",
+    "rank": 1,
+    "desc": "Ignore 15% de la DÉF de la cible lors de l'utilisation de la compétence renforcée et la compétence renforcée ne consomme pas de point de compétence.",
+    "materials": [
+      {
+        "id": "11310",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1131_rank1.png"
+  },
+  {
+    "id": "1131002",
+    "name": "Chute des cieux fracturés",
+    "rank": 2,
+    "desc": "Lorsque SAM utilise son ATQ normale renforcée ou sa compétence renforcée dans l'état Combustion complète pour éliminer une cible ennemie ou lui infliger une Rupture de faiblesse, 1 tour supplémentaire lui est immédiatement accordé. Cet effet ne peut se déclencher qu'une seule fois par tour et se réinitialise au début du tour de SAM.",
+    "materials": [
+      {
+        "id": "11310",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1131_rank2.png"
+  },
+  {
+    "id": "1131003",
+    "name": "Sommeil au milieu de la galaxie silencieuse",
+    "rank": 3,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.",
+    "materials": [
+      {
+        "id": "11310",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "1131002",
+        "num": 2
+      },
+      {
+        "id": "1131001",
+        "num": 1
+      },
+      {
+        "id": "1131009",
+        "num": 2
+      },
+      {
+        "id": "1131008",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1131_skill.png"
+  },
+  {
+    "id": "1131004",
+    "name": "Regard sur la flamme de luciole",
+    "rank": 4,
+    "desc": "Augmente de 50% la RÉS aux effets de SAM dans l'état Combustion complète.",
+    "materials": [
+      {
+        "id": "11310",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1131_rank4.png"
+  },
+  {
+    "id": "1131005",
+    "name": "Lueur dans la nuit sans rêve",
+    "rank": 5,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "11310",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "1131003",
+        "num": 2
+      },
+      {
+        "id": "1131004",
+        "num": 2
+      }
+    ],
+    "icon": "icon/skill/1131_ultimate.png"
+  },
+  {
+    "id": "1131006",
+    "name": "Métamorphose de l'ultime lendemain",
+    "rank": 6,
+    "desc": "Augmente de 20% la PÉN de RÉS au feu de SAM dans l'état Combustion complète. Son efficacité de Rupture de faiblesse augmente de 50% lors de l'utilisation de l'ATQ normale renforcée ou de la compétence renforcée.",
+    "materials": [
+      {
+        "id": "11310",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1131_rank6.png"
   }
 ]
