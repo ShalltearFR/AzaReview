@@ -16,7 +16,7 @@ import { SingleValue } from "react-select";
 import { useSpring, animated } from "react-spring";
 import AddInput from "../Add/AddInput";
 import AddTextArea from "../Add/AddTextArea";
-import {translateBBCode} from "@/utils/translateBBCode";
+import { translateBBCode } from "@/utils/translateBBCode";
 import GlobalOrnamentsSet from "./GlobalOrnamentsSet";
 
 interface GlobalBuildProps {
@@ -63,8 +63,6 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
     transform: `translateX(${showBuild ? "0%" : "-120%"})`,
     config: { tension: 300, friction: 26 },
   });
-
-  console.log(index);
 
   // INIT DES VALEURS
   useEffect(() => {
