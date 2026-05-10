@@ -13,6 +13,20 @@ import { useEffect, useState } from "react";
 import { UserOptionsProps } from "@/types/UserOptions";
 import LoadingSpin from "@/components/LoadingSpin";
 import CharacterEidolon from "./CharacterEidolon";
+type Skill = {
+  id: string;
+  name: string;
+  level: number;
+  max_level: number;
+  element: any;
+  type: string;
+  type_text: string;
+  effect: string;
+  effect_text: string;
+  simple_desc: string;
+  desc: string;
+  icon: string | null;
+};
 
 interface ReviewData {
   data: CharacterType[];
@@ -185,14 +199,35 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
 
                 {character.path.id === "Elation" &&
                   (() => {
-                    // AJOUTE LES 2 TRACES LIÉES À LA VOIE DU SOUVENIR
                     const skills = character.skills
                       .slice(4)
                       .filter(
                         (v) => v.level > 0 && v.type_text !== "Technique"
                       );
 
-                    return skills.map((skill, i) => (
+                    const skillsMerged: Record<string, Skill> = {};
+
+                    for (const item of skills) {
+                      const key = item.type_text;
+
+                      if (!skillsMerged[key]) {
+                        skillsMerged[key] = {
+                          ...item,
+                        };
+                      } else {
+                        const existingDescriptions =
+                          skillsMerged[key].simple_desc.split("\n");
+
+                        if (!existingDescriptions.includes(item.simple_desc)) {
+                          skillsMerged[key].simple_desc +=
+                            "\n" + item.simple_desc;
+                        }
+                      }
+                    }
+
+                    const mergedSkills = Object.values(skillsMerged);
+
+                    return mergedSkills.map((skill, i) => (
                       <div
                         key={`CharacterTracesElation${i}+${index}+${buildIndex}+${character.id}`}
                       >
@@ -200,11 +235,11 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                           index={i}
                           characterID={character.id}
                           id={skill.id}
-                          type={skills[i].type_text}
-                          img={`/${skill.icon}`}
+                          type={skill.type_text}
+                          img={skill.icon ? `/${skill.icon}` : ""}
                           level={skill.level}
                           name={skill.name}
-                          desc={skill.desc}
+                          desc={skill.simple_desc}
                           type_text={skill.type_text}
                         />
                       </div>
