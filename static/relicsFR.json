@@ -1320,6 +1320,94 @@
     "icon": "icon/relic/130_3.png"
   },
   {
+    "id": "31311",
+    "set_id": "131",
+    "name": "Miroir de l'espace profond du Navigateur",
+    "rarity": 2,
+    "type": "HEAD",
+    "max_level": 6,
+    "main_affix_id": "21",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/131_0.png"
+  },
+  {
+    "id": "31312",
+    "set_id": "131",
+    "name": "Dé de jeu du Navigateur",
+    "rarity": 2,
+    "type": "HAND",
+    "max_level": 6,
+    "main_affix_id": "22",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/131_1.png"
+  },
+  {
+    "id": "31313",
+    "set_id": "131",
+    "name": "Uniforme célestographe du Navigateur",
+    "rarity": 2,
+    "type": "BODY",
+    "max_level": 6,
+    "main_affix_id": "23",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/131_2.png"
+  },
+  {
+    "id": "31314",
+    "set_id": "131",
+    "name": "Bottes marchéternelles du Navigateur",
+    "rarity": 2,
+    "type": "FOOT",
+    "max_level": 6,
+    "main_affix_id": "24",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/131_3.png"
+  },
+  {
+    "id": "31321",
+    "set_id": "132",
+    "name": "Masque de bête enflammée du maître forgeron",
+    "rarity": 2,
+    "type": "HEAD",
+    "max_level": 6,
+    "main_affix_id": "21",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/132_0.png"
+  },
+  {
+    "id": "31322",
+    "set_id": "132",
+    "name": "Gantelets en acier fin du maître forgeron",
+    "rarity": 2,
+    "type": "HAND",
+    "max_level": 6,
+    "main_affix_id": "22",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/132_1.png"
+  },
+  {
+    "id": "31323",
+    "set_id": "132",
+    "name": "Vêtement ignifugé du maître forgeron",
+    "rarity": 2,
+    "type": "BODY",
+    "max_level": 6,
+    "main_affix_id": "23",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/132_2.png"
+  },
+  {
+    "id": "31324",
+    "set_id": "132",
+    "name": "Bottes déchaînées du maître forgeron",
+    "rarity": 2,
+    "type": "FOOT",
+    "max_level": 6,
+    "main_affix_id": "24",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/132_3.png"
+  },
+  {
     "id": "33015",
     "set_id": "301",
     "name": "Station spatiale Herta",
@@ -3212,6 +3300,94 @@
     "icon": "icon/relic/130_3.png"
   },
   {
+    "id": "41311",
+    "set_id": "131",
+    "name": "Miroir de l'espace profond du Navigateur",
+    "rarity": 3,
+    "type": "HEAD",
+    "max_level": 9,
+    "main_affix_id": "31",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/131_0.png"
+  },
+  {
+    "id": "41312",
+    "set_id": "131",
+    "name": "Dé de jeu du Navigateur",
+    "rarity": 3,
+    "type": "HAND",
+    "max_level": 9,
+    "main_affix_id": "32",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/131_1.png"
+  },
+  {
+    "id": "41313",
+    "set_id": "131",
+    "name": "Uniforme célestographe du Navigateur",
+    "rarity": 3,
+    "type": "BODY",
+    "max_level": 9,
+    "main_affix_id": "33",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/131_2.png"
+  },
+  {
+    "id": "41314",
+    "set_id": "131",
+    "name": "Bottes marchéternelles du Navigateur",
+    "rarity": 3,
+    "type": "FOOT",
+    "max_level": 9,
+    "main_affix_id": "34",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/131_3.png"
+  },
+  {
+    "id": "41321",
+    "set_id": "132",
+    "name": "Masque de bête enflammée du maître forgeron",
+    "rarity": 3,
+    "type": "HEAD",
+    "max_level": 9,
+    "main_affix_id": "31",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/132_0.png"
+  },
+  {
+    "id": "41322",
+    "set_id": "132",
+    "name": "Gantelets en acier fin du maître forgeron",
+    "rarity": 3,
+    "type": "HAND",
+    "max_level": 9,
+    "main_affix_id": "32",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/132_1.png"
+  },
+  {
+    "id": "41323",
+    "set_id": "132",
+    "name": "Vêtement ignifugé du maître forgeron",
+    "rarity": 3,
+    "type": "BODY",
+    "max_level": 9,
+    "main_affix_id": "33",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/132_2.png"
+  },
+  {
+    "id": "41324",
+    "set_id": "132",
+    "name": "Bottes déchaînées du maître forgeron",
+    "rarity": 3,
+    "type": "FOOT",
+    "max_level": 9,
+    "main_affix_id": "34",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/132_3.png"
+  },
+  {
     "id": "43015",
     "set_id": "301",
     "name": "Station spatiale Herta",
@@ -5102,6 +5278,94 @@
     "main_affix_id": "44",
     "sub_affix_id": "4",
     "icon": "icon/relic/130_3.png"
+  },
+  {
+    "id": "51311",
+    "set_id": "131",
+    "name": "Miroir de l'espace profond du Navigateur",
+    "rarity": 4,
+    "type": "HEAD",
+    "max_level": 12,
+    "main_affix_id": "41",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/131_0.png"
+  },
+  {
+    "id": "51312",
+    "set_id": "131",
+    "name": "Dé de jeu du Navigateur",
+    "rarity": 4,
+    "type": "HAND",
+    "max_level": 12,
+    "main_affix_id": "42",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/131_1.png"
+  },
+  {
+    "id": "51313",
+    "set_id": "131",
+    "name": "Uniforme célestographe du Navigateur",
+    "rarity": 4,
+    "type": "BODY",
+    "max_level": 12,
+    "main_affix_id": "43",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/131_2.png"
+  },
+  {
+    "id": "51314",
+    "set_id": "131",
+    "name": "Bottes marchéternelles du Navigateur",
+    "rarity": 4,
+    "type": "FOOT",
+    "max_level": 12,
+    "main_affix_id": "44",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/131_3.png"
+  },
+  {
+    "id": "51321",
+    "set_id": "132",
+    "name": "Masque de bête enflammée du maître forgeron",
+    "rarity": 4,
+    "type": "HEAD",
+    "max_level": 12,
+    "main_affix_id": "41",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/132_0.png"
+  },
+  {
+    "id": "51322",
+    "set_id": "132",
+    "name": "Gantelets en acier fin du maître forgeron",
+    "rarity": 4,
+    "type": "HAND",
+    "max_level": 12,
+    "main_affix_id": "42",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/132_1.png"
+  },
+  {
+    "id": "51323",
+    "set_id": "132",
+    "name": "Vêtement ignifugé du maître forgeron",
+    "rarity": 4,
+    "type": "BODY",
+    "max_level": 12,
+    "main_affix_id": "43",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/132_2.png"
+  },
+  {
+    "id": "51324",
+    "set_id": "132",
+    "name": "Bottes déchaînées du maître forgeron",
+    "rarity": 4,
+    "type": "FOOT",
+    "max_level": 12,
+    "main_affix_id": "44",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/132_3.png"
   },
   {
     "id": "53015",
@@ -7060,6 +7324,94 @@
     "main_affix_id": "54",
     "sub_affix_id": "5",
     "icon": "icon/relic/130_3.png"
+  },
+  {
+    "id": "61311",
+    "set_id": "131",
+    "name": "Miroir de l'espace profond du Navigateur",
+    "rarity": 5,
+    "type": "HEAD",
+    "max_level": 15,
+    "main_affix_id": "51",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/131_0.png"
+  },
+  {
+    "id": "61312",
+    "set_id": "131",
+    "name": "Dé de jeu du Navigateur",
+    "rarity": 5,
+    "type": "HAND",
+    "max_level": 15,
+    "main_affix_id": "52",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/131_1.png"
+  },
+  {
+    "id": "61313",
+    "set_id": "131",
+    "name": "Uniforme célestographe du Navigateur",
+    "rarity": 5,
+    "type": "BODY",
+    "max_level": 15,
+    "main_affix_id": "53",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/131_2.png"
+  },
+  {
+    "id": "61314",
+    "set_id": "131",
+    "name": "Bottes marchéternelles du Navigateur",
+    "rarity": 5,
+    "type": "FOOT",
+    "max_level": 15,
+    "main_affix_id": "54",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/131_3.png"
+  },
+  {
+    "id": "61321",
+    "set_id": "132",
+    "name": "Masque de bête enflammée du maître forgeron",
+    "rarity": 5,
+    "type": "HEAD",
+    "max_level": 15,
+    "main_affix_id": "51",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/132_0.png"
+  },
+  {
+    "id": "61322",
+    "set_id": "132",
+    "name": "Gantelets en acier fin du maître forgeron",
+    "rarity": 5,
+    "type": "HAND",
+    "max_level": 15,
+    "main_affix_id": "52",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/132_1.png"
+  },
+  {
+    "id": "61323",
+    "set_id": "132",
+    "name": "Vêtement ignifugé du maître forgeron",
+    "rarity": 5,
+    "type": "BODY",
+    "max_level": 15,
+    "main_affix_id": "53",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/132_2.png"
+  },
+  {
+    "id": "61324",
+    "set_id": "132",
+    "name": "Bottes déchaînées du maître forgeron",
+    "rarity": 5,
+    "type": "FOOT",
+    "max_level": 15,
+    "main_affix_id": "54",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/132_3.png"
   },
   {
     "id": "63015",

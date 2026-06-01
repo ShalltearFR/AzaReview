@@ -109,8 +109,7 @@ export default async function Page({
 
   //Recupère les infos du joueur
   const resUid = await getDataUid("sr_info_parsed", slug);
-  const jsonUid: jsonUID = await resUid.json()
-  
+  const jsonUid: jsonUID = await resUid.json();
 
   jsonUid.characters = jsonUid.characters.filter(
     (c) => Array.isArray(c.skills) && c.skills.length > 0

@@ -753,7 +753,7 @@
   },
   {
     "id": "20023",
-    "skill": "Réjouissance",
+    "skill": "Indulgence",
     "desc": "Lorsque le Moment d'Aha est activé, l'Allégresse du porteur augmente de #1[i]% jusqu'à la fin du Moment d'Aha.",
     "params": [
       [
@@ -8771,6 +8771,80 @@
         {
           "type": "CriticalDamageBase",
           "value": 1.2
+        }
+      ]
+    ]
+  },
+  {
+    "id": "23059",
+    "skill": "Trempe",
+    "desc": "Augmente les PV max du porteur de #1[i]%. Au début de son tour, le porteur régénère un montant fixe de #2[i] points d'énergie. Cet effet peut s'activer 1 fois par vague. Après que le porteur a utilisé sa compétence pour attaquer, applique Purgatoire aux cibles pour une durée de #3[i] tours. Dans l'état Purgatoire, les DGT critiques subis par les cibles augmentent de #4[i]%, et les DGT critiques subis lors des attaques du porteur augmentent de #5[i]% supplémentaires.",
+    "params": [
+      [
+        0.3,
+        20,
+        2,
+        0.3,
+        0.3
+      ],
+      [
+        0.375,
+        20,
+        2,
+        0.375,
+        0.375
+      ],
+      [
+        0.45,
+        20,
+        2,
+        0.45,
+        0.45
+      ],
+      [
+        0.525,
+        20,
+        2,
+        0.525,
+        0.525
+      ],
+      [
+        0.6,
+        20,
+        2,
+        0.6,
+        0.6
+      ]
+    ],
+    "properties": [
+      [
+        {
+          "type": "HPAddedRatio",
+          "value": 0.3
+        }
+      ],
+      [
+        {
+          "type": "HPAddedRatio",
+          "value": 0.375
+        }
+      ],
+      [
+        {
+          "type": "HPAddedRatio",
+          "value": 0.45
+        }
+      ],
+      [
+        {
+          "type": "HPAddedRatio",
+          "value": 0.525
+        }
+      ],
+      [
+        {
+          "type": "HPAddedRatio",
+          "value": 0.6
         }
       ]
     ]

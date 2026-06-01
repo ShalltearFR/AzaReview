@@ -954,7 +954,7 @@
     "name": "L'avenir nous verra réunis",
     "rarity": 4,
     "path": "Elation",
-    "desc": "Un cadeau grandiose débarque sur le stream.\nC'est un gâteau d'anniversaire personnalisé pour fêter le troisième anniversaire, offert par les fans !\nChaque précieux souvenir devient une force motrice qui fédère le monde en cet instant.\nQue tout le monde avance joyeusement et en toute sécurité vers la nouvelle année !\nNe t'inquiète pas, conducteur ! Lapine de mars va immortaliser cet instant. \nDans cette atmosphère chaleureuse, tout le monde lève son verre ensemble, et les éclats de rire résonnent partout sans exceptions.\nEn ce jour de célébration, levons nos verres.\nÀ un lendemain rempli d'étoiles...\nSanté !",
+    "desc": "Un cadeau grandiose débarque sur le stream.\nC'est un gâteau d'anniversaire personnalisé pour fêter le troisième anniversaire, offert par les fans !\nChaque précieux souvenir devient une force motrice qui fédère le monde en cet instant.\nQue tout le monde avance joyeusement et en toute sécurité vers la nouvelle année !\nNe t'inquiète pas, conducteur ! Lapine de mars va immortaliser cet instant.\nDans cette atmosphère chaleureuse, tout le monde lève son verre ensemble, et les éclats de rire résonnent partout sans exception.\nEn ce jour de célébration, levons nos verres.\nÀ un lendemain rempli d'étoiles...\nSanté !",
     "icon": "icon/light_cone/22007.png",
     "preview": "image/light_cone_preview/22007.png",
     "portrait": "image/light_cone_portrait/22007.png"
@@ -1538,6 +1538,16 @@
     "icon": "icon/light_cone/23058.png",
     "preview": "image/light_cone_preview/23058.png",
     "portrait": "image/light_cone_portrait/23058.png"
+  },
+  {
+    "id": "23059",
+    "name": "Refonte infernale",
+    "rarity": 5,
+    "path": "Warlock",
+    "desc": "Un instant, tel le déferlement des flots. Le corps sombre, s'enfonçant dans les profondeurs de l'abîme azuré.\nUn instant, telle une île déserte. Les voix du passé résonnent dans la brume, s'évanouissant au loin, toujours plus loin.\nUn instant, tel un champ de lycoris rouge sang. Les lames brisées se consument et se reforgent dans le brasier, pour ne plus faire qu'un.\n« Puisque mon heure n'est pas encore venue, je renaîtrai de mes cendres. »\nLe désespoir pour fournaise, ce corps pour creuset, il ne sait plus combien de fois il a enduré ce tourment.\n« Je ferai de la mort mon marteau, et je... trancherai le destin ! »\nÀ l'instant de la renaissance, les flammes éclatent et jaillissent vers les cieux, embrasant l'horizon jusqu'aux confins de l'au-delà.\nAlors, les dettes karmiques s'effacent. Ce nouveau corps, forgé par mille trempes, a enfin trouvé sa forme.",
+    "icon": "icon/light_cone/23059.png",
+    "preview": "image/light_cone_preview/23059.png",
+    "portrait": "image/light_cone_portrait/23059.png"
   },
   {
     "id": "24000",

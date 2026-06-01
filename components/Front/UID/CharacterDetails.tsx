@@ -247,7 +247,6 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
                   })()}
               </div>
             </div>
-            {/* </div> */}
           </div>
           <CharacterLightCone
             lightCone={character.light_cone}

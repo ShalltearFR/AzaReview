@@ -545,6 +545,42 @@
     "icon": "icon/relic/130.png"
   },
   {
+    "id": "131",
+    "name": "Comme le navigateur Japper Soie le voit",
+    "desc": [
+      "Augmente l'ATQ de 12%.",
+      "Lorsque le porteur entre en combat ou utilise sa compétence, les DGT infligés par sa compétence et son ultime augmentent de 18%, cumulable jusqu'à 3 fois. Au début du tour du porteur ou après l'utilisation de l'ultime, supprime 1 cumul de cet effet."
+    ],
+    "properties": [
+      [
+        {
+          "type": "AttackAddedRatio",
+          "value": 0.12
+        }
+      ],
+      []
+    ],
+    "icon": "icon/relic/131.png"
+  },
+  {
+    "id": "132",
+    "name": "Forge de l'artisan céleste",
+    "desc": [
+      "Augmente les PV max de 12%.",
+      "Augmente de 28% les DGT critiques infligés par le porteur aux cibles ennemies avec une réduction de DÉF. Lorsque le porteur applique une réduction de DÉF à une cible ennemie, applique l'effet Comburant à tous les alliés pour une durée de 2 tours. Cet effet n'est pas cumulable. Les DGT infligés par les cibles alliées avec Comburant augmentent de 15%. Cet effet peut se déclencher à nouveau après une attaque du porteur."
+    ],
+    "properties": [
+      [
+        {
+          "type": "HPAddedRatio",
+          "value": 0.12
+        }
+      ],
+      []
+    ],
+    "icon": "icon/relic/132.png"
+  },
+  {
     "id": "301",
     "name": "Station de scellement spatial",
     "desc": [

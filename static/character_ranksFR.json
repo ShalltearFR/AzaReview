@@ -8393,7 +8393,7 @@
     "id": "150501",
     "name": "Terre natale : Une prière dansée",
     "rank": 1,
-    "desc": "Augmente la PÉN de RÉS à tous les types de 20%. Après une attaque de Maître renard, déclenche la comicompétence 1 fois supplémentaire. La comicompétence accorde 10 points de Banger absolu supplémentaires à cette unité.",
+    "desc": "Augmente la PÉN de RÉS à tous les types de 20%. Après une attaque de Maître renard, déclenche la comicompétence 1 fois supplémentaire. La comicompétence accorde 10 points supplémentaires de Banger absolu à cette unité.",
     "materials": [
       {
         "id": "11505",
@@ -8632,6 +8632,116 @@
     ],
     "level_up_skills": [],
     "icon": "icon/skill/1506_rank6.png"
+  },
+  {
+    "id": "150701",
+    "name": "Absolution par la mort",
+    "rank": 1,
+    "desc": "Lorsque la zone est active, réduit toutes les RÉS de type de tous les ennemis de 20%. Après avoir lancé la compétence supplémentaire du talent, retarde l'action du compte à rebours de Courroux éternel de 15%.",
+    "materials": [
+      {
+        "id": "11507",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1507_rank1.png"
+  },
+  {
+    "id": "150702",
+    "name": "Feu d'un cœur en cendres",
+    "rank": 2,
+    "desc": "Lorsqu'un personnage allié utilise son ultime pour infliger des DGT, il est considéré comme ayant lancé une ATQ de suivi. Les DGT infligés par les ATQ de suivi des cibles alliées augmentent de 75%. La limite de points de charge de Blade Mortenax diminue et passe à 7.",
+    "materials": [
+      {
+        "id": "11507",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1507_rank2.png"
+  },
+  {
+    "id": "150703",
+    "name": "Colère de l'autre rive",
+    "rank": 3,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "11507",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "150703",
+        "num": 2
+      },
+      {
+        "id": "150704",
+        "num": 2
+      },
+      {
+        "id": "150714",
+        "num": 2
+      }
+    ],
+    "icon": "icon/skill/1507_ultimate.png"
+  },
+  {
+    "id": "150704",
+    "name": "Au fil de la haine",
+    "rank": 4,
+    "desc": "Cœur par mille fois endurci augmente les DGT infligés par les cibles alliées de 50% supplémentaires.",
+    "materials": [
+      {
+        "id": "11507",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1507_rank4.png"
+  },
+  {
+    "id": "150705",
+    "name": "Une vie née dans l'amertume",
+    "rank": 5,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.",
+    "materials": [
+      {
+        "id": "11507",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "150702",
+        "num": 2
+      },
+      {
+        "id": "150701",
+        "num": 1
+      },
+      {
+        "id": "150708",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1507_skill.png"
+  },
+  {
+    "id": "150706",
+    "name": "Mort à l'immortalité",
+    "rank": 6,
+    "desc": "Lorsque la zone est active, Blade Mortenax obtient 1 point de charge quand il subit des DGT ou consomme des PV. Cet effet peut se déclencher à nouveau après la fin du tour de n'importe quelle cible. Le multiplicateur de DGT de Tenax Per Ignem augmente jusqu'à 150% de la valeur initiale.",
+    "materials": [
+      {
+        "id": "11507",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1507_rank6.png"
   },
   {
     "id": "800101",
@@ -9547,7 +9657,7 @@
     "id": "800902",
     "name": "Moment incroyable en préparation...",
     "rank": 2,
-    "desc": "L'ultime augmente l'Allégresse d'un allié désigné de 12% supplémentaires pendant 2 tours.",
+    "desc": "L'ultime augmente également l'Allégresse d'un allié désigné de 12% pendant 2 tours.",
     "materials": [
       {
         "id": "18009",
@@ -9657,7 +9767,7 @@
     "id": "801002",
     "name": "Moment incroyable en préparation...",
     "rank": 2,
-    "desc": "L'ultime augmente l'Allégresse d'un allié désigné de 12% supplémentaires pendant 2 tours.",
+    "desc": "L'ultime augmente également l'Allégresse d'un allié désigné de 12% pendant 2 tours.",
     "materials": [
       {
         "id": "18009",
@@ -10147,7 +10257,7 @@
     "id": "1110206",
     "name": "Ébranlements éclatants",
     "rank": 6,
-    "desc": "Après avoir attaqué avec son ultime, Seele applique l'effet Volée de papillons à la cible pour une durée de 3 tours. Lorsqu'une cible ennemie dans l'état Volée de papillons subit une attaque, elle subit également 1 instance de DGT réels équivalents à 30% des DGT de l'ultime de Seele. Lorsque la cible affectée par Volée de papillons est éliminée par n'importe quelle cible, le talent de Seele se déclenche également.\nLorsque Seele est à terre, dissipe l'effet Volée de papillons appliqué aux ennemis.",
+    "desc": "Après avoir attaqué avec son ultime, Seele applique l'effet Volée de papillons à la cible pour une durée de 3 tours. Lorsqu'une cible ennemie dans l'état Volée de papillons subit une attaque, elle subit également 1 instance de DGT réels équivalents à 30% des DGT de l'ultime de Seele. Lorsque la cible affectée par Volée de papillons est éliminée par n'importe quelle unité, le talent de Seele se déclenche également.\nLorsque Seele est à terre, dissipe l'effet Volée de papillons appliqué aux ennemis.",
     "materials": [
       {
         "id": "11102",
