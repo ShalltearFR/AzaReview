@@ -8744,6 +8744,348 @@
     "icon": "icon/skill/1507_rank6.png"
   },
   {
+    "id": "150801",
+    "name": "Apprentie de Zelretch",
+    "rank": 1,
+    "desc": "Si la quantité de Puissance minérale consommée par une seule compétence renforcée est supérieure ou égale à 30 points, Rin Tohsaka obtient une quantité de Gemmes obscures équivalente à la quantité de Puissance minérale consommée.\nLorsque Rin Tohsaka bénéficie de Gemmes obscures, renforce la compétence en Seconde expérience magique. Cette compétence renforcée consomme toutes les Gemmes obscures, ne déclenche pas l'effet de conversion des points de compétence en Puissance minérale et ne consomme pas de Puissance minérale.",
+    "materials": [
+      {
+        "id": "11508",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1508_rank1.png"
+  },
+  {
+    "id": "150802",
+    "name": "Voyageuse dimensionnelle",
+    "rank": 2,
+    "desc": "Augmente les DGT de compétence infligés par Rin Tohsaka de 30%. Lorsque Rin Tohsaka est sur le champ de bataille, les DGT de compétence infligés par tous les alliés sont équivalents à 130% des DGT initiaux.",
+    "materials": [
+      {
+        "id": "11508",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1508_rank2.png"
+  },
+  {
+    "id": "150803",
+    "name": "Guerre du Saint Graal : Monument de la victoire",
+    "rank": 3,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.",
+    "materials": [
+      {
+        "id": "11508",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "150802",
+        "num": 2
+      },
+      {
+        "id": "150801",
+        "num": 1
+      },
+      {
+        "id": "150809",
+        "num": 2
+      }
+    ],
+    "icon": "icon/skill/1508_skill.png"
+  },
+  {
+    "id": "150804",
+    "name": "Démon rouge : Triple vitesse",
+    "rank": 4,
+    "desc": "Lorsque Rin Tohsaka bénéficie de l'effet d'augmentation de DGT critiques du talent Magie minérale, cet effet peut se cumuler jusqu'à 2 fois.",
+    "materials": [
+      {
+        "id": "11508",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1508_rank4.png"
+  },
+  {
+    "id": "150805",
+    "name": "Faveur de la déesse de Vénus",
+    "rank": 5,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "11508",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "150803",
+        "num": 2
+      },
+      {
+        "id": "150804",
+        "num": 2
+      },
+      {
+        "id": "150805",
+        "num": 2
+      }
+    ],
+    "icon": "icon/skill/1508_ultimate.png"
+  },
+  {
+    "id": "150806",
+    "name": "Enfin réussi !",
+    "rank": 6,
+    "desc": "La PÉN de RÉS à tous les types de Rin Tohsaka augmente de 20%. Lors de l'utilisation de l'ultime, obtient 24 points de Puissance minérale et 1 tour supplémentaire.",
+    "materials": [
+      {
+        "id": "11508",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1508_rank6.png"
+  },
+  {
+    "id": "150901",
+    "name": "Celui qui vit les profondeurs",
+    "rank": 1,
+    "desc": "Lorsque Gilgamesh bénéficie de Reconnaissance du roi, l'effet de DÉF ignorée s'applique également aux autres coéquipiers, et Reconnaissance du roi augmente l'ATQ de Gilgamesh de 60% supplémentaires. Il régénère également 40 points d'énergie lorsqu'il utilise sa compétence.",
+    "materials": [
+      {
+        "id": "11509",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1509_rank1.png"
+  },
+  {
+    "id": "150902",
+    "name": "Une sagesse qui comprenait tout",
+    "rank": 2,
+    "desc": "Lorsque Gilgamesh entre en combat, il obtient 5 points d'Intérêt, et il obtient 5 points d'Intérêt supplémentaires lorsqu'il utilise son ultime. Le multiplicateur de DGT de la compétence Gate of Babylon augmente de 100% contre la cible principale, et de 50% contre les cibles adjacentes.",
+    "materials": [
+      {
+        "id": "11509",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1509_rank2.png"
+  },
+  {
+    "id": "150903",
+    "name": "Un voyage aux confins du monde",
+    "rank": 3,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.",
+    "materials": [
+      {
+        "id": "11509",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "150902",
+        "num": 2
+      },
+      {
+        "id": "150901",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1509_skill.png"
+  },
+  {
+    "id": "150904",
+    "name": "Souverain suprême",
+    "rank": 4,
+    "desc": "Le taux de régénération d'énergie de Gilgamesh augmente de 20%.",
+    "materials": [
+      {
+        "id": "11509",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1509_rank4.png"
+  },
+  {
+    "id": "150905",
+    "name": "L'épée qui sépara le divin de l'humain",
+    "rank": 5,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "11509",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "150903",
+        "num": 2
+      },
+      {
+        "id": "150904",
+        "num": 2
+      },
+      {
+        "id": "150905",
+        "num": 2
+      }
+    ],
+    "icon": "icon/skill/1509_ultimate.png"
+  },
+  {
+    "id": "150906",
+    "name": "L'âme qui porta l'amitié",
+    "rank": 6,
+    "desc": "Le multiplicateur de DGT de rebond de l'ultime Enuma Elish augmente de 80%. Lorsque Gilgamesh est sur le champ de bataille, la PÉN de RÉS à tous les types des personnages alliés augmente de 20%. Lorsqu'un coéquipier utilise son ultime, Gilgamesh obtient 1 point de Règle d'or, jusqu'à un maximum de 3 points. Lorsque Gilgamesh utilise son ultime, il consomme tous les points de Règle d'or. Pour chaque point de Règle d'or consommé, les DGT critiques des DGT d'ultime infligés augmentent de 100%.",
+    "materials": [
+      {
+        "id": "11509",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1509_rank6.png"
+  },
+  {
+    "id": "151001",
+    "name": "Notre chemin, c'est l'exploration pionnière",
+    "rank": 1,
+    "desc": "Augmente de 1 le nombre d'utilisations supplémentaires de la compétence de soutien du talent. Dans l'état Protocole de compagnon : Verdict, réduit le nombre d'utilisations de l'ultime requises pour lancer la compétence de soutien de 1. Dans l'état Protocole de compagnon : Anéantissement, réduit la charge requise pour lancer la compétence de soutien de 3. Lorsque Himeko • Nova lance la compétence de soutien, augmente le nombre d'instances de DGT supplémentaire de 1.",
+    "materials": [
+      {
+        "id": "11510",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1510_rank1.png"
+  },
+  {
+    "id": "151002",
+    "name": "L'étendard, une voile à jamais déployée",
+    "rank": 2,
+    "desc": "La limite d'utilisations de la compétence de soutien monte à 2 et les DGT infligés par l'ultime et la compétence de soutien sont équivalents à 130% des DGT initiaux. Au début de chaque tour dans l'état Sémaphore de navigation, récupère immédiatement 1 utilisation supplémentaire de la compétence de soutien. Les personnages qui ne sont pas des Compagnons pionniers activent également l'effet de la Trace Rugissement du pouls de l'Astral Express et obtiennent 1 tour supplémentaire lorsqu'ils utilisent la compétence de soutien.",
+    "materials": [
+      {
+        "id": "11510",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1510_rank2.png"
+  },
+  {
+    "id": "151003",
+    "name": "L'enfant des étoiles rêve des astres",
+    "rank": 3,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.",
+    "materials": [
+      {
+        "id": "11510",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "151003",
+        "num": 2
+      },
+      {
+        "id": "151001",
+        "num": 1
+      },
+      {
+        "id": "151008",
+        "num": 2
+      },
+      {
+        "id": "151009",
+        "num": 2
+      },
+      {
+        "id": "151014",
+        "num": 2
+      }
+    ],
+    "icon": "icon/skill/1510_ultimate.png"
+  },
+  {
+    "id": "151004",
+    "name": "Un objectif partagé",
+    "rank": 4,
+    "desc": "Lors de l'utilisation de la compétence de soutien via le talent Voyage commun sur un chemin brûlant, l'effet d'augmentation de PÉN de RÉS à tous les types s'applique à tous les alliés. Lorsque Himeko • Nova bénéficie de cet effet, sa PÉN de RÉS à tous les types augmente de 10% supplémentaires.",
+    "materials": [
+      {
+        "id": "11510",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1510_rank4.png"
+  },
+  {
+    "id": "151005",
+    "name": "Traverser le cosmos et au-delà",
+    "rank": 5,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "11510",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "151002",
+        "num": 2
+      },
+      {
+        "id": "151004",
+        "num": 2
+      },
+      {
+        "id": "151022",
+        "num": 2
+      },
+      {
+        "id": "151025",
+        "num": 2
+      },
+      {
+        "id": "151026",
+        "num": 2
+      }
+    ],
+    "icon": "icon/skill/1510_skill.png"
+  },
+  {
+    "id": "151006",
+    "name": "Notre serment est de naviguer vers les étoiles",
+    "rank": 6,
+    "desc": "La PÉN de RÉS au feu de Himeko • Nova augmente de 20%. La limite d'Énergie primordiale monte à 6 points. Lorsqu'un allié utilise ou active la compétence de soutien, les DGT infligés par la compétence de soutien augmentent de 75% et Himeko • Nova obtient 1 point d'Énergie primordiale. Lors de l'activation de Rayon de particules hyperluminales pendant l'ultime, obtient 1 point d'Énergie primordiale supplémentaire. Lors de l'activation d'Impulsion d'annihilation orbitale, si l'Énergie primordiale actuelle est supérieure ou égale à 6 points, inflige 1 instance supplémentaire de DGT de feu équivalents à 160% de l'ATQ de Himeko • Nova à tous les ennemis.",
+    "materials": [
+      {
+        "id": "11510",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1510_rank6.png"
+  },
+  {
     "id": "800101",
     "name": "Étoile tombée du ciel",
     "rank": 1,

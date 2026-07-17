@@ -1980,6 +1980,50 @@
     "icon": "icon/relic/326_1.png"
   },
   {
+    "id": "33275",
+    "set_id": "327",
+    "name": "L'Astral Express échoué au point de départ",
+    "rarity": 2,
+    "type": "NECK",
+    "max_level": 6,
+    "main_affix_id": "25",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/327_0.png"
+  },
+  {
+    "id": "33276",
+    "set_id": "327",
+    "name": "Rails d'argent du point de départ",
+    "rarity": 2,
+    "type": "OBJECT",
+    "max_level": 6,
+    "main_affix_id": "26",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/327_1.png"
+  },
+  {
+    "id": "33285",
+    "set_id": "328",
+    "name": "Synapse centrale de l'Institut des Sciences de la vie",
+    "rarity": 2,
+    "type": "NECK",
+    "max_level": 6,
+    "main_affix_id": "25",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/328_0.png"
+  },
+  {
+    "id": "33286",
+    "set_id": "328",
+    "name": "Conduits périphériques de l'Institut des Sciences de la vie",
+    "rarity": 2,
+    "type": "OBJECT",
+    "max_level": 6,
+    "main_affix_id": "26",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/328_1.png"
+  },
+  {
     "id": "41011",
     "set_id": "101",
     "name": "Épingle à cheveux en bois rajeuni du vagabond",
@@ -3960,6 +4004,50 @@
     "icon": "icon/relic/326_1.png"
   },
   {
+    "id": "43275",
+    "set_id": "327",
+    "name": "L'Astral Express échoué au point de départ",
+    "rarity": 3,
+    "type": "NECK",
+    "max_level": 9,
+    "main_affix_id": "35",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/327_0.png"
+  },
+  {
+    "id": "43276",
+    "set_id": "327",
+    "name": "Rails d'argent du point de départ",
+    "rarity": 3,
+    "type": "OBJECT",
+    "max_level": 9,
+    "main_affix_id": "36",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/327_1.png"
+  },
+  {
+    "id": "43285",
+    "set_id": "328",
+    "name": "Synapse centrale de l'Institut des Sciences de la vie",
+    "rarity": 3,
+    "type": "NECK",
+    "max_level": 9,
+    "main_affix_id": "35",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/328_0.png"
+  },
+  {
+    "id": "43286",
+    "set_id": "328",
+    "name": "Conduits périphériques de l'Institut des Sciences de la vie",
+    "rarity": 3,
+    "type": "OBJECT",
+    "max_level": 9,
+    "main_affix_id": "36",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/328_1.png"
+  },
+  {
     "id": "51011",
     "set_id": "101",
     "name": "Épingle à cheveux en bois rajeuni du vagabond",
@@ -5938,6 +6026,50 @@
     "main_affix_id": "46",
     "sub_affix_id": "4",
     "icon": "icon/relic/326_1.png"
+  },
+  {
+    "id": "53275",
+    "set_id": "327",
+    "name": "L'Astral Express échoué au point de départ",
+    "rarity": 4,
+    "type": "NECK",
+    "max_level": 12,
+    "main_affix_id": "45",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/327_0.png"
+  },
+  {
+    "id": "53276",
+    "set_id": "327",
+    "name": "Rails d'argent du point de départ",
+    "rarity": 4,
+    "type": "OBJECT",
+    "max_level": 12,
+    "main_affix_id": "46",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/327_1.png"
+  },
+  {
+    "id": "53285",
+    "set_id": "328",
+    "name": "Synapse centrale de l'Institut des Sciences de la vie",
+    "rarity": 4,
+    "type": "NECK",
+    "max_level": 12,
+    "main_affix_id": "45",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/328_0.png"
+  },
+  {
+    "id": "53286",
+    "set_id": "328",
+    "name": "Conduits périphériques de l'Institut des Sciences de la vie",
+    "rarity": 4,
+    "type": "OBJECT",
+    "max_level": 12,
+    "main_affix_id": "46",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/328_1.png"
   },
   {
     "id": "55001",
@@ -7984,5 +8116,49 @@
     "main_affix_id": "56",
     "sub_affix_id": "5",
     "icon": "icon/relic/326_1.png"
+  },
+  {
+    "id": "63275",
+    "set_id": "327",
+    "name": "L'Astral Express échoué au point de départ",
+    "rarity": 5,
+    "type": "NECK",
+    "max_level": 15,
+    "main_affix_id": "55",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/327_0.png"
+  },
+  {
+    "id": "63276",
+    "set_id": "327",
+    "name": "Rails d'argent du point de départ",
+    "rarity": 5,
+    "type": "OBJECT",
+    "max_level": 15,
+    "main_affix_id": "56",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/327_1.png"
+  },
+  {
+    "id": "63285",
+    "set_id": "328",
+    "name": "Synapse centrale de l'Institut des Sciences de la vie",
+    "rarity": 5,
+    "type": "NECK",
+    "max_level": 15,
+    "main_affix_id": "55",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/328_0.png"
+  },
+  {
+    "id": "63286",
+    "set_id": "328",
+    "name": "Conduits périphériques de l'Institut des Sciences de la vie",
+    "rarity": 5,
+    "type": "OBJECT",
+    "max_level": 15,
+    "main_affix_id": "56",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/328_1.png"
   }
 ]

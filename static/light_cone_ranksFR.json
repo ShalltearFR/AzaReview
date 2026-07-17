@@ -8850,6 +8850,238 @@
     ]
   },
   {
+    "id": "23060",
+    "skill": "Premier vœu",
+    "desc": "Les DGT infligés par le porteur ignorent #7[i]% de la DÉF des cibles. Lorsque le porteur utilise une compétence de soutien, il régénère #2[i] points d'énergie et obtient l'état Voile pour une durée de 2 tours, cumulable jusqu'à #3[i] fois. Chaque cumul de Voile augmente les DGT de la compétence de soutien de #4[i]%. Lorsque les cumuls de Voile atteignent le nombre de #5[i], chaque cumul augmente les DGT d'ultime de #6[i]%.",
+    "params": [
+      [
+        0,
+        6,
+        3,
+        0.2,
+        3,
+        0.2,
+        0.32
+      ],
+      [
+        0,
+        6,
+        3,
+        0.25,
+        3,
+        0.25,
+        0.36
+      ],
+      [
+        0,
+        6,
+        3,
+        0.3,
+        3,
+        0.3,
+        0.4
+      ],
+      [
+        0,
+        6,
+        3,
+        0.35,
+        3,
+        0.35,
+        0.44
+      ],
+      [
+        0,
+        6,
+        3,
+        0.4,
+        3,
+        0.4,
+        0.48
+      ]
+    ],
+    "properties": [
+      [],
+      [],
+      [],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "23061",
+    "skill": "Pousse",
+    "desc": "Augmente les chances de coup critique du porteur de #1[i]%. Lorsqu'un allié consomme un total d'au moins #3[i] points de compétence en un seul tour, le porteur obtient Couronne radieuse pour une durée de #4[i] tours. Lorsque le porteur bénéficie de Couronne radieuse, les DGT infligés par tous les alliés ignorent #5[i]% de la DÉF des cibles, et les DGT infligés par la compétence du porteur augmentent de #2[i]%. Les effets du même type ne peuvent pas être cumulés.",
+    "params": [
+      [
+        0.18,
+        0.72,
+        4,
+        3,
+        0.2
+      ],
+      [
+        0.21,
+        0.84,
+        4,
+        3,
+        0.24
+      ],
+      [
+        0.24,
+        0.96,
+        4,
+        3,
+        0.28
+      ],
+      [
+        0.27,
+        1.08,
+        4,
+        3,
+        0.32
+      ],
+      [
+        0.3,
+        1.2,
+        4,
+        3,
+        0.36
+      ]
+    ],
+    "properties": [
+      [
+        {
+          "type": "CriticalChanceBase",
+          "value": 0.18
+        }
+      ],
+      [
+        {
+          "type": "CriticalChanceBase",
+          "value": 0.21
+        }
+      ],
+      [
+        {
+          "type": "CriticalChanceBase",
+          "value": 0.24
+        }
+      ],
+      [
+        {
+          "type": "CriticalChanceBase",
+          "value": 0.27
+        }
+      ],
+      [
+        {
+          "type": "CriticalChanceBase",
+          "value": 0.3
+        }
+      ]
+    ]
+  },
+  {
+    "id": "23062",
+    "skill": "À volonté",
+    "desc": "Augmente l'ATQ du porteur de #1[i]% et son taux de régénération d'énergie de #2[f1]%. Lorsque le porteur utilise son ultime, augmente les DGT d'ultime infligés par cette attaque de #3[f2]% pour chaque point d'énergie consommé, jusqu'à un maximum de #6[i]%. Lorsque le porteur entre en combat ou utilise son ultime, il obtient l'état Amusement royal pour une durée de #4[i] tours. Lorsque le porteur est dans l'état Amusement royal, augmente les DGT critiques de tous les alliés de #5[i]%. Les effets du même type ne peuvent pas être cumulés.",
+    "params": [
+      [
+        0.18,
+        0.1,
+        0.002,
+        3,
+        0.24,
+        0.72
+      ],
+      [
+        0.21,
+        0.125,
+        0.0025,
+        3,
+        0.3,
+        0.9
+      ],
+      [
+        0.24,
+        0.15,
+        0.003,
+        3,
+        0.36,
+        1.08
+      ],
+      [
+        0.27,
+        0.175,
+        0.0035,
+        3,
+        0.42,
+        1.26
+      ],
+      [
+        0.3,
+        0.2,
+        0.004,
+        3,
+        0.48,
+        1.44
+      ]
+    ],
+    "properties": [
+      [
+        {
+          "type": "AttackAddedRatio",
+          "value": 0.18
+        },
+        {
+          "type": "SPRatioBase",
+          "value": 0.1
+        }
+      ],
+      [
+        {
+          "type": "AttackAddedRatio",
+          "value": 0.21
+        },
+        {
+          "type": "SPRatioBase",
+          "value": 0.125
+        }
+      ],
+      [
+        {
+          "type": "AttackAddedRatio",
+          "value": 0.24
+        },
+        {
+          "type": "SPRatioBase",
+          "value": 0.15
+        }
+      ],
+      [
+        {
+          "type": "AttackAddedRatio",
+          "value": 0.27
+        },
+        {
+          "type": "SPRatioBase",
+          "value": 0.175
+        }
+      ],
+      [
+        {
+          "type": "AttackAddedRatio",
+          "value": 0.3
+        },
+        {
+          "type": "SPRatioBase",
+          "value": 0.2
+        }
+      ]
+    ]
+  },
+  {
     "id": "24000",
     "skill": "Comme un aimant",
     "desc": "Pendant ce combat, chaque fois que le porteur attaque, son ATQ augmente de #1[i]%, cumulable jusqu'à #2[i] fois. Après que le porteur a infligé une Rupture de faiblesse à un ennemi, ses DGT augmentent de #3[i]% pendant #4[i] tours.",

@@ -1550,6 +1550,36 @@
     "portrait": "image/light_cone_portrait/23059.png"
   },
   {
+    "id": "23060",
+    "name": "Une étoile illuminant la nuit",
+    "rarity": 5,
+    "path": "Mage",
+    "desc": "Lorsqu'elle se remémora son enfance, elle se souvint de la première fois qu'elle avait entendu les histoires des aventures de l'exploration pionnière.\nSon petit cœur battait pour les vastes mystères du cosmos, alors elle avait pris un pinceau pour dessiner ses toutes premières visions de l'espace.\n« Un vaisseau-comète, un rail d'argent, une navigatrice... »\n« Dans ces conditions, on peut s'engager sur la Voie du Pionnier, non ? »\nMais une malédiction retarda ses pas, et un lit d'hôpital confina sa jeunesse.\nDurant ces périodes de solitude, de hautes piles de livres, des plans de moteurs éparpillés et des flacons de peinture vides devinrent son quotidien.\nSa frêle silhouette maniait le pinceau et esquissait avec soin le rêve qu'elle chérissait.\n« Peut-être que je peux saisir encore plus de possibilités dans ce temps limité. »\n« Même un rêve mérite de briller de couleurs. »\nAlors que les étoiles se déplacèrent une fois encore, en un clin d'œil, elle avait déjà pris le départ pour son voyage vers les étoiles.\nPortant le vœu qu'elle avait partagé avec ses amis, elle devint la personne qu'elle avait toujours rêvé d'être.\n« L'exploration pionnière commence à cet instant précis. »\nL'Astral Express traverse l'univers, et les empreintes de pas jointes de la navigatrice et de ses compagnons forment un solide rail d'argent.\n« Avançons ensemble vers l'avenir où résident les étoiles ! »",
+    "icon": "icon/light_cone/23060.png",
+    "preview": "image/light_cone_preview/23060.png",
+    "portrait": "image/light_cone_portrait/23060.png"
+  },
+  {
+    "id": "23061",
+    "name": "Étoiles scintillantes",
+    "rarity": 5,
+    "path": "Mage",
+    "desc": "À l'instant où l'énergie magique jaillit, les teintes éclatantes de la gemme éclaboussent les murs.\nL'adolescente arbore un sourire ravi, enveloppant délicatement la lumière dansante entre ses paumes.\n« J'ai réussi ! Est-ce que ça signifie que je peux aussi devenir une grande mage un jour ? »\nElle imagine son avenir en tant que mage, plantant la graine d'un souhait au plus profond de son cœur.\n« Tu peux le faire, Rin Tohsaka ! Réussir une fois ne suffit pas ! Tu dois réussir d'innombrables fois ! »\n« Je ne sais pas ce que l'avenir me réserve, mais pour l'instant, suis simplement ton cœur et avance ! »\nEn cet instant de triomphe, ses attentes envers elle-même, les espoirs de sa famille et la responsabilité qu'elle porte convergent tous.\nLa jeune fille s'encourage silencieusement. Elle est prête à devenir la meilleure version d'elle-même.\nLe chemin devant elle s'étend, long et ardu, et pourtant son cœur ardent brille plus que n'importe quelle magie.",
+    "icon": "icon/light_cone/23061.png",
+    "preview": "image/light_cone_preview/23061.png",
+    "portrait": "image/light_cone_portrait/23061.png"
+  },
+  {
+    "id": "23062",
+    "name": "Je suis tel que tu me vois",
+    "rarity": 5,
+    "path": "Warrior",
+    "desc": "Trésors, pouvoir, conquête, défis... Un tourbillon de fragments défilait en boucle dans son esprit.\nDans la lumière vacillante de la lampe, le roi vida sa coupe d'un trait.\n« Des richesses débordantes, des terres sans limites, un pouvoir absolu. Tout ce qui m'appartient de droit est à moi. »\n« Mais si ce n'est que cela... qu'est-ce qui compte réellement ? »\nUne silhouette nonchalante s'enfonça dans le canapé moelleux, ses pensées et ses réflexions se dissipant comme de la fumée en un instant.\nMême un roi doit parfois se rendre à ses propres désirs et savourer un moment de plaisir.\n« Qu'importe ce que je cherche ou ce que j'obtiens ? Les instants où la vie bat librement à ma guise sont les moments que je chéris le plus. »",
+    "icon": "icon/light_cone/23062.png",
+    "preview": "image/light_cone_preview/23062.png",
+    "portrait": "image/light_cone_portrait/23062.png"
+  },
+  {
     "id": "24000",
     "name": "La chute d'un Aiôn",
     "rarity": 5,
