@@ -9086,6 +9086,242 @@
     "icon": "icon/skill/1510_rank6.png"
   },
   {
+    "id": "151201",
+    "name": "Oiselle estivale et solitaire",
+    "rank": 1,
+    "desc": "Les Gazouilleurs enregistrent 100% des DGT infligés par les cibles alliées (hors DGT réels). Lors de l'utilisation de la compétence du mnémesprit, inflige à la cible ennemie ayant le plus de PV des DGT réels supplémentaires équivalents à (11% + nombre actuel de points d'entrain × 0.1%) du montant total des DGT enregistrés, puis réinitialise 50% de la valeur enregistrée.",
+    "materials": [
+      {
+        "id": "11512",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1512_rank1.png"
+  },
+  {
+    "id": "151202",
+    "name": "Cœur d'une eau calme",
+    "rank": 2,
+    "desc": "La PÉN de RÉS à tous les types de toutes les cibles alliées augmente de 18%. La limite de points d'entrain de Robin • Estivaria augmente de 20. Durant le tour de n'importe quelle cible, la première fois qu'une cible alliée utilise une capacité et fait gagner des points d'entrain à Robin • Estivaria, elle obtient 2 points d'entrain supplémentaires.",
+    "materials": [
+      {
+        "id": "11512",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1512_rank2.png"
+  },
+  {
+    "id": "151203",
+    "name": "Rive des échos",
+    "rank": 3,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.\nNiv. de talent du mnémesprit +1, jusqu'au Niv. 10 maximum.",
+    "materials": [
+      {
+        "id": "11512",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "151202",
+        "num": 2
+      },
+      {
+        "id": "151204",
+        "num": 2
+      },
+      {
+        "id": "1151203",
+        "num": 1
+      },
+      {
+        "id": "1151205",
+        "num": 1
+      },
+      {
+        "id": "1151206",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1512_skill.png"
+  },
+  {
+    "id": "151204",
+    "name": "Variations mélodiques",
+    "rank": 4,
+    "desc": "Lorsque Robin • Estivaria entre dans l'état Liesse, elle gagne immédiatement 12 points d'entrain, et la VIT des Gazouilleurs augmente d'un montant équivalent à (20% + nombre actuel de points d'entrain × 0.5%).",
+    "materials": [
+      {
+        "id": "11512",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1512_rank4.png"
+  },
+  {
+    "id": "151205",
+    "name": "Vers une aube nouvelle",
+    "rank": 5,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.\nNiv. de compétence du mnémesprit +1, jusqu'au Niv. 10 maximum.",
+    "materials": [
+      {
+        "id": "11512",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "151203",
+        "num": 2
+      },
+      {
+        "id": "151201",
+        "num": 1
+      },
+      {
+        "id": "1151201",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1512_ultimate.png"
+  },
+  {
+    "id": "151206",
+    "name": "Chanson sans titre",
+    "rank": 6,
+    "desc": "Augmente le multiplicateur de DGT de la compétence du mnémesprit de 100% de sa valeur initiale. Dans l'état Liesse, l'ultime de Robin • Estivaria peut être cumulé jusqu'à 2 fois. Après l'entrée dans l'état Liesse pour la première fois en combat ou au début du tour du compte à rebours de Liesse, régénère un montant fixe de 140 points d'énergie.",
+    "materials": [
+      {
+        "id": "11512",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1512_rank6.png"
+  },
+  {
+    "id": "151301",
+    "name": "Congés en jeu",
+    "rank": 1,
+    "desc": "Augmente la PÉN de RÉS à tous les types de 24%.\nRenforce le talent : lorsque la Ferveur atteint 10, 20 ou 30 points, utilise immédiatement À la santé d'un bel été.",
+    "materials": [
+      {
+        "id": "11513",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1513_rank1.png"
+  },
+  {
+    "id": "151302",
+    "name": "Flots de l'oisiveté",
+    "rank": 2,
+    "desc": "Augmente la limite max de Ferveur à 50 points. Lorsque la Ferveur atteint 40/50 points, déclenche également la capacité À la santé d'un bel été du talent. Après avoir utilisé une comicompétence, accorde 4 points de Ferveur supplémentaires.",
+    "materials": [
+      {
+        "id": "11513",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1513_rank2.png"
+  },
+  {
+    "id": "151303",
+    "name": "Rendez-vous tout frais",
+    "rank": 3,
+    "desc": "Niv. de la compétence +2, jusqu'au Niv. 15 maximum.\nNiv. du talent +2, jusqu'au Niv. 15 maximum.\nNiv. de la comicompétence +1, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "11513",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "151302",
+        "num": 2
+      },
+      {
+        "id": "151304",
+        "num": 2
+      },
+      {
+        "id": "151320",
+        "num": 1
+      },
+      {
+        "id": "151321",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1513_skill.png"
+  },
+  {
+    "id": "151304",
+    "name": "Pas de négociation avec le soleil",
+    "rank": 4,
+    "desc": "Lorsqu'Aventurine • Croisette utilise sa compétence, les DGT infligés par tous les alliés ignorent 18% de la DÉF des cibles ennemies pendant 3 tours.",
+    "materials": [
+      {
+        "id": "11513",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1513_rank4.png"
+  },
+  {
+    "id": "151305",
+    "name": "Au cœur d'un jackpot",
+    "rank": 5,
+    "desc": "Niv. de l'ultime +2, jusqu'au Niv. 15 maximum.\nNiv. de l'ATQ normale +1, jusqu'au Niv. 10 maximum.\nNiv. de la comicompétence +1, jusqu'au Niv. 15 maximum.",
+    "materials": [
+      {
+        "id": "11513",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [
+      {
+        "id": "151303",
+        "num": 2
+      },
+      {
+        "id": "151301",
+        "num": 1
+      },
+      {
+        "id": "151320",
+        "num": 1
+      },
+      {
+        "id": "151321",
+        "num": 1
+      }
+    ],
+    "icon": "icon/skill/1513_ultimate.png"
+  },
+  {
+    "id": "151306",
+    "name": "Faire du passé une folle chevauchée",
+    "rank": 6,
+    "desc": "Les comidégâts infligés par Aventurine • Croisette s'égayent de 25%. Après qu'Aventurine • Croisette a utilisé sa comicompétence 2 fois, toutes les comicompétences utilisées par la suite deviennent Au pari d'un bel été, et la Ferveur n'est plus consommée lorsque la comicompétence Au pari d'un bel été inflige des DGT supplémentaires en dehors du Moment d'Aha.",
+    "materials": [
+      {
+        "id": "11513",
+        "num": 1
+      }
+    ],
+    "level_up_skills": [],
+    "icon": "icon/skill/1513_rank6.png"
+  },
+  {
     "id": "800101",
     "name": "Étoile tombée du ciel",
     "rank": 1,
@@ -10213,7 +10449,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1100_rank1.png"
+    "icon": "icon/skill/11004_rank1.png"
   },
   {
     "id": "1100402",
@@ -10227,7 +10463,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1100_rank2.png"
+    "icon": "icon/skill/11004_rank2.png"
   },
   {
     "id": "1100403",
@@ -10250,7 +10486,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1100_skill.png"
+    "icon": "icon/skill/11004_skill.png"
   },
   {
     "id": "1100404",
@@ -10264,7 +10500,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1100_rank4.png"
+    "icon": "icon/skill/11004_rank4.png"
   },
   {
     "id": "1100405",
@@ -10287,7 +10523,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1100_ultimate.png"
+    "icon": "icon/skill/11004_ultimate.png"
   },
   {
     "id": "1100406",
@@ -10301,7 +10537,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1100_rank6.png"
+    "icon": "icon/skill/11004_rank6.png"
   },
   {
     "id": "1100501",
@@ -10315,7 +10551,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1100_rank1.png"
+    "icon": "icon/skill/11005_rank1.png"
   },
   {
     "id": "1100502",
@@ -10329,7 +10565,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1100_rank2.png"
+    "icon": "icon/skill/11005_rank2.png"
   },
   {
     "id": "1100503",
@@ -10352,7 +10588,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1100_skill.png"
+    "icon": "icon/skill/11005_skill.png"
   },
   {
     "id": "1100504",
@@ -10366,7 +10602,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1100_rank4.png"
+    "icon": "icon/skill/11005_rank4.png"
   },
   {
     "id": "1100505",
@@ -10389,7 +10625,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1100_ultimate.png"
+    "icon": "icon/skill/11005_ultimate.png"
   },
   {
     "id": "1100506",
@@ -10403,7 +10639,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1100_rank6.png"
+    "icon": "icon/skill/11005_rank6.png"
   },
   {
     "id": "1100601",
@@ -10417,7 +10653,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1100_rank1.png"
+    "icon": "icon/skill/11006_rank1.png"
   },
   {
     "id": "1100602",
@@ -10431,7 +10667,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1100_rank2.png"
+    "icon": "icon/skill/11006_rank2.png"
   },
   {
     "id": "1100603",
@@ -10454,7 +10690,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1100_skill.png"
+    "icon": "icon/skill/11006_skill.png"
   },
   {
     "id": "1100604",
@@ -10468,7 +10704,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1100_rank4.png"
+    "icon": "icon/skill/11006_rank4.png"
   },
   {
     "id": "1100605",
@@ -10491,7 +10727,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1100_ultimate.png"
+    "icon": "icon/skill/11006_ultimate.png"
   },
   {
     "id": "1100606",
@@ -10505,7 +10741,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1100_rank6.png"
+    "icon": "icon/skill/11006_rank6.png"
   },
   {
     "id": "1110201",
@@ -10519,7 +10755,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1110_rank1.png"
+    "icon": "icon/skill/11102_rank1.png"
   },
   {
     "id": "1110202",
@@ -10533,7 +10769,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1110_rank2.png"
+    "icon": "icon/skill/11102_rank2.png"
   },
   {
     "id": "1110203",
@@ -10556,7 +10792,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1110_skill.png"
+    "icon": "icon/skill/11102_skill.png"
   },
   {
     "id": "1110204",
@@ -10570,7 +10806,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1110_rank4.png"
+    "icon": "icon/skill/11102_rank4.png"
   },
   {
     "id": "1110205",
@@ -10593,7 +10829,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1110_ultimate.png"
+    "icon": "icon/skill/11102_ultimate.png"
   },
   {
     "id": "1110206",
@@ -10607,7 +10843,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1110_rank6.png"
+    "icon": "icon/skill/11102_rank6.png"
   },
   {
     "id": "1120501",
@@ -10621,7 +10857,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1120_rank1.png"
+    "icon": "icon/skill/11205_rank1.png"
   },
   {
     "id": "1120502",
@@ -10635,7 +10871,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1120_rank2.png"
+    "icon": "icon/skill/11205_rank2.png"
   },
   {
     "id": "1120503",
@@ -10658,7 +10894,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1120_ultimate.png"
+    "icon": "icon/skill/11205_ultimate.png"
   },
   {
     "id": "1120504",
@@ -10672,7 +10908,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1120_rank4.png"
+    "icon": "icon/skill/11205_rank4.png"
   },
   {
     "id": "1120505",
@@ -10699,7 +10935,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1120_skill.png"
+    "icon": "icon/skill/11205_skill.png"
   },
   {
     "id": "1120506",
@@ -10713,7 +10949,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1120_rank6.png"
+    "icon": "icon/skill/11205_rank6.png"
   },
   {
     "id": "1121201",
@@ -10727,7 +10963,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1121_rank1.png"
+    "icon": "icon/skill/11212_rank1.png"
   },
   {
     "id": "1121202",
@@ -10741,7 +10977,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1121_rank2.png"
+    "icon": "icon/skill/11212_rank2.png"
   },
   {
     "id": "1121203",
@@ -10764,7 +11000,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1121_ultimate.png"
+    "icon": "icon/skill/11212_ultimate.png"
   },
   {
     "id": "1121204",
@@ -10778,7 +11014,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1121_rank4.png"
+    "icon": "icon/skill/11212_rank4.png"
   },
   {
     "id": "1121205",
@@ -10805,7 +11041,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1121_skill.png"
+    "icon": "icon/skill/11212_skill.png"
   },
   {
     "id": "1121206",
@@ -10819,7 +11055,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1121_rank6.png"
+    "icon": "icon/skill/11212_rank6.png"
   },
   {
     "id": "1121701",
@@ -10833,7 +11069,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1121_rank1.png"
+    "icon": "icon/skill/11217_rank1.png"
   },
   {
     "id": "1121702",
@@ -10847,7 +11083,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1121_rank2.png"
+    "icon": "icon/skill/11217_rank2.png"
   },
   {
     "id": "1121703",
@@ -10870,7 +11106,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1121_ultimate.png"
+    "icon": "icon/skill/11217_ultimate.png"
   },
   {
     "id": "1121704",
@@ -10884,7 +11120,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1121_rank4.png"
+    "icon": "icon/skill/11217_rank4.png"
   },
   {
     "id": "1121705",
@@ -10907,7 +11143,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1121_skill.png"
+    "icon": "icon/skill/11217_skill.png"
   },
   {
     "id": "1121706",
@@ -10921,7 +11157,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1121_rank6.png"
+    "icon": "icon/skill/11217_rank6.png"
   },
   {
     "id": "1130601",
@@ -10935,7 +11171,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1130_rank1.png"
+    "icon": "icon/skill/11306_rank1.png"
   },
   {
     "id": "1130602",
@@ -10949,7 +11185,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1130_rank2.png"
+    "icon": "icon/skill/11306_rank2.png"
   },
   {
     "id": "1130603",
@@ -10972,7 +11208,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1130_skill.png"
+    "icon": "icon/skill/11306_skill.png"
   },
   {
     "id": "1130604",
@@ -10986,7 +11222,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1130_rank4.png"
+    "icon": "icon/skill/11306_rank4.png"
   },
   {
     "id": "1130605",
@@ -11009,7 +11245,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1130_ultimate.png"
+    "icon": "icon/skill/11306_ultimate.png"
   },
   {
     "id": "1130606",
@@ -11023,7 +11259,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1130_rank6.png"
+    "icon": "icon/skill/11306_rank6.png"
   },
   {
     "id": "1130701",
@@ -11037,7 +11273,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1130_rank1.png"
+    "icon": "icon/skill/11307_rank1.png"
   },
   {
     "id": "1130702",
@@ -11051,7 +11287,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1130_rank2.png"
+    "icon": "icon/skill/11307_rank2.png"
   },
   {
     "id": "1130703",
@@ -11074,7 +11310,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1130_skill.png"
+    "icon": "icon/skill/11307_skill.png"
   },
   {
     "id": "1130704",
@@ -11088,7 +11324,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1130_rank4.png"
+    "icon": "icon/skill/11307_rank4.png"
   },
   {
     "id": "1130705",
@@ -11111,7 +11347,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1130_ultimate.png"
+    "icon": "icon/skill/11307_ultimate.png"
   },
   {
     "id": "1130706",
@@ -11125,7 +11361,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1130_rank6.png"
+    "icon": "icon/skill/11307_rank6.png"
   },
   {
     "id": "1131001",
@@ -11139,7 +11375,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1131_rank1.png"
+    "icon": "icon/skill/11310_rank1.png"
   },
   {
     "id": "1131002",
@@ -11153,7 +11389,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1131_rank2.png"
+    "icon": "icon/skill/11310_rank2.png"
   },
   {
     "id": "1131003",
@@ -11184,7 +11420,7 @@
         "num": 1
       }
     ],
-    "icon": "icon/skill/1131_skill.png"
+    "icon": "icon/skill/11310_skill.png"
   },
   {
     "id": "1131004",
@@ -11198,7 +11434,7 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1131_rank4.png"
+    "icon": "icon/skill/11310_rank4.png"
   },
   {
     "id": "1131005",
@@ -11221,7 +11457,7 @@
         "num": 2
       }
     ],
-    "icon": "icon/skill/1131_ultimate.png"
+    "icon": "icon/skill/11310_ultimate.png"
   },
   {
     "id": "1131006",
@@ -11235,6 +11471,6 @@
       }
     ],
     "level_up_skills": [],
-    "icon": "icon/skill/1131_rank6.png"
+    "icon": "icon/skill/11310_rank6.png"
   }
 ]
