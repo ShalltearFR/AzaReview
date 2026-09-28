@@ -1408,6 +1408,94 @@
     "icon": "icon/relic/132_3.png"
   },
   {
+    "id": "31331",
+    "set_id": "133",
+    "name": "Masque triste de l'actrice",
+    "rarity": 2,
+    "type": "HEAD",
+    "max_level": 6,
+    "main_affix_id": "21",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/133_0.png"
+  },
+  {
+    "id": "31332",
+    "set_id": "133",
+    "name": "Éventail coloré de l'actrice",
+    "rarity": 2,
+    "type": "HAND",
+    "max_level": 6,
+    "main_affix_id": "22",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/133_1.png"
+  },
+  {
+    "id": "31333",
+    "set_id": "133",
+    "name": "Apparat comique de l'actrice",
+    "rarity": 2,
+    "type": "BODY",
+    "max_level": 6,
+    "main_affix_id": "23",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/133_2.png"
+  },
+  {
+    "id": "31334",
+    "set_id": "133",
+    "name": "Bottes de danse en croissant de l'actrice",
+    "rarity": 2,
+    "type": "FOOT",
+    "max_level": 6,
+    "main_affix_id": "24",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/133_3.png"
+  },
+  {
+    "id": "31341",
+    "set_id": "134",
+    "name": "Appareil crânien de l'hérétique",
+    "rarity": 2,
+    "type": "HEAD",
+    "max_level": 6,
+    "main_affix_id": "21",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/134_0.png"
+  },
+  {
+    "id": "31342",
+    "set_id": "134",
+    "name": "Gants d'injection de l'hérétique",
+    "rarity": 2,
+    "type": "HAND",
+    "max_level": 6,
+    "main_affix_id": "22",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/134_1.png"
+  },
+  {
+    "id": "31343",
+    "set_id": "134",
+    "name": "Camisole de raison de l'hérétique",
+    "rarity": 2,
+    "type": "BODY",
+    "max_level": 6,
+    "main_affix_id": "23",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/134_2.png"
+  },
+  {
+    "id": "31344",
+    "set_id": "134",
+    "name": "Bottines voraces de l'hérétique",
+    "rarity": 2,
+    "type": "FOOT",
+    "max_level": 6,
+    "main_affix_id": "24",
+    "sub_affix_id": "2",
+    "icon": "icon/relic/134_3.png"
+  },
+  {
     "id": "33015",
     "set_id": "301",
     "name": "Station spatiale Herta",
@@ -3432,6 +3520,94 @@
     "icon": "icon/relic/132_3.png"
   },
   {
+    "id": "41331",
+    "set_id": "133",
+    "name": "Masque triste de l'actrice",
+    "rarity": 3,
+    "type": "HEAD",
+    "max_level": 9,
+    "main_affix_id": "31",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/133_0.png"
+  },
+  {
+    "id": "41332",
+    "set_id": "133",
+    "name": "Éventail coloré de l'actrice",
+    "rarity": 3,
+    "type": "HAND",
+    "max_level": 9,
+    "main_affix_id": "32",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/133_1.png"
+  },
+  {
+    "id": "41333",
+    "set_id": "133",
+    "name": "Apparat comique de l'actrice",
+    "rarity": 3,
+    "type": "BODY",
+    "max_level": 9,
+    "main_affix_id": "33",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/133_2.png"
+  },
+  {
+    "id": "41334",
+    "set_id": "133",
+    "name": "Bottes de danse en croissant de l'actrice",
+    "rarity": 3,
+    "type": "FOOT",
+    "max_level": 9,
+    "main_affix_id": "34",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/133_3.png"
+  },
+  {
+    "id": "41341",
+    "set_id": "134",
+    "name": "Appareil crânien de l'hérétique",
+    "rarity": 3,
+    "type": "HEAD",
+    "max_level": 9,
+    "main_affix_id": "31",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/134_0.png"
+  },
+  {
+    "id": "41342",
+    "set_id": "134",
+    "name": "Gants d'injection de l'hérétique",
+    "rarity": 3,
+    "type": "HAND",
+    "max_level": 9,
+    "main_affix_id": "32",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/134_1.png"
+  },
+  {
+    "id": "41343",
+    "set_id": "134",
+    "name": "Camisole de raison de l'hérétique",
+    "rarity": 3,
+    "type": "BODY",
+    "max_level": 9,
+    "main_affix_id": "33",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/134_2.png"
+  },
+  {
+    "id": "41344",
+    "set_id": "134",
+    "name": "Bottines voraces de l'hérétique",
+    "rarity": 3,
+    "type": "FOOT",
+    "max_level": 9,
+    "main_affix_id": "34",
+    "sub_affix_id": "3",
+    "icon": "icon/relic/134_3.png"
+  },
+  {
     "id": "43015",
     "set_id": "301",
     "name": "Station spatiale Herta",
@@ -5454,6 +5630,94 @@
     "main_affix_id": "44",
     "sub_affix_id": "4",
     "icon": "icon/relic/132_3.png"
+  },
+  {
+    "id": "51331",
+    "set_id": "133",
+    "name": "Masque triste de l'actrice",
+    "rarity": 4,
+    "type": "HEAD",
+    "max_level": 12,
+    "main_affix_id": "41",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/133_0.png"
+  },
+  {
+    "id": "51332",
+    "set_id": "133",
+    "name": "Éventail coloré de l'actrice",
+    "rarity": 4,
+    "type": "HAND",
+    "max_level": 12,
+    "main_affix_id": "42",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/133_1.png"
+  },
+  {
+    "id": "51333",
+    "set_id": "133",
+    "name": "Apparat comique de l'actrice",
+    "rarity": 4,
+    "type": "BODY",
+    "max_level": 12,
+    "main_affix_id": "43",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/133_2.png"
+  },
+  {
+    "id": "51334",
+    "set_id": "133",
+    "name": "Bottes de danse en croissant de l'actrice",
+    "rarity": 4,
+    "type": "FOOT",
+    "max_level": 12,
+    "main_affix_id": "44",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/133_3.png"
+  },
+  {
+    "id": "51341",
+    "set_id": "134",
+    "name": "Appareil crânien de l'hérétique",
+    "rarity": 4,
+    "type": "HEAD",
+    "max_level": 12,
+    "main_affix_id": "41",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/134_0.png"
+  },
+  {
+    "id": "51342",
+    "set_id": "134",
+    "name": "Gants d'injection de l'hérétique",
+    "rarity": 4,
+    "type": "HAND",
+    "max_level": 12,
+    "main_affix_id": "42",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/134_1.png"
+  },
+  {
+    "id": "51343",
+    "set_id": "134",
+    "name": "Camisole de raison de l'hérétique",
+    "rarity": 4,
+    "type": "BODY",
+    "max_level": 12,
+    "main_affix_id": "43",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/134_2.png"
+  },
+  {
+    "id": "51344",
+    "set_id": "134",
+    "name": "Bottines voraces de l'hérétique",
+    "rarity": 4,
+    "type": "FOOT",
+    "max_level": 12,
+    "main_affix_id": "44",
+    "sub_affix_id": "4",
+    "icon": "icon/relic/134_3.png"
   },
   {
     "id": "53015",
@@ -7544,6 +7808,94 @@
     "main_affix_id": "54",
     "sub_affix_id": "5",
     "icon": "icon/relic/132_3.png"
+  },
+  {
+    "id": "61331",
+    "set_id": "133",
+    "name": "Masque triste de l'actrice",
+    "rarity": 5,
+    "type": "HEAD",
+    "max_level": 15,
+    "main_affix_id": "51",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/133_0.png"
+  },
+  {
+    "id": "61332",
+    "set_id": "133",
+    "name": "Éventail coloré de l'actrice",
+    "rarity": 5,
+    "type": "HAND",
+    "max_level": 15,
+    "main_affix_id": "52",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/133_1.png"
+  },
+  {
+    "id": "61333",
+    "set_id": "133",
+    "name": "Apparat comique de l'actrice",
+    "rarity": 5,
+    "type": "BODY",
+    "max_level": 15,
+    "main_affix_id": "53",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/133_2.png"
+  },
+  {
+    "id": "61334",
+    "set_id": "133",
+    "name": "Bottes de danse en croissant de l'actrice",
+    "rarity": 5,
+    "type": "FOOT",
+    "max_level": 15,
+    "main_affix_id": "54",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/133_3.png"
+  },
+  {
+    "id": "61341",
+    "set_id": "134",
+    "name": "Appareil crânien de l'hérétique",
+    "rarity": 5,
+    "type": "HEAD",
+    "max_level": 15,
+    "main_affix_id": "51",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/134_0.png"
+  },
+  {
+    "id": "61342",
+    "set_id": "134",
+    "name": "Gants d'injection de l'hérétique",
+    "rarity": 5,
+    "type": "HAND",
+    "max_level": 15,
+    "main_affix_id": "52",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/134_1.png"
+  },
+  {
+    "id": "61343",
+    "set_id": "134",
+    "name": "Camisole de raison de l'hérétique",
+    "rarity": 5,
+    "type": "BODY",
+    "max_level": 15,
+    "main_affix_id": "53",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/134_2.png"
+  },
+  {
+    "id": "61344",
+    "set_id": "134",
+    "name": "Bottines voraces de l'hérétique",
+    "rarity": 5,
+    "type": "FOOT",
+    "max_level": 15,
+    "main_affix_id": "54",
+    "sub_affix_id": "5",
+    "icon": "icon/relic/134_3.png"
   },
   {
     "id": "63015",
