@@ -1,7 +1,7 @@
 type Role = {
+    id: string[];
     name: string;
     icon: string;
-    id: string[];
 };
 
 type Team = {
@@ -11,7 +11,7 @@ type Team = {
 
 type TeamsData = {
     data: Team[];
-    characterID: string;
+    characterID: string | number;
 };
 
 export type { Role, Team, TeamsData };

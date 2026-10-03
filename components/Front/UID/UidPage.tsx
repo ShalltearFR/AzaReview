@@ -24,6 +24,7 @@ import type { ChangelogType } from "@/types/Changelog";
 import Changelog from "./Changelog";
 import { Teams } from "./Teams";
 import jsonTeams from "@/utils/temp.json";
+import { TeamsData } from "@/types/Teams";
 
 interface Option {
   value: string;
@@ -79,11 +80,16 @@ const UidPage: React.FC<UidPageProps> = ({
 
   const [userOptions, setUserOptions] =
     useState<UserOptionsProps>(DefaultUserOptions);
-  const [showOptionsMenu, setShowOptionsMenu] = useState<boolean>(false);
 
+  const [showOptionsMenu, setShowOptionsMenu] = useState<boolean>(false);
   const [showChangelog, setShowChangelog] = useState<boolean>(false);
 
   const [characterReview, setCharacterReview] = useState<Data>([] as any);
+
+  const [teamsList, setTeamsList] = useState<TeamsData>({
+    data: [],
+    characterID: -1,
+  });
 
   useEffect(() => {
     if (review) {
@@ -155,6 +161,43 @@ const UidPage: React.FC<UidPageProps> = ({
       }
     }
   }, [jsonReview, uidData]);
+
+  useEffect(() => {
+    const getTeams = async () => {
+      try {
+        if (uidData.status !== 200) {
+          return;
+        }
+
+        const jsonUidData = uidData as jsonUID;
+
+        const characterId = jsonUidData.characters[characterIndex]?.id;
+
+        if (!characterId) {
+          return;
+        }
+
+        const response = await fetch(`/api/teams?characterId=${characterId}`);
+
+        if (!response.ok) {
+          throw new Error("Impossible de récupérer les teams");
+        }
+
+        const result = await response.json();
+
+        const loadedTeams = result.data ?? [];
+
+        setTeamsList({
+          data: loadedTeams,
+          characterID: result.characterID,
+        });
+      } catch (error) {
+        console.error("Erreur lors de la récupération des teams :", error);
+      }
+    };
+
+    getTeams();
+  }, [uidData, characterIndex]);
 
   useEffect(() => {
     const uidDataCopy = { ...uidData } as jsonUID;
@@ -373,7 +416,11 @@ const UidPage: React.FC<UidPageProps> = ({
                   />
                 </div>
               </div>
-              <Teams {...jsonTeams} />
+
+              {teamsList.characterID && teamsList.data.length > 0 && (
+                <Teams {...teamsList} />
+              )}
+
               <div className="xl2:hidden">
                 <Options
                   setUserOptions={setUserOptions}

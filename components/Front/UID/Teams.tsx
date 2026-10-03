@@ -1,4 +1,4 @@
-import { CDN } from "@/utils/cdn";
+import { CDN, CDN2 } from "@/utils/cdn";
 import type { TeamsData, Team } from "@/types/Teams";
 
 export const Teams = (json: TeamsData) => {
@@ -11,19 +11,19 @@ export const Teams = (json: TeamsData) => {
           </h3>
 
           <div className="xl:grid xl:grid-cols-4 xl:justify-center xl:items-center text-center">
-            {team.roles.map((role, index) => (
+            {team.roles.map((role, rolesIndex) => (
               <div
-                key={role.name}
+                key={`${team.teamName}+${rolesIndex}`}
                 className={`
                   border border-t-0
-                  ${index > 0 ? "border-l-0" : "border-l-light-blue/75"}
-                  ${index === team.roles.length - 1 ? "border-r-light-blue/75" : ""}
+                  ${rolesIndex > 0 ? "border-l-0" : "border-l-light-blue/75"}
+                  ${rolesIndex === team.roles.length - 1 ? "border-r-light-blue/75" : ""}
                 `}
               >
                 <div className="flex h-[96px] items-center justify-center gap-3">
                   {role.id.map((characterId) => (
                     <img
-                      key={characterId}
+                      key={`roleID+${rolesIndex}+${characterId}`}
                       src={`${CDN}/icon/character/${characterId}.png`}
                       width={64}
                       height={64}
@@ -34,7 +34,12 @@ export const Teams = (json: TeamsData) => {
                 </div>
 
                 <p className="flex justify-center items-center py-2 border-t bg-background font-bold gap-2">
-                  <img src={role.icon} width={32} height={32} alt="" />
+                  <img
+                    src={`${CDN2}/img/roles/${role.icon}.png`}
+                    width={32}
+                    height={32}
+                    alt=""
+                  />
                   {role.name}
                 </p>
               </div>

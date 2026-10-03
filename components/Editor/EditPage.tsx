@@ -1,4 +1,5 @@
 "use client";
+
 import { CharacterType, Data } from "@/types/CharacterModel";
 import { CDN } from "@/utils/cdn";
 import { useEffect, useRef, useState } from "react";
@@ -20,6 +21,7 @@ import LoadingSpin from "@/components/LoadingSpin";
 import light_conesFR from "@/static/light_conesFR.json";
 import relic_setsFR from "@/static/relic_setsFR.json";
 import { TeamsEditor } from "./TeamsEditor";
+import { TeamsData, Team } from "@/types/Teams";
 
 interface EditPageProps {
   id: number;
@@ -34,31 +36,45 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
   const memorizedData = useRef<Data[] | []>([]);
   const [disableSaveButton, setDisableSaveButton] = useState<boolean>(false);
 
+  /*
+   * ============================================================
+   * CHARACTÈRE / BUILDS
+   * ============================================================
+   */
+
   useEffect(() => {
-    // RECUPERE L'ID DE L'ELEMENT ET RETOURNE SON NOM
     const findLabel = (id: string, array: Array<any>, type?: string) => {
       if (type === "mainStat") {
         const foundElement = array.find((el) => el.value === id);
-        if (!foundElement) return "";
+
+        if (!foundElement) {
+          return "";
+        }
+
         return foundElement.label;
       }
 
       const foundElement = array.find((el) => el.id === id);
-      if (foundElement) return foundElement.name;
+
+      if (foundElement) {
+        return foundElement.name;
+      }
+
       return "";
     };
 
-    //FETCH DONNEES STOCKEES DANS LA DB
     const fetchDataFromDB = async () => {
       try {
         const response = await fetch(`/api/character/${id}`, {
           cache: "no-cache",
           next: { revalidate: 0 },
         });
+
         const json: CharacterType | "Loading" | { error: true } =
           await response.json();
 
         setCharacterData(json);
+
         if (
           json &&
           "data" in (json as CharacterType) &&
@@ -66,10 +82,13 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
         ) {
           const dataArray: any = (json as CharacterType).data.map(
             (singleData) => {
-              // TRANSMETS DONNEES DES CONES
+              /*
+               * LIGHT CONES
+               */
               const lightcones: LightConeOption[] = singleData.lightCones.map(
                 (lightcone) => {
                   const label: string = findLabel(lightcone.id, light_conesFR);
+
                   return {
                     id: lightcone.id,
                     value: lightcone.id,
@@ -79,11 +98,17 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
                 }
               );
 
-              // TRANSMETS DONNEES DES SETS DE RELIQUES
+              /*
+               * RELICS
+               */
               const relics: RelicSetOption[] = singleData.relics_set
                 .map((relic) => {
-                  if (Number(relic.id) > 300) return null;
+                  if (Number(relic.id) > 300) {
+                    return null;
+                  }
+
                   const label = findLabel(relic.id, relic_setsFR);
+
                   return {
                     id: relic.id,
                     value: relic.id,
@@ -94,10 +119,17 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
                 })
                 .filter((el) => el !== null);
 
+              /*
+               * ORNAMENTS
+               */
               const ornamants: RelicSetOption[] = singleData.relics_set
                 .map((relic) => {
-                  if (Number(relic.id) < 300) return null;
+                  if (Number(relic.id) < 300) {
+                    return null;
+                  }
+
                   const label = findLabel(relic.id, relic_setsFR);
+
                   return {
                     id: relic.id,
                     value: relic.id,
@@ -108,7 +140,9 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
                 })
                 .filter((el) => el !== null);
 
-              // TRANSMETS DONNEES DES MAINS STATS
+              /*
+               * MAIN STATS
+               */
               const mainStats: MainStatsOption[] = singleData.main_stats.map(
                 (mainStat) => {
                   const labelType = findLabel(
@@ -116,6 +150,7 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
                     mainStatOptions,
                     "mainStat"
                   );
+
                   const labelPiece = findLabel(
                     mainStat.piece,
                     equipments,
@@ -135,7 +170,9 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
                 }
               );
 
-              // TRANSMETS DONNEES DES STATS RECOMMANDES
+              /*
+               * RECOMMENDED STATS
+               */
               const recommendedStats: recommendedStatsOption[] =
                 singleData.recommended_stats.map((recommendedStat: any) => {
                   const labelType = findLabel(
@@ -144,8 +181,8 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
                     "mainStat"
                   );
 
-                  // Converti ratio vers %
                   const statType = recommendedStat.type;
+
                   const value = [
                     "CriticalChanceBase",
                     "CriticalDamageBase",
@@ -189,17 +226,21 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
         }
       } catch (error) {
         console.error("Erreur de recuperation sur la base de donnée", error);
+
         setCharacterData({ error: true });
       }
     };
+
     fetchDataFromDB();
-  }, []);
+  }, [id]);
 
   const updateAllData = (data: any, index: number) => {
     if (!memorizedData.current) {
       return memorizedData.current;
     }
+
     const prevData = [...memorizedData.current];
+
     prevData[index] = data;
 
     memorizedData.current = prevData;
@@ -208,6 +249,7 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
   const addBuild = () => {
     setDataAfterLoading((prevData) => {
       const data = [...prevData];
+
       data.push({
         buildName: "",
         buildDesc: "",
@@ -219,19 +261,63 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
         recommended_comment: "",
         total_coef: 0,
       });
+
       return data;
     });
   };
 
   const deleteBuild = (index: number) => {
     const data = [...memorizedData.current];
+
     data.splice(index, 1);
+
     memorizedData.current = data;
+
     setDataAfterLoading(data);
   };
 
+  useEffect(() => {
+    const getTeams = async () => {
+      try {
+        const response = await fetch(`/api/teams?characterId=${id}`);
+
+        if (!response.ok) {
+          throw new Error("Impossible de récupérer les teams");
+        }
+
+        const result = await response.json();
+
+        const loadedTeams = result.data ?? [];
+
+        setTeamsList({
+          data: loadedTeams,
+          characterID: result.characterID,
+        });
+
+        setTeamKeys(
+          loadedTeams.map(() => {
+            const key = nextTeamKey.current;
+            nextTeamKey.current += 1;
+            return key;
+          })
+        );
+      } catch (error) {
+        console.error("Erreur lors de la récupération des teams :", error);
+      }
+    };
+
+    getTeams();
+  }, [id]);
+
+  /*
+   * ============================================================
+   * SAUVEGARDE
+   * ============================================================
+   */
+
   const handleGoToDB = () => {
     setDisableSaveButton(true);
+
     const dataArraySaved = memorizedData.current.map((data: Data) => {
       const lightConesArray = data.lightCones.map((lightcone) => ({
         id: lightcone.id,
@@ -250,8 +336,6 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
         recommended: relic.recommended,
       }));
 
-      // const mergedArray = arrays.reduce((acc, curr) => acc.concat(curr), []);
-
       const mainStatsSetupArray = data.main_stats.map((mainStat: any) => ({
         piece: mainStat.equipment.value,
         type: mainStat.typeStat.value,
@@ -259,8 +343,8 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
 
       const recommendedStatsSetupArray = data.recommended_stats.map(
         (recommendedStat: any) => {
-          // Converti ratio vers %
           const statType = recommendedStat.type.value;
+
           const value = [
             "CriticalChanceBase",
             "CriticalDamageBase",
@@ -271,6 +355,7 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
           ].includes(statType)
             ? recommendedStat.value / 100
             : recommendedStat.value;
+
           return {
             type: recommendedStat.type.value,
             value: value,
@@ -279,7 +364,6 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
         }
       );
 
-      //Recupère total des coefs
       const totalCoef = recommendedStatsSetupArray.reduce(
         (acc, coef) => Number(acc) + Number(coef.importance),
         0
@@ -313,6 +397,17 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
           user,
         };
 
+        fetch("/api/teams", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            characterID: teamsList.characterID,
+            data: teamsList.data,
+          }),
+        });
+
         return fetch("/api/character", {
           method: "PUT",
           cache: "no-cache",
@@ -326,6 +421,7 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
         } else {
           toast.error("Erreur de sauvegarde");
         }
+
         setDisableSaveButton(false);
       })
       .catch((error) => {
@@ -333,12 +429,114 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
           "Erreur lors de la récupération des données utilisateur :",
           error
         );
+
         toast.error("Erreur lors de la récupération des données utilisateur");
+
         setDisableSaveButton(false);
       });
   };
 
+  /*
+   * ============================================================
+   * TEAMS
+   * ============================================================
+   */
+
+  const [teamsList, setTeamsList] = useState<TeamsData>({
+    data: [],
+    characterID: id,
+  });
+
+  /*
+   * Clés React stables.
+   *
+   * teamId reste l'index du tableau.
+   * teamKeys sert uniquement à React pour identifier
+   * durablement chaque TeamsEditor.
+   */
+  const nextTeamKey = useRef(0);
+  const [teamKeys, setTeamKeys] = useState<number[]>([]);
+
+  /*
+   * SUPPRIMER UNE TEAM
+   */
+  const handleRemoveTeam = (index: number) => {
+    setTeamsList((prev) => {
+      const copyTeamsList = [...prev.data];
+
+      copyTeamsList.splice(index, 1);
+
+      return {
+        ...prev,
+        data: copyTeamsList,
+      };
+    });
+
+    setTeamKeys((prev) => {
+      const copyTeamKeys = [...prev];
+
+      copyTeamKeys.splice(index, 1);
+
+      return copyTeamKeys;
+    });
+  };
+
+  /*
+   * AJOUTER UNE TEAM
+   */
+  const handleAddTeam = () => {
+    const newTeamKey = nextTeamKey.current;
+    nextTeamKey.current += 1;
+
+    setTeamsList((prev) => {
+      const copyTeamsList = [...prev.data];
+
+      copyTeamsList.push({
+        teamName: "",
+        roles: [
+          {
+            name: "",
+            icon: "assassin-pocket",
+            id: [],
+          },
+        ],
+      });
+
+      return {
+        ...prev,
+        data: copyTeamsList,
+      };
+    });
+
+    setTeamKeys((prev) => [...prev, newTeamKey]);
+  };
+
+  /*
+   * MODIFIER UNE TEAM
+   *
+   * index = position actuelle de la team dans teamsList.data
+   */
+  const handleChangeTeam = (data: Team, index: number) => {
+    setTeamsList((prev) => {
+      const copyTeamsList = [...prev.data];
+
+      copyTeamsList[index] = data;
+
+      return {
+        ...prev,
+        data: copyTeamsList,
+      };
+    });
+  };
+
+  /*
+   * ============================================================
+   * ÉTATS DE PAGE
+   * ============================================================
+   */
+
   const isLoading = characterData === "Loading";
+
   const isError = typeof characterData === "object" && "error" in characterData;
 
   if (isLoading) {
@@ -371,11 +569,13 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
         <p className="flex gap-2 absolute right-5 top-3 items-center text-xl text-light-gray italic">
           Dernière modification : {date.toLocaleDateString()}
         </p>
+
         <div className="text-center text-5xl font-bold my-5 text-white">
           {characterData.name}
         </div>
+
         <button
-          className="flex gap-2 font-bold absolute p-2 rounded-full right-5 bg-green "
+          className="flex gap-2 font-bold absolute p-2 rounded-full right-5 bg-green"
           onClick={addBuild}
         >
           Ajouter un build
@@ -383,7 +583,7 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
         </button>
       </div>
 
-      <div className="flex flex-col gap-y-28 mt-20">
+      <div className="flex flex-col gap-y-5 mt-20">
         {dataAfterLoading &&
           dataAfterLoading.map((singleData: Data, index: number) => (
             <div key={`globalBuild${index}+${singleData.buildName}`}>
@@ -396,7 +596,29 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
             </div>
           ))}
       </div>
-      <TeamsEditor id={id} />
+
+      <div className="relative">
+        <button
+          onClick={handleAddTeam}
+          className="flex items-center absolute right-5 -top-12 bg-green p-2 rounded-full text-black font-bold gap-x-2"
+        >
+          <p>Ajouter une team</p>
+          <PlusIcon className="w-5 h-5" />
+        </button>
+
+        <div className="flex flex-col gap-y-5 mt-28">
+          {teamsList.data.map((team, index) => (
+            <TeamsEditor
+              key={teamKeys[index]}
+              teamId={index}
+              data={team}
+              handleChange={handleChangeTeam}
+              handleRemoveTeam={handleRemoveTeam}
+            />
+          ))}
+        </div>
+      </div>
+
       <button
         disabled={disableSaveButton}
         className="flex w-3/4 bg-green p-2 rounded-full mx-auto justify-center my-20 text-xl font-bold border disabled:bg-gray"
