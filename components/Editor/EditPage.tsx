@@ -19,6 +19,7 @@ import { toast } from "react-toastify";
 import LoadingSpin from "@/components/LoadingSpin";
 import light_conesFR from "@/static/light_conesFR.json";
 import relic_setsFR from "@/static/relic_setsFR.json";
+import { TeamsEditor } from "./TeamsEditor";
 
 interface EditPageProps {
   id: number;
@@ -395,6 +396,7 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
             </div>
           ))}
       </div>
+      <TeamsEditor id={id} />
       <button
         disabled={disableSaveButton}
         className="flex w-3/4 bg-green p-2 rounded-full mx-auto justify-center my-20 text-xl font-bold border disabled:bg-gray"

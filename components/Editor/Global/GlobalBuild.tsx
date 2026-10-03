@@ -396,7 +396,7 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
       <div className="">
         <div className="flex items-center">
           <label className="flex items-center">
-            <span className="text-2xl ml-5 h-9 mr-2">Nom du build : </span>
+            <span className="text-[22px] ml-5 h-9 mr-2">Nom du build : </span>
             <AddInput
               value={buildNameInput}
               className="px-2 text-black rounded-full h-10 mt-auto self-center"
@@ -425,12 +425,12 @@ const GlobalBuild: React.FC<GlobalBuildProps> = ({
           </button>
         </div>
         <label className="flex items-center mt-5 relative">
-          <span className="text-2xl ml-5 h-9 mr-2 w-72 flex flex-col items-center">
+          <span className="text-[22px] ml-3 h-9 mr-2 w-72 flex flex-col items-center">
             Description du build :
           </span>
           <AddTextArea
             value={buildDescriptionInput}
-            className={`px-2 text-black rounded-2xl h-10 mt-auto self-center w-full`}
+            className={`px-2 text-black rounded-2xl h-24 mt-auto self-center w-full`}
             onChange={(value) => {
               setBuildDescriptionInput(value);
               debounced();

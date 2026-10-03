@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import { CDN, CDN2 } from "@/utils/cdn";
 import Aos from "aos";
 import { notFound } from "next/navigation";
-import {translateBBCode} from "@/utils/translateBBCode";
+import { translateBBCode } from "@/utils/translateBBCode";
 import StarBGAnimation from "../StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
 import CharacterList from "./CharactersList";
@@ -22,6 +22,8 @@ import type { jsonUID } from "@/types/jsonUid";
 import type { CharacterType, Data } from "@/types/CharacterModel";
 import type { ChangelogType } from "@/types/Changelog";
 import Changelog from "./Changelog";
+import { Teams } from "./Teams";
+import jsonTeams from "@/utils/temp.json";
 
 interface Option {
   value: string;
@@ -286,10 +288,10 @@ const UidPage: React.FC<UidPageProps> = ({
                 index={characterIndex}
               />
 
-              <div className="bg-light-blue/75 w-full max-w-[1450px] mx-auto xl:gap-x-5 py-5">
+              <div className="bg-light-blue/75 w-full max-w-[1450px] mx-auto xl:gap-x-5 py-5 xl:rounded-t-xl">
                 <div
                   className={
-                    "grid xl:grid-cols-[390px_1fr] justify-center items-center text-white font-bold xl:rounded-t-xl "
+                    "grid xl:grid-cols-[390px_1fr] justify-center items-center text-white font-bold xl:rounded-t-xl"
                   }
                 >
                   <CharacterBuild
@@ -301,7 +303,8 @@ const UidPage: React.FC<UidPageProps> = ({
                     {(characterOptions[characterBuild] &&
                       characterOptions[characterBuild].desc &&
                       translateBBCode(
-                        characterOptions[characterBuild].desc ?? "", true
+                        characterOptions[characterBuild].desc ?? "",
+                        true
                       )) ||
                       "Disponible prochainement"}
                   </div>
@@ -370,6 +373,7 @@ const UidPage: React.FC<UidPageProps> = ({
                   />
                 </div>
               </div>
+              <Teams {...jsonTeams} />
               <div className="xl2:hidden">
                 <Options
                   setUserOptions={setUserOptions}
