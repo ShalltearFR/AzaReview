@@ -4,7 +4,7 @@ import { jwtVerify } from "jose";
 
 /* export const runtime = "experimental-edge" */
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const isPublicPath = path === "/hsr-editor/login";
   const token = request.cookies.get("token")?.value || "";
