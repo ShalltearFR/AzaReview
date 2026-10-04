@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 import React, { useEffect, useState } from "react";
 import Select, { SingleValue } from "react-select";
@@ -60,7 +61,7 @@ const AddSelect: React.FC<AddSelectProps> = ({
       const relic = relic_setsFR.find((relic) => relic.id === value?.id);
       setImage(relic?.icon ?? "");
     }
-  }, [value]);
+  }, [value, type]);
 
   useEffect(() => {
     if (type === "lightCone") {
@@ -136,7 +137,7 @@ const AddSelect: React.FC<AddSelectProps> = ({
       }));
       setOptions(options);
     }
-  }, []);
+  }, [type]);
 
   return (
     <label

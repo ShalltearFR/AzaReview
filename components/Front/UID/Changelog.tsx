@@ -27,8 +27,8 @@ const Changelog: React.FC<ChangelogBuildProps> = ({ changelog }) => {
               <span> - {patchDate}</span>
             </p>
             <ul className="ml-5 list-disc">
-              {patch.desc.split("\n").map((line) => (
-                <li>{line.trim()}</li>
+              {patch.desc.split("\n").map((line, index) => (
+                <li key={`${patch.version}-${index}`}>{line.trim()}</li>
               ))}
             </ul>
           </div>

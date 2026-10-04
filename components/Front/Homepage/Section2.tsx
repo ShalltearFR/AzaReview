@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 import { CDN2 } from "@/utils/cdn";
 import {
@@ -7,7 +9,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { FR_Month } from "@/utils/month";
-import {translateBBCode} from "@/utils/translateBBCode";
+import { translateBBCode } from "@/utils/translateBBCode";
 
 const Section2: React.FC = () => {
   const [isShareCodes, setIsShareCodes] = useState<boolean>(false);

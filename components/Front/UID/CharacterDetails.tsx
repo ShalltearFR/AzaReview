@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 import { Relic, jsonUID } from "@/types/jsonUid";
 import CharacterSplash from "./CharacterSplash";

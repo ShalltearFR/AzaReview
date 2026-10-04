@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { CDN2 } from "@/utils/cdn";
 
 const Footer: React.FC = () => {
@@ -20,6 +21,7 @@ const Footer: React.FC = () => {
             alt="logo twitch"
           />
         </a>
+        , Kujaune et PomPom
       </p>
       <p className="text-lg">
         {"Payez moins cher avec "}

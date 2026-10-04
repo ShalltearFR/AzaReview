@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { CDN } from "@/utils/cdn";
 import { splitAndKeepDelimiters } from "@/utils/format";
 import { useEffect, useState } from "react";

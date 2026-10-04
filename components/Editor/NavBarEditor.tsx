@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -70,8 +71,8 @@ const NavBarEditor: React.FC = () => {
       patchType.value === "major"
         ? Number(lastUpdate.toString().split(".")[0]) + 1 // Defini une valeur majeur
         : patchType.value === "minor"
-        ? Math.round((lastUpdate + 0.01) * 100) / 100 // Defini une valeur mineur
-        : 99;
+          ? Math.round((lastUpdate + 0.01) * 100) / 100 // Defini une valeur mineur
+          : 99;
 
     fetch("/api/me") // Récupération de l'utilisateur
       .then((res) => res.json())

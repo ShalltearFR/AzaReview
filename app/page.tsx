@@ -46,7 +46,7 @@ const Homepage = () => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [setActiveId]);
 
   const handleScrollTo = (id: string) => {
     const el = document.getElementById(id);

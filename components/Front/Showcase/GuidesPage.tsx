@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/immutability */
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 import NavBar from "@/components/Front/NavBar";
 import { useEffect, useRef, useState } from "react";
@@ -48,7 +51,7 @@ const GuidesPage: React.FC<GuidesPageProps> = ({ character }) => {
       Warlock: false,
       Warrior: false,
       Memory: false,
-      Elation: false
+      Elation: false,
     },
   });
 

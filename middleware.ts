@@ -20,7 +20,9 @@ export async function middleware(request: NextRequest) {
         algorithms: ["HS256"],
       });
       isSecuredToken =
-        payload.id === process.env.ADMIN_ID || process.env.KUJAUNE_ID || process.env.POMPOM_ID;
+        payload.id === process.env.ADMIN_ID ||
+        payload.id === process.env.KUJAUNE_ID ||
+        payload.id === process.env.POMPOM_ID;
     }
 
     if (isPublicPath && isSecuredToken) {

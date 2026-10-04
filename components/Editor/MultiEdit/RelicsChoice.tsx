@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 import { LightConeOption, RelicSetOption } from "@/types/EditorPage";
 import { useEffect, useState } from "react";

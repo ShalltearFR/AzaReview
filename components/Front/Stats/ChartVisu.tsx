@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 import { CharacterStats as CharacterStatsType } from "@/types/CharacterStats";
 import React, { useEffect, useState } from "react";

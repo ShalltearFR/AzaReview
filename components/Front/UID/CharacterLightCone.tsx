@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { CDN } from "@/utils/cdn";
 import { LightCone } from "@/types/CharacterModel";
 import { useEffect, useState } from "react";

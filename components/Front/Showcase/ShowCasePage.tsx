@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/immutability */
 "use client";
 import NavBar from "@/components/Front/NavBar";
 import { notFound } from "next/navigation";

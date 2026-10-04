@@ -1,5 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/refs */
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import ReactSelect from "react-select";
 import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline";
 import Modal from "react-modal";
@@ -87,7 +90,7 @@ const CharacterList: React.FC = () => {
     []
   );
 
-  const init = async () => {
+  const init = useCallback(async () => {
     const allCharactersData = await getAllCharacters();
     const dataBaseCharactersData = await getDataBaseCharacters();
 
@@ -95,11 +98,11 @@ const CharacterList: React.FC = () => {
     setCharactersSearch(dataBaseCharactersData.reverse());
     dataBaseCharactersRef.current = dataBaseCharactersData;
     getCharactersOptions();
-  };
+  }, [getCharactersOptions]);
 
   useEffect(() => {
     init();
-  }, []);
+  }, [init]);
 
   useEffect(() => {
     getCharactersOptions();

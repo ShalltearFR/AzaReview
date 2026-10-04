@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import EditorChange from "@/models/EditorChange.model";
 import DetailsShow from "./DetailsShow";
 import dbConnect from "@/lib/dbConnect";

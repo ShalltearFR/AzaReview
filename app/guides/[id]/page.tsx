@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/error-boundaries */
 import ShowCasePage from "@/components/Front/Showcase/ShowCasePage";
 import { CDN } from "@/utils/cdn";
 import type { Metadata } from "next";

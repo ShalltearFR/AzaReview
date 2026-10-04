@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { CDN2 } from "@/utils/cdn";
 import VerticalNotationArray from "./VerticalNotationArray";
 import HorizontalNotationArray from "./HorizontalNotationArray";

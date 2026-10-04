@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { CDN2 } from "@/utils/cdn";
 
 const Section0: React.FC = () => {

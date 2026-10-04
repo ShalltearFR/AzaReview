@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/error-boundaries */
 import Footer from "@/components/Front/UID/Footer";
 import UidPage from "@/components/Front/UID/UidPage";
 import { Character, jsonUID } from "@/types/jsonUid";

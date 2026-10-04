@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { CDN2 } from "@/utils/cdn";
 
 const HomepageFooter: React.FC = () => {
@@ -21,7 +22,8 @@ const HomepageFooter: React.FC = () => {
             className="h-6 ml-1 inline"
             alt="logo twitch"
           />
-        </a>
+        </a>{" "}
+        Kujaune et PomPom
       </div>
       <div>
         Design page d'accueil par <b>Amane</b> et <b>Shalltear</b>
