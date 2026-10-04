@@ -2,23 +2,36 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
-/* export const runtime = "experimental-edge" */
+interface AuthTokenPayload {
+  id?: string;
+}
 
 export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const isPublicPath = path === "/hsr-editor/login";
-  const token = request.cookies.get("token")?.value || "";
+  const token = request.cookies.get("token")?.value ?? "";
+
+  let isSecuredToken = false;
 
   try {
-    const tokenSecretUint8Array = new TextEncoder().encode(
-      process.env.TOKEN_SECRET
-    );
+    const tokenSecret = process.env.TOKEN_SECRET;
 
-    let isSecuredToken;
+    if (!tokenSecret) {
+      console.error("TOKEN_SECRET is not configured");
+      return NextResponse.redirect(new URL("/", request.nextUrl));
+    }
+
     if (token) {
-      const { payload } = await jwtVerify(token, tokenSecretUint8Array, {
-        algorithms: ["HS256"],
-      });
+      const tokenSecretUint8Array = new TextEncoder().encode(tokenSecret);
+
+      const { payload } = await jwtVerify<AuthTokenPayload>(
+        token,
+        tokenSecretUint8Array,
+        {
+          algorithms: ["HS256"],
+        }
+      );
+
       isSecuredToken =
         payload.id === process.env.ADMIN_ID ||
         payload.id === process.env.KUJAUNE_ID ||
@@ -26,7 +39,9 @@ export async function proxy(request: NextRequest) {
     }
 
     if (isPublicPath && isSecuredToken) {
-      return NextResponse.redirect(new URL("/hsr-editor/", request.nextUrl));
+      return NextResponse.redirect(
+        new URL("/hsr-editor/", request.nextUrl)
+      );
     }
 
     if (!isPublicPath && !isSecuredToken) {
@@ -34,7 +49,11 @@ export async function proxy(request: NextRequest) {
         new URL("/hsr-editor/login", request.nextUrl)
       );
     }
+
+    return NextResponse.next();
   } catch (error) {
+    console.error("Erreur de vérification du token :", error);
+
     return NextResponse.redirect(new URL("/", request.nextUrl));
   }
 }
