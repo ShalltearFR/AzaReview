@@ -421,7 +421,7 @@ const UidPage: React.FC<UidPageProps> = ({
               </div>
 
               {teamsList.characterID && teamsList.data.length > 0 && (
-                <Teams {...teamsList} />
+                <Teams json={teamsList} />
               )}
 
               <div className="xl2:hidden">

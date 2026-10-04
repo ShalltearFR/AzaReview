@@ -12,6 +12,8 @@ import Aos from "aos";
 import { replaceCharacterName } from "@/utils/PioneerType";
 import StarBGAnimation from "../StarBGAnimation";
 import LoadingSpin from "@/components/LoadingSpin";
+import { Teams } from "../UID/Teams";
+import { TeamsData } from "@/types/Teams";
 
 interface ShowCasePageProps {
   character: CharacterType | undefined | { error: true };
@@ -28,6 +30,38 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
   properties,
   lightconesRanks,
 }) => {
+  const [teamsList, setTeamsList] = useState<TeamsData>({
+    data: [],
+    characterID: -1,
+  });
+
+  useEffect(() => {
+    const getTeams = async () => {
+      try {
+        const characterId = window.location.pathname.split("/").pop();
+
+        const response = await fetch(`/api/teams?characterId=${characterId}`);
+
+        if (!response.ok) {
+          throw new Error("Impossible de récupérer les teams");
+        }
+
+        const result = await response.json();
+
+        const loadedTeams = result.data ?? [];
+
+        setTeamsList({
+          data: loadedTeams,
+          characterID: result.characterID,
+        });
+      } catch (error) {
+        console.error("Erreur lors de la récupération des teams :", error);
+      }
+    };
+
+    getTeams();
+  }, []);
+
   const initCharacter = () => {
     return replaceCharacterName(character as CharacterType).then((character) =>
       setCharacterName(character as string)
@@ -72,7 +106,7 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
           <p className="text-right mr-3 mmd:absolute mmd:right-3 mmd:top-3 mmd:mr-0">
             {"Dernière mise à jour : "} {date.toLocaleDateString()}
           </p>
-          <section className="flex flex-col gap-y-10 mt-10">
+          <section className="flex flex-col mt-10">
             {character.data.map((build: Data, i: number) => (
               <article
                 key={`build${i}`}
@@ -89,6 +123,11 @@ const ShowCasePage: React.FC<ShowCasePageProps> = ({
                 />
               </article>
             ))}
+            <div className="bg-black/75 p-3 md:p-5 xl:w-[1350px] xl:mx-auto xl:rounded-3xl">
+              {teamsList.characterID && teamsList.data.length > 0 && (
+                <Teams json={teamsList} isGuide />
+              )}
+            </div>
           </section>
         </div>
         <Footer />
