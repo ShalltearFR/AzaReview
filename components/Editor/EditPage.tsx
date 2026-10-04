@@ -397,7 +397,7 @@ export const EditPage: React.FC<EditPageProps> = ({ id }) => {
           user,
         };
 
-        fetch("/api/teams", {
+        fetch("/api/teams/edit", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

@@ -45,5 +45,6 @@ export const config = {
     "/api/other",
     "/api/changelog",
     "/api/editorChange",
+    "/api/teams/edit",
   ],
 };
