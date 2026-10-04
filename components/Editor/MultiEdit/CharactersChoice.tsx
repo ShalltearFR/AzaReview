@@ -1,8 +1,8 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import { CharacterType } from "@/types/CharacterModel";
 import { CharacterMultiEdit } from "@/types/EditorPage";
+import { PioneerToRemove, replaceCharacterName } from "@/utils/PioneerType";
 import { CDN } from "@/utils/cdn";
 
 import {
@@ -49,14 +49,22 @@ const CharactersChoice: React.FC<CharactersChoiceProps> = ({
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 
   useEffect(() => {
-    const options: Option[] = data.map((el) => ({
-      value: el.id,
-      label: el.name,
-      preview: el.preview,
-    }));
+    const loadOptions = async () => {
+      const options: Option[] = await Promise.all(
+        data
+          .filter((el) => !PioneerToRemove.includes(el.id))
+          .map(async (el) => ({
+            value: el.id,
+            label: (await replaceCharacterName(el)) ?? el.name,
+            preview: el.preview,
+          }))
+      );
 
-    setCharactersOptions(options);
-    setSelectedOption(options[0] ?? null);
+      setCharactersOptions(options);
+      setSelectedOption(options[0] ?? null);
+    };
+
+    loadOptions();
   }, [data]);
 
   const handleAddCharacter = () => {
@@ -87,16 +95,23 @@ const CharactersChoice: React.FC<CharactersChoiceProps> = ({
     setSelectedOption(newOptions[0] ?? null);
   };
 
-  const handleDeleteCharacter = (id: string) => {
+  const handleDeleteCharacter = async (id: string) => {
     const currentCharacter = data.find((el) => el.id === id);
 
     if (!currentCharacter) {
       return;
     }
 
+    if (PioneerToRemove.includes(id)) {
+      return;
+    }
+
+    const characterName =
+      (await replaceCharacterName(currentCharacter)) ?? currentCharacter.name;
+
     const newOption: Option = {
       value: currentCharacter.id,
-      label: currentCharacter.name,
+      label: characterName,
       preview: currentCharacter.preview,
     };
 

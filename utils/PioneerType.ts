@@ -34,11 +34,25 @@ const PioneerType: PioneerTypeProps[] = [
   },
 ];
 
-const PioneerToADD: string[] = ["8001", "8003", "8005", "8007", "8009"];
-const PioneerToRemove: string[] = ["8002", "8004", "8006", "8008", "8010"];
+const PioneerToADD: string[] = [
+  "8001",
+  "8003",
+  "8005",
+  "8007",
+  "8009",
+];
+
+const PioneerToRemove: string[] = [
+  "8002",
+  "8004",
+  "8006",
+  "8008",
+  "8010",
+];
 
 const findPioneer = (id: string): string | undefined => {
   const pioneer = PioneerType.find((item) => item.id === id);
+
   return pioneer ? pioneer.name : undefined;
 };
 
@@ -57,8 +71,12 @@ const replacePioneersName = async (
 ): Promise<CharacterType[]> => {
   return charactersList.map((character) => {
     const pioneerName = findPioneer(character.id);
+
     if (pioneerName) {
-      const pioneer = PioneerType.find((item) => item.id === character.id);
+      const pioneer = PioneerType.find(
+        (item) => item.id === character.id
+      );
+
       if (pioneer) {
         return {
           ...character,
@@ -68,6 +86,7 @@ const replacePioneersName = async (
         };
       }
     }
+
     return character;
   });
 };
@@ -79,4 +98,5 @@ export {
   replacePioneersName,
   replaceCharacterName,
 };
+
 export type { PioneerTypeProps };
