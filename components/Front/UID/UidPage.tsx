@@ -23,7 +23,6 @@ import type { CharacterType, Data } from "@/types/CharacterModel";
 import type { ChangelogType } from "@/types/Changelog";
 import Changelog from "./Changelog";
 import { Teams } from "./Teams";
-import jsonTeams from "@/utils/temp.json";
 import { TeamsData } from "@/types/Teams";
 
 interface Option {
